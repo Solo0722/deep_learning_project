@@ -1,0 +1,34 @@
+{
+  "version": "dataset_splits_v1",
+  "seed": 42,
+  "ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "labels": {
+    "0": "D00",
+    "1": "D10",
+    "2": "D20",
+    "3": "D40"
+  },
+  "crop_size": 224,
+  "bbox_convention": "XML values as continuous XYXY edges; floor minima, ceil maxima; clip; no origin shift or context padding",
+  "minimum_endpoint_span": 2,
+  "pixel_preprocessing": "Stored orientation; RGB; preserve aspect ratio; LANCZOS resize; centered 224x224 canvas with RGB(127,127,127); PNG",
+  "grouping": "All connected dHash candidates at radius 8 remain within one split; candidates are retained, not deleted",
+  "split_balance": "Per source; balance images, per-class crops, and class-bearing images; deterministic greedy allocation and up to three improvement passes",
+  "limitations": [
+    "Not a geographic or capture-sequence holdout; such IDs are unavailable",
+    "Perceptual screening may miss related views; no claim of eliminating all leakage",
+    "Mixed-source coordinate origins are not proven; extraction convention is explicit and fixed",
+    "Classification uses annotation-provided crops, not full-scene detection"
+  ],
+  "source_hashes": {
+    "annotations.jsonl": "6e50233cc1568348aa1cb6ba6bb5104eff2b81f6a5e6345a383d482fc9ce19c0",
+    "candidate_pairs.jsonl": "418291bf6a416af7066c5c90af5edb8660869c66245b13574ff8409c48624200",
+    "inventory.jsonl": "bfd6e2ef31a5a73335a966381d2dbb3b171f0fd44a43724fecc637134e2547b1"
+  },
+  "manifest_sha256": "6c319939a0b913693935c5e6e83acb8e12b442c84e13fef3d79b740423a01e78",
+  "generator_sha256": "f80fb44d042d1a3f08c36efae6db3e3f8eeca10f7f4d784a75824fda32d425aa"
+}

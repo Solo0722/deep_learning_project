@@ -1,0 +1,74 @@
+# Raw data, derived crop datasets, and new training runs stay outside Git.
+/dataset/
+/data/
+/runs/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
+# Ignore future checkpoints unless explicitly selected for release.
+*.pt
+*.pth
+*.ckpt
+!/reports/conventional_seed42_v1/best.pt
+!/reports/conventional_seed42_v1/last.pt
+
+# Local scratch files, downloaded papers, and course administration.
+/tmp/
+/related_works/
+/Deep_Learning_Project_Deadlines.pdf
+/*.docx
+/PROJECT_PLAN.md
+/METHOD_REVIEW.md
+/RELATED_WORKS_RESEARCH.md
+/research_paper/SOURCE_AUDIT.md
+/research_paper/main.template_backup.tex
+/reports/annotation_review/duplicate_comparison.png
+
+# Python environments and caches.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.venv-*/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+
+# Local credentials and editor settings.
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# LaTeX intermediates; retain source, bibliography, and research figure PDFs.
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+*.dvi
+
+
+OCTOBER_12_CHECKLIST.md
+METHOD_PROTOCOL.md

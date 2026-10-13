@@ -1,0 +1,7 @@
+# Separate CPU analysis environment; do not install over the training environment.
+# Torch, NumPy, and Matplotlib match analysis/verification.json.
+# Pillow matches the documented local software-test environment.
+torch==2.10.0
+numpy==2.4.2
+matplotlib==3.10.8
+Pillow==12.1.1

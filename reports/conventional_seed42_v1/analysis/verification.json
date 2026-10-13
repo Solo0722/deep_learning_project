@@ -1,0 +1,53 @@
+{
+  "verified_at_utc": "2026-10-12T20:20:13.430500+00:00",
+  "run_directory": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\conventional_seed42_v1",
+  "checks_passed": [
+    "source and manifest hashes",
+    "complete sequential epoch history and CSV",
+    "all epoch metrics recomputed from confusion matrices",
+    "per-split class support",
+    "all validation predictions matched to frozen manifest",
+    "prediction-derived selected metrics",
+    "checkpoint selection rule",
+    "both checkpoints and their configurations/history/predictions",
+    "selected weights agree across files and load into the model",
+    "finite selected weights",
+    "geometry comparator metrics and validation support"
+  ],
+  "original_artifact_sha256": {
+    "config.json": "93c83e421185b4045a9a5475ef7b9821e11b2f7bc70b077de4ff0201d57d96df",
+    "environment.json": "c3d53f21914c254627853d09195b46f566788e2cb86fd88677f69d55266a90eb",
+    "run_status.json": "baf8060330de0132d033c28995476e3808d0bed904153e60dba5c64860c087a2",
+    "best_validation.json": "b1e63ee38f78635a1e43cb453a8cae5df1e3f027a9a479b19d8a0844b099c39f",
+    "history.csv": "30528a7300ad2b76a4fc381311031124dfa314df780f0e130abed6a639ddf7ce",
+    "history.json": "b33481526979c9559ed74eb1b3169c09af2886f37d8240596d2ca199e1163821",
+    "validation_predictions.csv": "93f3f79039a9e636dd710a572438d2baf140b2531c2c2951c0df34b971ee1597",
+    "best.pt": "25687cf584f5d3ef532d1867a6e2b12ffaa01442d3f9cc7355f31425e143707b",
+    "last.pt": "83ed50f256183e7722ef0ab92a4be5cf87d3073eba5b07724d8980c02301686c",
+    "geometry_metrics.json": "f5725c22a12282fc95b9f5aa3dbfeb37bba52f981000341cd50802c7510743ee",
+    "augmentation_preview.jpg": "988e0870b0a1985e612490fbbbed9d091fb91180c58f692af5a6661d0efdf6ff"
+  },
+  "analysis_script_sha256": "f324e91d92357e2f7365c365909b31778bc108f804d7a686516c4701b4ed3478",
+  "manifest_sha256": "6c319939a0b913693935c5e6e83acb8e12b442c84e13fef3d79b740423a01e78",
+  "trainable_parameters": 695732,
+  "selected_epoch": 20,
+  "validation_crops": 8242,
+  "correct_validation_crops": 7461,
+  "incorrect_validation_crops": 781,
+  "accuracy": 0.90524144625091,
+  "macro_f1": 0.8914572916863414,
+  "summed_epoch_seconds": 1284.3992120465264,
+  "median_epoch_seconds_excluding_first": 60.96191751770675,
+  "timing_scope": "recorded training + validation epoch intervals; excludes initialization and post-epoch checkpoint writes",
+  "gpu": "NVIDIA A10",
+  "host": "gpu0022",
+  "PBS_JOBID": "784502.bright04",
+  "crop_pixels_loaded_for_analysis": false,
+  "checkpoint_inference_rerun": false,
+  "test_evaluated": false,
+  "analysis_versions": {
+    "torch": "2.10.0+cpu",
+    "numpy": "2.4.2",
+    "matplotlib": "3.10.8"
+  }
+}

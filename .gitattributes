@@ -1,0 +1,18 @@
+# Preserve exact bytes of scripts and evidence: saved runs verify SHA-256 hashes.
+*.py -text
+*.csv -text
+*.json -text
+*.jsonl -text
+*.pt binary
+*.pth binary
+*.pdf binary
+*.png binary
+*.jpg binary
+
+# Normalize only prose and editable project configuration.
+*.md text eol=lf
+*.tex text eol=lf
+*.bib text eol=lf
+requirements*.txt text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf

@@ -1,0 +1,5 @@
+# Direct dependencies recorded for the completed CCAST baseline.
+# Python 3.12.3; PyTorch CUDA 12.1 build; see README.md for installation.
+torch==2.3.0
+numpy==1.26.4
+Pillow==10.3.0

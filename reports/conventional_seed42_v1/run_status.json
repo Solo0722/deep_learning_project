@@ -1,0 +1,7 @@
+{
+  "status": "complete",
+  "completed_epochs": 20,
+  "planned_epochs": 20,
+  "best_epoch": 20,
+  "test_evaluated": false
+}

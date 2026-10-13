@@ -1,0 +1,257 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,array}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Research manuscript in the supplied IEEE template.
+% The abstract presents the proposed study; add findings after experiments.
+% Data preparation and the initial baseline are complete. The adaptive method
+% and comparative experiments in Section III are prospective.
+\begin{document}
+
+\title{Class-Adaptive Data Augmentation for Road Damage Classification}
+% Insert confirmed author and affiliation information before submission.
+\maketitle
+
+\begin{abstract}
+Reliable road-damage classification requires models that distinguish defect categories despite changes in illumination, viewpoint, and image quality. Data augmentation exposes a classifier to such variation, but the suitability of a transformation can differ across classes and change as learning progresses. A policy selected before training may therefore provide an uneven or poorly timed learning challenge. This study proposes an online class-adaptive augmentation framework that controls transformation strength and selection separately for each damage class and operation family. After an initial warm-up, paired reference and augmented images are periodically evaluated to estimate the classifier's tolerance to each family. These estimates regulate transformation strength, while the additional loss induced by augmentation guides selection among tolerated families. The objective is to determine whether this joint adaptation improves overall and per-class recognition beyond shared and fixed class-specific policies. Planned experiments use a common convolutional neural network trained from random initialization, with controlled comparisons separating the effects of class conditioning, family-specific strength, and difficulty-based selection. Recognition performance, policy trajectories, and computational cost will be examined together to assess the value of the proposed adaptation.
+\end{abstract}
+
+\begin{IEEEkeywords}
+road damage classification, data augmentation, class-adaptive learning, augmentation policy, convolutional neural networks
+\end{IEEEkeywords}
+
+\section{Introduction}
+Road-surface deterioration creates a continuing need to identify and classify defects for pavement assessment and maintenance planning. Image-based recognition can support this process by assigning damage categories to observed road regions, and convolutional neural networks (CNNs) have been used to automate both defect detection and classification~\cite{tsuchiya2019,aghayan2024,pardeshi2025}. Their practical usefulness, however, depends on recognizing damage under conditions that differ from those represented in training. Changes in lighting, camera viewpoint, and pavement appearance can obscure the visual features on which a classifier relies, making generalization a central challenge in road-damage recognition.
+
+Data augmentation addresses part of this challenge by exposing the model to transformed versions of available training images. Its value depends on introducing useful variation while retaining the features that distinguish one damage category from another. These requirements are not identical across categories: geometric transformations can alter the orientation cues separating longitudinal and transverse cracks, whereas blur or occlusion can weaken the fine structure of a crack network. A transformation that is acceptable for one class may consequently be unsuitable for another. Evidence from general image classification reinforces this concern, showing that gains in average accuracy can coexist with losses in individual classes~\cite{kirichenko2023}.
+
+Researchers have addressed augmentation design through both shared policy search and class-dependent selection. AutoAugment and RandAugment provide established approaches to choosing transformations and their strength~\cite{cubuk2019auto,cubuk2020rand}, while road-damage research has demonstrated the value of selecting augmentation methods according to class-level performance~\cite{tsuchiya2019}. Learned class-specific policies extend this principle beyond manually chosen rules~\cite{yoo2023,cheung2022adaaug}. These developments account for differences between categories, but a policy selected in advance cannot respond directly to changes in the classifier during its subsequent training.
+
+Online augmentation introduces this feedback. CTAugment estimates suitable magnitudes for individual transformations during learning~\cite{berthelot2020}, whereas CUDA adjusts a severity state for each class according to the model's current performance~\cite{ahn2023cuda}. The two approaches distinguish different sources of variation: CTAugment pools transformation feedback across classes, while CUDA uses one class-specific state to determine operation count and magnitude. More expressive policy networks also adapt transformations to individual inputs and training stages~\cite{hou2023madaug}. These advances motivate a focused question for road-defect recognition: whether explicitly separating transformation families within each class provides useful control beyond a shared policy or a single class-level strength.
+
+To investigate this question, we propose an online framework with independent strength levels for each combination of damage class and transformation family. Geometric, photometric, blur/noise, and occlusion transformations are assessed through paired reference and augmented images. The resulting prediction-retention estimates regulate strength, while transformation-induced loss differences guide the selection of tolerated families. This separation allows the classifier's response to one family to change without imposing the same change on every other family. The study's goal is to assess whether that additional control improves recognition and whether its benefit justifies the cost of periodic probing.
+
+Specifically, the study asks: \emph{Does adapting augmentation strength and family selection separately for each damage class during training improve overall and per-class recognition relative to shared and fixed class-specific policies?} The proposed contributions are:
+
+\begin{enumerate}
+    \item An online class--family augmentation formulation that independently controls the strength and selection of transformation families for road-defect classification.
+    \item A paired-probe update mechanism that uses prediction retention to regulate strength and additional classification loss to guide family selection.
+    \item A controlled evaluation protocol using a common CNN, fixed data partitions, and component ablations to distinguish the effects of class conditioning, family-specific strength, and difficulty-based selection.
+\end{enumerate}
+
+Section~\ref{sec:related} examines the preceding augmentation approaches and the question they motivate. Section~\ref{sec:method} presents the proposed framework, experimental protocol, and completed baseline implementation.
+
+\section{Related Work}
+\label{sec:related}
+
+Augmentation research in road-damage recognition has considered both how to expand training data and which transformations are appropriate for particular defects. Tsuchiya \emph{et al.}~\cite{tsuchiya2019} addressed the latter question by evaluating fifteen augmentation variants alongside an unaugmented dataset using YOLOv3. They used the resulting class-level average precision to identify categories requiring additional data and to select augmentation methods for those categories. The selected methods were then used to construct an expanded training dataset, improving the reported detection performance. This work provides a direct precedent for class-dependent augmentation in road imagery, with selection based on completed training runs before the final detector is trained.
+
+The quality of the additional examples is also important. Aghayan-Mashhady and Amirkhani~\cite{aghayan2024} investigated bounding-box augmentation and generative adversarial synthesis in a YOLOv5 road-damage detector. Their treatment of unrealistic augmented samples illustrates that increasing data diversity must be accompanied by attention to the appearance of valid defects. At the level of localized recognition, Jayhind Pardeshi \emph{et al.}~\cite{pardeshi2025} combined patch-based self-supervised learning with MobileNetV2 fine-tuning to classify five road-damage categories. Their approach focuses on learning useful representations from road patches, complementing the detector studies' emphasis on constructing augmented training data. Together, these studies establish the relevance of augmentation and localized features, while leaving policy updates during classifier training as a separate design problem.
+
+Automatic augmentation methods address policy design by reducing reliance on manually chosen transformations. AutoAugment, proposed by Cubuk \emph{et al.}~\cite{cubuk2019auto}, searches combinations of operations, application probabilities, and magnitudes using validation performance. The search allows the policy to be fitted to a learning task, but introduces a separate policy-selection stage. RandAugment~\cite{cubuk2020rand} simplifies this process by sampling operations uniformly and tuning only their number and a common magnitude. TrivialAugment~\cite{muller2021trivial} removes policy tuning altogether by randomly selecting one operation and its strength for each image. Their reported results show that competitive augmentation need not require an elaborate search procedure. They also establish a useful reference point: the additional control introduced by an adaptive method must yield a benefit beyond that available from a simple shared sampling rule.
+
+Sharing a rule across images, however, does not imply that its effects are uniform across categories. Kirichenko \emph{et al.}~\cite{kirichenko2023} examined this discrepancy on ImageNet and showed that improved average accuracy can conceal substantial class-level degradation. Their analysis links many affected categories to ambiguous labels, co-occurring objects, and fine-grained distinctions, and shows that class-conditional augmentation can improve performance for adversely affected classes. These findings make the class an important unit of policy analysis. They also indicate why overall accuracy alone is insufficient for evaluating an augmentation method intended to accommodate differences between damage categories.
+
+Class-conditioned policy learning addresses these differences explicitly. Yoo and Kang~\cite{yoo2023} first train a classifier without augmentation, then optimize transformation parameters separately for each class while constraining changes to preserve the classifier's predicted labels. A new classifier is subsequently trained using the derived parameters with a predetermined decay schedule. The authors report comparable or improved accuracy over shared policies on datasets with class-specific transformation constraints. Cheung and Yeung's AdaAug~\cite{cheung2022adaaug} also learns class-dependent and potentially instance-dependent policies, with the learned policy reused in subsequent classifier training. Both approaches make policy selection sensitive to the data category. Their search-and-reuse structure nevertheless differs from revising the policy in response to the classifier being optimized in the final training run; a scheduled parameter change does not itself provide that feedback.
+
+CTAugment, introduced by Berthelot \emph{et al.} within ReMixMatch~\cite{berthelot2020}, incorporates feedback directly into training. It maintains statistics over the magnitudes of individual transformations and updates them according to the model's predictions on transformed labeled examples. Magnitudes are then sampled from those estimated to fall within the model's tolerance, allowing augmentation to change as learning proceeds. This mechanism avoids a separate policy-search stage and provides a precedent for prediction-based probing. Its statistics are shared across classes, however, so the same estimated tolerance governs examples whose categories may respond differently to a transformation.
+
+CUDA, proposed by Ahn \emph{et al.}~\cite{ahn2023cuda}, brings class-level feedback into an online augmentation curriculum for long-tailed recognition. The method assesses how well the current model recognizes augmented examples from each class and adjusts that class's severity state accordingly. This state determines both the number of operations and their magnitudes, while operation identities are sampled uniformly. Experiments on long-tailed recognition benchmarks support adapting augmentation to class-level learning progress. CUDA therefore provides a close methodological reference for the present study, although its single state couples the strengths assigned to different transformations within a class. Compared with CTAugment, the distinction is explicit: one method resolves transformation-specific tolerance across the dataset, while the other resolves class-specific tolerance through a common severity parameter.
+
+More expressive methods adapt augmentation at the level of individual examples. Hou \emph{et al.}~\cite{hou2023madaug} proposed MADAug, which learns operation probabilities and magnitudes through a policy network optimized jointly with the classifier. A bilevel objective uses validation loss to guide policy updates, while a separate schedule increases the probability of augmentation over training. Yang \emph{et al.}~\cite{yang2025adaaugment} proposed AdaAugment, an actor--critic approach that adjusts instance-level magnitudes using feedback derived from classification losses. These methods show that both input-dependent and training-dependent adaptation have established precedents. They also broaden the comparison beyond fixed policies: an explicit class--family controller should be judged by the control it provides, the performance it achieves, and the computation it requires.
+
+The choice of feedback is central to that judgment because a difficult transformed example is not necessarily a useful training example. Suzuki's TeachAugment~\cite{suzuki2022teach} addresses this issue by optimizing transformations that challenge a target model while remaining recognizable to a teacher. The teacher provides a constraint on the information retained under augmentation. This distinction between difficulty and retained information is relevant to probe-based policies as well. Prediction retention measures the current model's response, and an increase in loss measures immediate difficulty; neither alone establishes that training on the transformation will improve generalization.
+
+The reviewed studies thus motivate a policy that distinguishes class, transformation family, and training stage, while evaluating the role of each distinction separately. The present framework maintains a strength state for every class--family pair and uses paired probes to guide both strength updates and family selection. Its central hypothesis is that this explicit separation can improve road-defect recognition beyond shared and fixed class-specific augmentation. A further comparison between uniform and difficulty-based family selection tests whether the loss signal adds value beyond tolerance-based strength control. Table~\ref{tab:policies} summarizes the closest approaches and their original application settings; their results motivate the comparison without implying direct equivalence between detection and crop-classification tasks.
+
+\begin{table*}[t]
+\caption{Application Settings and Policy Mechanisms of Closely Related Studies}
+\label{tab:policies}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.16}
+\begin{tabularx}{\textwidth}{@{}p{0.16\textwidth}p{0.22\textwidth}p{0.25\textwidth}Y@{}}
+\toprule
+\textbf{Study} & \textbf{Original application setting} & \textbf{Policy variables} & \textbf{Selection or update mechanism} \\
+\midrule
+Tsuchiya \emph{et al.}~\cite{tsuchiya2019} & Road-damage detection & Augmentation methods by damage class & Offline selection using class-level detector performance \\
+Yoo and Kang~\cite{yoo2023} & Digit and wafer-map classification & Class-specific transformation parameters & Offline optimization followed by scheduled parameter decay \\
+AdaAug~\cite{cheung2022adaaug} & General and fine-grained image recognition & Class- and instance-conditioned policies & Policy search followed by reuse in classifier training \\
+CTAugment~\cite{berthelot2020} & Semi-supervised image classification & Operation-specific magnitude statistics & Online updates from prediction agreement \\
+CUDA~\cite{ahn2023cuda} & Long-tailed image recognition & One severity state per class & Online class-level learning assessments \\
+MADAug~\cite{hou2023madaug} & General image classification & Model-adaptive operations and magnitudes & Bilevel policy and classifier optimization \\
+AdaAugment~\cite{yang2025adaaugment} & General and long-tailed image recognition & Per-instance augmentation magnitude & Actor--critic updates from loss-based feedback \\
+Proposed framework & Road-defect crop classification & Severity and selection for each class--family pair & Periodic paired probes and difficulty-based allocation \\
+\bottomrule
+\end{tabularx}
+\vspace{3pt}
+\begin{minipage}{\textwidth}
+\footnotesize
+CTAugment is the augmentation component of ReMixMatch; MADAug uses a separate augmentation-probability schedule.
+\end{minipage}
+\end{table*}
+
+\section{Methodology}
+\label{sec:method}
+The study is designed to isolate the effect of augmentation policy on road-defect recognition. A common classifier, preprocessing procedure, and evaluation protocol are used throughout, while the policy varies in whether it is shared across classes, selected separately for each class, or updated during learning. Data preparation and an initial conventional baseline have been completed. The class--family controller and the comparative experiments described below constitute the revised experimental protocol; their effectiveness has not yet been established.
+
+\subsection{Classification Task and Data Preparation}
+The task is four-class classification of annotated defect regions. The target categories are longitudinal cracks (D00), transverse cracks (D10), alligator cracks (D20), and potholes (D40). The labeled training archives of RDD2022~\cite{arya2024rdd} provide the source images and bounding boxes, including the China drone and motorcycle subsets and the Czech, Indian, Japanese, Norwegian, and United States subsets. Each retained box produces one labeled crop. Consequently, the evaluation assumes that a defect region has already been localized; it does not measure full-image detection performance.
+
+Before partitioning, image decoding and annotation structure were checked, one byte-identical image copy was excluded, and boxes with an endpoint span below two pixels were rejected. A 128-bit difference-hash screen identified 557 candidate similarity links at Hamming distance at most eight. Connected candidates were assigned to the same partition, and all crops from an original image remained together. These constraints prevent the identified related images from crossing partitions without treating every perceptual match as a duplicate. Allocation used seed 42 and approximately 70:15:15 training, validation, and test proportions, with balancing by source, class counts, and class-bearing images. The resulting 55,002 crops originate from 23,766 images and 23,314 connected groups. Table~\ref{tab:splits} gives the frozen class distribution. Because complete capture-sequence and location identifiers are unavailable, this partition is not a geographic holdout and cannot establish the absence of every related view.
+
+\begin{table}[t]
+\caption{Class Distribution of the Prepared Crop Partitions}
+\label{tab:splits}
+\centering
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Class & Training & Validation & Test \\
+\midrule
+D00 & 18,216 & 3,898 & 3,899 \\
+D10 & 8,282 & 1,771 & 1,776 \\
+D20 & 7,435 & 1,592 & 1,589 \\
+D40 & 4,580 & 981 & 983 \\
+\midrule
+Total crops & 38,513 & 8,242 & 8,247 \\
+Source images & 16,624 & 3,573 & 3,569 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Bounding-box coordinates were interpreted as continuous edges, with lower coordinates rounded downward and upper coordinates rounded upward, followed by clipping to image boundaries. No additional context margin or coordinate-origin shift was introduced. Crops were converted to RGB in stored image orientation, resized with aspect ratio preserved using Lanczos interpolation, and centered on a $224\times224$ canvas with padding value $(127,127,127)$. Model inputs are scaled as $x/127.5-1$. This explicit convention ensures reproducibility without asserting that all annotation sources share a verified coordinate origin. Source-image, group, class, box, and crop identifiers are retained in the manifests, together with file hashes.
+
+Aspect-preserving padding also exposes bounding-box geometry to the classifier. A diagnostic classifier therefore uses only the logarithm of crop width divided by height: twenty quantile bins and their majority labels are fitted on training metadata and evaluated on validation metadata. This comparator tests whether geometry alone carries predictive information. It does not determine which cues the CNN actually uses. The crop construction remains identical across augmentation conditions so that preprocessing changes cannot explain their differences.
+
+\subsection{Classifier and Optimization}
+The classifier contains four convolutional blocks with 16, 32, 64, and 128 output channels. Each block comprises two $3\times3$ convolutions with unit stride and one-pixel padding, each followed by batch normalization and a rectified linear activation, and then $2\times2$ max pooling. A further $2\times2$ average-pooling layer yields a $128\times7\times7$ representation. The classification head consists of a 64-unit fully connected layer, a rectified linear activation, dropout with probability 0.25, and four output logits. The resulting network has 695,732 trainable parameters and is initialized randomly; no pretrained representation is used.
+
+Training minimizes unweighted cross-entropy with AdamW, an initial learning rate of $10^{-3}$, weight decay of $10^{-4}$, and batch size 64. The AdamW moment coefficients are 0.9 and 0.999, with numerical constant $10^{-8}$. A cosine schedule reduces the learning rate toward $10^{-5}$ over the declared epoch budget. Each epoch presents every training crop once in shuffled order, including the final incomplete batch. The primary comparison uses no class resampling or class-weighted loss, preserving the observed class frequencies across policies. The checkpoint with the highest validation macro-F1 is selected, with the earlier epoch retained in a tie. Validation uses fixed preprocessing and evaluation mode, with no stochastic augmentation.
+
+The completed working baseline used 20 epochs and seed 42. Its conventional policy independently applies horizontal reflection with probability 0.5, brightness adjustment with probability 0.5, and contrast adjustment with probability 0.5; both adjustment factors are sampled uniformly from $[0.9,1.1]$. These operations affect the resized image content while leaving the surrounding padding unchanged. This initial run establishes a functioning training and evaluation pipeline. For the proposed controlled comparison, the training budget is set prospectively to 50 epochs, including ten common warm-up epochs, to allow repeated policy updates after initialization. All principal comparison arms will be trained anew under that budget; the completed 20-epoch result will remain identified as the preliminary baseline.
+
+\subsection{Common Transformation Space}
+The proposed controller operates on four families: geometry, photometry, blur/noise, and occlusion. Table~\ref{tab:operations} specifies the initial operation bank. A family application samples exactly one of its operations uniformly, rather than composing every operation in that family. Each continuous operation has levels $\ell\in\{0,\ldots,S\}$, with $S=4$ and normalized severity $u=\ell/S$; level zero is identity. The physical parameter ranges increase with $u$, although an increase in the range does not guarantee that every sampled image becomes harder to classify.
+
+\begin{table*}[t]
+\caption{Initial Proposed Operation Bank and Level Mapping}
+\label{tab:operations}
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}p{0.12\textwidth}p{0.17\textwidth}Y@{}}
+\toprule
+Family & Operation & Parameter distribution at normalized level $u=\ell/4$ \\
+\midrule
+Geometric & Rotation & Angle sampled uniformly from $[-5u,5u]$ degrees. \\
+ & Translation & Horizontal and vertical offsets sampled independently within $\pm0.03u$ times the content width and height, respectively. \\
+Photometric & Brightness; contrast & One operation is selected; its multiplicative factor is sampled uniformly from $[1-0.3u,1+0.3u]$. \\
+ & Gamma correction & Exponent $\exp(v)$, where $v$ is uniform on $[-u\log(1.25),u\log(1.25)]$, applied to intensities in $[0,1]$. \\
+Blur/noise & Gaussian blur & Standard deviation sampled uniformly from $[0,0.8u]$ pixels on the resized content. \\
+ & Gaussian noise & Zero-mean independent noise with standard deviation sampled uniformly from $[0,0.03u]$ for intensities in $[0,1]$; outputs are clipped to this range. \\
+Occlusion & Rectangular cutout & Area fraction sampled uniformly from $[0,0.04u]$; aspect ratio is log-uniform on $[1/2,2]$. The rectangle is fitted within the content, placed uniformly over valid positions, and filled with $(127,127,127)$. \\
+\bottomrule
+\end{tabularx}
+\vspace{3pt}
+\begin{minipage}{\textwidth}
+\footnotesize
+These are prospective bounds, subject to visual review on training examples before the comparison is frozen. All comparison arms use the same approved bank and bounds. Horizontal reflection is a common binary operation with probability 0.5 and is not assigned a continuous severity level.
+\end{minipage}
+\end{table*}
+
+Operations are applied within the resized content rectangle, which is then returned to the unchanged padded canvas. Affine operations use bilinear interpolation and reflected boundary extension without changing the content rectangle dimensions. The small geometric ranges limit changes to directional evidence, while restricting cutout to content avoids counting removal of padding as meaningful occlusion. Nevertheless, these constraints do not establish label preservation. Before comparative training, every operation and level will be inspected on training examples from each class and source, including narrow crops. Bounds that visibly remove the relevant defect evidence will be reduced, or the operation removed, consistently across all policies. The approved bank will then be fixed; classifier predictions alone will not be used to declare an operation semantically valid.
+
+During the common ten-epoch warm-up, all principal comparison arms use the mild policy of the working baseline. Subsequently, horizontal reflection remains a common operation with probability 0.5. With additional probability $p_{\mathrm{aug}}=0.5$, one family and one operation are sampled according to the policy under study. The augmented view replaces the corresponding training input, so augmentation does not increase the number of labeled examples or optimizer updates.
+
+\subsection{Paired Probes of Class--Family Response}
+For class $c$ and family $f$, the controller maintains an active level $L_{c,f}$. All sixteen active levels start at zero after warm-up. Before each subsequent training epoch, the current classifier is evaluated on matched reference and transformed views drawn from the training partition. The initial probe budget is $T=32$ crops per class, sampled from distinct connected groups within that class and distributed across source subsets as evenly as availability permits. A group contributes at most one crop to a class-specific probe batch. The batch is refreshed at each update, while the same reference examples are reused across families and levels within that update.
+
+Let $g_\theta(x)$ denote the predicted class and $\mathcal{L}(x,c)$ the cross-entropy loss for label $c$. A common reflection is sampled once for each probe image and included in both members of every pair; $x_i$ below denotes this shared reference view before applying the probed family. Thus, the probe measures the additional effect of that family. Define the correctly classified reference subset by
+\begin{equation}
+\mathcal{I}_c=\{i:g_\theta(x_i)=c\},\qquad n_c=|\mathcal{I}_c|.
+\end{equation}
+For operation $o$ in family $f$ at level $\ell$, conditional correctness retention is
+\begin{equation}
+r_{c,f,o,\ell}=\frac{1}{n_c}\sum_{i\in\mathcal{I}_c}
+\mathbf{1}\{g_\theta(a_{f,o,\ell}(x_i))=c\}.
+\label{eq:retention}
+\end{equation}
+Reference accuracy and unconditional transformed accuracy are logged alongside this quantity. Conditioning separates transformation sensitivity from errors already present in the reference predictions, but excludes initially misclassified examples and can therefore give an optimistic view of tolerance. If fewer than sixteen reference examples are correct, the class supplies insufficient evidence for that update: its levels are held, its patience counters are reset, and no additional family transformation is applied during the next epoch.
+
+Immediate difficulty is estimated from the paired loss difference over all $T$ examples, including initially misclassified references:
+\begin{equation}
+d_{c,f,o,\ell}=\frac{1}{T}\sum_{i=1}^{T}
+\operatorname{clip}\!\left(\Delta_i,-b,b\right),
+\quad b=2,
+\label{eq:difficulty}
+\end{equation}
+where $\Delta_i=\mathcal{L}(a_{f,o,\ell}(x_i),c)-\mathcal{L}(x_i,c)$. Clipping limits the influence of an isolated high-loss example. Separate exponential moving averages are maintained for $r$ and $d$ for each operation and assessed level, using decay 0.8 and initialization from the first valid observation. Statistics are reset when a level is revisited after an update in which it was not assessed. This prevents evidence for different levels, or nonconsecutive assessments, from being treated as a single uninterrupted estimate. Probing uses evaluation mode and disables gradients, leaving dropout inactive and batch-normalization statistics unchanged.
+
+\subsection{Severity Updates and Family Allocation}
+At each update, the controller assesses the nonzero levels in
+\begin{equation}
+\mathcal{A}_{c,f}=\{L_{c,f}-1,L_{c,f},L_{c,f}+1\}
+\cap\{1,\ldots,S\}.
+\end{equation}
+Consequently, both a proposed increase and a possible decrease are measured before either becomes the active level. Every operation in the family is probed separately at each assessed level. A family's tolerance estimate is the minimum of its operation-specific retention averages,
+\begin{equation}
+R_{c,f,\ell}=\min_{o\in\mathcal{O}_f}\bar r_{c,f,o,\ell},
+\label{eq:family-retention}
+\end{equation}
+rather than an average that could conceal a poorly tolerated member. This conservative aggregation still depends on finite samples and cannot certify semantic label preservation.
+
+The initial retention threshold is $\gamma=0.8$. If the active nonzero level falls below this threshold for two consecutive valid assessments, it decreases by one. Otherwise, the level increases by one only when the adjacent higher level has met the threshold for two consecutive valid assessments and the current level is either zero or presently tolerated. The level remains unchanged in all other cases, and counters are reset following a change. The two-update rule is a stability heuristic: successive exponential averages are correlated and are not independent confirmations. Level zero remains identity, and the threshold is a proposed curriculum setting rather than a validated safety criterion.
+
+After updating levels, the eligible family set for class $c$ is
+\begin{equation}
+\mathcal{E}_c=\{f:L_{c,f}>0,\ R_{c,f,L_{c,f}}\geq\gamma\},
+\end{equation}
+using valid measurements from the current update. For an eligible family, its difficulty score is the nonnegative mean of the operation-specific loss-difference averages at the active level:
+\begin{equation}
+D_{c,f}=\max\!\left(0,\frac{1}{|\mathcal{O}_f|}
+\sum_{o\in\mathcal{O}_f}\bar d_{c,f,o,L_{c,f}}\right).
+\end{equation}
+The full controller allocates probability
+\begin{equation}
+w_{c,f}=\frac{\varepsilon}{|\mathcal{E}_c|}
++(1-\varepsilon)
+\frac{\exp(D_{c,f}/\tau)}{\sum_{h\in\mathcal{E}_c}\exp(D_{c,h}/\tau)}
+\label{eq:allocation}
+\end{equation}
+to $f\in\mathcal{E}_c$, with zero probability otherwise. The initial temperature is $\tau=0.25$ in cross-entropy units and the uniform mixture weight is $\varepsilon=0.2$. If no family is eligible, the additional augmentation is omitted and the common reflection remains available. The uniform component prevents a noisy difficulty estimate from assigning nearly all eligible probability to a single family. Its role is exploration among currently eligible families; the probe stage continues to assess excluded families independently of how often they are used for training.
+
+Excess loss describes the current classifier's difficulty, not the benefit of subsequently training on a transformation. Equation~\eqref{eq:allocation} is therefore evaluated as a separate hypothesis. The first adaptive variant uses the same probes, levels, and eligibility rule but allocates uniformly over $\mathcal{E}_c$. Comparing that variant with the full controller isolates the contribution of difficulty-based allocation. All levels, operation-specific probe measurements, eligible counts, and family weights will be recorded throughout training, since a final level table alone cannot show how the policy evolved.
+
+\subsection{Baselines and Component Comparisons}
+The principal comparison comprises a shared fixed policy, an offline-selected fixed class-specific policy, and the proposed online policy. All three use the same approved operation bank, common warm-up, reflection probability, and probability of applying one family operation. The initial mild baseline is retained as a practical reference, but its different operation composition is not used as the sole control for the adaptive mechanism.
+
+Static policies will be selected from a declared pool containing one identity-family policy, sixteen single-family policies covering four families at four nonzero levels, and four policies that choose families uniformly at a common level. The identity-family candidate retains the common reflection but applies no additional family operation. Each of these 21 candidates will be trained once with search seed 2026, the common 50-epoch schedule, and validation macro-F1 checkpoint selection. The shared control uses the candidate with the highest overall validation macro-F1. The fixed class-specific control selects, for each class, the candidate with the highest validation F1 for that class. Ties prefer the smaller level and then a fixed candidate ordering. The selected policies are frozen before the final classifiers are reinitialized.
+
+This selection procedure follows the class-dependent motivation of Tsuchiya \emph{et al.}~\cite{tsuchiya2019}, but adapts it to crop classification, F1-based selection, and in-place augmentation. It is not a reproduction of their detector experiment or of their dataset-expansion procedure. The shared and class-specific selectors reuse the same candidate results, and all search runs will be disclosed separately from final training. The adaptive controller initially uses the prespecified settings above. Accordingly, final classifier update counts are matched, while policy-search cost is not assumed to be equal. Any subsequent hyperparameter search will be declared before final comparisons, with its candidate set and actual cost reported.
+
+Three component comparisons address the proposed mechanism. Uniform versus difficulty-based allocation tests Eq.~\eqref{eq:allocation}. A controller sharing both family levels and allocation weights across classes tests whether class conditioning helps. It uses the same balanced probe batches, averages retention and loss differences equally across classes for each operation, and then applies the family aggregation rules; its update is held if any class has insufficient correctly classified references. A controller constrained to one common severity per class across all families tests whether separate family levels help; in that control, the class-level tolerance is the minimum over the corresponding family estimates, while family allocation remains class specific. These controls retain the remaining update rules. The class-scalar comparison examines a structural limitation motivating the contrast with CUDA~\cite{ahn2023cuda}; it will be identified as a constrained ablation rather than a faithful CUDA reproduction. CUDA will also serve as a separate reference using its published assessment and operation-count rules, with changes to the road-compatible operation bank explicitly documented. Because its operation composition differs, this reference does not replace the matched component ablations.
+
+A further practical reference will retain the selected shared policy while sampling crops with replacement using inverse-class-frequency weights. The number of draws per epoch remains equal to the original training-set size. This yields equal expected class sampling probabilities and tests the value of rebalancing under a fixed policy. Resampling is not introduced into the primary adaptive comparison, where class presentation counts remain unchanged.
+
+The primary controller uses training-partition probes. A secondary probe-provenance comparison will reserve approximately 10\% of connected groups from the original training partition, using seed 2026 and balancing source and class coverage, for feedback without gradient updates. Both arms of that comparison will use the same remaining gradient-training pool, with one arm probing that pool and the other probing the reserved groups. The resulting group manifest and exact crop counts will be recorded before either arm is trained. These reserved observations remain policy-development data, even though the probe pass has no gradients; they are distinct from model-selection validation and the final test set.
+
+\subsection{Evaluation, Cost, and Current Implementation}
+Macro-F1 is the primary metric because the study concerns performance across all four classes. For class $c$, precision and recall are computed from its true positives, false positives, and false negatives, and $F_{1,c}=2P_cR_c/(P_c+R_c)$, with zero assigned when the denominator is zero. Macro-F1 averages the four class scores. Accuracy, per-class precision and recall, class support, and confusion matrices are reported alongside it so that an aggregate gain cannot conceal degradation in a particular defect category.
+
+Final comparison runs will use paired seeds 42, 43, and 44, with matching initial weights, crop order, preprocessing, optimizer, and epoch budget wherever the comparison permits. Policy randomness will use a separate stream so that probe sampling cannot alter the model-initialization or data-order sequence. Each run will retain its own best validation checkpoint. Results will include individual scores, means, standard deviations, and paired differences across seeds; three seeds provide an initial estimate of variability rather than strong evidence of statistical significance. Validation supports policy selection and debugging. After the comparison protocol is fixed, the selected checkpoints from the declared runs will be evaluated on the held-out test partition without further tuning in response to those results.
+
+Computational accounting includes optimizer updates, probe examples, elapsed training and probe time, and offline policy-search time. With eight operations, at most three assessed nonzero levels per family, four classes, and 32 probes per class, an update requires at most 3,072 transformed forward evaluations plus 128 cached reference evaluations. The actual count depends on the active levels. Forward-only feedback avoids backpropagation through the probes but is not cost-free. Matching classifier updates therefore answers a different question from matching total computation; both the resulting performance and the additional policy cost will be reported.
+
+The completed implementation has verified the data-loading, optimization, checkpoint, and metric-computation pipeline. A 32-crop memorization check passed, and the 20-epoch conventional run achieved validation accuracy 90.52\% and macro-F1 0.8915 at its selected epoch 20. The transferred predictions reproduce these metrics, and both saved checkpoints are consistent with the run history. The experiment used PyTorch 2.3.0 and an NVIDIA A10 GPU. These results establish the working baseline only. The adaptive controller, fixed-policy search, component comparisons, and repeated-seed evaluation remain prospective, and no held-out test result or improvement from class adaptation is claimed.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\end{document}

@@ -1,0 +1,136 @@
+{
+  "evidence": "Direct inspection of user-transferred files",
+  "source_bundle_sha256": "777b4da08b746776469634c8ca874210e69838397d3b0c3e59a1a7cde81fd0b3",
+  "reviewed_files": [
+    {
+      "image": "India/train/images/India_000430.jpg",
+      "image_sha256": "01c4ef927c8193a209e1169f8bc937ad16764c1b2d756ba0a5c9d7332ea3fa9c",
+      "xml_sha256": "6b58cf7b489830c8c7366588aad2fa8f8ff18f46ac1f2b5f6d17e4987e6fe19e",
+      "objects": []
+    },
+    {
+      "image": "India/train/images/India_004810.jpg",
+      "image_sha256": "5765420eef4d267f889c13e5b89b1931b4b064a8f401b3517b1eb231bbb9bd69",
+      "xml_sha256": "71eb752cccf6c7d2158235eee5536bf02f018e20098cb4b7f224103f3abca989",
+      "objects": []
+    },
+    {
+      "image": "United_States/train/images/United_States_001623.jpg",
+      "image_sha256": "1dbf9599919d661531f14b7070bc05d4db19198956cb8735176c54dae69fbc4e",
+      "xml_sha256": "a6c38d06480a30efa1188c9582c926b670d5a0b9326e73e2511a041213ac6e6a",
+      "objects": [
+        {
+          "label": "D00",
+          "box": [
+            240,
+            498,
+            299,
+            550
+          ]
+        },
+        {
+          "label": "D00",
+          "box": [
+            54,
+            414,
+            257,
+            630
+          ]
+        },
+        {
+          "label": "D10",
+          "box": [
+            236,
+            449,
+            603,
+            479
+          ]
+        },
+        {
+          "label": "D00",
+          "box": [
+            429,
+            456,
+            488,
+            557
+          ]
+        }
+      ]
+    },
+    {
+      "image": "United_States/train/images/United_States_003917.jpg",
+      "image_sha256": "1dbf9599919d661531f14b7070bc05d4db19198956cb8735176c54dae69fbc4e",
+      "xml_sha256": "6b83020b8d5061e8d4c712f4db5c214741ef4cec74ab9aa3293d6ea6731c4a7d",
+      "objects": [
+        {
+          "label": "D00",
+          "box": [
+            240,
+            498,
+            299,
+            550
+          ]
+        },
+        {
+          "label": "D00",
+          "box": [
+            54,
+            414,
+            257,
+            630
+          ]
+        },
+        {
+          "label": "D10",
+          "box": [
+            253,
+            454,
+            626,
+            477
+          ]
+        },
+        {
+          "label": "D00",
+          "box": [
+            431,
+            465,
+            482,
+            557
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "images": [
+        "India/train/images/India_000430.jpg",
+        "India/train/images/India_004810.jpg"
+      ],
+      "action": "No crops; XMLs contain zero objects. Retain raw files unchanged. No orientation correction required for crop classification."
+    },
+    {
+      "retain": "United_States/train/images/United_States_001623.jpg",
+      "exclude_from_derived_dataset": "United_States/train/images/United_States_003917.jpg",
+      "reason": "Byte-identical image. Both XMLs contain 3 D00 and 1 D10; two boxes are identical and two have differing coordinates. Retain lexicographically first image/annotation to avoid duplicate weighting. Do not merge the boxes."
+    },
+    {
+      "image": "Japan/train/images/Japan_001265.jpg",
+      "object_index": 3,
+      "label": "D20",
+      "box": [
+        198,
+        474,
+        198,
+        475
+      ],
+      "action": "Exclude from crop dataset under the forthcoming consistent minimum-size rule; preserve raw data."
+    }
+  ],
+  "remaining": [
+    "Near-duplicate screening and review",
+    "Coordinate convention and minimum crop dimensions",
+    "Grouped splits",
+    "Crop quality review"
+  ]
+}
