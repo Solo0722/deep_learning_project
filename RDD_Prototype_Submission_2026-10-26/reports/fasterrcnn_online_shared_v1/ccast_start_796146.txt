@@ -1,0 +1,113 @@
+(base) [solomon.owusu.1@login0003 ~]$ qstat 796146.bright04 || true
+
+online_log=/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/runs/baseline_job_logs/796146.bright04.log
+
+if [ -f "$online_log" ]; then
+    tail -n 100 "$online_log"
+else
+    printf 'Live log not created yet; the job may still be queued.\n'
+fi
+Job id            Name             User              Time Use S Queue
+----------------  ---------------- ----------------  -------- - -----
+796146.bright04   rdd_frcnn_onshr  solomon.owusu.1   00:03:04 R gpus
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+ok
+test_mid_epoch_resume_replays_active_policy_without_reprobing (test_online_resume.OnlineResumeTests.test_mid_epoch_resume_replays_active_policy_without_reprobing) ... VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+ok
+test_policy_checkpoint_failure_keeps_preupdate_checkpoint_authoritative (test_online_resume.OnlineResumeTests.test_policy_checkpoint_failure_keeps_preupdate_checkpoint_authoritative) ... VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+ok
+test_all_operation_smoke_preview_records_eight_checks (test_shared_augmentation.SharedAugmentationTests.test_all_operation_smoke_preview_records_eight_checks) ... All 8 local operations: targets/padding/outside-union checks PASS
+ok
+test_all_operations_preserve_targets_padding_and_reference (test_shared_augmentation.SharedAugmentationTests.test_all_operations_preserve_targets_padding_and_reference) ... ok
+test_augmentation_does_not_consume_global_rng (test_shared_augmentation.SharedAugmentationTests.test_augmentation_does_not_consume_global_rng) ... ok
+test_blur_constant_and_impulse (test_shared_augmentation.SharedAugmentationTests.test_blur_constant_and_impulse) ... ok
+test_class_independent_decisions_and_distinct_epochs (test_shared_augmentation.SharedAugmentationTests.test_class_independent_decisions_and_distinct_epochs) ... ok
+test_known_photometric_values_and_clipping (test_shared_augmentation.SharedAugmentationTests.test_known_photometric_values_and_clipping) ... ok
+test_noise_scale_replay_and_explicit_seed (test_shared_augmentation.SharedAugmentationTests.test_noise_scale_replay_and_explicit_seed) ... ok
+test_paired_recipe_guard_rejects_unrelated_changes (test_shared_augmentation.SharedAugmentationTests.test_paired_recipe_guard_rejects_unrelated_changes) ... ok
+test_pixel_dependent_mid_epoch_resume_and_plan_digest (test_shared_augmentation.SharedAugmentationTests.test_pixel_dependent_mid_epoch_resume_and_plan_digest) ... VALIDATION epoch=1/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=06c67636a4cc56d70d931f3204223c6e8fc53922a9866bd94c5ff28209af9be2
+VALIDATION epoch=2/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=4 changed=4 decision_sha256=7a5fec7e9e72a1d4ef23a0948fb050ab14544e85b109c75137f479a19dd06b5b
+VALIDATION epoch=1/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=06c67636a4cc56d70d931f3204223c6e8fc53922a9866bd94c5ff28209af9be2
+VALIDATION epoch=2/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=4 changed=4 decision_sha256=7a5fec7e9e72a1d4ef23a0948fb050ab14544e85b109c75137f479a19dd06b5b
+ok
+test_probability_warmup_negatives_and_validation (test_shared_augmentation.SharedAugmentationTests.test_probability_warmup_negatives_and_validation) ... ok
+test_tampered_exposure_trace_is_rejected (test_shared_augmentation.SharedAugmentationTests.test_tampered_exposure_trace_is_rejected) ... ok
+test_worker_count_and_access_order_do_not_change_pixels_or_decisions (test_shared_augmentation.SharedAugmentationTests.test_worker_count_and_access_order_do_not_change_pixels_or_decisions) ... /mmfs1/apps/pyenvs/anaconda3-2022.05/envs/pytorch/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=3932168) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+ok
+
+----------------------------------------------------------------------
+Ran 63 tests in 4.584s
+
+OK
+All 8 local operations: targets/padding/outside-union checks PASS
+/mmfs1/apps/pyenvs/anaconda3-2022.05/envs/pytorch/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at /opt/conda/conda-bld/pytorch_1712608847532/work/aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+PROBE epoch=1 images=15/15 forwards=420/420
+CONTROLLER epoch=1 policy=aa05e7da6646 families=identity support={'0': {'objects': 9, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '1': {'objects': 5, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': False}, '2': {'objects': 3, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 2, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}
+/mmfs1/apps/pyenvs/anaconda3-2022.05/envs/pytorch/lib/python3.12/site-packages/torch/autograd/graph.py:744: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at /opt/conda/conda-bld/pytorch_1712608847532/work/aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+VALIDATION epoch=1/1 AP50:95=0.000000 AP50=0.000000 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=a48a7568e676e78960aac6cf0b61216f229d38344cb43b591201948f5791ff5f
+Records archive: /mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/runs/fasterrcnn_online_shared_smoke_v1_records_e70b5792a173.tar.gz
+Archive SHA-256: 50afb76c53abad9d309176ff411cfcfc5b7bf710d9033c66de147774f008e858
+FASTER R-CNN SMOKE: COMPLETE
+Online shared GPU probe/train/validation/policy-checkpoint gate: PASS
+Smoke active families: []
+/mmfs1/apps/pyenvs/anaconda3-2022.05/envs/pytorch/lib/python3.12/site-packages/torch/autograd/graph.py:744: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at /opt/conda/conda-bld/pytorch_1712608847532/work/aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+TRAIN epoch=1/20 batch=100 step=100 loss=0.44405 lr=0.0002497525 grad_norm=7.7592
+TRAIN epoch=1/20 batch=200 step=200 loss=0.22917 lr=0.0004995025 grad_norm=1.9119
+TRAIN epoch=1/20 batch=300 step=300 loss=0.38108 lr=0.0007492525 grad_norm=3.2437
+TRAIN epoch=1/20 batch=400 step=400 loss=0.43732 lr=0.0009990025 grad_norm=2.4543
+(base) [solomon.owusu.1@login0003 ~]$

@@ -1,0 +1,66 @@
+{
+  "ccast_unit_tests": {
+    "result": "OK",
+    "seconds": 4.584,
+    "tests": 63
+  },
+  "evidence_scope": "User-pasted CCAST qstat and last 100 log lines; no live remote query or returned archive inspection",
+  "full_run": {
+    "full_controller_update_observed": false,
+    "last_reported_batch": 400,
+    "last_reported_epoch": 1,
+    "last_reported_gradient_norm": 2.4543,
+    "last_reported_learning_rate": 0.0009990025,
+    "last_reported_loss": 0.43732,
+    "last_reported_step": 400,
+    "planned_epochs": 20,
+    "status": "started_as_reported",
+    "validation_result_observed": false
+  },
+  "gpu_smoke": {
+    "active_families": [],
+    "archive": "fasterrcnn_online_shared_smoke_v1_records_e70b5792a173.tar.gz",
+    "archive_downloaded_and_independently_verified": false,
+    "interpretation": "Insufficient reference detection support; controller used the declared identity fallback. No thresholds changed.",
+    "local_operations_checked": 8,
+    "policy": "identity",
+    "policy_id_prefix": "aa05e7da6646",
+    "probe_image_forwards": 420,
+    "probe_images": 15,
+    "reference_detected_object_counts": {
+      "D00": 0,
+      "D10": 1,
+      "D20": 0,
+      "D40": 0
+    },
+    "reported_archive_sha256": "50afb76c53abad9d309176ff411cfcfc5b7bf710d9033c66de147774f008e858",
+    "status": "complete_gate_passed_from_terminal",
+    "target_group_object_counts": {
+      "D00": 9,
+      "D10": 5,
+      "D20": 3,
+      "D40": 2
+    },
+    "validation_AP50": 0.0,
+    "validation_AP50_95": 0.0
+  },
+  "limits": [
+    "Synthetic test AP50:95=0.520833 is not a road-damage experiment result.",
+    "Smoke AP and identity fallback are implementation evidence only.",
+    "No completed full-run epoch validation or adaptive policy result is available in this snapshot."
+  ],
+  "next_expected_milestone": "Finish unaugmented epoch 1 and its validation, then first full-panel controller update before epoch 2.",
+  "pbs_job": "796146.bright04",
+  "pbs_state_as_reported": "R",
+  "queue": "gpus",
+  "recorded_utc": "2026-10-26T01:43:56.170373+00:00",
+  "saved_terminal_output": "ccast_start_796146.txt",
+  "source_attachment": "C:\\Users\\SOLOMON\\.codex\\attachments\\8697a6a6-0fe7-4584-9f74-fae648a3e911\\Pasted text.txt",
+  "source_sha256": "2887560830fd72c6cdbc389fd11447db265f7febef0abacf9aeac82c7d0060f5",
+  "status": "ccast_tests_and_gpu_smoke_passed_full_training_started",
+  "warning_effect_observed": "The unit tests and GPU gate passed and full training progressed despite these warnings; no fatal traceback in the supplied output.",
+  "warnings_observed": [
+    "Python fork from multi-threaded process DeprecationWarning during worker test",
+    "cuDNN execution-plan UserWarning during smoke/full execution"
+  ]
+}

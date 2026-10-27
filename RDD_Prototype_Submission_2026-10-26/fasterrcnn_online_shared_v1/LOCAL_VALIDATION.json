@@ -1,0 +1,554 @@
+{
+  "actual_pretrained_model_check": {
+    "active_families": [],
+    "checkpoint_sha256": "557513e3056aaa259b2d37c7e339c9733043b93fd1b18e21596692538041df6a",
+    "complete_probe_views": 112,
+    "duplicate_and_missed_gt_losses_present": true,
+    "fresh_model_checkpoint_prediction_policy_replay": "exact",
+    "hook_prediction_parity": "exact",
+    "initialization_matches_identity_exactly": true,
+    "model_buffers_gradients_rng_unchanged": true,
+    "noise_draws_per_strength": 2,
+    "operations": [
+      "brightness_down",
+      "brightness_up",
+      "contrast_down",
+      "contrast_up",
+      "gamma_brighten",
+      "gamma_darken",
+      "gaussian_blur",
+      "gaussian_noise"
+    ],
+    "parity_extra_views": 2,
+    "policy_recomputed_from_saved_evidence": true,
+    "scope": "Synthetic 128-pixel CPU data; no RDD pixels, CUDA or efficacy measurement",
+    "seconds": 104.11833920003846,
+    "standard_predictions_unchanged_before_after_probe": true,
+    "status": "passed",
+    "strength_levels": 3,
+    "support": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 1,
+        "sufficient": false
+      },
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 1,
+        "sufficient": false
+      },
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 1,
+        "sufficient": false
+      },
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 1,
+        "sufficient": false
+      }
+    },
+    "training_update": {
+      "gradient_norm": 28.40272331237793,
+      "includes_negative_image": true,
+      "losses": {
+        "loss_box_reg": 0.09221415966749191,
+        "loss_classifier": 2.1635825634002686,
+        "loss_objectness": 0.1660677045583725,
+        "loss_rpn_box_reg": 0.006227651610970497
+      }
+    },
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "pycocotools": "2.0.11",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "comparator_checks": {
+    "application_group_geometry_optimizer_validation_checkpoint_rules_match": true,
+    "numerical_controller_settings": {
+      "aggregation": "Mean draws per object, mean objects per class, normalized net mean-loss increase clipped [0,5], equal classes and operations within family. Strongest admissible tested level, even if lower levels fail; no monotonicity assumed.",
+      "classes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "condition": "shared_across_all_group_class_sets",
+      "confidence": 0.25,
+      "cost": "Full run: 10 updates x 256 images x 28 views = 71680 additional backbone image forwards, plus positive ROI observations. No detector optimizer steps in probes.",
+      "difficulty_cap": 5.0,
+      "exploration": 0.2,
+      "feedback": "Training-only forward probes in eval/inference mode; no backward, optimizer, BN or RNG update. Separate keyed panel/group/noise/decision draws; fixed noise realization across strengths.",
+      "interpretation": "Comparison with fixed local bundles online selection with a wider strength grid. It does not isolate online updates from a fixed policy optimized over the same grid. One shared policy constrains all four classes; future class-set condition will use identical probes/grid/support.",
+      "iou": 0.5,
+      "levels": [
+        {
+          "brightness_down": {
+            "factor": 0.9
+          },
+          "brightness_up": {
+            "factor": 1.1
+          },
+          "contrast_down": {
+            "factor": 0.9
+          },
+          "contrast_up": {
+            "factor": 1.1
+          },
+          "gamma_brighten": {
+            "gamma": 0.9
+          },
+          "gamma_darken": {
+            "gamma": 1.1
+          },
+          "gaussian_blur": {
+            "sigma_pixels": 0.4
+          },
+          "gaussian_noise": {
+            "sigma_unit": 0.01
+          }
+        },
+        {
+          "brightness_down": {
+            "factor": 0.8
+          },
+          "brightness_up": {
+            "factor": 1.2
+          },
+          "contrast_down": {
+            "factor": 0.8
+          },
+          "contrast_up": {
+            "factor": 1.2
+          },
+          "gamma_brighten": {
+            "gamma": 0.8
+          },
+          "gamma_darken": {
+            "gamma": 1.2
+          },
+          "gaussian_blur": {
+            "sigma_pixels": 0.8
+          },
+          "gaussian_noise": {
+            "sigma_unit": 0.02
+          }
+        },
+        {
+          "brightness_down": {
+            "factor": 0.7
+          },
+          "brightness_up": {
+            "factor": 1.3
+          },
+          "contrast_down": {
+            "factor": 0.7
+          },
+          "contrast_up": {
+            "factor": 1.3
+          },
+          "gamma_brighten": {
+            "gamma": 0.7
+          },
+          "gamma_darken": {
+            "gamma": 1.3
+          },
+          "gaussian_blur": {
+            "sigma_pixels": 1.2
+          },
+          "gaussian_noise": {
+            "sigma_unit": 0.03
+          }
+        }
+      ],
+      "loss_delta": 0.1,
+      "matching": "Score-descending one-to-one class-correct IoU matching to all GT; stable original detection index ties; target-group reference-detected subset supplies retention denominator.",
+      "minimum_detected_clusters": 4,
+      "minimum_detected_objects": 8,
+      "noise_draws": 2,
+      "numeric_choice_rationale": "A bounded first controller run: 256 source-diverse images per update, three strengths centered on the fixed control, updates every two epochs. Eight detected objects across four clusters avoids decisions from one or two detections but is not a precision guarantee. rho=.8 permits at most 20% measured reference-detection loss; confidence/IoU=.25/.5 match existing diagnostics; delta=.1 regularizes near-zero reference loss, cap=5 bounds instability, temperature=.25/exploration=.2 allocate difficulty while exploring. These values are prospective engineering choices, not validation-optimized or established optimal settings.",
+      "object_loss": "Eval RPN positive proposals assigned by pinned ROI IoU matcher plus one explicitly self-assigned GT ROI per object; per-ROI CE + class-specific SmoothL1 beta=1/9 sum4, then mean within object. Same procedure both views. No background or RPN loss in controller.",
+      "panel_images": 256,
+      "panel_selection": "Hash-rank positive training images independently each update; prefer distinct source clusters then fill unused images. Uniform one raster group, keyed exactly as fixed local. Never resample by detection outcome.",
+      "probe_batch_size": 2,
+      "retention_threshold": 0.8,
+      "state": "Epoch-boundary immutable policy committed with model/optimizer/RNG. Resume does not repeat committed updates. Interrupted uncommitted probe restarts from same model; partial view counts retained separately.",
+      "support": "Every class must have at least 8 distinct reference-detected target-group objects in at least 4 distinct source clusters. Stochastic draws do not increase support.",
+      "temperature": 0.25,
+      "update_interval_epochs": 2,
+      "version": "online_shared_local_v1"
+    },
+    "protocol_sha256": "484bb09534d37aab47c640ac6f5c4c322e6bc0a94fe713bbc30e4eafb18d71a0",
+    "status": "passed",
+    "unchanged_baseline_functions": [
+      "epoch_batches",
+      "learning_rate",
+      "update",
+      "validate",
+      "commit",
+      "restore",
+      "write_history",
+      "verify_partitions",
+      "archive_records"
+    ],
+    "unchanged_dependency_files": [
+      "rdd_data.py",
+      "models.py",
+      "metrics.py",
+      "checkpoints.py",
+      "integration.py",
+      "select_training_cases.py",
+      "smoke_selection.json",
+      "local_augmentation.py",
+      "shared_augmentation.py",
+      "smoke_augmentation.py"
+    ]
+  },
+  "focused_tests": {
+    "errors": 0,
+    "failures": 0,
+    "seconds": 35.68861539999489,
+    "skipped": 0,
+    "tests": 63
+  },
+  "limits": [
+    "No CCAST execution, RDD raw pixels, CUDA or new scientific results measured locally.",
+    "Synthetic actual-model panel had no qualifying detection support; identity fallback was exercised. Nontrivial policies and resume were tested with known synthetic feedback.",
+    "Local library versions differ; PBS repeats tests and real-data GPU smoke before full training.",
+    "One shared policy, not class-conditioned; full 20-epoch detector budget is unchanged but probes add compute.",
+    "The comparison bundles adaptation with the extra strengths. Single-seed small effects and pre-augmentation divergence do not establish efficacy."
+  ],
+  "local_evidence_sha256": {
+    "actual_model_check.json": "3e936e923e530b04ae05b86e16cef886f4b25b5df430e75a448afa73bb73b99b",
+    "comparator_checks.json": "47a960c3c2ead44c3fcaab8ed8688aadab51100c102411683ad3e303f8d19abb",
+    "panel_plan.json": "58efcaea8178a2a778631d9189a95f63252384b912eb581be4361f2b4c814570",
+    "shell_checks.json": "52d8a9a9197a48140af1b1644b4ec754d205bf387e05c5457f2aee72edac2d59",
+    "tested_sources.json": "f4cd953abef9a7d384be53f384b0a98e1538bce8ae6f9f9560e6adf7f1a271e0",
+    "unit_tests.json": "3946cf6689403729f773c00ead6a8538315d25e27b517bc7be8d14b9d4280bf4",
+    "unit_tests.txt": "8c6f975e1a0e5c3e90eee3df28f2e0097cf3cd2f953e17afbba92670110040c3"
+  },
+  "panel_support_metadata": [
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 2,
+      "images": 256,
+      "panel_sha256": "7f1046805a1edb2410116b758250cd1bc816fd44d9bdf2f6687da21fb6f45e65",
+      "target_group_clusters": {
+        "0": 126,
+        "1": 56,
+        "2": 77,
+        "3": 30
+      },
+      "target_group_objects": {
+        "0": 143,
+        "1": 60,
+        "2": 80,
+        "3": 35
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 4,
+      "images": 256,
+      "panel_sha256": "1072695c4afc3e44a93216375aa2c94a620d7597f380de0acec70130a4cd08cf",
+      "target_group_clusters": {
+        "0": 116,
+        "1": 66,
+        "2": 76,
+        "3": 43
+      },
+      "target_group_objects": {
+        "0": 131,
+        "1": 71,
+        "2": 85,
+        "3": 46
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 6,
+      "images": 256,
+      "panel_sha256": "c4114f16f2c4953699c8f9b79c11967833d07eaac17e51352767e926f8b775cd",
+      "target_group_clusters": {
+        "0": 136,
+        "1": 59,
+        "2": 60,
+        "3": 32
+      },
+      "target_group_objects": {
+        "0": 151,
+        "1": 63,
+        "2": 61,
+        "3": 39
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 8,
+      "images": 256,
+      "panel_sha256": "e7ff323fdf8116f3b29bec0de2ef83d0b7ae319cb6867c7355b8b9650c0b0a66",
+      "target_group_clusters": {
+        "0": 122,
+        "1": 74,
+        "2": 76,
+        "3": 26
+      },
+      "target_group_objects": {
+        "0": 135,
+        "1": 80,
+        "2": 80,
+        "3": 31
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 10,
+      "images": 256,
+      "panel_sha256": "9c722d667e727269ec2ec85dcdc4de9988bbcb55dcc22e1677aa53c64a3918de",
+      "target_group_clusters": {
+        "0": 125,
+        "1": 55,
+        "2": 66,
+        "3": 39
+      },
+      "target_group_objects": {
+        "0": 136,
+        "1": 58,
+        "2": 67,
+        "3": 42
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 12,
+      "images": 256,
+      "panel_sha256": "162fd4c651c179b051b70a7d6d4829add7c9103871911dc1e8d4e8fd0f332ea4",
+      "target_group_clusters": {
+        "0": 119,
+        "1": 54,
+        "2": 84,
+        "3": 35
+      },
+      "target_group_objects": {
+        "0": 132,
+        "1": 59,
+        "2": 93,
+        "3": 50
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 14,
+      "images": 256,
+      "panel_sha256": "4d6ae0c0f4ae48768613a75f4ee554002d447de702d506b725b6b6a1c586d1fe",
+      "target_group_clusters": {
+        "0": 130,
+        "1": 56,
+        "2": 66,
+        "3": 40
+      },
+      "target_group_objects": {
+        "0": 144,
+        "1": 65,
+        "2": 71,
+        "3": 49
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 16,
+      "images": 256,
+      "panel_sha256": "5bd1a5a999b9fde085e254dd2938e255d821b6d375134c4bb236979338117305",
+      "target_group_clusters": {
+        "0": 119,
+        "1": 58,
+        "2": 70,
+        "3": 39
+      },
+      "target_group_objects": {
+        "0": 132,
+        "1": 62,
+        "2": 75,
+        "3": 45
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 18,
+      "images": 256,
+      "panel_sha256": "24d4e5b3bd91c261309ace2623647680ad8fc757bd26ae560490f7119e71d021",
+      "target_group_clusters": {
+        "0": 122,
+        "1": 55,
+        "2": 86,
+        "3": 33
+      },
+      "target_group_objects": {
+        "0": 133,
+        "1": 61,
+        "2": 87,
+        "3": 38
+      }
+    },
+    {
+      "distinct_source_clusters": 256,
+      "epoch": 20,
+      "images": 256,
+      "panel_sha256": "3638a832f953fb3933ad28a413490df2051fbdc7e10a8e3e032cf8119bed65de",
+      "target_group_clusters": {
+        "0": 134,
+        "1": 50,
+        "2": 73,
+        "3": 23
+      },
+      "target_group_objects": {
+        "0": 152,
+        "1": 54,
+        "2": 75,
+        "3": 24
+      }
+    }
+  ],
+  "planned_panels": {
+    "all_opportunities_match_fixed_controls": true,
+    "application_opportunities": [
+      {
+        "epoch": 1,
+        "opportunities": 0
+      },
+      {
+        "epoch": 2,
+        "opportunities": 8382
+      },
+      {
+        "epoch": 3,
+        "opportunities": 8230
+      },
+      {
+        "epoch": 4,
+        "opportunities": 8342
+      },
+      {
+        "epoch": 5,
+        "opportunities": 8342
+      },
+      {
+        "epoch": 6,
+        "opportunities": 8392
+      },
+      {
+        "epoch": 7,
+        "opportunities": 8291
+      },
+      {
+        "epoch": 8,
+        "opportunities": 8207
+      },
+      {
+        "epoch": 9,
+        "opportunities": 8342
+      },
+      {
+        "epoch": 10,
+        "opportunities": 8284
+      },
+      {
+        "epoch": 11,
+        "opportunities": 8225
+      },
+      {
+        "epoch": 12,
+        "opportunities": 8235
+      },
+      {
+        "epoch": 13,
+        "opportunities": 8281
+      },
+      {
+        "epoch": 14,
+        "opportunities": 8294
+      },
+      {
+        "epoch": 15,
+        "opportunities": 8347
+      },
+      {
+        "epoch": 16,
+        "opportunities": 8447
+      },
+      {
+        "epoch": 17,
+        "opportunities": 8471
+      },
+      {
+        "epoch": 18,
+        "opportunities": 8339
+      },
+      {
+        "epoch": 19,
+        "opportunities": 8322
+      },
+      {
+        "epoch": 20,
+        "opportunities": 8378
+      }
+    ],
+    "probe_image_forwards": 71680,
+    "probe_settings_sha256": "2a5738836580f59ee410aa05355419f7a228085e74cc5ebbcd8ca50ed593a98f",
+    "scheduled_updates": 10,
+    "scope": "Training metadata only; annotation counts are NOT detector support or retention evidence",
+    "test_data_read": false,
+    "total_application_opportunities": 158151
+  },
+  "python": "3.14.2",
+  "python_3_12_grammar": "passed",
+  "shell_syntax": {
+    "method": "Git Bash -n, read-only parsing; scripts were not executed or submitted",
+    "read_only_retry_exit_code": 0,
+    "sandbox_startup_failure": -1073741502,
+    "source_sha256": {
+      "job.pbs": "209987cf5783cd313baf1f1da83038974dabc5b1159f63ed418d0df56dc15543",
+      "run_job.sh": "22d66d025de89c815c6c07ee8f39e9ffbbc3bbf9a2d0af48e058563e53177fad",
+      "submit.sh": "e8d6e9aab693369849603683d0ec029ce9cccc4b72b4210dfa1117aee7263abb"
+    },
+    "status": "passed"
+  },
+  "source_sha256": {
+    "README.md": "14dd1995bfe62037c64f66b7e482d359696dd81e75f43617a695d757ebfee8e6",
+    "baseline.py": "527a00ca160bdb4e79b6844aaf81fd2f87c859d0a967c16f5f144a03b9fa8084",
+    "checkpoints.py": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+    "controller.py": "ecc0edaec74909cd38cc1f410387c3522bf6925312922e742c4e29ad16c26260",
+    "identity_protocol.json": "5cfe9851db1a478971a2c82c78cacb44d290a4315b2fcfde355832077145fdf2",
+    "integration.py": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+    "job.pbs": "209987cf5783cd313baf1f1da83038974dabc5b1159f63ed418d0df56dc15543",
+    "local_augmentation.py": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+    "local_protocol.json": "bc7d772ab4a9bbf6ce9c6e91aa4fd3d5608755915d2ee003b897751adeb87c01",
+    "metrics.py": "a65ceced7286a8029576c89c286ce51caad03ef69632de2856d5827bda07aeba",
+    "models.py": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+    "probe_detector.py": "cc652b6c1dfc0f9b377554eeed7fe63b46982d9d922241b4ab40980e4c0ab18f",
+    "probe_runner.py": "3935f61a656d3a89a11fd568ec7521fddd34b5d4a954f53bb347a9529761e84a",
+    "protocol.json": "484bb09534d37aab47c640ac6f5c4c322e6bc0a94fe713bbc30e4eafb18d71a0",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_job.sh": "22d66d025de89c815c6c07ee8f39e9ffbbc3bbf9a2d0af48e058563e53177fad",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "shared_augmentation.py": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+    "shared_exposure.json": "4aba100351e4500d5dd39ff223c68a7f254c9bc4cc5c2cd28804a79035f38054",
+    "shared_protocol.json": "be3c1328ab3f128389ede6e638cf04332acd648133eeaad3ecf4760ea80c9fe2",
+    "smoke_augmentation.py": "1190cbfc60bc6689b18bd549bb41b78a449868b55b2acee3de32d244f4e11106",
+    "smoke_selection.json": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+    "submit.sh": "e8d6e9aab693369849603683d0ec029ce9cccc4b72b4210dfa1117aee7263abb",
+    "tests/test_baseline.py": "a5e9c34c730c7d57e3f7bcf1c44cddc9759b26d6256e5592f757e4d4bcdb9df2",
+    "tests/test_controller.py": "9331036fd6acc96c333fc0acef978be348ec9a882553b4274f064c1571a82374",
+    "tests/test_local_augmentation.py": "198f2562913639d96b7da577a814f631ac91f1ff3ecdf235ecdc99bae555b915",
+    "tests/test_online_resume.py": "b1fce0dc0444d34bd8f609d84515019f6025bfa2d512afaf40db7d6a9479d7e0",
+    "tests/test_shared_augmentation.py": "193fbd8791167cf0ca744c8f02e86574edf5e5d92ffec877f4a7a3919bda0ce1"
+  },
+  "status": "passed_locally_ccast_pending"
+}

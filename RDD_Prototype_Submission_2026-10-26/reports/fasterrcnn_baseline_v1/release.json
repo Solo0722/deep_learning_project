@@ -1,0 +1,28 @@
+{
+  "actual_model_synthetic_cpu_check": "passed",
+  "archive": "fasterrcnn_baseline_v1.tar.gz",
+  "archive_files": 16,
+  "bytes": 33032,
+  "ccast_run": "pending",
+  "ccast_smoke": "pending",
+  "ccast_tests": "pending",
+  "checksum_entries": 15,
+  "epochs": 20,
+  "pbs": {
+    "cpus": 4,
+    "gpu_type": "a10",
+    "gpus": 1,
+    "memory_gb": 32,
+    "queue": "gpus",
+    "walltime_hours": 24
+  },
+  "seed": 42,
+  "sha256": "2d8ba5748350360e4d933e542bb350c4c45a9df06ed3febb73025fba2529e675",
+  "status": "prepared_locally_ccast_submission_pending",
+  "test_data_read": false,
+  "total_updates": 134320,
+  "training_condition": "identity_augmentation_control",
+  "training_images": 26863,
+  "unit_tests_passed": 13,
+  "validation_images": 5760
+}

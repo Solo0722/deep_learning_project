@@ -1,0 +1,395 @@
+PROBE epoch=1 images=4/4 forwards=112/112
+CONTROLLER epoch=1 policy=c4e200a7f230 class_sets={'0': {'reason': 'insufficient_support', 'families': {}}, '1': {'reason': 'insufficient_support', 'families': {}}, '2': {'reason': 'insufficient_support', 'families': {}}, '3': {'reason': 'insufficient_support', 'families': {}}, '0,1': {'reason': 'unobserved_class_set', 'families': {}}, '0,2': {'reason': 'unobserved_class_set', 'families': {}}, '0,3': {'reason': 'unobserved_class_set', 'families': {}}, '1,2': {'reason': 'unobserved_class_set', 'families': {}}, '1,3': {'reason': 'unobserved_class_set', 'families': {}}, '2,3': {'reason': 'unobserved_class_set', 'families': {}}, '0,1,2': {'reason': 'unobserved_class_set', 'families': {}}, '0,1,3': {'reason': 'unobserved_class_set', 'families': {}}, '0,2,3': {'reason': 'unobserved_class_set', 'families': {}}, '1,2,3': {'reason': 'unobserved_class_set', 'families': {}}, '0,1,2,3': {'reason': 'unobserved_class_set', 'families': {}}} support={'0': {'0': {'objects': 1, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '1': {'1': {'objects': 1, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '2': {'2': {'objects': 1, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '3': {'3': {'objects': 1, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '0,1': {'0': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '1': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '0,2': {'0': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '2': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '0,3': {'0': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '1,2': {'1': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '2': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '1,3': {'1': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '2,3': {'2': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '0,1,2': {'0': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '1': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '2': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '0,1,3': {'0': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '1': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '0,2,3': {'0': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '2': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '1,2,3': {'1': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '2': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}, '0,1,2,3': {'0': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '1': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '2': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 0, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}}
+{
+  "status": "passed",
+  "scope": "Synthetic 128-pixel CPU data; no RDD pixels, CUDA or efficacy measurement",
+  "seconds": 84.68340259999968,
+  "initialization_matches_identity_exactly": true,
+  "standard_predictions_unchanged_before_after_probe": true,
+  "hook_prediction_parity": "exact",
+  "complete_probe_views": 112,
+  "parity_extra_views": 2,
+  "operations": [
+    "brightness_down",
+    "brightness_up",
+    "contrast_down",
+    "contrast_up",
+    "gamma_brighten",
+    "gamma_darken",
+    "gaussian_blur",
+    "gaussian_noise"
+  ],
+  "strength_levels": 3,
+  "noise_draws_per_strength": 2,
+  "model_buffers_gradients_rng_unchanged": true,
+  "policy_recomputed_from_saved_evidence": true,
+  "duplicate_and_missed_gt_losses_present": true,
+  "fresh_model_checkpoint_prediction_policy_replay": "exact",
+  "training_update": {
+    "losses": {
+      "loss_classifier": 2.1400389671325684,
+      "loss_box_reg": 0.08607666939496994,
+      "loss_objectness": 0.1500815749168396,
+      "loss_rpn_box_reg": 0.005754908546805382
+    },
+    "gradient_norm": 28.43811798095703,
+    "includes_negative_image": true,
+    "two_distinct_constructed_class_policies": true
+  },
+  "support": {
+    "0": {
+      "0": {
+        "objects": 1,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "1": {
+      "1": {
+        "objects": 1,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "2": {
+      "2": {
+        "objects": 1,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "3": {
+      "3": {
+        "objects": 1,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "0,1": {
+      "0": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "1": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "0,2": {
+      "0": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "2": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "0,3": {
+      "0": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "3": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "1,2": {
+      "1": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "2": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "1,3": {
+      "1": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "3": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "2,3": {
+      "2": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "3": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "0,1,2": {
+      "0": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "1": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "2": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "0,1,3": {
+      "0": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "1": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "3": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "0,2,3": {
+      "0": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "2": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "3": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "1,2,3": {
+      "1": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "2": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "3": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    },
+    "0,1,2,3": {
+      "0": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "1": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "2": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      },
+      "3": {
+        "objects": 0,
+        "detected_objects": 0,
+        "detected_clusters": 0,
+        "sufficient": false
+      }
+    }
+  },
+  "class_set_policies": {
+    "0": {
+      "classes": [
+        0
+      ],
+      "families": [],
+      "reason": "insufficient_support"
+    },
+    "1": {
+      "classes": [
+        1
+      ],
+      "families": [],
+      "reason": "insufficient_support"
+    },
+    "2": {
+      "classes": [
+        2
+      ],
+      "families": [],
+      "reason": "insufficient_support"
+    },
+    "3": {
+      "classes": [
+        3
+      ],
+      "families": [],
+      "reason": "insufficient_support"
+    },
+    "0,1": {
+      "classes": [
+        0,
+        1
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,2": {
+      "classes": [
+        0,
+        2
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,3": {
+      "classes": [
+        0,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "1,2": {
+      "classes": [
+        1,
+        2
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "1,3": {
+      "classes": [
+        1,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "2,3": {
+      "classes": [
+        2,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,1,2": {
+      "classes": [
+        0,
+        1,
+        2
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,1,3": {
+      "classes": [
+        0,
+        1,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,2,3": {
+      "classes": [
+        0,
+        2,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "1,2,3": {
+      "classes": [
+        1,
+        2,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,1,2,3": {
+      "classes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    }
+  },
+  "checkpoint_sha256": "91d19f8423a54d1683a1836043a44c3116ac90322d82c1a1c0dc017b434bb3ac",
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  }
+}

@@ -1,0 +1,30 @@
+test_all_negative_training_batch_kept (test_baseline.BaselineTests.test_all_negative_training_batch_kept) ... ok
+test_archive_contains_verified_records_without_checkpoint_binaries (test_baseline.BaselineTests.test_archive_contains_verified_records_without_checkpoint_binaries) ... ok
+test_atomic_pointer_failure_preserves_previous_checkpoint (test_baseline.BaselineTests.test_atomic_pointer_failure_preserves_previous_checkpoint) ... ok
+test_changed_checkpoint_or_context_rejected_and_epochs_retained (test_baseline.BaselineTests.test_changed_checkpoint_or_context_rejected_and_epochs_retained) ... ok
+test_cross_partition_image_cluster_and_rgb_overlap_rejected (test_baseline.BaselineTests.test_cross_partition_image_cluster_and_rgb_overlap_rejected) ... ok
+test_image_modification_rejected (test_baseline.BaselineTests.test_image_modification_rejected) ... ok
+test_mid_epoch_resume_matches_uninterrupted_stochastic_training (test_baseline.BaselineTests.test_mid_epoch_resume_matches_uninterrupted_stochastic_training) ... ok
+test_nonfinite_loss_stops_before_optimizer_update (test_baseline.BaselineTests.test_nonfinite_loss_stops_before_optimizer_update) ... ok
+test_sampler_preserves_last_batch_and_model_rng (test_baseline.BaselineTests.test_sampler_preserves_last_batch_and_model_rng) ... ok
+test_val_loader_uses_val_without_relabelling_and_rejects_test (test_baseline.BaselineTests.test_val_loader_uses_val_without_relabelling_and_rejects_test) ... ok
+test_validation_interruption_resumes_without_repeating_training (test_baseline.BaselineTests.test_validation_interruption_resumes_without_repeating_training) ... ok
+test_validation_keeps_all_images_no_grad_no_parameter_update (test_baseline.BaselineTests.test_validation_keeps_all_images_no_grad_no_parameter_update) ... ok
+test_warmup_and_decay_use_original_global_step_and_epoch (test_baseline.BaselineTests.test_warmup_and_decay_use_original_global_step_and_epoch) ... ok
+test_all_operation_smoke_preview_records_eight_checks (test_shared_augmentation.SharedAugmentationTests.test_all_operation_smoke_preview_records_eight_checks) ... ok
+test_all_operations_preserve_targets_padding_and_reference (test_shared_augmentation.SharedAugmentationTests.test_all_operations_preserve_targets_padding_and_reference) ... ok
+test_augmentation_does_not_consume_global_rng (test_shared_augmentation.SharedAugmentationTests.test_augmentation_does_not_consume_global_rng) ... ok
+test_blur_constant_and_impulse (test_shared_augmentation.SharedAugmentationTests.test_blur_constant_and_impulse) ... ok
+test_class_independent_decisions_and_distinct_epochs (test_shared_augmentation.SharedAugmentationTests.test_class_independent_decisions_and_distinct_epochs) ... ok
+test_known_photometric_values_and_clipping (test_shared_augmentation.SharedAugmentationTests.test_known_photometric_values_and_clipping) ... ok
+test_noise_scale_replay_and_explicit_seed (test_shared_augmentation.SharedAugmentationTests.test_noise_scale_replay_and_explicit_seed) ... ok
+test_paired_recipe_guard_rejects_unrelated_changes (test_shared_augmentation.SharedAugmentationTests.test_paired_recipe_guard_rejects_unrelated_changes) ... ok
+test_pixel_dependent_mid_epoch_resume_and_plan_digest (test_shared_augmentation.SharedAugmentationTests.test_pixel_dependent_mid_epoch_resume_and_plan_digest) ... ok
+test_probability_warmup_negatives_and_validation (test_shared_augmentation.SharedAugmentationTests.test_probability_warmup_negatives_and_validation) ... ok
+test_tampered_exposure_trace_is_rejected (test_shared_augmentation.SharedAugmentationTests.test_tampered_exposure_trace_is_rejected) ... ok
+test_worker_count_and_access_order_do_not_change_pixels_or_decisions (test_shared_augmentation.SharedAugmentationTests.test_worker_count_and_access_order_do_not_change_pixels_or_decisions) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 18.123s
+
+OK

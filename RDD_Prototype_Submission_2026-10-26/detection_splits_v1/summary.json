@@ -1,0 +1,370 @@
+{
+  "candidate_edge_crossings": 0,
+  "excluded_images": 2,
+  "excluded_target_objects": 1,
+  "group_crossings": 0,
+  "historical_reassignments": [
+    {
+      "image": "India/train/images/India_003495.jpg",
+      "previous_split": "val",
+      "reason": "Full-pool similarity group contains prior training exposure",
+      "source_cluster_id": "India/train/images/India_000129.jpg",
+      "split": "train"
+    },
+    {
+      "image": "India/train/images/India_005040.jpg",
+      "previous_split": "val",
+      "reason": "Full-pool similarity group contains prior training exposure",
+      "source_cluster_id": "India/train/images/India_000129.jpg",
+      "split": "train"
+    },
+    {
+      "image": "India/train/images/India_009415.jpg",
+      "previous_split": "val",
+      "reason": "Full-pool similarity group contains prior training exposure",
+      "source_cluster_id": "India/train/images/India_000129.jpg",
+      "split": "train"
+    },
+    {
+      "image": "Norway/train/images/Norway_000115.jpg",
+      "previous_split": "val",
+      "reason": "Full-pool similarity group contains prior training exposure",
+      "source_cluster_id": "Norway/train/images/Norway_000115.jpg",
+      "split": "train"
+    },
+    {
+      "image": "Norway/train/images/Norway_000181.jpg",
+      "previous_split": "val",
+      "reason": "Full-pool similarity group contains prior training exposure",
+      "source_cluster_id": "Norway/train/images/Norway_000115.jpg",
+      "split": "train"
+    },
+    {
+      "image": "Norway/train/images/Norway_003124.jpg",
+      "previous_split": "val",
+      "reason": "Full-pool similarity group contains prior training exposure",
+      "source_cluster_id": "Norway/train/images/Norway_000115.jpg",
+      "split": "train"
+    }
+  ],
+  "historical_test_images_preserved": 3569,
+  "included_images": 38383,
+  "included_target_objects": 55002,
+  "limitations": [
+    "Perceptual matches are grouping candidates, not verified duplicates",
+    "This screen cannot establish complete geographic or sequence independence",
+    "No target annotation does not establish a verified healthy-road image",
+    "Historical train/val exposure remains relevant when resolving split conflicts",
+    "No model evaluation or visual inspection of held-out images is performed",
+    "The ambiguous D0w0-only image is excluded without label repair",
+    "Historical validation remains development data; this is a new detection split, not the old crop split"
+  ],
+  "raw_audited_images": 38385,
+  "resolved_train_val_components": 2,
+  "statistics": {
+    "test": {
+      "categories": {
+        "empty_xml": 1757,
+        "only_other_labels": 434,
+        "target_bearing": 3569
+      },
+      "class_objects": {
+        "D00": 3899,
+        "D10": 1776,
+        "D20": 1589,
+        "D40": 983
+      },
+      "groups": 5644,
+      "images": 5760,
+      "objects": 8247,
+      "source_categories": {
+        "China_Drone": {
+          "empty_xml": 1,
+          "only_other_labels": 71,
+          "target_bearing": 289
+        },
+        "China_MotorBike": {
+          "only_other_labels": 7,
+          "target_bearing": 290
+        },
+        "Czech": {
+          "empty_xml": 262,
+          "target_bearing": 164
+        },
+        "India": {
+          "empty_xml": 588,
+          "only_other_labels": 84,
+          "target_bearing": 484
+        },
+        "Japan": {
+          "empty_xml": 119,
+          "only_other_labels": 272,
+          "target_bearing": 1185
+        },
+        "Norway": {
+          "empty_xml": 787,
+          "target_bearing": 437
+        },
+        "United_States": {
+          "target_bearing": 720
+        }
+      },
+      "source_class_objects": {
+        "China_Drone": {
+          "D00": 213,
+          "D10": 190,
+          "D20": 43,
+          "D40": 13
+        },
+        "China_MotorBike": {
+          "D00": 400,
+          "D10": 164,
+          "D20": 95,
+          "D40": 36
+        },
+        "Czech": {
+          "D00": 147,
+          "D10": 60,
+          "D20": 24,
+          "D40": 30
+        },
+        "India": {
+          "D00": 232,
+          "D10": 10,
+          "D20": 303,
+          "D40": 478
+        },
+        "Japan": {
+          "D00": 607,
+          "D10": 598,
+          "D20": 929,
+          "D40": 337
+        },
+        "Norway": {
+          "D00": 1288,
+          "D10": 260,
+          "D20": 70,
+          "D40": 69
+        },
+        "United_States": {
+          "D00": 1012,
+          "D10": 494,
+          "D20": 125,
+          "D40": 20
+        }
+      },
+      "source_images": {
+        "China_Drone": 361,
+        "China_MotorBike": 297,
+        "Czech": 426,
+        "India": 1156,
+        "Japan": 1576,
+        "Norway": 1224,
+        "United_States": 720
+      }
+    },
+    "train": {
+      "categories": {
+        "empty_xml": 8206,
+        "only_other_labels": 2027,
+        "target_bearing": 16630
+      },
+      "class_objects": {
+        "D00": 18226,
+        "D10": 8283,
+        "D20": 7435,
+        "D40": 4586
+      },
+      "groups": 26248,
+      "images": 26863,
+      "objects": 38530,
+      "source_categories": {
+        "China_Drone": {
+          "empty_xml": 3,
+          "only_other_labels": 335,
+          "target_bearing": 1340
+        },
+        "China_MotorBike": {
+          "only_other_labels": 30,
+          "target_bearing": 1353
+        },
+        "Czech": {
+          "empty_xml": 1231,
+          "target_bearing": 747
+        },
+        "India": {
+          "empty_xml": 2744,
+          "only_other_labels": 393,
+          "target_bearing": 2257
+        },
+        "Japan": {
+          "empty_xml": 556,
+          "only_other_labels": 1269,
+          "target_bearing": 5528
+        },
+        "Norway": {
+          "empty_xml": 3672,
+          "target_bearing": 2042
+        },
+        "United_States": {
+          "target_bearing": 3363
+        }
+      },
+      "source_class_objects": {
+        "China_Drone": {
+          "D00": 999,
+          "D10": 883,
+          "D20": 206,
+          "D40": 60
+        },
+        "China_MotorBike": {
+          "D00": 1877,
+          "D10": 768,
+          "D20": 449,
+          "D40": 164
+        },
+        "Czech": {
+          "D00": 693,
+          "D10": 280,
+          "D20": 113,
+          "D40": 137
+        },
+        "India": {
+          "D00": 1093,
+          "D10": 48,
+          "D20": 1415,
+          "D40": 2237
+        },
+        "Japan": {
+          "D00": 2836,
+          "D10": 2785,
+          "D20": 4340,
+          "D40": 1570
+        },
+        "Norway": {
+          "D00": 6005,
+          "D10": 1213,
+          "D20": 328,
+          "D40": 323
+        },
+        "United_States": {
+          "D00": 4723,
+          "D10": 2306,
+          "D20": 584,
+          "D40": 95
+        }
+      },
+      "source_images": {
+        "China_Drone": 1678,
+        "China_MotorBike": 1383,
+        "Czech": 1978,
+        "India": 5394,
+        "Japan": 7353,
+        "Norway": 5714,
+        "United_States": 3363
+      }
+    },
+    "val": {
+      "categories": {
+        "empty_xml": 1761,
+        "only_other_labels": 432,
+        "target_bearing": 3567
+      },
+      "class_objects": {
+        "D00": 3888,
+        "D10": 1770,
+        "D20": 1592,
+        "D40": 975
+      },
+      "groups": 5624,
+      "images": 5760,
+      "objects": 8225,
+      "source_categories": {
+        "China_Drone": {
+          "empty_xml": 1,
+          "only_other_labels": 71,
+          "target_bearing": 290
+        },
+        "China_MotorBike": {
+          "only_other_labels": 6,
+          "target_bearing": 291
+        },
+        "Czech": {
+          "empty_xml": 264,
+          "target_bearing": 161
+        },
+        "India": {
+          "empty_xml": 589,
+          "only_other_labels": 84,
+          "target_bearing": 482
+        },
+        "Japan": {
+          "empty_xml": 119,
+          "only_other_labels": 271,
+          "target_bearing": 1187
+        },
+        "Norway": {
+          "empty_xml": 788,
+          "target_bearing": 435
+        },
+        "United_States": {
+          "target_bearing": 721
+        }
+      },
+      "source_class_objects": {
+        "China_Drone": {
+          "D00": 214,
+          "D10": 190,
+          "D20": 44,
+          "D40": 13
+        },
+        "China_MotorBike": {
+          "D00": 401,
+          "D10": 164,
+          "D20": 97,
+          "D40": 35
+        },
+        "Czech": {
+          "D00": 148,
+          "D10": 59,
+          "D20": 24,
+          "D40": 30
+        },
+        "India": {
+          "D00": 230,
+          "D10": 10,
+          "D20": 303,
+          "D40": 472
+        },
+        "Japan": {
+          "D00": 606,
+          "D10": 596,
+          "D20": 929,
+          "D40": 336
+        },
+        "Norway": {
+          "D00": 1277,
+          "D10": 257,
+          "D20": 70,
+          "D40": 69
+        },
+        "United_States": {
+          "D00": 1012,
+          "D10": 494,
+          "D20": 125,
+          "D40": 20
+        }
+      },
+      "source_images": {
+        "China_Drone": 362,
+        "China_MotorBike": 297,
+        "Czech": 425,
+        "India": 1155,
+        "Japan": 1577,
+        "Norway": 1223,
+        "United_States": 721
+      }
+    }
+  },
+  "status": "complete"
+}

@@ -1,0 +1,73 @@
+{
+  "all_negative_batch_included": true,
+  "checkpoint_sha256": "1f91caeb82e69c727bf12a721951544899b93efbd0e64115ff39991dd8dbf48d",
+  "classifier_updated": true,
+  "fresh_model_checkpoint_prediction_replay": "exact",
+  "initialization_matches_identity_model_exactly": true,
+  "model_parameters": 41314536,
+  "operations_exercised": [
+    "brightness_down",
+    "brightness_up",
+    "contrast_down",
+    "contrast_up",
+    "gamma_brighten",
+    "gamma_darken",
+    "gaussian_blur",
+    "gaussian_noise"
+  ],
+  "scope": "Synthetic 128-pixel CPU data; no RDD pixels or CCAST execution",
+  "status": "passed",
+  "updates": [
+    {
+      "gradient_norm": 28.267580032348633,
+      "losses": {
+        "loss_box_reg": 0.13616293668746948,
+        "loss_classifier": 2.1533377170562744,
+        "loss_objectness": 0.24451801180839539,
+        "loss_rpn_box_reg": 0.009490912780165672
+      },
+      "targets": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gradient_norm": 14.901376724243164,
+      "losses": {
+        "loss_box_reg": 0.1212441623210907,
+        "loss_classifier": 0.7961503863334656,
+        "loss_objectness": 0.14761178195476532,
+        "loss_rpn_box_reg": 0.008081728592514992
+      },
+      "targets": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gradient_norm": 5.0140886306762695,
+      "losses": {
+        "loss_box_reg": 0.0,
+        "loss_classifier": 0.10763310641050339,
+        "loss_objectness": 0.008747518062591553,
+        "loss_rpn_box_reg": 0.0
+      },
+      "targets": [
+        0,
+        0
+      ]
+    }
+  ],
+  "validation_unchanged_and_without_parameter_update": true,
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  }
+}

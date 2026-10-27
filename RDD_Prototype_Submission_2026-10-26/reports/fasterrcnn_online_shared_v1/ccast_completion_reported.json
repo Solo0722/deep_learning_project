@@ -1,0 +1,38 @@
+{
+  "archive_downloaded": false,
+  "archive_independently_verified": false,
+  "baseline_comparison_completed": false,
+  "completed_epochs_reported": 20,
+  "completion_pbs_job_in_excerpt": null,
+  "controller_records_audited": false,
+  "evidence_scope": "User-pasted final CCAST training output; result archive has not been downloaded or independently verified",
+  "final_epoch_augmentation_reported": {
+    "applied": 8378,
+    "applied_without_pixel_change": 79,
+    "changed": 8299,
+    "decision_sha256": "3143ecdd0e4a82f806497b558acbd059bcf7e19a988e9ed61b50c3d3c18ad031"
+  },
+  "final_epoch_validation_reported_rounded": {
+    "AP50": 0.503499,
+    "AP50_95": 0.225878
+  },
+  "initial_submission_pbs_job": "796146.bright04",
+  "interpretation_limit": "Final-epoch values do not provide the selected epoch-14 metrics; no adaptive-augmentation benefit is established by this terminal excerpt.",
+  "last_logged_training": {
+    "batch": 6696,
+    "epoch": 20,
+    "gradient_norm": 3.2701,
+    "learning_rate": 2.5e-05,
+    "loss": 0.16086,
+    "step": 134300
+  },
+  "next_action": "Download and verify the returned archive, audit controller decisions/support/exposure and selected/final checkpoint metrics, then compare the four completed conditions using the declared checkpoint-selection rule.",
+  "records_archive": "fasterrcnn_online_shared_seed42_v1_records_437f03a837f3.tar.gz",
+  "remote_archive": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/runs/fasterrcnn_online_shared_seed42_v1_records_437f03a837f3.tar.gz",
+  "reported_archive_sha256": "b30df4e003be14cf8a53059341451c5101261d98d32e58cdc94866c793f0a231",
+  "reported_date": "2026-10-26",
+  "run": "fasterrcnn_online_shared_seed42_v1",
+  "selected_checkpoint_metrics": null,
+  "selected_epoch_reported": 14,
+  "status": "completed_from_terminal_artifact_verification_pending"
+}

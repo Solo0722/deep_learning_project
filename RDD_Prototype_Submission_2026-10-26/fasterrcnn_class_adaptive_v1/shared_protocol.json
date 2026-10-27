@@ -1,0 +1,129 @@
+{
+  "augmentation": "fixed_shared_image_level",
+  "augmentation_policy": {
+    "contrast_center": "one full-content mean luminance with coefficients 0.299 R + 0.587 G + 0.114 B",
+    "eligibility": "target-bearing training images only; negative images unchanged to match future local controls",
+    "family_sampling": "uniform over two families; uniform operation within selected family",
+    "intensity": "RGB uint8 stored-code values /255; no linear-light conversion; clip to [0,1], round to nearest integer uint8; PIL blur returns uint8",
+    "noise": "independent zero-mean Gaussian per pixel and RGB channel; local PCG64 generator",
+    "operations": {
+      "brightness_down": {
+        "factor": 0.8,
+        "family": "photometric"
+      },
+      "brightness_up": {
+        "factor": 1.2,
+        "family": "photometric"
+      },
+      "contrast_down": {
+        "factor": 0.8,
+        "family": "photometric"
+      },
+      "contrast_up": {
+        "factor": 1.2,
+        "family": "photometric"
+      },
+      "gamma_brighten": {
+        "family": "photometric",
+        "gamma": 0.8
+      },
+      "gamma_darken": {
+        "family": "photometric",
+        "gamma": 1.2
+      },
+      "gaussian_blur": {
+        "family": "blur_noise",
+        "sigma_pixels": 0.8
+      },
+      "gaussian_noise": {
+        "family": "blur_noise",
+        "sigma_unit": 0.02
+      }
+    },
+    "probability": 0.5,
+    "randomization": "SHA-256 keyed by domain, seed, zero-based epoch, image path and purpose; independent of global Python/NumPy/Torch RNG; rejection-sampled discrete choices",
+    "schedule": "fixed family probabilities and physical parameters; no detector feedback, class-specific settings or policy search",
+    "scope": "entire resized image content; preserve letterbox padding",
+    "version": "fixed_shared_v1",
+    "warmup_epochs": 1
+  },
+  "batch_size": 4,
+  "budget": "20 epochs; one 24-hour PBS allocation, save and stop near 23 hours if unfinished. Resume is explicit; no automatic resubmission.",
+  "checkpoint_every_steps": 1000,
+  "checkpoint_retention": "All completed-epoch checkpoints plus latest intermediate checkpoint; full checkpoints remain on CCAST.",
+  "comparator": {
+    "identity_protocol_sha256": "5cfe9851db1a478971a2c82c78cacb44d290a4315b2fcfde355832077145fdf2",
+    "initialization": "Fresh same COCO weights and seed, not epoch-14 learned weights",
+    "records_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+    "run": "fasterrcnn_identity_seed42_v1"
+  },
+  "cpu_threads": 2,
+  "data_policy": "Frozen train and val only. No test manifest or pixels opened. Stored orientation; include empty images and all valid difficult targets.",
+  "epochs": 20,
+  "evaluation": {
+    "coordinates": "Inverse letterbox to original stored image, clip to image bounds, discard collapsed predictions only",
+    "max_detections": 100,
+    "metrics": "pycocotools bbox AP50:95/AP50/AP75, AR100, per-class AP50:95/AP50; no-target predicted box counts at confidence 0.25",
+    "negative_confidence": 0.25,
+    "nms_iou": 0.5,
+    "score_threshold": 0.001,
+    "yolo_multi_label": true
+  },
+  "expected_environment": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/.venvs/rdd_detection_v1",
+  "expected_rows": {
+    "train": 26863,
+    "val": 5760
+  },
+  "gradient_clipping": null,
+  "image_size": 640,
+  "initialization": "COCO_V1; new 5-class ROI predictor; all backbone stages trainable; FrozenBatchNorm2d eps=0",
+  "learning_rate": 0.0025,
+  "log_every_steps": 100,
+  "lr_decay_epochs": [
+    12,
+    16
+  ],
+  "lr_gamma": 0.1,
+  "manifests": {
+    "train": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+    "val": "5ff0b8e969b47bd82d6c91a3b65070a5e37899e21253442134897945082e6708"
+  },
+  "model": "fasterrcnn_resnet50_fpn",
+  "momentum": 0.9,
+  "optimizer": "SGD",
+  "precision": "float32; AMP and TF32 disabled",
+  "purpose": "First fixed shared image-level augmentation comparison against verified identity control",
+  "recipe_status": "Prospective initial recipe chosen after inspecting identity results; not a validation-selected augmentation policy or final efficacy evidence",
+  "resume_policy": "Same configuration/code/data/environment required; restore model, optimizer, RNG, epoch and next batch. CUDA bitwise identity not promised.",
+  "seed": 42,
+  "selection_metric": "validation_AP50_95",
+  "selection_ties": "earlier epoch",
+  "sources": [
+    "https://raw.githubusercontent.com/pytorch/vision/v0.18.0/references/detection/train.py",
+    "https://kb.ndsu.edu/137530",
+    "https://kb.ndsu.edu/it/page.php?id=107680",
+    "https://raw.githubusercontent.com/python-pillow/Pillow/10.3.0/src/PIL/ImageFilter.py",
+    "https://numpy.org/doc/1.26/reference/random/generator.html"
+  ],
+  "split_config_sha256": "303f2e0e3835ca146e63f2f2b03b5a8d630b2dc1972089848bea97605ac87131",
+  "validation_batch_size": 4,
+  "validation_interval_epochs": 1,
+  "version": "fasterrcnn_shared_v1",
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.10",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0"
+  },
+  "warmup_start_factor": 0.001,
+  "warmup_steps": 1000,
+  "weight": {
+    "bytes": 167502836,
+    "filename": "fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+    "sha256": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384",
+    "url": "https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth"
+  },
+  "weight_decay": 0.0005,
+  "workers": 2
+}

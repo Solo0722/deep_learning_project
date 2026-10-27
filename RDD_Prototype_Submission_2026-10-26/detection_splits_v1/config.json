@@ -1,0 +1,39 @@
+{
+  "allocation": "Preserve historical anchors; train absorbs reviewed train/val conflicts; balance remaining no-target groups within source",
+  "audit_bundle_sha256": "07963cfdc3e14d2032dd1a80a1240a19c415598ef449bde737fe422902dd4f7b",
+  "audit_member_sha256": {
+    "annotation_issues.jsonl": "c6d64051ba989076944619a09970a66ce6a347636e5668faf10e97aa6ac07bad",
+    "candidate_pairs.jsonl": "757630b7fae127ce046c7fb6231fdf3ec2f589c9abf719dd36282ca3106d8d73",
+    "exact_duplicate_groups.json": "32f402f37e9c02f60eda060773a3d40b4fdd54d01dbc2c20f7901101f91870ab",
+    "fingerprints.jsonl": "05abdb092bcaa2370123dc6ff0f117ad45446ccd93a208a0c1cd9d7e3494572b",
+    "previous_fingerprint_changes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "previous_split_conflicts.jsonl": "38660f6e9f168f942ffefed3f408e07f48aab46618c02887303e49c010141b1d",
+    "run.json": "0968268bb00963b2280660bb00136dd917d1d0343f82a816e4e8c08c56a76157",
+    "source_clusters.csv": "305580444a112cc5e0300643c7563a2c843be9264374637400d0b7556a727480",
+    "summary.json": "40d8d5149bfcb737658e6116ec415038b5d393d7722793d4eb376d079e55fe74",
+    "validated_annotations.jsonl": "7ebb9745011003f0603d3ce9ed67abf6bd3a8d3807d6b35fea581956732153de"
+  },
+  "audit_source_root": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+  "background_images": "Empty target list means no retained annotation for the four classes, not verified healthy pavement",
+  "class_index_convention": "Zero-based foreground index; a model adapter must reserve background separately if required",
+  "class_indices": {
+    "D00": 0,
+    "D10": 1,
+    "D20": 2,
+    "D40": 3
+  },
+  "coordinates": "Continuous XYXY numeric edges, clipped to stored image bounds; no origin shift or pixel rounding",
+  "difficult_truncated": "Preserve flags; all valid target boxes included, including difficult=1; no automatic ignore or crowd mapping",
+  "generator_sha256": "5f01c7c7be5d04be1ec7addb03c89db7842e616989ff3fccc14433429daf62d7",
+  "pixel_orientation": "Stored image orientation; do not apply EXIF transpose",
+  "policy_sha256": "3c564965b6e3ba00e4e2a8bbb93ed1aefd47381cb5fdf2080662cd3e0746cb1c",
+  "previous_images_sha256": "bfac83ec2542ee1616a04c6e50af81ca213f5124d3a1d09ac9eab3bdfa71da60",
+  "raw_pixels_read_locally": false,
+  "seed": 42,
+  "target_ratios": {
+    "test": 0.15,
+    "train": 0.7,
+    "val": 0.15
+  },
+  "version": "detection_splits_v1"
+}

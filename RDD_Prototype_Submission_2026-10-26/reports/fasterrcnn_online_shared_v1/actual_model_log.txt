@@ -1,0 +1,73 @@
+PROBE epoch=1 images=4/4 forwards=112/112
+CONTROLLER epoch=1 policy=aa05e7da6646 families=identity support={'0': {'objects': 1, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '1': {'objects': 1, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '2': {'objects': 1, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}, '3': {'objects': 1, 'detected_objects': 0, 'detected_clusters': 0, 'sufficient': False}}
+{
+  "status": "passed",
+  "scope": "Synthetic 128-pixel CPU data; no RDD pixels, CUDA or efficacy measurement",
+  "seconds": 104.11833920003846,
+  "initialization_matches_identity_exactly": true,
+  "standard_predictions_unchanged_before_after_probe": true,
+  "hook_prediction_parity": "exact",
+  "complete_probe_views": 112,
+  "parity_extra_views": 2,
+  "operations": [
+    "brightness_down",
+    "brightness_up",
+    "contrast_down",
+    "contrast_up",
+    "gamma_brighten",
+    "gamma_darken",
+    "gaussian_blur",
+    "gaussian_noise"
+  ],
+  "strength_levels": 3,
+  "noise_draws_per_strength": 2,
+  "model_buffers_gradients_rng_unchanged": true,
+  "policy_recomputed_from_saved_evidence": true,
+  "duplicate_and_missed_gt_losses_present": true,
+  "fresh_model_checkpoint_prediction_policy_replay": "exact",
+  "training_update": {
+    "losses": {
+      "loss_classifier": 2.1635825634002686,
+      "loss_box_reg": 0.09221415966749191,
+      "loss_objectness": 0.1660677045583725,
+      "loss_rpn_box_reg": 0.006227651610970497
+    },
+    "gradient_norm": 28.40272331237793,
+    "includes_negative_image": true
+  },
+  "support": {
+    "0": {
+      "objects": 1,
+      "detected_objects": 0,
+      "detected_clusters": 0,
+      "sufficient": false
+    },
+    "1": {
+      "objects": 1,
+      "detected_objects": 0,
+      "detected_clusters": 0,
+      "sufficient": false
+    },
+    "2": {
+      "objects": 1,
+      "detected_objects": 0,
+      "detected_clusters": 0,
+      "sufficient": false
+    },
+    "3": {
+      "objects": 1,
+      "detected_objects": 0,
+      "detected_clusters": 0,
+      "sufficient": false
+    }
+  },
+  "active_families": [],
+  "checkpoint_sha256": "557513e3056aaa259b2d37c7e339c9733043b93fd1b18e21596692538041df6a",
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  }
+}

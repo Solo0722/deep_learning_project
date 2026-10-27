@@ -1,0 +1,9 @@
+Source: terminal output pasted by the project author in this conversation.
+This is historical launch evidence, not a fresh scheduler poll or completion record.
+
+Job id            Name             User              Time Use S Queue
+----------------  ---------------- ----------------  -------- - -----
+796544.bright04   rdd_frcnn_clsad  solomon.owusu.1   00:00:00 R gpus
+
+The same pasted output showed all released package file checksums reporting OK.
+No class-adaptive full-run accuracy or completion result has been supplied.

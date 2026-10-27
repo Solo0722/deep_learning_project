@@ -1,0 +1,25 @@
+{
+  "snapshot_date": "2026-10-26",
+  "verified_package_members": {
+    "fasterrcnn_baseline_v1": 15,
+    "fasterrcnn_shared_v1": 19,
+    "fasterrcnn_local_v1": 23,
+    "fasterrcnn_online_shared_v1": 29,
+    "fasterrcnn_class_adaptive_v1": 33,
+    "detection_splits_v1": 13
+  },
+  "class_adaptive_local_tests": {
+    "errors": 0,
+    "failures": 0,
+    "seconds": 36.93094850005582,
+    "skipped": 0,
+    "tests": 81
+  },
+  "actual_model_check": "passed",
+  "actual_model_scope": "Synthetic 128-pixel CPU data; no RDD pixels, CUDA or efficacy measurement",
+  "completed_full_detector_conditions": 4,
+  "class_adaptive_full_results": "not available; launch observed in user-supplied terminal output",
+  "remote_main_observed": "e1c24c11f2a9a53c67a218c2fd9a16a54ec816b1",
+  "remote_main_message": "feat: initial commit",
+  "raw_images_and_full_checkpoints_included": false
+}

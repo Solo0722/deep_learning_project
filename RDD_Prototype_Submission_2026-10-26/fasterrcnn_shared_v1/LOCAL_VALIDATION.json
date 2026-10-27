@@ -1,0 +1,191 @@
+{
+  "actual_pretrained_model_check": {
+    "all_negative_batch_included": true,
+    "checkpoint_sha256": "1f91caeb82e69c727bf12a721951544899b93efbd0e64115ff39991dd8dbf48d",
+    "classifier_updated": true,
+    "fresh_model_checkpoint_prediction_replay": "exact",
+    "initialization_matches_identity_model_exactly": true,
+    "model_parameters": 41314536,
+    "operations_exercised": [
+      "brightness_down",
+      "brightness_up",
+      "contrast_down",
+      "contrast_up",
+      "gamma_brighten",
+      "gamma_darken",
+      "gaussian_blur",
+      "gaussian_noise"
+    ],
+    "scope": "Synthetic 128-pixel CPU data; no RDD pixels or CCAST execution",
+    "status": "passed",
+    "updates": [
+      {
+        "gradient_norm": 28.267580032348633,
+        "losses": {
+          "loss_box_reg": 0.13616293668746948,
+          "loss_classifier": 2.1533377170562744,
+          "loss_objectness": 0.24451801180839539,
+          "loss_rpn_box_reg": 0.009490912780165672
+        },
+        "targets": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "gradient_norm": 14.901376724243164,
+        "losses": {
+          "loss_box_reg": 0.1212441623210907,
+          "loss_classifier": 0.7961503863334656,
+          "loss_objectness": 0.14761178195476532,
+          "loss_rpn_box_reg": 0.008081728592514992
+        },
+        "targets": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "gradient_norm": 5.0140886306762695,
+        "losses": {
+          "loss_box_reg": 0.0,
+          "loss_classifier": 0.10763310641050339,
+          "loss_objectness": 0.008747518062591553,
+          "loss_rpn_box_reg": 0.0
+        },
+        "targets": [
+          0,
+          0
+        ]
+      }
+    ],
+    "validation_unchanged_and_without_parameter_update": true,
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "pycocotools": "2.0.11",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "comparator_checks": {
+    "frozen_train_val_manifest_and_separation_checks": "passed",
+    "nonaugmentation_configuration_match": true,
+    "status": "passed",
+    "test_data_read": false,
+    "unchanged_dependency_files": [
+      "rdd_data.py",
+      "models.py",
+      "metrics.py",
+      "checkpoints.py",
+      "integration.py",
+      "select_training_cases.py",
+      "smoke_selection.json",
+      "tests/test_baseline.py"
+    ],
+    "unchanged_functions": [
+      "epoch_batches",
+      "learning_rate",
+      "update",
+      "validate",
+      "commit",
+      "restore",
+      "write_history",
+      "verify_partitions"
+    ]
+  },
+  "focused_tests": {
+    "command": "python -m unittest discover -s fasterrcnn_shared_v1/tests -p 'test_*.py' -v",
+    "errors": 0,
+    "failures": 0,
+    "seconds": 18.221988099976443,
+    "skipped": 0,
+    "tests": 25
+  },
+  "limits": [
+    "Local library versions differ from CCAST.",
+    "No RDD pixels, CUDA execution, full training or augmentation efficacy measured locally.",
+    "CCAST job repeats focused tests and a 640-pixel real-data GPU smoke before full training.",
+    "The first fixed recipe has not been selected through validation tuning."
+  ],
+  "local_evidence_sha256": {
+    "comparator_checks.json": "e6b87ae7a19c4b2514bbb69ae6189e01a70025be5ac186ad58f5059aba6eacea",
+    "expected_exposure.json": "4eac149dbdaf8aaaf3f84b2ab5eec4a9e10458e2731eff5b75cac51602ad28b8",
+    "local_model_check.json": "39b0ea17eb1a3f037a9175071fe7b58e491788e87e6b25404020238802855b0a",
+    "shell_checks.json": "de518e16a591c1264b21bbbbdf8a0b03d66e7ccc76da06e3bac9c1da7fee8fd1",
+    "unit_tests.json": "42f0f030bd5b0261da1a16378d904837d5a117cabd1a9d8819e088da4eccd4f3",
+    "unit_tests.txt": "8f18b9203e681ebcaebc3dbd091c314b4a7ba044b45230a974f44b4b1709ee31"
+  },
+  "predicted_exposure": {
+    "policy_sha256": "24e668753dfeb158f925596e1d09b110d3b7130c13a19b59edb95f0fa5d6c947",
+    "scope": "Predicted assignments from frozen training metadata, not executed training or a guarantee of changed pixels",
+    "smoke_assignments": {
+      "applied": 8,
+      "no_target": 9,
+      "probability": 7
+    },
+    "total": {
+      "applied_images": 158151,
+      "family/blur_noise": 78806,
+      "family/photometric": 79345,
+      "images": 537260,
+      "operation/brightness_down": 13213,
+      "operation/brightness_up": 13333,
+      "operation/contrast_down": 13191,
+      "operation/contrast_up": 13217,
+      "operation/gamma_brighten": 13235,
+      "operation/gamma_darken": 13156,
+      "operation/gaussian_blur": 39434,
+      "operation/gaussian_noise": 39372,
+      "operation/identity": 379109,
+      "reason/applied": 158151,
+      "reason/no_target": 204660,
+      "reason/probability": 157819,
+      "reason/warmup": 16630,
+      "target_images": 332600
+    }
+  },
+  "python": "3.14.2",
+  "python_3_12_grammar": "passed",
+  "shell_syntax": {
+    "command": "C:\\Program Files\\Git\\bin\\bash.exe -n <script>",
+    "sandbox_note": "Git Bash could not complete inside the Windows sandbox; read-only external retry exited zero for all three scripts.",
+    "scope": "Read-only syntax parsing outside Windows sandbox; scripts not executed and no CCAST job submitted",
+    "scripts": [
+      "job.pbs",
+      "run_job.sh",
+      "submit.sh"
+    ],
+    "source_sha256": {
+      "job.pbs": "9ed14515653080370a64427b8d1c04d8a44203d30479f5276ad35f75af5f74f3",
+      "run_job.sh": "2877ad3d8ccc5c7c3a773c091966c4e81e8c2c1297da1744925849ccbe75da3c",
+      "submit.sh": "615672af0b94b54ff062fa2c51fedab2f2c812b3e2c6546ee4095cc8114cb238"
+    },
+    "status": "passed"
+  },
+  "source_sha256": {
+    "README.md": "edc7e94f8b7f3e00775e0a28aaa8a62e498725eb91db56f75227014b09962ef6",
+    "baseline.py": "132d40d65271cefb9b8b6c82b01540e623948fba604eacbccb71a0cb720edb8d",
+    "checkpoints.py": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+    "identity_protocol.json": "5cfe9851db1a478971a2c82c78cacb44d290a4315b2fcfde355832077145fdf2",
+    "integration.py": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+    "job.pbs": "9ed14515653080370a64427b8d1c04d8a44203d30479f5276ad35f75af5f74f3",
+    "metrics.py": "a65ceced7286a8029576c89c286ce51caad03ef69632de2856d5827bda07aeba",
+    "models.py": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+    "protocol.json": "be3c1328ab3f128389ede6e638cf04332acd648133eeaad3ecf4760ea80c9fe2",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_job.sh": "2877ad3d8ccc5c7c3a773c091966c4e81e8c2c1297da1744925849ccbe75da3c",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "shared_augmentation.py": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+    "smoke_augmentation.py": "b57ed87dca41cd584ebe4feb5deb761ef340596a3e00f225f69af4880572d3bd",
+    "smoke_selection.json": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+    "submit.sh": "615672af0b94b54ff062fa2c51fedab2f2c812b3e2c6546ee4095cc8114cb238",
+    "tests/test_baseline.py": "fc1d61f3a5c54d654d582b0f6cd2b7959afd59b6a33691d39c06a40d1171e458",
+    "tests/test_shared_augmentation.py": "3a7a78724698588d10969f2065167ecde462993f58e9f9f1b25de62504dbf7c8"
+  },
+  "status": "passed_locally_ccast_execution_pending"
+}

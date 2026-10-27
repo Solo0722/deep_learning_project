@@ -1,0 +1,5 @@
+condition,epoch,negative_images,images_with_predictions,prediction_boxes,fraction_percent,confidence_threshold
+identity,14,2193,858,1637,39.12448700410397,0.25
+image_level,14,2193,867,1640,39.53488372093023,0.25
+local,18,2193,817,1538,37.254901960784316,0.25
+online_shared,14,2193,886,1707,40.40127678978568,0.25

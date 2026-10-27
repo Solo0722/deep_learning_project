@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "seed": 42,
+  "audit_bundle_sha256": "07963cfdc3e14d2032dd1a80a1240a19c415598ef449bde737fe422902dd4f7b",
+  "previous_images_sha256": "bfac83ec2542ee1616a04c6e50af81ca213f5124d3a1d09ac9eab3bdfa71da60",
+  "audit_code_sha256": {
+    "audit_detection_data.py": "5f50f0340b489ee7ade27a9101bc416f9658e714d04f0546e031c0bf01984ba7",
+    "screen_near_duplicates.py": "50fceed7efd438939890fa490738e43e0eaee6684a2441c3eec5807aedbb7e0d"
+  },
+  "expected_val_to_train_images": [
+    "India/train/images/India_003495.jpg",
+    "India/train/images/India_005040.jpg",
+    "India/train/images/India_009415.jpg",
+    "Norway/train/images/Norway_000115.jpg",
+    "Norway/train/images/Norway_000181.jpg",
+    "Norway/train/images/Norway_003124.jpg"
+  ],
+  "excluded_images": [
+    {
+      "image": "United_States/train/images/United_States_003917.jpg",
+      "reason": "historical_exact_duplicate",
+      "canonical": "United_States/train/images/United_States_001623.jpg",
+      "note": "Retain the previously documented exclusion; identical image bytes/RGB but two annotation boxes differ. No annotation merging."
+    },
+    {
+      "image": "India/train/images/India_006389.jpg",
+      "reason": "ambiguous_annotation_label",
+      "expected_labels": ["D0w0"],
+      "note": "The sole label cannot be assigned confidently to a target class. Exclude the image from this version instead of guessing a correction or treating it as a target-negative example."
+    }
+  ],
+  "excluded_objects": [
+    {
+      "image": "Japan/train/images/Japan_001265.jpg",
+      "object_index": 3,
+      "label": "D20",
+      "original_box": [198.0, 474.0, 198.0, 475.0],
+      "reason": "nonpositive_target_area",
+      "note": "Retain this image and its other three valid targets."
+    }
+  ],
+  "retained_non_target_labels": ["Repair", "Block crack", "D44", "D01", "D11", "D50", "D43"],
+  "decision_basis": [
+    "Decisions follow the complete full-pool metadata audit and precede full-image detector training.",
+    "Keep screened components indivisible, including connections through excluded images; a candidate edge is not proof of duplication.",
+    "Preserve all prior test assignments; reject test/development conflicts rather than silently repairing them.",
+    "Assign both reviewed train/validation conflict components to training because some members already have training exposure.",
+    "Preserve every other historical assignment. Historical validation remains development data.",
+    "Allocate previously unassigned no-target groups within source toward 70/15/15 proportions, balancing the two annotation categories and image counts.",
+    "No target annotation does not establish healthy pavement or complete target annotation.",
+    "Use stored orientation; keep difficult/truncated flags and every positive-area target without the old crop-size cutoff."
+  ]
+}

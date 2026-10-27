@@ -1,0 +1,5 @@
+condition,hours,host,gpu,pbs_job
+identity,11.09099457434482,gpu0035,NVIDIA A10,794364.bright04
+image_level,11.512790571166098,gpu0021,NVIDIA A10,795553.bright04
+local,13.259789388487116,gpu0020,NVIDIA A10,795787.bright04
+online_shared,14.143136921317007,gpu0020,NVIDIA A10,796146.bright04

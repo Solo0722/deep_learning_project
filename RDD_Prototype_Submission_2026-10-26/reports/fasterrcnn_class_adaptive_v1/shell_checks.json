@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "method": "Git Bash -n read-only parsing; scripts not submitted or executed",
+  "source_sha256": {
+    "submit.sh": "18ae539df47c09606955207e411010c3f689b99cfbcbdb6d157b5d2ba29da79d",
+    "run_job.sh": "6ee9a05e91441cab6ca4bf92fe2a29abf8dbe728bf094cfb38da5387ff73026f",
+    "job.pbs": "5d0a356655409c27eb6001e4e7a58cdce79f3e37ea848e9bdb279079ea891682"
+  },
+  "sandbox_startup_attempts": [
+    {
+      "file": "submit.sh",
+      "exit_code": 3221225794,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "run_job.sh",
+      "exit_code": 3221225794,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "job.pbs",
+      "exit_code": 3221225794,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "read_only_retry_exit_code": 0,
+  "read_only_retry_output": [
+    "Syntax OK: submit.sh",
+    "Syntax OK: run_job.sh",
+    "Syntax OK: job.pbs"
+  ]
+}

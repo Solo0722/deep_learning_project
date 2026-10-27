@@ -1,0 +1,85 @@
+{
+  "actual_pretrained_model_check": {
+    "all_empty_batch_included": true,
+    "checkpoint_sha256": "cf2b0b6744b63d693cbdb278ac823caf39d806bfb79af88e534f082c2fc79633",
+    "classifier_updated": true,
+    "fresh_model_checkpoint_prediction_replay": "exact",
+    "model_parameters": 41314536,
+    "scope": "Synthetic 128-pixel CPU inputs; no RDD pixels, CCAST execution or efficacy claim",
+    "status": "passed",
+    "updates": [
+      {
+        "gradient_norm": 28.39010238647461,
+        "losses": {
+          "loss_box_reg": 0.08767502009868622,
+          "loss_classifier": 2.15218448638916,
+          "loss_objectness": 0.11788874119520187,
+          "loss_rpn_box_reg": 0.00501947570592165
+        },
+        "target_counts": [
+          1,
+          0
+        ]
+      },
+      {
+        "gradient_norm": 15.338799476623535,
+        "losses": {
+          "loss_box_reg": 0.0,
+          "loss_classifier": 0.6995765566825867,
+          "loss_objectness": 0.006924762390553951,
+          "loss_rpn_box_reg": 0.0
+        },
+        "target_counts": [
+          0,
+          0
+        ]
+      }
+    ],
+    "validation_did_not_update_model": true,
+    "validation_images": 5,
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "pycocotools": "2.0.11",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "all_box_geometry_checked": {
+    "minimum_fp32_extent_at_640": 0.7548828125,
+    "train": 38530,
+    "val": 8225
+  },
+  "focused_tests": {
+    "command": "python -m unittest discover -s fasterrcnn_baseline_v1/tests -p test_baseline.py -v",
+    "passed": 13,
+    "seconds": 10.338
+  },
+  "limits": [
+    "Local PyTorch/TorchVision/Pillow/NumPy/COCO versions differ from CCAST.",
+    "No RDD image pixels, full baseline training or CUDA execution occurred locally.",
+    "CCAST job repeats focused tests and a real-data 640-pixel smoke gate before full training."
+  ],
+  "previous_unit_failure": "The initial synthetic fixture reused RGB values across partitions; the guard correctly rejected it. Distinct fixture pixels fixed the test data before the passing suite.",
+  "python": "3.14.2",
+  "python_3_12_grammar": "passed",
+  "shell_syntax": "Git Bash -n passed for job.pbs, run_job.sh, submit.sh; no job scripts executed locally",
+  "source_sha256": {
+    "README.md": "7b3ff10e869b325c3131eadc418096cbb97299aea9af58d2d5bd67764ff028ec",
+    "baseline.py": "6db1015206ea6f5cdbd0817564eb19cdda4fafcda224772307a74a7c3eba0559",
+    "checkpoints.py": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+    "integration.py": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+    "job.pbs": "994e76883847d279803eeb8c89fd3c16835b127d080f858e39ff7f7655852625",
+    "metrics.py": "a65ceced7286a8029576c89c286ce51caad03ef69632de2856d5827bda07aeba",
+    "models.py": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+    "protocol.json": "5cfe9851db1a478971a2c82c78cacb44d290a4315b2fcfde355832077145fdf2",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_job.sh": "0ee8211f56ea4894a4fbd0b3c523918853fcf59249d76e589202f4b477865d76",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "smoke_selection.json": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+    "submit.sh": "28b672e0505321fdbf82de97d29655cd9bb326093f8c249e3cf79c43a88eb9e3",
+    "tests/test_baseline.py": "fc1d61f3a5c54d654d582b0f6cd2b7959afd59b6a33691d39c06a40d1171e458"
+  },
+  "status": "passed_locally_ccast_execution_pending",
+  "train_val_hashes_and_separation": "passed"
+}
