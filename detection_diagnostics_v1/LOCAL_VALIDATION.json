@@ -1,0 +1,786 @@
+{
+  "actual_ccast_checkpoint_binaries_read_locally": 0,
+  "actual_pretrained_cpu_check": {
+    "actual_ccast_checkpoints_read": 0,
+    "all_parameters_grad_none": true,
+    "baseline_matches_released_inference": true,
+    "checkpoint_hash_unchanged": true,
+    "modes": {
+      "batch_stats": {
+        "batches": [
+          {
+            "assignments": {
+              "assigned_gt_indices_per_image": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                []
+              ],
+              "foreground_count_per_image": [
+                30,
+                0
+              ],
+              "target_score_sum_per_image": [
+                2.0618326663970947,
+                0.0
+              ]
+            },
+            "batch_index": 0,
+            "classification_logit_max": -0.27838751673698425,
+            "classification_logit_min": -15.28632640838623,
+            "images": [
+              {
+                "candidates_above_threshold_by_class": [
+                  37,
+                  113,
+                  228,
+                  9
+                ],
+                "image_id": 0,
+                "maximum_probability_by_class": [
+                  0.034074828028678894,
+                  0.43084916472435,
+                  0.1537419557571411,
+                  0.014264638535678387
+                ],
+                "raw_candidates": 336,
+                "targets": [
+                  {
+                    "best_any_class_eligible_iou": 0.431531697511673,
+                    "best_raw_iou": 0.431531697511673,
+                    "best_same_class_eligible_iou": 0.07456294447183609,
+                    "class_index": 0,
+                    "target_index": 0
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.281883180141449,
+                    "best_raw_iou": 0.281883180141449,
+                    "best_same_class_eligible_iou": 0.281883180141449,
+                    "class_index": 1,
+                    "target_index": 1
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.23612673580646515,
+                    "best_raw_iou": 0.23612673580646515,
+                    "best_same_class_eligible_iou": 0.23612673580646515,
+                    "class_index": 2,
+                    "target_index": 2
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.1532478630542755,
+                    "best_raw_iou": 0.1532478630542755,
+                    "best_same_class_eligible_iou": 0.03230508789420128,
+                    "class_index": 3,
+                    "target_index": 3
+                  }
+                ]
+              },
+              {
+                "candidates_above_threshold_by_class": [
+                  49,
+                  127,
+                  257,
+                  4
+                ],
+                "image_id": 1,
+                "maximum_probability_by_class": [
+                  0.026453373953700066,
+                  0.02726878598332405,
+                  0.033795975148677826,
+                  0.0025730698835104704
+                ],
+                "raw_candidates": 336,
+                "targets": []
+              }
+            ],
+            "input_signature": "1a0a3e3186352528599330e279ee9a2cdfbc015e6f3a5fc4b1fd994fd1877eff",
+            "loss_components_without_batch_multiplier": {
+              "box_loss": 5.830191135406494,
+              "cls_loss": 5.6646528244018555,
+              "dfl_loss": 3.278322219848633
+            },
+            "target_counts": [
+              4,
+              0
+            ]
+          },
+          {
+            "assignments": {
+              "assigned_gt_indices_per_image": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              "foreground_count_per_image": [
+                30
+              ],
+              "target_score_sum_per_image": [
+                1.5389424562454224
+              ]
+            },
+            "batch_index": 1,
+            "classification_logit_max": -1.737983226776123,
+            "classification_logit_min": -15.021601676940918,
+            "images": [
+              {
+                "candidates_above_threshold_by_class": [
+                  47,
+                  114,
+                  239,
+                  8
+                ],
+                "image_id": 2,
+                "maximum_probability_by_class": [
+                  0.018502643331885338,
+                  0.1495692878961563,
+                  0.04673789441585541,
+                  0.01211883407086134
+                ],
+                "raw_candidates": 336,
+                "targets": [
+                  {
+                    "best_any_class_eligible_iou": 0.58083575963974,
+                    "best_raw_iou": 0.58083575963974,
+                    "best_same_class_eligible_iou": 0.15008939802646637,
+                    "class_index": 0,
+                    "target_index": 0
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.30065789818763733,
+                    "best_raw_iou": 0.30065789818763733,
+                    "best_same_class_eligible_iou": 0.30065789818763733,
+                    "class_index": 1,
+                    "target_index": 1
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.3044678866863251,
+                    "best_raw_iou": 0.3044678866863251,
+                    "best_same_class_eligible_iou": 0.3044678866863251,
+                    "class_index": 2,
+                    "target_index": 2
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.1540912687778473,
+                    "best_raw_iou": 0.1540912687778473,
+                    "best_same_class_eligible_iou": 0.034788936376571655,
+                    "class_index": 3,
+                    "target_index": 3
+                  }
+                ]
+              }
+            ],
+            "input_signature": "9f9eff7e7d39903e66355e5adb4261274881ed0d616c6b527dd95fbe31fa95fa",
+            "loss_components_without_batch_multiplier": {
+              "box_loss": 5.235574722290039,
+              "cls_loss": 4.665509223937988,
+              "dfl_loss": 3.423969268798828
+            },
+            "target_counts": [
+              4
+            ]
+          }
+        ],
+        "batchnorm_modules": 57,
+        "clipping": [
+          {
+            "after_clipping": 81,
+            "before_clipping": 81,
+            "boxes_clipped": 58,
+            "collapsed_after_clipping": 0,
+            "image_id": 0
+          },
+          {
+            "after_clipping": 100,
+            "before_clipping": 100,
+            "boxes_clipped": 67,
+            "collapsed_after_clipping": 0,
+            "image_id": 1
+          },
+          {
+            "after_clipping": 93,
+            "before_clipping": 93,
+            "boxes_clipped": 68,
+            "collapsed_after_clipping": 0,
+            "image_id": 2
+          }
+        ],
+        "metrics": {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 3,
+          "negative_confidence": 0.25,
+          "no_target_images": 1,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "1": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 274,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 8
+        },
+        "mode": "batch_stats",
+        "state_and_rng_unchanged": true
+      },
+      "running_stats": {
+        "batches": [
+          {
+            "assignments": {
+              "assigned_gt_indices_per_image": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                []
+              ],
+              "foreground_count_per_image": [
+                29,
+                0
+              ],
+              "target_score_sum_per_image": [
+                1.618960976600647,
+                0.0
+              ]
+            },
+            "batch_index": 0,
+            "classification_logit_max": -1.334547758102417,
+            "classification_logit_min": -12.857431411743164,
+            "images": [
+              {
+                "candidates_above_threshold_by_class": [
+                  75,
+                  111,
+                  211,
+                  15
+                ],
+                "image_id": 0,
+                "maximum_probability_by_class": [
+                  0.003529240842908621,
+                  0.20840810239315033,
+                  0.00887060072273016,
+                  0.01670891046524048
+                ],
+                "raw_candidates": 336,
+                "targets": [
+                  {
+                    "best_any_class_eligible_iou": 0.3894021213054657,
+                    "best_raw_iou": 0.4151349365711212,
+                    "best_same_class_eligible_iou": 0.10820361226797104,
+                    "class_index": 0,
+                    "target_index": 0
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.2631891965866089,
+                    "best_raw_iou": 0.2631891965866089,
+                    "best_same_class_eligible_iou": 0.2631891965866089,
+                    "class_index": 1,
+                    "target_index": 1
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.2113749384880066,
+                    "best_raw_iou": 0.2113749384880066,
+                    "best_same_class_eligible_iou": 0.2113749384880066,
+                    "class_index": 2,
+                    "target_index": 2
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.1228310838341713,
+                    "best_raw_iou": 0.13072910904884338,
+                    "best_same_class_eligible_iou": 0.03614964708685875,
+                    "class_index": 3,
+                    "target_index": 3
+                  }
+                ]
+              },
+              {
+                "candidates_above_threshold_by_class": [
+                  76,
+                  110,
+                  212,
+                  15
+                ],
+                "image_id": 1,
+                "maximum_probability_by_class": [
+                  0.0035880543291568756,
+                  0.20183297991752625,
+                  0.008741594851016998,
+                  0.016073813661932945
+                ],
+                "raw_candidates": 336,
+                "targets": []
+              }
+            ],
+            "input_signature": "1a0a3e3186352528599330e279ee9a2cdfbc015e6f3a5fc4b1fd994fd1877eff",
+            "loss_components_without_batch_multiplier": {
+              "box_loss": 5.956625938415527,
+              "cls_loss": 5.970752239227295,
+              "dfl_loss": 3.3158507347106934
+            },
+            "target_counts": [
+              4,
+              0
+            ]
+          },
+          {
+            "assignments": {
+              "assigned_gt_indices_per_image": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              "foreground_count_per_image": [
+                29
+              ],
+              "target_score_sum_per_image": [
+                1.634181261062622
+              ]
+            },
+            "batch_index": 1,
+            "classification_logit_max": -1.4133243560791016,
+            "classification_logit_min": -12.873465538024902,
+            "images": [
+              {
+                "candidates_above_threshold_by_class": [
+                  76,
+                  108,
+                  211,
+                  15
+                ],
+                "image_id": 2,
+                "maximum_probability_by_class": [
+                  0.003641018643975258,
+                  0.19571025669574738,
+                  0.008599381893873215,
+                  0.015491520054638386
+                ],
+                "raw_candidates": 336,
+                "targets": [
+                  {
+                    "best_any_class_eligible_iou": 0.3875925540924072,
+                    "best_raw_iou": 0.42667192220687866,
+                    "best_same_class_eligible_iou": 0.10954005271196365,
+                    "class_index": 0,
+                    "target_index": 0
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.26464173197746277,
+                    "best_raw_iou": 0.26464173197746277,
+                    "best_same_class_eligible_iou": 0.26464173197746277,
+                    "class_index": 1,
+                    "target_index": 1
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.21122613549232483,
+                    "best_raw_iou": 0.21122613549232483,
+                    "best_same_class_eligible_iou": 0.21122613549232483,
+                    "class_index": 2,
+                    "target_index": 2
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.1244940236210823,
+                    "best_raw_iou": 0.1298409253358841,
+                    "best_same_class_eligible_iou": 0.036145031452178955,
+                    "class_index": 3,
+                    "target_index": 3
+                  }
+                ]
+              }
+            ],
+            "input_signature": "9f9eff7e7d39903e66355e5adb4261274881ed0d616c6b527dd95fbe31fa95fa",
+            "loss_components_without_batch_multiplier": {
+              "box_loss": 5.95944356918335,
+              "cls_loss": 4.94111967086792,
+              "dfl_loss": 3.3046295642852783
+            },
+            "target_counts": [
+              4
+            ]
+          }
+        ],
+        "batchnorm_modules": 57,
+        "clipping": [
+          {
+            "after_clipping": 45,
+            "before_clipping": 45,
+            "boxes_clipped": 31,
+            "collapsed_after_clipping": 0,
+            "image_id": 0
+          },
+          {
+            "after_clipping": 44,
+            "before_clipping": 44,
+            "boxes_clipped": 28,
+            "collapsed_after_clipping": 0,
+            "image_id": 1
+          },
+          {
+            "after_clipping": 42,
+            "before_clipping": 42,
+            "boxes_clipped": 27,
+            "collapsed_after_clipping": 0,
+            "image_id": 2
+          }
+        ],
+        "matches_saved_predictions": {
+          "maximum_original_coordinate_error": 0.0,
+          "maximum_score_error": 0.0,
+          "predictions_match_within_tolerance": true
+        },
+        "metrics": {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 3,
+          "negative_confidence": 0.25,
+          "no_target_images": 1,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "1": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 131,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 8
+        },
+        "mode": "running_stats",
+        "state_and_rng_unchanged": true
+      },
+      "running_stats_after": {
+        "batches": [
+          {
+            "assignments": {
+              "assigned_gt_indices_per_image": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                []
+              ],
+              "foreground_count_per_image": [
+                29,
+                0
+              ],
+              "target_score_sum_per_image": [
+                1.618960976600647,
+                0.0
+              ]
+            },
+            "batch_index": 0,
+            "classification_logit_max": -1.334547758102417,
+            "classification_logit_min": -12.857431411743164,
+            "images": [
+              {
+                "candidates_above_threshold_by_class": [
+                  75,
+                  111,
+                  211,
+                  15
+                ],
+                "image_id": 0,
+                "maximum_probability_by_class": [
+                  0.003529240842908621,
+                  0.20840810239315033,
+                  0.00887060072273016,
+                  0.01670891046524048
+                ],
+                "raw_candidates": 336,
+                "targets": [
+                  {
+                    "best_any_class_eligible_iou": 0.3894021213054657,
+                    "best_raw_iou": 0.4151349365711212,
+                    "best_same_class_eligible_iou": 0.10820361226797104,
+                    "class_index": 0,
+                    "target_index": 0
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.2631891965866089,
+                    "best_raw_iou": 0.2631891965866089,
+                    "best_same_class_eligible_iou": 0.2631891965866089,
+                    "class_index": 1,
+                    "target_index": 1
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.2113749384880066,
+                    "best_raw_iou": 0.2113749384880066,
+                    "best_same_class_eligible_iou": 0.2113749384880066,
+                    "class_index": 2,
+                    "target_index": 2
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.1228310838341713,
+                    "best_raw_iou": 0.13072910904884338,
+                    "best_same_class_eligible_iou": 0.03614964708685875,
+                    "class_index": 3,
+                    "target_index": 3
+                  }
+                ]
+              },
+              {
+                "candidates_above_threshold_by_class": [
+                  76,
+                  110,
+                  212,
+                  15
+                ],
+                "image_id": 1,
+                "maximum_probability_by_class": [
+                  0.0035880543291568756,
+                  0.20183297991752625,
+                  0.008741594851016998,
+                  0.016073813661932945
+                ],
+                "raw_candidates": 336,
+                "targets": []
+              }
+            ],
+            "input_signature": "1a0a3e3186352528599330e279ee9a2cdfbc015e6f3a5fc4b1fd994fd1877eff",
+            "loss_components_without_batch_multiplier": {
+              "box_loss": 5.956625938415527,
+              "cls_loss": 5.970752239227295,
+              "dfl_loss": 3.3158507347106934
+            },
+            "target_counts": [
+              4,
+              0
+            ]
+          },
+          {
+            "assignments": {
+              "assigned_gt_indices_per_image": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              "foreground_count_per_image": [
+                29
+              ],
+              "target_score_sum_per_image": [
+                1.634181261062622
+              ]
+            },
+            "batch_index": 1,
+            "classification_logit_max": -1.4133243560791016,
+            "classification_logit_min": -12.873465538024902,
+            "images": [
+              {
+                "candidates_above_threshold_by_class": [
+                  76,
+                  108,
+                  211,
+                  15
+                ],
+                "image_id": 2,
+                "maximum_probability_by_class": [
+                  0.003641018643975258,
+                  0.19571025669574738,
+                  0.008599381893873215,
+                  0.015491520054638386
+                ],
+                "raw_candidates": 336,
+                "targets": [
+                  {
+                    "best_any_class_eligible_iou": 0.3875925540924072,
+                    "best_raw_iou": 0.42667192220687866,
+                    "best_same_class_eligible_iou": 0.10954005271196365,
+                    "class_index": 0,
+                    "target_index": 0
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.26464173197746277,
+                    "best_raw_iou": 0.26464173197746277,
+                    "best_same_class_eligible_iou": 0.26464173197746277,
+                    "class_index": 1,
+                    "target_index": 1
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.21122613549232483,
+                    "best_raw_iou": 0.21122613549232483,
+                    "best_same_class_eligible_iou": 0.21122613549232483,
+                    "class_index": 2,
+                    "target_index": 2
+                  },
+                  {
+                    "best_any_class_eligible_iou": 0.1244940236210823,
+                    "best_raw_iou": 0.1298409253358841,
+                    "best_same_class_eligible_iou": 0.036145031452178955,
+                    "class_index": 3,
+                    "target_index": 3
+                  }
+                ]
+              }
+            ],
+            "input_signature": "9f9eff7e7d39903e66355e5adb4261274881ed0d616c6b527dd95fbe31fa95fa",
+            "loss_components_without_batch_multiplier": {
+              "box_loss": 5.95944356918335,
+              "cls_loss": 4.94111967086792,
+              "dfl_loss": 3.3046295642852783
+            },
+            "target_counts": [
+              4
+            ]
+          }
+        ],
+        "batchnorm_modules": 57,
+        "clipping": [
+          {
+            "after_clipping": 45,
+            "before_clipping": 45,
+            "boxes_clipped": 31,
+            "collapsed_after_clipping": 0,
+            "image_id": 0
+          },
+          {
+            "after_clipping": 44,
+            "before_clipping": 44,
+            "boxes_clipped": 28,
+            "collapsed_after_clipping": 0,
+            "image_id": 1
+          },
+          {
+            "after_clipping": 42,
+            "before_clipping": 42,
+            "boxes_clipped": 27,
+            "collapsed_after_clipping": 0,
+            "image_id": 2
+          }
+        ],
+        "matches_initial_running_predictions": {
+          "maximum_original_coordinate_error": 0.0,
+          "maximum_score_error": 0.0,
+          "predictions_match_within_tolerance": true
+        },
+        "metrics": {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 3,
+          "negative_confidence": 0.25,
+          "no_target_images": 1,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "1": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 131,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 8
+        },
+        "mode": "running_stats_after",
+        "state_and_rng_unchanged": true
+      }
+    },
+    "optimizer_steps": 0,
+    "python": "3.14.2",
+    "raw_rdd_images_read": 0,
+    "scope": "Actual pretrained YOLO architecture on three synthetic 128-pixel images; includes a mixed batch and final single positive image",
+    "status": "passed",
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "pycocotools": "2.0.11",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0",
+      "ultralytics-opencv-headless": "8.4.182"
+    }
+  },
+  "known_local_limit": "Local CPU torch 2.10.0 / torchvision 0.25.0 / pycocotools 2.0.11 differ from pinned CCAST. Ultralytics 8.4.182 is loaded from the isolated wheel.",
+  "pending": [
+    "CCAST deployment and unit tests",
+    "Evaluation of the existing RDD step-100/200 checkpoints on the 15 training images",
+    "Returned diagnostic record review"
+  ],
+  "python_3_12_grammar": "passed",
+  "raw_rdd_images_read_locally": 0,
+  "recorded_utc": "2026-10-22T15:17:53.978605+00:00",
+  "status": "prepared_locally_ccast_diagnostic_pending",
+  "unit_test_scope": "Batch-stat versus running-stat functional behavior, unchanged state/RNG, mode restoration on exceptions, mutation rejection, raw candidate geometry versus class scores, empty-image assignments, input tampering, replay mismatch stops before intervention",
+  "unit_tests": {
+    "command": "python -m unittest discover -s detection_diagnostics_v1/tests -p test_diagnose.py -v",
+    "passed": 8,
+    "reported_seconds": 6.43,
+    "skipped": 0
+  }
+}

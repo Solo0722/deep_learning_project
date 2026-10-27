@@ -1,0 +1,176 @@
+{
+  "largest_training_image": "Norway/train/images/Norway_000003.jpg",
+  "manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+  "purpose": "Deterministic training-only software coverage; not a performance sample",
+  "required_features": [
+    "category:empty_xml",
+    "category:only_other_labels",
+    "category:target_bearing",
+    "class:D00",
+    "class:D10",
+    "class:D20",
+    "class:D40",
+    "cross_class_overlap",
+    "difficult_target_retained",
+    "fractional_coordinates",
+    "mixed_class",
+    "orientation:6",
+    "orientation:8",
+    "source:China_Drone:no_target",
+    "source:China_Drone:positive",
+    "source:China_MotorBike:no_target",
+    "source:China_MotorBike:positive",
+    "source:Czech:no_target",
+    "source:Czech:positive",
+    "source:India:no_target",
+    "source:India:positive",
+    "source:Japan:no_target",
+    "source:Japan:positive",
+    "source:Norway:no_target",
+    "source:Norway:positive",
+    "source:United_States:positive"
+  ],
+  "selected": [
+    {
+      "features": [
+        "category:target_bearing",
+        "class:D00",
+        "source:China_Drone:positive"
+      ],
+      "image": "China_Drone/train/images/China_Drone_000002.jpg",
+      "image_sha256": "abe99380b95f58dad2a1438d50b21ddd5e66be4f82a5eeadd527698376547230"
+    },
+    {
+      "features": [
+        "category:only_other_labels",
+        "source:China_Drone:no_target"
+      ],
+      "image": "China_Drone/train/images/China_Drone_000023.jpg",
+      "image_sha256": "68db29b39973bc4b92f95a78b7550123fbca5409d427c6e8bf81094a46261391"
+    },
+    {
+      "features": [
+        "category:target_bearing",
+        "class:D00",
+        "source:China_MotorBike:positive"
+      ],
+      "image": "China_MotorBike/train/images/China_MotorBike_000002.jpg",
+      "image_sha256": "a306ce6d67f7f2e4f4ed459195d955d7243be8c7540398998b0d51ef2887aac3"
+    },
+    {
+      "features": [
+        "category:only_other_labels",
+        "source:China_MotorBike:no_target"
+      ],
+      "image": "China_MotorBike/train/images/China_MotorBike_000040.jpg",
+      "image_sha256": "a3c42de77a1e0d4b9a886001e68ebd740b6ff9ff55631a6fc2531ab38cfba797"
+    },
+    {
+      "features": [
+        "category:empty_xml",
+        "source:Czech:no_target"
+      ],
+      "image": "Czech/train/images/Czech_000000.jpg",
+      "image_sha256": "62fbb8ae2ef07e945d7c71b42fe01e5e3965ef74097e470f3b83cf9e086a1cbb"
+    },
+    {
+      "features": [
+        "category:target_bearing",
+        "class:D00",
+        "source:Czech:positive"
+      ],
+      "image": "Czech/train/images/Czech_000006.jpg",
+      "image_sha256": "9f4dda8098647d5c856d4652ee1bf15f25de8c6cb202aef4b16a8b412c15f55f"
+    },
+    {
+      "features": [
+        "category:target_bearing",
+        "class:D00",
+        "source:India:positive"
+      ],
+      "image": "India/train/images/India_000011.jpg",
+      "image_sha256": "34ff50fa69782f9cfccec373d307ac70619562b8e81c76ded86aa25537d14ca4"
+    },
+    {
+      "features": [
+        "category:empty_xml",
+        "orientation:8",
+        "source:India:no_target"
+      ],
+      "image": "India/train/images/India_000430.jpg",
+      "image_sha256": "01c4ef927c8193a209e1169f8bc937ad16764c1b2d756ba0a5c9d7332ea3fa9c"
+    },
+    {
+      "features": [
+        "category:empty_xml",
+        "orientation:6",
+        "source:India:no_target"
+      ],
+      "image": "India/train/images/India_004810.jpg",
+      "image_sha256": "5765420eef4d267f889c13e5b89b1931b4b064a8f401b3517b1eb231bbb9bd69"
+    },
+    {
+      "features": [
+        "category:target_bearing",
+        "class:D00",
+        "class:D10",
+        "class:D20",
+        "class:D40",
+        "cross_class_overlap",
+        "mixed_class",
+        "source:Japan:positive"
+      ],
+      "image": "Japan/train/images/Japan_000000.jpg",
+      "image_sha256": "d3f4b171ecac94b929ef5bb3fad23bad44c98b3bd18aad4ac5ebaea760ce3f9c"
+    },
+    {
+      "features": [
+        "category:only_other_labels",
+        "source:Japan:no_target"
+      ],
+      "image": "Japan/train/images/Japan_000002.jpg",
+      "image_sha256": "3014dabddf9aa275228573e0e57ef05ba257cf50aa9711bf98ed939ded60f944"
+    },
+    {
+      "features": [
+        "category:empty_xml",
+        "source:Norway:no_target"
+      ],
+      "image": "Norway/train/images/Norway_000002.jpg",
+      "image_sha256": "73969680324355d1b208a6244d4dda172bfd174bd449c2f2d48b177cf1d1c7c8"
+    },
+    {
+      "features": [
+        "category:empty_xml",
+        "source:Norway:no_target"
+      ],
+      "image": "Norway/train/images/Norway_000003.jpg",
+      "image_sha256": "8968cea669722e38cf9046add6cac46426c287d4aeb74e0e62959ab1a37a566f"
+    },
+    {
+      "features": [
+        "category:target_bearing",
+        "class:D00",
+        "class:D10",
+        "class:D20",
+        "class:D40",
+        "cross_class_overlap",
+        "fractional_coordinates",
+        "mixed_class",
+        "source:Norway:positive"
+      ],
+      "image": "Norway/train/images/Norway_000189.jpg",
+      "image_sha256": "909197c4af623930fb4998f0bcb03b48f2e94c7928ce07e4fc25f02b4522da84"
+    },
+    {
+      "features": [
+        "category:target_bearing",
+        "class:D10",
+        "difficult_target_retained",
+        "source:United_States:positive"
+      ],
+      "image": "United_States/train/images/United_States_000030.jpg",
+      "image_sha256": "86637d76c177c05ac9c1bc4a346974ffd92045777da84be157debc851165e24a"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "status": "saved_record_audit_complete_normalization_diagnostic_prepared",
+  "evidence": {
+    "verification_record": "reports/detection_learning_v1/ccast_verification.json",
+    "analysis_code": "reports/detection_learning_v1/audit_ccast_results.py",
+    "raw_records": "reports/detection_learning_v1/returned_records",
+    "metrics_table": "reports/detection_learning_v1/metrics.csv",
+    "loss_table": "reports/detection_learning_v1/loss_by_pass.csv"
+  },
+  "verified_facts": [
+    "Downloaded archive SHA-256 matches the CCAST-reported value. All 38 checksummed records and 14 released source/package files match.",
+    "All 400 updates are present with the expected batch order and input signatures; input records exactly match the previously verified integration run.",
+    "Ground truth matches the frozen training manifest. Direct COCO API recomputation reproduces all eight scalar and per-class evaluations; the maximum scalar metric difference is zero.",
+    "Faster R-CNN final training AP50 is 0.35517224162436534 and AP50:95 is 0.17553766590333464. Each of the 16 targets has at least one retained same-class prediction with IoU at least 0.5; this coverage statistic is not AP or one-to-one recall.",
+    "YOLO has no retained predictions at step 50. At step 200 it retains 1307 predictions, but none overlaps any target at IoU at least 0.5 even when class labels are ignored. No retained D10 predictions remain.",
+    "At YOLO step 182, batch index 5 has two no-target images. Its total loss is 41.86680603027344, entirely classification loss after the batch multiplier. The monitored classifier's maximum absolute parameter update is 0.36882007122039795, versus 0.0077450573444366455 at step 181.",
+    "Final saved predictions are identical before and after checkpoint reload for both models. Full checkpoint binaries remain on CCAST and were not independently reloaded locally."
+  ],
+  "interpretation": {
+    "fasterrcnn": "Training improvement is established on this selected subset, but the predeclared learning review threshold is not met.",
+    "yolo": "Poor final localization in the retained predictions and an abrupt update spike are established. A simple metric-aggregation error or class-label permutation alone cannot explain the saved final boxes.",
+    "unknowns": [
+      "The records do not identify a unique cause of YOLO's poor predictions.",
+      "Raw candidate geometry, positive assignments, train-versus-eval normalization behavior and full gradient norms were not recorded by the learning run.",
+      "BatchNorm sensitivity and optimization instability are distinct hypotheses; either, both or another issue may contribute.",
+      "The cuDNN warnings' effect on training or throughput remains unestablished."
+    ]
+  },
+  "implementation_review": {
+    "local_training_loop": "The custom learning loop uses fixed SGD with no warmup or gradient clipping; it applies weight decay to all trainable parameters. These are declared diagnostic settings, not the standard Ultralytics training recipe.",
+    "primary_source_check": "The pinned official Ultralytics trainer uses gradient clipping with max_norm=10. Its optimizer also separates bias/normalization parameters from decayed weights. This difference motivates investigation but does not prove the cause of this run's failure.",
+    "sources": [
+      "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/engine/trainer.py",
+      "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/utils/loss.py",
+      "https://raw.githubusercontent.com/pytorch/pytorch/v2.3.0/torch/nn/modules/batchnorm.py"
+    ]
+  },
+  "decision": "Do not extend training or rank architectures from this run. Evaluate the existing YOLO checkpoints under a controlled normalization intervention before proposing a training change.",
+  "next_diagnostic": {
+    "package": "detection_diagnostics_v1",
+    "protocol": "detection_diagnostics_v1/protocol.json",
+    "checkpoint_steps": [100, 200],
+    "modes": ["running_stats", "batch_stats", "running_stats_after"],
+    "optimizer_steps": 0,
+    "model_forward_budget": 48,
+    "controls": "Replay original predictions; keep parameters, running buffers, RNG and checkpoint bytes unchanged; replay running-stat predictions after the intervention.",
+    "status": "Eight focused tests and an actual pretrained YOLO CPU path passed on synthetic inputs. Actual CCAST checkpoint diagnosis is pending.",
+    "interpretation_limit": "Batch-stat AP on the fixed training batches is an exploratory sensitivity diagnostic, not a validated remedy or a generalization measure."
+  },
+  "scientific_scope": "No held-out detector performance, architecture superiority or augmentation-controller efficacy is established."
+}

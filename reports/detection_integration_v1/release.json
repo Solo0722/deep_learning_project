@@ -1,0 +1,13 @@
+{
+  "archive": "detection_integration_v1.tar.gz",
+  "archive_files": 10,
+  "archive_member_bytes": "verified against released sources",
+  "bytes": 20662,
+  "ccast_real_image_integration": "pending",
+  "checksum_entries": 9,
+  "line_endings": "LF, no BOM",
+  "local_actual_model_check": "Faster R-CNN on CPU with synthetic inputs passed",
+  "local_unit_tests_passed": 14,
+  "sha256": "c1a42e5e771f8a7ec0f810cc5352c9fcf00509c5e35084bb404ee5caac1a6b18",
+  "status": "prepared_locally_not_yet_transferred"
+}

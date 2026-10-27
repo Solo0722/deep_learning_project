@@ -1,0 +1,46 @@
+{
+  "all_empty_batch_included": true,
+  "checkpoint_sha256": "cf2b0b6744b63d693cbdb278ac823caf39d806bfb79af88e534f082c2fc79633",
+  "classifier_updated": true,
+  "fresh_model_checkpoint_prediction_replay": "exact",
+  "model_parameters": 41314536,
+  "scope": "Synthetic 128-pixel CPU inputs; no RDD pixels, CCAST execution or efficacy claim",
+  "status": "passed",
+  "updates": [
+    {
+      "gradient_norm": 28.39010238647461,
+      "losses": {
+        "loss_box_reg": 0.08767502009868622,
+        "loss_classifier": 2.15218448638916,
+        "loss_objectness": 0.11788874119520187,
+        "loss_rpn_box_reg": 0.00501947570592165
+      },
+      "target_counts": [
+        1,
+        0
+      ]
+    },
+    {
+      "gradient_norm": 15.338799476623535,
+      "losses": {
+        "loss_box_reg": 0.0,
+        "loss_classifier": 0.6995765566825867,
+        "loss_objectness": 0.006924762390553951,
+        "loss_rpn_box_reg": 0.0
+      },
+      "target_counts": [
+        0,
+        0
+      ]
+    }
+  ],
+  "validation_did_not_update_model": true,
+  "validation_images": 5,
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  }
+}

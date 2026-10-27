@@ -1,0 +1,156 @@
+{
+  "clipping": [
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 68,
+      "collapsed_after_clipping": 0,
+      "image_id": 0
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 67,
+      "collapsed_after_clipping": 0,
+      "image_id": 16
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 25,
+      "collapsed_after_clipping": 0,
+      "image_id": 1678
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 29,
+      "collapsed_after_clipping": 0,
+      "image_id": 1703
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 26,
+      "collapsed_after_clipping": 0,
+      "image_id": 3061
+    },
+    {
+      "after_clipping": 0,
+      "before_clipping": 0,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 3064
+    },
+    {
+      "after_clipping": 10,
+      "before_clipping": 10,
+      "boxes_clipped": 10,
+      "collapsed_after_clipping": 0,
+      "image_id": 5044
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 24,
+      "collapsed_after_clipping": 0,
+      "image_id": 5258
+    },
+    {
+      "after_clipping": 37,
+      "before_clipping": 37,
+      "boxes_clipped": 6,
+      "collapsed_after_clipping": 0,
+      "image_id": 7643
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 17,
+      "collapsed_after_clipping": 0,
+      "image_id": 10433
+    },
+    {
+      "after_clipping": 21,
+      "before_clipping": 21,
+      "boxes_clipped": 13,
+      "collapsed_after_clipping": 0,
+      "image_id": 10434
+    },
+    {
+      "after_clipping": 49,
+      "before_clipping": 100,
+      "boxes_clipped": 79,
+      "collapsed_after_clipping": 51,
+      "image_id": 17788
+    },
+    {
+      "after_clipping": 34,
+      "before_clipping": 100,
+      "boxes_clipped": 96,
+      "collapsed_after_clipping": 66,
+      "image_id": 17789
+    },
+    {
+      "after_clipping": 44,
+      "before_clipping": 100,
+      "boxes_clipped": 95,
+      "collapsed_after_clipping": 56,
+      "image_id": 17929
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 16,
+      "collapsed_after_clipping": 0,
+      "image_id": 23520
+    }
+  ],
+  "metrics": {
+    "AP50": 0.005177795176777952,
+    "AP50_95": 0.002311642123116421,
+    "AP75": 0.0,
+    "AR100": 0.075,
+    "evaluation_images": 15,
+    "negative_confidence": 0.25,
+    "no_target_images": 8,
+    "no_target_images_with_predictions": 2,
+    "no_target_predicted_boxes": {
+      "10434": 0,
+      "16": 0,
+      "1703": 2,
+      "17788": 0,
+      "17789": 0,
+      "3061": 0,
+      "5258": 1,
+      "7643": 0
+    },
+    "per_class": {
+      "D00": {
+        "AP50": 0.018981898189818984,
+        "AP50_95": 0.008554855485548556,
+        "target_count": 8
+      },
+      "D10": {
+        "AP50": 0.0,
+        "AP50_95": 0.0,
+        "target_count": 4
+      },
+      "D20": {
+        "AP50": 0.0017292825172928248,
+        "AP50_95": 0.00069171300691713,
+        "target_count": 2
+      },
+      "D40": {
+        "AP50": 0.0,
+        "AP50_95": 0.0,
+        "target_count": 2
+      }
+    },
+    "prediction_boxes": 995,
+    "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+    "target_boxes": 16
+  },
+  "model": "yolov8n",
+  "step": 100
+}

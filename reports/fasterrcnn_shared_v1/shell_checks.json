@@ -1,0 +1,16 @@
+{
+  "command": "C:\\Program Files\\Git\\bin\\bash.exe -n <script>",
+  "sandbox_note": "Git Bash could not complete inside the Windows sandbox; read-only external retry exited zero for all three scripts.",
+  "scope": "Read-only syntax parsing outside Windows sandbox; scripts not executed and no CCAST job submitted",
+  "scripts": [
+    "job.pbs",
+    "run_job.sh",
+    "submit.sh"
+  ],
+  "source_sha256": {
+    "job.pbs": "9ed14515653080370a64427b8d1c04d8a44203d30479f5276ad35f75af5f74f3",
+    "run_job.sh": "2877ad3d8ccc5c7c3a773c091966c4e81e8c2c1297da1744925849ccbe75da3c",
+    "submit.sh": "615672af0b94b54ff062fa2c51fedab2f2c812b3e2c6546ee4095cc8114cb238"
+  },
+  "status": "passed"
+}

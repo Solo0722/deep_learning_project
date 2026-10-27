@@ -1,0 +1,44 @@
+{
+  "status": "completed_from_user_terminal_output_records_review_pending",
+  "evidence_source": "User-pasted CCAST terminal output and deployment confirmations in this chat on 2026-10-22; returned result archive not yet inspected locally",
+  "pbs_job": "794071.bright04",
+  "host": "gpu0020",
+  "package_archive": "detection_learning_v1.tar.gz",
+  "package_archive_sha256": "26c7e771bd58856d1fbbb81b3b2d4929d89dbafeffe0f221511ea03b05ef3022",
+  "package_checksums": "User confirmed all checksums passed on CCAST",
+  "unit_tests": {
+    "passed": 18,
+    "seconds": 2.684,
+    "evidence": "User-pasted unittest output"
+  },
+  "protocol_scope": "200 updates per pretrained detector on the same 15 selected training images with 16 targets; no held-out evaluation",
+  "metric_precision": "Values below are the six-decimal values printed in the terminal; full precision remains in the remote records",
+  "training_metrics": {
+    "fasterrcnn_resnet50_fpn": [
+      {"step": 0, "AP50": 0.0, "AP50_95": 0.0},
+      {"step": 50, "AP50": 0.073063, "AP50_95": 0.011924},
+      {"step": 100, "AP50": 0.190208, "AP50_95": 0.068209},
+      {"step": 200, "AP50": 0.355172, "AP50_95": 0.175538}
+    ],
+    "yolov8n": [
+      {"step": 0, "AP50": 0.0, "AP50_95": 0.0},
+      {"step": 50, "AP50": 0.0, "AP50_95": 0.0},
+      {"step": 100, "AP50": 0.005178, "AP50_95": 0.002312},
+      {"step": 200, "AP50": 0.0, "AP50_95": 0.0}
+    ]
+  },
+  "checkpoint_restore": "Terminal reports exact model/optimizer/RNG restoration at steps 100 and 200 for each detector",
+  "learning_review": {
+    "basis": "Apply the predeclared protocol rule to printed terminal metrics; saved run.json has not yet been independently inspected",
+    "minimum_final_training_AP50": 0.5,
+    "minimum_training_AP50_gain": 0.1,
+    "fasterrcnn_resnet50_fpn": "needs_review",
+    "yolov8n": "needs_review"
+  },
+  "warnings": "cuDNN execution-plan NOT_SUPPORTED warnings appeared during both models; execution completed. Cause and impact on learning are not established.",
+  "result_archive": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_learning_check_v1.tar.gz",
+  "result_archive_sha256_reported": "0ab14951c60bf566e2585ea66648d3bc743e2c427558b1f85b762ed50dd9693a",
+  "result_archive_local_verification": "pending",
+  "decision": "Retrieve and verify saved losses, predictions, per-class metrics, effective configuration and checkpoint records before changing code or training settings or launching a larger run",
+  "evidence_limit": "Faster R-CNN training AP increased; YOLO final training AP is zero. This diagnostic does not identify the cause, rank architectures, estimate generalization or test the augmentation controller."
+}

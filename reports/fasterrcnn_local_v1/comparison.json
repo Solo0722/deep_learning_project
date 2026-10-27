@@ -1,0 +1,333 @@
+{
+  "aggregate_comparison": [
+    {
+      "AP50": 51.141785068855825,
+      "AP50_95": 22.82311872580586,
+      "AP75": 17.090964508633316,
+      "AR100": 43.835988358591074,
+      "condition": "identity",
+      "epoch": 14,
+      "label": "Identity",
+      "selection": "best"
+    },
+    {
+      "AP50": 50.687342256247014,
+      "AP50_95": 22.809927107298847,
+      "AP75": 17.295072538328764,
+      "AR100": 44.33894276688166,
+      "condition": "image_level",
+      "epoch": 14,
+      "label": "Fixed image-level",
+      "selection": "best"
+    },
+    {
+      "AP50": 50.16015069779196,
+      "AP50_95": 22.554994567835628,
+      "AP75": 16.570391100922432,
+      "AR100": 44.078223203246154,
+      "condition": "local",
+      "epoch": 18,
+      "label": "Fixed local",
+      "selection": "best"
+    },
+    {
+      "AP50": 50.20009921812068,
+      "AP50_95": 22.392050310292788,
+      "AP75": 16.80048004954427,
+      "AR100": 42.81345248998788,
+      "condition": "identity",
+      "epoch": 20,
+      "label": "Identity",
+      "selection": "final"
+    },
+    {
+      "AP50": 50.54142847671965,
+      "AP50_95": 22.574570181559544,
+      "AP75": 16.518986781722287,
+      "AR100": 43.68204726595592,
+      "condition": "image_level",
+      "epoch": 20,
+      "label": "Fixed image-level",
+      "selection": "final"
+    },
+    {
+      "AP50": 49.81355197949549,
+      "AP50_95": 22.48709577474763,
+      "AP75": 16.86678542636218,
+      "AR100": 43.80487187552061,
+      "condition": "local",
+      "epoch": 20,
+      "label": "Fixed local",
+      "selection": "final"
+    }
+  ],
+  "analysis_source_sha256": "94e0cf0e48a3320c56045d41349747c7deace55ffc864d6d4c227c55606b7683",
+  "appearance_choices_and_counts_match_image_level_exactly_all_epochs": true,
+  "augmentation": {
+    "aggregate_alpha_weighted_fraction_of_applied_content": 0.07172850570330905,
+    "aggregate_union_fraction_of_applied_content": 0.07254600967137897,
+    "appearance_decisions_match_completed_shared_run": true,
+    "decision_replay_and_order": "exact_all_20_epochs",
+    "reported_changed_fraction_of_applied_content": 0.06703273488610209,
+    "reported_changed_fraction_of_union_pixels": 0.924003059434267,
+    "reported_changed_images": 158151,
+    "reported_changed_pixels": 4100790428,
+    "scope": "Geometry, choices and exposure independently replayed from frozen metadata; changed pixels reported by CCAST, not recomputed from raw images",
+    "status": "passed",
+    "total": {
+      "applied_images": 158151,
+      "family/blur_noise": 78806,
+      "family/photometric": 79345,
+      "images": 537260,
+      "local_alpha_units": 8776117224,
+      "local_reference_pixels": 61175937920,
+      "local_union_pixels": 4438070184,
+      "operation/brightness_down": 13213,
+      "operation/brightness_up": 13333,
+      "operation/contrast_down": 13191,
+      "operation/contrast_up": 13217,
+      "operation/gamma_brighten": 13235,
+      "operation/gamma_darken": 13156,
+      "operation/gaussian_blur": 39434,
+      "operation/gaussian_noise": 39372,
+      "operation/identity": 379109,
+      "reason/applied": 158151,
+      "reason/no_target": 204660,
+      "reason/probability": 157819,
+      "reason/warmup": 16630,
+      "selected_boxes": 199490,
+      "selected_groups": 158151,
+      "selected_multi_box_groups": 26843,
+      "target_images": 332600
+    },
+    "warmup_epoch_unaugmented": true
+  },
+  "epochs_each": 20,
+  "evidence": {
+    "identity": {
+      "archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+      "audit_source_sha256": "3f885dab491549ce56b24aad57747ad06faac484570b1304758a16b06855b1d6",
+      "maximum_recomputed_metric_error": 0.0,
+      "recomputed_epochs": [
+        14,
+        20
+      ],
+      "scope": "Archive and source hashes and selected records rechecked; existing direct COCO recomputation retained",
+      "verification_sha256": "526269d04a643489acb5f8fe41e53fe76581538d66eef7cac76dcbc1c9ca86c9"
+    },
+    "image_level": {
+      "archive_sha256": "28b28bee01376cc10fe0a60dca7ddfb9cd97ec9b548597fe316d94db164bfd7c",
+      "audit_source_sha256": "97178d7a779d558e5def29fd827fd467c873f9dc49cf7db3df11463f642d1392",
+      "maximum_recomputed_metric_error": 0.0,
+      "recomputed_epochs": [
+        14,
+        20
+      ],
+      "scope": "Archive and source hashes and selected records rechecked; existing direct COCO recomputation retained",
+      "verification_sha256": "8db69ed119de3f86bae6713eb836f4838efcd150fa254c0a7767cb33db507cc3"
+    },
+    "local": {
+      "archive_sha256": "6f1efc305780b1ab018a807bd728460b04582586166f6aeb616e693c6cfdcbac",
+      "audit_source_sha256": "e22f32096999c1b14585650e72fc52d415b010f0a902488cf55a6763e1ecabcb",
+      "maximum_recomputed_metric_error": 0.0,
+      "recomputed_epochs": [
+        18,
+        20
+      ],
+      "scope": "Archive and source hashes and selected records rechecked; existing direct COCO recomputation retained",
+      "verification_sha256": "19b4c79668af27d98daad7720aa23e75f282ec63436f24a7cbc01d0fac63bb8a"
+    }
+  },
+  "identical_validation_ground_truth": true,
+  "image_presentations_each": 537260,
+  "limits": [
+    "One run per condition; seed variability and statistical equivalence are not estimated.",
+    "Validation selected checkpoints and supplied these metrics; no untouched test estimate.",
+    "Pre-augmentation divergence prevents attributing small later differences exclusively to augmentation.",
+    "Local versus image-level also changes edit area and boundary blending; location alone is not isolated.",
+    "Fixed recipes do not test online adaptation or class conditioning.",
+    "No new detector inference or raw-image/checkpoint-byte verification was performed locally."
+  ],
+  "local_minus_control_changes_pp": {
+    "best": {
+      "identity": {
+        "AP50": -0.9816343710638664,
+        "AP50_95": -0.2681241579702315,
+        "AP75": -0.5205734077108837,
+        "AR100": 0.2422348446550815
+      },
+      "image_level": {
+        "AP50": -0.5271915584550535,
+        "AP50_95": -0.2549325394632179,
+        "AP75": -0.7246814374063326,
+        "AR100": -0.26071956363550863
+      }
+    },
+    "final": {
+      "identity": {
+        "AP50": -0.3865472386251845,
+        "AP50_95": 0.09504546445484041,
+        "AP75": 0.06630537681791282,
+        "AR100": 0.9914193855327325
+      },
+      "image_level": {
+        "AP50": -0.7278764972241614,
+        "AP50_95": -0.08747440681191598,
+        "AP75": 0.3477986446398962,
+        "AR100": 0.12282460956469232
+      }
+    }
+  },
+  "matched_nonaugmentation_configuration": true,
+  "negative_images_at_selected_epoch": [
+    {
+      "condition": "identity",
+      "confidence_threshold": 0.25,
+      "epoch": 14,
+      "fraction_percent": 39.12448700410397,
+      "images_with_predictions": 858,
+      "negative_images": 2193,
+      "prediction_boxes": 1637
+    },
+    {
+      "condition": "image_level",
+      "confidence_threshold": 0.25,
+      "epoch": 14,
+      "fraction_percent": 39.53488372093023,
+      "images_with_predictions": 867,
+      "negative_images": 2193,
+      "prediction_boxes": 1640
+    },
+    {
+      "condition": "local",
+      "confidence_threshold": 0.25,
+      "epoch": 18,
+      "fraction_percent": 37.254901960784316,
+      "images_with_predictions": 817,
+      "negative_images": 2193,
+      "prediction_boxes": 1538
+    }
+  ],
+  "negative_prediction_scope": "Relative to retained annotations; no visual re-audit of annotation completeness",
+  "new_training_or_inference_executed": false,
+  "next_action": "Keep all three controls. Specify the planned online shared-local controller and its matched feedback protocol before implementing stage 4; reserve class conditioning for stage 5. Replication is needed before claiming reliable gains.",
+  "per_class_selected_comparison": [
+    {
+      "class": "D00",
+      "description": "Longitudinal cracks",
+      "identity_AP50": 51.324110566806205,
+      "identity_AP50_95": 24.74425897706648,
+      "image_level_AP50": 51.06154834032398,
+      "image_level_AP50_95": 24.784209498285474,
+      "local_AP50": 50.131078902484205,
+      "local_AP50_95": 24.089679182703062,
+      "local_minus_identity_AP50_95_pp": -0.6545797943634191,
+      "local_minus_identity_AP50_pp": -1.1930316643219974,
+      "local_minus_image_level_AP50_95_pp": -0.6945303155824117,
+      "local_minus_image_level_AP50_pp": -0.930469437839776,
+      "validation_targets": 3888
+    },
+    {
+      "class": "D10",
+      "description": "Transverse cracks",
+      "identity_AP50": 47.99493504052007,
+      "identity_AP50_95": 20.206224413613537,
+      "image_level_AP50": 47.84377922435516,
+      "image_level_AP50_95": 20.26552660016301,
+      "local_AP50": 46.60139760743962,
+      "local_AP50_95": 19.52010636100653,
+      "local_minus_identity_AP50_95_pp": -0.6861180526070043,
+      "local_minus_identity_AP50_pp": -1.3935374330804495,
+      "local_minus_image_level_AP50_95_pp": -0.7454202391564801,
+      "local_minus_image_level_AP50_pp": -1.2423816169155388,
+      "validation_targets": 1770
+    },
+    {
+      "class": "D20",
+      "description": "Alligator cracks",
+      "identity_AP50": 62.95078047516505,
+      "identity_AP50_95": 29.975413037654697,
+      "image_level_AP50": 62.407737182213744,
+      "image_level_AP50_95": 29.630524509399503,
+      "local_AP50": 62.727346954095395,
+      "local_AP50_95": 30.114430729900565,
+      "local_minus_identity_AP50_95_pp": 0.13901769224586857,
+      "local_minus_identity_AP50_pp": -0.2234335210696492,
+      "local_minus_image_level_AP50_95_pp": 0.48390622050106247,
+      "local_minus_image_level_AP50_pp": 0.31960977188165707,
+      "validation_targets": 1592
+    },
+    {
+      "class": "D40",
+      "description": "Potholes",
+      "identity_AP50": 42.297314192931985,
+      "identity_AP50_95": 16.36657847488872,
+      "image_level_AP50": 41.43630427809518,
+      "image_level_AP50_95": 16.559447821347405,
+      "local_AP50": 41.18077932714864,
+      "local_AP50_95": 16.495761997732348,
+      "local_minus_identity_AP50_95_pp": 0.12918352284362888,
+      "local_minus_identity_AP50_pp": -1.1165348657833418,
+      "local_minus_image_level_AP50_95_pp": -0.06368582361505892,
+      "local_minus_image_level_AP50_pp": -0.25552495094653405,
+      "validation_targets": 975
+    }
+  ],
+  "primary_comparison": "Full-validation AP50:95 at each independently selected checkpoint; earliest maximum wins",
+  "runtime": [
+    {
+      "condition": "identity",
+      "gpu": "NVIDIA A10",
+      "host": "gpu0035",
+      "hours": 11.09099457434482,
+      "pbs_job": "794364.bright04"
+    },
+    {
+      "condition": "image_level",
+      "gpu": "NVIDIA A10",
+      "host": "gpu0021",
+      "hours": 11.512790571166098,
+      "pbs_job": "795553.bright04"
+    },
+    {
+      "condition": "local",
+      "gpu": "NVIDIA A10",
+      "host": "gpu0020",
+      "hours": 13.259789388487116,
+      "pbs_job": "795787.bright04"
+    }
+  ],
+  "runtime_scope": "Whole full-run invocation; excludes smoke and tests; not isolated augmentation overhead",
+  "scale": "Metric points on 0-100 scale; differences are percentage points",
+  "seed": 42,
+  "selected_epochs": {
+    "identity": 14,
+    "image_level": 14,
+    "local": 18
+  },
+  "status": "verified_descriptive_comparison_one_run_per_condition",
+  "test_data_read": false,
+  "training_images": 26863,
+  "unaugmented_epoch1": {
+    "epoch": 1,
+    "interpretation": "Training trajectories differ before augmentation starts; the cause is not established.",
+    "local_minus_identity_AP50_95_pp": -0.11319709593509941,
+    "local_minus_image_level_AP50_95_pp": 0.5319132379277214,
+    "metrics": {
+      "epoch": 1,
+      "identity_AP50": 39.30672368602557,
+      "identity_AP50_95": 16.537085673069267,
+      "identity_augmentation_applied": 0,
+      "image_level_AP50": 37.85028386196977,
+      "image_level_AP50_95": 15.891975339206446,
+      "image_level_augmentation_applied": 0,
+      "local_AP50": 39.44922906031626,
+      "local_AP50_95": 16.423888577134168,
+      "local_augmentation_applied": 0
+    }
+  },
+  "updates_each": 134320,
+  "validation_images": 5760,
+  "validation_targets": 8225,
+  "verdict": "The fixed local recipe has no observed selected-checkpoint AP50:95 gain over either completed control in this seed."
+}

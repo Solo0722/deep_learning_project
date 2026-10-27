@@ -1,0 +1,12 @@
+[
+  {
+    "annotation_records_identical": false,
+    "historical_duplicate_links": {
+      "United_States/train/images/United_States_003917.jpg": "United_States/train/images/United_States_001623.jpg"
+    },
+    "images": [
+      "United_States/train/images/United_States_001623.jpg",
+      "United_States/train/images/United_States_003917.jpg"
+    ]
+  }
+]

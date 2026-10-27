@@ -1,0 +1,11 @@
+test_class_balanced_evaluation_matches_manual_calculation (test_pilot_runner.PilotTests.test_class_balanced_evaluation_matches_manual_calculation) ... ok
+test_group_integrity_design_tampering_and_missing_test_pixels (test_pilot_runner.PilotTests.test_group_integrity_design_tampering_and_missing_test_pixels) ... ok
+test_operation_strength_padding_targeting_and_pairing (test_pilot_runner.PilotTests.test_operation_strength_padding_targeting_and_pairing) ... ok
+test_preview_uses_verified_training_pngs (test_pilot_runner.PilotTests.test_preview_uses_verified_training_pngs) ... ok
+test_reference_gradient_with_unequal_class_support (test_pilot_runner.PilotTests.test_reference_gradient_with_unequal_class_support) ... ok
+test_resume_identity_and_nonidentity_end_to_end (test_pilot_runner.PilotTests.test_resume_identity_and_nonidentity_end_to_end) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 18.704s
+
+OK

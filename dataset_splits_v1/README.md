@@ -1,6 +1,6 @@
 # RDD crop dataset, version 1
 
-Prepared October 12, 2026. These are split and crop manifests; the PNG files have not yet been generated on CCAST.
+Prepared October 12, 2026. These are the frozen split and crop manifests. Generation of all 55,002 PNG crops on CCAST is complete, and all seven training preview sheets were inspected. Crop images remain on CCAST and are not included in Git.
 
 | Partition | Source images | Crops | D00 | D10 | D20 | D40 |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -39,4 +39,4 @@ The output includes train/val/test class folders, `crops.csv`, `config.json`, pe
 
 `config.json` records the seed, allocation and preprocessing rules, source inventory hashes, and the crop-manifest SHA256. `make_splits.py` generates the manifests; `materialize_crops.py` writes the images. `images.csv` records original-image assignments; exclusion files document omitted records.
 
-Independent checks verified 55,002 unique crop IDs, 23,766 disjoint original images, valid crop bounds, no duplicate source hashes across partitions, no related groups split across partitions, all 557 similarity edges within partitions, class/source coverage, and exclusion of the reviewed records. Four additional tests cover coordinate handling, reproducible allocation, crop pixels/aspect ratio, source integrity, and rejection of cross-partition source images or changed XML files. Remote crop generation and visual QA remain pending.
+Independent checks verified 55,002 unique crop IDs, 23,766 disjoint original images, valid crop bounds, no duplicate source hashes across partitions, no related groups split across partitions, all 557 similarity edges within partitions, class/source coverage, and exclusion of the reviewed records. Four additional tests cover coordinate handling, reproducible allocation, crop pixels/aspect ratio, source integrity, and rejection of cross-partition source images or changed XML files. Remote crop generation and inspection of the seven training preview sheets are complete. Individual validation-error inspection and final held-out test evaluation remain future work.

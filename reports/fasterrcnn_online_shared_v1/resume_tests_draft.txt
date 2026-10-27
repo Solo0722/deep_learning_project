@@ -1,0 +1,76 @@
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+test_changed_probe_records_or_policy_cannot_resume (test_online_resume.OnlineResumeTests.test_changed_probe_records_or_policy_cannot_resume) ... ok
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+test_committed_boundary_policy_survives_stop_before_first_training_batch (test_online_resume.OnlineResumeTests.test_committed_boundary_policy_survives_stop_before_first_training_batch) ... ok
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+test_interrupted_probe_restarts_without_training_repeat_and_records_partial_cost (test_online_resume.OnlineResumeTests.test_interrupted_probe_restarts_without_training_repeat_and_records_partial_cost) ... ok
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+test_mid_epoch_resume_replays_active_policy_without_reprobing (test_online_resume.OnlineResumeTests.test_mid_epoch_resume_replays_active_policy_without_reprobing) ... ok
+VALIDATION epoch=1/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=1 applied=0 changed=0 decision_sha256=6b8ab07f5f2e1e4b195f100c8bb23bf79c47209e7909be07da59a306222d728d
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+PROBE epoch=2 images=4/4 forwards=112/112
+CONTROLLER epoch=2 policy=2f34c75bad44 families={'photometric': {'level': 3, 'p': 0.503132}, 'blur_noise': {'level': 3, 'p': 0.496868}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=2/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=2 applied=3 changed=3 decision_sha256=1e16f1ce953265aafda9226a2f7dd6d732680ba18b9da74bd82e468cc4b9985b
+PROBE epoch=3 images=4/4 forwards=112/112
+CONTROLLER epoch=3 policy=b2c612f48fb2 families={'photometric': {'level': 3, 'p': 0.503136}, 'blur_noise': {'level': 3, 'p': 0.496864}} support={'0': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '1': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '2': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}, '3': {'objects': 1, 'detected_objects': 1, 'detected_clusters': 1, 'sufficient': True}}
+VALIDATION epoch=3/3 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+AUGMENTATION epoch=3 applied=1 changed=1 decision_sha256=8eed8ad1577c4055539339b8a75a6d40dbc744e79cd03c16f03b8f30337510b8
+test_policy_checkpoint_failure_keeps_preupdate_checkpoint_authoritative (test_online_resume.OnlineResumeTests.test_policy_checkpoint_failure_keeps_preupdate_checkpoint_authoritative) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 11.404s
+
+OK

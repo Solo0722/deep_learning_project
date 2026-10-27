@@ -1,0 +1,31 @@
+{
+  "archive_sha256": "89d1c16954187ef0126f69c670b83875c8b4ff8863aa5a1864c264df91b0cce4",
+  "evidence_source": "User-pasted CCAST archive hash, extraction listing, and sha256sum verification in this chat",
+  "extraction": "tar --keep-old-files completed without reported errors",
+  "host": "login0004",
+  "implementation_stage": "step_2_complete",
+  "manifest_directory": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_splits_v1",
+  "member_verification": {
+    "command": "sha256sum -c SHA256SUMS",
+    "failures": 0,
+    "files_checked": 13,
+    "verified_files": [
+      "README.md",
+      "checksums.json",
+      "config.json",
+      "conflict_resolutions.json",
+      "excluded_images.json",
+      "excluded_objects.json",
+      "images.csv",
+      "make_detection_splits.py",
+      "reviewed_policy.json",
+      "summary.json",
+      "test.jsonl",
+      "train.jsonl",
+      "val.jsonl"
+    ]
+  },
+  "recorded_time_scope": "Time this local evidence record was written, not a timestamp of the remote commands",
+  "recorded_utc": "2026-10-22T00:28:31.290184+00:00",
+  "status": "verified_from_user_terminal_output"
+}

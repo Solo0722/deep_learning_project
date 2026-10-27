@@ -6,7 +6,7 @@ Research project investigating whether augmentation strength and transformation-
 
 | Deliverable | Evidence |
 | --- | --- |
-| Literature synthesis, comparison table, and revised methodology | [Manuscript source](research_paper/main.tex), [BibTeX references](research_paper/references.bib), and the separately shared Overleaf manuscript |
+| Literature synthesis, comparison table, and revised methodology | [Manuscript source](research_paper/main.tex), [BibTeX references](research_paper/reference.bib), and the separately shared Overleaf manuscript |
 | Prepared data splits | [Split documentation](dataset_splits_v1/README.md), [configuration](dataset_splits_v1/config.json), [summary](dataset_splits_v1/summary.json), `images.csv`, and `crops.csv` |
 | Working baseline | [Verified results](reports/conventional_seed42_v1/analysis/RESULTS.md), [run configuration](reports/conventional_seed42_v1/config.json), logs, predictions, figures, and checkpoints |
 | Reproducibility | Preparation and training scripts, [baseline runbook](BASELINE_RUNBOOK.md), [data audit](DATA_AUDIT.md), and dependency files |
@@ -111,6 +111,6 @@ These synthetic checks verify software behavior, not scientific model performanc
 
 ## Manuscript and next experiments
 
-The manuscript uses the supplied IEEE template. Compile `research_paper/main.tex` with `research_paper/references.bib` in the same LaTeX project, using the IEEEtran BibTeX style. Overleaf supports this project structure. The shared Overleaf manuscript may be newer than this repository snapshot.
+The manuscript uses the supplied IEEE template. Compile `research_paper/main.tex` with `research_paper/reference.bib` in the same LaTeX project, using the IEEEtran BibTeX style. Overleaf supports this project structure. The shared Overleaf manuscript may be newer than this repository snapshot.
 
-The [revised method protocol](research_paper/METHOD_PROTOCOL.md) describes the proposed class--family controller, fixed class-specific policy selection, component ablations, and evaluation plan. Those experiments, repeated seeds, and final held-out test evaluation remain future work.
+The Methodology section of the [manuscript](research_paper/main.tex) describes the proposed class--family controller, fixed class-specific policy selection, component ablations, and evaluation plan. Those experiments, repeated seeds, and final held-out test evaluation remain future work.

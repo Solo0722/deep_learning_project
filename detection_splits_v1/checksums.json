@@ -1,0 +1,14 @@
+{
+  "README.md": "1861982e90979c2e3060d144c32628ce26140b6551bf05edd7daf6fc4d1f105e",
+  "config.json": "303f2e0e3835ca146e63f2f2b03b5a8d630b2dc1972089848bea97605ac87131",
+  "conflict_resolutions.json": "d754f29f3170f3832286bfb7f037a2da1ba5fee1aa21a82927e29ddc9a49a965",
+  "excluded_images.json": "9e0790f0d5ba9ff9884981b45f5b99d96ced59ce54f1151f8c013c8f2cba4ac3",
+  "excluded_objects.json": "a714dd51ef83f8cf10639a64dd6412b2b33f4db1f9e04d5a06dd5ec87f6e1e5a",
+  "images.csv": "0a03f218765ea011b1a9b731cf339d15aab7fd7fe23c4699bce008d8d7cffba7",
+  "make_detection_splits.py": "5f01c7c7be5d04be1ec7addb03c89db7842e616989ff3fccc14433429daf62d7",
+  "reviewed_policy.json": "3c564965b6e3ba00e4e2a8bbb93ed1aefd47381cb5fdf2080662cd3e0746cb1c",
+  "summary.json": "85779d433bfcc266fa541e4c16cfbe37da8d525aa9f98b08a59ba2239ddc444c",
+  "test.jsonl": "82d83faa03673c161d2ebdfaf090ece6cbc223fe2433273c761b9c7c580dceaa",
+  "train.jsonl": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+  "val.jsonl": "5ff0b8e969b47bd82d6c91a3b65070a5e37899e21253442134897945082e6708"
+}

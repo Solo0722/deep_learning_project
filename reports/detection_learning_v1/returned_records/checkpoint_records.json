@@ -1,0 +1,30 @@
+[
+  {
+    "bytes": 331071418,
+    "completed_steps": 100,
+    "file": "fasterrcnn_resnet50_fpn_step_100.pt",
+    "model_name": "fasterrcnn_resnet50_fpn",
+    "sha256": "f0c70670ae28fb60dd881949a7a2eb93da4f07bf124f32fadd1d6ebb33275879"
+  },
+  {
+    "bytes": 331071418,
+    "completed_steps": 200,
+    "file": "fasterrcnn_resnet50_fpn_step_200.pt",
+    "model_name": "fasterrcnn_resnet50_fpn",
+    "sha256": "841c1bdf86b1f11e8192f5823202036b6abeb49f7b377b5acaa3c0844a59d492"
+  },
+  {
+    "bytes": 25324410,
+    "completed_steps": 100,
+    "file": "yolov8n_step_100.pt",
+    "model_name": "yolov8n",
+    "sha256": "5e2a2b8827924d80d2194e0e4d76a23341062a538fc51ece63e6ca33f6d6e753"
+  },
+  {
+    "bytes": 25324410,
+    "completed_steps": 200,
+    "file": "yolov8n_step_200.pt",
+    "model_name": "yolov8n",
+    "sha256": "fa721c7a59f4ebd4d2c94c50759307e467cedf64b1fc60c590490bea81b4eb48"
+  }
+]

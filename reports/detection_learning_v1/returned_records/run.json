@@ -1,0 +1,1549 @@
+{
+  "archive_scope": "Records and source only; full checkpoints retained on CCAST",
+  "command": [
+    "learning.py",
+    "--root",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+    "--splits",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_splits_v1",
+    "--weights",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/weights/detection_v1",
+    "--out",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_learning_check_v1"
+  ],
+  "context": {
+    "manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+    "package_checksums_sha256": "2ca05298dcadb79ed5e5d4e03bdcfeba8a3cb8dd30666e9f363ab46cefae15dd",
+    "protocol_sha256": "ba43e1da1f77da71106660cb497825eaa5418374078db57d7fced89df491796b",
+    "selection_sha256": "a895f10c4f8ca15571cc5e085faa75e0b05eda93e62f4b24e66b5df2210bb461",
+    "weights_sha256": {
+      "fasterrcnn_resnet50_fpn": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384",
+      "yolov8n": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36"
+    }
+  },
+  "cuda_build": "12.1",
+  "cuda_visible_devices": "GPU-364641bb-bd0e-750b-1422-b74f1c06c577",
+  "elapsed_seconds": 61.474,
+  "executable": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/.venvs/rdd_detection_v1/bin/python",
+  "finished_utc": "2026-10-22T08:19:11.872007+00:00",
+  "gpu_name": "NVIDIA A10",
+  "held_out_data_read": false,
+  "host": "gpu0020",
+  "learning_review": {
+    "fasterrcnn_resnet50_fpn": "needs_review",
+    "yolov8n": "needs_review"
+  },
+  "limitations": "Training subset only; no architecture ranking, generalization or augmentation efficacy claim",
+  "model_choice": "unresolved",
+  "models": {
+    "fasterrcnn_resnet50_fpn": {
+      "checkpoint_reloads": [
+        {
+          "checkpoint": "fasterrcnn_resnet50_fpn_step_100.pt",
+          "completed_steps": 100,
+          "model_state_exact": true,
+          "next_step": 101,
+          "optimizer_state_exact": true,
+          "rng_state_exact": true
+        },
+        {
+          "checkpoint": "fasterrcnn_resnet50_fpn_step_200.pt",
+          "completed_steps": 200,
+          "maximum_original_coordinate_error": 0.0,
+          "maximum_score_error": 0.0,
+          "model_state_exact": true,
+          "next_step": 201,
+          "optimizer_state_exact": true,
+          "predictions_match_within_tolerance": true,
+          "rng_state_exact": true
+        }
+      ],
+      "effective_configuration": {
+        "image_mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "image_std": [
+          0.229,
+          0.224,
+          0.225
+        ],
+        "normalization": "FrozenBatchNorm2d, eps=0.0; ImageNet RGB mean/std",
+        "parameters": 41314536,
+        "reinitialized": "ROI classification and class-specific box regression predictors",
+        "trainable_backbone_stages": 5,
+        "trainable_parameters": 41314536,
+        "transferred_state_keys": [
+          "backbone.body.bn1.bias",
+          "backbone.body.bn1.running_mean",
+          "backbone.body.bn1.running_var",
+          "backbone.body.bn1.weight",
+          "backbone.body.conv1.weight",
+          "backbone.body.layer1.0.bn1.bias",
+          "backbone.body.layer1.0.bn1.running_mean",
+          "backbone.body.layer1.0.bn1.running_var",
+          "backbone.body.layer1.0.bn1.weight",
+          "backbone.body.layer1.0.bn2.bias",
+          "backbone.body.layer1.0.bn2.running_mean",
+          "backbone.body.layer1.0.bn2.running_var",
+          "backbone.body.layer1.0.bn2.weight",
+          "backbone.body.layer1.0.bn3.bias",
+          "backbone.body.layer1.0.bn3.running_mean",
+          "backbone.body.layer1.0.bn3.running_var",
+          "backbone.body.layer1.0.bn3.weight",
+          "backbone.body.layer1.0.conv1.weight",
+          "backbone.body.layer1.0.conv2.weight",
+          "backbone.body.layer1.0.conv3.weight",
+          "backbone.body.layer1.0.downsample.0.weight",
+          "backbone.body.layer1.0.downsample.1.bias",
+          "backbone.body.layer1.0.downsample.1.running_mean",
+          "backbone.body.layer1.0.downsample.1.running_var",
+          "backbone.body.layer1.0.downsample.1.weight",
+          "backbone.body.layer1.1.bn1.bias",
+          "backbone.body.layer1.1.bn1.running_mean",
+          "backbone.body.layer1.1.bn1.running_var",
+          "backbone.body.layer1.1.bn1.weight",
+          "backbone.body.layer1.1.bn2.bias",
+          "backbone.body.layer1.1.bn2.running_mean",
+          "backbone.body.layer1.1.bn2.running_var",
+          "backbone.body.layer1.1.bn2.weight",
+          "backbone.body.layer1.1.bn3.bias",
+          "backbone.body.layer1.1.bn3.running_mean",
+          "backbone.body.layer1.1.bn3.running_var",
+          "backbone.body.layer1.1.bn3.weight",
+          "backbone.body.layer1.1.conv1.weight",
+          "backbone.body.layer1.1.conv2.weight",
+          "backbone.body.layer1.1.conv3.weight",
+          "backbone.body.layer1.2.bn1.bias",
+          "backbone.body.layer1.2.bn1.running_mean",
+          "backbone.body.layer1.2.bn1.running_var",
+          "backbone.body.layer1.2.bn1.weight",
+          "backbone.body.layer1.2.bn2.bias",
+          "backbone.body.layer1.2.bn2.running_mean",
+          "backbone.body.layer1.2.bn2.running_var",
+          "backbone.body.layer1.2.bn2.weight",
+          "backbone.body.layer1.2.bn3.bias",
+          "backbone.body.layer1.2.bn3.running_mean",
+          "backbone.body.layer1.2.bn3.running_var",
+          "backbone.body.layer1.2.bn3.weight",
+          "backbone.body.layer1.2.conv1.weight",
+          "backbone.body.layer1.2.conv2.weight",
+          "backbone.body.layer1.2.conv3.weight",
+          "backbone.body.layer2.0.bn1.bias",
+          "backbone.body.layer2.0.bn1.running_mean",
+          "backbone.body.layer2.0.bn1.running_var",
+          "backbone.body.layer2.0.bn1.weight",
+          "backbone.body.layer2.0.bn2.bias",
+          "backbone.body.layer2.0.bn2.running_mean",
+          "backbone.body.layer2.0.bn2.running_var",
+          "backbone.body.layer2.0.bn2.weight",
+          "backbone.body.layer2.0.bn3.bias",
+          "backbone.body.layer2.0.bn3.running_mean",
+          "backbone.body.layer2.0.bn3.running_var",
+          "backbone.body.layer2.0.bn3.weight",
+          "backbone.body.layer2.0.conv1.weight",
+          "backbone.body.layer2.0.conv2.weight",
+          "backbone.body.layer2.0.conv3.weight",
+          "backbone.body.layer2.0.downsample.0.weight",
+          "backbone.body.layer2.0.downsample.1.bias",
+          "backbone.body.layer2.0.downsample.1.running_mean",
+          "backbone.body.layer2.0.downsample.1.running_var",
+          "backbone.body.layer2.0.downsample.1.weight",
+          "backbone.body.layer2.1.bn1.bias",
+          "backbone.body.layer2.1.bn1.running_mean",
+          "backbone.body.layer2.1.bn1.running_var",
+          "backbone.body.layer2.1.bn1.weight",
+          "backbone.body.layer2.1.bn2.bias",
+          "backbone.body.layer2.1.bn2.running_mean",
+          "backbone.body.layer2.1.bn2.running_var",
+          "backbone.body.layer2.1.bn2.weight",
+          "backbone.body.layer2.1.bn3.bias",
+          "backbone.body.layer2.1.bn3.running_mean",
+          "backbone.body.layer2.1.bn3.running_var",
+          "backbone.body.layer2.1.bn3.weight",
+          "backbone.body.layer2.1.conv1.weight",
+          "backbone.body.layer2.1.conv2.weight",
+          "backbone.body.layer2.1.conv3.weight",
+          "backbone.body.layer2.2.bn1.bias",
+          "backbone.body.layer2.2.bn1.running_mean",
+          "backbone.body.layer2.2.bn1.running_var",
+          "backbone.body.layer2.2.bn1.weight",
+          "backbone.body.layer2.2.bn2.bias",
+          "backbone.body.layer2.2.bn2.running_mean",
+          "backbone.body.layer2.2.bn2.running_var",
+          "backbone.body.layer2.2.bn2.weight",
+          "backbone.body.layer2.2.bn3.bias",
+          "backbone.body.layer2.2.bn3.running_mean",
+          "backbone.body.layer2.2.bn3.running_var",
+          "backbone.body.layer2.2.bn3.weight",
+          "backbone.body.layer2.2.conv1.weight",
+          "backbone.body.layer2.2.conv2.weight",
+          "backbone.body.layer2.2.conv3.weight",
+          "backbone.body.layer2.3.bn1.bias",
+          "backbone.body.layer2.3.bn1.running_mean",
+          "backbone.body.layer2.3.bn1.running_var",
+          "backbone.body.layer2.3.bn1.weight",
+          "backbone.body.layer2.3.bn2.bias",
+          "backbone.body.layer2.3.bn2.running_mean",
+          "backbone.body.layer2.3.bn2.running_var",
+          "backbone.body.layer2.3.bn2.weight",
+          "backbone.body.layer2.3.bn3.bias",
+          "backbone.body.layer2.3.bn3.running_mean",
+          "backbone.body.layer2.3.bn3.running_var",
+          "backbone.body.layer2.3.bn3.weight",
+          "backbone.body.layer2.3.conv1.weight",
+          "backbone.body.layer2.3.conv2.weight",
+          "backbone.body.layer2.3.conv3.weight",
+          "backbone.body.layer3.0.bn1.bias",
+          "backbone.body.layer3.0.bn1.running_mean",
+          "backbone.body.layer3.0.bn1.running_var",
+          "backbone.body.layer3.0.bn1.weight",
+          "backbone.body.layer3.0.bn2.bias",
+          "backbone.body.layer3.0.bn2.running_mean",
+          "backbone.body.layer3.0.bn2.running_var",
+          "backbone.body.layer3.0.bn2.weight",
+          "backbone.body.layer3.0.bn3.bias",
+          "backbone.body.layer3.0.bn3.running_mean",
+          "backbone.body.layer3.0.bn3.running_var",
+          "backbone.body.layer3.0.bn3.weight",
+          "backbone.body.layer3.0.conv1.weight",
+          "backbone.body.layer3.0.conv2.weight",
+          "backbone.body.layer3.0.conv3.weight",
+          "backbone.body.layer3.0.downsample.0.weight",
+          "backbone.body.layer3.0.downsample.1.bias",
+          "backbone.body.layer3.0.downsample.1.running_mean",
+          "backbone.body.layer3.0.downsample.1.running_var",
+          "backbone.body.layer3.0.downsample.1.weight",
+          "backbone.body.layer3.1.bn1.bias",
+          "backbone.body.layer3.1.bn1.running_mean",
+          "backbone.body.layer3.1.bn1.running_var",
+          "backbone.body.layer3.1.bn1.weight",
+          "backbone.body.layer3.1.bn2.bias",
+          "backbone.body.layer3.1.bn2.running_mean",
+          "backbone.body.layer3.1.bn2.running_var",
+          "backbone.body.layer3.1.bn2.weight",
+          "backbone.body.layer3.1.bn3.bias",
+          "backbone.body.layer3.1.bn3.running_mean",
+          "backbone.body.layer3.1.bn3.running_var",
+          "backbone.body.layer3.1.bn3.weight",
+          "backbone.body.layer3.1.conv1.weight",
+          "backbone.body.layer3.1.conv2.weight",
+          "backbone.body.layer3.1.conv3.weight",
+          "backbone.body.layer3.2.bn1.bias",
+          "backbone.body.layer3.2.bn1.running_mean",
+          "backbone.body.layer3.2.bn1.running_var",
+          "backbone.body.layer3.2.bn1.weight",
+          "backbone.body.layer3.2.bn2.bias",
+          "backbone.body.layer3.2.bn2.running_mean",
+          "backbone.body.layer3.2.bn2.running_var",
+          "backbone.body.layer3.2.bn2.weight",
+          "backbone.body.layer3.2.bn3.bias",
+          "backbone.body.layer3.2.bn3.running_mean",
+          "backbone.body.layer3.2.bn3.running_var",
+          "backbone.body.layer3.2.bn3.weight",
+          "backbone.body.layer3.2.conv1.weight",
+          "backbone.body.layer3.2.conv2.weight",
+          "backbone.body.layer3.2.conv3.weight",
+          "backbone.body.layer3.3.bn1.bias",
+          "backbone.body.layer3.3.bn1.running_mean",
+          "backbone.body.layer3.3.bn1.running_var",
+          "backbone.body.layer3.3.bn1.weight",
+          "backbone.body.layer3.3.bn2.bias",
+          "backbone.body.layer3.3.bn2.running_mean",
+          "backbone.body.layer3.3.bn2.running_var",
+          "backbone.body.layer3.3.bn2.weight",
+          "backbone.body.layer3.3.bn3.bias",
+          "backbone.body.layer3.3.bn3.running_mean",
+          "backbone.body.layer3.3.bn3.running_var",
+          "backbone.body.layer3.3.bn3.weight",
+          "backbone.body.layer3.3.conv1.weight",
+          "backbone.body.layer3.3.conv2.weight",
+          "backbone.body.layer3.3.conv3.weight",
+          "backbone.body.layer3.4.bn1.bias",
+          "backbone.body.layer3.4.bn1.running_mean",
+          "backbone.body.layer3.4.bn1.running_var",
+          "backbone.body.layer3.4.bn1.weight",
+          "backbone.body.layer3.4.bn2.bias",
+          "backbone.body.layer3.4.bn2.running_mean",
+          "backbone.body.layer3.4.bn2.running_var",
+          "backbone.body.layer3.4.bn2.weight",
+          "backbone.body.layer3.4.bn3.bias",
+          "backbone.body.layer3.4.bn3.running_mean",
+          "backbone.body.layer3.4.bn3.running_var",
+          "backbone.body.layer3.4.bn3.weight",
+          "backbone.body.layer3.4.conv1.weight",
+          "backbone.body.layer3.4.conv2.weight",
+          "backbone.body.layer3.4.conv3.weight",
+          "backbone.body.layer3.5.bn1.bias",
+          "backbone.body.layer3.5.bn1.running_mean",
+          "backbone.body.layer3.5.bn1.running_var",
+          "backbone.body.layer3.5.bn1.weight",
+          "backbone.body.layer3.5.bn2.bias",
+          "backbone.body.layer3.5.bn2.running_mean",
+          "backbone.body.layer3.5.bn2.running_var",
+          "backbone.body.layer3.5.bn2.weight",
+          "backbone.body.layer3.5.bn3.bias",
+          "backbone.body.layer3.5.bn3.running_mean",
+          "backbone.body.layer3.5.bn3.running_var",
+          "backbone.body.layer3.5.bn3.weight",
+          "backbone.body.layer3.5.conv1.weight",
+          "backbone.body.layer3.5.conv2.weight",
+          "backbone.body.layer3.5.conv3.weight",
+          "backbone.body.layer4.0.bn1.bias",
+          "backbone.body.layer4.0.bn1.running_mean",
+          "backbone.body.layer4.0.bn1.running_var",
+          "backbone.body.layer4.0.bn1.weight",
+          "backbone.body.layer4.0.bn2.bias",
+          "backbone.body.layer4.0.bn2.running_mean",
+          "backbone.body.layer4.0.bn2.running_var",
+          "backbone.body.layer4.0.bn2.weight",
+          "backbone.body.layer4.0.bn3.bias",
+          "backbone.body.layer4.0.bn3.running_mean",
+          "backbone.body.layer4.0.bn3.running_var",
+          "backbone.body.layer4.0.bn3.weight",
+          "backbone.body.layer4.0.conv1.weight",
+          "backbone.body.layer4.0.conv2.weight",
+          "backbone.body.layer4.0.conv3.weight",
+          "backbone.body.layer4.0.downsample.0.weight",
+          "backbone.body.layer4.0.downsample.1.bias",
+          "backbone.body.layer4.0.downsample.1.running_mean",
+          "backbone.body.layer4.0.downsample.1.running_var",
+          "backbone.body.layer4.0.downsample.1.weight",
+          "backbone.body.layer4.1.bn1.bias",
+          "backbone.body.layer4.1.bn1.running_mean",
+          "backbone.body.layer4.1.bn1.running_var",
+          "backbone.body.layer4.1.bn1.weight",
+          "backbone.body.layer4.1.bn2.bias",
+          "backbone.body.layer4.1.bn2.running_mean",
+          "backbone.body.layer4.1.bn2.running_var",
+          "backbone.body.layer4.1.bn2.weight",
+          "backbone.body.layer4.1.bn3.bias",
+          "backbone.body.layer4.1.bn3.running_mean",
+          "backbone.body.layer4.1.bn3.running_var",
+          "backbone.body.layer4.1.bn3.weight",
+          "backbone.body.layer4.1.conv1.weight",
+          "backbone.body.layer4.1.conv2.weight",
+          "backbone.body.layer4.1.conv3.weight",
+          "backbone.body.layer4.2.bn1.bias",
+          "backbone.body.layer4.2.bn1.running_mean",
+          "backbone.body.layer4.2.bn1.running_var",
+          "backbone.body.layer4.2.bn1.weight",
+          "backbone.body.layer4.2.bn2.bias",
+          "backbone.body.layer4.2.bn2.running_mean",
+          "backbone.body.layer4.2.bn2.running_var",
+          "backbone.body.layer4.2.bn2.weight",
+          "backbone.body.layer4.2.bn3.bias",
+          "backbone.body.layer4.2.bn3.running_mean",
+          "backbone.body.layer4.2.bn3.running_var",
+          "backbone.body.layer4.2.bn3.weight",
+          "backbone.body.layer4.2.conv1.weight",
+          "backbone.body.layer4.2.conv2.weight",
+          "backbone.body.layer4.2.conv3.weight",
+          "backbone.fpn.inner_blocks.0.bias",
+          "backbone.fpn.inner_blocks.0.weight",
+          "backbone.fpn.inner_blocks.1.bias",
+          "backbone.fpn.inner_blocks.1.weight",
+          "backbone.fpn.inner_blocks.2.bias",
+          "backbone.fpn.inner_blocks.2.weight",
+          "backbone.fpn.inner_blocks.3.bias",
+          "backbone.fpn.inner_blocks.3.weight",
+          "backbone.fpn.layer_blocks.0.bias",
+          "backbone.fpn.layer_blocks.0.weight",
+          "backbone.fpn.layer_blocks.1.bias",
+          "backbone.fpn.layer_blocks.1.weight",
+          "backbone.fpn.layer_blocks.2.bias",
+          "backbone.fpn.layer_blocks.2.weight",
+          "backbone.fpn.layer_blocks.3.bias",
+          "backbone.fpn.layer_blocks.3.weight",
+          "roi_heads.box_head.fc6.bias",
+          "roi_heads.box_head.fc6.weight",
+          "roi_heads.box_head.fc7.bias",
+          "roi_heads.box_head.fc7.weight",
+          "rpn.head.bbox_pred.bias",
+          "rpn.head.bbox_pred.weight",
+          "rpn.head.cls_logits.bias",
+          "rpn.head.cls_logits.weight",
+          "rpn.head.conv.bias",
+          "rpn.head.conv.weight"
+        ]
+      },
+      "evaluations": [
+        {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 8,
+          "no_target_predicted_boxes": {
+            "10434": 100,
+            "16": 100,
+            "1703": 100,
+            "17788": 85,
+            "17789": 71,
+            "3061": 100,
+            "5258": 100,
+            "7643": 100
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 1430,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "step": 0,
+          "target_boxes": 16
+        },
+        {
+          "AP50": 0.07306349364033395,
+          "AP50_95": 0.01192363801597551,
+          "AP75": 0.0003094059405940594,
+          "AR100": 0.090625,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.039778727036583264,
+              "AP50_95": 0.00982326493518917,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.2524752475247525,
+              "AP50_95": 0.03787128712871287,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 1069,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "step": 50,
+          "target_boxes": 16
+        },
+        {
+          "AP50": 0.19020846599843647,
+          "AP50_95": 0.06820901895070855,
+          "AP75": 0.008763895740107818,
+          "AR100": 0.334375,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.24699983234260237,
+              "AP50_95": 0.07928956650230845,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.049283112273491504,
+              "AP50_95": 0.013383850177470576,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.26794554455445546,
+              "AP50_95": 0.10717821782178218,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.1966053748231965,
+              "AP50_95": 0.07298444130127298,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 840,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "step": 100,
+          "target_boxes": 16
+        },
+        {
+          "AP50": 0.35517224162436534,
+          "AP50_95": 0.17553766590333464,
+          "AP75": 0.14829003504746077,
+          "AR100": 0.5375,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.549483517040049,
+              "AP50_95": 0.1701453829412775,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.13409789254787555,
+              "AP50_95": 0.0665593129983707,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.5811119573495812,
+              "AP50_95": 0.39154607768469146,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.155995599559956,
+              "AP50_95": 0.07389988998899889,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 835,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "step": 200,
+          "target_boxes": 16
+        }
+      ],
+      "image_presentations": 375,
+      "learning_review": {
+        "decision": "needs_review",
+        "final_training_AP50": 0.35517224162436534,
+        "initial_training_AP50": 0.0,
+        "scope": "Engineering review rule on training examples; no generalization or model-ranking claim",
+        "training_AP50_gain": 0.35517224162436534
+      },
+      "model_class_source_sha256": "e3140ea9443ffc0851e37460266466fad66dd35ed4304c06e6d9529dc3312655",
+      "peak_cuda_allocated_bytes": 1643086848,
+      "peak_cuda_reserved_bytes": 2214592512,
+      "status": "complete",
+      "steps_completed": 200
+    },
+    "yolov8n": {
+      "checkpoint_reloads": [
+        {
+          "checkpoint": "yolov8n_step_100.pt",
+          "completed_steps": 100,
+          "model_state_exact": true,
+          "next_step": 101,
+          "optimizer_state_exact": true,
+          "rng_state_exact": true
+        },
+        {
+          "checkpoint": "yolov8n_step_200.pt",
+          "completed_steps": 200,
+          "maximum_original_coordinate_error": 0.0,
+          "maximum_score_error": 0.0,
+          "model_state_exact": true,
+          "next_step": 201,
+          "optimizer_state_exact": true,
+          "predictions_match_within_tolerance": true,
+          "rng_state_exact": true
+        }
+      ],
+      "effective_configuration": {
+        "classifier_hidden_widths": [
+          80,
+          80,
+          80
+        ],
+        "loss_gains": {
+          "box": 7.5,
+          "cls": 0.5,
+          "dfl": 1.5
+        },
+        "normalization": "BatchNorm2d with running statistics; RGB [0,1]",
+        "parameters": 3138732,
+        "reinitialized": [
+          "model.22.cv3.0.2.bias",
+          "model.22.cv3.0.2.weight",
+          "model.22.cv3.1.2.bias",
+          "model.22.cv3.1.2.weight",
+          "model.22.cv3.2.2.bias",
+          "model.22.cv3.2.2.weight"
+        ],
+        "trainable_parameters": 3138716,
+        "transferred_state_keys": [
+          "model.0.bn.bias",
+          "model.0.bn.num_batches_tracked",
+          "model.0.bn.running_mean",
+          "model.0.bn.running_var",
+          "model.0.bn.weight",
+          "model.0.conv.weight",
+          "model.1.bn.bias",
+          "model.1.bn.num_batches_tracked",
+          "model.1.bn.running_mean",
+          "model.1.bn.running_var",
+          "model.1.bn.weight",
+          "model.1.conv.weight",
+          "model.12.cv1.bn.bias",
+          "model.12.cv1.bn.num_batches_tracked",
+          "model.12.cv1.bn.running_mean",
+          "model.12.cv1.bn.running_var",
+          "model.12.cv1.bn.weight",
+          "model.12.cv1.conv.weight",
+          "model.12.cv2.bn.bias",
+          "model.12.cv2.bn.num_batches_tracked",
+          "model.12.cv2.bn.running_mean",
+          "model.12.cv2.bn.running_var",
+          "model.12.cv2.bn.weight",
+          "model.12.cv2.conv.weight",
+          "model.12.m.0.cv1.bn.bias",
+          "model.12.m.0.cv1.bn.num_batches_tracked",
+          "model.12.m.0.cv1.bn.running_mean",
+          "model.12.m.0.cv1.bn.running_var",
+          "model.12.m.0.cv1.bn.weight",
+          "model.12.m.0.cv1.conv.weight",
+          "model.12.m.0.cv2.bn.bias",
+          "model.12.m.0.cv2.bn.num_batches_tracked",
+          "model.12.m.0.cv2.bn.running_mean",
+          "model.12.m.0.cv2.bn.running_var",
+          "model.12.m.0.cv2.bn.weight",
+          "model.12.m.0.cv2.conv.weight",
+          "model.15.cv1.bn.bias",
+          "model.15.cv1.bn.num_batches_tracked",
+          "model.15.cv1.bn.running_mean",
+          "model.15.cv1.bn.running_var",
+          "model.15.cv1.bn.weight",
+          "model.15.cv1.conv.weight",
+          "model.15.cv2.bn.bias",
+          "model.15.cv2.bn.num_batches_tracked",
+          "model.15.cv2.bn.running_mean",
+          "model.15.cv2.bn.running_var",
+          "model.15.cv2.bn.weight",
+          "model.15.cv2.conv.weight",
+          "model.15.m.0.cv1.bn.bias",
+          "model.15.m.0.cv1.bn.num_batches_tracked",
+          "model.15.m.0.cv1.bn.running_mean",
+          "model.15.m.0.cv1.bn.running_var",
+          "model.15.m.0.cv1.bn.weight",
+          "model.15.m.0.cv1.conv.weight",
+          "model.15.m.0.cv2.bn.bias",
+          "model.15.m.0.cv2.bn.num_batches_tracked",
+          "model.15.m.0.cv2.bn.running_mean",
+          "model.15.m.0.cv2.bn.running_var",
+          "model.15.m.0.cv2.bn.weight",
+          "model.15.m.0.cv2.conv.weight",
+          "model.16.bn.bias",
+          "model.16.bn.num_batches_tracked",
+          "model.16.bn.running_mean",
+          "model.16.bn.running_var",
+          "model.16.bn.weight",
+          "model.16.conv.weight",
+          "model.18.cv1.bn.bias",
+          "model.18.cv1.bn.num_batches_tracked",
+          "model.18.cv1.bn.running_mean",
+          "model.18.cv1.bn.running_var",
+          "model.18.cv1.bn.weight",
+          "model.18.cv1.conv.weight",
+          "model.18.cv2.bn.bias",
+          "model.18.cv2.bn.num_batches_tracked",
+          "model.18.cv2.bn.running_mean",
+          "model.18.cv2.bn.running_var",
+          "model.18.cv2.bn.weight",
+          "model.18.cv2.conv.weight",
+          "model.18.m.0.cv1.bn.bias",
+          "model.18.m.0.cv1.bn.num_batches_tracked",
+          "model.18.m.0.cv1.bn.running_mean",
+          "model.18.m.0.cv1.bn.running_var",
+          "model.18.m.0.cv1.bn.weight",
+          "model.18.m.0.cv1.conv.weight",
+          "model.18.m.0.cv2.bn.bias",
+          "model.18.m.0.cv2.bn.num_batches_tracked",
+          "model.18.m.0.cv2.bn.running_mean",
+          "model.18.m.0.cv2.bn.running_var",
+          "model.18.m.0.cv2.bn.weight",
+          "model.18.m.0.cv2.conv.weight",
+          "model.19.bn.bias",
+          "model.19.bn.num_batches_tracked",
+          "model.19.bn.running_mean",
+          "model.19.bn.running_var",
+          "model.19.bn.weight",
+          "model.19.conv.weight",
+          "model.2.cv1.bn.bias",
+          "model.2.cv1.bn.num_batches_tracked",
+          "model.2.cv1.bn.running_mean",
+          "model.2.cv1.bn.running_var",
+          "model.2.cv1.bn.weight",
+          "model.2.cv1.conv.weight",
+          "model.2.cv2.bn.bias",
+          "model.2.cv2.bn.num_batches_tracked",
+          "model.2.cv2.bn.running_mean",
+          "model.2.cv2.bn.running_var",
+          "model.2.cv2.bn.weight",
+          "model.2.cv2.conv.weight",
+          "model.2.m.0.cv1.bn.bias",
+          "model.2.m.0.cv1.bn.num_batches_tracked",
+          "model.2.m.0.cv1.bn.running_mean",
+          "model.2.m.0.cv1.bn.running_var",
+          "model.2.m.0.cv1.bn.weight",
+          "model.2.m.0.cv1.conv.weight",
+          "model.2.m.0.cv2.bn.bias",
+          "model.2.m.0.cv2.bn.num_batches_tracked",
+          "model.2.m.0.cv2.bn.running_mean",
+          "model.2.m.0.cv2.bn.running_var",
+          "model.2.m.0.cv2.bn.weight",
+          "model.2.m.0.cv2.conv.weight",
+          "model.21.cv1.bn.bias",
+          "model.21.cv1.bn.num_batches_tracked",
+          "model.21.cv1.bn.running_mean",
+          "model.21.cv1.bn.running_var",
+          "model.21.cv1.bn.weight",
+          "model.21.cv1.conv.weight",
+          "model.21.cv2.bn.bias",
+          "model.21.cv2.bn.num_batches_tracked",
+          "model.21.cv2.bn.running_mean",
+          "model.21.cv2.bn.running_var",
+          "model.21.cv2.bn.weight",
+          "model.21.cv2.conv.weight",
+          "model.21.m.0.cv1.bn.bias",
+          "model.21.m.0.cv1.bn.num_batches_tracked",
+          "model.21.m.0.cv1.bn.running_mean",
+          "model.21.m.0.cv1.bn.running_var",
+          "model.21.m.0.cv1.bn.weight",
+          "model.21.m.0.cv1.conv.weight",
+          "model.21.m.0.cv2.bn.bias",
+          "model.21.m.0.cv2.bn.num_batches_tracked",
+          "model.21.m.0.cv2.bn.running_mean",
+          "model.21.m.0.cv2.bn.running_var",
+          "model.21.m.0.cv2.bn.weight",
+          "model.21.m.0.cv2.conv.weight",
+          "model.22.cv2.0.0.bn.bias",
+          "model.22.cv2.0.0.bn.num_batches_tracked",
+          "model.22.cv2.0.0.bn.running_mean",
+          "model.22.cv2.0.0.bn.running_var",
+          "model.22.cv2.0.0.bn.weight",
+          "model.22.cv2.0.0.conv.weight",
+          "model.22.cv2.0.1.bn.bias",
+          "model.22.cv2.0.1.bn.num_batches_tracked",
+          "model.22.cv2.0.1.bn.running_mean",
+          "model.22.cv2.0.1.bn.running_var",
+          "model.22.cv2.0.1.bn.weight",
+          "model.22.cv2.0.1.conv.weight",
+          "model.22.cv2.0.2.bias",
+          "model.22.cv2.0.2.weight",
+          "model.22.cv2.1.0.bn.bias",
+          "model.22.cv2.1.0.bn.num_batches_tracked",
+          "model.22.cv2.1.0.bn.running_mean",
+          "model.22.cv2.1.0.bn.running_var",
+          "model.22.cv2.1.0.bn.weight",
+          "model.22.cv2.1.0.conv.weight",
+          "model.22.cv2.1.1.bn.bias",
+          "model.22.cv2.1.1.bn.num_batches_tracked",
+          "model.22.cv2.1.1.bn.running_mean",
+          "model.22.cv2.1.1.bn.running_var",
+          "model.22.cv2.1.1.bn.weight",
+          "model.22.cv2.1.1.conv.weight",
+          "model.22.cv2.1.2.bias",
+          "model.22.cv2.1.2.weight",
+          "model.22.cv2.2.0.bn.bias",
+          "model.22.cv2.2.0.bn.num_batches_tracked",
+          "model.22.cv2.2.0.bn.running_mean",
+          "model.22.cv2.2.0.bn.running_var",
+          "model.22.cv2.2.0.bn.weight",
+          "model.22.cv2.2.0.conv.weight",
+          "model.22.cv2.2.1.bn.bias",
+          "model.22.cv2.2.1.bn.num_batches_tracked",
+          "model.22.cv2.2.1.bn.running_mean",
+          "model.22.cv2.2.1.bn.running_var",
+          "model.22.cv2.2.1.bn.weight",
+          "model.22.cv2.2.1.conv.weight",
+          "model.22.cv2.2.2.bias",
+          "model.22.cv2.2.2.weight",
+          "model.22.cv3.0.0.bn.bias",
+          "model.22.cv3.0.0.bn.num_batches_tracked",
+          "model.22.cv3.0.0.bn.running_mean",
+          "model.22.cv3.0.0.bn.running_var",
+          "model.22.cv3.0.0.bn.weight",
+          "model.22.cv3.0.0.conv.weight",
+          "model.22.cv3.0.1.bn.bias",
+          "model.22.cv3.0.1.bn.num_batches_tracked",
+          "model.22.cv3.0.1.bn.running_mean",
+          "model.22.cv3.0.1.bn.running_var",
+          "model.22.cv3.0.1.bn.weight",
+          "model.22.cv3.0.1.conv.weight",
+          "model.22.cv3.1.0.bn.bias",
+          "model.22.cv3.1.0.bn.num_batches_tracked",
+          "model.22.cv3.1.0.bn.running_mean",
+          "model.22.cv3.1.0.bn.running_var",
+          "model.22.cv3.1.0.bn.weight",
+          "model.22.cv3.1.0.conv.weight",
+          "model.22.cv3.1.1.bn.bias",
+          "model.22.cv3.1.1.bn.num_batches_tracked",
+          "model.22.cv3.1.1.bn.running_mean",
+          "model.22.cv3.1.1.bn.running_var",
+          "model.22.cv3.1.1.bn.weight",
+          "model.22.cv3.1.1.conv.weight",
+          "model.22.cv3.2.0.bn.bias",
+          "model.22.cv3.2.0.bn.num_batches_tracked",
+          "model.22.cv3.2.0.bn.running_mean",
+          "model.22.cv3.2.0.bn.running_var",
+          "model.22.cv3.2.0.bn.weight",
+          "model.22.cv3.2.0.conv.weight",
+          "model.22.cv3.2.1.bn.bias",
+          "model.22.cv3.2.1.bn.num_batches_tracked",
+          "model.22.cv3.2.1.bn.running_mean",
+          "model.22.cv3.2.1.bn.running_var",
+          "model.22.cv3.2.1.bn.weight",
+          "model.22.cv3.2.1.conv.weight",
+          "model.22.dfl.conv.weight",
+          "model.3.bn.bias",
+          "model.3.bn.num_batches_tracked",
+          "model.3.bn.running_mean",
+          "model.3.bn.running_var",
+          "model.3.bn.weight",
+          "model.3.conv.weight",
+          "model.4.cv1.bn.bias",
+          "model.4.cv1.bn.num_batches_tracked",
+          "model.4.cv1.bn.running_mean",
+          "model.4.cv1.bn.running_var",
+          "model.4.cv1.bn.weight",
+          "model.4.cv1.conv.weight",
+          "model.4.cv2.bn.bias",
+          "model.4.cv2.bn.num_batches_tracked",
+          "model.4.cv2.bn.running_mean",
+          "model.4.cv2.bn.running_var",
+          "model.4.cv2.bn.weight",
+          "model.4.cv2.conv.weight",
+          "model.4.m.0.cv1.bn.bias",
+          "model.4.m.0.cv1.bn.num_batches_tracked",
+          "model.4.m.0.cv1.bn.running_mean",
+          "model.4.m.0.cv1.bn.running_var",
+          "model.4.m.0.cv1.bn.weight",
+          "model.4.m.0.cv1.conv.weight",
+          "model.4.m.0.cv2.bn.bias",
+          "model.4.m.0.cv2.bn.num_batches_tracked",
+          "model.4.m.0.cv2.bn.running_mean",
+          "model.4.m.0.cv2.bn.running_var",
+          "model.4.m.0.cv2.bn.weight",
+          "model.4.m.0.cv2.conv.weight",
+          "model.4.m.1.cv1.bn.bias",
+          "model.4.m.1.cv1.bn.num_batches_tracked",
+          "model.4.m.1.cv1.bn.running_mean",
+          "model.4.m.1.cv1.bn.running_var",
+          "model.4.m.1.cv1.bn.weight",
+          "model.4.m.1.cv1.conv.weight",
+          "model.4.m.1.cv2.bn.bias",
+          "model.4.m.1.cv2.bn.num_batches_tracked",
+          "model.4.m.1.cv2.bn.running_mean",
+          "model.4.m.1.cv2.bn.running_var",
+          "model.4.m.1.cv2.bn.weight",
+          "model.4.m.1.cv2.conv.weight",
+          "model.5.bn.bias",
+          "model.5.bn.num_batches_tracked",
+          "model.5.bn.running_mean",
+          "model.5.bn.running_var",
+          "model.5.bn.weight",
+          "model.5.conv.weight",
+          "model.6.cv1.bn.bias",
+          "model.6.cv1.bn.num_batches_tracked",
+          "model.6.cv1.bn.running_mean",
+          "model.6.cv1.bn.running_var",
+          "model.6.cv1.bn.weight",
+          "model.6.cv1.conv.weight",
+          "model.6.cv2.bn.bias",
+          "model.6.cv2.bn.num_batches_tracked",
+          "model.6.cv2.bn.running_mean",
+          "model.6.cv2.bn.running_var",
+          "model.6.cv2.bn.weight",
+          "model.6.cv2.conv.weight",
+          "model.6.m.0.cv1.bn.bias",
+          "model.6.m.0.cv1.bn.num_batches_tracked",
+          "model.6.m.0.cv1.bn.running_mean",
+          "model.6.m.0.cv1.bn.running_var",
+          "model.6.m.0.cv1.bn.weight",
+          "model.6.m.0.cv1.conv.weight",
+          "model.6.m.0.cv2.bn.bias",
+          "model.6.m.0.cv2.bn.num_batches_tracked",
+          "model.6.m.0.cv2.bn.running_mean",
+          "model.6.m.0.cv2.bn.running_var",
+          "model.6.m.0.cv2.bn.weight",
+          "model.6.m.0.cv2.conv.weight",
+          "model.6.m.1.cv1.bn.bias",
+          "model.6.m.1.cv1.bn.num_batches_tracked",
+          "model.6.m.1.cv1.bn.running_mean",
+          "model.6.m.1.cv1.bn.running_var",
+          "model.6.m.1.cv1.bn.weight",
+          "model.6.m.1.cv1.conv.weight",
+          "model.6.m.1.cv2.bn.bias",
+          "model.6.m.1.cv2.bn.num_batches_tracked",
+          "model.6.m.1.cv2.bn.running_mean",
+          "model.6.m.1.cv2.bn.running_var",
+          "model.6.m.1.cv2.bn.weight",
+          "model.6.m.1.cv2.conv.weight",
+          "model.7.bn.bias",
+          "model.7.bn.num_batches_tracked",
+          "model.7.bn.running_mean",
+          "model.7.bn.running_var",
+          "model.7.bn.weight",
+          "model.7.conv.weight",
+          "model.8.cv1.bn.bias",
+          "model.8.cv1.bn.num_batches_tracked",
+          "model.8.cv1.bn.running_mean",
+          "model.8.cv1.bn.running_var",
+          "model.8.cv1.bn.weight",
+          "model.8.cv1.conv.weight",
+          "model.8.cv2.bn.bias",
+          "model.8.cv2.bn.num_batches_tracked",
+          "model.8.cv2.bn.running_mean",
+          "model.8.cv2.bn.running_var",
+          "model.8.cv2.bn.weight",
+          "model.8.cv2.conv.weight",
+          "model.8.m.0.cv1.bn.bias",
+          "model.8.m.0.cv1.bn.num_batches_tracked",
+          "model.8.m.0.cv1.bn.running_mean",
+          "model.8.m.0.cv1.bn.running_var",
+          "model.8.m.0.cv1.bn.weight",
+          "model.8.m.0.cv1.conv.weight",
+          "model.8.m.0.cv2.bn.bias",
+          "model.8.m.0.cv2.bn.num_batches_tracked",
+          "model.8.m.0.cv2.bn.running_mean",
+          "model.8.m.0.cv2.bn.running_var",
+          "model.8.m.0.cv2.bn.weight",
+          "model.8.m.0.cv2.conv.weight",
+          "model.9.cv1.bn.bias",
+          "model.9.cv1.bn.num_batches_tracked",
+          "model.9.cv1.bn.running_mean",
+          "model.9.cv1.bn.running_var",
+          "model.9.cv1.bn.weight",
+          "model.9.cv1.conv.weight",
+          "model.9.cv2.bn.bias",
+          "model.9.cv2.bn.num_batches_tracked",
+          "model.9.cv2.bn.running_mean",
+          "model.9.cv2.bn.running_var",
+          "model.9.cv2.bn.weight",
+          "model.9.cv2.conv.weight"
+        ],
+        "yaml": {
+          "backbone": [
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                64,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                128,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                128,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                256,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              6,
+              "C2f",
+              [
+                256,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                512,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              6,
+              "C2f",
+              [
+                512,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                1024,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                1024,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "SPPF",
+              [
+                1024,
+                5
+              ]
+            ]
+          ],
+          "channels": 3,
+          "head": [
+            [
+              -1,
+              1,
+              "nn.Upsample",
+              [
+                "None",
+                2,
+                "nearest"
+              ]
+            ],
+            [
+              [
+                -1,
+                6
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                512
+              ]
+            ],
+            [
+              -1,
+              1,
+              "nn.Upsample",
+              [
+                "None",
+                2,
+                "nearest"
+              ]
+            ],
+            [
+              [
+                -1,
+                4
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                256
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                256,
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                -1,
+                12
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                512
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                512,
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                -1,
+                9
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                1024
+              ]
+            ],
+            [
+              [
+                15,
+                18,
+                21
+              ],
+              1,
+              "Detect",
+              [
+                "nc"
+              ]
+            ]
+          ],
+          "nc": 4,
+          "scale": "n",
+          "scales": {
+            "l": [
+              1.0,
+              1.0,
+              512
+            ],
+            "m": [
+              0.67,
+              0.75,
+              768
+            ],
+            "n": [
+              0.33,
+              0.25,
+              1024
+            ],
+            "s": [
+              0.33,
+              0.5,
+              1024
+            ],
+            "x": [
+              1.0,
+              1.25,
+              512
+            ]
+          },
+          "yaml_file": "yolov8n.yaml"
+        }
+      },
+      "evaluations": [
+        {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 5,
+          "no_target_predicted_boxes": {
+            "10434": 1,
+            "16": 0,
+            "1703": 1,
+            "17788": 0,
+            "17789": 0,
+            "3061": 1,
+            "5258": 2,
+            "7643": 3
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 1460,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "step": 0,
+          "target_boxes": 16
+        },
+        {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 0,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "step": 50,
+          "target_boxes": 16
+        },
+        {
+          "AP50": 0.005177795176777952,
+          "AP50_95": 0.002311642123116421,
+          "AP75": 0.0,
+          "AR100": 0.075,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 2,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 2,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 1,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.018981898189818984,
+              "AP50_95": 0.008554855485548556,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0017292825172928248,
+              "AP50_95": 0.00069171300691713,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 995,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "step": 100,
+          "target_boxes": 16
+        },
+        {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 1307,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "step": 200,
+          "target_boxes": 16
+        }
+      ],
+      "image_presentations": 375,
+      "learning_review": {
+        "decision": "needs_review",
+        "final_training_AP50": 0.0,
+        "initial_training_AP50": 0.0,
+        "scope": "Engineering review rule on training examples; no generalization or model-ranking claim",
+        "training_AP50_gain": 0.0
+      },
+      "model_class_source_sha256": "1048ab8db7504e7c57a77d05bfbd855e9de0ef477e15a5aae8cdb7e8a958246a",
+      "peak_cuda_allocated_bytes": 458215936,
+      "peak_cuda_reserved_bytes": 505413632,
+      "status": "complete",
+      "steps_completed": 200
+    }
+  },
+  "paired_inputs_verified": true,
+  "pbs_job": "794071.bright04",
+  "protocol": {
+    "augmentation": "none",
+    "batch_size": 2,
+    "checkpoint_policy": "Save model, SGD, RNG, step and input/protocol identity at steps 100 and 200. Reload each into a fresh identical architecture; continue from step 101 after the step-100 reload. Check final predictions again after step-200 reload. Retain full checkpoints on CCAST; the result archive contains their hashes and metadata only.",
+    "checkpoint_steps": [
+      100,
+      200
+    ],
+    "comparison_limit": "Architectures differ in capacity, normalization, pretrained training recipe and head transfer. Same data and update count do not make this a fair model-quality ranking.",
+    "cpu_threads": 4,
+    "data_loader_workers": 0,
+    "decision_rule": {
+      "action_if_below": "Review learning curves, per-class metrics and predictions; do not automatically extend, change hyperparameters, choose a winner or start a large baseline.",
+      "label": "project engineering review rule, not an efficacy or statistical threshold",
+      "minimum_final_training_AP50": 0.5,
+      "minimum_training_AP50_gain": 0.1
+    },
+    "evaluate_steps": [
+      0,
+      50,
+      100,
+      200
+    ],
+    "evaluation": {
+      "coordinates": "Inverse letterbox to original stored image, clip to image bounds, discard collapsed predictions only",
+      "max_detections": 100,
+      "metrics": "pycocotools bbox AP50:95/AP50/AP75, AR100, per-class AP50:95/AP50; no-target predicted box counts at confidence 0.25",
+      "negative_confidence": 0.25,
+      "nms_iou": 0.5,
+      "score_threshold": 0.001,
+      "yolo_multi_label": true
+    },
+    "expected_images": 15,
+    "expected_targets": 16,
+    "held_out_policy": "No validation or test manifests/images are opened. Metrics use the same selected training images as the updates.",
+    "image_size": 640,
+    "initialization": "Official COCO weights with fresh four-class output layers",
+    "learning_rate": 0.001,
+    "loader_source_sha256": {
+      "rdd_data.py": "b9a79ef0152eac67f0ec306b3a2d7cb23939832a7587659346a80be973fe630d",
+      "reference.json": "767fd1754edea91ec54ec00d41a3af6dd05b830bfd4e6276b1b5f9009e8b1089",
+      "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+      "selection.json": "a895f10c4f8ca15571cc5e085faa75e0b05eda93e62f4b24e66b5df2210bb461"
+    },
+    "model_input": "identical prepared RGB [0,1] pixels; detector-specific internal normalization is retained",
+    "models": [
+      "fasterrcnn_resnet50_fpn",
+      "yolov8n"
+    ],
+    "momentum": 0.9,
+    "nondeterminism": "A fixed seed is recorded; bit-identical CUDA reruns are not claimed",
+    "optimizer": "SGD",
+    "package_snapshot_sha256": "f07b523b024d61f46fe407df674fa2361a2f9332ed489f794f7b8b20024d77c8",
+    "precision": "float32; no AMP or TF32",
+    "pretrained_architecture": "Faster R-CNN retains COCO FrozenBatchNorm2d with eps=0 and all five backbone stages trainable. YOLO retains the COCO nc=80 hidden classifier width but replaces all three output classifiers with nc=4. Both architectures are constructed identically for checkpoint reloads.",
+    "pretrained_weights": {
+      "fasterrcnn_resnet50_fpn": {
+        "bytes": 167502836,
+        "filename": "fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+        "sha256": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384",
+        "url": "https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth"
+      },
+      "yolov8n": {
+        "bytes": 6549796,
+        "filename": "yolov8n.pt",
+        "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+        "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt"
+      }
+    },
+    "previous_loader_release_sha256": "e534a1176486d6ea035073816df9038424375a0c16bf89db4e6ef7395e0e0a8a",
+    "previous_successful_loader_check_sha256": "8133f0f9c069ee3f9301afd662d4a4b2f43c4eaf1705de6cbf72b12cda07549e",
+    "purpose": "Bounded training-only learning and checkpoint check; no architecture ranking or generalization claim",
+    "schedule": "25 passes through the same eight fixed batches; final batch contains one image",
+    "seed": 42,
+    "source_references": [
+      "https://docs.pytorch.org/vision/0.18/models/generated/torchvision.models.detection.fasterrcnn_resnet50_fpn.html",
+      "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/nn/tasks.py",
+      "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/utils/loss.py",
+      "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/utils/nms.py",
+      "https://raw.githubusercontent.com/pytorch/vision/v0.18.0/torchvision/models/detection/backbone_utils.py",
+      "https://raw.githubusercontent.com/cocodataset/cocoapi/master/PythonAPI/pycocotools/cocoeval.py"
+    ],
+    "stopping_rule": "Stop at 200 updates per detector, or immediately on software/data/numerical failure. A completed run below the learning review rule still preserves all results and is marked needs_review. No automatic retries or extra training.",
+    "total_steps": 200,
+    "versions": {
+      "Pillow": "10.3.0",
+      "numpy": "1.26.4",
+      "opencv-python-headless": "4.11.0.86",
+      "pycocotools": "2.0.10",
+      "torch": "2.3.0",
+      "torchvision": "0.18.0",
+      "ultralytics-opencv-headless": "8.4.182"
+    },
+    "weight_decay": 0.0005
+  },
+  "python": "3.12.3",
+  "started_utc": "2026-10-22T08:18:10.228679+00:00",
+  "status": "complete",
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "opencv-python-headless": "4.11.0.86",
+    "pycocotools": "2.0.10",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0",
+    "ultralytics-opencv-headless": "8.4.182"
+  },
+  "weights": {
+    "fasterrcnn_resnet50_fpn": {
+      "bytes": 167502836,
+      "path": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/weights/detection_v1/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+      "sha256": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384"
+    },
+    "yolov8n": {
+      "bytes": 6549796,
+      "path": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/weights/detection_v1/yolov8n.pt",
+      "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "actual_ccast_diagnostic": "pending",
+  "actual_pretrained_cpu_check": "passed",
+  "archive": "detection_diagnostics_v1.tar.gz",
+  "archive_files": 6,
+  "bytes": 14878,
+  "checksum_entries": 5,
+  "line_endings": "LF, no BOM",
+  "member_bytes_verified": true,
+  "model_forward_budget": 48,
+  "optimizer_steps_permitted": 0,
+  "sha256": "a6457377df59fc47a6bf77a87b4719665f90c0cd189e204799f62553626702b1",
+  "status": "prepared_locally_ccast_transfer_pending",
+  "unit_tests_passed": 8
+}

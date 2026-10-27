@@ -1,0 +1,16 @@
+{
+  "archive": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\pilot_ccast_v1.tar.gz",
+  "archive_sha256": "3ccbb2eb52eb3ffcd6439d425e45f233d3bf6642568eb636ddccbc1be11fc369",
+  "bytes": 133215,
+  "members": 11,
+  "package_integrity_verified": true,
+  "isolated_imports_verified": true,
+  "python_39_syntax_checked": true,
+  "roles": {
+    "audit": 4126,
+    "reference": 4116
+  },
+  "selected_training_preview_examples": 56,
+  "preview_sheets": 35,
+  "test_count": 6
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "image": "Japan/train/images/Japan_001265.jpg",
+    "label": "D20",
+    "note": "Retain this image and its other three valid targets.",
+    "object_index": 3,
+    "original_box": [
+      198.0,
+      474.0,
+      198.0,
+      475.0
+    ],
+    "reason": "nonpositive_target_area"
+  }
+]

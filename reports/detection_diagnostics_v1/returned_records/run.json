@@ -1,0 +1,1023 @@
+{
+  "checkpoints": {
+    "100": {
+      "effective_configuration": {
+        "classifier_hidden_widths": [
+          80,
+          80,
+          80
+        ],
+        "loss_gains": {
+          "box": 7.5,
+          "cls": 0.5,
+          "dfl": 1.5
+        },
+        "normalization": "BatchNorm2d with running statistics; RGB [0,1]",
+        "parameters": 3138732,
+        "reinitialized": [
+          "model.22.cv3.0.2.bias",
+          "model.22.cv3.0.2.weight",
+          "model.22.cv3.1.2.bias",
+          "model.22.cv3.1.2.weight",
+          "model.22.cv3.2.2.bias",
+          "model.22.cv3.2.2.weight"
+        ],
+        "trainable_parameters": 3138716,
+        "transferred_state_keys": [],
+        "yaml": {
+          "backbone": [
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                64,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                128,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                128,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                256,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              6,
+              "C2f",
+              [
+                256,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                512,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              6,
+              "C2f",
+              [
+                512,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                1024,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                1024,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "SPPF",
+              [
+                1024,
+                5
+              ]
+            ]
+          ],
+          "channels": 3,
+          "head": [
+            [
+              -1,
+              1,
+              "nn.Upsample",
+              [
+                "None",
+                2,
+                "nearest"
+              ]
+            ],
+            [
+              [
+                -1,
+                6
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                512
+              ]
+            ],
+            [
+              -1,
+              1,
+              "nn.Upsample",
+              [
+                "None",
+                2,
+                "nearest"
+              ]
+            ],
+            [
+              [
+                -1,
+                4
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                256
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                256,
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                -1,
+                12
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                512
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                512,
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                -1,
+                9
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                1024
+              ]
+            ],
+            [
+              [
+                15,
+                18,
+                21
+              ],
+              1,
+              "Detect",
+              [
+                "nc"
+              ]
+            ]
+          ],
+          "nc": 4,
+          "scale": "n",
+          "scales": {
+            "l": [
+              1.0,
+              1.0,
+              512
+            ],
+            "m": [
+              0.67,
+              0.75,
+              768
+            ],
+            "n": [
+              0.33,
+              0.25,
+              1024
+            ],
+            "s": [
+              0.33,
+              0.5,
+              1024
+            ],
+            "x": [
+              1.0,
+              1.25,
+              512
+            ]
+          },
+          "yaml_file": "yolov8n.yaml"
+        }
+      },
+      "modes": {
+        "batch_stats": {
+          "batchnorm_modules": 57,
+          "metrics": {
+            "AP50": 0.17197076850542195,
+            "AP50_95": 0.04076693383624076,
+            "AP75": 0.03575357535753574,
+            "AR100": 0.103125,
+            "evaluation_images": 15,
+            "negative_confidence": 0.25,
+            "no_target_images": 8,
+            "no_target_images_with_predictions": 0,
+            "no_target_predicted_boxes": {
+              "10434": 0,
+              "16": 0,
+              "1703": 0,
+              "17788": 0,
+              "17789": 0,
+              "3061": 0,
+              "5258": 0,
+              "7643": 0
+            },
+            "per_class": {
+              "D00": {
+                "AP50": 0.1515008643721515,
+                "AP50_95": 0.10084865629420084,
+                "target_count": 8
+              },
+              "D10": {
+                "AP50": 0.031431714600031434,
+                "AP50_95": 0.011724029545811724,
+                "target_count": 4
+              },
+              "D20": {
+                "AP50": 0.5049504950495048,
+                "AP50_95": 0.05049504950495049,
+                "target_count": 2
+              },
+              "D40": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 2
+              }
+            },
+            "prediction_boxes": 762,
+            "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+            "target_boxes": 16
+          },
+          "state_and_rng_unchanged": true
+        },
+        "running_stats": {
+          "batchnorm_modules": 57,
+          "metrics": {
+            "AP50": 0.005177795176777952,
+            "AP50_95": 0.002311642123116421,
+            "AP75": 0.0,
+            "AR100": 0.075,
+            "evaluation_images": 15,
+            "negative_confidence": 0.25,
+            "no_target_images": 8,
+            "no_target_images_with_predictions": 2,
+            "no_target_predicted_boxes": {
+              "10434": 0,
+              "16": 0,
+              "1703": 2,
+              "17788": 0,
+              "17789": 0,
+              "3061": 0,
+              "5258": 1,
+              "7643": 0
+            },
+            "per_class": {
+              "D00": {
+                "AP50": 0.018981898189818984,
+                "AP50_95": 0.008554855485548556,
+                "target_count": 8
+              },
+              "D10": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 4
+              },
+              "D20": {
+                "AP50": 0.0017292825172928248,
+                "AP50_95": 0.00069171300691713,
+                "target_count": 2
+              },
+              "D40": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 2
+              }
+            },
+            "prediction_boxes": 995,
+            "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+            "target_boxes": 16
+          },
+          "state_and_rng_unchanged": true
+        },
+        "running_stats_after": {
+          "batchnorm_modules": 57,
+          "metrics": {
+            "AP50": 0.005177795176777952,
+            "AP50_95": 0.002311642123116421,
+            "AP75": 0.0,
+            "AR100": 0.075,
+            "evaluation_images": 15,
+            "negative_confidence": 0.25,
+            "no_target_images": 8,
+            "no_target_images_with_predictions": 2,
+            "no_target_predicted_boxes": {
+              "10434": 0,
+              "16": 0,
+              "1703": 2,
+              "17788": 0,
+              "17789": 0,
+              "3061": 0,
+              "5258": 1,
+              "7643": 0
+            },
+            "per_class": {
+              "D00": {
+                "AP50": 0.018981898189818984,
+                "AP50_95": 0.008554855485548556,
+                "target_count": 8
+              },
+              "D10": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 4
+              },
+              "D20": {
+                "AP50": 0.0017292825172928248,
+                "AP50_95": 0.00069171300691713,
+                "target_count": 2
+              },
+              "D40": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 2
+              }
+            },
+            "prediction_boxes": 995,
+            "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+            "target_boxes": 16
+          },
+          "state_and_rng_unchanged": true
+        }
+      },
+      "source": {
+        "bytes": 25324410,
+        "completed_steps": 100,
+        "file": "yolov8n_step_100.pt",
+        "model_name": "yolov8n",
+        "sha256": "5e2a2b8827924d80d2194e0e4d76a23341062a538fc51ece63e6ca33f6d6e753"
+      }
+    },
+    "200": {
+      "effective_configuration": {
+        "classifier_hidden_widths": [
+          80,
+          80,
+          80
+        ],
+        "loss_gains": {
+          "box": 7.5,
+          "cls": 0.5,
+          "dfl": 1.5
+        },
+        "normalization": "BatchNorm2d with running statistics; RGB [0,1]",
+        "parameters": 3138732,
+        "reinitialized": [
+          "model.22.cv3.0.2.bias",
+          "model.22.cv3.0.2.weight",
+          "model.22.cv3.1.2.bias",
+          "model.22.cv3.1.2.weight",
+          "model.22.cv3.2.2.bias",
+          "model.22.cv3.2.2.weight"
+        ],
+        "trainable_parameters": 3138716,
+        "transferred_state_keys": [],
+        "yaml": {
+          "backbone": [
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                64,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                128,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                128,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                256,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              6,
+              "C2f",
+              [
+                256,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                512,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              6,
+              "C2f",
+              [
+                512,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                1024,
+                3,
+                2
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                1024,
+                true
+              ]
+            ],
+            [
+              -1,
+              1,
+              "SPPF",
+              [
+                1024,
+                5
+              ]
+            ]
+          ],
+          "channels": 3,
+          "head": [
+            [
+              -1,
+              1,
+              "nn.Upsample",
+              [
+                "None",
+                2,
+                "nearest"
+              ]
+            ],
+            [
+              [
+                -1,
+                6
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                512
+              ]
+            ],
+            [
+              -1,
+              1,
+              "nn.Upsample",
+              [
+                "None",
+                2,
+                "nearest"
+              ]
+            ],
+            [
+              [
+                -1,
+                4
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                256
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                256,
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                -1,
+                12
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                512
+              ]
+            ],
+            [
+              -1,
+              1,
+              "Conv",
+              [
+                512,
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                -1,
+                9
+              ],
+              1,
+              "Concat",
+              [
+                1
+              ]
+            ],
+            [
+              -1,
+              3,
+              "C2f",
+              [
+                1024
+              ]
+            ],
+            [
+              [
+                15,
+                18,
+                21
+              ],
+              1,
+              "Detect",
+              [
+                "nc"
+              ]
+            ]
+          ],
+          "nc": 4,
+          "scale": "n",
+          "scales": {
+            "l": [
+              1.0,
+              1.0,
+              512
+            ],
+            "m": [
+              0.67,
+              0.75,
+              768
+            ],
+            "n": [
+              0.33,
+              0.25,
+              1024
+            ],
+            "s": [
+              0.33,
+              0.5,
+              1024
+            ],
+            "x": [
+              1.0,
+              1.25,
+              512
+            ]
+          },
+          "yaml_file": "yolov8n.yaml"
+        }
+      },
+      "modes": {
+        "batch_stats": {
+          "batchnorm_modules": 57,
+          "metrics": {
+            "AP50": 0.08077123501823866,
+            "AP50_95": 0.03776706618030224,
+            "AP75": 0.03217821782178217,
+            "AR100": 0.121875,
+            "evaluation_images": 15,
+            "negative_confidence": 0.25,
+            "no_target_images": 8,
+            "no_target_images_with_predictions": 0,
+            "no_target_predicted_boxes": {
+              "10434": 0,
+              "16": 0,
+              "1703": 0,
+              "17788": 0,
+              "17789": 0,
+              "3061": 0,
+              "5258": 0,
+              "7643": 0
+            },
+            "per_class": {
+              "D00": {
+                "AP50": 0.1287128712871287,
+                "AP50_95": 0.09009900990099007,
+                "target_count": 8
+              },
+              "D10": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 4
+              },
+              "D20": {
+                "AP50": 0.19437206878582605,
+                "AP50_95": 0.06096925482021887,
+                "target_count": 2
+              },
+              "D40": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 2
+              }
+            },
+            "prediction_boxes": 97,
+            "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+            "target_boxes": 16
+          },
+          "state_and_rng_unchanged": true
+        },
+        "running_stats": {
+          "batchnorm_modules": 57,
+          "metrics": {
+            "AP50": 0.0,
+            "AP50_95": 0.0,
+            "AP75": 0.0,
+            "AR100": 0.0,
+            "evaluation_images": 15,
+            "negative_confidence": 0.25,
+            "no_target_images": 8,
+            "no_target_images_with_predictions": 0,
+            "no_target_predicted_boxes": {
+              "10434": 0,
+              "16": 0,
+              "1703": 0,
+              "17788": 0,
+              "17789": 0,
+              "3061": 0,
+              "5258": 0,
+              "7643": 0
+            },
+            "per_class": {
+              "D00": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 8
+              },
+              "D10": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 4
+              },
+              "D20": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 2
+              },
+              "D40": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 2
+              }
+            },
+            "prediction_boxes": 1307,
+            "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+            "target_boxes": 16
+          },
+          "state_and_rng_unchanged": true
+        },
+        "running_stats_after": {
+          "batchnorm_modules": 57,
+          "metrics": {
+            "AP50": 0.0,
+            "AP50_95": 0.0,
+            "AP75": 0.0,
+            "AR100": 0.0,
+            "evaluation_images": 15,
+            "negative_confidence": 0.25,
+            "no_target_images": 8,
+            "no_target_images_with_predictions": 0,
+            "no_target_predicted_boxes": {
+              "10434": 0,
+              "16": 0,
+              "1703": 0,
+              "17788": 0,
+              "17789": 0,
+              "3061": 0,
+              "5258": 0,
+              "7643": 0
+            },
+            "per_class": {
+              "D00": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 8
+              },
+              "D10": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 4
+              },
+              "D20": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 2
+              },
+              "D40": {
+                "AP50": 0.0,
+                "AP50_95": 0.0,
+                "target_count": 2
+              }
+            },
+            "prediction_boxes": 1307,
+            "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+            "target_boxes": 16
+          },
+          "state_and_rng_unchanged": true
+        }
+      },
+      "source": {
+        "bytes": 25324410,
+        "completed_steps": 200,
+        "file": "yolov8n_step_200.pt",
+        "model_name": "yolov8n",
+        "sha256": "fa721c7a59f4ebd4d2c94c50759307e467cedf64b1fc60c590490bea81b4eb48"
+      }
+    }
+  },
+  "command": [
+    "diagnose.py",
+    "--root",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+    "--splits",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_splits_v1",
+    "--previous",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_learning_check_v1",
+    "--out",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_diagnostic_check_v1"
+  ],
+  "cuda_visible_devices": "GPU-0e6958c5-436e-7df8-7476-8602ae422777",
+  "elapsed_seconds": 9.132,
+  "finished_utc": "2026-10-22T16:34:07.175917+00:00",
+  "gpu_name": "NVIDIA A10",
+  "held_out_data_read": false,
+  "host": "gpu0026",
+  "optimizer_steps": 0,
+  "pbs_job": "794142.bright04",
+  "protocol": {
+    "batch_size": 2,
+    "checkpoint_steps": [
+      100,
+      200
+    ],
+    "checkpoints": [
+      {
+        "bytes": 25324410,
+        "completed_steps": 100,
+        "file": "yolov8n_step_100.pt",
+        "model_name": "yolov8n",
+        "sha256": "5e2a2b8827924d80d2194e0e4d76a23341062a538fc51ece63e6ca33f6d6e753"
+      },
+      {
+        "bytes": 25324410,
+        "completed_steps": 200,
+        "file": "yolov8n_step_200.pt",
+        "model_name": "yolov8n",
+        "sha256": "fa721c7a59f4ebd4d2c94c50759307e467cedf64b1fc60c590490bea81b4eb48"
+      }
+    ],
+    "control": "Replay original running-stat predictions; verify unchanged parameters, buffers, RNG and checkpoint bytes; repeat running-stat inference after the intervention",
+    "decision_timing": "Exploratory diagnostic specified after review of the failed 200-update learning check",
+    "expected_environment": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/.venvs/rdd_detection_v1",
+    "expected_images": 15,
+    "expected_targets": 16,
+    "held_out_policy": "No validation or test files opened",
+    "image_size": 640,
+    "interpretation": "Compare raw geometry, score filtering, assignments and AP under only the normalization change. A difference is evidence of normalization sensitivity on these batches, not a validated remedy or generalization result.",
+    "learning_package_checksums_sha256": "2ca05298dcadb79ed5e5d4e03bdcfeba8a3cb8dd30666e9f363ab46cefae15dd",
+    "model_forward_budget": 48,
+    "modes": [
+      "running_stats",
+      "batch_stats",
+      "running_stats_after"
+    ],
+    "optimizer_steps": 0,
+    "previous_result_archive_sha256": "0ab14951c60bf566e2585ea66648d3bc743e2c427558b1f85b762ed50dd9693a",
+    "previous_result_files_sha256": {
+      "checkpoint_records.json": "0df253366bd0e9676a62140e475a22c7e245659c0e0b484b6ac12512ce7d34da",
+      "checksums.json": "0ba8ca0c31a00fad64d235053e23b9b843a9770e740d55b5012b1589b3293b4f",
+      "code/LOCAL_VALIDATION.json": "7555e1d5f7ab5bce0d00e57df311228709899de404c3e6596d7ac465943ce5a9",
+      "code/README.md": "cd1f291eebd3064f1fa9fb31b42c15307e6d3aed14979d2161e8fcdd4c79b9dc",
+      "code/SHA256SUMS": "2ca05298dcadb79ed5e5d4e03bdcfeba8a3cb8dd30666e9f363ab46cefae15dd",
+      "code/checkpoints.py": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+      "code/integration.py": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+      "code/learning.py": "e28b0ce551381b8d6c7c3bb7b56e9696f12adb159bb58e7516e565f12a62d538",
+      "code/metrics.py": "b904bc232a332a98ba4c5c0010e174a58a53d4221817c00dc26959f23e059a00",
+      "code/models.py": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+      "code/protocol.json": "ba43e1da1f77da71106660cb497825eaa5418374078db57d7fced89df491796b",
+      "code/rdd_data.py": "b9a79ef0152eac67f0ec306b3a2d7cb23939832a7587659346a80be973fe630d",
+      "code/reference.json": "767fd1754edea91ec54ec00d41a3af6dd05b830bfd4e6276b1b5f9009e8b1089",
+      "code/select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+      "code/selection.json": "a895f10c4f8ca15571cc5e085faa75e0b05eda93e62f4b24e66b5df2210bb461",
+      "code/tests/test_learning.py": "dd96f899aa13c6e31b0c097d796b3f4b5d5fc1cfda676b29c3ceb902e55d6555",
+      "fasterrcnn_resnet50_fpn_reload_predictions.json": "02c2d762b6b2b3f60fbbfce61d37c1665a387e5e891db49012fc8b66d965ef41",
+      "fasterrcnn_resnet50_fpn_step_000_metrics.json": "e836dc3f16714c01b3e1420292d590745b6aa9bcbf16817d78e4eceebf0ddeeb",
+      "fasterrcnn_resnet50_fpn_step_000_predictions.json": "dabeecc4589639d86fc8404b034bac2d42782d1929a58d1b8f08befa8e9c56b9",
+      "fasterrcnn_resnet50_fpn_step_050_metrics.json": "82e0fd1c1dbf3793e2da758eaa5c3a1ded8e674d105a190335774b20514e6418",
+      "fasterrcnn_resnet50_fpn_step_050_predictions.json": "3e83a6d12fbe59cb1ec0f32b2b21dd111a9316eda988192ad005627ec65613eb",
+      "fasterrcnn_resnet50_fpn_step_100_metrics.json": "953273b50ee50eb90e1a81d613f8f3e08668936addcf078ae72b3eda11343ebb",
+      "fasterrcnn_resnet50_fpn_step_100_predictions.json": "0ea20dd9892c7bb8877300e689dc7fcf5f92b53b29e1891d0b2470b454aee76c",
+      "fasterrcnn_resnet50_fpn_step_200_metrics.json": "9892072b5654aea428b58dc12bb494b1e847241feab48b2616489644fafde49c",
+      "fasterrcnn_resnet50_fpn_step_200_predictions.json": "02c2d762b6b2b3f60fbbfce61d37c1665a387e5e891db49012fc8b66d965ef41",
+      "ground_truth.json": "4e2ef1d42ac03dae627844d1eff07ed7c35b78878dc34cb58cd993c624652b8e",
+      "inputs.json": "85cdcf3661a9ca746376770101a73c7955e0cc4637b3627da56945c798e2254f",
+      "package_versions.json": "ad8ebb826924863ba57bdcf49ee33bb6b90e46d21cce342b162e75f5119274e0",
+      "run.json": "923ecda8156f58a968da057f06f0c611fd18caae490daed665bdd1d4885b7f51",
+      "steps.jsonl": "24322c805fc519a62eaf35ede080d011b80290a1990c60e8e7b15cec9d007c6f",
+      "yolov8n_reload_predictions.json": "2bf267ab134bf92de5ad7b03cfce85d6efc37241a6b4869f8421564557a22246",
+      "yolov8n_step_000_metrics.json": "d25f4f09e421e17e634e9c67738780e676381111a630275bc9df3b7974da5b58",
+      "yolov8n_step_000_predictions.json": "8df65a06e2426162219ccae0ccdd3f5e60df0ed1b0052cdf2633c4c01ececa9d",
+      "yolov8n_step_050_metrics.json": "65ecc0db78cf76751c4fe9eebb145ac5eadc79d6af6a8e1fe5c2b710d85eb7cf",
+      "yolov8n_step_050_predictions.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "yolov8n_step_100_metrics.json": "f62aa57583548019e4cd3344f9b7bb5644353915d730423574f39ce84df68f10",
+      "yolov8n_step_100_predictions.json": "bb825fa33cadc874962a1a2577a6d66e17998b3b6a9d468e6857283d50174c42",
+      "yolov8n_step_200_metrics.json": "f7ed3a38361f1f782323ed9ca42a273ba63d468e7aa457ace66c218060214b65",
+      "yolov8n_step_200_predictions.json": "2bf267ab134bf92de5ad7b03cfce85d6efc37241a6b4869f8421564557a22246"
+    },
+    "purpose": "Evaluation-only diagnosis of YOLO normalization sensitivity on the fixed training subset",
+    "split_config_sha256": "303f2e0e3835ca146e63f2f2b03b5a8d630b2dc1972089848bea97605ac87131",
+    "stopping_rule": "One pass per checkpoint/mode; no optimizer, tuning, retries or extra training. Any parity, hash, state or finite-value failure stops the check.",
+    "versions": {
+      "Pillow": "10.3.0",
+      "numpy": "1.26.4",
+      "opencv-python-headless": "4.11.0.86",
+      "pycocotools": "2.0.10",
+      "torch": "2.3.0",
+      "torchvision": "0.18.0",
+      "ultralytics-opencv-headless": "8.4.182"
+    }
+  },
+  "python": "3.12.3",
+  "scope": "Exploratory training-only normalization diagnostic; batch-stat scores are not a deployment evaluation",
+  "source_context": {
+    "manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+    "package_checksums_sha256": "2ca05298dcadb79ed5e5d4e03bdcfeba8a3cb8dd30666e9f363ab46cefae15dd",
+    "protocol_sha256": "ba43e1da1f77da71106660cb497825eaa5418374078db57d7fced89df491796b",
+    "selection_sha256": "a895f10c4f8ca15571cc5e085faa75e0b05eda93e62f4b24e66b5df2210bb461",
+    "weights_sha256": {
+      "fasterrcnn_resnet50_fpn": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384",
+      "yolov8n": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36"
+    }
+  },
+  "started_utc": "2026-10-22T16:33:58.040248+00:00",
+  "status": "complete",
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "opencv-python-headless": "4.11.0.86",
+    "pycocotools": "2.0.10",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0",
+    "ultralytics-opencv-headless": "8.4.182"
+  }
+}

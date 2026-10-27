@@ -1,0 +1,178 @@
+{
+  "actual_fasterrcnn_cpu_check": {
+    "effective_configuration": {
+      "constructor": "fasterrcnn_resnet50_fpn",
+      "detections_per_image": 100,
+      "image_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "image_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "max_size": 64,
+      "min_size": 64,
+      "nms_threshold": 0.5,
+      "num_classes": 5,
+      "score_threshold": 0.05,
+      "weights": null,
+      "weights_backbone": null
+    },
+    "limitation": "Local TorchVision 0.25.0 differs from CCAST 0.18.0. This is not pinned-stack, CUDA, real-image, or YOLO execution evidence.",
+    "purpose": "Local CPU integration-path check with synthetic 64-pixel inputs",
+    "result": {
+      "inference": [
+        {
+          "boxes_sha256": "ad2bb30c1da472fa1ab3af86b99ba1d501d3d498c9fb503549cee3ac65c899f1",
+          "detections": 100,
+          "labels_sha256": "9a4167c45975638da8e7ec54d771977d017b195240b0a62b7b2c2f9b2678ced8",
+          "scores_sha256": "a1069468470e5d46b61e631987600fb1cce4698971046e7301a93538aaf47840"
+        },
+        {
+          "boxes_sha256": "938b1e0970d00f99edc9673b1c552a7b40656e60e4aba05ad40ceeac3f603343",
+          "detections": 100,
+          "labels_sha256": "3fab4237f138589c15ec87d00020b05a55fe09913459c89e451a62c5d2b65c25",
+          "scores_sha256": "4590aaeba097d7c23fa4245aa173f9e5f6eae95af758412fafc6000dde087b28"
+        }
+      ],
+      "inputs": {
+        "images": [
+          {
+            "canonical_labels": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "geometry": {
+              "original_height": 64,
+              "original_width": 64,
+              "pad_left": 0,
+              "pad_top": 0,
+              "resized_height": 64,
+              "resized_width": 64,
+              "size": 64
+            },
+            "image": "synthetic/0.png",
+            "image_id": 0,
+            "prepared_tensor_sha256": "747ff62dcb7f7294403ff266af8676f3bc3101b4beb268c61b8499de4db87cb1",
+            "prepared_xyxy_sha256": "9defd73dc75b13f21315b8349610c7f977cc08432ebdf2ace1a3b7c85d10ea4c",
+            "source_image_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "target_count": 4
+          },
+          {
+            "canonical_labels": [],
+            "geometry": {
+              "original_height": 64,
+              "original_width": 64,
+              "pad_left": 0,
+              "pad_top": 0,
+              "resized_height": 64,
+              "resized_width": 64,
+              "size": 64
+            },
+            "image": "synthetic/1.png",
+            "image_id": 1,
+            "prepared_tensor_sha256": "8caf809e785769c7c7be93a00b35b6f11cdfb01d55946eeb719f2ada6364bb62",
+            "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+            "source_image_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+            "target_count": 0
+          }
+        ],
+        "signature": "d7bbf1fb17118cf2e497941f5b3e22292b45e44080e04f4bcd67a9a88fa01902"
+      },
+      "target_counts": [
+        4,
+        0
+      ],
+      "update": {
+        "classifier_max_absolute_update": 0.0017485562711954117,
+        "gradient_tensors_checked": 189,
+        "loss_components": {
+          "loss_box_reg": 0.11833575367927551,
+          "loss_classifier": 1.834864854812622,
+          "loss_objectness": 0.6921656727790833,
+          "loss_rpn_box_reg": 0.11075147986412048
+        },
+        "total_loss": 2.756117582321167
+      }
+    },
+    "status": "passed",
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "local_yolo_execution": "Not run: installed Ultralytics 8.4.47 differs from pinned CCAST 8.4.182",
+  "metadata_scope": {
+    "batch_target_counts": [
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1
+      ]
+    ],
+    "batches_per_model": 8,
+    "images": 15,
+    "targets": 16
+  },
+  "pending": [
+    "CCAST transfer and source checks",
+    "Focused tests in the pinned environment",
+    "Both detector paths on the 15 real training images",
+    "Returned run-record verification",
+    "Bounded detector feasibility study and final architecture choice"
+  ],
+  "python": "3.14.2",
+  "python_3_12_grammar": "passed",
+  "raw_rdd_images_read_locally": 0,
+  "recorded_utc": "2026-10-22T04:10:01.959721+00:00",
+  "status": "prepared_locally_ccast_execution_pending",
+  "unchanged_loader_source_files": 4,
+  "unit_test_scope": "Synthetic adapter/gradient/output tests and mocked CCAST/CUDA CLI completion/failure paths",
+  "unit_tests": {
+    "command": "python -m unittest discover -s detection_integration_v1/tests -p test_integration.py -v",
+    "evidence": "Completed local unittest output: Ran 14 tests, OK, process exit 0",
+    "passed": 14,
+    "reported_seconds": 12.464,
+    "skipped": 0
+  },
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0",
+    "ultralytics": "8.4.47"
+  }
+}

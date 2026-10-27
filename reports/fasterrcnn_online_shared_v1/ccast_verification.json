@@ -1,0 +1,502 @@
+{
+  "all_epoch_prediction_geometry_counts_and_coverage": [
+    {
+      "clipped_boxes": 1114,
+      "collapsed_predictions": 0,
+      "epoch": 1,
+      "images": 5760,
+      "predictions": 533934
+    },
+    {
+      "clipped_boxes": 1044,
+      "collapsed_predictions": 0,
+      "epoch": 2,
+      "images": 5760,
+      "predictions": 462247
+    },
+    {
+      "clipped_boxes": 1105,
+      "collapsed_predictions": 0,
+      "epoch": 3,
+      "images": 5760,
+      "predictions": 557316
+    },
+    {
+      "clipped_boxes": 3711,
+      "collapsed_predictions": 1063,
+      "epoch": 4,
+      "images": 5760,
+      "predictions": 485165
+    },
+    {
+      "clipped_boxes": 1302,
+      "collapsed_predictions": 0,
+      "epoch": 5,
+      "images": 5760,
+      "predictions": 504408
+    },
+    {
+      "clipped_boxes": 1265,
+      "collapsed_predictions": 0,
+      "epoch": 6,
+      "images": 5760,
+      "predictions": 537970
+    },
+    {
+      "clipped_boxes": 1155,
+      "collapsed_predictions": 70,
+      "epoch": 7,
+      "images": 5760,
+      "predictions": 516249
+    },
+    {
+      "clipped_boxes": 6253,
+      "collapsed_predictions": 0,
+      "epoch": 8,
+      "images": 5760,
+      "predictions": 538419
+    },
+    {
+      "clipped_boxes": 1251,
+      "collapsed_predictions": 0,
+      "epoch": 9,
+      "images": 5760,
+      "predictions": 571793
+    },
+    {
+      "clipped_boxes": 2704,
+      "collapsed_predictions": 0,
+      "epoch": 10,
+      "images": 5760,
+      "predictions": 479270
+    },
+    {
+      "clipped_boxes": 378,
+      "collapsed_predictions": 0,
+      "epoch": 11,
+      "images": 5760,
+      "predictions": 456310
+    },
+    {
+      "clipped_boxes": 307,
+      "collapsed_predictions": 0,
+      "epoch": 12,
+      "images": 5760,
+      "predictions": 474878
+    },
+    {
+      "clipped_boxes": 445,
+      "collapsed_predictions": 8,
+      "epoch": 13,
+      "images": 5760,
+      "predictions": 364885
+    },
+    {
+      "clipped_boxes": 613,
+      "collapsed_predictions": 17,
+      "epoch": 14,
+      "images": 5760,
+      "predictions": 337399
+    },
+    {
+      "clipped_boxes": 607,
+      "collapsed_predictions": 0,
+      "epoch": 15,
+      "images": 5760,
+      "predictions": 335393
+    },
+    {
+      "clipped_boxes": 558,
+      "collapsed_predictions": 0,
+      "epoch": 16,
+      "images": 5760,
+      "predictions": 349741
+    },
+    {
+      "clipped_boxes": 562,
+      "collapsed_predictions": 0,
+      "epoch": 17,
+      "images": 5760,
+      "predictions": 308103
+    },
+    {
+      "clipped_boxes": 544,
+      "collapsed_predictions": 1,
+      "epoch": 18,
+      "images": 5760,
+      "predictions": 295051
+    },
+    {
+      "clipped_boxes": 555,
+      "collapsed_predictions": 1,
+      "epoch": 19,
+      "images": 5760,
+      "predictions": 305192
+    },
+    {
+      "clipped_boxes": 530,
+      "collapsed_predictions": 7,
+      "epoch": 20,
+      "images": 5760,
+      "predictions": 300018
+    }
+  ],
+  "archive": "fasterrcnn_online_shared_seed42_v1_records_437f03a837f3.tar.gz",
+  "archive_bytes": 407751939,
+  "archive_files": 119,
+  "archive_sha256": "b30df4e003be14cf8a53059341451c5101261d98d32e58cdc94866c793f0a231",
+  "audit_source_sha256": "81017542d7ff7d0582c73287becca338371c27f280f06b38a376dae7081e4203",
+  "augmentation_verification": {
+    "aggregate_alpha_weighted_fraction_of_applied_content": 0.07172850570330905,
+    "aggregate_union_fraction_of_applied_content": 0.07254600967137897,
+    "applied_without_pixel_change": 1332,
+    "compute": {
+      "image_forwards": 71680,
+      "images": 2560,
+      "seconds": 3384.7370408456773
+    },
+    "independent_policy_reconstruction": "all_10_updates_all_24_operation_level_cells_all_4_classes",
+    "limits": [
+      "Policy arithmetic independently reconstructed from saved per-object detections/IoUs/losses, not rerun from detector checkpoints or raw images.",
+      "Raw probe detection boxes/scores and per-ROI logits are not archived; one-to-one matching and loss computation cannot be independently re-executed from these records alone.",
+      "Unchanged model/buffer/gradient/RNG state is enforced by checksum-matched executed code and recorded as passed; checkpoint tensor bytes are not in this archive.",
+      "Training changed-pixel counts are aggregate records, not fresh pixel comparisons. Probe fingerprints and no-change counts are internally checked.",
+      "Per-class pooled strength diagnostics are exploratory; they are not class-set-specific policies or evidence of their downstream efficacy."
+    ],
+    "operation_strength_training_exposure": [
+      {
+        "family": "blur_noise",
+        "images": 43625,
+        "level": 1,
+        "operation": "gaussian_blur"
+      },
+      {
+        "family": "blur_noise",
+        "images": 43511,
+        "level": 1,
+        "operation": "gaussian_noise"
+      },
+      {
+        "family": "photometric",
+        "images": 5532,
+        "level": 1,
+        "operation": "brightness_down"
+      },
+      {
+        "family": "photometric",
+        "images": 1411,
+        "level": 2,
+        "operation": "brightness_down"
+      },
+      {
+        "family": "photometric",
+        "images": 4945,
+        "level": 3,
+        "operation": "brightness_down"
+      },
+      {
+        "family": "photometric",
+        "images": 5387,
+        "level": 1,
+        "operation": "brightness_up"
+      },
+      {
+        "family": "photometric",
+        "images": 1367,
+        "level": 2,
+        "operation": "brightness_up"
+      },
+      {
+        "family": "photometric",
+        "images": 4834,
+        "level": 3,
+        "operation": "brightness_up"
+      },
+      {
+        "family": "photometric",
+        "images": 5418,
+        "level": 1,
+        "operation": "contrast_down"
+      },
+      {
+        "family": "photometric",
+        "images": 1374,
+        "level": 2,
+        "operation": "contrast_down"
+      },
+      {
+        "family": "photometric",
+        "images": 4895,
+        "level": 3,
+        "operation": "contrast_down"
+      },
+      {
+        "family": "photometric",
+        "images": 5642,
+        "level": 1,
+        "operation": "contrast_up"
+      },
+      {
+        "family": "photometric",
+        "images": 1347,
+        "level": 2,
+        "operation": "contrast_up"
+      },
+      {
+        "family": "photometric",
+        "images": 5033,
+        "level": 3,
+        "operation": "contrast_up"
+      },
+      {
+        "family": "photometric",
+        "images": 5488,
+        "level": 1,
+        "operation": "gamma_brighten"
+      },
+      {
+        "family": "photometric",
+        "images": 1338,
+        "level": 2,
+        "operation": "gamma_brighten"
+      },
+      {
+        "family": "photometric",
+        "images": 4953,
+        "level": 3,
+        "operation": "gamma_brighten"
+      },
+      {
+        "family": "photometric",
+        "images": 5639,
+        "level": 1,
+        "operation": "gamma_darken"
+      },
+      {
+        "family": "photometric",
+        "images": 1356,
+        "level": 2,
+        "operation": "gamma_darken"
+      },
+      {
+        "family": "photometric",
+        "images": 5056,
+        "level": 3,
+        "operation": "gamma_darken"
+      }
+    ],
+    "photometric_probability_when_both_families_eligible": {
+      "max": 0.515102500422733,
+      "mean_absolute_deviation_from_half": 0.007612762123986366,
+      "min": 0.4867305460759189
+    },
+    "policy_strength_choices": [
+      {
+        "blur_noise": 1,
+        "epoch": 2
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 4,
+        "photometric": 1
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 6,
+        "photometric": 1
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 8,
+        "photometric": 2
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 10,
+        "photometric": 3
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 12,
+        "photometric": 1
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 14,
+        "photometric": 1
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 16,
+        "photometric": 3
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 18,
+        "photometric": 3
+      },
+      {
+        "blur_noise": 1,
+        "epoch": 20,
+        "photometric": 3
+      }
+    ],
+    "reported_changed_fraction_of_applied_content": 0.05797102371585511,
+    "reported_changed_images": 156819,
+    "reported_changed_pixels": 3546431748,
+    "status": "passed_saved_observation_and_metadata_audit",
+    "total": {
+      "applied_images": 158151,
+      "augmentation_opportunities": 158151,
+      "family/blur_noise": 87136,
+      "family/photometric": 71015,
+      "images": 537260,
+      "local_alpha_units": 8776117224,
+      "local_reference_pixels": 61175937920,
+      "local_union_pixels": 4438070184,
+      "operation/brightness_down": 11888,
+      "operation/brightness_up": 11588,
+      "operation/contrast_down": 11687,
+      "operation/contrast_up": 12022,
+      "operation/gamma_brighten": 11779,
+      "operation/gamma_darken": 12051,
+      "operation/gaussian_blur": 43625,
+      "operation/gaussian_noise": 43511,
+      "operation/identity": 379109,
+      "reason/applied": 158151,
+      "reason/no_target": 204660,
+      "reason/probability": 157819,
+      "reason/warmup": 16630,
+      "selected_boxes": 199490,
+      "selected_groups": 158151,
+      "selected_multi_box_groups": 26843,
+      "strength_level_1": 120242,
+      "strength_level_2": 8193,
+      "strength_level_3": 29716,
+      "target_images": 332600
+    }
+  },
+  "best_checkpoint": {
+    "bytes": 331603450,
+    "checkpoint_file": "epoch_014_step_00094024_e5b5b0361365.pt",
+    "completed_epochs": 14,
+    "epoch": 14,
+    "file": "epoch_014_step_00094024_e5b5b0361365.pt",
+    "label": "epoch_014",
+    "sha256": "79cdc11589574ac645a05014dc41e95c7da1f36638b2ad931f43f20b9377414a",
+    "step": 94024,
+    "validation_AP50_95": 0.2305939154960838
+  },
+  "best_epoch": 14,
+  "best_metrics": {
+    "AP50": 0.51033367714538,
+    "AP50_95": 0.2305939154960838,
+    "AP75": 0.1730177281710695,
+    "AR100": 0.44280716242677,
+    "per_class": {
+      "D00": {
+        "AP50": 0.5065398103327607,
+        "AP50_95": 0.24905395589926294,
+        "target_count": 3888
+      },
+      "D10": {
+        "AP50": 0.47893336836011574,
+        "AP50_95": 0.20049989721248412,
+        "target_count": 1770
+      },
+      "D20": {
+        "AP50": 0.6301115816421764,
+        "AP50_95": 0.30162248239136835,
+        "target_count": 1592
+      },
+      "D40": {
+        "AP50": 0.42574994824646734,
+        "AP50_95": 0.17119932648121977,
+        "target_count": 975
+      }
+    }
+  },
+  "best_negative_image_fp_fraction_at_0_25": 0.40401276789785684,
+  "best_negative_images": 2193,
+  "best_negative_images_with_predictions_at_0_25": 886,
+  "best_negative_predicted_boxes_at_0_25": 1707,
+  "best_to_final_AP50_95_change": -0.004715545427328827,
+  "completed_epochs": 20,
+  "controller_audit_source_sha256": "0925fbfaabb1ad8fbddeae3188f05e32bd569e20e76ede80a53def0efebba85e",
+  "final_metrics": {
+    "AP50": 0.5034986521531852,
+    "AP50_95": 0.22587837006875497,
+    "AP75": 0.16955631042391986,
+    "AR100": 0.4343783540251976,
+    "per_class": {
+      "D00": {
+        "AP50": 0.4959697716952066,
+        "AP50_95": 0.2421054789590817,
+        "target_count": 3888
+      },
+      "D10": {
+        "AP50": 0.47017083947137006,
+        "AP50_95": 0.19663252449027274,
+        "target_count": 1770
+      },
+      "D20": {
+        "AP50": 0.6320432349816552,
+        "AP50_95": 0.2997028274964744,
+        "target_count": 1592
+      },
+      "D40": {
+        "AP50": 0.41581076246450926,
+        "AP50_95": 0.1650726493291909,
+        "target_count": 975
+      }
+    }
+  },
+  "frozen_train_val_separation": "image/source-cluster/decoded-RGB hashes disjoint",
+  "ground_truth_matches_frozen_validation": true,
+  "image_presentations": 537260,
+  "limits": [
+    "Only selected and final epochs' AP/AR were independently recomputed; all 20 epochs' hashes, coverage, geometry, counts and history consistency were verified.",
+    "Full checkpoint binaries and the live stdout/stderr log are not in this records archive; checkpoint hashes are metadata, not a fresh audit of checkpoint bytes.",
+    "Raw images were not reopened locally and detector inference was not rerun.",
+    "One seed and one initialization/recipe; no seed-variation estimate or final-test evaluation.",
+    "The best epoch is selected on this validation set, so its result is a development estimate rather than an untouched final-test estimate.",
+    "No-target-image detections are false positives relative to retained annotations; annotation completeness was not visually re-audited."
+  ],
+  "local_versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11"
+  },
+  "maximum_recomputed_metric_error": 0.0,
+  "next_experiment_executed": false,
+  "optimizer_steps": 134320,
+  "protocol_and_environment_match": true,
+  "recommendation": "Compare online shared with the three verified controls under identical checkpoint selection; distinguish adaptive strength selection from family weighting and preserve single-seed, warmup-divergence and strength-grid limitations.",
+  "recomputed_epochs": [
+    14,
+    20
+  ],
+  "released_code_files_matched": 30,
+  "result_checksum_entries": 118,
+  "run": {
+    "elapsed_seconds": 50915.29291674122,
+    "finished_utc": "2026-10-26T15:47:37.249589+00:00",
+    "gpu": "NVIDIA A10",
+    "host": "gpu0020",
+    "pbs_job": "796146.bright04",
+    "peak_cuda_memory_allocated_bytes": 2857788416,
+    "resume": false,
+    "started_utc": "2026-10-26T01:39:04.379855+00:00"
+  },
+  "status": "verified_with_selected_and_final_metrics_recomputed",
+  "test_data_read": false,
+  "train_images": 26863,
+  "training_loss_first_final": [
+    0.2542257170283204,
+    0.14881958636708675
+  ],
+  "uncompressed_bytes": 428975573,
+  "validation_AP50_95_epoch12_to13_change": 0.047611322262997136,
+  "validation_images": 5760,
+  "validation_targets": 8225
+}

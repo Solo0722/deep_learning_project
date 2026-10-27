@@ -1,0 +1,141 @@
+{
+  "application_group_geometry_optimizer_validation_checkpoint_rules_match": true,
+  "numerical_controller_settings": {
+    "aggregation": "Mean draws per object, mean objects per class, normalized net mean-loss increase clipped [0,5], equal classes and operations within family. Strongest admissible tested level, even if lower levels fail; no monotonicity assumed.",
+    "classes": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "condition": "shared_across_all_group_class_sets",
+    "confidence": 0.25,
+    "cost": "Full run: 10 updates x 256 images x 28 views = 71680 additional backbone image forwards, plus positive ROI observations. No detector optimizer steps in probes.",
+    "difficulty_cap": 5.0,
+    "exploration": 0.2,
+    "feedback": "Training-only forward probes in eval/inference mode; no backward, optimizer, BN or RNG update. Separate keyed panel/group/noise/decision draws; fixed noise realization across strengths.",
+    "interpretation": "Comparison with fixed local bundles online selection with a wider strength grid. It does not isolate online updates from a fixed policy optimized over the same grid. One shared policy constrains all four classes; future class-set condition will use identical probes/grid/support.",
+    "iou": 0.5,
+    "levels": [
+      {
+        "brightness_down": {
+          "factor": 0.9
+        },
+        "brightness_up": {
+          "factor": 1.1
+        },
+        "contrast_down": {
+          "factor": 0.9
+        },
+        "contrast_up": {
+          "factor": 1.1
+        },
+        "gamma_brighten": {
+          "gamma": 0.9
+        },
+        "gamma_darken": {
+          "gamma": 1.1
+        },
+        "gaussian_blur": {
+          "sigma_pixels": 0.4
+        },
+        "gaussian_noise": {
+          "sigma_unit": 0.01
+        }
+      },
+      {
+        "brightness_down": {
+          "factor": 0.8
+        },
+        "brightness_up": {
+          "factor": 1.2
+        },
+        "contrast_down": {
+          "factor": 0.8
+        },
+        "contrast_up": {
+          "factor": 1.2
+        },
+        "gamma_brighten": {
+          "gamma": 0.8
+        },
+        "gamma_darken": {
+          "gamma": 1.2
+        },
+        "gaussian_blur": {
+          "sigma_pixels": 0.8
+        },
+        "gaussian_noise": {
+          "sigma_unit": 0.02
+        }
+      },
+      {
+        "brightness_down": {
+          "factor": 0.7
+        },
+        "brightness_up": {
+          "factor": 1.3
+        },
+        "contrast_down": {
+          "factor": 0.7
+        },
+        "contrast_up": {
+          "factor": 1.3
+        },
+        "gamma_brighten": {
+          "gamma": 0.7
+        },
+        "gamma_darken": {
+          "gamma": 1.3
+        },
+        "gaussian_blur": {
+          "sigma_pixels": 1.2
+        },
+        "gaussian_noise": {
+          "sigma_unit": 0.03
+        }
+      }
+    ],
+    "loss_delta": 0.1,
+    "matching": "Score-descending one-to-one class-correct IoU matching to all GT; stable original detection index ties; target-group reference-detected subset supplies retention denominator.",
+    "minimum_detected_clusters": 4,
+    "minimum_detected_objects": 8,
+    "noise_draws": 2,
+    "numeric_choice_rationale": "A bounded first controller run: 256 source-diverse images per update, three strengths centered on the fixed control, updates every two epochs. Eight detected objects across four clusters avoids decisions from one or two detections but is not a precision guarantee. rho=.8 permits at most 20% measured reference-detection loss; confidence/IoU=.25/.5 match existing diagnostics; delta=.1 regularizes near-zero reference loss, cap=5 bounds instability, temperature=.25/exploration=.2 allocate difficulty while exploring. These values are prospective engineering choices, not validation-optimized or established optimal settings.",
+    "object_loss": "Eval RPN positive proposals assigned by pinned ROI IoU matcher plus one explicitly self-assigned GT ROI per object; per-ROI CE + class-specific SmoothL1 beta=1/9 sum4, then mean within object. Same procedure both views. No background or RPN loss in controller.",
+    "panel_images": 256,
+    "panel_selection": "Hash-rank positive training images independently each update; prefer distinct source clusters then fill unused images. Uniform one raster group, keyed exactly as fixed local. Never resample by detection outcome.",
+    "probe_batch_size": 2,
+    "retention_threshold": 0.8,
+    "state": "Epoch-boundary immutable policy committed with model/optimizer/RNG. Resume does not repeat committed updates. Interrupted uncommitted probe restarts from same model; partial view counts retained separately.",
+    "support": "Every class must have at least 8 distinct reference-detected target-group objects in at least 4 distinct source clusters. Stochastic draws do not increase support.",
+    "temperature": 0.25,
+    "update_interval_epochs": 2,
+    "version": "online_shared_local_v1"
+  },
+  "protocol_sha256": "484bb09534d37aab47c640ac6f5c4c322e6bc0a94fe713bbc30e4eafb18d71a0",
+  "status": "passed",
+  "unchanged_baseline_functions": [
+    "epoch_batches",
+    "learning_rate",
+    "update",
+    "validate",
+    "commit",
+    "restore",
+    "write_history",
+    "verify_partitions",
+    "archive_records"
+  ],
+  "unchanged_dependency_files": [
+    "rdd_data.py",
+    "models.py",
+    "metrics.py",
+    "checkpoints.py",
+    "integration.py",
+    "select_training_cases.py",
+    "smoke_selection.json",
+    "local_augmentation.py",
+    "shared_augmentation.py",
+    "smoke_augmentation.py"
+  ]
+}

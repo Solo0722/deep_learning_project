@@ -1,0 +1,39 @@
+{
+  "recorded_utc": "2026-10-21T23:00:16.333241+00:00",
+  "scope": "Local metadata preflight and synthetic software tests; full remote image audit not run",
+  "input_records": 38385,
+  "annotation_records": 38385,
+  "cached_fingerprints": 23766,
+  "historical_split_images": 23766,
+  "historical_candidate_edges": 557,
+  "input_sha256": {
+    "inventory.jsonl": "bfd6e2ef31a5a73335a966381d2dbb3b171f0fd44a43724fecc637134e2547b1",
+    "image_audit_run.json": "fc819a47b047792ae5f3ecc61a6efb1d8f3308b8fb9d1ddb7fc2078c27bea9e7",
+    "annotations.jsonl": "6e50233cc1568348aa1cb6ba6bb5104eff2b81f6a5e6345a383d482fc9ce19c0",
+    "fingerprints.jsonl": "78852abeb0d84d2a6a3027cf240ff1bcdeb9ae26918e7aa1be2bcd6d53d8cf3b",
+    "candidate_pairs.jsonl": "418291bf6a416af7066c5c90af5edb8660869c66245b13574ff8409c48624200",
+    "screen_run.json": "962e6674a1be07013abf398bc7da012abd4632710252aefbf731a4d9ab03c1df",
+    "screen_summary.json": "340661101d1813a868098403c9afc7d2347dba38e50a6643874006eaf3e2f3a5",
+    "previous_images.csv": "bfac83ec2542ee1616a04c6e50af81ca213f5124d3a1d09ac9eab3bdfa71da60"
+  },
+  "tests": {
+    "command": "python -m unittest discover -s tests -p test_audit_detection_data.py -v",
+    "passed": 8,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "remote_setup_evidence": {
+    "source": "User-supplied CCAST terminal output in this conversation",
+    "image_xml_pairs": 38385,
+    "python": "3.12.3",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0",
+    "pillow": "10.3.0",
+    "gpu": "NVIDIA A10",
+    "visible_gpus_in_allocation": 1,
+    "cuda_build": "12.1",
+    "cuda_nms": "PASS"
+  },
+  "remote_audit_status": "not_started",
+  "detection_split_status": "not_created"
+}

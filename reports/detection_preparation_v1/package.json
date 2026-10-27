@@ -1,0 +1,16 @@
+{
+  "archive": "detection_preparation_v1.tar.gz",
+  "bytes": 173080,
+  "sha256": "16d6ca855c6bc583308f06e9343666cd152eff0e76dbc2ff8df33fc1873b245a",
+  "payload_files": {
+    "audit_detection_data.py": "5f50f0340b489ee7ade27a9101bc416f9658e714d04f0546e031c0bf01984ba7",
+    "DETECTION_DATA_RUNBOOK.md": "67aa973050e456c0a0e1a789283176c88d25a9f73b30f89dd350820cca02e905",
+    "frozen_crop_images.csv": "bfac83ec2542ee1616a04c6e50af81ca213f5124d3a1d09ac9eab3bdfa71da60",
+    "local_verification.json": "97647e47b5dac888e9f0a1d9dff76b98d72fb6ed0e0485a414f745f8d244dd89",
+    "reference_inputs.json": "6e574eefb7ace561212ac0d62a0c2f535e2783afb7dd2002ba5755b35e79364a",
+    "screen_near_duplicates.py": "50fceed7efd438939890fa490738e43e0eaee6684a2441c3eec5807aedbb7e0d",
+    "tests/test_audit_detection_data.py": "cdab74c73d6749715ad0a7f77d889418b793431b33651d990270ee7cb5f199b9",
+    "validate_images.py": "9527ba389e3aad149ad8b2f99f03aa1774b10ab817b5ecaddb2ad185f65c7115"
+  },
+  "payload_archive_members_verified": true
+}

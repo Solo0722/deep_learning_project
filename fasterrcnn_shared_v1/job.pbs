@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -N rdd_frcnn_shr
+#PBS -q gpus
+#PBS -l select=1:ncpus=4:mem=32gb:ngpus=1:glist=a10
+#PBS -l walltime=24:00:00
+#PBS -W group_list=x-ccast-prj-aaboah
+#PBS -j oe
+
+set -eo pipefail
+cd /mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/fasterrcnn_shared_v1
+exec bash run_job.sh "${RDD_ACTION:-start}"

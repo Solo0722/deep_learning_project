@@ -1,0 +1,1425 @@
+{
+  "archive": "detection_learning_check_v1.tar.gz",
+  "archive_bytes": 555517,
+  "archive_files": 39,
+  "archive_sha256": "0ab14951c60bf566e2585ea66648d3bc743e2c427558b1f85b762ed50dd9693a",
+  "checkpoints": [
+    {
+      "bytes": 331071418,
+      "completed_steps": 100,
+      "file": "fasterrcnn_resnet50_fpn_step_100.pt",
+      "model_name": "fasterrcnn_resnet50_fpn",
+      "sha256": "f0c70670ae28fb60dd881949a7a2eb93da4f07bf124f32fadd1d6ebb33275879"
+    },
+    {
+      "bytes": 331071418,
+      "completed_steps": 200,
+      "file": "fasterrcnn_resnet50_fpn_step_200.pt",
+      "model_name": "fasterrcnn_resnet50_fpn",
+      "sha256": "841c1bdf86b1f11e8192f5823202036b6abeb49f7b377b5acaa3c0844a59d492"
+    },
+    {
+      "bytes": 25324410,
+      "completed_steps": 100,
+      "file": "yolov8n_step_100.pt",
+      "model_name": "yolov8n",
+      "sha256": "5e2a2b8827924d80d2194e0e4d76a23341062a538fc51ece63e6ca33f6d6e753"
+    },
+    {
+      "bytes": 25324410,
+      "completed_steps": 200,
+      "file": "yolov8n_step_200.pt",
+      "model_name": "yolov8n",
+      "sha256": "fa721c7a59f4ebd4d2c94c50759307e467cedf64b1fc60c590490bea81b4eb48"
+    }
+  ],
+  "elapsed_seconds_reported": 61.474,
+  "evaluation_recomputed_directly_with_pycocotools": "2.0.11",
+  "full_checkpoint_binaries_verified_locally": false,
+  "gpu": "NVIDIA A10",
+  "ground_truth_matches_frozen_train_manifest": true,
+  "host": "gpu0020",
+  "inputs_match_prior_verified_integration": true,
+  "limits": [
+    "No raw image decoding or GPU/model execution was repeated locally.",
+    "Checkpoint restore results are inspected records, not an independent reload of the binaries.",
+    "These are training-subset engineering diagnostics; no ranking, generalization or controller-efficacy conclusion.",
+    "Post-NMS records do not expose raw logits, positive assignment counts, batch statistics or full gradient norms."
+  ],
+  "models": {
+    "fasterrcnn_resnet50_fpn": {
+      "checkpoint_reloads": [
+        {
+          "checkpoint": "fasterrcnn_resnet50_fpn_step_100.pt",
+          "completed_steps": 100,
+          "model_state_exact": true,
+          "next_step": 101,
+          "optimizer_state_exact": true,
+          "rng_state_exact": true
+        },
+        {
+          "checkpoint": "fasterrcnn_resnet50_fpn_step_200.pt",
+          "completed_steps": 200,
+          "maximum_original_coordinate_error": 0.0,
+          "maximum_score_error": 0.0,
+          "model_state_exact": true,
+          "next_step": 201,
+          "optimizer_state_exact": true,
+          "predictions_match_within_tolerance": true,
+          "rng_state_exact": true
+        }
+      ],
+      "largest_classifier_update": {
+        "batch_index": 3,
+        "batch_target_counts": [
+          1,
+          0
+        ],
+        "input_signature": "4661f6c9a4c229bb46ab8af3c9affa8d6198f0dd2401a1807639205ec1c5bf26",
+        "model": "fasterrcnn_resnet50_fpn",
+        "step": 4,
+        "update": {
+          "classifier_max_absolute_update": 0.005530668422579765,
+          "gradient_tensors_checked": 83,
+          "loss_components": {
+            "loss_box_reg": 0.000913032446987927,
+            "loss_classifier": 0.4707026183605194,
+            "loss_objectness": 0.12531425058841705,
+            "loss_rpn_box_reg": 0.00932438112795353
+          },
+          "total_loss": 0.6062542796134949
+        }
+      },
+      "learning_review": {
+        "decision": "needs_review",
+        "final_training_AP50": 0.35517224162436534,
+        "initial_training_AP50": 0.0,
+        "scope": "Engineering review rule on training examples; no generalization or model-ranking claim",
+        "training_AP50_gain": 0.35517224162436534
+      },
+      "maximum_recomputed_scalar_metric_error": 0.0,
+      "metrics": [
+        {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            }
+          },
+          "step": 0
+        },
+        {
+          "AP50": 0.07306349364033395,
+          "AP50_95": 0.01192363801597551,
+          "AP75": 0.0003094059405940594,
+          "AR100": 0.090625,
+          "per_class": {
+            "D00": {
+              "AP50": 0.039778727036583264,
+              "AP50_95": 0.00982326493518917
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D20": {
+              "AP50": 0.2524752475247525,
+              "AP50_95": 0.03787128712871287
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            }
+          },
+          "step": 50
+        },
+        {
+          "AP50": 0.19020846599843647,
+          "AP50_95": 0.06820901895070855,
+          "AP75": 0.008763895740107818,
+          "AR100": 0.334375,
+          "per_class": {
+            "D00": {
+              "AP50": 0.24699983234260237,
+              "AP50_95": 0.07928956650230845
+            },
+            "D10": {
+              "AP50": 0.049283112273491504,
+              "AP50_95": 0.013383850177470576
+            },
+            "D20": {
+              "AP50": 0.26794554455445546,
+              "AP50_95": 0.10717821782178218
+            },
+            "D40": {
+              "AP50": 0.1966053748231965,
+              "AP50_95": 0.07298444130127298
+            }
+          },
+          "step": 100
+        },
+        {
+          "AP50": 0.35517224162436534,
+          "AP50_95": 0.17553766590333464,
+          "AP75": 0.14829003504746077,
+          "AR100": 0.5375,
+          "per_class": {
+            "D00": {
+              "AP50": 0.549483517040049,
+              "AP50_95": 0.1701453829412775
+            },
+            "D10": {
+              "AP50": 0.13409789254787555,
+              "AP50_95": 0.0665593129983707
+            },
+            "D20": {
+              "AP50": 0.5811119573495812,
+              "AP50_95": 0.39154607768469146
+            },
+            "D40": {
+              "AP50": 0.155995599559956,
+              "AP50_95": 0.07389988998899889
+            }
+          },
+          "step": 200
+        }
+      ],
+      "prediction_diagnostics": [
+        {
+          "detections": 1430,
+          "detections_by_class": {
+            "D00": 1,
+            "D10": 934,
+            "D20": 32,
+            "D40": 463
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.4587810730848656,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.10624589857500563,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.21138148397450615,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.16664178310625138,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.02465809487193343,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.05356155344185496,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.25319414851743477,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.19657555361310106,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.0395557250101959,
+              "best_same_class_iou": 0.0395557250101959,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.07317535311110539,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.1979409350279246,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.04096318866221948,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.30642996325941424,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.12438918153154001,
+              "best_same_class_iou": 0.12438918153154001,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.04734409479697182,
+              "best_same_class_iou": 0.04734409479697182,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.2996608466523705,
+              "best_same_class_iou": 0.2996608466523705,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.28557512164115906,
+            0.35769955813884735,
+            0.5687350630760193
+          ],
+          "step": 0,
+          "targets_with_any_class_iou_at_least_0_5": 0,
+          "targets_with_same_class_iou_at_least_0_5": 0
+        },
+        {
+          "detections": 1069,
+          "detections_by_class": {
+            "D00": 518,
+            "D10": 136,
+            "D20": 275,
+            "D40": 140
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.8373913400370078,
+              "best_same_class_iou": 0.7872922689093347,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.7270160158530338,
+              "best_same_class_iou": 0.6780000943055683,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.7225013102015809,
+              "best_same_class_iou": 0.6713976548510991,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.5134190086543239,
+              "best_same_class_iou": 0.5134190086543239,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.4180100117052068,
+              "best_same_class_iou": 0.3520836871497006,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.18029202864860192,
+              "best_same_class_iou": 0.18029202864860192,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.6373304782256904,
+              "best_same_class_iou": 0.609552722011881,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.508791670407904,
+              "best_same_class_iou": 0.42670797227660096,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.45944435706983233,
+              "best_same_class_iou": 0.4379001863411645,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.5618880173078752,
+              "best_same_class_iou": 0.5618880173078752,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.006457339440779915,
+              "best_same_class_iou": 0.006457339440779915,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.6028248806257138,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.4975173713172872,
+              "best_same_class_iou": 0.4975173713172872,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.8224279372344894,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.4154077695090327,
+              "best_same_class_iou": 0.0947463539931878,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.0010018673492595553,
+            0.0040255822241306305,
+            0.07847269624471664
+          ],
+          "step": 50,
+          "targets_with_any_class_iou_at_least_0_5": 9,
+          "targets_with_same_class_iou_at_least_0_5": 6
+        },
+        {
+          "detections": 840,
+          "detections_by_class": {
+            "D00": 434,
+            "D10": 154,
+            "D20": 147,
+            "D40": 105
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.7882571487924529,
+              "best_same_class_iou": 0.7882571487924529,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.702546954037995,
+              "best_same_class_iou": 0.702546954037995,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.7917911008977361,
+              "best_same_class_iou": 0.7774519873865441,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.6580050011535448,
+              "best_same_class_iou": 0.6580050011535448,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.6834243462886002,
+              "best_same_class_iou": 0.6575266357226619,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.8190798022104183,
+              "best_same_class_iou": 0.7632286205051614,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.7348405185482024,
+              "best_same_class_iou": 0.6882558078044336,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.7008711271426372,
+              "best_same_class_iou": 0.6706011609205585,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.6454966233623037,
+              "best_same_class_iou": 0.6454966233623037,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.6898668467201308,
+              "best_same_class_iou": 0.6898668467201308,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.057640332559459724,
+              "best_same_class_iou": 0.05181247708511558,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.592560237189931,
+              "best_same_class_iou": 0.5687921646204517,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.687735853244166,
+              "best_same_class_iou": 0.6805350249372835,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.7177378490751399,
+              "best_same_class_iou": 0.553416138851416,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.6817475743110833,
+              "best_same_class_iou": 0.6185801166817879,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.7066381445629507,
+              "best_same_class_iou": 0.39774766210387696,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.0010014205472543836,
+            0.03421872481703758,
+            0.1702270805835724
+          ],
+          "step": 100,
+          "targets_with_any_class_iou_at_least_0_5": 15,
+          "targets_with_same_class_iou_at_least_0_5": 14
+        },
+        {
+          "detections": 835,
+          "detections_by_class": {
+            "D00": 365,
+            "D10": 174,
+            "D20": 161,
+            "D40": 135
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.7461851000253329,
+              "best_same_class_iou": 0.7461851000253329,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.7226303685021743,
+              "best_same_class_iou": 0.7032308185690183,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.6651991870904602,
+              "best_same_class_iou": 0.6578325715538801,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.8097539892942363,
+              "best_same_class_iou": 0.556453332443009,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.9419412824583173,
+              "best_same_class_iou": 0.9419412824583173,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.6991052825704145,
+              "best_same_class_iou": 0.6991052825704145,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.8461202969979248,
+              "best_same_class_iou": 0.8461202969979248,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.7605181959055093,
+              "best_same_class_iou": 0.7122663839671569,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.822023086903561,
+              "best_same_class_iou": 0.6827346651784972,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.6460011419771402,
+              "best_same_class_iou": 0.6460011419771402,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.5550994528125909,
+              "best_same_class_iou": 0.5550994528125909,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.7721850722501971,
+              "best_same_class_iou": 0.7681892189506895,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.7089234520185687,
+              "best_same_class_iou": 0.7089234520185687,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.790602055953668,
+              "best_same_class_iou": 0.790602055953668,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.7803844448147116,
+              "best_same_class_iou": 0.7803844448147116,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.8662971944069255,
+              "best_same_class_iou": 0.8323032056270974,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.001005783793516457,
+            0.04888036847114563,
+            0.29349109530448914
+          ],
+          "step": 200,
+          "targets_with_any_class_iou_at_least_0_5": 16,
+          "targets_with_same_class_iou_at_least_0_5": 16
+        }
+      ]
+    },
+    "yolov8n": {
+      "checkpoint_reloads": [
+        {
+          "checkpoint": "yolov8n_step_100.pt",
+          "completed_steps": 100,
+          "model_state_exact": true,
+          "next_step": 101,
+          "optimizer_state_exact": true,
+          "rng_state_exact": true
+        },
+        {
+          "checkpoint": "yolov8n_step_200.pt",
+          "completed_steps": 200,
+          "maximum_original_coordinate_error": 0.0,
+          "maximum_score_error": 0.0,
+          "model_state_exact": true,
+          "next_step": 201,
+          "optimizer_state_exact": true,
+          "predictions_match_within_tolerance": true,
+          "rng_state_exact": true
+        }
+      ],
+      "largest_classifier_update": {
+        "batch_index": 5,
+        "batch_target_counts": [
+          0,
+          0
+        ],
+        "input_signature": "f936e21ab92f32285b61674e6d08300351f2611504a38266d8123ebc539ded48",
+        "model": "yolov8n",
+        "step": 182,
+        "update": {
+          "classifier_max_absolute_update": 0.36882007122039795,
+          "gradient_tensors_checked": 183,
+          "loss_components": {
+            "box_loss": 0.0,
+            "cls_loss": 20.93340301513672,
+            "dfl_loss": 0.0
+          },
+          "total_loss": 41.86680603027344
+        }
+      },
+      "learning_review": {
+        "decision": "needs_review",
+        "final_training_AP50": 0.0,
+        "initial_training_AP50": 0.0,
+        "scope": "Engineering review rule on training examples; no generalization or model-ranking claim",
+        "training_AP50_gain": 0.0
+      },
+      "maximum_recomputed_scalar_metric_error": 0.0,
+      "metrics": [
+        {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            }
+          },
+          "step": 0
+        },
+        {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            }
+          },
+          "step": 50
+        },
+        {
+          "AP50": 0.005177795176777952,
+          "AP50_95": 0.002311642123116421,
+          "AP75": 0.0,
+          "AR100": 0.075,
+          "per_class": {
+            "D00": {
+              "AP50": 0.018981898189818984,
+              "AP50_95": 0.008554855485548556
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D20": {
+              "AP50": 0.0017292825172928248,
+              "AP50_95": 0.00069171300691713
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            }
+          },
+          "step": 100
+        },
+        {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0
+            }
+          },
+          "step": 200
+        }
+      ],
+      "prediction_diagnostics": [
+        {
+          "detections": 1460,
+          "detections_by_class": {
+            "D00": 214,
+            "D10": 722,
+            "D20": 488,
+            "D40": 36
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.45353096558879236,
+              "best_same_class_iou": 0.3001070275559959,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.34588391303372107,
+              "best_same_class_iou": 0.28736408759570026,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.1592913165010644,
+              "best_same_class_iou": 0.1260838639599742,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.23944604272782224,
+              "best_same_class_iou": 0.23944604272782224,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.012253835697754937,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.20630741707891948,
+              "best_same_class_iou": 0.0016309970668936184,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.183213092111687,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.4346803416283806,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.03000733167755767,
+              "best_same_class_iou": 0.03000733167755767,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.10281392513831521,
+              "best_same_class_iou": 0.04346242758850661,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.38380723763402624,
+              "best_same_class_iou": 0.17677734711285212,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.022867748985738973,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.18895113803903987,
+              "best_same_class_iou": 0.18895113803903987,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.0967160737461799,
+              "best_same_class_iou": 0.076195179353242,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.050559337087080033,
+              "best_same_class_iou": 0.050559337087080033,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.10314761899894961,
+              "best_same_class_iou": 0.10314761899894961,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.005181005224585533,
+            0.016887662932276726,
+            0.9998179078102112
+          ],
+          "step": 0,
+          "targets_with_any_class_iou_at_least_0_5": 0,
+          "targets_with_same_class_iou_at_least_0_5": 0
+        },
+        {
+          "detections": 0,
+          "detections_by_class": {
+            "D00": 0,
+            "D10": 0,
+            "D20": 0,
+            "D40": 0
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": null,
+          "step": 50,
+          "targets_with_any_class_iou_at_least_0_5": 0,
+          "targets_with_same_class_iou_at_least_0_5": 0
+        },
+        {
+          "detections": 995,
+          "detections_by_class": {
+            "D00": 217,
+            "D10": 316,
+            "D20": 327,
+            "D40": 135
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.628478487557102,
+              "best_same_class_iou": 0.628478487557102,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.7333048829561156,
+              "best_same_class_iou": 0.7333048829561156,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.046696177198891936,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.7400264934350509,
+              "best_same_class_iou": 0.6832167006578871,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.23365684440684756,
+              "best_same_class_iou": 0.23365684440684756,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.29718708261118143,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.4756557451176358,
+              "best_same_class_iou": 0.4756557451176358,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.42328774780638234,
+              "best_same_class_iou": 0.42328774780638234,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.0010132254101336002,
+            0.011955644004046917,
+            0.3231735825538635
+          ],
+          "step": 100,
+          "targets_with_any_class_iou_at_least_0_5": 3,
+          "targets_with_same_class_iou_at_least_0_5": 3
+        },
+        {
+          "detections": 1307,
+          "detections_by_class": {
+            "D00": 976,
+            "D10": 0,
+            "D20": 209,
+            "D40": 122
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.0934155079916643,
+              "best_same_class_iou": 0.0934155079916643,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.14698051325273354,
+              "best_same_class_iou": 0.14698051325273354,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.14754038717662998,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.1508268075407663,
+              "best_same_class_iou": 0.1508268075407663,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.40353192941005295,
+              "best_same_class_iou": 0.1930099681858353,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.2523963191360023,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.21160432737608395,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.13031572807313171,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.0010173431364819407,
+            0.001842547906562686,
+            0.8768527507781982
+          ],
+          "step": 200,
+          "targets_with_any_class_iou_at_least_0_5": 0,
+          "targets_with_same_class_iou_at_least_0_5": 0
+        }
+      ]
+    }
+  },
+  "no_target_images": 8,
+  "numpy": "2.4.2",
+  "package_checksum_entries": 13,
+  "package_files_matched_to_release": 14,
+  "pbs_job": "794071.bright04",
+  "remote_pycocotools": "2.0.10",
+  "result_checksum_entries": 38,
+  "status": "verified_records_both_models_need_learning_review",
+  "step_records_verified": 400,
+  "target_boxes": 16,
+  "training_images": 15
+}

@@ -1,0 +1,298 @@
+{
+  "all_epoch_prediction_geometry_counts_and_coverage": [
+    {
+      "clipped_boxes": 1273,
+      "collapsed_predictions": 0,
+      "epoch": 1,
+      "images": 5760,
+      "predictions": 535431
+    },
+    {
+      "clipped_boxes": 1240,
+      "collapsed_predictions": 0,
+      "epoch": 2,
+      "images": 5760,
+      "predictions": 473388
+    },
+    {
+      "clipped_boxes": 762,
+      "collapsed_predictions": 0,
+      "epoch": 3,
+      "images": 5760,
+      "predictions": 541637
+    },
+    {
+      "clipped_boxes": 2967,
+      "collapsed_predictions": 0,
+      "epoch": 4,
+      "images": 5760,
+      "predictions": 520525
+    },
+    {
+      "clipped_boxes": 1341,
+      "collapsed_predictions": 0,
+      "epoch": 5,
+      "images": 5760,
+      "predictions": 507978
+    },
+    {
+      "clipped_boxes": 1208,
+      "collapsed_predictions": 0,
+      "epoch": 6,
+      "images": 5760,
+      "predictions": 527270
+    },
+    {
+      "clipped_boxes": 1302,
+      "collapsed_predictions": 6,
+      "epoch": 7,
+      "images": 5760,
+      "predictions": 556113
+    },
+    {
+      "clipped_boxes": 8161,
+      "collapsed_predictions": 359,
+      "epoch": 8,
+      "images": 5760,
+      "predictions": 550032
+    },
+    {
+      "clipped_boxes": 1067,
+      "collapsed_predictions": 0,
+      "epoch": 9,
+      "images": 5760,
+      "predictions": 572265
+    },
+    {
+      "clipped_boxes": 3620,
+      "collapsed_predictions": 0,
+      "epoch": 10,
+      "images": 5760,
+      "predictions": 497617
+    },
+    {
+      "clipped_boxes": 549,
+      "collapsed_predictions": 0,
+      "epoch": 11,
+      "images": 5760,
+      "predictions": 505324
+    },
+    {
+      "clipped_boxes": 523,
+      "collapsed_predictions": 0,
+      "epoch": 12,
+      "images": 5760,
+      "predictions": 489075
+    },
+    {
+      "clipped_boxes": 688,
+      "collapsed_predictions": 0,
+      "epoch": 13,
+      "images": 5760,
+      "predictions": 388347
+    },
+    {
+      "clipped_boxes": 713,
+      "collapsed_predictions": 0,
+      "epoch": 14,
+      "images": 5760,
+      "predictions": 342243
+    },
+    {
+      "clipped_boxes": 979,
+      "collapsed_predictions": 0,
+      "epoch": 15,
+      "images": 5760,
+      "predictions": 333910
+    },
+    {
+      "clipped_boxes": 804,
+      "collapsed_predictions": 0,
+      "epoch": 16,
+      "images": 5760,
+      "predictions": 363011
+    },
+    {
+      "clipped_boxes": 734,
+      "collapsed_predictions": 1,
+      "epoch": 17,
+      "images": 5760,
+      "predictions": 319647
+    },
+    {
+      "clipped_boxes": 755,
+      "collapsed_predictions": 3,
+      "epoch": 18,
+      "images": 5760,
+      "predictions": 305759
+    },
+    {
+      "clipped_boxes": 802,
+      "collapsed_predictions": 3,
+      "epoch": 19,
+      "images": 5760,
+      "predictions": 316070
+    },
+    {
+      "clipped_boxes": 727,
+      "collapsed_predictions": 4,
+      "epoch": 20,
+      "images": 5760,
+      "predictions": 313259
+    }
+  ],
+  "archive": "fasterrcnn_shared_seed42_v1_records_31a774d9401a.tar.gz",
+  "archive_bytes": 412104336,
+  "archive_files": 89,
+  "archive_sha256": "28b28bee01376cc10fe0a60dca7ddfb9cd97ec9b548597fe316d94db164bfd7c",
+  "audit_source_sha256": "97178d7a779d558e5def29fd827fd467c873f9dc49cf7db3df11463f642d1392",
+  "augmentation_verification": {
+    "decision_replay_and_order": "exact_all_20_epochs",
+    "reported_changed_images": 158151,
+    "scope": "Decisions and counts verified from training metadata; changed-pixel counts are recorded by CCAST, not recomputed from raw images",
+    "status": "passed",
+    "total": {
+      "applied_images": 158151,
+      "family/blur_noise": 78806,
+      "family/photometric": 79345,
+      "images": 537260,
+      "operation/brightness_down": 13213,
+      "operation/brightness_up": 13333,
+      "operation/contrast_down": 13191,
+      "operation/contrast_up": 13217,
+      "operation/gamma_brighten": 13235,
+      "operation/gamma_darken": 13156,
+      "operation/gaussian_blur": 39434,
+      "operation/gaussian_noise": 39372,
+      "operation/identity": 379109,
+      "reason/applied": 158151,
+      "reason/no_target": 204660,
+      "reason/probability": 157819,
+      "reason/warmup": 16630,
+      "target_images": 332600
+    },
+    "warmup_epoch_unaugmented": true
+  },
+  "best_checkpoint": {
+    "bytes": 331586746,
+    "checkpoint_file": "epoch_014_step_00094024_aa10beac083f.pt",
+    "completed_epochs": 14,
+    "epoch": 14,
+    "file": "epoch_014_step_00094024_aa10beac083f.pt",
+    "label": "epoch_014",
+    "sha256": "a0f78c526f0de56be10da3cb64f392514c055baa7617ba027015c74e3005bd54",
+    "step": 94024,
+    "validation_AP50_95": 0.22809927107298847
+  },
+  "best_epoch": 14,
+  "best_metrics": {
+    "AP50": 0.5068734225624701,
+    "AP50_95": 0.22809927107298847,
+    "AP75": 0.17295072538328765,
+    "AR100": 0.4433894276688166,
+    "per_class": {
+      "D00": {
+        "AP50": 0.5106154834032398,
+        "AP50_95": 0.24784209498285473,
+        "target_count": 3888
+      },
+      "D10": {
+        "AP50": 0.4784377922435516,
+        "AP50_95": 0.2026552660016301,
+        "target_count": 1770
+      },
+      "D20": {
+        "AP50": 0.6240773718221374,
+        "AP50_95": 0.29630524509399503,
+        "target_count": 1592
+      },
+      "D40": {
+        "AP50": 0.41436304278095176,
+        "AP50_95": 0.16559447821347406,
+        "target_count": 975
+      }
+    }
+  },
+  "best_negative_image_fp_fraction_at_0_25": 0.3953488372093023,
+  "best_negative_images": 2193,
+  "best_negative_images_with_predictions_at_0_25": 867,
+  "best_negative_predicted_boxes_at_0_25": 1640,
+  "best_to_final_AP50_95_change": -0.0023535692573930234,
+  "completed_epochs": 20,
+  "final_metrics": {
+    "AP50": 0.5054142847671965,
+    "AP50_95": 0.22574570181559545,
+    "AP75": 0.16518986781722286,
+    "AR100": 0.4368204726595592,
+    "per_class": {
+      "D00": {
+        "AP50": 0.5021742152430705,
+        "AP50_95": 0.2435276720887269,
+        "target_count": 3888
+      },
+      "D10": {
+        "AP50": 0.4798193522273506,
+        "AP50_95": 0.2028503372374774,
+        "target_count": 1770
+      },
+      "D20": {
+        "AP50": 0.6280134576489461,
+        "AP50_95": 0.2951778609393867,
+        "target_count": 1592
+      },
+      "D40": {
+        "AP50": 0.41165011394941875,
+        "AP50_95": 0.1614269369967909,
+        "target_count": 975
+      }
+    }
+  },
+  "frozen_train_val_separation": "image/source-cluster/decoded-RGB hashes disjoint",
+  "ground_truth_matches_frozen_validation": true,
+  "image_presentations": 537260,
+  "limits": [
+    "Only selected and final epochs' AP/AR were independently recomputed; all 20 epochs' hashes, coverage, geometry, counts and history consistency were verified.",
+    "Full checkpoint binaries and the live stdout/stderr log are not in this records archive; checkpoint hashes are metadata, not a fresh audit of checkpoint bytes.",
+    "Raw images were not reopened locally and detector inference was not rerun.",
+    "One seed and one initialization/recipe; no seed-variation estimate or final-test evaluation.",
+    "The best epoch is selected on this validation set, so its result is a development estimate rather than an untouched final-test estimate.",
+    "No-target-image detections are false positives relative to retained annotations; annotation completeness was not visually re-audited."
+  ],
+  "local_versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11"
+  },
+  "maximum_recomputed_metric_error": 0.0,
+  "next_experiment_executed": false,
+  "optimizer_steps": 134320,
+  "protocol_and_environment_match": true,
+  "recommendation": "Compare this fixed shared-augmentation run with the verified identity control under the declared validation checkpoint selection; do not infer general efficacy from one seed.",
+  "recomputed_epochs": [
+    14,
+    20
+  ],
+  "released_code_files_matched": 20,
+  "result_checksum_entries": 88,
+  "run": {
+    "elapsed_seconds": 41446.046056197956,
+    "finished_utc": "2026-10-24T04:45:39.696898+00:00",
+    "gpu": "NVIDIA A10",
+    "host": "gpu0021",
+    "pbs_job": "795553.bright04",
+    "peak_cuda_memory_allocated_bytes": 2857788416,
+    "resume": false,
+    "started_utc": "2026-10-23T17:14:55.457514+00:00"
+  },
+  "status": "verified_with_selected_and_final_metrics_recomputed",
+  "test_data_read": false,
+  "train_images": 26863,
+  "training_loss_first_final": [
+    0.2529622229768333,
+    0.15511622475712974
+  ],
+  "uncompressed_bytes": 433221658,
+  "validation_AP50_95_epoch12_to13_change": 0.03032884507664127,
+  "validation_images": 5760,
+  "validation_targets": 8225
+}

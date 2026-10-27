@@ -1,0 +1,335 @@
+[
+  {
+    "images": [
+      {
+        "canonical_labels": [
+          0,
+          0
+        ],
+        "geometry": {
+          "original_height": 512,
+          "original_width": 512,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "China_Drone/train/images/China_Drone_000002.jpg",
+        "image_id": 0,
+        "prepared_tensor_sha256": "53e548f717b4ff5cf5e00574634517266373fc5175c24ebeabfb77d6203510a9",
+        "prepared_xyxy_sha256": "9f05af1065b6b401da708d276cc2fb7f8064024cdf6fb4b2f41f8b634772977d",
+        "source_image_sha256": "abe99380b95f58dad2a1438d50b21ddd5e66be4f82a5eeadd527698376547230",
+        "target_count": 2
+      },
+      {
+        "canonical_labels": [],
+        "geometry": {
+          "original_height": 512,
+          "original_width": 512,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "China_Drone/train/images/China_Drone_000023.jpg",
+        "image_id": 16,
+        "prepared_tensor_sha256": "70475e2d876b2b8f19fb4bed10afb993c3859d7fe787410dc05932b6f5692bfe",
+        "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+        "source_image_sha256": "68db29b39973bc4b92f95a78b7550123fbca5409d427c6e8bf81094a46261391",
+        "target_count": 0
+      }
+    ],
+    "signature": "9a032b2e7229bb5af339678048f86072e9c8de707bc59958a59907b657f9a9dd"
+  },
+  {
+    "images": [
+      {
+        "canonical_labels": [
+          0,
+          0
+        ],
+        "geometry": {
+          "original_height": 512,
+          "original_width": 512,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "China_MotorBike/train/images/China_MotorBike_000002.jpg",
+        "image_id": 1678,
+        "prepared_tensor_sha256": "5026b51bc4c54be230114ac774e8e9fbc8cb1b45ffec3448afd3f8e9039d3c7c",
+        "prepared_xyxy_sha256": "d67ccb0deb2dead2033c459ff87de1bf38cd86bb82715aa957bcc8bcac826c24",
+        "source_image_sha256": "a306ce6d67f7f2e4f4ed459195d955d7243be8c7540398998b0d51ef2887aac3",
+        "target_count": 2
+      },
+      {
+        "canonical_labels": [],
+        "geometry": {
+          "original_height": 512,
+          "original_width": 512,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "China_MotorBike/train/images/China_MotorBike_000040.jpg",
+        "image_id": 1703,
+        "prepared_tensor_sha256": "31a27b622506f6a9a8c845befdf250b85f644ed32f34a89d968881f189e5004d",
+        "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+        "source_image_sha256": "a3c42de77a1e0d4b9a886001e68ebd740b6ff9ff55631a6fc2531ab38cfba797",
+        "target_count": 0
+      }
+    ],
+    "signature": "9e67e04e0a94e4e07a3c7f72b82998df3506428c281d79193d7ed83128ef3796"
+  },
+  {
+    "images": [
+      {
+        "canonical_labels": [],
+        "geometry": {
+          "original_height": 600,
+          "original_width": 600,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "Czech/train/images/Czech_000000.jpg",
+        "image_id": 3061,
+        "prepared_tensor_sha256": "4b0e7be4db5b2fec594360942c34679045643cffa347b3f2976f56f58698fd59",
+        "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+        "source_image_sha256": "62fbb8ae2ef07e945d7c71b42fe01e5e3965ef74097e470f3b83cf9e086a1cbb",
+        "target_count": 0
+      },
+      {
+        "canonical_labels": [
+          0
+        ],
+        "geometry": {
+          "original_height": 600,
+          "original_width": 600,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "Czech/train/images/Czech_000006.jpg",
+        "image_id": 3064,
+        "prepared_tensor_sha256": "00ea6636bb222bcc799163d2ca6997719d3a13a98b79d8b431d143bba9c0a025",
+        "prepared_xyxy_sha256": "a62186711a235cb225695d9c4ae8779a5a1038167fa4ea8e6dab98f0711133c9",
+        "source_image_sha256": "9f4dda8098647d5c856d4652ee1bf15f25de8c6cb202aef4b16a8b412c15f55f",
+        "target_count": 1
+      }
+    ],
+    "signature": "d70bf486d05a1a816acecf2c59feffe9eec98c00f87ac879ec829d248e43fd5c"
+  },
+  {
+    "images": [
+      {
+        "canonical_labels": [
+          0
+        ],
+        "geometry": {
+          "original_height": 720,
+          "original_width": 720,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "India/train/images/India_000011.jpg",
+        "image_id": 5044,
+        "prepared_tensor_sha256": "3bdf95bebbcad40c0a06fce16190b79a9c0357b73a15f6444642475de624728a",
+        "prepared_xyxy_sha256": "89be975b7e34efea3aee6416da1728b302b32dbee75e8bd80b060f0a8a367f2d",
+        "source_image_sha256": "34ff50fa69782f9cfccec373d307ac70619562b8e81c76ded86aa25537d14ca4",
+        "target_count": 1
+      },
+      {
+        "canonical_labels": [],
+        "geometry": {
+          "original_height": 720,
+          "original_width": 720,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "India/train/images/India_000430.jpg",
+        "image_id": 5258,
+        "prepared_tensor_sha256": "ead9d412ae2f4f4eeaea7bc74cb6329d097e1b58f0b71054cae36c0e8e84b2d8",
+        "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+        "source_image_sha256": "01c4ef927c8193a209e1169f8bc937ad16764c1b2d756ba0a5c9d7332ea3fa9c",
+        "target_count": 0
+      }
+    ],
+    "signature": "4661f6c9a4c229bb46ab8af3c9affa8d6198f0dd2401a1807639205ec1c5bf26"
+  },
+  {
+    "images": [
+      {
+        "canonical_labels": [],
+        "geometry": {
+          "original_height": 720,
+          "original_width": 720,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "India/train/images/India_004810.jpg",
+        "image_id": 7643,
+        "prepared_tensor_sha256": "3914ed3f6f4caa50d49f41bb0d8c381e7a874858291b6a39aa42237f63818715",
+        "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+        "source_image_sha256": "5765420eef4d267f889c13e5b89b1931b4b064a8f401b3517b1eb231bbb9bd69",
+        "target_count": 0
+      },
+      {
+        "canonical_labels": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "geometry": {
+          "original_height": 600,
+          "original_width": 600,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "Japan/train/images/Japan_000000.jpg",
+        "image_id": 10433,
+        "prepared_tensor_sha256": "a30c5b5580ce70ef4910daa65ec87b91119d86948b28feed88c797c5da92a221",
+        "prepared_xyxy_sha256": "3a7b252d121fcab4ab3800fddf5e55d367e4fdb57e86c658fda8c2e110961093",
+        "source_image_sha256": "d3f4b171ecac94b929ef5bb3fad23bad44c98b3bd18aad4ac5ebaea760ce3f9c",
+        "target_count": 4
+      }
+    ],
+    "signature": "a25d125f99711508a3ec619f042ea20074495317bbf9ca2bdfd083191baae8bd"
+  },
+  {
+    "images": [
+      {
+        "canonical_labels": [],
+        "geometry": {
+          "original_height": 600,
+          "original_width": 600,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "Japan/train/images/Japan_000002.jpg",
+        "image_id": 10434,
+        "prepared_tensor_sha256": "d6efdda95d6601ab8e3089f7672685d4d110ac66f8f431aa24a90264246fc747",
+        "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+        "source_image_sha256": "3014dabddf9aa275228573e0e57ef05ba257cf50aa9711bf98ed939ded60f944",
+        "target_count": 0
+      },
+      {
+        "canonical_labels": [],
+        "geometry": {
+          "original_height": 2041,
+          "original_width": 3643,
+          "pad_left": 0,
+          "pad_top": 140,
+          "resized_height": 359,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "Norway/train/images/Norway_000002.jpg",
+        "image_id": 17788,
+        "prepared_tensor_sha256": "1d5b00779a22cac224d78dfe04c8e4560eb606887c6fac284ce0daa6a535474c",
+        "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+        "source_image_sha256": "73969680324355d1b208a6244d4dda172bfd174bd449c2f2d48b177cf1d1c7c8",
+        "target_count": 0
+      }
+    ],
+    "signature": "f936e21ab92f32285b61674e6d08300351f2611504a38266d8123ebc539ded48"
+  },
+  {
+    "images": [
+      {
+        "canonical_labels": [],
+        "geometry": {
+          "original_height": 2035,
+          "original_width": 4040,
+          "pad_left": 0,
+          "pad_top": 159,
+          "resized_height": 322,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "Norway/train/images/Norway_000003.jpg",
+        "image_id": 17789,
+        "prepared_tensor_sha256": "6eed6bc174391393673d12c763d8f96fb5ef03f96c537dd162c9e71bf9ff757e",
+        "prepared_xyxy_sha256": "e84390fa62949100234153706a98116227fe0d9e559a1e03729029a32aae1e44",
+        "source_image_sha256": "8968cea669722e38cf9046add6cac46426c287d4aeb74e0e62959ab1a37a566f",
+        "target_count": 0
+      },
+      {
+        "canonical_labels": [
+          0,
+          3,
+          2,
+          1,
+          1
+        ],
+        "geometry": {
+          "original_height": 2041,
+          "original_width": 3643,
+          "pad_left": 0,
+          "pad_top": 140,
+          "resized_height": 359,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "Norway/train/images/Norway_000189.jpg",
+        "image_id": 17929,
+        "prepared_tensor_sha256": "72fe6f0db9bac490768c8c4a1e462659d5fffc5ab4b3ad35f6d31318b96233a2",
+        "prepared_xyxy_sha256": "28a509ddcf6da1249b46a3126ca01fb10f49d6f4c65b59e89d8579d7dfaa2b6c",
+        "source_image_sha256": "909197c4af623930fb4998f0bcb03b48f2e94c7928ce07e4fc25f02b4522da84",
+        "target_count": 5
+      }
+    ],
+    "signature": "cadbbfed83828cba7e78664de403d8784b60f14933a3b36742481593d5d9b096"
+  },
+  {
+    "images": [
+      {
+        "canonical_labels": [
+          1
+        ],
+        "geometry": {
+          "original_height": 640,
+          "original_width": 640,
+          "pad_left": 0,
+          "pad_top": 0,
+          "resized_height": 640,
+          "resized_width": 640,
+          "size": 640
+        },
+        "image": "United_States/train/images/United_States_000030.jpg",
+        "image_id": 23520,
+        "prepared_tensor_sha256": "c8940f41cd9b2453b000d358a1f31849132fd9282ea0db045dc06dfa5bf4d19c",
+        "prepared_xyxy_sha256": "b7bc183e28373b07aefd70db9ee198fc6a9c0c5287401e70011eda4cc162e94a",
+        "source_image_sha256": "86637d76c177c05ac9c1bc4a346974ffd92045777da84be157debc851165e24a",
+        "target_count": 1
+      }
+    ],
+    "signature": "8d2c003d1fa373c3073e6c44f2a83919e2999d961398da5e08797bd8f14fe2d1"
+  }
+]

@@ -1,0 +1,2885 @@
+{
+  "actual_pretrained_model_check": {
+    "checkpoint_sha256": "91d19f8423a54d1683a1836043a44c3116ac90322d82c1a1c0dc017b434bb3ac",
+    "class_set_policies": {
+      "0": {
+        "classes": [
+          0
+        ],
+        "families": [],
+        "reason": "insufficient_support"
+      },
+      "0,1": {
+        "classes": [
+          0,
+          1
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "0,1,2": {
+        "classes": [
+          0,
+          1,
+          2
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "0,1,2,3": {
+        "classes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "0,1,3": {
+        "classes": [
+          0,
+          1,
+          3
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "0,2": {
+        "classes": [
+          0,
+          2
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "0,2,3": {
+        "classes": [
+          0,
+          2,
+          3
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "0,3": {
+        "classes": [
+          0,
+          3
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "1": {
+        "classes": [
+          1
+        ],
+        "families": [],
+        "reason": "insufficient_support"
+      },
+      "1,2": {
+        "classes": [
+          1,
+          2
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "1,2,3": {
+        "classes": [
+          1,
+          2,
+          3
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "1,3": {
+        "classes": [
+          1,
+          3
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "2": {
+        "classes": [
+          2
+        ],
+        "families": [],
+        "reason": "insufficient_support"
+      },
+      "2,3": {
+        "classes": [
+          2,
+          3
+        ],
+        "families": [],
+        "reason": "unobserved_class_set"
+      },
+      "3": {
+        "classes": [
+          3
+        ],
+        "families": [],
+        "reason": "insufficient_support"
+      }
+    },
+    "complete_probe_views": 112,
+    "duplicate_and_missed_gt_losses_present": true,
+    "fresh_model_checkpoint_prediction_policy_replay": "exact",
+    "hook_prediction_parity": "exact",
+    "initialization_matches_identity_exactly": true,
+    "model_buffers_gradients_rng_unchanged": true,
+    "noise_draws_per_strength": 2,
+    "operations": [
+      "brightness_down",
+      "brightness_up",
+      "contrast_down",
+      "contrast_up",
+      "gamma_brighten",
+      "gamma_darken",
+      "gaussian_blur",
+      "gaussian_noise"
+    ],
+    "parity_extra_views": 2,
+    "policy_recomputed_from_saved_evidence": true,
+    "scope": "Synthetic 128-pixel CPU data; no RDD pixels, CUDA or efficacy measurement",
+    "seconds": 84.68340259999968,
+    "standard_predictions_unchanged_before_after_probe": true,
+    "status": "passed",
+    "strength_levels": 3,
+    "support": {
+      "0": {
+        "0": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 1,
+          "sufficient": false
+        }
+      },
+      "0,1": {
+        "0": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "1": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "0,1,2": {
+        "0": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "1": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "2": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "0,1,2,3": {
+        "0": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "1": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "2": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "3": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "0,1,3": {
+        "0": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "1": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "3": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "0,2": {
+        "0": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "2": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "0,2,3": {
+        "0": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "2": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "3": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "0,3": {
+        "0": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "3": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "1": {
+        "1": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 1,
+          "sufficient": false
+        }
+      },
+      "1,2": {
+        "1": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "2": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "1,2,3": {
+        "1": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "2": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "3": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "1,3": {
+        "1": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "3": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "2": {
+        "2": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 1,
+          "sufficient": false
+        }
+      },
+      "2,3": {
+        "2": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        },
+        "3": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 0,
+          "sufficient": false
+        }
+      },
+      "3": {
+        "3": {
+          "detected_clusters": 0,
+          "detected_objects": 0,
+          "objects": 1,
+          "sufficient": false
+        }
+      }
+    },
+    "training_update": {
+      "gradient_norm": 28.43811798095703,
+      "includes_negative_image": true,
+      "losses": {
+        "loss_box_reg": 0.08607666939496994,
+        "loss_classifier": 2.1400389671325684,
+        "loss_objectness": 0.1500815749168396,
+        "loss_rpn_box_reg": 0.005754908546805382
+      },
+      "two_distinct_constructed_class_policies": true
+    },
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "pycocotools": "2.0.11",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "comparator_checks": {
+    "observer_panel_grid_noise_training_draws_identical": true,
+    "online_shared_protocol_sha256": "484bb09534d37aab47c640ac6f5c4c322e6bc0a94fe713bbc30e4eafb18d71a0",
+    "only_measurement_core_changes": "Restrict target-group pooling to the represented exact class set; validate all full-image observations; permit empty sets as unsupported.",
+    "protocol_sha256": "651ebda915cf3a9d97eddf624ccebda423cefb4b8a7a472dc6e01971db494f1d",
+    "shared_controller_bytes_preserved": true,
+    "status": "passed",
+    "unchanged_baseline_functions": [
+      "Dataset",
+      "epoch_batches",
+      "learning_rate",
+      "update",
+      "validate",
+      "commit",
+      "restore",
+      "write_history",
+      "verify_partitions",
+      "archive_records",
+      "loader",
+      "fit",
+      "initial_progress"
+    ],
+    "unchanged_dependency_files": [
+      "rdd_data.py",
+      "models.py",
+      "metrics.py",
+      "checkpoints.py",
+      "integration.py",
+      "select_training_cases.py",
+      "smoke_selection.json",
+      "local_augmentation.py",
+      "shared_augmentation.py",
+      "smoke_augmentation.py",
+      "probe_detector.py"
+    ]
+  },
+  "focused_tests": {
+    "errors": 0,
+    "failures": 0,
+    "seconds": 36.93094850005582,
+    "skipped": 0,
+    "tests": 81
+  },
+  "limits": [
+    "No CCAST execution, RDD raw pixels, CUDA or new scientific results measured locally.",
+    "Actual-model probes use real predictions on synthetic images; the small panel lacks production support. A separate constructed-feedback policy exercised distinct class routing and an actual-model gradient update. This is not measured RDD efficacy.",
+    "Local library versions differ; PBS repeats tests and real-data GPU smoke before full training.",
+    "Exact class-set policies with no pooled backoff. Sparse sets can use identity. Detector steps, panel identities and probe view counts match online shared.",
+    "Conditioning changes effective support and edit exposure as part of the method. Single-seed small effects and pre-augmentation divergence do not establish efficacy."
+  ],
+  "local_evidence_sha256": {
+    "actual_model_check.json": "7d8e9ef5a3b443760051928dbf39adf92fafc1ab897a6f3474d38d215df62f43",
+    "comparator_checks.json": "7f8ed0c4fb6f11790c8d4c0807c7da3221ae275264c39ca1f3f3499330fe747d",
+    "panel_plan.json": "6bcf9952dc3819757bdf65c52d6d2d1eb8c043421d1012ba8dbe03ca95813030",
+    "shell_checks.json": "8ee7640bca462c589fc72d07b8e12370455ba254fb42abbfdca76dcb25867141",
+    "tested_sources.json": "ad16fd3f3273c83167b91108b0d38af01ecf3358cc7703cf7ac21b12042f9426",
+    "unit_tests.json": "0bdd7ff9f8a205cc1567620c40c0b59cd6e92c406595442d8c48ffff32262fdb",
+    "unit_tests.txt": "7f69bb85d45fceeff245709db79c37deec99d336cc7b9c8117391f293d26dc0b"
+  },
+  "panel_support_metadata": [
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 113
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 106,
+          "source_clusters": {
+            "0": 106
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 27,
+            "1": 21
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 18,
+          "source_clusters": {
+            "0": 18,
+            "1": 18
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 0,
+            "2": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "2": 0
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 2,
+            "2": 1,
+            "3": 2
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "2": 1,
+            "3": 1
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "3": 1
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 33
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 33,
+          "source_clusters": {
+            "1": 33
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 6,
+            "2": 6
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 5,
+          "source_clusters": {
+            "1": 5,
+            "2": 5
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "3": 0
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 65
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 64,
+          "source_clusters": {
+            "2": 64
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 8,
+            "3": 9
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 7,
+          "source_clusters": {
+            "2": 7,
+            "3": 7
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 23
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 21,
+          "source_clusters": {
+            "3": 21
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 2,
+      "images": 256,
+      "panel_sha256": "7f1046805a1edb2410116b758250cd1bc816fd44d9bdf2f6687da21fb6f45e65"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 93
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 90,
+          "source_clusters": {
+            "0": 90
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 21,
+            "1": 19
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 15,
+          "source_clusters": {
+            "0": 15,
+            "1": 15
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 5,
+            "1": 4,
+            "2": 7
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "0": 3,
+            "1": 3,
+            "2": 3
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 7,
+            "2": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 5,
+          "source_clusters": {
+            "0": 5,
+            "2": 5
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 5,
+            "2": 3,
+            "3": 4
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "0": 3,
+            "2": 3,
+            "3": 3
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "3": 0
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 44
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 44,
+          "source_clusters": {
+            "1": 44
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 3,
+            "2": 3
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "1": 3,
+            "2": 3
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "3": 1
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 57
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 53,
+          "source_clusters": {
+            "2": 53
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 10,
+            "3": 11
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 9,
+          "source_clusters": {
+            "2": 9,
+            "3": 9
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 30
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 30,
+          "source_clusters": {
+            "3": 30
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 4,
+      "images": 256,
+      "panel_sha256": "1072695c4afc3e44a93216375aa2c94a620d7597f380de0acec70130a4cd08cf"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 123
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 115,
+          "source_clusters": {
+            "0": 115
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 14,
+            "1": 12
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 12,
+          "source_clusters": {
+            "0": 12,
+            "1": 12
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 5,
+            "2": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 5,
+          "source_clusters": {
+            "0": 5,
+            "2": 5
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 9,
+            "3": 4
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 4,
+          "source_clusters": {
+            "0": 4,
+            "3": 4
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 44
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 42,
+          "source_clusters": {
+            "1": 42
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 5,
+            "2": 3
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "1": 3,
+            "2": 3
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "3": 1
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 48
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 47,
+          "source_clusters": {
+            "2": 47
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 4,
+            "3": 10
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 4,
+          "source_clusters": {
+            "2": 4,
+            "3": 4
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 23
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 22,
+          "source_clusters": {
+            "3": 22
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 6,
+      "images": 256,
+      "panel_sha256": "c4114f16f2c4953699c8f9b79c11967833d07eaac17e51352767e926f8b775cd"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 102
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 95,
+          "source_clusters": {
+            "0": 95
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 18,
+            "1": 21
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 16,
+          "source_clusters": {
+            "0": 16,
+            "1": 16
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 7,
+            "1": 4,
+            "2": 4
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "0": 3,
+            "1": 3,
+            "2": 3
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 6,
+            "2": 7
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 6,
+          "source_clusters": {
+            "0": 6,
+            "2": 6
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 1,
+            "2": 1,
+            "3": 3
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "2": 1,
+            "3": 1
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "3": 1
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 48
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 48,
+          "source_clusters": {
+            "1": 48
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 5,
+            "2": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 5,
+          "source_clusters": {
+            "1": 5,
+            "2": 5
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 1,
+            "2": 2,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "3": 1
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 58
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 57,
+          "source_clusters": {
+            "2": 57
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 3,
+            "3": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "2": 3,
+            "3": 3
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 20
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 19,
+          "source_clusters": {
+            "3": 19
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 8,
+      "images": 256,
+      "panel_sha256": "e7ff323fdf8116f3b29bec0de2ef83d0b7ae319cb6867c7355b8b9650c0b0a66"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 117
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 111,
+          "source_clusters": {
+            "0": 111
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 13,
+            "1": 9
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 9,
+          "source_clusters": {
+            "0": 9,
+            "1": 9
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 3,
+            "1": 3,
+            "2": 2
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 2,
+          "source_clusters": {
+            "0": 2,
+            "1": 2,
+            "2": 2
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 2,
+            "2": 2
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 2,
+          "source_clusters": {
+            "0": 2,
+            "2": 2
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "3": 1
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 41
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 39,
+          "source_clusters": {
+            "1": 39
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 5,
+            "2": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 5,
+          "source_clusters": {
+            "1": 5,
+            "2": 5
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "3": 0
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 49
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 49,
+          "source_clusters": {
+            "2": 49
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 9,
+            "3": 9
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 8,
+          "source_clusters": {
+            "2": 8,
+            "3": 8
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 32
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 30,
+          "source_clusters": {
+            "3": 30
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 10,
+      "images": 256,
+      "panel_sha256": "9c722d667e727269ec2ec85dcdc4de9988bbcb55dcc22e1677aa53c64a3918de"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 97
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 93,
+          "source_clusters": {
+            "0": 93
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 23,
+            "1": 19
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 16,
+          "source_clusters": {
+            "0": 16,
+            "1": 16
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 2,
+            "1": 2,
+            "2": 2
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 2,
+          "source_clusters": {
+            "0": 2,
+            "1": 2,
+            "2": 2
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 8,
+            "2": 8
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 6,
+          "source_clusters": {
+            "0": 6,
+            "2": 6
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 2,
+            "2": 2,
+            "3": 10
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 2,
+          "source_clusters": {
+            "0": 2,
+            "2": 2,
+            "3": 2
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "3": 0
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 35
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 35,
+          "source_clusters": {
+            "1": 35
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 3,
+            "2": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "2": 1
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "3": 0
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 72
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 68,
+          "source_clusters": {
+            "2": 68
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 8,
+            "3": 10
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 5,
+          "source_clusters": {
+            "2": 5,
+            "3": 5
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 30
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 28,
+          "source_clusters": {
+            "3": 28
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 12,
+      "images": 256,
+      "panel_sha256": "162fd4c651c179b051b70a7d6d4829add7c9103871911dc1e8d4e8fd0f332ea4"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 118
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 109,
+          "source_clusters": {
+            "0": 109
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 16,
+            "1": 13
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 12,
+          "source_clusters": {
+            "0": 12,
+            "1": 12
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 4,
+            "1": 6,
+            "2": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 4,
+          "source_clusters": {
+            "0": 4,
+            "1": 4,
+            "2": 4
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 5,
+            "2": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 4,
+          "source_clusters": {
+            "0": 4,
+            "2": 4
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "3": 1
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 38
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 35,
+          "source_clusters": {
+            "1": 35
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 8,
+            "2": 7
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 5,
+          "source_clusters": {
+            "1": 5,
+            "2": 5
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "3": 0
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 47
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 47,
+          "source_clusters": {
+            "2": 47
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 7,
+            "3": 7
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 6,
+          "source_clusters": {
+            "2": 6,
+            "3": 6
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 41
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 33,
+          "source_clusters": {
+            "3": 33
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 14,
+      "images": 256,
+      "panel_sha256": "4d6ae0c0f4ae48768613a75f4ee554002d447de702d506b725b6b6a1c586d1fe"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 108
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 100,
+          "source_clusters": {
+            "0": 100
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 13,
+            "1": 10
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 10,
+          "source_clusters": {
+            "0": 10,
+            "1": 10
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 2,
+            "1": 2,
+            "2": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 5,
+            "2": 4
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 4,
+          "source_clusters": {
+            "0": 4,
+            "2": 4
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 1,
+            "2": 1,
+            "3": 4
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "2": 1,
+            "3": 1
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 3,
+            "3": 4
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "0": 3,
+            "3": 3
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 45
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 43,
+          "source_clusters": {
+            "1": 43
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 4,
+            "2": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "1": 3,
+            "2": 3
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "3": 1
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 60
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 57,
+          "source_clusters": {
+            "2": 57
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 4,
+            "3": 5
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 4,
+          "source_clusters": {
+            "2": 4,
+            "3": 4
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 30
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 29,
+          "source_clusters": {
+            "3": 29
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 16,
+      "images": 256,
+      "panel_sha256": "5bd1a5a999b9fde085e254dd2938e255d821b6d375134c4bb236979338117305"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 108
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 101,
+          "source_clusters": {
+            "0": 101
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 13,
+            "1": 13
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 12,
+          "source_clusters": {
+            "0": 12,
+            "1": 12
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 6,
+            "1": 4,
+            "2": 3
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 3,
+          "source_clusters": {
+            "0": 3,
+            "1": 3,
+            "2": 3
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 6,
+            "2": 6
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 6,
+          "source_clusters": {
+            "0": 6,
+            "2": 6
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "3": 0
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 34
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 33,
+          "source_clusters": {
+            "1": 33
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 9,
+            "2": 7
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 6,
+          "source_clusters": {
+            "1": 6,
+            "2": 6
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 1,
+            "3": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "3": 1
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 62
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 62,
+          "source_clusters": {
+            "2": 62
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 9,
+            "3": 12
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 9,
+          "source_clusters": {
+            "2": 9,
+            "3": 9
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 25
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 23,
+          "source_clusters": {
+            "3": 23
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 18,
+      "images": 256,
+      "panel_sha256": "24d4e5b3bd91c261309ace2623647680ad8fc757bd26ae560490f7119e71d021"
+    },
+    {
+      "class_set_annotation_support": {
+        "0": {
+          "annotated_objects": {
+            "0": 122
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 113,
+          "source_clusters": {
+            "0": 113
+          }
+        },
+        "0,1": {
+          "annotated_objects": {
+            "0": 16,
+            "1": 13
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 11,
+          "source_clusters": {
+            "0": 11,
+            "1": 11
+          }
+        },
+        "0,1,2": {
+          "annotated_objects": {
+            "0": 1,
+            "1": 1,
+            "2": 2
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "0": 1,
+            "1": 1,
+            "2": 1
+          }
+        },
+        "0,1,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,1,3": {
+          "annotated_objects": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "1": 0,
+            "3": 0
+          }
+        },
+        "0,2": {
+          "annotated_objects": {
+            "0": 13,
+            "2": 9
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 9,
+          "source_clusters": {
+            "0": 9,
+            "2": 9
+          }
+        },
+        "0,2,3": {
+          "annotated_objects": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "0,3": {
+          "annotated_objects": {
+            "0": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "0": 0,
+            "3": 0
+          }
+        },
+        "1": {
+          "annotated_objects": {
+            "1": 39
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 37,
+          "source_clusters": {
+            "1": 37
+          }
+        },
+        "1,2": {
+          "annotated_objects": {
+            "1": 1,
+            "2": 1
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "1": 1,
+            "2": 1
+          }
+        },
+        "1,2,3": {
+          "annotated_objects": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        "1,3": {
+          "annotated_objects": {
+            "1": 0,
+            "3": 0
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 0,
+          "source_clusters": {
+            "1": 0,
+            "3": 0
+          }
+        },
+        "2": {
+          "annotated_objects": {
+            "2": 62
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 61,
+          "source_clusters": {
+            "2": 61
+          }
+        },
+        "2,3": {
+          "annotated_objects": {
+            "2": 1,
+            "3": 2
+          },
+          "could_meet_support_if_all_detected": false,
+          "panel_images": 1,
+          "source_clusters": {
+            "2": 1,
+            "3": 1
+          }
+        },
+        "3": {
+          "annotated_objects": {
+            "3": 22
+          },
+          "could_meet_support_if_all_detected": true,
+          "panel_images": 22,
+          "source_clusters": {
+            "3": 22
+          }
+        }
+      },
+      "distinct_source_clusters": 256,
+      "epoch": 20,
+      "images": 256,
+      "panel_sha256": "3638a832f953fb3933ad28a413490df2051fbdc7e10a8e3e032cf8119bed65de"
+    }
+  ],
+  "planned_panels": {
+    "all_opportunities_match_fixed_controls": true,
+    "application_opportunities": [
+      {
+        "class_sets": {},
+        "epoch": 1,
+        "maximum_supported_opportunities_from_annotations": 0,
+        "opportunities": 0
+      },
+      {
+        "class_sets": {
+          "0": 3389,
+          "0,1": 475,
+          "0,1,2": 34,
+          "0,1,2,3": 2,
+          "0,1,3": 8,
+          "0,2": 151,
+          "0,2,3": 20,
+          "0,3": 27,
+          "1": 1367,
+          "1,2": 115,
+          "1,2,3": 5,
+          "1,3": 8,
+          "2": 1809,
+          "2,3": 232,
+          "3": 740
+        },
+        "epoch": 2,
+        "maximum_supported_opportunities_from_annotations": 8012,
+        "opportunities": 8382
+      },
+      {
+        "class_sets": {
+          "0": 3254,
+          "0,1": 471,
+          "0,1,2": 36,
+          "0,1,3": 4,
+          "0,2": 152,
+          "0,2,3": 17,
+          "0,3": 21,
+          "1": 1343,
+          "1,2": 134,
+          "1,2,3": 6,
+          "1,3": 11,
+          "2": 1824,
+          "2,3": 233,
+          "3": 724
+        },
+        "epoch": 3,
+        "maximum_supported_opportunities_from_annotations": 7849,
+        "opportunities": 8230
+      },
+      {
+        "class_sets": {
+          "0": 3349,
+          "0,1": 504,
+          "0,1,2": 35,
+          "0,1,2,3": 3,
+          "0,1,3": 5,
+          "0,2": 165,
+          "0,2,3": 15,
+          "0,3": 27,
+          "1": 1334,
+          "1,2": 118,
+          "1,2,3": 7,
+          "1,3": 9,
+          "2": 1802,
+          "2,3": 263,
+          "3": 706
+        },
+        "epoch": 4,
+        "maximum_supported_opportunities_from_annotations": 7958,
+        "opportunities": 8342
+      },
+      {
+        "class_sets": {
+          "0": 3311,
+          "0,1": 485,
+          "0,1,2": 33,
+          "0,1,2,3": 2,
+          "0,1,3": 2,
+          "0,2": 163,
+          "0,2,3": 16,
+          "0,3": 30,
+          "1": 1331,
+          "1,2": 128,
+          "1,2,3": 5,
+          "1,3": 14,
+          "2": 1866,
+          "2,3": 248,
+          "3": 708
+        },
+        "epoch": 5,
+        "maximum_supported_opportunities_from_annotations": 7949,
+        "opportunities": 8342
+      },
+      {
+        "class_sets": {
+          "0": 3371,
+          "0,1": 492,
+          "0,1,2": 46,
+          "0,1,2,3": 4,
+          "0,1,3": 3,
+          "0,2": 155,
+          "0,2,3": 18,
+          "0,3": 25,
+          "1": 1324,
+          "1,2": 126,
+          "1,2,3": 7,
+          "1,3": 11,
+          "2": 1799,
+          "2,3": 229,
+          "3": 782
+        },
+        "epoch": 6,
+        "maximum_supported_opportunities_from_annotations": 7768,
+        "opportunities": 8392
+      },
+      {
+        "class_sets": {
+          "0": 3379,
+          "0,1": 484,
+          "0,1,2": 34,
+          "0,1,2,3": 2,
+          "0,1,3": 6,
+          "0,2": 153,
+          "0,2,3": 13,
+          "0,3": 23,
+          "1": 1276,
+          "1,2": 100,
+          "1,2,3": 8,
+          "1,3": 6,
+          "2": 1820,
+          "2,3": 235,
+          "3": 752
+        },
+        "epoch": 7,
+        "maximum_supported_opportunities_from_annotations": 7711,
+        "opportunities": 8291
+      },
+      {
+        "class_sets": {
+          "0": 3242,
+          "0,1": 470,
+          "0,1,2": 37,
+          "0,1,2,3": 4,
+          "0,1,3": 6,
+          "0,2": 157,
+          "0,2,3": 23,
+          "0,3": 23,
+          "1": 1312,
+          "1,2": 122,
+          "1,2,3": 3,
+          "1,3": 17,
+          "2": 1782,
+          "2,3": 255,
+          "3": 754
+        },
+        "epoch": 8,
+        "maximum_supported_opportunities_from_annotations": 7560,
+        "opportunities": 8207
+      },
+      {
+        "class_sets": {
+          "0": 3386,
+          "0,1": 485,
+          "0,1,2": 40,
+          "0,1,2,3": 3,
+          "0,1,3": 3,
+          "0,2": 147,
+          "0,2,3": 18,
+          "0,3": 28,
+          "1": 1320,
+          "1,2": 124,
+          "1,2,3": 5,
+          "1,3": 6,
+          "2": 1845,
+          "2,3": 205,
+          "3": 727
+        },
+        "epoch": 9,
+        "maximum_supported_opportunities_from_annotations": 7763,
+        "opportunities": 8342
+      },
+      {
+        "class_sets": {
+          "0": 3350,
+          "0,1": 471,
+          "0,1,2": 43,
+          "0,1,2,3": 3,
+          "0,1,3": 6,
+          "0,2": 158,
+          "0,2,3": 17,
+          "0,3": 30,
+          "1": 1327,
+          "1,2": 108,
+          "1,2,3": 6,
+          "1,3": 8,
+          "2": 1785,
+          "2,3": 229,
+          "3": 743
+        },
+        "epoch": 10,
+        "maximum_supported_opportunities_from_annotations": 7905,
+        "opportunities": 8284
+      },
+      {
+        "class_sets": {
+          "0": 3334,
+          "0,1": 469,
+          "0,1,2": 37,
+          "0,1,2,3": 3,
+          "0,1,3": 5,
+          "0,2": 155,
+          "0,2,3": 18,
+          "0,3": 23,
+          "1": 1320,
+          "1,2": 114,
+          "1,2,3": 8,
+          "1,3": 14,
+          "2": 1754,
+          "2,3": 240,
+          "3": 731
+        },
+        "epoch": 11,
+        "maximum_supported_opportunities_from_annotations": 7848,
+        "opportunities": 8225
+      },
+      {
+        "class_sets": {
+          "0": 3315,
+          "0,1": 467,
+          "0,1,2": 36,
+          "0,1,2,3": 2,
+          "0,1,3": 2,
+          "0,2": 155,
+          "0,2,3": 18,
+          "0,3": 33,
+          "1": 1331,
+          "1,2": 118,
+          "1,2,3": 7,
+          "1,3": 5,
+          "2": 1772,
+          "2,3": 238,
+          "3": 736
+        },
+        "epoch": 12,
+        "maximum_supported_opportunities_from_annotations": 8014,
+        "opportunities": 8235
+      },
+      {
+        "class_sets": {
+          "0": 3346,
+          "0,1": 462,
+          "0,1,2": 38,
+          "0,1,2,3": 3,
+          "0,1,3": 6,
+          "0,2": 165,
+          "0,2,3": 13,
+          "0,3": 29,
+          "1": 1325,
+          "1,2": 100,
+          "1,2,3": 5,
+          "1,3": 13,
+          "2": 1814,
+          "2,3": 224,
+          "3": 738
+        },
+        "epoch": 13,
+        "maximum_supported_opportunities_from_annotations": 8074,
+        "opportunities": 8281
+      },
+      {
+        "class_sets": {
+          "0": 3279,
+          "0,1": 493,
+          "0,1,2": 36,
+          "0,1,2,3": 2,
+          "0,1,3": 6,
+          "0,2": 125,
+          "0,2,3": 11,
+          "0,3": 20,
+          "1": 1334,
+          "1,2": 107,
+          "1,2,3": 7,
+          "1,3": 12,
+          "2": 1853,
+          "2,3": 248,
+          "3": 761
+        },
+        "epoch": 14,
+        "maximum_supported_opportunities_from_annotations": 7720,
+        "opportunities": 8294
+      },
+      {
+        "class_sets": {
+          "0": 3324,
+          "0,1": 493,
+          "0,1,2": 40,
+          "0,1,2,3": 4,
+          "0,1,3": 5,
+          "0,2": 168,
+          "0,2,3": 16,
+          "0,3": 33,
+          "1": 1349,
+          "1,2": 121,
+          "1,2,3": 10,
+          "1,3": 11,
+          "2": 1760,
+          "2,3": 229,
+          "3": 784
+        },
+        "epoch": 15,
+        "maximum_supported_opportunities_from_annotations": 7710,
+        "opportunities": 8347
+      },
+      {
+        "class_sets": {
+          "0": 3391,
+          "0,1": 478,
+          "0,1,2": 48,
+          "0,1,2,3": 1,
+          "0,1,3": 7,
+          "0,2": 137,
+          "0,2,3": 15,
+          "0,3": 29,
+          "1": 1373,
+          "1,2": 128,
+          "1,2,3": 9,
+          "1,3": 10,
+          "2": 1821,
+          "2,3": 232,
+          "3": 768
+        },
+        "epoch": 16,
+        "maximum_supported_opportunities_from_annotations": 7831,
+        "opportunities": 8447
+      },
+      {
+        "class_sets": {
+          "0": 3387,
+          "0,1": 461,
+          "0,1,2": 36,
+          "0,1,2,3": 3,
+          "0,1,3": 4,
+          "0,2": 162,
+          "0,2,3": 19,
+          "0,3": 26,
+          "1": 1375,
+          "1,2": 112,
+          "1,2,3": 7,
+          "1,3": 7,
+          "2": 1898,
+          "2,3": 231,
+          "3": 743
+        },
+        "epoch": 17,
+        "maximum_supported_opportunities_from_annotations": 7864,
+        "opportunities": 8471
+      },
+      {
+        "class_sets": {
+          "0": 3385,
+          "0,1": 470,
+          "0,1,2": 40,
+          "0,1,2,3": 2,
+          "0,1,3": 2,
+          "0,2": 150,
+          "0,2,3": 14,
+          "0,3": 27,
+          "1": 1315,
+          "1,2": 132,
+          "1,2,3": 9,
+          "1,3": 8,
+          "2": 1848,
+          "2,3": 208,
+          "3": 729
+        },
+        "epoch": 18,
+        "maximum_supported_opportunities_from_annotations": 7955,
+        "opportunities": 8339
+      },
+      {
+        "class_sets": {
+          "0": 3374,
+          "0,1": 454,
+          "0,1,2": 38,
+          "0,1,2,3": 2,
+          "0,1,3": 10,
+          "0,2": 160,
+          "0,2,3": 11,
+          "0,3": 21,
+          "1": 1343,
+          "1,2": 126,
+          "1,2,3": 7,
+          "1,3": 9,
+          "2": 1779,
+          "2,3": 240,
+          "3": 748
+        },
+        "epoch": 19,
+        "maximum_supported_opportunities_from_annotations": 7938,
+        "opportunities": 8322
+      },
+      {
+        "class_sets": {
+          "0": 3343,
+          "0,1": 497,
+          "0,1,2": 32,
+          "0,1,2,3": 4,
+          "0,1,3": 7,
+          "0,2": 155,
+          "0,2,3": 21,
+          "0,3": 23,
+          "1": 1354,
+          "1,2": 117,
+          "1,2,3": 5,
+          "1,3": 12,
+          "2": 1840,
+          "2,3": 233,
+          "3": 735
+        },
+        "epoch": 20,
+        "maximum_supported_opportunities_from_annotations": 7924,
+        "opportunities": 8378
+      }
+    ],
+    "maximum_supported_opportunities_from_annotations": 149353,
+    "minimum_identity_opportunities_due_to_annotation_sparsity": 8798,
+    "probe_image_forwards": 71680,
+    "probe_settings_sha256": "b1d022b48dfd54f8ec28ab9d09ec0a2c5853074b3dd846a04d9cfa1774b984f7",
+    "same_panels_and_group_choices_as_online_shared": true,
+    "scheduled_updates": 10,
+    "scope": "Frozen training metadata only. Annotation counts give support upper bounds, not detector retention or future active-policy predictions.",
+    "test_data_read": false,
+    "total_application_opportunities": 158151
+  },
+  "python": "3.14.2",
+  "python_3_12_grammar": "passed",
+  "shell_syntax": {
+    "method": "Git Bash -n read-only parsing; scripts not submitted or executed",
+    "read_only_retry_exit_code": 0,
+    "read_only_retry_output": [
+      "Syntax OK: submit.sh",
+      "Syntax OK: run_job.sh",
+      "Syntax OK: job.pbs"
+    ],
+    "sandbox_startup_attempts": [
+      {
+        "exit_code": 3221225794,
+        "file": "submit.sh",
+        "stderr": "",
+        "stdout": ""
+      },
+      {
+        "exit_code": 3221225794,
+        "file": "run_job.sh",
+        "stderr": "",
+        "stdout": ""
+      },
+      {
+        "exit_code": 3221225794,
+        "file": "job.pbs",
+        "stderr": "",
+        "stdout": ""
+      }
+    ],
+    "source_sha256": {
+      "job.pbs": "5d0a356655409c27eb6001e4e7a58cdce79f3e37ea848e9bdb279079ea891682",
+      "run_job.sh": "6ee9a05e91441cab6ca4bf92fe2a29abf8dbe728bf094cfb38da5387ff73026f",
+      "submit.sh": "18ae539df47c09606955207e411010c3f689b99cfbcbdb6d157b5d2ba29da79d"
+    },
+    "status": "passed"
+  },
+  "source_sha256": {
+    "README.md": "8b6fe996eb1ddfce2fe6dc28a1ab606672e84b583a570f13fe7714444cc85174",
+    "baseline.py": "c4555d1332a95cb55ae57d85fa0ee65830ed492dbe7bfe5cda63d6454433a503",
+    "checkpoints.py": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+    "class_set_feedback.py": "e8777651bc45368663a025039f252b6cb09ca9530c83665f13a16091b6535fe2",
+    "controller.py": "b516b41f78c51a2e104e6b242ce1a317f32998bc1a2f69a12fb9293ef0ab23e6",
+    "identity_protocol.json": "5cfe9851db1a478971a2c82c78cacb44d290a4315b2fcfde355832077145fdf2",
+    "integration.py": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+    "job.pbs": "5d0a356655409c27eb6001e4e7a58cdce79f3e37ea848e9bdb279079ea891682",
+    "local_augmentation.py": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+    "local_protocol.json": "bc7d772ab4a9bbf6ce9c6e91aa4fd3d5608755915d2ee003b897751adeb87c01",
+    "metrics.py": "a65ceced7286a8029576c89c286ce51caad03ef69632de2856d5827bda07aeba",
+    "models.py": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+    "online_shared_protocol.json": "484bb09534d37aab47c640ac6f5c4c322e6bc0a94fe713bbc30e4eafb18d71a0",
+    "probe_detector.py": "cc652b6c1dfc0f9b377554eeed7fe63b46982d9d922241b4ab40980e4c0ab18f",
+    "probe_runner.py": "c57f118d5a448e27f57b52bb86e9b7b338b18542cb84bd7813cd0aadeb9711f2",
+    "protocol.json": "651ebda915cf3a9d97eddf624ccebda423cefb4b8a7a472dc6e01971db494f1d",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_job.sh": "6ee9a05e91441cab6ca4bf92fe2a29abf8dbe728bf094cfb38da5387ff73026f",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "shared_augmentation.py": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+    "shared_controller.py": "ecc0edaec74909cd38cc1f410387c3522bf6925312922e742c4e29ad16c26260",
+    "shared_exposure.json": "4aba100351e4500d5dd39ff223c68a7f254c9bc4cc5c2cd28804a79035f38054",
+    "shared_protocol.json": "be3c1328ab3f128389ede6e638cf04332acd648133eeaad3ecf4760ea80c9fe2",
+    "smoke_augmentation.py": "1190cbfc60bc6689b18bd549bb41b78a449868b55b2acee3de32d244f4e11106",
+    "smoke_selection.json": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+    "submit.sh": "18ae539df47c09606955207e411010c3f689b99cfbcbdb6d157b5d2ba29da79d",
+    "tests/test_baseline.py": "a5e9c34c730c7d57e3f7bcf1c44cddc9759b26d6256e5592f757e4d4bcdb9df2",
+    "tests/test_class_controller.py": "3acedc4523f23b45767beaf1d5ef7db26f15a495fdcacf50c40dab458990c2cb",
+    "tests/test_local_augmentation.py": "198f2562913639d96b7da577a814f631ac91f1ff3ecdf235ecdc99bae555b915",
+    "tests/test_online_resume.py": "67ff98085beb9c49c242a2ec926e98ce437f47f1291b0965e3f3864c6325d595",
+    "tests/test_shared_augmentation.py": "193fbd8791167cf0ca744c8f02e86574edf5e5d92ffec877f4a7a3919bda0ce1",
+    "tests/test_shared_controller.py": "7fdc440be9e9f22be2dac97132985bc9340eb4f972100e383bf5c7c660642fb7"
+  },
+  "status": "passed_locally_ccast_pending"
+}

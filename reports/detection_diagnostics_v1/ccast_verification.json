@@ -1,0 +1,1175 @@
+{
+  "archive": "detection_diagnostic_check_v1.tar.gz",
+  "archive_bytes": 294738,
+  "archive_files": 22,
+  "archive_sha256": "14dd16aad80c0dbf546994aa4c2aad80c6dfb215ca5d7f7a222e218b5557193f",
+  "audit_code_sha256": "a9717833deadc33394122af8ae840bea4dec62feb62a23d0e670d31edce818c2",
+  "audit_helper_sha256": "0734579d9ac040b7f3024ed69c42281f0e9b9f9d75c1b652cda8e3dfb52386de",
+  "checkpoint_results": {
+    "100": {
+      "batch_stats": {
+        "assigned_target_score_sum": 39.67699491977692,
+        "assigned_targets": 16,
+        "classification_logit_max": -2.4359474182128906,
+        "classification_logit_min": -366.54827880859375,
+        "foreground_candidates": 153,
+        "metrics": {
+          "AP50": 0.17197076850542195,
+          "AP50_95": 0.04076693383624076,
+          "AP75": 0.03575357535753574,
+          "AR100": 0.103125,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.1515008643721515,
+              "AP50_95": 0.10084865629420084,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.031431714600031434,
+              "AP50_95": 0.011724029545811724,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.5049504950495048,
+              "AP50_95": 0.05049504950495049,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 762,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 16
+        },
+        "raw_targets_covered_at_iou_0_5": {
+          "best_any_class_eligible_iou": 6,
+          "best_raw_iou": 12,
+          "best_same_class_eligible_iou": 6
+        },
+        "retained_prediction_geometry": {
+          "detections": 762,
+          "detections_by_class": {
+            "D00": 517,
+            "D10": 201,
+            "D20": 35,
+            "D40": 9
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.7966690774085353,
+              "best_same_class_iou": 0.7966690774085353,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.7576388476638661,
+              "best_same_class_iou": 0.7576388476638661,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.4789423916488995,
+              "best_same_class_iou": 0.4789423916488995,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.38698658845511813,
+              "best_same_class_iou": 0.38698658845511813,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.8477091456371861,
+              "best_same_class_iou": 0.8477091456371861,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.16613667532904555,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.5455471922878242,
+              "best_same_class_iou": 0.5455471922878242,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.6898778931287965,
+              "best_same_class_iou": 0.6898778931287965,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.5357575788978307,
+              "best_same_class_iou": 0.5357575788978307,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.37930098501551984,
+              "best_same_class_iou": 0.37930098501551984,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.001002158154733479,
+            0.0012760221725329757,
+            0.08047227561473846
+          ],
+          "targets_with_any_class_iou_at_least_0_5": 6,
+          "targets_with_same_class_iou_at_least_0_5": 6
+        },
+        "state_and_rng_unchanged_reported": true
+      },
+      "running_stats": {
+        "assigned_target_score_sum": 23.33846879005432,
+        "assigned_targets": 9,
+        "classification_logit_max": -0.7392253875732422,
+        "classification_logit_min": -14707.263671875,
+        "foreground_candidates": 86,
+        "metrics": {
+          "AP50": 0.005177795176777952,
+          "AP50_95": 0.002311642123116421,
+          "AP75": 0.0,
+          "AR100": 0.075,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 2,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 2,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 1,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.018981898189818984,
+              "AP50_95": 0.008554855485548556,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0017292825172928248,
+              "AP50_95": 0.00069171300691713,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 995,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 16
+        },
+        "raw_targets_covered_at_iou_0_5": {
+          "best_any_class_eligible_iou": 4,
+          "best_raw_iou": 7,
+          "best_same_class_eligible_iou": 4
+        },
+        "retained_prediction_geometry": {
+          "detections": 995,
+          "detections_by_class": {
+            "D00": 217,
+            "D10": 316,
+            "D20": 327,
+            "D40": 135
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.628478487557102,
+              "best_same_class_iou": 0.628478487557102,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.7333048829561156,
+              "best_same_class_iou": 0.7333048829561156,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.046696177198891936,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.7400264934350509,
+              "best_same_class_iou": 0.6832167006578871,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.23365684440684756,
+              "best_same_class_iou": 0.23365684440684756,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.29718708261118143,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.4756557451176358,
+              "best_same_class_iou": 0.4756557451176358,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.42328774780638234,
+              "best_same_class_iou": 0.42328774780638234,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.0010132254101336002,
+            0.011955644004046917,
+            0.3231735825538635
+          ],
+          "targets_with_any_class_iou_at_least_0_5": 3,
+          "targets_with_same_class_iou_at_least_0_5": 3
+        },
+        "state_and_rng_unchanged_reported": true
+      },
+      "running_stats_after": {
+        "assigned_target_score_sum": 23.33846879005432,
+        "assigned_targets": 9,
+        "classification_logit_max": -0.7392253875732422,
+        "classification_logit_min": -14707.263671875,
+        "foreground_candidates": 86,
+        "metrics": {
+          "AP50": 0.005177795176777952,
+          "AP50_95": 0.002311642123116421,
+          "AP75": 0.0,
+          "AR100": 0.075,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 2,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 2,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 1,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.018981898189818984,
+              "AP50_95": 0.008554855485548556,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0017292825172928248,
+              "AP50_95": 0.00069171300691713,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 995,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 16
+        },
+        "raw_targets_covered_at_iou_0_5": {
+          "best_any_class_eligible_iou": 4,
+          "best_raw_iou": 7,
+          "best_same_class_eligible_iou": 4
+        },
+        "retained_prediction_geometry": {
+          "detections": 995,
+          "detections_by_class": {
+            "D00": 217,
+            "D10": 316,
+            "D20": 327,
+            "D40": 135
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.628478487557102,
+              "best_same_class_iou": 0.628478487557102,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.7333048829561156,
+              "best_same_class_iou": 0.7333048829561156,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.046696177198891936,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.7400264934350509,
+              "best_same_class_iou": 0.6832167006578871,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.23365684440684756,
+              "best_same_class_iou": 0.23365684440684756,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.29718708261118143,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.4756557451176358,
+              "best_same_class_iou": 0.4756557451176358,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.42328774780638234,
+              "best_same_class_iou": 0.42328774780638234,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.0010132254101336002,
+            0.011955644004046917,
+            0.3231735825538635
+          ],
+          "targets_with_any_class_iou_at_least_0_5": 3,
+          "targets_with_same_class_iou_at_least_0_5": 3
+        },
+        "state_and_rng_unchanged_reported": true
+      }
+    },
+    "200": {
+      "batch_stats": {
+        "assigned_target_score_sum": 31.682290476359412,
+        "assigned_targets": 16,
+        "classification_logit_max": -1.0289483070373535,
+        "classification_logit_min": -937.9331665039062,
+        "foreground_candidates": 151,
+        "metrics": {
+          "AP50": 0.08077123501823866,
+          "AP50_95": 0.03776706618030224,
+          "AP75": 0.03217821782178217,
+          "AR100": 0.121875,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.1287128712871287,
+              "AP50_95": 0.09009900990099007,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.19437206878582605,
+              "AP50_95": 0.06096925482021887,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 97,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 16
+        },
+        "raw_targets_covered_at_iou_0_5": {
+          "best_any_class_eligible_iou": 4,
+          "best_raw_iou": 13,
+          "best_same_class_eligible_iou": 3
+        },
+        "retained_prediction_geometry": {
+          "detections": 97,
+          "detections_by_class": {
+            "D00": 33,
+            "D10": 0,
+            "D20": 52,
+            "D40": 12
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.08399022118870342,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.7432053947531868,
+              "best_same_class_iou": 0.7432053947531868,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.7077596213569414,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.2525682774133911,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.25710694314354277,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.8246251783250528,
+              "best_same_class_iou": 0.8246251783250528,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.18724936610082465,
+              "best_same_class_iou": 0.18724936610082465,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.6111387493364064,
+              "best_same_class_iou": 0.6111387493364064,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.031672937273407586,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.001028161495923996,
+            0.0017421517986804247,
+            0.26328805088996887
+          ],
+          "targets_with_any_class_iou_at_least_0_5": 4,
+          "targets_with_same_class_iou_at_least_0_5": 3
+        },
+        "state_and_rng_unchanged_reported": true
+      },
+      "running_stats": {
+        "assigned_target_score_sum": 21.702601120581335,
+        "assigned_targets": 14,
+        "classification_logit_max": 1.9629578590393066,
+        "classification_logit_min": -4636.21240234375,
+        "foreground_candidates": 132,
+        "metrics": {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 1307,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 16
+        },
+        "raw_targets_covered_at_iou_0_5": {
+          "best_any_class_eligible_iou": 1,
+          "best_raw_iou": 7,
+          "best_same_class_eligible_iou": 1
+        },
+        "retained_prediction_geometry": {
+          "detections": 1307,
+          "detections_by_class": {
+            "D00": 976,
+            "D10": 0,
+            "D20": 209,
+            "D40": 122
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.0934155079916643,
+              "best_same_class_iou": 0.0934155079916643,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.14698051325273354,
+              "best_same_class_iou": 0.14698051325273354,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.14754038717662998,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.1508268075407663,
+              "best_same_class_iou": 0.1508268075407663,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.40353192941005295,
+              "best_same_class_iou": 0.1930099681858353,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.2523963191360023,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.21160432737608395,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.13031572807313171,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.0010173431364819407,
+            0.001842547906562686,
+            0.8768527507781982
+          ],
+          "targets_with_any_class_iou_at_least_0_5": 0,
+          "targets_with_same_class_iou_at_least_0_5": 0
+        },
+        "state_and_rng_unchanged_reported": true
+      },
+      "running_stats_after": {
+        "assigned_target_score_sum": 21.702601120581335,
+        "assigned_targets": 14,
+        "classification_logit_max": 1.9629578590393066,
+        "classification_logit_min": -4636.21240234375,
+        "foreground_candidates": 132,
+        "metrics": {
+          "AP50": 0.0,
+          "AP50_95": 0.0,
+          "AP75": 0.0,
+          "AR100": 0.0,
+          "evaluation_images": 15,
+          "negative_confidence": 0.25,
+          "no_target_images": 8,
+          "no_target_images_with_predictions": 0,
+          "no_target_predicted_boxes": {
+            "10434": 0,
+            "16": 0,
+            "1703": 0,
+            "17788": 0,
+            "17789": 0,
+            "3061": 0,
+            "5258": 0,
+            "7643": 0
+          },
+          "per_class": {
+            "D00": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 8
+            },
+            "D10": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 4
+            },
+            "D20": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            },
+            "D40": {
+              "AP50": 0.0,
+              "AP50_95": 0.0,
+              "target_count": 2
+            }
+          },
+          "prediction_boxes": 1307,
+          "scope": "training subset only; undefined metrics are null; all retained targets are ordinary ground truth",
+          "target_boxes": 16
+        },
+        "raw_targets_covered_at_iou_0_5": {
+          "best_any_class_eligible_iou": 1,
+          "best_raw_iou": 7,
+          "best_same_class_eligible_iou": 1
+        },
+        "retained_prediction_geometry": {
+          "detections": 1307,
+          "detections_by_class": {
+            "D00": 976,
+            "D10": 0,
+            "D20": 209,
+            "D40": 122
+          },
+          "per_target": [
+            {
+              "best_any_class_iou": 0.0934155079916643,
+              "best_same_class_iou": 0.0934155079916643,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 1
+            },
+            {
+              "best_any_class_iou": 0.14698051325273354,
+              "best_same_class_iou": 0.14698051325273354,
+              "category_id": 1,
+              "image_id": 0,
+              "target_id": 2
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 3
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 1678,
+              "target_id": 4
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 3064,
+              "target_id": 5
+            },
+            {
+              "best_any_class_iou": 0.14754038717662998,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 5044,
+              "target_id": 6
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 10433,
+              "target_id": 7
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 4,
+              "image_id": 10433,
+              "target_id": 8
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 10433,
+              "target_id": 9
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 1,
+              "image_id": 10433,
+              "target_id": 10
+            },
+            {
+              "best_any_class_iou": 0.1508268075407663,
+              "best_same_class_iou": 0.1508268075407663,
+              "category_id": 1,
+              "image_id": 17929,
+              "target_id": 11
+            },
+            {
+              "best_any_class_iou": 0.40353192941005295,
+              "best_same_class_iou": 0.1930099681858353,
+              "category_id": 4,
+              "image_id": 17929,
+              "target_id": 12
+            },
+            {
+              "best_any_class_iou": 0.2523963191360023,
+              "best_same_class_iou": 0.0,
+              "category_id": 3,
+              "image_id": 17929,
+              "target_id": 13
+            },
+            {
+              "best_any_class_iou": 0.21160432737608395,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 14
+            },
+            {
+              "best_any_class_iou": 0.13031572807313171,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 17929,
+              "target_id": 15
+            },
+            {
+              "best_any_class_iou": 0.0,
+              "best_same_class_iou": 0.0,
+              "category_id": 2,
+              "image_id": 23520,
+              "target_id": 16
+            }
+          ],
+          "scope": "Coverage of the saved post-threshold/post-NMS predictions; not raw anchor recall, one-to-one recall or AP",
+          "score_min_median_max": [
+            0.0010173431364819407,
+            0.001842547906562686,
+            0.8768527507781982
+          ],
+          "targets_with_any_class_iou_at_least_0_5": 0,
+          "targets_with_same_class_iou_at_least_0_5": 0
+        },
+        "state_and_rng_unchanged_reported": true
+      }
+    }
+  },
+  "code_files_matched": 6,
+  "diagnostic_forward_records_verified": 48,
+  "finished_utc_reported": "2026-10-22T16:34:07.175917+00:00",
+  "gpu": "NVIDIA A10",
+  "ground_truth_matches_frozen_train_manifest": true,
+  "held_out_data_read_reported": false,
+  "host": "gpu0026",
+  "input_records_match_learning_run_exactly": true,
+  "learning_dependency_code_files_matched": 14,
+  "limits": [
+    "No raw image decoding, model execution or full checkpoint reload was repeated locally.",
+    "Parameter, buffer, RNG and checkpoint preservation are inspected execution records, not an independent live check.",
+    "Raw candidates and assignment summaries were checked for consistency, not regenerated from tensors.",
+    "Candidate coverage is not one-to-one recall or AP; score sums are normalized soft assignment weights, not object counts.",
+    "Batch-stat results depend on the fixed image batches; no deployment or held-out claim.",
+    "This does not identify why normalization statistics differ or prove the cause of the earlier update spike."
+  ],
+  "local_pycocotools": "2.0.11",
+  "maximum_recomputed_metric_error": 0.0,
+  "optimizer_steps_reported": 0,
+  "pbs_job": "794142.bright04",
+  "previous_record_hashes_matched": 39,
+  "remote_pycocotools": "2.0.10",
+  "result_checksum_entries": 21,
+  "running_stat_diagnostics_repeat_exactly": true,
+  "running_stat_predictions_replay_original_bytes": true,
+  "status": "verified_normalization_sensitivity_on_training_subset"
+}

@@ -1,0 +1,40 @@
+{
+  "code_sha256": {
+    "audit_detection_data.py": "5f50f0340b489ee7ade27a9101bc416f9658e714d04f0546e031c0bf01984ba7",
+    "screen_near_duplicates.py": "50fceed7efd438939890fa490738e43e0eaee6684a2441c3eec5807aedbb7e0d"
+  },
+  "elapsed_seconds": 588.61,
+  "fingerprint_policy": "Recompute all 128-bit dHashes using JPEG draft at 256px in one runtime",
+  "finished_utc": "2026-10-21T23:52:29.195425+00:00",
+  "host": "gpu0020",
+  "images_checked": 38385,
+  "images_expected": 38385,
+  "input_sha256": {
+    "annotations.jsonl": "6e50233cc1568348aa1cb6ba6bb5104eff2b81f6a5e6345a383d482fc9ce19c0",
+    "candidate_pairs.jsonl": "418291bf6a416af7066c5c90af5edb8660869c66245b13574ff8409c48624200",
+    "fingerprints.jsonl": "78852abeb0d84d2a6a3027cf240ff1bcdeb9ae26918e7aa1be2bcd6d53d8cf3b",
+    "image_audit_run.json": "fc819a47b047792ae5f3ecc61a6efb1d8f3308b8fb9d1ddb7fc2078c27bea9e7",
+    "inventory.jsonl": "bfd6e2ef31a5a73335a966381d2dbb3b171f0fd44a43724fecc637134e2547b1",
+    "previous_images.csv": "bfac83ec2542ee1616a04c6e50af81ca213f5124d3a1d09ac9eab3bdfa71da60",
+    "screen_run.json": "962e6674a1be07013abf398bc7da012abd4632710252aefbf731a4d9ab03c1df",
+    "screen_summary.json": "340661101d1813a868098403c9afc7d2347dba38e50a6643874006eaf3e2f3a5"
+  },
+  "limitations": [
+    "Perceptual matches are grouping candidates, not verified duplicates",
+    "This screen cannot establish complete geographic or sequence independence",
+    "No target annotation does not establish a verified healthy-road image",
+    "Historical train/val exposure remains relevant when resolving split conflicts",
+    "No model evaluation or visual inspection of held-out images is performed"
+  ],
+  "max_pairs": 200000,
+  "partition_policy": "Audit only; keep historical groups and candidate edges as constraints; assign no new splits",
+  "pillow": "10.3.0",
+  "pixel_policy": "Stored orientation; no EXIF transpose; no image writes",
+  "python": "3.12.3",
+  "radius": 8,
+  "reference_sha256": "6e574eefb7ace561212ac0d62a0c2f535e2783afb7dd2002ba5755b35e79364a",
+  "root": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+  "started_utc": "2026-10-21T23:42:40.589951+00:00",
+  "status": "complete",
+  "target_policy": "Four exact label strings; continuous XYXY edges clipped to bounds; positive area; no crop-size cutoff"
+}

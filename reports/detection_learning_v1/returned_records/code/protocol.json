@@ -1,0 +1,95 @@
+{
+  "augmentation": "none",
+  "batch_size": 2,
+  "checkpoint_policy": "Save model, SGD, RNG, step and input/protocol identity at steps 100 and 200. Reload each into a fresh identical architecture; continue from step 101 after the step-100 reload. Check final predictions again after step-200 reload. Retain full checkpoints on CCAST; the result archive contains their hashes and metadata only.",
+  "checkpoint_steps": [
+    100,
+    200
+  ],
+  "comparison_limit": "Architectures differ in capacity, normalization, pretrained training recipe and head transfer. Same data and update count do not make this a fair model-quality ranking.",
+  "cpu_threads": 4,
+  "data_loader_workers": 0,
+  "decision_rule": {
+    "action_if_below": "Review learning curves, per-class metrics and predictions; do not automatically extend, change hyperparameters, choose a winner or start a large baseline.",
+    "label": "project engineering review rule, not an efficacy or statistical threshold",
+    "minimum_final_training_AP50": 0.5,
+    "minimum_training_AP50_gain": 0.1
+  },
+  "evaluate_steps": [
+    0,
+    50,
+    100,
+    200
+  ],
+  "evaluation": {
+    "coordinates": "Inverse letterbox to original stored image, clip to image bounds, discard collapsed predictions only",
+    "max_detections": 100,
+    "metrics": "pycocotools bbox AP50:95/AP50/AP75, AR100, per-class AP50:95/AP50; no-target predicted box counts at confidence 0.25",
+    "negative_confidence": 0.25,
+    "nms_iou": 0.5,
+    "score_threshold": 0.001,
+    "yolo_multi_label": true
+  },
+  "expected_images": 15,
+  "expected_targets": 16,
+  "held_out_policy": "No validation or test manifests/images are opened. Metrics use the same selected training images as the updates.",
+  "image_size": 640,
+  "initialization": "Official COCO weights with fresh four-class output layers",
+  "learning_rate": 0.001,
+  "loader_source_sha256": {
+    "rdd_data.py": "b9a79ef0152eac67f0ec306b3a2d7cb23939832a7587659346a80be973fe630d",
+    "reference.json": "767fd1754edea91ec54ec00d41a3af6dd05b830bfd4e6276b1b5f9009e8b1089",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "selection.json": "a895f10c4f8ca15571cc5e085faa75e0b05eda93e62f4b24e66b5df2210bb461"
+  },
+  "model_input": "identical prepared RGB [0,1] pixels; detector-specific internal normalization is retained",
+  "models": [
+    "fasterrcnn_resnet50_fpn",
+    "yolov8n"
+  ],
+  "momentum": 0.9,
+  "nondeterminism": "A fixed seed is recorded; bit-identical CUDA reruns are not claimed",
+  "optimizer": "SGD",
+  "package_snapshot_sha256": "f07b523b024d61f46fe407df674fa2361a2f9332ed489f794f7b8b20024d77c8",
+  "precision": "float32; no AMP or TF32",
+  "pretrained_architecture": "Faster R-CNN retains COCO FrozenBatchNorm2d with eps=0 and all five backbone stages trainable. YOLO retains the COCO nc=80 hidden classifier width but replaces all three output classifiers with nc=4. Both architectures are constructed identically for checkpoint reloads.",
+  "pretrained_weights": {
+    "fasterrcnn_resnet50_fpn": {
+      "bytes": 167502836,
+      "filename": "fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+      "sha256": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384",
+      "url": "https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth"
+    },
+    "yolov8n": {
+      "bytes": 6549796,
+      "filename": "yolov8n.pt",
+      "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt"
+    }
+  },
+  "previous_loader_release_sha256": "e534a1176486d6ea035073816df9038424375a0c16bf89db4e6ef7395e0e0a8a",
+  "previous_successful_loader_check_sha256": "8133f0f9c069ee3f9301afd662d4a4b2f43c4eaf1705de6cbf72b12cda07549e",
+  "purpose": "Bounded training-only learning and checkpoint check; no architecture ranking or generalization claim",
+  "schedule": "25 passes through the same eight fixed batches; final batch contains one image",
+  "seed": 42,
+  "source_references": [
+    "https://docs.pytorch.org/vision/0.18/models/generated/torchvision.models.detection.fasterrcnn_resnet50_fpn.html",
+    "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/nn/tasks.py",
+    "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/utils/loss.py",
+    "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/utils/nms.py",
+    "https://raw.githubusercontent.com/pytorch/vision/v0.18.0/torchvision/models/detection/backbone_utils.py",
+    "https://raw.githubusercontent.com/cocodataset/cocoapi/master/PythonAPI/pycocotools/cocoeval.py"
+  ],
+  "stopping_rule": "Stop at 200 updates per detector, or immediately on software/data/numerical failure. A completed run below the learning review rule still preserves all results and is marked needs_review. No automatic retries or extra training.",
+  "total_steps": 200,
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "opencv-python-headless": "4.11.0.86",
+    "pycocotools": "2.0.10",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0",
+    "ultralytics-opencv-headless": "8.4.182"
+  },
+  "weight_decay": 0.0005
+}

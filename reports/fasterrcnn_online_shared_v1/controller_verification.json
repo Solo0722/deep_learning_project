@@ -1,0 +1,2969 @@
+{
+  "aggregate_alpha_weighted_fraction_of_applied_content": 0.07172850570330905,
+  "aggregate_union_fraction_of_applied_content": 0.07254600967137897,
+  "applied_without_pixel_change": 1332,
+  "compute": {
+    "image_forwards": 71680,
+    "images": 2560,
+    "seconds": 3384.7370408456773
+  },
+  "constraints": [
+    {
+      "admissible": false,
+      "epoch": 2,
+      "failed_checks": [
+        {
+          "class": "D40",
+          "operation": "brightness_down",
+          "retention": 0.7692307692307693
+        },
+        {
+          "class": "D40",
+          "operation": "brightness_up",
+          "retention": 0.7692307692307693
+        },
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.7692307692307693
+        },
+        {
+          "class": "D10",
+          "operation": "gamma_brighten",
+          "retention": 0.7777777777777778
+        }
+      ],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 0,
+      "selected_minimum_retention": null
+    },
+    {
+      "admissible": false,
+      "epoch": 2,
+      "failed_checks": [
+        {
+          "class": "D10",
+          "operation": "brightness_down",
+          "retention": 0.6666666666666666
+        },
+        {
+          "class": "D40",
+          "operation": "brightness_down",
+          "retention": 0.6153846153846154
+        },
+        {
+          "class": "D10",
+          "operation": "brightness_up",
+          "retention": 0.6666666666666666
+        },
+        {
+          "class": "D40",
+          "operation": "brightness_up",
+          "retention": 0.6923076923076923
+        },
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.7692307692307693
+        },
+        {
+          "class": "D10",
+          "operation": "gamma_brighten",
+          "retention": 0.6444444444444445
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_brighten",
+          "retention": 0.6923076923076923
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_darken",
+          "retention": 0.6923076923076923
+        }
+      ],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 0,
+      "selected_minimum_retention": null
+    },
+    {
+      "admissible": false,
+      "epoch": 2,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "brightness_down",
+          "retention": 0.7802197802197802
+        },
+        {
+          "class": "D10",
+          "operation": "brightness_down",
+          "retention": 0.5777777777777777
+        },
+        {
+          "class": "D40",
+          "operation": "brightness_down",
+          "retention": 0.6153846153846154
+        },
+        {
+          "class": "D10",
+          "operation": "brightness_up",
+          "retention": 0.5777777777777777
+        },
+        {
+          "class": "D40",
+          "operation": "brightness_up",
+          "retention": 0.6153846153846154
+        },
+        {
+          "class": "D00",
+          "operation": "contrast_down",
+          "retention": 0.7912087912087912
+        },
+        {
+          "class": "D10",
+          "operation": "contrast_down",
+          "retention": 0.6888888888888889
+        },
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.6923076923076923
+        },
+        {
+          "class": "D00",
+          "operation": "gamma_brighten",
+          "retention": 0.6923076923076923
+        },
+        {
+          "class": "D10",
+          "operation": "gamma_brighten",
+          "retention": 0.5333333333333333
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_brighten",
+          "retention": 0.6153846153846154
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_darken",
+          "retention": 0.6923076923076923
+        }
+      ],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 0,
+      "selected_minimum_retention": null
+    },
+    {
+      "admissible": true,
+      "epoch": 2,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9333333333333333
+    },
+    {
+      "admissible": false,
+      "epoch": 2,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.7472527472527473
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.6666666666666666
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.7966101694915254
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.6923076923076923
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9333333333333333
+    },
+    {
+      "admissible": false,
+      "epoch": 2,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.5054945054945055
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.28888888888888886
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.711864406779661
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.6153846153846154
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9333333333333333
+    },
+    {
+      "admissible": true,
+      "epoch": 4,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.8666666666666667
+    },
+    {
+      "admissible": false,
+      "epoch": 4,
+      "failed_checks": [
+        {
+          "class": "D40",
+          "operation": "brightness_down",
+          "retention": 0.7666666666666667
+        },
+        {
+          "class": "D10",
+          "operation": "brightness_up",
+          "retention": 0.7543859649122807
+        },
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.6666666666666666
+        }
+      ],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.8666666666666667
+    },
+    {
+      "admissible": false,
+      "epoch": 4,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "brightness_down",
+          "retention": 0.7227722772277227
+        },
+        {
+          "class": "D10",
+          "operation": "brightness_down",
+          "retention": 0.7192982456140351
+        },
+        {
+          "class": "D40",
+          "operation": "brightness_down",
+          "retention": 0.6666666666666666
+        },
+        {
+          "class": "D10",
+          "operation": "brightness_up",
+          "retention": 0.7543859649122807
+        },
+        {
+          "class": "D00",
+          "operation": "contrast_down",
+          "retention": 0.7128712871287128
+        },
+        {
+          "class": "D10",
+          "operation": "contrast_down",
+          "retention": 0.7894736842105263
+        },
+        {
+          "class": "D20",
+          "operation": "contrast_down",
+          "retention": 0.71875
+        },
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.43333333333333335
+        },
+        {
+          "class": "D00",
+          "operation": "gamma_brighten",
+          "retention": 0.7326732673267327
+        },
+        {
+          "class": "D10",
+          "operation": "gamma_brighten",
+          "retention": 0.6140350877192983
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_brighten",
+          "retention": 0.6666666666666666
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_darken",
+          "retention": 0.7666666666666667
+        }
+      ],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.8666666666666667
+    },
+    {
+      "admissible": true,
+      "epoch": 4,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9375
+    },
+    {
+      "admissible": false,
+      "epoch": 4,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.693069306930693
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.7543859649122807
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.78125
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.7666666666666667
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9375
+    },
+    {
+      "admissible": false,
+      "epoch": 4,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.3564356435643564
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.47368421052631576
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.5625
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.36666666666666664
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9375
+    },
+    {
+      "admissible": true,
+      "epoch": 6,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9019607843137255
+    },
+    {
+      "admissible": false,
+      "epoch": 6,
+      "failed_checks": [
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.7419354838709677
+        },
+        {
+          "class": "D10",
+          "operation": "gamma_brighten",
+          "retention": 0.7647058823529411
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_brighten",
+          "retention": 0.7741935483870968
+        }
+      ],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9019607843137255
+    },
+    {
+      "admissible": false,
+      "epoch": 6,
+      "failed_checks": [
+        {
+          "class": "D10",
+          "operation": "brightness_down",
+          "retention": 0.7450980392156863
+        },
+        {
+          "class": "D10",
+          "operation": "brightness_up",
+          "retention": 0.7254901960784313
+        },
+        {
+          "class": "D10",
+          "operation": "contrast_down",
+          "retention": 0.7843137254901961
+        },
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.5161290322580645
+        },
+        {
+          "class": "D10",
+          "operation": "gamma_brighten",
+          "retention": 0.7254901960784313
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_brighten",
+          "retention": 0.7096774193548387
+        }
+      ],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9019607843137255
+    },
+    {
+      "admissible": true,
+      "epoch": 6,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9019607843137255
+    },
+    {
+      "admissible": false,
+      "epoch": 6,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.7844827586206896
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.6862745098039216
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.78
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.7419354838709677
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9019607843137255
+    },
+    {
+      "admissible": false,
+      "epoch": 6,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.5431034482758621
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.43137254901960786
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.64
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.4838709677419355
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9019607843137255
+    },
+    {
+      "admissible": true,
+      "epoch": 8,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 2,
+      "selected_minimum_retention": 0.8
+    },
+    {
+      "admissible": true,
+      "epoch": 8,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 2,
+      "selected_minimum_retention": 0.8
+    },
+    {
+      "admissible": false,
+      "epoch": 8,
+      "failed_checks": [
+        {
+          "class": "D10",
+          "operation": "brightness_down",
+          "retention": 0.7941176470588235
+        },
+        {
+          "class": "D40",
+          "operation": "brightness_down",
+          "retention": 0.7333333333333333
+        },
+        {
+          "class": "D10",
+          "operation": "contrast_down",
+          "retention": 0.7647058823529411
+        },
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.4
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_brighten",
+          "retention": 0.6666666666666666
+        },
+        {
+          "class": "D40",
+          "operation": "gamma_darken",
+          "retention": 0.7333333333333333
+        }
+      ],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 2,
+      "selected_minimum_retention": 0.8
+    },
+    {
+      "admissible": true,
+      "epoch": 8,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.953125
+    },
+    {
+      "admissible": false,
+      "epoch": 8,
+      "failed_checks": [
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.6617647058823529
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.6666666666666666
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.953125
+    },
+    {
+      "admissible": false,
+      "epoch": 8,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.49074074074074076
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.4117647058823529
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.75
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.13333333333333333
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.953125
+    },
+    {
+      "admissible": true,
+      "epoch": 10,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8333333333333334
+    },
+    {
+      "admissible": true,
+      "epoch": 10,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8333333333333334
+    },
+    {
+      "admissible": true,
+      "epoch": 10,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8333333333333334
+    },
+    {
+      "admissible": true,
+      "epoch": 10,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9532710280373832
+    },
+    {
+      "admissible": false,
+      "epoch": 10,
+      "failed_checks": [
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.7936507936507936
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9532710280373832
+    },
+    {
+      "admissible": false,
+      "epoch": 10,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.5794392523364486
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.7169811320754716
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.6984126984126984
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.6333333333333333
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9532710280373832
+    },
+    {
+      "admissible": true,
+      "epoch": 12,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.8461538461538461
+    },
+    {
+      "admissible": false,
+      "epoch": 12,
+      "failed_checks": [
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.7692307692307693
+        }
+      ],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.8461538461538461
+    },
+    {
+      "admissible": false,
+      "epoch": 12,
+      "failed_checks": [
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.6923076923076923
+        }
+      ],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.8461538461538461
+    },
+    {
+      "admissible": true,
+      "epoch": 12,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9375
+    },
+    {
+      "admissible": false,
+      "epoch": 12,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.7403846153846154
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.6875
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.7307692307692307
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9375
+    },
+    {
+      "admissible": false,
+      "epoch": 12,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.5384615384615384
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.4375
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.6623376623376623
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.38461538461538464
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9375
+    },
+    {
+      "admissible": true,
+      "epoch": 14,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9
+    },
+    {
+      "admissible": false,
+      "epoch": 14,
+      "failed_checks": [
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.775
+        }
+      ],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9
+    },
+    {
+      "admissible": false,
+      "epoch": 14,
+      "failed_checks": [
+        {
+          "class": "D40",
+          "operation": "contrast_down",
+          "retention": 0.625
+        }
+      ],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9
+    },
+    {
+      "admissible": true,
+      "epoch": 14,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.925
+    },
+    {
+      "admissible": false,
+      "epoch": 14,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.7851239669421488
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.639344262295082
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.765625
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.65
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.925
+    },
+    {
+      "admissible": false,
+      "epoch": 14,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.49586776859504134
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.36065573770491804
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.5
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.4
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.925
+    },
+    {
+      "admissible": true,
+      "epoch": 16,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8
+    },
+    {
+      "admissible": true,
+      "epoch": 16,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8
+    },
+    {
+      "admissible": true,
+      "epoch": 16,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8
+    },
+    {
+      "admissible": true,
+      "epoch": 16,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9545454545454546
+    },
+    {
+      "admissible": false,
+      "epoch": 16,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.7727272727272727
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.6785714285714286
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.7142857142857143
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9545454545454546
+    },
+    {
+      "admissible": false,
+      "epoch": 16,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.5636363636363636
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.4107142857142857
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.6216216216216216
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.5142857142857142
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9545454545454546
+    },
+    {
+      "admissible": true,
+      "epoch": 18,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8611111111111112
+    },
+    {
+      "admissible": true,
+      "epoch": 18,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8611111111111112
+    },
+    {
+      "admissible": true,
+      "epoch": 18,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8611111111111112
+    },
+    {
+      "admissible": true,
+      "epoch": 18,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9655172413793104
+    },
+    {
+      "admissible": false,
+      "epoch": 18,
+      "failed_checks": [
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.6896551724137931
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9655172413793104
+    },
+    {
+      "admissible": false,
+      "epoch": 18,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.5338983050847458
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.4827586206896552
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.6097560975609756
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.6944444444444444
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9655172413793104
+    },
+    {
+      "admissible": true,
+      "epoch": 20,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 1,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8636363636363636
+    },
+    {
+      "admissible": true,
+      "epoch": 20,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 2,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8636363636363636
+    },
+    {
+      "admissible": true,
+      "epoch": 20,
+      "failed_checks": [],
+      "family": "photometric",
+      "level": 3,
+      "selected_level": 3,
+      "selected_minimum_retention": 0.8636363636363636
+    },
+    {
+      "admissible": true,
+      "epoch": 20,
+      "failed_checks": [],
+      "family": "blur_noise",
+      "level": 1,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9456521739130435
+    },
+    {
+      "admissible": false,
+      "epoch": 20,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.7313432835820896
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.7391304347826086
+        }
+      ],
+      "family": "blur_noise",
+      "level": 2,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9456521739130435
+    },
+    {
+      "admissible": false,
+      "epoch": 20,
+      "failed_checks": [
+        {
+          "class": "D00",
+          "operation": "gaussian_blur",
+          "retention": 0.4626865671641791
+        },
+        {
+          "class": "D10",
+          "operation": "gaussian_blur",
+          "retention": 0.41304347826086957
+        },
+        {
+          "class": "D20",
+          "operation": "gaussian_blur",
+          "retention": 0.6901408450704225
+        },
+        {
+          "class": "D40",
+          "operation": "gaussian_blur",
+          "retention": 0.6363636363636364
+        }
+      ],
+      "family": "blur_noise",
+      "level": 3,
+      "selected_level": 1,
+      "selected_minimum_retention": 0.9456521739130435
+    }
+  ],
+  "epochs": [
+    {
+      "changed_images": 0,
+      "counts": {
+        "images": 26863,
+        "operation/identity": 26863,
+        "reason/no_target": 10233,
+        "reason/warmup": 16630,
+        "target_images": 16630
+      },
+      "decision_sha256": "9c2fe3ad5c75a198845343d3c457c6ad428cfd9bdf612cc9b1c341433a0e961e",
+      "epoch": 1,
+      "local_changed_pixels": 0,
+      "shared_decision_sha256": "774d821eb02b02957bc26a051421853d60046e89171e315923cc440bfc6570c1"
+    },
+    {
+      "changed_images": 8264,
+      "counts": {
+        "applied_images": 8382,
+        "augmentation_opportunities": 8382,
+        "family/blur_noise": 8382,
+        "images": 26863,
+        "local_alpha_units": 459650188,
+        "local_reference_pixels": 3246505600,
+        "local_union_pixels": 232472158,
+        "operation/gaussian_blur": 4221,
+        "operation/gaussian_noise": 4161,
+        "operation/identity": 18481,
+        "reason/applied": 8382,
+        "reason/no_target": 10233,
+        "reason/probability": 8248,
+        "selected_boxes": 10487,
+        "selected_groups": 8382,
+        "selected_multi_box_groups": 1390,
+        "strength_level_1": 8382,
+        "target_images": 16630
+      },
+      "decision_sha256": "0e41f2a9e81d20adb1adb8d15505e04cc1555dafd1d229202510a21debf121fd",
+      "epoch": 2,
+      "local_changed_pixels": 148509911,
+      "shared_decision_sha256": "bbaa73560e86d246bf56d8e40d3015ea94d1ebc9be0a9811bde2145aa193280d"
+    },
+    {
+      "changed_images": 8092,
+      "counts": {
+        "applied_images": 8230,
+        "augmentation_opportunities": 8230,
+        "family/blur_noise": 8230,
+        "images": 26863,
+        "local_alpha_units": 466692130,
+        "local_reference_pixels": 3179557120,
+        "local_union_pixels": 235971832,
+        "operation/gaussian_blur": 4087,
+        "operation/gaussian_noise": 4143,
+        "operation/identity": 18633,
+        "reason/applied": 8230,
+        "reason/no_target": 10233,
+        "reason/probability": 8400,
+        "selected_boxes": 10362,
+        "selected_groups": 8230,
+        "selected_multi_box_groups": 1414,
+        "strength_level_1": 8230,
+        "target_images": 16630
+      },
+      "decision_sha256": "df0bc160800b6de59f68df192714c971ca3f6d9043b546daafbaac399daaf91a",
+      "epoch": 3,
+      "local_changed_pixels": 150262649,
+      "shared_decision_sha256": "de47ff7dc68b18002f52d2514ba9f08cd208c87cddd1b157d49682714f53fe13"
+    },
+    {
+      "changed_images": 8280,
+      "counts": {
+        "applied_images": 8342,
+        "augmentation_opportunities": 8342,
+        "family/blur_noise": 3944,
+        "family/photometric": 4398,
+        "images": 26863,
+        "local_alpha_units": 461645086,
+        "local_reference_pixels": 3228745600,
+        "local_union_pixels": 233467362,
+        "operation/brightness_down": 727,
+        "operation/brightness_up": 723,
+        "operation/contrast_down": 721,
+        "operation/contrast_up": 742,
+        "operation/gamma_brighten": 766,
+        "operation/gamma_darken": 719,
+        "operation/gaussian_blur": 1975,
+        "operation/gaussian_noise": 1969,
+        "operation/identity": 18521,
+        "reason/applied": 8342,
+        "reason/no_target": 10233,
+        "reason/probability": 8288,
+        "selected_boxes": 10595,
+        "selected_groups": 8342,
+        "selected_multi_box_groups": 1493,
+        "strength_level_1": 8342,
+        "target_images": 16630
+      },
+      "decision_sha256": "35cf2d4bbcb64a8d186b3786c256c7321ddedcfed989414431fd00770bfc1fd3",
+      "epoch": 4,
+      "local_changed_pixels": 191128221,
+      "shared_decision_sha256": "404f15803062719917b5ec6858330a1fb04daa6cb8a7ed8ae785f9f2a9daafa0"
+    },
+    {
+      "changed_images": 8276,
+      "counts": {
+        "applied_images": 8342,
+        "augmentation_opportunities": 8342,
+        "family/blur_noise": 4084,
+        "family/photometric": 4258,
+        "images": 26863,
+        "local_alpha_units": 472984362,
+        "local_reference_pixels": 3229935360,
+        "local_union_pixels": 239159356,
+        "operation/brightness_down": 705,
+        "operation/brightness_up": 701,
+        "operation/contrast_down": 668,
+        "operation/contrast_up": 723,
+        "operation/gamma_brighten": 698,
+        "operation/gamma_darken": 763,
+        "operation/gaussian_blur": 2082,
+        "operation/gaussian_noise": 2002,
+        "operation/identity": 18521,
+        "reason/applied": 8342,
+        "reason/no_target": 10233,
+        "reason/probability": 8288,
+        "selected_boxes": 10554,
+        "selected_groups": 8342,
+        "selected_multi_box_groups": 1463,
+        "strength_level_1": 8342,
+        "target_images": 16630
+      },
+      "decision_sha256": "f20e8a00c42559056565f3668f3d3b4cce0949dddae33c33450604f1ab46755f",
+      "epoch": 5,
+      "local_changed_pixels": 195170986,
+      "shared_decision_sha256": "b9407ba889d11abeb73906f478872b4bd4afe821ee731130ae430cec727e8dcc"
+    },
+    {
+      "changed_images": 8327,
+      "counts": {
+        "applied_images": 8392,
+        "augmentation_opportunities": 8392,
+        "family/blur_noise": 4231,
+        "family/photometric": 4161,
+        "images": 26863,
+        "local_alpha_units": 461393571,
+        "local_reference_pixels": 3246246400,
+        "local_union_pixels": 233348458,
+        "operation/brightness_down": 700,
+        "operation/brightness_up": 680,
+        "operation/contrast_down": 687,
+        "operation/contrast_up": 717,
+        "operation/gamma_brighten": 695,
+        "operation/gamma_darken": 682,
+        "operation/gaussian_blur": 2084,
+        "operation/gaussian_noise": 2147,
+        "operation/identity": 18471,
+        "reason/applied": 8392,
+        "reason/no_target": 10233,
+        "reason/probability": 8238,
+        "selected_boxes": 10660,
+        "selected_groups": 8392,
+        "selected_multi_box_groups": 1459,
+        "strength_level_1": 8392,
+        "target_images": 16630
+      },
+      "decision_sha256": "205b5c8aa116797e8be874e163c62c27b778e4d67528c5ff95a8f4e3a7961a07",
+      "epoch": 6,
+      "local_changed_pixels": 189432141,
+      "shared_decision_sha256": "5c71314aff6a976a96d63413fab3358c828abf9457d506436eb1b431b8c5acb1"
+    },
+    {
+      "changed_images": 8234,
+      "counts": {
+        "applied_images": 8291,
+        "augmentation_opportunities": 8291,
+        "family/blur_noise": 4233,
+        "family/photometric": 4058,
+        "images": 26863,
+        "local_alpha_units": 457593874,
+        "local_reference_pixels": 3204612480,
+        "local_union_pixels": 231409809,
+        "operation/brightness_down": 679,
+        "operation/brightness_up": 657,
+        "operation/contrast_down": 640,
+        "operation/contrast_up": 718,
+        "operation/gamma_brighten": 634,
+        "operation/gamma_darken": 730,
+        "operation/gaussian_blur": 2163,
+        "operation/gaussian_noise": 2070,
+        "operation/identity": 18572,
+        "reason/applied": 8291,
+        "reason/no_target": 10233,
+        "reason/probability": 8339,
+        "selected_boxes": 10414,
+        "selected_groups": 8291,
+        "selected_multi_box_groups": 1376,
+        "strength_level_1": 8291,
+        "target_images": 16630
+      },
+      "decision_sha256": "f429d4aaa7fad959250a44f79ea582753678ad075cee817aab6910bf5e51273b",
+      "epoch": 7,
+      "local_changed_pixels": 187022123,
+      "shared_decision_sha256": "5c1e724d41242053b9388c6bb728db5128a9dda51bdf2a4982fbf7e021479f4b"
+    },
+    {
+      "changed_images": 8144,
+      "counts": {
+        "applied_images": 8207,
+        "augmentation_opportunities": 8207,
+        "family/blur_noise": 4126,
+        "family/photometric": 4081,
+        "images": 26863,
+        "local_alpha_units": 454552733,
+        "local_reference_pixels": 3175735040,
+        "local_union_pixels": 229878279,
+        "operation/brightness_down": 688,
+        "operation/brightness_up": 681,
+        "operation/contrast_down": 736,
+        "operation/contrast_up": 672,
+        "operation/gamma_brighten": 648,
+        "operation/gamma_darken": 656,
+        "operation/gaussian_blur": 2038,
+        "operation/gaussian_noise": 2088,
+        "operation/identity": 18656,
+        "reason/applied": 8207,
+        "reason/no_target": 10233,
+        "reason/probability": 8423,
+        "selected_boxes": 10419,
+        "selected_groups": 8207,
+        "selected_multi_box_groups": 1417,
+        "strength_level_1": 4126,
+        "strength_level_2": 4081,
+        "target_images": 16630
+      },
+      "decision_sha256": "acd16c4e2a44b23f659256dc4d08d0f259826920b5e90598503ca9894d349fa2",
+      "epoch": 8,
+      "local_changed_pixels": 188318334,
+      "shared_decision_sha256": "e69513451552026a23794dfe5e3a9f62332e7b22d8543b5d69341048a9583105"
+    },
+    {
+      "changed_images": 8266,
+      "counts": {
+        "applied_images": 8342,
+        "augmentation_opportunities": 8342,
+        "family/blur_noise": 4230,
+        "family/photometric": 4112,
+        "images": 26863,
+        "local_alpha_units": 456478399,
+        "local_reference_pixels": 3221778560,
+        "local_union_pixels": 230863892,
+        "operation/brightness_down": 723,
+        "operation/brightness_up": 686,
+        "operation/contrast_down": 638,
+        "operation/contrast_up": 675,
+        "operation/gamma_brighten": 690,
+        "operation/gamma_darken": 700,
+        "operation/gaussian_blur": 2141,
+        "operation/gaussian_noise": 2089,
+        "operation/identity": 18521,
+        "reason/applied": 8342,
+        "reason/no_target": 10233,
+        "reason/probability": 8288,
+        "selected_boxes": 10519,
+        "selected_groups": 8342,
+        "selected_multi_box_groups": 1371,
+        "strength_level_1": 4230,
+        "strength_level_2": 4112,
+        "target_images": 16630
+      },
+      "decision_sha256": "9afe5ecdbe51b7b8b91842ff4bffa8a03cf5fc273bf90c3c853b1ac89365a42c",
+      "epoch": 9,
+      "local_changed_pixels": 187955156,
+      "shared_decision_sha256": "1989914f902b3e4f72f449cc97040d99301c13a1b9f90c0f9a8f333fa455461a"
+    },
+    {
+      "changed_images": 8223,
+      "counts": {
+        "applied_images": 8284,
+        "augmentation_opportunities": 8284,
+        "family/blur_noise": 4016,
+        "family/photometric": 4268,
+        "images": 26863,
+        "local_alpha_units": 458993566,
+        "local_reference_pixels": 3198116480,
+        "local_union_pixels": 232098096,
+        "operation/brightness_down": 722,
+        "operation/brightness_up": 678,
+        "operation/contrast_down": 694,
+        "operation/contrast_up": 728,
+        "operation/gamma_brighten": 738,
+        "operation/gamma_darken": 708,
+        "operation/gaussian_blur": 1989,
+        "operation/gaussian_noise": 2027,
+        "operation/identity": 18579,
+        "reason/applied": 8284,
+        "reason/no_target": 10233,
+        "reason/probability": 8346,
+        "selected_boxes": 10436,
+        "selected_groups": 8284,
+        "selected_multi_box_groups": 1407,
+        "strength_level_1": 4016,
+        "strength_level_3": 4268,
+        "target_images": 16630
+      },
+      "decision_sha256": "58f17bd56fdbac018ca59bf12c9941560f67f4cff2c9894fb890c7c8af2221ac",
+      "epoch": 10,
+      "local_changed_pixels": 191673903,
+      "shared_decision_sha256": "1f700a8edba327db9428b832ff4162bb8f2ffadbb5d21fc4a8bc6af0532b0cfb"
+    },
+    {
+      "changed_images": 8175,
+      "counts": {
+        "applied_images": 8225,
+        "augmentation_opportunities": 8225,
+        "family/blur_noise": 4106,
+        "family/photometric": 4119,
+        "images": 26863,
+        "local_alpha_units": 455146777,
+        "local_reference_pixels": 3181318400,
+        "local_union_pixels": 230173199,
+        "operation/brightness_down": 694,
+        "operation/brightness_up": 692,
+        "operation/contrast_down": 689,
+        "operation/contrast_up": 696,
+        "operation/gamma_brighten": 678,
+        "operation/gamma_darken": 670,
+        "operation/gaussian_blur": 2029,
+        "operation/gaussian_noise": 2077,
+        "operation/identity": 18638,
+        "reason/applied": 8225,
+        "reason/no_target": 10233,
+        "reason/probability": 8405,
+        "selected_boxes": 10451,
+        "selected_groups": 8225,
+        "selected_multi_box_groups": 1381,
+        "strength_level_1": 4106,
+        "strength_level_3": 4119,
+        "target_images": 16630
+      },
+      "decision_sha256": "70172c95f021b4106418989a3d241e02d6b0de369165ef8c57f7ec2cd06b0c2d",
+      "epoch": 11,
+      "local_changed_pixels": 189683550,
+      "shared_decision_sha256": "7ba9ff00439b8e785f1d01791c2d71be627ff1e1f9ad1d507bec4e6790993557"
+    },
+    {
+      "changed_images": 8164,
+      "counts": {
+        "applied_images": 8235,
+        "augmentation_opportunities": 8235,
+        "family/blur_noise": 4195,
+        "family/photometric": 4040,
+        "images": 26863,
+        "local_alpha_units": 461463660,
+        "local_reference_pixels": 3184796800,
+        "local_union_pixels": 233342676,
+        "operation/brightness_down": 705,
+        "operation/brightness_up": 645,
+        "operation/contrast_down": 671,
+        "operation/contrast_up": 665,
+        "operation/gamma_brighten": 669,
+        "operation/gamma_darken": 685,
+        "operation/gaussian_blur": 2138,
+        "operation/gaussian_noise": 2057,
+        "operation/identity": 18628,
+        "reason/applied": 8235,
+        "reason/no_target": 10233,
+        "reason/probability": 8395,
+        "selected_boxes": 10395,
+        "selected_groups": 8235,
+        "selected_multi_box_groups": 1408,
+        "strength_level_1": 8235,
+        "target_images": 16630
+      },
+      "decision_sha256": "20cd030b312fe639193f0062167fc2baed369303bed314274b9141342167d524",
+      "epoch": 12,
+      "local_changed_pixels": 187285886,
+      "shared_decision_sha256": "fd50fae0e5e30c8778f6a7bbb46e27ab3fc66a6f17a9c76a9cef0f17f5dc8d52"
+    },
+    {
+      "changed_images": 8226,
+      "counts": {
+        "applied_images": 8281,
+        "augmentation_opportunities": 8281,
+        "family/blur_noise": 4161,
+        "family/photometric": 4120,
+        "images": 26863,
+        "local_alpha_units": 456045347,
+        "local_reference_pixels": 3199722880,
+        "local_union_pixels": 230628923,
+        "operation/brightness_down": 694,
+        "operation/brightness_up": 667,
+        "operation/contrast_down": 703,
+        "operation/contrast_up": 701,
+        "operation/gamma_brighten": 698,
+        "operation/gamma_darken": 657,
+        "operation/gaussian_blur": 2062,
+        "operation/gaussian_noise": 2099,
+        "operation/identity": 18582,
+        "reason/applied": 8281,
+        "reason/no_target": 10233,
+        "reason/probability": 8349,
+        "selected_boxes": 10421,
+        "selected_groups": 8281,
+        "selected_multi_box_groups": 1383,
+        "strength_level_1": 8281,
+        "target_images": 16630
+      },
+      "decision_sha256": "b95a4ed29454079de3a4defda07ebc0c3cab401803f151b33461389313bfb3aa",
+      "epoch": 13,
+      "local_changed_pixels": 188934115,
+      "shared_decision_sha256": "aa0cb3b69058f85fb114ef61573dc0ab74257fb97ce98a9051c824d18cbf0b76"
+    },
+    {
+      "changed_images": 8236,
+      "counts": {
+        "applied_images": 8294,
+        "augmentation_opportunities": 8294,
+        "family/blur_noise": 4288,
+        "family/photometric": 4006,
+        "images": 26863,
+        "local_alpha_units": 460606815,
+        "local_reference_pixels": 3207460480,
+        "local_union_pixels": 232937437,
+        "operation/brightness_down": 670,
+        "operation/brightness_up": 644,
+        "operation/contrast_down": 654,
+        "operation/contrast_up": 662,
+        "operation/gamma_brighten": 682,
+        "operation/gamma_darken": 694,
+        "operation/gaussian_blur": 2145,
+        "operation/gaussian_noise": 2143,
+        "operation/identity": 18569,
+        "reason/applied": 8294,
+        "reason/no_target": 10233,
+        "reason/probability": 8336,
+        "selected_boxes": 10480,
+        "selected_groups": 8294,
+        "selected_multi_box_groups": 1412,
+        "strength_level_1": 8294,
+        "target_images": 16630
+      },
+      "decision_sha256": "4671bd931b189044224c73a6ff44b5b465f52741004bfce6cb1c38f89ac79ac5",
+      "epoch": 14,
+      "local_changed_pixels": 188219107,
+      "shared_decision_sha256": "f536b0afb084ad2554f8ceeb419677c894e0bf83d4b5c6d0f676208b7eec6dd2"
+    },
+    {
+      "changed_images": 8286,
+      "counts": {
+        "applied_images": 8347,
+        "augmentation_opportunities": 8347,
+        "family/blur_noise": 4282,
+        "family/photometric": 4065,
+        "images": 26863,
+        "local_alpha_units": 462487265,
+        "local_reference_pixels": 3229429120,
+        "local_union_pixels": 233881737,
+        "operation/brightness_down": 652,
+        "operation/brightness_up": 670,
+        "operation/contrast_down": 674,
+        "operation/contrast_up": 714,
+        "operation/gamma_brighten": 646,
+        "operation/gamma_darken": 709,
+        "operation/gaussian_blur": 2150,
+        "operation/gaussian_noise": 2132,
+        "operation/identity": 18516,
+        "reason/applied": 8347,
+        "reason/no_target": 10233,
+        "reason/probability": 8283,
+        "selected_boxes": 10602,
+        "selected_groups": 8347,
+        "selected_multi_box_groups": 1468,
+        "strength_level_1": 8347,
+        "target_images": 16630
+      },
+      "decision_sha256": "3c4a1d45f8120ef516fa24da883b0285b948ecde37eb4015809a9b856eb81ea9",
+      "epoch": 15,
+      "local_changed_pixels": 191588955,
+      "shared_decision_sha256": "16820e153e30a123cab86530c2357fb69330c36336e0cc5dc33be5a9ce618914"
+    },
+    {
+      "changed_images": 8396,
+      "counts": {
+        "applied_images": 8447,
+        "augmentation_opportunities": 8447,
+        "family/blur_noise": 4141,
+        "family/photometric": 4306,
+        "images": 26863,
+        "local_alpha_units": 460496558,
+        "local_reference_pixels": 3269029760,
+        "local_union_pixels": 232889783,
+        "operation/brightness_down": 718,
+        "operation/brightness_up": 689,
+        "operation/contrast_down": 723,
+        "operation/contrast_up": 729,
+        "operation/gamma_brighten": 688,
+        "operation/gamma_darken": 759,
+        "operation/gaussian_blur": 2048,
+        "operation/gaussian_noise": 2093,
+        "operation/identity": 18416,
+        "reason/applied": 8447,
+        "reason/no_target": 10233,
+        "reason/probability": 8183,
+        "selected_boxes": 10602,
+        "selected_groups": 8447,
+        "selected_multi_box_groups": 1394,
+        "strength_level_1": 4141,
+        "strength_level_3": 4306,
+        "target_images": 16630
+      },
+      "decision_sha256": "dd49af1440117e856e0b845c67e1d517ec9dfc77b883692a7ac1f4586aa7f310",
+      "epoch": 16,
+      "local_changed_pixels": 192462430,
+      "shared_decision_sha256": "c8e989c96c58290ca1987cfd138a2e8d9e284acb2a80b8abafca220c84a794cc"
+    },
+    {
+      "changed_images": 8411,
+      "counts": {
+        "applied_images": 8471,
+        "augmentation_opportunities": 8471,
+        "family/blur_noise": 4195,
+        "family/photometric": 4276,
+        "images": 26863,
+        "local_alpha_units": 475931649,
+        "local_reference_pixels": 3280293760,
+        "local_union_pixels": 240649462,
+        "operation/brightness_down": 732,
+        "operation/brightness_up": 691,
+        "operation/contrast_down": 680,
+        "operation/contrast_up": 718,
+        "operation/gamma_brighten": 693,
+        "operation/gamma_darken": 762,
+        "operation/gaussian_blur": 2121,
+        "operation/gaussian_noise": 2074,
+        "operation/identity": 18392,
+        "reason/applied": 8471,
+        "reason/no_target": 10233,
+        "reason/probability": 8159,
+        "selected_boxes": 10605,
+        "selected_groups": 8471,
+        "selected_multi_box_groups": 1406,
+        "strength_level_1": 4195,
+        "strength_level_3": 4276,
+        "target_images": 16630
+      },
+      "decision_sha256": "8f47a6d0084466971c626199228adab3c6dd68b9dea146316b807525dbec4fda",
+      "epoch": 17,
+      "local_changed_pixels": 197617763,
+      "shared_decision_sha256": "7b5677ec56d4b9efa421949cf44e12380fcd773336149253a035683305aa5747"
+    },
+    {
+      "changed_images": 8261,
+      "counts": {
+        "applied_images": 8339,
+        "augmentation_opportunities": 8339,
+        "family/blur_noise": 4074,
+        "family/photometric": 4265,
+        "images": 26863,
+        "local_alpha_units": 463323571,
+        "local_reference_pixels": 3229459840,
+        "local_union_pixels": 234292020,
+        "operation/brightness_down": 700,
+        "operation/brightness_up": 671,
+        "operation/contrast_down": 686,
+        "operation/contrast_up": 774,
+        "operation/gamma_brighten": 704,
+        "operation/gamma_darken": 730,
+        "operation/gaussian_blur": 2040,
+        "operation/gaussian_noise": 2034,
+        "operation/identity": 18524,
+        "reason/applied": 8339,
+        "reason/no_target": 10233,
+        "reason/probability": 8291,
+        "selected_boxes": 10446,
+        "selected_groups": 8339,
+        "selected_multi_box_groups": 1388,
+        "strength_level_1": 4074,
+        "strength_level_3": 4265,
+        "target_images": 16630
+      },
+      "decision_sha256": "13f0c769846bcbcf56b854601b41616cee74432b57353985f3e961a6bb1fa3db",
+      "epoch": 18,
+      "local_changed_pixels": 192596632,
+      "shared_decision_sha256": "c2e3ad25f6c1452b5c3afc2a843e17c8dbf6ab0f39ec9d7db3697791fa19de21"
+    },
+    {
+      "changed_images": 8259,
+      "counts": {
+        "applied_images": 8322,
+        "augmentation_opportunities": 8322,
+        "family/blur_noise": 4055,
+        "family/photometric": 4267,
+        "images": 26863,
+        "local_alpha_units": 461859171,
+        "local_reference_pixels": 3221060480,
+        "local_union_pixels": 233558450,
+        "operation/brightness_down": 720,
+        "operation/brightness_up": 725,
+        "operation/contrast_down": 709,
+        "operation/contrast_up": 683,
+        "operation/gamma_brighten": 715,
+        "operation/gamma_darken": 715,
+        "operation/gaussian_blur": 2023,
+        "operation/gaussian_noise": 2032,
+        "operation/identity": 18541,
+        "reason/applied": 8322,
+        "reason/no_target": 10233,
+        "reason/probability": 8308,
+        "selected_boxes": 10481,
+        "selected_groups": 8322,
+        "selected_multi_box_groups": 1397,
+        "strength_level_1": 4055,
+        "strength_level_3": 4267,
+        "target_images": 16630
+      },
+      "decision_sha256": "edfc2fbde408b176fe0a9ca02ba684b52af2cefac86dabd2c2009a8b9331b123",
+      "epoch": 19,
+      "local_changed_pixels": 193404854,
+      "shared_decision_sha256": "74667e618cb27f508e0a2745d1cf857a23451b0f3dd134d1ecd3cb251f5733f6"
+    },
+    {
+      "changed_images": 8299,
+      "counts": {
+        "applied_images": 8378,
+        "augmentation_opportunities": 8378,
+        "family/blur_noise": 4163,
+        "family/photometric": 4215,
+        "images": 26863,
+        "local_alpha_units": 468772502,
+        "local_reference_pixels": 3242133760,
+        "local_union_pixels": 237047255,
+        "operation/brightness_down": 659,
+        "operation/brightness_up": 688,
+        "operation/contrast_down": 714,
+        "operation/contrast_up": 705,
+        "operation/gamma_brighten": 737,
+        "operation/gamma_darken": 712,
+        "operation/gaussian_blur": 2089,
+        "operation/gaussian_noise": 2074,
+        "operation/identity": 18485,
+        "reason/applied": 8378,
+        "reason/no_target": 10233,
+        "reason/probability": 8252,
+        "selected_boxes": 10561,
+        "selected_groups": 8378,
+        "selected_multi_box_groups": 1416,
+        "strength_level_1": 4163,
+        "strength_level_3": 4215,
+        "target_images": 16630
+      },
+      "decision_sha256": "3143ecdd0e4a82f806497b558acbd059bcf7e19a988e9ed61b50c3d3c18ad031",
+      "epoch": 20,
+      "local_changed_pixels": 195165032,
+      "shared_decision_sha256": "311677ffa1dd94343ab18c3706fd67716863e2ad6c61d569952662830fb0fad3"
+    }
+  ],
+  "independent_policy_reconstruction": "all_10_updates_all_24_operation_level_cells_all_4_classes",
+  "limits": [
+    "Policy arithmetic independently reconstructed from saved per-object detections/IoUs/losses, not rerun from detector checkpoints or raw images.",
+    "Raw probe detection boxes/scores and per-ROI logits are not archived; one-to-one matching and loss computation cannot be independently re-executed from these records alone.",
+    "Unchanged model/buffer/gradient/RNG state is enforced by checksum-matched executed code and recorded as passed; checkpoint tensor bytes are not in this archive.",
+    "Training changed-pixel counts are aggregate records, not fresh pixel comparisons. Probe fingerprints and no-change counts are internally checked.",
+    "Per-class pooled strength diagnostics are exploratory; they are not class-set-specific policies or evidence of their downstream efficacy."
+  ],
+  "operation_strength_training_exposure": [
+    {
+      "family": "blur_noise",
+      "images": 43625,
+      "level": 1,
+      "operation": "gaussian_blur"
+    },
+    {
+      "family": "blur_noise",
+      "images": 43511,
+      "level": 1,
+      "operation": "gaussian_noise"
+    },
+    {
+      "family": "photometric",
+      "images": 5532,
+      "level": 1,
+      "operation": "brightness_down"
+    },
+    {
+      "family": "photometric",
+      "images": 1411,
+      "level": 2,
+      "operation": "brightness_down"
+    },
+    {
+      "family": "photometric",
+      "images": 4945,
+      "level": 3,
+      "operation": "brightness_down"
+    },
+    {
+      "family": "photometric",
+      "images": 5387,
+      "level": 1,
+      "operation": "brightness_up"
+    },
+    {
+      "family": "photometric",
+      "images": 1367,
+      "level": 2,
+      "operation": "brightness_up"
+    },
+    {
+      "family": "photometric",
+      "images": 4834,
+      "level": 3,
+      "operation": "brightness_up"
+    },
+    {
+      "family": "photometric",
+      "images": 5418,
+      "level": 1,
+      "operation": "contrast_down"
+    },
+    {
+      "family": "photometric",
+      "images": 1374,
+      "level": 2,
+      "operation": "contrast_down"
+    },
+    {
+      "family": "photometric",
+      "images": 4895,
+      "level": 3,
+      "operation": "contrast_down"
+    },
+    {
+      "family": "photometric",
+      "images": 5642,
+      "level": 1,
+      "operation": "contrast_up"
+    },
+    {
+      "family": "photometric",
+      "images": 1347,
+      "level": 2,
+      "operation": "contrast_up"
+    },
+    {
+      "family": "photometric",
+      "images": 5033,
+      "level": 3,
+      "operation": "contrast_up"
+    },
+    {
+      "family": "photometric",
+      "images": 5488,
+      "level": 1,
+      "operation": "gamma_brighten"
+    },
+    {
+      "family": "photometric",
+      "images": 1338,
+      "level": 2,
+      "operation": "gamma_brighten"
+    },
+    {
+      "family": "photometric",
+      "images": 4953,
+      "level": 3,
+      "operation": "gamma_brighten"
+    },
+    {
+      "family": "photometric",
+      "images": 5639,
+      "level": 1,
+      "operation": "gamma_darken"
+    },
+    {
+      "family": "photometric",
+      "images": 1356,
+      "level": 2,
+      "operation": "gamma_darken"
+    },
+    {
+      "family": "photometric",
+      "images": 5056,
+      "level": 3,
+      "operation": "gamma_darken"
+    }
+  ],
+  "photometric_probability_when_both_families_eligible": {
+    "max": 0.515102500422733,
+    "mean_absolute_deviation_from_half": 0.007612762123986366,
+    "min": 0.4867305460759189
+  },
+  "policy_strength_choices": [
+    {
+      "blur_noise": 1,
+      "epoch": 2
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 4,
+      "photometric": 1
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 6,
+      "photometric": 1
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 8,
+      "photometric": 2
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 10,
+      "photometric": 3
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 12,
+      "photometric": 1
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 14,
+      "photometric": 1
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 16,
+      "photometric": 3
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 18,
+      "photometric": 3
+    },
+    {
+      "blur_noise": 1,
+      "epoch": 20,
+      "photometric": 3
+    }
+  ],
+  "pooled_class_strength_diagnostic": [
+    {
+      "epoch": 2,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 1,
+          "D10": 1,
+          "D20": 1,
+          "D40": 1
+        },
+        "photometric": {
+          "D00": 2,
+          "D10": 0,
+          "D20": 3,
+          "D40": 0
+        }
+      }
+    },
+    {
+      "epoch": 4,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 1,
+          "D10": 1,
+          "D20": 1,
+          "D40": 1
+        },
+        "photometric": {
+          "D00": 2,
+          "D10": 1,
+          "D20": 2,
+          "D40": 1
+        }
+      }
+    },
+    {
+      "epoch": 6,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 1,
+          "D10": 1,
+          "D20": 1,
+          "D40": 1
+        },
+        "photometric": {
+          "D00": 3,
+          "D10": 1,
+          "D20": 3,
+          "D40": 1
+        }
+      }
+    },
+    {
+      "epoch": 8,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 2,
+          "D10": 1,
+          "D20": 2,
+          "D40": 1
+        },
+        "photometric": {
+          "D00": 3,
+          "D10": 2,
+          "D20": 3,
+          "D40": 2
+        }
+      }
+    },
+    {
+      "epoch": 10,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 2,
+          "D10": 2,
+          "D20": 1,
+          "D40": 2
+        },
+        "photometric": {
+          "D00": 3,
+          "D10": 3,
+          "D20": 3,
+          "D40": 3
+        }
+      }
+    },
+    {
+      "epoch": 12,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 1,
+          "D10": 1,
+          "D20": 2,
+          "D40": 1
+        },
+        "photometric": {
+          "D00": 3,
+          "D10": 3,
+          "D20": 3,
+          "D40": 1
+        }
+      }
+    },
+    {
+      "epoch": 14,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 1,
+          "D10": 1,
+          "D20": 1,
+          "D40": 1
+        },
+        "photometric": {
+          "D00": 3,
+          "D10": 3,
+          "D20": 3,
+          "D40": 1
+        }
+      }
+    },
+    {
+      "epoch": 16,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 1,
+          "D10": 1,
+          "D20": 2,
+          "D40": 1
+        },
+        "photometric": {
+          "D00": 3,
+          "D10": 3,
+          "D20": 3,
+          "D40": 3
+        }
+      }
+    },
+    {
+      "epoch": 18,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 2,
+          "D10": 1,
+          "D20": 2,
+          "D40": 2
+        },
+        "photometric": {
+          "D00": 3,
+          "D10": 3,
+          "D20": 3,
+          "D40": 3
+        }
+      }
+    },
+    {
+      "epoch": 20,
+      "maximum_levels_from_pooled_class_feedback": {
+        "blur_noise": {
+          "D00": 1,
+          "D10": 1,
+          "D20": 2,
+          "D40": 2
+        },
+        "photometric": {
+          "D00": 3,
+          "D10": 3,
+          "D20": 3,
+          "D40": 3
+        }
+      }
+    }
+  ],
+  "probe_no_change_observations": [
+    {
+      "changed_pixels": 70966258,
+      "level": 1,
+      "operation": "brightness_down",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70992492,
+      "level": 2,
+      "operation": "brightness_down",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 71004219,
+      "level": 3,
+      "operation": "brightness_down",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70953214,
+      "level": 1,
+      "operation": "brightness_up",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70979448,
+      "level": 2,
+      "operation": "brightness_up",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70991175,
+      "level": 3,
+      "operation": "brightness_up",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 67569689,
+      "level": 1,
+      "operation": "contrast_down",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70051347,
+      "level": 2,
+      "operation": "contrast_down",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70561883,
+      "level": 3,
+      "operation": "contrast_down",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 67553808,
+      "level": 1,
+      "operation": "contrast_up",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70035468,
+      "level": 2,
+      "operation": "contrast_up",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70546006,
+      "level": 3,
+      "operation": "contrast_up",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70954064,
+      "level": 1,
+      "operation": "gamma_brighten",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70979529,
+      "level": 2,
+      "operation": "gamma_brighten",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70989226,
+      "level": 3,
+      "operation": "gamma_brighten",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70947759,
+      "level": 1,
+      "operation": "gamma_darken",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70979108,
+      "level": 2,
+      "operation": "gamma_darken",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 70989226,
+      "level": 3,
+      "operation": "gamma_darken",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 21026889,
+      "level": 1,
+      "operation": "gaussian_blur",
+      "probe_views": 2560,
+      "unchanged_probe_views": 73
+    },
+    {
+      "changed_pixels": 50282678,
+      "level": 2,
+      "operation": "gaussian_blur",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 59206960,
+      "level": 3,
+      "operation": "gaussian_blur",
+      "probe_views": 2560,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 141407064,
+      "level": 1,
+      "operation": "gaussian_noise",
+      "probe_views": 5120,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 141942291,
+      "level": 2,
+      "operation": "gaussian_noise",
+      "probe_views": 5120,
+      "unchanged_probe_views": 0
+    },
+    {
+      "changed_pixels": 141998353,
+      "level": 3,
+      "operation": "gaussian_noise",
+      "probe_views": 5120,
+      "unchanged_probe_views": 0
+    }
+  ],
+  "reported_changed_fraction_of_applied_content": 0.05797102371585511,
+  "reported_changed_images": 156819,
+  "reported_changed_pixels": 3546431748,
+  "rounds": [
+    {
+      "epoch": 2,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 2,
+        "families": [
+          {
+            "difficulty": 0.02512330664930946,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 1.0
+          }
+        ],
+        "id": "376e8e30bcbc662aba8d1ce93d29e1af2d38b7f2959fad9b7fb2edbe94f36af6",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "f57cfdc5b68cd794493f3e556d3fc5a58fee1e0371451a7f82728200f1467b53",
+      "seconds": 337.6931769512594,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 83,
+          "detected_objects": 91,
+          "objects": 143,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 42,
+          "detected_objects": 45,
+          "objects": 60,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 57,
+          "detected_objects": 59,
+          "objects": 80,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 11,
+          "detected_objects": 13,
+          "objects": 35,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 4,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 4,
+        "families": [
+          {
+            "difficulty": 0.033802175177381856,
+            "family": "photometric",
+            "level": 1,
+            "probability": 0.515102500422733
+          },
+          {
+            "difficulty": 0.014915071495473121,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.48489749957726713
+          }
+        ],
+        "id": "a0b94c365ea1df61c177ed7597bbc1417a9b10dbfe4ddec855049862c018844c",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "7b399d42d3b9771db05ade9ae4ac39d3d8c1baeadf06d26b1cf4f86cce2c8247",
+      "seconds": 338.238997284323,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 97,
+          "detected_objects": 101,
+          "objects": 131,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 55,
+          "detected_objects": 57,
+          "objects": 71,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 60,
+          "detected_objects": 64,
+          "objects": 85,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 30,
+          "detected_objects": 30,
+          "objects": 46,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 6,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 6,
+        "families": [
+          {
+            "difficulty": 0.0139384242571446,
+            "family": "photometric",
+            "level": 1,
+            "probability": 0.4995430085080994
+          },
+          {
+            "difficulty": 0.014509663870558692,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.5004569914919006
+          }
+        ],
+        "id": "7c81a11beb42c44503d39c76898f756cd82095bfa5f1a6737a5a0c4e052e7560",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "104261ad8ebc8b9fe260d7650166b878c51b67b02563b73aa036d6c9bb435e5c",
+      "seconds": 338.17431646585464,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 105,
+          "detected_objects": 116,
+          "objects": 151,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 50,
+          "detected_objects": 51,
+          "objects": 63,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 50,
+          "detected_objects": 50,
+          "objects": 61,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 24,
+          "detected_objects": 31,
+          "objects": 39,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 8,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 8,
+        "families": [
+          {
+            "difficulty": 0.02141670502843762,
+            "family": "photometric",
+            "level": 2,
+            "probability": 0.501117114134499
+          },
+          {
+            "difficulty": 0.02002030872983887,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.498882885865501
+          }
+        ],
+        "id": "4323e5e4d96853484f6b2e56237012d565e11d6305820ed9b09b2f9c77c356bb",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "294cef9eefd01ed2cb093046ffff80b35e8f9c0e9acb5d9f55b78bf6c1583c44",
+      "seconds": 338.815029643476,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 101,
+          "detected_objects": 108,
+          "objects": 135,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 63,
+          "detected_objects": 68,
+          "objects": 80,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 61,
+          "detected_objects": 64,
+          "objects": 80,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 14,
+          "detected_objects": 15,
+          "objects": 31,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 10,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 10,
+        "families": [
+          {
+            "difficulty": 0.022865211790996345,
+            "family": "photometric",
+            "level": 3,
+            "probability": 0.5055243351547813
+          },
+          {
+            "difficulty": 0.015959353752472785,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.49447566484521877
+          }
+        ],
+        "id": "60e0c157b45c90ffa39dee9a687f7c6846b7f6f8ffcdfe63db18b5706bb791ea",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "94bab49f25893cf0c21941d4b798dd325aaecc15a76f21a8ae92cc6d956d7aa4",
+      "seconds": 337.1840208712965,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 99,
+          "detected_objects": 107,
+          "objects": 136,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 52,
+          "detected_objects": 53,
+          "objects": 58,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 62,
+          "detected_objects": 63,
+          "objects": 67,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 29,
+          "detected_objects": 30,
+          "objects": 42,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 12,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 12,
+        "families": [
+          {
+            "difficulty": 0.006164693103900217,
+            "family": "photometric",
+            "level": 1,
+            "probability": 0.49072408279309543
+          },
+          {
+            "difficulty": 0.017761668732392554,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.5092759172069046
+          }
+        ],
+        "id": "846b31a1b19d1eba3d1bac6560448a23ec11b408563d4b059b8db1ab15b9d902",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "43d52f2fb845c867fef78e963ae2d31b5a686863306a352eeefd9e68b769a054",
+      "seconds": 339.1807060595602,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 96,
+          "detected_objects": 104,
+          "objects": 132,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 45,
+          "detected_objects": 48,
+          "objects": 59,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 72,
+          "detected_objects": 77,
+          "objects": 93,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 19,
+          "detected_objects": 26,
+          "objects": 50,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 14,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 14,
+        "families": [
+          {
+            "difficulty": 0.008285550202168401,
+            "family": "photometric",
+            "level": 1,
+            "probability": 0.4867305460759189
+          },
+          {
+            "difficulty": 0.024878456170503497,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.5132694539240811
+          }
+        ],
+        "id": "3fc3e84232e807d38ded4e544338e4b8bd92cf2adcbf53e2dba2bf926b8f9915",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "088030832daef6907860bcefa3d6936f4f9b50de51656add319cf866b1a9dd7b",
+      "seconds": 337.9452789667994,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 110,
+          "detected_objects": 121,
+          "objects": 144,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 53,
+          "detected_objects": 61,
+          "objects": 65,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 61,
+          "detected_objects": 64,
+          "objects": 71,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 33,
+          "detected_objects": 40,
+          "objects": 49,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 16,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 16,
+        "families": [
+          {
+            "difficulty": 0.03383676346254265,
+            "family": "photometric",
+            "level": 3,
+            "probability": 0.5116877878691772
+          },
+          {
+            "difficulty": 0.019222868674346194,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.48831221213082276
+          }
+        ],
+        "id": "c1d3b3557c30a4cf7ccdc99d012ae768216f066baadc081f7ed90a43972a62b1",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "5802ea775ad465897e9ecf64292913209e6fa62e5eb9db2a2957e44a26e3e49c",
+      "seconds": 338.9231927189976,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 101,
+          "detected_objects": 110,
+          "objects": 132,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 52,
+          "detected_objects": 56,
+          "objects": 62,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 69,
+          "detected_objects": 74,
+          "objects": 75,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 32,
+          "detected_objects": 35,
+          "objects": 45,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 18,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 18,
+        "families": [
+          {
+            "difficulty": 0.033077971324238814,
+            "family": "photometric",
+            "level": 3,
+            "probability": 0.5076053602376369
+          },
+          {
+            "difficulty": 0.02357012519146385,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.4923946397623631
+          }
+        ],
+        "id": "f2cb0231dbfa52778d01033e6e81999aaaaefa1ccd5d9925eba21b7f05a300c5",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "f82ba81c6dd2397d9d9b23c6172450df9cb096c3d0ddcd6412040b8e836f7aa2",
+      "seconds": 339.7265895511955,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 108,
+          "detected_objects": 118,
+          "objects": 133,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 52,
+          "detected_objects": 58,
+          "objects": 61,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 81,
+          "detected_objects": 82,
+          "objects": 87,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 32,
+          "detected_objects": 36,
+          "objects": 38,
+          "sufficient": true
+        }
+      }
+    },
+    {
+      "epoch": 20,
+      "image_forwards": 7168,
+      "images": 256,
+      "independent_measurement_and_policy_reconstruction": "passed",
+      "policy": {
+        "epoch": 20,
+        "families": [
+          {
+            "difficulty": 0.021281113539203658,
+            "family": "photometric",
+            "level": 3,
+            "probability": 0.4955246013258364
+          },
+          {
+            "difficulty": 0.026875595333362305,
+            "family": "blur_noise",
+            "level": 1,
+            "probability": 0.5044753986741636
+          }
+        ],
+        "id": "625a519d81f298a57d10ffd00fe199087220afe68ef9b0724e19a175ca62a879",
+        "version": "online_shared_local_v1"
+      },
+      "policy_record_sha256": "e9be076af3c55333a01d9077a18adf528fdf2d38dce99ef14b5e9c4aa4b61b03",
+      "seconds": 338.85573233291507,
+      "source_clusters": 256,
+      "support": {
+        "0": {
+          "detected_clusters": 121,
+          "detected_objects": 134,
+          "objects": 152,
+          "sufficient": true
+        },
+        "1": {
+          "detected_clusters": 44,
+          "detected_objects": 46,
+          "objects": 54,
+          "sufficient": true
+        },
+        "2": {
+          "detected_clusters": 69,
+          "detected_objects": 71,
+          "objects": 75,
+          "sufficient": true
+        },
+        "3": {
+          "detected_clusters": 21,
+          "detected_objects": 22,
+          "objects": 24,
+          "sufficient": true
+        }
+      }
+    }
+  ],
+  "status": "passed_saved_observation_and_metadata_audit",
+  "total": {
+    "applied_images": 158151,
+    "augmentation_opportunities": 158151,
+    "family/blur_noise": 87136,
+    "family/photometric": 71015,
+    "images": 537260,
+    "local_alpha_units": 8776117224,
+    "local_reference_pixels": 61175937920,
+    "local_union_pixels": 4438070184,
+    "operation/brightness_down": 11888,
+    "operation/brightness_up": 11588,
+    "operation/contrast_down": 11687,
+    "operation/contrast_up": 12022,
+    "operation/gamma_brighten": 11779,
+    "operation/gamma_darken": 12051,
+    "operation/gaussian_blur": 43625,
+    "operation/gaussian_noise": 43511,
+    "operation/identity": 379109,
+    "reason/applied": 158151,
+    "reason/no_target": 204660,
+    "reason/probability": 157819,
+    "reason/warmup": 16630,
+    "selected_boxes": 199490,
+    "selected_groups": 158151,
+    "selected_multi_box_groups": 26843,
+    "strength_level_1": 120242,
+    "strength_level_2": 8193,
+    "strength_level_3": 29716,
+    "target_images": 332600
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "method": "Git Bash -n, read-only parsing; scripts were not executed or submitted",
+  "read_only_retry_exit_code": 0,
+  "sandbox_startup_failure": -1073741502,
+  "source_sha256": {
+    "job.pbs": "209987cf5783cd313baf1f1da83038974dabc5b1159f63ed418d0df56dc15543",
+    "run_job.sh": "22d66d025de89c815c6c07ee8f39e9ffbbc3bbf9a2d0af48e058563e53177fad",
+    "submit.sh": "e8d6e9aab693369849603683d0ec029ce9cccc4b72b4210dfa1117aee7263abb"
+  },
+  "status": "passed"
+}

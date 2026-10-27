@@ -1,0 +1,393 @@
+{
+  "checkpoint_sha256": "91d19f8423a54d1683a1836043a44c3116ac90322d82c1a1c0dc017b434bb3ac",
+  "class_set_policies": {
+    "0": {
+      "classes": [
+        0
+      ],
+      "families": [],
+      "reason": "insufficient_support"
+    },
+    "0,1": {
+      "classes": [
+        0,
+        1
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,1,2": {
+      "classes": [
+        0,
+        1,
+        2
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,1,2,3": {
+      "classes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,1,3": {
+      "classes": [
+        0,
+        1,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,2": {
+      "classes": [
+        0,
+        2
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,2,3": {
+      "classes": [
+        0,
+        2,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "0,3": {
+      "classes": [
+        0,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "1": {
+      "classes": [
+        1
+      ],
+      "families": [],
+      "reason": "insufficient_support"
+    },
+    "1,2": {
+      "classes": [
+        1,
+        2
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "1,2,3": {
+      "classes": [
+        1,
+        2,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "1,3": {
+      "classes": [
+        1,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "2": {
+      "classes": [
+        2
+      ],
+      "families": [],
+      "reason": "insufficient_support"
+    },
+    "2,3": {
+      "classes": [
+        2,
+        3
+      ],
+      "families": [],
+      "reason": "unobserved_class_set"
+    },
+    "3": {
+      "classes": [
+        3
+      ],
+      "families": [],
+      "reason": "insufficient_support"
+    }
+  },
+  "complete_probe_views": 112,
+  "duplicate_and_missed_gt_losses_present": true,
+  "fresh_model_checkpoint_prediction_policy_replay": "exact",
+  "hook_prediction_parity": "exact",
+  "initialization_matches_identity_exactly": true,
+  "model_buffers_gradients_rng_unchanged": true,
+  "noise_draws_per_strength": 2,
+  "operations": [
+    "brightness_down",
+    "brightness_up",
+    "contrast_down",
+    "contrast_up",
+    "gamma_brighten",
+    "gamma_darken",
+    "gaussian_blur",
+    "gaussian_noise"
+  ],
+  "parity_extra_views": 2,
+  "policy_recomputed_from_saved_evidence": true,
+  "scope": "Synthetic 128-pixel CPU data; no RDD pixels, CUDA or efficacy measurement",
+  "seconds": 84.68340259999968,
+  "standard_predictions_unchanged_before_after_probe": true,
+  "status": "passed",
+  "strength_levels": 3,
+  "support": {
+    "0": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 1,
+        "sufficient": false
+      }
+    },
+    "0,1": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "0,1,2": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "0,1,2,3": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "0,1,3": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "0,2": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "0,2,3": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "0,3": {
+      "0": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "1": {
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 1,
+        "sufficient": false
+      }
+    },
+    "1,2": {
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "1,2,3": {
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "1,3": {
+      "1": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "2": {
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 1,
+        "sufficient": false
+      }
+    },
+    "2,3": {
+      "2": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      },
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 0,
+        "sufficient": false
+      }
+    },
+    "3": {
+      "3": {
+        "detected_clusters": 0,
+        "detected_objects": 0,
+        "objects": 1,
+        "sufficient": false
+      }
+    }
+  },
+  "training_update": {
+    "gradient_norm": 28.43811798095703,
+    "includes_negative_image": true,
+    "losses": {
+      "loss_box_reg": 0.08607666939496994,
+      "loss_classifier": 2.1400389671325684,
+      "loss_objectness": 0.1500815749168396,
+      "loss_rpn_box_reg": 0.005754908546805382
+    },
+    "two_distinct_constructed_class_policies": true
+  },
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  }
+}

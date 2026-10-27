@@ -1,0 +1,75 @@
+{
+  "status": "returned_records_verified_normalization_sensitivity_confirmed_on_fixed_training_batches",
+  "evidence": {
+    "archive": "detection_diagnostic_check_v1.tar.gz",
+    "archive_sha256": "14dd16aad80c0dbf546994aa4c2aad80c6dfb215ca5d7f7a222e218b5557193f",
+    "verification": "reports/detection_diagnostics_v1/ccast_verification.json",
+    "reproduction": "python reports/detection_diagnostics_v1/audit_ccast_results.py",
+    "metrics": "reports/detection_diagnostics_v1/metrics.csv",
+    "raw_target_coverage": "reports/detection_diagnostics_v1/raw_target_coverage.csv",
+    "assignments": "reports/detection_diagnostics_v1/assignments.csv",
+    "ccast_job": "794142.bright04",
+    "ccast_host": "gpu0026",
+    "gpu": "NVIDIA A10",
+    "optimizer_steps": 0,
+    "training_images": 15,
+    "target_boxes": 16,
+    "held_out_data_read_reported": false,
+    "ccast_unit_test_terminal_output": "not supplied; do not infer a target-host test count from the completed diagnostic",
+    "local_audit": "All 22 archive files, 21 result checksums, 6 released code files, 39 pinned previous records and 14 learning dependency files match. All six scalar/per-class COCO evaluations reproduce exactly. Ground truth matches the frozen train manifest. Running-stat predictions match the original learning records byte for byte and repeat unchanged after the intervention."
+  },
+  "verified_observations": [
+    {
+      "checkpoint_step": 100,
+      "running_stats_AP50": 0.005177795176777952,
+      "batch_stats_AP50": 0.17197076850542195,
+      "running_stats_AP50_95": 0.002311642123116421,
+      "batch_stats_AP50_95": 0.04076693383624076,
+      "raw_target_coverage_at_iou_0_5_running_then_batch": [7, 12],
+      "same_class_score_eligible_raw_coverage_running_then_batch": [4, 6]
+    },
+    {
+      "checkpoint_step": 200,
+      "running_stats_AP50": 0.0,
+      "batch_stats_AP50": 0.08077123501823866,
+      "running_stats_AP50_95": 0.0,
+      "batch_stats_AP50_95": 0.03776706618030224,
+      "raw_target_coverage_at_iou_0_5_running_then_batch": [7, 13],
+      "same_class_score_eligible_raw_coverage_running_then_batch": [1, 3],
+      "same_class_retained_coverage_running_then_batch": [0, 3],
+      "prediction_count_running_then_batch": [1307, 97]
+    }
+  ],
+  "interpretation": {
+    "supported": "Changing only BatchNorm statistics at inference changes geometry, class scores, assignments and AP for the same fixed weights and batches. Normalization sensitivity contributes to the observed evaluation failure in this setup.",
+    "remaining_failure": "Using batch statistics does not recover strong detection. At step 200, 13 of 16 targets have a raw box with IoU at least 0.5, but only 3 have such a raw box whose correct-class score reaches the fixed 0.001 threshold. Batch-stat AP50 is lower at step 200 than at step 100. Weak class scores and incomplete localization remain.",
+    "scope": "These are exploratory engineering checks on the same selected training examples, not a population estimate or a held-out result. Coverage is candidate availability, not one-to-one recall or AP. Batch-stat inference depends on batch composition and is not a validated deployment procedure.",
+    "unknowns": [
+      "The diagnostic does not establish why saved running statistics lead to poorer predictions or whether fixing them during training will help.",
+      "The earlier classifier-update spike is still a clue, not an identified cause. This experiment does not test gradient clipping, warmup or optimizer parameter groups.",
+      "Inference-time assignments do not reconstruct the historical gradients used in training.",
+      "No architecture ranking, generalization or augmentation-controller benefit follows from this experiment."
+    ]
+  },
+  "recommendation": {
+    "next_action": "Prepare one controlled training comparison of the original normalization behavior versus fixed BatchNorm running statistics throughout training and evaluation.",
+    "rationale": "The recorded intervention isolates normalization sensitivity. Matching the normalization behavior during learning and inference tests whether removing this mismatch improves actual learned predictions. It is a hypothesis, not an established repair.",
+    "comparison": "Start both arms from the same original pretrained weights and identical reinitialized four-class heads. Use the same 15 images, batches, 640-pixel preprocessing, 200-update budget, optimizer, losses, metric settings and seed. In the intervention arm, put only BatchNorm modules in evaluation mode after each model.train() call; leave their affine parameters trainable and hold their initial running buffers fixed.",
+    "controls": "Retain the unchanged-normalization arm and compare its saved predictions to the original run within the original tolerances. A mismatch requires investigation before attributing an outcome to normalization. Preserve all source releases/results. Record gradient magnitudes and classifier updates without clipping or otherwise changing the optimizer in this comparison.",
+    "decision_rule": "Reuse the existing engineering review rule: final training AP50 at least 0.50 and gain over initialization at least 0.10. Report both arms and the difference regardless of the result; this threshold is not statistical significance or generalization. If the intervention fails, stop this normalization-only repair instead of automatically extending the run or searching thresholds.",
+    "status": "deferred after the user flagged scope drift; no follow-up training package was created and no GPU job was submitted"
+  },
+  "priority_correction": {
+    "trigger": "User: We seem to be steering off the main thing",
+    "decision": "Remove the proposed YOLO BatchNorm repeat from the immediate work plan. Preserve the diagnostic evidence as an optional later investigation.",
+    "reason": "The primary objective is the class-aware local augmentation study. Debugging a second detector is not a prerequisite for testing that hypothesis with one functioning detector.",
+    "recommended_primary_path": "Use the existing pretrained Faster R-CNN implementation for the first augmentation study, based on the available implementation and observed training learning signal. This is a project sequencing recommendation, not an architecture superiority claim or a claim that the baseline has already passed validation.",
+    "next_deliverable": "Prepare the main detector training and validation pipeline with an identity-augmentation control and a conventional shared augmentation baseline, then add local fixed-policy and adaptive-policy comparisons under matched training conditions.",
+    "remaining_limits": "Full baseline training and validation remain unexecuted. YOLO and scratch-initialization comparisons remain later work; this does not waive any course requirement. The proposed primary architecture is a recommendation, not a user-confirmed final architecture selection."
+  },
+  "audit_limits": [
+    "Raw images, full checkpoint binaries and model execution were not independently repeated locally.",
+    "State/RNG/checkpoint preservation is supported by the verified code and returned execution records, not by a separate local live-model check.",
+    "Raw candidate and assignment summaries were checked for consistency but not regenerated from unsaved tensors."
+  ]
+}

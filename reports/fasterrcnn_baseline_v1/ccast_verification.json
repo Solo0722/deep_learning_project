@@ -1,0 +1,271 @@
+{
+  "all_epoch_prediction_geometry_counts_and_coverage": [
+    {
+      "clipped_boxes": 1945,
+      "collapsed_predictions": 0,
+      "epoch": 1,
+      "images": 5760,
+      "predictions": 526137
+    },
+    {
+      "clipped_boxes": 1213,
+      "collapsed_predictions": 0,
+      "epoch": 2,
+      "images": 5760,
+      "predictions": 478647
+    },
+    {
+      "clipped_boxes": 847,
+      "collapsed_predictions": 0,
+      "epoch": 3,
+      "images": 5760,
+      "predictions": 549764
+    },
+    {
+      "clipped_boxes": 3660,
+      "collapsed_predictions": 1,
+      "epoch": 4,
+      "images": 5760,
+      "predictions": 469304
+    },
+    {
+      "clipped_boxes": 1426,
+      "collapsed_predictions": 0,
+      "epoch": 5,
+      "images": 5760,
+      "predictions": 469121
+    },
+    {
+      "clipped_boxes": 1067,
+      "collapsed_predictions": 0,
+      "epoch": 6,
+      "images": 5760,
+      "predictions": 541123
+    },
+    {
+      "clipped_boxes": 1205,
+      "collapsed_predictions": 0,
+      "epoch": 7,
+      "images": 5760,
+      "predictions": 529775
+    },
+    {
+      "clipped_boxes": 5713,
+      "collapsed_predictions": 0,
+      "epoch": 8,
+      "images": 5760,
+      "predictions": 527445
+    },
+    {
+      "clipped_boxes": 1035,
+      "collapsed_predictions": 0,
+      "epoch": 9,
+      "images": 5760,
+      "predictions": 567837
+    },
+    {
+      "clipped_boxes": 2739,
+      "collapsed_predictions": 0,
+      "epoch": 10,
+      "images": 5760,
+      "predictions": 486091
+    },
+    {
+      "clipped_boxes": 796,
+      "collapsed_predictions": 0,
+      "epoch": 11,
+      "images": 5760,
+      "predictions": 482359
+    },
+    {
+      "clipped_boxes": 522,
+      "collapsed_predictions": 0,
+      "epoch": 12,
+      "images": 5760,
+      "predictions": 484982
+    },
+    {
+      "clipped_boxes": 624,
+      "collapsed_predictions": 0,
+      "epoch": 13,
+      "images": 5760,
+      "predictions": 354861
+    },
+    {
+      "clipped_boxes": 709,
+      "collapsed_predictions": 10,
+      "epoch": 14,
+      "images": 5760,
+      "predictions": 313911
+    },
+    {
+      "clipped_boxes": 747,
+      "collapsed_predictions": 8,
+      "epoch": 15,
+      "images": 5760,
+      "predictions": 304272
+    },
+    {
+      "clipped_boxes": 683,
+      "collapsed_predictions": 0,
+      "epoch": 16,
+      "images": 5760,
+      "predictions": 330917
+    },
+    {
+      "clipped_boxes": 613,
+      "collapsed_predictions": 8,
+      "epoch": 17,
+      "images": 5760,
+      "predictions": 283170
+    },
+    {
+      "clipped_boxes": 653,
+      "collapsed_predictions": 8,
+      "epoch": 18,
+      "images": 5760,
+      "predictions": 268117
+    },
+    {
+      "clipped_boxes": 643,
+      "collapsed_predictions": 8,
+      "epoch": 19,
+      "images": 5760,
+      "predictions": 274317
+    },
+    {
+      "clipped_boxes": 654,
+      "collapsed_predictions": 16,
+      "epoch": 20,
+      "images": 5760,
+      "predictions": 270674
+    }
+  ],
+  "archive": "fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz",
+  "archive_bytes": 391877600,
+  "archive_files": 85,
+  "archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+  "audit_source_sha256": "3f885dab491549ce56b24aad57747ad06faac484570b1304758a16b06855b1d6",
+  "best_checkpoint": {
+    "bytes": 331575482,
+    "checkpoint_file": "epoch_014_step_00094024_fa8bb8cc1a05.pt",
+    "completed_epochs": 14,
+    "epoch": 14,
+    "file": "epoch_014_step_00094024_fa8bb8cc1a05.pt",
+    "label": "epoch_014",
+    "sha256": "5d2310d78533456edbea7d43aeee48b89817d4e920a3d764243859f5dda62a41",
+    "step": 94024,
+    "validation_AP50_95": 0.2282311872580586
+  },
+  "best_epoch": 14,
+  "best_metrics": {
+    "AP50": 0.5114178506885583,
+    "AP50_95": 0.2282311872580586,
+    "AP75": 0.17090964508633316,
+    "AR100": 0.4383598835859107,
+    "per_class": {
+      "D00": {
+        "AP50": 0.513241105668062,
+        "AP50_95": 0.2474425897706648,
+        "target_count": 3888
+      },
+      "D10": {
+        "AP50": 0.4799493504052007,
+        "AP50_95": 0.20206224413613535,
+        "target_count": 1770
+      },
+      "D20": {
+        "AP50": 0.6295078047516505,
+        "AP50_95": 0.29975413037654697,
+        "target_count": 1592
+      },
+      "D40": {
+        "AP50": 0.42297314192931984,
+        "AP50_95": 0.16366578474888718,
+        "target_count": 975
+      }
+    }
+  },
+  "best_negative_image_fp_fraction_at_0_25": 0.3912448700410397,
+  "best_negative_images": 2193,
+  "best_negative_images_with_predictions_at_0_25": 858,
+  "best_negative_predicted_boxes_at_0_25": 1637,
+  "best_to_final_AP50_95_change": -0.004310684155130723,
+  "completed_epochs": 20,
+  "final_metrics": {
+    "AP50": 0.5020009921812068,
+    "AP50_95": 0.22392050310292788,
+    "AP75": 0.1680048004954427,
+    "AR100": 0.4281345248998788,
+    "per_class": {
+      "D00": {
+        "AP50": 0.498134355250434,
+        "AP50_95": 0.24201459940669573,
+        "target_count": 3888
+      },
+      "D10": {
+        "AP50": 0.4753599885921161,
+        "AP50_95": 0.20043579312713264,
+        "target_count": 1770
+      },
+      "D20": {
+        "AP50": 0.6273736578899586,
+        "AP50_95": 0.29449298665074347,
+        "target_count": 1592
+      },
+      "D40": {
+        "AP50": 0.40713596699231824,
+        "AP50_95": 0.15873863322713977,
+        "target_count": 975
+      }
+    }
+  },
+  "frozen_train_val_separation": "image/source-cluster/decoded-RGB hashes disjoint",
+  "ground_truth_matches_frozen_validation": true,
+  "image_presentations": 537260,
+  "limits": [
+    "Only selected and final epochs' AP/AR were independently recomputed; all 20 epochs' hashes, coverage, geometry, counts and history consistency were verified.",
+    "Full checkpoint binaries and the live stdout/stderr log are not in this records archive; checkpoint hashes are metadata, not a fresh audit of checkpoint bytes.",
+    "Raw images were not reopened locally and detector inference was not rerun.",
+    "One seed and one initialization/recipe; no seed-variation estimate, final-test evaluation or augmentation comparison.",
+    "The best epoch is selected on this validation set, so its result is a development estimate rather than an untouched final-test estimate.",
+    "No-target-image detections are false positives relative to retained annotations; annotation completeness was not visually re-audited."
+  ],
+  "local_versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11"
+  },
+  "maximum_recomputed_metric_error": 0.0,
+  "next_experiment_executed": false,
+  "optimizer_steps": 134320,
+  "protocol_and_environment_match": true,
+  "recommendation": "Keep this fixed identity baseline and prepare the planned fixed shared-augmentation control with the same initialization, splits, order, budget, validation and checkpoint-selection rules. Do not extend baseline training merely because the last epoch is below the selected epoch.",
+  "recomputed_epochs": [
+    14,
+    20
+  ],
+  "released_code_files_matched": 16,
+  "result_checksum_entries": 84,
+  "run": {
+    "elapsed_seconds": 39927.58046764135,
+    "finished_utc": "2026-10-23T15:36:00.558865+00:00",
+    "gpu": "NVIDIA A10",
+    "host": "gpu0035",
+    "pbs_job": "794364.bright04",
+    "peak_cuda_memory_allocated_bytes": 2857788416,
+    "resume": false,
+    "started_utc": "2026-10-23T04:30:34.560945+00:00"
+  },
+  "status": "verified_with_selected_and_final_metrics_recomputed",
+  "test_data_read": false,
+  "train_images": 26863,
+  "training_loss_first_final": [
+    0.2530795554554002,
+    0.14424417955859656
+  ],
+  "uncompressed_bytes": 412933062,
+  "validation_AP50_95_epoch12_to13_change": 0.04896565729820654,
+  "validation_images": 5760,
+  "validation_targets": 8225
+}

@@ -55,7 +55,7 @@ Each new output directory must not already exist. Preserve earlier evidence; ins
 
 ## 4. Start the complete train/validation run after the sanity check passes
 
-**Status, October 12:** the student reported `SANITY PASSED` on CCAST node `gpu0022`: accuracy 1.0000 on the 32 selected training examples after 200 steps; evaluation loss 1.3894 to 0.0000 (rounded console values). The cuDNN execution-plan warning did not stop the run. The subsequent full train/validation run also completed all 20 epochs. Its selected epoch is 20, with validation accuracy 0.9052 and macro-F1 0.8915 (rounded console values). The commands below are retained for reproducibility; do not restart or resume this completed run. Next is artifact transfer and inspection.
+**Status, October 12:** the student reported `SANITY PASSED` on CCAST node `gpu0022`: accuracy 1.0000 on the 32 selected training examples after 200 steps; evaluation loss 1.3894 to 0.0000 (rounded console values). The cuDNN execution-plan warning did not stop the run. The subsequent full train/validation run also completed all 20 epochs. Its selected epoch is 20, with validation accuracy 0.9052 and macro-F1 0.8915 (rounded console values). The commands below are retained for reproducibility; do not restart or resume this completed run. The artifacts have since been transferred and verified; see Section 5 and the saved analysis report.
 
 ```bash
 python -u train_baseline.py train --data dataset/processed_v1 --out runs/conventional_seed42_v1 --device cuda --epochs 20 --batch-size 64 --workers 2 --threads 2 --seed 42 --augmentation shared --max-minutes 75

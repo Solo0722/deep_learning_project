@@ -1,0 +1,28 @@
+{
+  "appearance_decisions_match_all_20_completed_shared_epochs": true,
+  "frozen_train_val_manifest_and_separation_checks": "passed",
+  "nonaugmentation_configuration_match": true,
+  "shared_augmentation_source_byte_identical": true,
+  "status": "passed",
+  "test_data_read": false,
+  "unchanged_dependency_files": [
+    "rdd_data.py",
+    "models.py",
+    "metrics.py",
+    "checkpoints.py",
+    "integration.py",
+    "select_training_cases.py",
+    "smoke_selection.json",
+    "tests/test_baseline.py"
+  ],
+  "unchanged_functions": [
+    "epoch_batches",
+    "learning_rate",
+    "update",
+    "validate",
+    "commit",
+    "restore",
+    "write_history",
+    "verify_partitions"
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "aggregate_comparison": [
+    {
+      "change_pp": -0.013191618507013558,
+      "identity_points": 22.82311872580586,
+      "metric": "AP50_95",
+      "selection": "best",
+      "shared_points": 22.809927107298847
+    },
+    {
+      "change_pp": -0.4544428126088129,
+      "identity_points": 51.141785068855825,
+      "metric": "AP50",
+      "selection": "best",
+      "shared_points": 50.687342256247014
+    },
+    {
+      "change_pp": 0.20410802969544894,
+      "identity_points": 17.090964508633316,
+      "metric": "AP75",
+      "selection": "best",
+      "shared_points": 17.295072538328764
+    },
+    {
+      "change_pp": 0.5029544082905901,
+      "identity_points": 43.835988358591074,
+      "metric": "AR100",
+      "selection": "best",
+      "shared_points": 44.33894276688166
+    },
+    {
+      "change_pp": 0.1825198712667564,
+      "identity_points": 22.392050310292788,
+      "metric": "AP50_95",
+      "selection": "final",
+      "shared_points": 22.574570181559544
+    },
+    {
+      "change_pp": 0.3413292585989769,
+      "identity_points": 50.20009921812068,
+      "metric": "AP50",
+      "selection": "final",
+      "shared_points": 50.54142847671965
+    },
+    {
+      "change_pp": -0.28149326782198336,
+      "identity_points": 16.80048004954427,
+      "metric": "AP75",
+      "selection": "final",
+      "shared_points": 16.518986781722287
+    },
+    {
+      "change_pp": 0.8685947759680401,
+      "identity_points": 42.81345248998788,
+      "metric": "AR100",
+      "selection": "final",
+      "shared_points": 43.68204726595592
+    }
+  ],
+  "analysis_source_sha256": "0270effcd3df290cf27c91a3e868241dd71e34e693dca3b9120700ec0fabedaf",
+  "augmentation": {
+    "decision_replay_and_order": "exact_all_20_epochs",
+    "reported_changed_images": 158151,
+    "scope": "Decisions and counts verified from training metadata; changed-pixel counts are recorded by CCAST, not recomputed from raw images",
+    "status": "passed",
+    "total": {
+      "applied_images": 158151,
+      "family/blur_noise": 78806,
+      "family/photometric": 79345,
+      "images": 537260,
+      "operation/brightness_down": 13213,
+      "operation/brightness_up": 13333,
+      "operation/contrast_down": 13191,
+      "operation/contrast_up": 13217,
+      "operation/gamma_brighten": 13235,
+      "operation/gamma_darken": 13156,
+      "operation/gaussian_blur": 39434,
+      "operation/gaussian_noise": 39372,
+      "operation/identity": 379109,
+      "reason/applied": 158151,
+      "reason/no_target": 204660,
+      "reason/probability": 157819,
+      "reason/warmup": 16630,
+      "target_images": 332600
+    },
+    "warmup_epoch_unaugmented": true
+  },
+  "checkpoint_selection": {
+    "identity_epoch": 14,
+    "rule": "Maximum full-validation AP50:95; earliest epoch wins ties",
+    "shared_epoch": 14
+  },
+  "epochs_each": 20,
+  "evidence": {
+    "identity_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+    "identity_verification": "Original archive, prior audit source and report values rechecked; prior direct COCO recomputation retained",
+    "identity_verification_sha256": "526269d04a643489acb5f8fe41e53fe76581538d66eef7cac76dcbc1c9ca86c9",
+    "shared_archive_sha256": "28b28bee01376cc10fe0a60dca7ddfb9cd97ec9b548597fe316d94db164bfd7c",
+    "shared_metric_maximum_error": 0.0,
+    "shared_recomputed_epochs": [
+      14,
+      20
+    ],
+    "shared_verification_sha256": "8db69ed119de3f86bae6713eb836f4838efcd150fa254c0a7767cb33db507cc3"
+  },
+  "limits": [
+    "One run per condition: training variability and statistical equivalence are not estimated.",
+    "Same validation set selected checkpoints and supplied comparison metrics; no untouched test-set estimate.",
+    "Warmup divergence prevents attributing tiny later differences exclusively to augmentation.",
+    "No adaptive or local augmentation controller was tested; no per-operation causal effect is identified.",
+    "Fixed recipe was an initial choice, not validation-tuned; this result does not rule out useful augmentation recipes.",
+    "Full checkpoint binaries and raw images were not independently reopened locally."
+  ],
+  "matched_configuration": true,
+  "negative_images_at_selected_epoch": {
+    "change_pp": 0.4103967168262612,
+    "confidence_threshold": 0.25,
+    "denominator": 2193,
+    "identity_fraction": 0.3912448700410397,
+    "identity_images_with_predictions": 858,
+    "identity_prediction_boxes": 1637,
+    "newly_clear_images": 100,
+    "newly_positive_images": 109,
+    "scope": "Relative to retained annotations; no visual annotation completeness review",
+    "shared_fraction": 0.3953488372093023,
+    "shared_images_with_predictions": 867,
+    "shared_prediction_boxes": 1640
+  },
+  "new_training_or_inference_executed": false,
+  "next_action": "Preserve both controls. The next planned ablation is fixed local augmentation with the same bank, strengths, eligibility and probability; repeat matched runs before claiming a reliable small benefit.",
+  "per_class_selected_comparison": [
+    {
+      "AP50_95_change_pp": 0.039950521218992674,
+      "AP50_change_pp": -0.2625622264822214,
+      "class": "D00",
+      "description": "Longitudinal cracks",
+      "identity_AP50": 51.324110566806205,
+      "identity_AP50_95": 24.74425897706648,
+      "shared_AP50": 51.06154834032398,
+      "shared_AP50_95": 24.784209498285474,
+      "validation_targets": 3888
+    },
+    {
+      "AP50_95_change_pp": 0.05930218654947583,
+      "AP50_change_pp": -0.1511558161649107,
+      "class": "D10",
+      "description": "Transverse cracks",
+      "identity_AP50": 47.99493504052007,
+      "identity_AP50_95": 20.206224413613537,
+      "shared_AP50": 47.84377922435516,
+      "shared_AP50_95": 20.26552660016301,
+      "validation_targets": 1770
+    },
+    {
+      "AP50_95_change_pp": -0.3448885282551939,
+      "AP50_change_pp": -0.5430432929513063,
+      "class": "D20",
+      "description": "Alligator cracks",
+      "identity_AP50": 62.95078047516505,
+      "identity_AP50_95": 29.975413037654697,
+      "shared_AP50": 62.407737182213744,
+      "shared_AP50_95": 29.630524509399503,
+      "validation_targets": 1592
+    },
+    {
+      "AP50_95_change_pp": 0.1928693464586878,
+      "AP50_change_pp": -0.8610099148368078,
+      "class": "D40",
+      "description": "Potholes",
+      "identity_AP50": 42.297314192931985,
+      "identity_AP50_95": 16.36657847488872,
+      "shared_AP50": 41.43630427809518,
+      "shared_AP50_95": 16.559447821347405,
+      "validation_targets": 975
+    }
+  ],
+  "primary_comparison": "Validation AP50:95 at each run's declared selected checkpoint",
+  "runtime": {
+    "difference_minutes": 25.30775980927671,
+    "identity_host": "gpu0035",
+    "identity_hours": 11.09099457434482,
+    "relative_difference_percent": 3.803049347774068,
+    "scope": "Whole invocation elapsed time on different A10 nodes; not isolated augmentation overhead",
+    "shared_host": "gpu0021",
+    "shared_hours": 11.512790571166098
+  },
+  "seed": 42,
+  "status": "verified_descriptive_comparison_one_run_per_condition",
+  "test_data_read": false,
+  "train_images": 26863,
+  "unaugmented_epoch1": {
+    "applied_images": 0,
+    "change_pp": -0.6451103338628222,
+    "epoch": 1,
+    "identity_AP50": 39.30672368602557,
+    "identity_AP50_95": 16.537085673069267,
+    "interpretation": "Runs differ before augmentation starts. Cause is not established; matching seed/configuration did not produce an identical realized trajectory.",
+    "observed_trajectories_identical": false,
+    "shared_AP50": 37.85028386196977,
+    "shared_AP50_95": 15.891975339206446
+  },
+  "updates_each": 134320,
+  "validation_images": 5760,
+  "validation_targets": 8225,
+  "verdict": "No observed gain in the primary selected-checkpoint metric for this fixed shared recipe; class-level changes are small and mixed."
+}

@@ -1,0 +1,214 @@
+{
+  "actual_pretrained_model_check": {
+    "all_negative_batch_included": true,
+    "checkpoint_sha256": "1333c12b6450a282496682446a3bb3f0b8b0a505f88147a6d5018ced33de1714",
+    "classifier_updated": true,
+    "fresh_model_checkpoint_prediction_replay": "exact",
+    "initialization_matches_identity_model_exactly": true,
+    "model_parameters": 41314536,
+    "operations_exercised": [
+      "brightness_down",
+      "brightness_up",
+      "contrast_down",
+      "contrast_up",
+      "gamma_brighten",
+      "gamma_darken",
+      "gaussian_blur",
+      "gaussian_noise"
+    ],
+    "scope": "Synthetic 128-pixel CPU data; no RDD pixels or CCAST execution",
+    "status": "passed",
+    "updates": [
+      {
+        "gradient_norm": 28.33836555480957,
+        "losses": {
+          "loss_box_reg": 0.1310780942440033,
+          "loss_classifier": 2.1270017623901367,
+          "loss_objectness": 0.23530803620815277,
+          "loss_rpn_box_reg": 0.009231917560100555
+        },
+        "targets": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "gradient_norm": 14.790812492370605,
+        "losses": {
+          "loss_box_reg": 0.126326322555542,
+          "loss_classifier": 0.788067102432251,
+          "loss_objectness": 0.13768340647220612,
+          "loss_rpn_box_reg": 0.007983120158314705
+        },
+        "targets": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "gradient_norm": 5.147238731384277,
+        "losses": {
+          "loss_box_reg": 0.0,
+          "loss_classifier": 0.10862036794424057,
+          "loss_objectness": 0.01079446729272604,
+          "loss_rpn_box_reg": 0.0
+        },
+        "targets": [
+          0,
+          0
+        ]
+      }
+    ],
+    "validation_unchanged_and_without_parameter_update": true,
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "pycocotools": "2.0.11",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "comparator_checks": {
+    "appearance_decisions_match_all_20_completed_shared_epochs": true,
+    "frozen_train_val_manifest_and_separation_checks": "passed",
+    "nonaugmentation_configuration_match": true,
+    "shared_augmentation_source_byte_identical": true,
+    "status": "passed",
+    "test_data_read": false,
+    "unchanged_dependency_files": [
+      "rdd_data.py",
+      "models.py",
+      "metrics.py",
+      "checkpoints.py",
+      "integration.py",
+      "select_training_cases.py",
+      "smoke_selection.json",
+      "tests/test_baseline.py"
+    ],
+    "unchanged_functions": [
+      "epoch_batches",
+      "learning_rate",
+      "update",
+      "validate",
+      "commit",
+      "restore",
+      "write_history",
+      "verify_partitions"
+    ]
+  },
+  "focused_tests": {
+    "command": "python -m unittest discover -s fasterrcnn_local_v1/tests -p 'test_*.py' -v",
+    "errors": 0,
+    "failures": 0,
+    "seconds": 31.27635309996549,
+    "skipped": 0,
+    "tests": 39
+  },
+  "limits": [
+    "Local library versions differ from CCAST.",
+    "No RDD pixels, CUDA execution, full training or augmentation efficacy measured locally.",
+    "CCAST job repeats focused tests and a 640-pixel real-data GPU smoke before full training.",
+    "The fixed local recipe has not been selected through validation tuning.",
+    "The identity/shared runs already diverged during unaugmented warmup; small one-seed effects remain inconclusive."
+  ],
+  "local_evidence_sha256": {
+    "comparator_checks.json": "b650f6a53e4d6c8e5cd75795ba474a3594be87b181861b024a780207aadb6354",
+    "expected_exposure.json": "f2d932dd5d8e2d1b77974fac78e4b350630f15d7cd40c35055f06d5664d5b67b",
+    "local_model_check.json": "94b4cbe0f1035858d5db53974241f956b21e2a64f97a8229b2ebbda33cfc9e9a",
+    "shell_checks.json": "0d4ae6b67ac11da61c25b76851158b24a3041211453da028b8317758d4da8970",
+    "unit_tests.json": "f1d2f1e418165a886cf90093e223a2526bba09b734e551e4037bc312905e4bd2",
+    "unit_tests.txt": "3d302a424a19bef0b6f03361cb31a42572a537ad393a7b16c0c302a065009278"
+  },
+  "predicted_exposure": {
+    "appearance_decisions_match_all_20_completed_shared_epochs": true,
+    "geometry": {
+      "groups": 30744,
+      "images": 26863,
+      "mixed_class_groups": 3558,
+      "multi_box_groups": 4908,
+      "multi_group_images": 7569,
+      "single_pixel_groups": 0,
+      "target_images": 16630
+    },
+    "policy_sha256": "b4357a57d85e66546f6062dbe556439325d6a66baa5ca0b02ddbb9266c409870",
+    "scope": "Prospective assignments from frozen train metadata; no raw pixels or training executed",
+    "smoke_assignments": {
+      "applied": 8,
+      "no_target": 9,
+      "probability": 7
+    },
+    "total": {
+      "applied_images": 158151,
+      "family/blur_noise": 78806,
+      "family/photometric": 79345,
+      "images": 537260,
+      "local_alpha_units": 8776117224,
+      "local_reference_pixels": 61175937920,
+      "local_union_pixels": 4438070184,
+      "operation/brightness_down": 13213,
+      "operation/brightness_up": 13333,
+      "operation/contrast_down": 13191,
+      "operation/contrast_up": 13217,
+      "operation/gamma_brighten": 13235,
+      "operation/gamma_darken": 13156,
+      "operation/gaussian_blur": 39434,
+      "operation/gaussian_noise": 39372,
+      "operation/identity": 379109,
+      "reason/applied": 158151,
+      "reason/no_target": 204660,
+      "reason/probability": 157819,
+      "reason/warmup": 16630,
+      "selected_boxes": 199490,
+      "selected_groups": 158151,
+      "selected_multi_box_groups": 26843,
+      "target_images": 332600
+    }
+  },
+  "python": "3.14.2",
+  "python_3_12_grammar": "passed",
+  "shell_syntax": {
+    "command": "C:\\Program Files\\Git\\bin\\bash.exe -n <script>",
+    "sandbox_note": "Git Bash failed inside the Windows sandbox without a parser diagnostic; read-only external retry exited zero for all three scripts.",
+    "scope": "Read-only syntax parsing outside Windows sandbox; scripts not executed and no CCAST job submitted",
+    "scripts": [
+      "job.pbs",
+      "run_job.sh",
+      "submit.sh"
+    ],
+    "source_sha256": {
+      "job.pbs": "d4a77dfbe5edd59e82a69e6f83e671605b93228a3a1a955ba3ea3c73f5512187",
+      "run_job.sh": "dc44b0c49fcb60dc69e22b91d50dac955c682fcd042e1a23607e5e767be170cd",
+      "submit.sh": "fd6a2d144515c7512a4e76f1a103b06dddfa36a6a5cbda5577a95f91e75350b3"
+    },
+    "status": "passed"
+  },
+  "source_sha256": {
+    "README.md": "c6d2fa605487af23d4957e0e74657a0ab739462e64be7175dde8c274cceee6df",
+    "baseline.py": "b62ddc9c80f57cc01144402d5bc6178139ed4784f4e093da6bfde997f4713386",
+    "checkpoints.py": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+    "identity_protocol.json": "5cfe9851db1a478971a2c82c78cacb44d290a4315b2fcfde355832077145fdf2",
+    "integration.py": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+    "job.pbs": "d4a77dfbe5edd59e82a69e6f83e671605b93228a3a1a955ba3ea3c73f5512187",
+    "local_augmentation.py": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+    "metrics.py": "a65ceced7286a8029576c89c286ce51caad03ef69632de2856d5827bda07aeba",
+    "models.py": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+    "protocol.json": "bc7d772ab4a9bbf6ce9c6e91aa4fd3d5608755915d2ee003b897751adeb87c01",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_job.sh": "dc44b0c49fcb60dc69e22b91d50dac955c682fcd042e1a23607e5e767be170cd",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "shared_augmentation.py": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+    "shared_exposure.json": "4aba100351e4500d5dd39ff223c68a7f254c9bc4cc5c2cd28804a79035f38054",
+    "shared_protocol.json": "be3c1328ab3f128389ede6e638cf04332acd648133eeaad3ecf4760ea80c9fe2",
+    "smoke_augmentation.py": "1190cbfc60bc6689b18bd549bb41b78a449868b55b2acee3de32d244f4e11106",
+    "smoke_selection.json": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+    "submit.sh": "fd6a2d144515c7512a4e76f1a103b06dddfa36a6a5cbda5577a95f91e75350b3",
+    "tests/test_baseline.py": "fc1d61f3a5c54d654d582b0f6cd2b7959afd59b6a33691d39c06a40d1171e458",
+    "tests/test_local_augmentation.py": "275bef20788a655d51701336da2867a0fdf63c79916e459b213b9a2c84246d1f",
+    "tests/test_shared_augmentation.py": "193fbd8791167cf0ca744c8f02e86574edf5e5d92ffec877f4a7a3919bda0ce1"
+  },
+  "status": "passed_locally_ccast_execution_pending"
+}

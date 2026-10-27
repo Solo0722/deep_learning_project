@@ -1,0 +1,16 @@
+[
+  {
+    "canonical": "United_States/train/images/United_States_001623.jpg",
+    "image": "United_States/train/images/United_States_003917.jpg",
+    "note": "Retain the previously documented exclusion; identical image bytes/RGB but two annotation boxes differ. No annotation merging.",
+    "reason": "historical_exact_duplicate"
+  },
+  {
+    "expected_labels": [
+      "D0w0"
+    ],
+    "image": "India/train/images/India_006389.jpg",
+    "note": "The sole label cannot be assigned confidently to a target class. Exclude the image from this version instead of guessing a correction or treating it as a target-negative example.",
+    "reason": "ambiguous_annotation_label"
+  }
+]

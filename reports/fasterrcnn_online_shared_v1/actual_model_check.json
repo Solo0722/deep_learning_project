@@ -1,0 +1,71 @@
+{
+  "active_families": [],
+  "checkpoint_sha256": "557513e3056aaa259b2d37c7e339c9733043b93fd1b18e21596692538041df6a",
+  "complete_probe_views": 112,
+  "duplicate_and_missed_gt_losses_present": true,
+  "fresh_model_checkpoint_prediction_policy_replay": "exact",
+  "hook_prediction_parity": "exact",
+  "initialization_matches_identity_exactly": true,
+  "model_buffers_gradients_rng_unchanged": true,
+  "noise_draws_per_strength": 2,
+  "operations": [
+    "brightness_down",
+    "brightness_up",
+    "contrast_down",
+    "contrast_up",
+    "gamma_brighten",
+    "gamma_darken",
+    "gaussian_blur",
+    "gaussian_noise"
+  ],
+  "parity_extra_views": 2,
+  "policy_recomputed_from_saved_evidence": true,
+  "scope": "Synthetic 128-pixel CPU data; no RDD pixels, CUDA or efficacy measurement",
+  "seconds": 104.11833920003846,
+  "standard_predictions_unchanged_before_after_probe": true,
+  "status": "passed",
+  "strength_levels": 3,
+  "support": {
+    "0": {
+      "detected_clusters": 0,
+      "detected_objects": 0,
+      "objects": 1,
+      "sufficient": false
+    },
+    "1": {
+      "detected_clusters": 0,
+      "detected_objects": 0,
+      "objects": 1,
+      "sufficient": false
+    },
+    "2": {
+      "detected_clusters": 0,
+      "detected_objects": 0,
+      "objects": 1,
+      "sufficient": false
+    },
+    "3": {
+      "detected_clusters": 0,
+      "detected_objects": 0,
+      "objects": 1,
+      "sufficient": false
+    }
+  },
+  "training_update": {
+    "gradient_norm": 28.40272331237793,
+    "includes_negative_image": true,
+    "losses": {
+      "loss_box_reg": 0.09221415966749191,
+      "loss_classifier": 2.1635825634002686,
+      "loss_objectness": 0.1660677045583725,
+      "loss_rpn_box_reg": 0.006227651610970497
+    }
+  },
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  }
+}

@@ -1,0 +1,528 @@
+{
+  "test_evaluated": false,
+  "design_sha256": "026a28ee9dd219d12f946cf50134af8a9d8d4f08aec04fcd447ed57199b76af4",
+  "bank": [
+    {
+      "id": "identity",
+      "operation": "identity",
+      "magnitude": 0.0
+    },
+    {
+      "id": "brightness_low",
+      "operation": "brightness",
+      "magnitude": 0.1
+    },
+    {
+      "id": "brightness_high",
+      "operation": "brightness",
+      "magnitude": 0.25
+    },
+    {
+      "id": "contrast_low",
+      "operation": "contrast",
+      "magnitude": 0.1
+    },
+    {
+      "id": "contrast_high",
+      "operation": "contrast",
+      "magnitude": 0.25
+    },
+    {
+      "id": "blur_low",
+      "operation": "blur",
+      "magnitude": 0.5
+    },
+    {
+      "id": "blur_high",
+      "operation": "blur",
+      "magnitude": 1.0
+    },
+    {
+      "id": "translate_x_low",
+      "operation": "translate_x",
+      "magnitude": 0.03
+    },
+    {
+      "id": "translate_x_high",
+      "operation": "translate_x",
+      "magnitude": 0.08
+    },
+    {
+      "id": "translate_y_low",
+      "operation": "translate_y",
+      "magnitude": 0.03
+    },
+    {
+      "id": "translate_y_high",
+      "operation": "translate_y",
+      "magnitude": 0.08
+    }
+  ],
+  "images": [
+    {
+      "file": "China_Drone_brightness.png",
+      "sample_ids": [
+        "China_Drone__China_Drone_000569__o0000",
+        "China_Drone__China_Drone_000244__o0004",
+        "China_Drone__China_Drone_000599__o0001",
+        "China_Drone__China_Drone_001683__o0003",
+        "China_Drone__China_Drone_001746__o0001",
+        "China_Drone__China_Drone_001464__o0000",
+        "China_Drone__China_Drone_001805__o0000",
+        "China_Drone__China_Drone_000057__o0001"
+      ]
+    },
+    {
+      "file": "China_Drone_contrast.png",
+      "sample_ids": [
+        "China_Drone__China_Drone_000569__o0000",
+        "China_Drone__China_Drone_000244__o0004",
+        "China_Drone__China_Drone_000599__o0001",
+        "China_Drone__China_Drone_001683__o0003",
+        "China_Drone__China_Drone_001746__o0001",
+        "China_Drone__China_Drone_001464__o0000",
+        "China_Drone__China_Drone_001805__o0000",
+        "China_Drone__China_Drone_000057__o0001"
+      ]
+    },
+    {
+      "file": "China_Drone_blur.png",
+      "sample_ids": [
+        "China_Drone__China_Drone_000569__o0000",
+        "China_Drone__China_Drone_000244__o0004",
+        "China_Drone__China_Drone_000599__o0001",
+        "China_Drone__China_Drone_001683__o0003",
+        "China_Drone__China_Drone_001746__o0001",
+        "China_Drone__China_Drone_001464__o0000",
+        "China_Drone__China_Drone_001805__o0000",
+        "China_Drone__China_Drone_000057__o0001"
+      ]
+    },
+    {
+      "file": "China_Drone_translate_x.png",
+      "sample_ids": [
+        "China_Drone__China_Drone_000569__o0000",
+        "China_Drone__China_Drone_000244__o0004",
+        "China_Drone__China_Drone_000599__o0001",
+        "China_Drone__China_Drone_001683__o0003",
+        "China_Drone__China_Drone_001746__o0001",
+        "China_Drone__China_Drone_001464__o0000",
+        "China_Drone__China_Drone_001805__o0000",
+        "China_Drone__China_Drone_000057__o0001"
+      ]
+    },
+    {
+      "file": "China_Drone_translate_y.png",
+      "sample_ids": [
+        "China_Drone__China_Drone_000569__o0000",
+        "China_Drone__China_Drone_000244__o0004",
+        "China_Drone__China_Drone_000599__o0001",
+        "China_Drone__China_Drone_001683__o0003",
+        "China_Drone__China_Drone_001746__o0001",
+        "China_Drone__China_Drone_001464__o0000",
+        "China_Drone__China_Drone_001805__o0000",
+        "China_Drone__China_Drone_000057__o0001"
+      ]
+    },
+    {
+      "file": "China_MotorBike_brightness.png",
+      "sample_ids": [
+        "China_MotorBike__China_MotorBike_000262__o0000",
+        "China_MotorBike__China_MotorBike_000950__o0001",
+        "China_MotorBike__China_MotorBike_001091__o0000",
+        "China_MotorBike__China_MotorBike_001493__o0000",
+        "China_MotorBike__China_MotorBike_001606__o0000",
+        "China_MotorBike__China_MotorBike_000876__o0000",
+        "China_MotorBike__China_MotorBike_001661__o0000",
+        "China_MotorBike__China_MotorBike_000188__o0005"
+      ]
+    },
+    {
+      "file": "China_MotorBike_contrast.png",
+      "sample_ids": [
+        "China_MotorBike__China_MotorBike_000262__o0000",
+        "China_MotorBike__China_MotorBike_000950__o0001",
+        "China_MotorBike__China_MotorBike_001091__o0000",
+        "China_MotorBike__China_MotorBike_001493__o0000",
+        "China_MotorBike__China_MotorBike_001606__o0000",
+        "China_MotorBike__China_MotorBike_000876__o0000",
+        "China_MotorBike__China_MotorBike_001661__o0000",
+        "China_MotorBike__China_MotorBike_000188__o0005"
+      ]
+    },
+    {
+      "file": "China_MotorBike_blur.png",
+      "sample_ids": [
+        "China_MotorBike__China_MotorBike_000262__o0000",
+        "China_MotorBike__China_MotorBike_000950__o0001",
+        "China_MotorBike__China_MotorBike_001091__o0000",
+        "China_MotorBike__China_MotorBike_001493__o0000",
+        "China_MotorBike__China_MotorBike_001606__o0000",
+        "China_MotorBike__China_MotorBike_000876__o0000",
+        "China_MotorBike__China_MotorBike_001661__o0000",
+        "China_MotorBike__China_MotorBike_000188__o0005"
+      ]
+    },
+    {
+      "file": "China_MotorBike_translate_x.png",
+      "sample_ids": [
+        "China_MotorBike__China_MotorBike_000262__o0000",
+        "China_MotorBike__China_MotorBike_000950__o0001",
+        "China_MotorBike__China_MotorBike_001091__o0000",
+        "China_MotorBike__China_MotorBike_001493__o0000",
+        "China_MotorBike__China_MotorBike_001606__o0000",
+        "China_MotorBike__China_MotorBike_000876__o0000",
+        "China_MotorBike__China_MotorBike_001661__o0000",
+        "China_MotorBike__China_MotorBike_000188__o0005"
+      ]
+    },
+    {
+      "file": "China_MotorBike_translate_y.png",
+      "sample_ids": [
+        "China_MotorBike__China_MotorBike_000262__o0000",
+        "China_MotorBike__China_MotorBike_000950__o0001",
+        "China_MotorBike__China_MotorBike_001091__o0000",
+        "China_MotorBike__China_MotorBike_001493__o0000",
+        "China_MotorBike__China_MotorBike_001606__o0000",
+        "China_MotorBike__China_MotorBike_000876__o0000",
+        "China_MotorBike__China_MotorBike_001661__o0000",
+        "China_MotorBike__China_MotorBike_000188__o0005"
+      ]
+    },
+    {
+      "file": "Czech_brightness.png",
+      "sample_ids": [
+        "Czech__Czech_000950__o0000",
+        "Czech__Czech_000963__o0000",
+        "Czech__Czech_001028__o0001",
+        "Czech__Czech_002746__o0001",
+        "Czech__Czech_001956__o0001",
+        "Czech__Czech_002992__o0000",
+        "Czech__Czech_000853__o0000",
+        "Czech__Czech_001495__o0000"
+      ]
+    },
+    {
+      "file": "Czech_contrast.png",
+      "sample_ids": [
+        "Czech__Czech_000950__o0000",
+        "Czech__Czech_000963__o0000",
+        "Czech__Czech_001028__o0001",
+        "Czech__Czech_002746__o0001",
+        "Czech__Czech_001956__o0001",
+        "Czech__Czech_002992__o0000",
+        "Czech__Czech_000853__o0000",
+        "Czech__Czech_001495__o0000"
+      ]
+    },
+    {
+      "file": "Czech_blur.png",
+      "sample_ids": [
+        "Czech__Czech_000950__o0000",
+        "Czech__Czech_000963__o0000",
+        "Czech__Czech_001028__o0001",
+        "Czech__Czech_002746__o0001",
+        "Czech__Czech_001956__o0001",
+        "Czech__Czech_002992__o0000",
+        "Czech__Czech_000853__o0000",
+        "Czech__Czech_001495__o0000"
+      ]
+    },
+    {
+      "file": "Czech_translate_x.png",
+      "sample_ids": [
+        "Czech__Czech_000950__o0000",
+        "Czech__Czech_000963__o0000",
+        "Czech__Czech_001028__o0001",
+        "Czech__Czech_002746__o0001",
+        "Czech__Czech_001956__o0001",
+        "Czech__Czech_002992__o0000",
+        "Czech__Czech_000853__o0000",
+        "Czech__Czech_001495__o0000"
+      ]
+    },
+    {
+      "file": "Czech_translate_y.png",
+      "sample_ids": [
+        "Czech__Czech_000950__o0000",
+        "Czech__Czech_000963__o0000",
+        "Czech__Czech_001028__o0001",
+        "Czech__Czech_002746__o0001",
+        "Czech__Czech_001956__o0001",
+        "Czech__Czech_002992__o0000",
+        "Czech__Czech_000853__o0000",
+        "Czech__Czech_001495__o0000"
+      ]
+    },
+    {
+      "file": "India_brightness.png",
+      "sample_ids": [
+        "India__India_002616__o0001",
+        "India__India_003944__o0000",
+        "India__India_007590__o0000",
+        "India__India_006255__o0002",
+        "India__India_000285__o0000",
+        "India__India_009038__o0001",
+        "India__India_006336__o0000",
+        "India__India_001551__o0002"
+      ]
+    },
+    {
+      "file": "India_contrast.png",
+      "sample_ids": [
+        "India__India_002616__o0001",
+        "India__India_003944__o0000",
+        "India__India_007590__o0000",
+        "India__India_006255__o0002",
+        "India__India_000285__o0000",
+        "India__India_009038__o0001",
+        "India__India_006336__o0000",
+        "India__India_001551__o0002"
+      ]
+    },
+    {
+      "file": "India_blur.png",
+      "sample_ids": [
+        "India__India_002616__o0001",
+        "India__India_003944__o0000",
+        "India__India_007590__o0000",
+        "India__India_006255__o0002",
+        "India__India_000285__o0000",
+        "India__India_009038__o0001",
+        "India__India_006336__o0000",
+        "India__India_001551__o0002"
+      ]
+    },
+    {
+      "file": "India_translate_x.png",
+      "sample_ids": [
+        "India__India_002616__o0001",
+        "India__India_003944__o0000",
+        "India__India_007590__o0000",
+        "India__India_006255__o0002",
+        "India__India_000285__o0000",
+        "India__India_009038__o0001",
+        "India__India_006336__o0000",
+        "India__India_001551__o0002"
+      ]
+    },
+    {
+      "file": "India_translate_y.png",
+      "sample_ids": [
+        "India__India_002616__o0001",
+        "India__India_003944__o0000",
+        "India__India_007590__o0000",
+        "India__India_006255__o0002",
+        "India__India_000285__o0000",
+        "India__India_009038__o0001",
+        "India__India_006336__o0000",
+        "India__India_001551__o0002"
+      ]
+    },
+    {
+      "file": "Japan_brightness.png",
+      "sample_ids": [
+        "Japan__Japan_008524__o0005",
+        "Japan__Japan_008078__o0007",
+        "Japan__Japan_001989__o0004",
+        "Japan__Japan_009702__o0004",
+        "Japan__Japan_010949__o0001",
+        "Japan__Japan_005289__o0002",
+        "Japan__Japan_008804__o0000",
+        "Japan__Japan_003548__o0000"
+      ]
+    },
+    {
+      "file": "Japan_contrast.png",
+      "sample_ids": [
+        "Japan__Japan_008524__o0005",
+        "Japan__Japan_008078__o0007",
+        "Japan__Japan_001989__o0004",
+        "Japan__Japan_009702__o0004",
+        "Japan__Japan_010949__o0001",
+        "Japan__Japan_005289__o0002",
+        "Japan__Japan_008804__o0000",
+        "Japan__Japan_003548__o0000"
+      ]
+    },
+    {
+      "file": "Japan_blur.png",
+      "sample_ids": [
+        "Japan__Japan_008524__o0005",
+        "Japan__Japan_008078__o0007",
+        "Japan__Japan_001989__o0004",
+        "Japan__Japan_009702__o0004",
+        "Japan__Japan_010949__o0001",
+        "Japan__Japan_005289__o0002",
+        "Japan__Japan_008804__o0000",
+        "Japan__Japan_003548__o0000"
+      ]
+    },
+    {
+      "file": "Japan_translate_x.png",
+      "sample_ids": [
+        "Japan__Japan_008524__o0005",
+        "Japan__Japan_008078__o0007",
+        "Japan__Japan_001989__o0004",
+        "Japan__Japan_009702__o0004",
+        "Japan__Japan_010949__o0001",
+        "Japan__Japan_005289__o0002",
+        "Japan__Japan_008804__o0000",
+        "Japan__Japan_003548__o0000"
+      ]
+    },
+    {
+      "file": "Japan_translate_y.png",
+      "sample_ids": [
+        "Japan__Japan_008524__o0005",
+        "Japan__Japan_008078__o0007",
+        "Japan__Japan_001989__o0004",
+        "Japan__Japan_009702__o0004",
+        "Japan__Japan_010949__o0001",
+        "Japan__Japan_005289__o0002",
+        "Japan__Japan_008804__o0000",
+        "Japan__Japan_003548__o0000"
+      ]
+    },
+    {
+      "file": "Norway_brightness.png",
+      "sample_ids": [
+        "Norway__Norway_003138__o0001",
+        "Norway__Norway_007040__o0002",
+        "Norway__Norway_006905__o0001",
+        "Norway__Norway_005339__o0001",
+        "Norway__Norway_007498__o0001",
+        "Norway__Norway_005345__o0000",
+        "Norway__Norway_004891__o0011",
+        "Norway__Norway_005814__o0001"
+      ]
+    },
+    {
+      "file": "Norway_contrast.png",
+      "sample_ids": [
+        "Norway__Norway_003138__o0001",
+        "Norway__Norway_007040__o0002",
+        "Norway__Norway_006905__o0001",
+        "Norway__Norway_005339__o0001",
+        "Norway__Norway_007498__o0001",
+        "Norway__Norway_005345__o0000",
+        "Norway__Norway_004891__o0011",
+        "Norway__Norway_005814__o0001"
+      ]
+    },
+    {
+      "file": "Norway_blur.png",
+      "sample_ids": [
+        "Norway__Norway_003138__o0001",
+        "Norway__Norway_007040__o0002",
+        "Norway__Norway_006905__o0001",
+        "Norway__Norway_005339__o0001",
+        "Norway__Norway_007498__o0001",
+        "Norway__Norway_005345__o0000",
+        "Norway__Norway_004891__o0011",
+        "Norway__Norway_005814__o0001"
+      ]
+    },
+    {
+      "file": "Norway_translate_x.png",
+      "sample_ids": [
+        "Norway__Norway_003138__o0001",
+        "Norway__Norway_007040__o0002",
+        "Norway__Norway_006905__o0001",
+        "Norway__Norway_005339__o0001",
+        "Norway__Norway_007498__o0001",
+        "Norway__Norway_005345__o0000",
+        "Norway__Norway_004891__o0011",
+        "Norway__Norway_005814__o0001"
+      ]
+    },
+    {
+      "file": "Norway_translate_y.png",
+      "sample_ids": [
+        "Norway__Norway_003138__o0001",
+        "Norway__Norway_007040__o0002",
+        "Norway__Norway_006905__o0001",
+        "Norway__Norway_005339__o0001",
+        "Norway__Norway_007498__o0001",
+        "Norway__Norway_005345__o0000",
+        "Norway__Norway_004891__o0011",
+        "Norway__Norway_005814__o0001"
+      ]
+    },
+    {
+      "file": "United_States_brightness.png",
+      "sample_ids": [
+        "United_States__United_States_002906__o0000",
+        "United_States__United_States_003461__o0001",
+        "United_States__United_States_002243__o0000",
+        "United_States__United_States_000354__o0001",
+        "United_States__United_States_001489__o0001",
+        "United_States__United_States_001320__o0001",
+        "United_States__United_States_002767__o0001",
+        "United_States__United_States_002577__o0002"
+      ]
+    },
+    {
+      "file": "United_States_contrast.png",
+      "sample_ids": [
+        "United_States__United_States_002906__o0000",
+        "United_States__United_States_003461__o0001",
+        "United_States__United_States_002243__o0000",
+        "United_States__United_States_000354__o0001",
+        "United_States__United_States_001489__o0001",
+        "United_States__United_States_001320__o0001",
+        "United_States__United_States_002767__o0001",
+        "United_States__United_States_002577__o0002"
+      ]
+    },
+    {
+      "file": "United_States_blur.png",
+      "sample_ids": [
+        "United_States__United_States_002906__o0000",
+        "United_States__United_States_003461__o0001",
+        "United_States__United_States_002243__o0000",
+        "United_States__United_States_000354__o0001",
+        "United_States__United_States_001489__o0001",
+        "United_States__United_States_001320__o0001",
+        "United_States__United_States_002767__o0001",
+        "United_States__United_States_002577__o0002"
+      ]
+    },
+    {
+      "file": "United_States_translate_x.png",
+      "sample_ids": [
+        "United_States__United_States_002906__o0000",
+        "United_States__United_States_003461__o0001",
+        "United_States__United_States_002243__o0000",
+        "United_States__United_States_000354__o0001",
+        "United_States__United_States_001489__o0001",
+        "United_States__United_States_001320__o0001",
+        "United_States__United_States_002767__o0001",
+        "United_States__United_States_002577__o0002"
+      ]
+    },
+    {
+      "file": "United_States_translate_y.png",
+      "sample_ids": [
+        "United_States__United_States_002906__o0000",
+        "United_States__United_States_003461__o0001",
+        "United_States__United_States_002243__o0000",
+        "United_States__United_States_000354__o0001",
+        "United_States__United_States_001489__o0001",
+        "United_States__United_States_001320__o0001",
+        "United_States__United_States_002767__o0001",
+        "United_States__United_States_002577__o0002"
+      ]
+    }
+  ],
+  "source_sheet_hashes": {
+    "China_Drone": "0a84de93f2865b9f47af1cca6b5252bf148cded71bafd5671c312e726b15fed8",
+    "China_MotorBike": "38d6ef27dacf58df8d69a1619a216cca17ba0a8ea7fee1709b4f9c9366b20c22",
+    "Czech": "a65380771e4987fb78b1d3ec246f221fe510b0e63fd6bc7c1dd9274f4b7400db",
+    "India": "be5e53a39a4194ac101c2bacb36df7d21cb4dc68bde0d15712c7d6fb26365f75",
+    "Japan": "bb8ffc7e429083471d843c85f0bb365ae407f33fc8d9c616cbc939aacb18a822",
+    "Norway": "fa85deac981e4320940ee25323c6037d69c2ea3bd68a0bee2cfa8e559636570a",
+    "United_States": "fa75c5bf979e864e7c15b58aa90378938476ec0651cbf79dc03b7cb0c5bb9961"
+  },
+  "source_kind": "LOSSY JPEG CONTACT-SHEET PROXIES; visual diagnostics only"
+}

@@ -1,0 +1,305 @@
+{
+  "configuration": {
+    "augmentation": "online_shared_local",
+    "augmentation_policy": {
+      "contrast_center": "one full-content mean luminance with coefficients 0.299 R + 0.587 G + 0.114 B",
+      "eligibility": "target-bearing training images only; negative images unchanged to match future local controls",
+      "family_sampling": "Online probability over eligible families, then uniform operation within family; operations below document the fixed middle-strength reference bank",
+      "intensity": "RGB uint8 stored-code values /255; no linear-light conversion; clip to [0,1], round to nearest integer uint8; PIL blur returns uint8",
+      "noise": "independent zero-mean Gaussian per pixel and RGB channel; local PCG64 generator",
+      "operations": {
+        "brightness_down": {
+          "factor": 0.8,
+          "family": "photometric"
+        },
+        "brightness_up": {
+          "factor": 1.2,
+          "family": "photometric"
+        },
+        "contrast_down": {
+          "factor": 0.8,
+          "family": "photometric"
+        },
+        "contrast_up": {
+          "factor": 1.2,
+          "family": "photometric"
+        },
+        "gamma_brighten": {
+          "family": "photometric",
+          "gamma": 0.8
+        },
+        "gamma_darken": {
+          "family": "photometric",
+          "gamma": 1.2
+        },
+        "gaussian_blur": {
+          "family": "blur_noise",
+          "sigma_pixels": 0.8
+        },
+        "gaussian_noise": {
+          "family": "blur_noise",
+          "sigma_unit": 0.02
+        }
+      },
+      "probability": 0.5,
+      "randomization": "SHA-256 keyed by domain, seed, zero-based epoch, image path and purpose; independent of global Python/NumPy/Torch RNG; rejection-sampled discrete choices",
+      "schedule": "One unaugmented epoch; training-only forward controller updates before epochs 2,4,...,20; family strengths/probabilities held fixed between updates",
+      "scope": "transform full resized image content; composite once only inside selected group union with inward taper",
+      "version": "fixed_shared_v1",
+      "warmup_epochs": 1
+    },
+    "batch_size": 4,
+    "budget": "20 epochs; one 24-hour PBS allocation, save and stop near 23 hours if unfinished. Resume is explicit; no automatic resubmission.",
+    "checkpoint_every_steps": 1000,
+    "checkpoint_retention": "All completed-epoch checkpoints plus latest intermediate checkpoint; full checkpoints remain on CCAST.",
+    "comparator": {
+      "identity_protocol_sha256": "5cfe9851db1a478971a2c82c78cacb44d290a4315b2fcfde355832077145fdf2",
+      "initialization": "Fresh same COCO weights and seed, not epoch-14 learned weights",
+      "local_protocol_sha256": "bc7d772ab4a9bbf6ce9c6e91aa4fd3d5608755915d2ee003b897751adeb87c01",
+      "local_records_archive_sha256": "6f1efc305780b1ab018a807bd728460b04582586166f6aeb616e693c6cfdcbac",
+      "local_run": "fasterrcnn_local_seed42_v1",
+      "records_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+      "run": "fasterrcnn_identity_seed42_v1",
+      "shared_exposure_sha256": "4aba100351e4500d5dd39ff223c68a7f254c9bc4cc5c2cd28804a79035f38054",
+      "shared_protocol_sha256": "be3c1328ab3f128389ede6e638cf04332acd648133eeaad3ecf4760ea80c9fe2",
+      "shared_records_archive_sha256": "28b28bee01376cc10fe0a60dca7ddfb9cd97ec9b548597fe316d94db164bfd7c",
+      "shared_run": "fasterrcnn_shared_seed42_v1"
+    },
+    "controller": {
+      "aggregation": "Mean draws per object, mean objects per class, normalized net mean-loss increase clipped [0,5], equal classes and operations within family. Strongest admissible tested level, even if lower levels fail; no monotonicity assumed.",
+      "classes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "condition": "shared_across_all_group_class_sets",
+      "confidence": 0.25,
+      "cost": "Full run: 10 updates x 256 images x 28 views = 71680 additional backbone image forwards, plus positive ROI observations. No detector optimizer steps in probes.",
+      "difficulty_cap": 5.0,
+      "exploration": 0.2,
+      "feedback": "Training-only forward probes in eval/inference mode; no backward, optimizer, BN or RNG update. Separate keyed panel/group/noise/decision draws; fixed noise realization across strengths.",
+      "interpretation": "Comparison with fixed local bundles online selection with a wider strength grid. It does not isolate online updates from a fixed policy optimized over the same grid. One shared policy constrains all four classes; future class-set condition will use identical probes/grid/support.",
+      "iou": 0.5,
+      "levels": [
+        {
+          "brightness_down": {
+            "factor": 0.9
+          },
+          "brightness_up": {
+            "factor": 1.1
+          },
+          "contrast_down": {
+            "factor": 0.9
+          },
+          "contrast_up": {
+            "factor": 1.1
+          },
+          "gamma_brighten": {
+            "gamma": 0.9
+          },
+          "gamma_darken": {
+            "gamma": 1.1
+          },
+          "gaussian_blur": {
+            "sigma_pixels": 0.4
+          },
+          "gaussian_noise": {
+            "sigma_unit": 0.01
+          }
+        },
+        {
+          "brightness_down": {
+            "factor": 0.8
+          },
+          "brightness_up": {
+            "factor": 1.2
+          },
+          "contrast_down": {
+            "factor": 0.8
+          },
+          "contrast_up": {
+            "factor": 1.2
+          },
+          "gamma_brighten": {
+            "gamma": 0.8
+          },
+          "gamma_darken": {
+            "gamma": 1.2
+          },
+          "gaussian_blur": {
+            "sigma_pixels": 0.8
+          },
+          "gaussian_noise": {
+            "sigma_unit": 0.02
+          }
+        },
+        {
+          "brightness_down": {
+            "factor": 0.7
+          },
+          "brightness_up": {
+            "factor": 1.3
+          },
+          "contrast_down": {
+            "factor": 0.7
+          },
+          "contrast_up": {
+            "factor": 1.3
+          },
+          "gamma_brighten": {
+            "gamma": 0.7
+          },
+          "gamma_darken": {
+            "gamma": 1.3
+          },
+          "gaussian_blur": {
+            "sigma_pixels": 1.2
+          },
+          "gaussian_noise": {
+            "sigma_unit": 0.03
+          }
+        }
+      ],
+      "loss_delta": 0.1,
+      "matching": "Score-descending one-to-one class-correct IoU matching to all GT; stable original detection index ties; target-group reference-detected subset supplies retention denominator.",
+      "minimum_detected_clusters": 4,
+      "minimum_detected_objects": 8,
+      "noise_draws": 2,
+      "numeric_choice_rationale": "A bounded first controller run: 256 source-diverse images per update, three strengths centered on the fixed control, updates every two epochs. Eight detected objects across four clusters avoids decisions from one or two detections but is not a precision guarantee. rho=.8 permits at most 20% measured reference-detection loss; confidence/IoU=.25/.5 match existing diagnostics; delta=.1 regularizes near-zero reference loss, cap=5 bounds instability, temperature=.25/exploration=.2 allocate difficulty while exploring. These values are prospective engineering choices, not validation-optimized or established optimal settings.",
+      "object_loss": "Eval RPN positive proposals assigned by pinned ROI IoU matcher plus one explicitly self-assigned GT ROI per object; per-ROI CE + class-specific SmoothL1 beta=1/9 sum4, then mean within object. Same procedure both views. No background or RPN loss in controller.",
+      "panel_images": 256,
+      "panel_selection": "Hash-rank positive training images independently each update; prefer distinct source clusters then fill unused images. Uniform one raster group, keyed exactly as fixed local. Never resample by detection outcome.",
+      "probe_batch_size": 2,
+      "retention_threshold": 0.8,
+      "state": "Epoch-boundary immutable policy committed with model/optimizer/RNG. Resume does not repeat committed updates. Interrupted uncommitted probe restarts from same model; partial view counts retained separately.",
+      "support": "Every class must have at least 8 distinct reference-detected target-group objects in at least 4 distinct source clusters. Stochastic draws do not increase support.",
+      "temperature": 0.25,
+      "update_interval_epochs": 2,
+      "version": "online_shared_local_v1"
+    },
+    "cpu_threads": 2,
+    "data_policy": "Frozen train and val only. No test manifest or pixels opened. Stored orientation; include empty images and all valid difficult targets.",
+    "epochs": 20,
+    "evaluation": {
+      "coordinates": "Inverse letterbox to original stored image, clip to image bounds, discard collapsed predictions only",
+      "max_detections": 100,
+      "metrics": "pycocotools bbox AP50:95/AP50/AP75, AR100, per-class AP50:95/AP50; no-target predicted box counts at confidence 0.25",
+      "negative_confidence": 0.25,
+      "nms_iou": 0.5,
+      "score_threshold": 0.001,
+      "yolo_multi_label": true
+    },
+    "expected_environment": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/.venvs/rdd_detection_v1",
+    "expected_rows": {
+      "train": 26863,
+      "val": 5760
+    },
+    "gradient_clipping": null,
+    "image_size": 640,
+    "initialization": "COCO_V1; new 5-class ROI predictor; all backbone stages trainable; FrozenBatchNorm2d eps=0",
+    "learning_rate": 0.0025,
+    "local_policy": {
+      "alpha": "0 outside union; 0.5 on its outer 8-neighbour boundary layer; 1 in the one-pixel-eroded union; one-pixel-wide supports retain alpha 0.5",
+      "compositing": "uint8 candidate from shared operation; round x + alpha*(candidate-x) once; no repeated overlap edits",
+      "group_order": "sort original object indices within groups, then sort groups lexicographically",
+      "group_selection": "uniform one group per augmented image, separate SHA-256 purpose; no resampling",
+      "grouping": "connected components of positive-area overlap of rasterized target boxes at prepared image resolution",
+      "operation_reference": "same full resized reference content and noise draw as image-level control before masked composition",
+      "rasterization": "clip float64 prepared boxes to content; floor minima, ceil maxima; half-open rectangles",
+      "taper_pixels": 2,
+      "version": "fixed_local_v1"
+    },
+    "log_every_steps": 100,
+    "lr_decay_epochs": [
+      12,
+      16
+    ],
+    "lr_gamma": 0.1,
+    "manifests": {
+      "train": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+      "val": "5ff0b8e969b47bd82d6c91a3b65070a5e37899e21253442134897945082e6708"
+    },
+    "model": "fasterrcnn_resnet50_fpn",
+    "momentum": 0.9,
+    "optimizer": "SGD",
+    "precision": "float32; AMP and TF32 disabled",
+    "purpose": "One online policy pooled across group class sets; compare with fixed local and later class-conditioned local",
+    "recipe_status": "Prospective controller settings; no outcome tuning; seed42 development comparison",
+    "resume_policy": "Same configuration/code/data/environment required; restore model, optimizer, RNG, epoch and next batch. CUDA bitwise identity not promised.",
+    "seed": 42,
+    "selection_metric": "validation_AP50_95",
+    "selection_ties": "earlier epoch",
+    "sources": [
+      "https://raw.githubusercontent.com/pytorch/vision/v0.18.0/references/detection/train.py",
+      "https://kb.ndsu.edu/137530",
+      "https://kb.ndsu.edu/it/page.php?id=107680",
+      "https://raw.githubusercontent.com/python-pillow/Pillow/10.3.0/src/PIL/ImageFilter.py",
+      "https://numpy.org/doc/1.26/reference/random/generator.html",
+      "https://raw.githubusercontent.com/pytorch/vision/v0.18.0/torchvision/models/detection/roi_heads.py"
+    ],
+    "split_config_sha256": "303f2e0e3835ca146e63f2f2b03b5a8d630b2dc1972089848bea97605ac87131",
+    "validation_batch_size": 4,
+    "validation_interval_epochs": 1,
+    "version": "fasterrcnn_online_shared_v1",
+    "versions": {
+      "Pillow": "10.3.0",
+      "numpy": "1.26.4",
+      "pycocotools": "2.0.10",
+      "torch": "2.3.0",
+      "torchvision": "0.18.0"
+    },
+    "warmup_start_factor": 0.001,
+    "warmup_steps": 1000,
+    "weight": {
+      "bytes": 167502836,
+      "filename": "fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+      "sha256": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384",
+      "url": "https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth"
+    },
+    "weight_decay": 0.0005,
+    "workers": 2
+  },
+  "package_hashes": {
+    "LOCAL_VALIDATION.json": "c4728a4229b068175fe8d7caa46b72dadf2198352b19406320503e25a2d93ac9",
+    "README.md": "14dd1995bfe62037c64f66b7e482d359696dd81e75f43617a695d757ebfee8e6",
+    "SHA256SUMS": "a28b94934cea412fb49353e8f322c8558aa10d595319fc4168ff43be1cfa7805",
+    "baseline.py": "527a00ca160bdb4e79b6844aaf81fd2f87c859d0a967c16f5f144a03b9fa8084",
+    "checkpoints.py": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+    "controller.py": "ecc0edaec74909cd38cc1f410387c3522bf6925312922e742c4e29ad16c26260",
+    "identity_protocol.json": "5cfe9851db1a478971a2c82c78cacb44d290a4315b2fcfde355832077145fdf2",
+    "integration.py": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+    "job.pbs": "209987cf5783cd313baf1f1da83038974dabc5b1159f63ed418d0df56dc15543",
+    "local_augmentation.py": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+    "local_protocol.json": "bc7d772ab4a9bbf6ce9c6e91aa4fd3d5608755915d2ee003b897751adeb87c01",
+    "metrics.py": "a65ceced7286a8029576c89c286ce51caad03ef69632de2856d5827bda07aeba",
+    "models.py": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+    "probe_detector.py": "cc652b6c1dfc0f9b377554eeed7fe63b46982d9d922241b4ab40980e4c0ab18f",
+    "probe_runner.py": "3935f61a656d3a89a11fd568ec7521fddd34b5d4a954f53bb347a9529761e84a",
+    "protocol.json": "484bb09534d37aab47c640ac6f5c4c322e6bc0a94fe713bbc30e4eafb18d71a0",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_job.sh": "22d66d025de89c815c6c07ee8f39e9ffbbc3bbf9a2d0af48e058563e53177fad",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "shared_augmentation.py": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+    "shared_exposure.json": "4aba100351e4500d5dd39ff223c68a7f254c9bc4cc5c2cd28804a79035f38054",
+    "shared_protocol.json": "be3c1328ab3f128389ede6e638cf04332acd648133eeaad3ecf4760ea80c9fe2",
+    "smoke_augmentation.py": "1190cbfc60bc6689b18bd549bb41b78a449868b55b2acee3de32d244f4e11106",
+    "smoke_selection.json": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+    "submit.sh": "e8d6e9aab693369849603683d0ec029ce9cccc4b72b4210dfa1117aee7263abb",
+    "tests/test_baseline.py": "a5e9c34c730c7d57e3f7bcf1c44cddc9759b26d6256e5592f757e4d4bcdb9df2",
+    "tests/test_controller.py": "9331036fd6acc96c333fc0acef978be348ec9a882553b4274f064c1571a82374",
+    "tests/test_local_augmentation.py": "198f2562913639d96b7da577a814f631ac91f1ff3ecdf235ecdc99bae555b915",
+    "tests/test_online_resume.py": "b1fce0dc0444d34bd8f609d84515019f6025bfa2d512afaf40db7d6a9479d7e0",
+    "tests/test_shared_augmentation.py": "193fbd8791167cf0ca744c8f02e86574edf5e5d92ffec877f4a7a3919bda0ce1"
+  },
+  "profile": "full",
+  "raw_root": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+  "split_root": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_splits_v1",
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.10",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0"
+  }
+}

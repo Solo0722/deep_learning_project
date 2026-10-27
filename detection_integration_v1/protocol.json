@@ -1,0 +1,47 @@
+{
+  "augmentation": "none",
+  "batch_size": 2,
+  "cpu_threads": 4,
+  "data_loader_workers": 0,
+  "expected_images": 15,
+  "expected_targets": 16,
+  "image_size": 640,
+  "initialization": "random weights; no pretrained download",
+  "learning_rate": 0.001,
+  "loader_source_sha256": {
+    "rdd_data.py": "b9a79ef0152eac67f0ec306b3a2d7cb23939832a7587659346a80be973fe630d",
+    "reference.json": "767fd1754edea91ec54ec00d41a3af6dd05b830bfd4e6276b1b5f9009e8b1089",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "selection.json": "a895f10c4f8ca15571cc5e085faa75e0b05eda93e62f4b24e66b5df2210bb461"
+  },
+  "model_input": "identical prepared RGB [0,1] pixels; detector-specific internal normalization is retained",
+  "models": [
+    "fasterrcnn_resnet50_fpn",
+    "yolov8n"
+  ],
+  "nondeterminism": "A fixed seed is recorded; bit-identical CUDA reruns are not claimed",
+  "optimizer": "SGD, momentum=0, weight_decay=0",
+  "package_snapshot_sha256": "f07b523b024d61f46fe407df674fa2361a2f9332ed489f794f7b8b20024d77c8",
+  "precision": "float32; no AMP or TF32",
+  "previous_loader_release_sha256": "e534a1176486d6ea035073816df9038424375a0c16bf89db4e6ef7395e0e0a8a",
+  "previous_successful_loader_check_sha256": "8133f0f9c069ee3f9301afd662d4a4b2f43c4eaf1705de6cbf72b12cda07549e",
+  "purpose": "Bounded GPU software integration on real training images; no accuracy comparison or controller test",
+  "schedule": "one pass over the fixed selection; eight optimizer steps and eight inference batches per model",
+  "seed": 42,
+  "source_references": [
+    "https://docs.pytorch.org/vision/0.18/models/generated/torchvision.models.detection.fasterrcnn_resnet50_fpn.html",
+    "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/nn/tasks.py",
+    "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/utils/loss.py",
+    "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/utils/nms.py"
+  ],
+  "stopping_rule": "Any failed preflight, changed input, nonfinite loss/gradient/parameter, absent classifier update, invalid inference, incomplete coverage, or paired-input mismatch fails the run. No automatic retries.",
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "opencv-python-headless": "4.11.0.86",
+    "pycocotools": "2.0.10",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0",
+    "ultralytics-opencv-headless": "8.4.182"
+  }
+}

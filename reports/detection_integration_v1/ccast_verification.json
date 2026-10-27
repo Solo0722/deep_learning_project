@@ -1,0 +1,97 @@
+{
+  "archive": "detection_integration_check_v1.tar.gz",
+  "archive_regular_files": 13,
+  "archive_sha256": "aa63883e24fecdbf7f68f993562310935f9b935247940e27edaafbd46e98e0a1",
+  "ccast_job": "794043.bright04",
+  "ccast_unit_tests": {
+    "elapsed_seconds": 13.958,
+    "passed": 14,
+    "source": "User-pasted unittest output"
+  },
+  "evidence_limit": "This checks recorded provenance and software execution on 15 selected training images. Raw images, gradients, and prediction tensors were not reloaded locally. It does not establish detector accuracy, convergence, architecture ranking, throughput, semantic label preservation, or controller benefit.",
+  "gpu": "NVIDIA A10",
+  "host": "gpu0020",
+  "independent_checks": [
+    "Archive SHA matches the CCAST output and downloaded copy",
+    "All ten saved source/package files match the released archive; nine checksum entries match",
+    "Saved protocol, runtime versions, pinned train/config/selection hashes match",
+    "All sixteen step records account for eight updates and inference batches per detector",
+    "Corresponding input records and recomputed signatures match exactly across models",
+    "Source IDs, image hashes, target counts, and labels match the frozen training manifest",
+    "Recomputed resize/padding geometry and all float32 prepared-box hashes match",
+    "All recorded losses and update magnitudes are finite; positive updates reported at every step",
+    "Total loss agrees with components under each API reduction convention",
+    "Reported peak memory remains below allocated GPU capacity; inference records have expected counts and valid hashes"
+  ],
+  "models": {
+    "fasterrcnn_resnet50_fpn": {
+      "images": 15,
+      "inference_batches": 8,
+      "inference_counts": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "minimum_classifier_update": 0.0002500563859939575,
+      "optimizer_steps": 8,
+      "parameters": 41367656,
+      "peak_cuda_allocated_gib": 2.067013740539551,
+      "peak_cuda_reserved_gib": 2.28515625,
+      "targets": 16
+    },
+    "yolov8n": {
+      "images": 15,
+      "inference_batches": 8,
+      "inference_counts": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "minimum_classifier_update": 9.9964439868927e-05,
+      "optimizer_steps": 8,
+      "parameters": 3011628,
+      "peak_cuda_allocated_gib": 0.40204429626464844,
+      "peak_cuda_reserved_gib": 0.439453125,
+      "targets": 16
+    }
+  },
+  "next_stage": "A bounded training-only learning check with pretrained initialization, validated detection metrics and checkpoint handling, before larger baseline experiments.",
+  "package_checksum_entries_verified": 9,
+  "result_hashes": {
+    "package_versions.json": "ad8ebb826924863ba57bdcf49ee33bb6b90e46d21cce342b162e75f5119274e0",
+    "run.json": "1709504b1c42ea81fa1ea65edfa2ba7ad6bf883e5cc6a98f7d90621ce44d3484",
+    "steps.jsonl": "251816818317adf7b5918a3ae77123083e724407fee9b7f14382d83f1e7fabc9"
+  },
+  "runtime_warning": {
+    "interpretation": "Nonfatal in this completed run; the cause and performance impact were not established. No environment change is justified by this output alone.",
+    "source": "User-pasted CCAST terminal output",
+    "warning": "cuDNN CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR cudnnFinalize CUDNN_STATUS_NOT_SUPPORTED in forward/backward"
+  },
+  "saved_source_files_identical_to_release": 10,
+  "status": "ccast_integration_passed_returned_records_verified",
+  "verified_utc": "2026-10-22T05:09:46.611970+00:00"
+}

@@ -1,0 +1,39 @@
+{
+  "audit_bundle_sha256": "07963cfdc3e14d2032dd1a80a1240a19c415598ef449bde737fe422902dd4f7b",
+  "audit_members_verified": 10,
+  "ccast_deployment": "verified_from_user_terminal_output",
+  "ccast_deployment_evidence": "deployment.json",
+  "cross_partition_file_or_rgb_hashes": 0,
+  "cross_partition_groups": 0,
+  "cross_partition_retained_candidate_edges": 0,
+  "difficult_target_boxes_preserved": 6,
+  "exif_flagged_images_preserved": [
+    "India/train/images/India_000430.jpg",
+    "India/train/images/India_004810.jpg"
+  ],
+  "full_pool_candidate_edges": 1107,
+  "historical_candidate_edges": 557,
+  "images": 38383,
+  "manifest_bundle_bytes": 6776871,
+  "manifest_bundle_sha256": "89d1c16954187ef0126f69c670b83875c8b4ff8863aa5a1864c264df91b0cce4",
+  "manifest_members_verified": 14,
+  "previous_test_images_preserved": 3569,
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "raw_image_pixels_opened_locally": false,
+  "status": "passed",
+  "target_objects": 55002,
+  "unit_test_evidence": {
+    "command": "python -m unittest discover -s tests -p test_make_detection_splits.py -v",
+    "exit_code": 0,
+    "scope": "Local synthetic software checks; separate from this saved-manifest audit",
+    "tests_passed": 8
+  },
+  "val_to_train_images": [
+    "India/train/images/India_003495.jpg",
+    "India/train/images/India_005040.jpg",
+    "India/train/images/India_009415.jpg",
+    "Norway/train/images/Norway_000115.jpg",
+    "Norway/train/images/Norway_000181.jpg",
+    "Norway/train/images/Norway_003124.jpg"
+  ]
+}

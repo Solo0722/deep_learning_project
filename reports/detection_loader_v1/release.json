@@ -1,0 +1,15 @@
+{
+  "archive": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\detection_loader_v1.tar.gz",
+  "archive_files": 9,
+  "archive_member_bytes": "verified against local sources",
+  "bytes": 15520,
+  "ccast_execution": "pending",
+  "checksum_entries": 8,
+  "line_endings": "LF only, no UTF-8 BOM",
+  "sha256": "e534a1176486d6ea035073816df9038424375a0c16bf89db4e6ef7395e0e0a8a",
+  "status": "prepared_locally_not_yet_deployed",
+  "unit_tests": {
+    "passed": 22,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "annotations": [
+    {
+      "area": 16632.0,
+      "bbox": [
+        12.0,
+        214.0,
+        56.0,
+        297.0
+      ],
+      "category_id": 1,
+      "id": 1,
+      "image_id": 0,
+      "iscrowd": 0
+    },
+    {
+      "area": 10972.0,
+      "bbox": [
+        60.0,
+        1.0,
+        52.0,
+        211.0
+      ],
+      "category_id": 1,
+      "id": 2,
+      "image_id": 0,
+      "iscrowd": 0
+    },
+    {
+      "area": 13650.0,
+      "bbox": [
+        202.0,
+        187.0,
+        42.0,
+        325.0
+      ],
+      "category_id": 1,
+      "id": 3,
+      "image_id": 1678,
+      "iscrowd": 0
+    },
+    {
+      "area": 7840.0,
+      "bbox": [
+        198.0,
+        1.0,
+        56.0,
+        140.0
+      ],
+      "category_id": 1,
+      "id": 4,
+      "image_id": 1678,
+      "iscrowd": 0
+    },
+    {
+      "area": 1675.0,
+      "bbox": [
+        141.0,
+        405.0,
+        25.0,
+        67.0
+      ],
+      "category_id": 1,
+      "id": 5,
+      "image_id": 3064,
+      "iscrowd": 0
+    },
+    {
+      "area": 2925.0,
+      "bbox": [
+        368.0,
+        462.0,
+        25.0,
+        117.0
+      ],
+      "category_id": 1,
+      "id": 6,
+      "image_id": 5044,
+      "iscrowd": 0
+    },
+    {
+      "area": 23474.0,
+      "bbox": [
+        406.0,
+        475.0,
+        194.0,
+        121.0
+      ],
+      "category_id": 3,
+      "id": 7,
+      "image_id": 10433,
+      "iscrowd": 0
+    },
+    {
+      "area": 18711.0,
+      "bbox": [
+        409.0,
+        373.0,
+        189.0,
+        99.0
+      ],
+      "category_id": 4,
+      "id": 8,
+      "image_id": 10433,
+      "iscrowd": 0
+    },
+    {
+      "area": 5868.0,
+      "bbox": [
+        394.0,
+        518.0,
+        163.0,
+        36.0
+      ],
+      "category_id": 2,
+      "id": 9,
+      "image_id": 10433,
+      "iscrowd": 0
+    },
+    {
+      "area": 4400.0,
+      "bbox": [
+        510.0,
+        454.0,
+        50.0,
+        88.0
+      ],
+      "category_id": 1,
+      "id": 10,
+      "image_id": 10433,
+      "iscrowd": 0
+    },
+    {
+      "area": 90164.91119999999,
+      "bbox": [
+        73.45,
+        1621.08,
+        384.04,
+        234.77999999999997
+      ],
+      "category_id": 1,
+      "id": 11,
+      "image_id": 17929,
+      "iscrowd": 0
+    },
+    {
+      "area": 11663.646900000014,
+      "bbox": [
+        724.65,
+        1849.0,
+        104.71000000000004,
+        111.3900000000001
+      ],
+      "category_id": 4,
+      "id": 12,
+      "image_id": 17929,
+      "iscrowd": 0
+    },
+    {
+      "area": 64747.32599999993,
+      "bbox": [
+        282.7,
+        1854.15,
+        363.3,
+        178.2199999999998
+      ],
+      "category_id": 3,
+      "id": 13,
+      "image_id": 17929,
+      "iscrowd": 0
+    },
+    {
+      "area": 103681.5366999999,
+      "bbox": [
+        489.88,
+        1542.25,
+        1141.4899999999998,
+        90.82999999999993
+      ],
+      "category_id": 2,
+      "id": 14,
+      "image_id": 17929,
+      "iscrowd": 0
+    },
+    {
+      "area": 66443.20890000007,
+      "bbox": [
+        1226.76,
+        1389.74,
+        668.51,
+        99.3900000000001
+      ],
+      "category_id": 2,
+      "id": 15,
+      "image_id": 17929,
+      "iscrowd": 0
+    },
+    {
+      "area": 9912.0,
+      "bbox": [
+        11.0,
+        424.0,
+        354.0,
+        28.0
+      ],
+      "category_id": 2,
+      "id": 16,
+      "image_id": 23520,
+      "iscrowd": 0
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "D00"
+    },
+    {
+      "id": 2,
+      "name": "D10"
+    },
+    {
+      "id": 3,
+      "name": "D20"
+    },
+    {
+      "id": 4,
+      "name": "D40"
+    }
+  ],
+  "images": [
+    {
+      "file_name": "China_Drone/train/images/China_Drone_000002.jpg",
+      "height": 512,
+      "id": 0,
+      "width": 512
+    },
+    {
+      "file_name": "China_Drone/train/images/China_Drone_000023.jpg",
+      "height": 512,
+      "id": 16,
+      "width": 512
+    },
+    {
+      "file_name": "China_MotorBike/train/images/China_MotorBike_000002.jpg",
+      "height": 512,
+      "id": 1678,
+      "width": 512
+    },
+    {
+      "file_name": "China_MotorBike/train/images/China_MotorBike_000040.jpg",
+      "height": 512,
+      "id": 1703,
+      "width": 512
+    },
+    {
+      "file_name": "Czech/train/images/Czech_000000.jpg",
+      "height": 600,
+      "id": 3061,
+      "width": 600
+    },
+    {
+      "file_name": "Czech/train/images/Czech_000006.jpg",
+      "height": 600,
+      "id": 3064,
+      "width": 600
+    },
+    {
+      "file_name": "India/train/images/India_000011.jpg",
+      "height": 720,
+      "id": 5044,
+      "width": 720
+    },
+    {
+      "file_name": "India/train/images/India_000430.jpg",
+      "height": 720,
+      "id": 5258,
+      "width": 720
+    },
+    {
+      "file_name": "India/train/images/India_004810.jpg",
+      "height": 720,
+      "id": 7643,
+      "width": 720
+    },
+    {
+      "file_name": "Japan/train/images/Japan_000000.jpg",
+      "height": 600,
+      "id": 10433,
+      "width": 600
+    },
+    {
+      "file_name": "Japan/train/images/Japan_000002.jpg",
+      "height": 600,
+      "id": 10434,
+      "width": 600
+    },
+    {
+      "file_name": "Norway/train/images/Norway_000002.jpg",
+      "height": 2041,
+      "id": 17788,
+      "width": 3643
+    },
+    {
+      "file_name": "Norway/train/images/Norway_000003.jpg",
+      "height": 2035,
+      "id": 17789,
+      "width": 4040
+    },
+    {
+      "file_name": "Norway/train/images/Norway_000189.jpg",
+      "height": 2041,
+      "id": 17929,
+      "width": 3643
+    },
+    {
+      "file_name": "United_States/train/images/United_States_000030.jpg",
+      "height": 640,
+      "id": 23520,
+      "width": 640
+    }
+  ],
+  "info": {
+    "description": "Selected training examples; not held-out evaluation"
+  }
+}

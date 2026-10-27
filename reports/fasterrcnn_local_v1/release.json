@@ -1,0 +1,33 @@
+{
+  "actual_model_synthetic_cpu_check": "passed",
+  "archive": "fasterrcnn_local_v1.tar.gz",
+  "archive_files": 24,
+  "bytes": 57734,
+  "ccast_run": "pending",
+  "ccast_smoke": "pending",
+  "ccast_tests": "pending",
+  "checksum_entries": 23,
+  "comparator_checks": "passed",
+  "epochs": 20,
+  "local_policy_sha256": "c3b9fd3652d8e91bb866f78f4cf6934464a37ea3d9bfbd364887de7e3fe2a61e",
+  "pbs": {
+    "cpus": 4,
+    "gpu_type": "a10",
+    "gpus": 1,
+    "memory_gb": 32,
+    "queue": "gpus",
+    "walltime_hours": 24
+  },
+  "policy_sha256": "b4357a57d85e66546f6062dbe556439325d6a66baa5ca0b02ddbb9266c409870",
+  "predicted_applied_image_presentations": 158151,
+  "recipe_status": "Prospective fixed local application; same initial appearance recipe, no validation tuning or online controller",
+  "seed": 42,
+  "sha256": "1aa06a73f778bdb06ff8bc2128ccd668cdb820c48e31cbb491d9440caf22569c",
+  "status": "prepared_locally_ccast_submission_pending",
+  "test_data_read": false,
+  "total_updates": 134320,
+  "training_condition": "fixed_shared_local_augmentation",
+  "training_images": 26863,
+  "unit_tests_passed": 39,
+  "validation_images": 5760
+}

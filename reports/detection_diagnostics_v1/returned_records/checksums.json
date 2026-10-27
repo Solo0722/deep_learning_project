@@ -1,0 +1,23 @@
+{
+  "code/LOCAL_VALIDATION.json": "d301731ea49dd5b8d0730e01e280d43f0a00f5dde1d964e842dce6956e2cbdff",
+  "code/README.md": "b8e7ac56a1501c39e68f9e249ca67ea06c62f0691e2a41cfe1bec740c4e84ff4",
+  "code/SHA256SUMS": "73bee4096922f3519602f0f606603c1abda49b63bd8d8ed3658efc94ee905901",
+  "code/diagnose.py": "eed43640e187bfe94f3646026082adb6dd84a9db411f149bf8672c1ca7789bac",
+  "code/protocol.json": "d6a88afd70bbe469b57c26a6c0db047b9e9b0a6ff76891536b7cf26265f8df18",
+  "code/tests/test_diagnose.py": "d2fc16c26414c2c4f1203de799fa2fbaf3986af9c04761af944ca81cb9a1e0ac",
+  "ground_truth.json": "4e2ef1d42ac03dae627844d1eff07ed7c35b78878dc34cb58cd993c624652b8e",
+  "inputs.json": "85cdcf3661a9ca746376770101a73c7955e0cc4637b3627da56945c798e2254f",
+  "run.json": "b97049d00bd6cb251d8236808d2154325f59bb673b51025fbae9156339577056",
+  "step_100_batch_stats_diagnostics.json": "7abc9c20d801c7166e4f9511ee0bf7878a70cc6f0a5135a5fb37751062b77b30",
+  "step_100_batch_stats_predictions.json": "0ab651a1e35a7da746eddb81b84b8a00aebbc2d9a182acf06e06f7f0948e8ee7",
+  "step_100_running_stats_after_diagnostics.json": "736bcfe39fd3532ea691edba48dbce34d29745d38c92e1b94385d90bfc86a0cc",
+  "step_100_running_stats_after_predictions.json": "bb825fa33cadc874962a1a2577a6d66e17998b3b6a9d468e6857283d50174c42",
+  "step_100_running_stats_diagnostics.json": "24da9e31750e1233abc965913d35b5b62fe76b47ad57c8c248a20d517bd21966",
+  "step_100_running_stats_predictions.json": "bb825fa33cadc874962a1a2577a6d66e17998b3b6a9d468e6857283d50174c42",
+  "step_200_batch_stats_diagnostics.json": "76853d7935d131f4515d3e57e74f5fe7e41593c9c364bce6669a58c9c203a5f4",
+  "step_200_batch_stats_predictions.json": "98c6349069c4c0796042521c0ded4b7efefc4284ef1f5b4c447f216a28b6af29",
+  "step_200_running_stats_after_diagnostics.json": "96dcfc6d401b4d62cdb1b3ebe66c0fa8c2d1203ac4e238862fe79112eb4d6a4e",
+  "step_200_running_stats_after_predictions.json": "2bf267ab134bf92de5ad7b03cfce85d6efc37241a6b4869f8421564557a22246",
+  "step_200_running_stats_diagnostics.json": "aadf556b1c80133f4ef32f8b47bf47657fe3986e73254b9b2bae84c57795bbd4",
+  "step_200_running_stats_predictions.json": "2bf267ab134bf92de5ad7b03cfce85d6efc37241a6b4869f8421564557a22246"
+}

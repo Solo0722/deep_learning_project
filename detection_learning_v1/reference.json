@@ -1,0 +1,13 @@
+{
+  "manifest_version": "detection_splits_v1",
+  "manifest_name": "train.jsonl",
+  "manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+  "config_sha256": "303f2e0e3835ca146e63f2f2b03b5a8d630b2dc1972089848bea97605ac87131",
+  "expected_training_images": 26863,
+  "expected_training_targets": 38530,
+  "class_names": ["D00", "D10", "D20", "D40"],
+  "image_size": 640,
+  "batch_size": 2,
+  "expected_environment": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/.venvs/rdd_detection_v1",
+  "versions": {"torch": "2.3.0", "torchvision": "0.18.0", "numpy": "1.26.4", "Pillow": "10.3.0"}
+}

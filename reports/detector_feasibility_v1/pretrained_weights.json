@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-22",
+  "status": "ccast_download_hashes_match_independent_local_downloads",
+  "ccast_directory": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/weights/detection_v1",
+  "download_evidence": "User-pasted wget output from login0004 reports complete downloads from the official URLs below.",
+  "checksum_evidence": "User-pasted CCAST sha256sum output; independent local official-URL downloads produced the same full hashes on 2026-10-22. The CCAST bytes were not directly opened locally.",
+  "remote_checksum_manifest": "SHA256SUMS creation confirmed by user-pasted Saved output on 2026-10-22",
+  "checkpoints": {
+    "fasterrcnn_resnet50_fpn": {
+      "filename": "fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+      "source_url": "https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+      "source_definition": "https://raw.githubusercontent.com/pytorch/vision/v0.18.0/torchvision/models/detection/faster_rcnn.py",
+      "weight_enum": "FasterRCNN_ResNet50_FPN_Weights.COCO_V1",
+      "bytes_reported": 167502836,
+      "sha256_reported": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384",
+      "official_digest_check": "Reported full digest starts with the published filename hash prefix 258fb6c6; an independent published full digest was not checked."
+    },
+    "yolov8n": {
+      "filename": "yolov8n.pt",
+      "source_url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt",
+      "source_definition": "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.182/ultralytics/utils/downloads.py",
+      "assets_release": "v8.4.0",
+      "bytes_reported": 6549796,
+      "sha256_reported": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "official_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "official_digest_source": "https://github.com/ultralytics/assets/releases/expanded_assets/v8.4.0",
+      "official_digest_check": "Exact match to the full SHA-256 published for yolov8n.pt, checked on 2026-10-22."
+    }
+  },
+  "execution_limit": "Both pretrained CCAST paths completed 200 updates. Returned records and all scheduled training AP metrics were independently verified; both models fall below the engineering review rule. No held-out accuracy or architecture ranking is established. See reports/detection_learning_v1/ccast_verification.json.",
+  "local_validation": {
+    "record": "reports/detection_learning_v1/local_model_check.json",
+    "scope": "Both official pretrained files loaded into the four-class CPU paths and passed update, inference, checkpoint restore, continued update and all-empty update on synthetic 128-pixel images."
+  }
+}

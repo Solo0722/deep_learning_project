@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "checks": {
+    "model": true,
+    "optimizer": true,
+    "scheduler": true,
+    "rng": true,
+    "metrics_and_predictions": true,
+    "first_gradient": true,
+    "first_update": true,
+    "no_changed_images": true
+  },
+  "steps": 3,
+  "batch_size": 4,
+  "max_model_absolute_difference": 0.0,
+  "device": "cpu",
+  "tolerance": "exact equality in this execution environment",
+  "test_evaluated": false,
+  "seconds": 2.232707099930849,
+  "input_kind": "SYNTHETIC FIXTURE; no road-defect effect estimate",
+  "code_hashes": {
+    "pilot_runner.py": "2474469d3b86b73cd18edf7d1d33f2ad90d00ca1a0434ef878d4b1701df3dc71",
+    "train_baseline.py": "594cbfe8dfd955697779dd1b0af215135f8e71b77bcae1df4570c730201d6d55"
+  },
+  "resume_exact_state_match": true,
+  "nonidentity_changed_target_images": 2,
+  "environment": {
+    "utc": "2026-10-16T07:51:10.010451+00:00",
+    "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.4.2",
+    "pillow": "12.1.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "host": "DevEx-Alchemy",
+    "device": "cpu",
+    "gpu": null,
+    "cuda_build": null,
+    "argv": [
+      "python.exe -m unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_pilot_runner.py",
+      "-v"
+    ]
+  }
+}

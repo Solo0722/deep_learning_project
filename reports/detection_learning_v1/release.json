@@ -1,0 +1,14 @@
+{
+  "actual_pretrained_cpu_checks": "Both models passed update, inference, checkpoint reload, continued update and all-empty update",
+  "archive": "detection_learning_v1.tar.gz",
+  "archive_files": 14,
+  "bytes": 34716,
+  "checksum_entries": 13,
+  "line_endings": "LF, no BOM",
+  "member_bytes_verified": true,
+  "protocol_steps_per_model": 200,
+  "real_rdd_gpu_execution": "pending",
+  "sha256": "26c7e771bd58856d1fbbb81b3b2d4929d89dbafeffe0f221511ea03b05ef3022",
+  "status": "prepared_locally_ccast_transfer_pending",
+  "unit_tests_passed": 18
+}

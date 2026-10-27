@@ -1,0 +1,36 @@
+{
+  "observer_panel_grid_noise_training_draws_identical": true,
+  "online_shared_protocol_sha256": "484bb09534d37aab47c640ac6f5c4c322e6bc0a94fe713bbc30e4eafb18d71a0",
+  "only_measurement_core_changes": "Restrict target-group pooling to the represented exact class set; validate all full-image observations; permit empty sets as unsupported.",
+  "protocol_sha256": "651ebda915cf3a9d97eddf624ccebda423cefb4b8a7a472dc6e01971db494f1d",
+  "shared_controller_bytes_preserved": true,
+  "status": "passed",
+  "unchanged_baseline_functions": [
+    "Dataset",
+    "epoch_batches",
+    "learning_rate",
+    "update",
+    "validate",
+    "commit",
+    "restore",
+    "write_history",
+    "verify_partitions",
+    "archive_records",
+    "loader",
+    "fit",
+    "initial_progress"
+  ],
+  "unchanged_dependency_files": [
+    "rdd_data.py",
+    "models.py",
+    "metrics.py",
+    "checkpoints.py",
+    "integration.py",
+    "select_training_cases.py",
+    "smoke_selection.json",
+    "local_augmentation.py",
+    "shared_augmentation.py",
+    "smoke_augmentation.py",
+    "probe_detector.py"
+  ]
+}

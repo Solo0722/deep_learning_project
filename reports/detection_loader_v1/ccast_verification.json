@@ -1,0 +1,119 @@
+{
+  "archive": "detection_loader_check_v1.tar.gz",
+  "archive_regular_files": 11,
+  "archive_sha256": "8133f0f9c069ee3f9301afd662d4a4b2f43c4eaf1705de6cbf72b12cda07549e",
+  "ccast_unit_tests": {
+    "elapsed_seconds": 0.859,
+    "evidence_source": "User-pasted CCAST unittest output in this chat",
+    "passed": 22,
+    "skipped": 0
+  },
+  "code_files_identical_to_transferred_release": 9,
+  "evidence_limit": "Local checks inspect returned records and source identity; raw CCAST images were not reopened locally. This validates the selected loader cases, not annotation truth, detector accuracy, throughput, controller behavior, or full-dataset loader coverage.",
+  "independent_local_checks": [
+    "Archive SHA-256 matches the CCAST output and user transfer check",
+    "All nine saved package files exactly match the transferred release",
+    "All eight internal package checksum entries match",
+    "Frozen train/config hashes and training population counts match",
+    "All fifteen sample identities and stored metadata match the pinned training manifest and selection",
+    "Per-image target counts, class labels, difficult flags, dimensions, and aggregate counts match",
+    "All reported coordinate round-trip errors are finite and below the 0.002-pixel tolerance",
+    "Completed run uses the expected environment, package versions, and selection"
+  ],
+  "internal_package_checksum_entries_verified": 8,
+  "next_stage": "Archive the existing package-version snapshot, then integrate both detector paths with real training batches before a bounded feasibility experiment.",
+  "result_hashes": {
+    "run.json": "8bfe980b387c1ef9e35482c45ea202f74f28a765f54f35b1f100a0541de94c4b",
+    "samples.jsonl": "b2e977542d17ad00486e69062a8801d0323c8f2cf61860b6b6e1829530f11022"
+  },
+  "returned_run": {
+    "batch_size": 2,
+    "categories": {
+      "empty_xml": 5,
+      "only_other_labels": 3,
+      "target_bearing": 7
+    },
+    "classes": {
+      "D00": 8,
+      "D10": 4,
+      "D20": 2,
+      "D40": 2
+    },
+    "command": [
+      "verify_training_loader.py",
+      "--root",
+      "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+      "--splits",
+      "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_splits_v1",
+      "--out",
+      "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_loader_check_v1"
+    ],
+    "detector_execution": false,
+    "elapsed_seconds": 0.849,
+    "executable": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/.venvs/rdd_detection_v1/bin/python",
+    "finished_utc": "2026-10-22T03:05:31.502478+00:00",
+    "held_out_data_read": false,
+    "host": "gpu0020",
+    "image_previews_written": false,
+    "image_size": 640,
+    "images_checked": 15,
+    "images_expected": 15,
+    "manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+    "max_original_pixel_round_trip_error": 8.320521533278225e-05,
+    "model_choice": "unresolved",
+    "num_workers": 0,
+    "pbs_job": "794025.bright04",
+    "purpose": "CPU data-loader software verification only",
+    "python": "3.12.3",
+    "raw_root": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+    "required_features": [
+      "category:empty_xml",
+      "category:only_other_labels",
+      "category:target_bearing",
+      "class:D00",
+      "class:D10",
+      "class:D20",
+      "class:D40",
+      "cross_class_overlap",
+      "difficult_target_retained",
+      "fractional_coordinates",
+      "mixed_class",
+      "orientation:6",
+      "orientation:8",
+      "source:China_Drone:no_target",
+      "source:China_Drone:positive",
+      "source:China_MotorBike:no_target",
+      "source:China_MotorBike:positive",
+      "source:Czech:no_target",
+      "source:Czech:positive",
+      "source:India:no_target",
+      "source:India:positive",
+      "source:Japan:no_target",
+      "source:Japan:positive",
+      "source:Norway:no_target",
+      "source:Norway:positive",
+      "source:United_States:positive"
+    ],
+    "selection_sha256": "a895f10c4f8ca15571cc5e085faa75e0b05eda93e62f4b24e66b5df2210bb461",
+    "sources": {
+      "China_Drone": 2,
+      "China_MotorBike": 2,
+      "Czech": 2,
+      "India": 3,
+      "Japan": 2,
+      "Norway": 3,
+      "United_States": 1
+    },
+    "started_utc": "2026-10-22T03:05:30.653096+00:00",
+    "status": "complete",
+    "targets_checked": 16,
+    "versions": {
+      "Pillow": "10.3.0",
+      "numpy": "1.26.4",
+      "torch": "2.3.0",
+      "torchvision": "0.18.0"
+    }
+  },
+  "status": "ccast_loader_check_passed_returned_archive_verified",
+  "verified_utc": "2026-10-22T03:15:34.977638+00:00"
+}

@@ -1,0 +1,113 @@
+{
+  "by_source": {
+    "China_Drone": {
+      "empty_xml": 5,
+      "images": 2401,
+      "only_other_labels": 477,
+      "target_bearing": 1919
+    },
+    "China_MotorBike": {
+      "images": 1977,
+      "only_other_labels": 43,
+      "target_bearing": 1934
+    },
+    "Czech": {
+      "empty_xml": 1757,
+      "images": 2829,
+      "target_bearing": 1072
+    },
+    "India": {
+      "empty_xml": 3921,
+      "images": 7706,
+      "only_other_labels": 562,
+      "target_bearing": 3223
+    },
+    "Japan": {
+      "empty_xml": 794,
+      "images": 10506,
+      "only_other_labels": 1812,
+      "target_bearing": 7900
+    },
+    "Norway": {
+      "empty_xml": 5247,
+      "images": 8161,
+      "target_bearing": 2914
+    },
+    "United_States": {
+      "images": 4805,
+      "target_bearing": 4805
+    }
+  },
+  "candidate_pair_categories": {
+    "negative_negative": 441,
+    "target_negative": 108,
+    "target_target": 558
+  },
+  "candidate_pairs": 1107,
+  "component_statistics": {
+    "clusters_crossing_previous_splits": 2,
+    "cross_source_clusters": 0,
+    "largest_source_cluster": 36,
+    "previously_assigned_images_in_conflicts": {
+      "train": 7,
+      "val": 6
+    },
+    "source_clusters": 37517
+  },
+  "counts": {
+    "empty_xml": 11724,
+    "historical_exact_copy_images": 1,
+    "images_with_exif_orientation_flag": 2,
+    "nonpositive_target_area": 1,
+    "only_other_labels": 2894,
+    "target_bearing": 23767,
+    "valid_target_objects_before_exact_dedup": 55006
+  },
+  "distance_histogram": {
+    "0": 10,
+    "1": 17,
+    "2": 42,
+    "3": 50,
+    "4": 83,
+    "5": 128,
+    "6": 181,
+    "7": 260,
+    "8": 336
+  },
+  "exact_duplicate_groups": 1,
+  "images_checked": 38385,
+  "limitations": [
+    "Perceptual matches are grouping candidates, not verified duplicates",
+    "This screen cannot establish complete geographic or sequence independence",
+    "No target annotation does not establish a verified healthy-road image",
+    "Historical train/val exposure remains relevant when resolving split conflicts",
+    "No model evaluation or visual inspection of held-out images is performed"
+  ],
+  "new_split_created": false,
+  "other_annotation_labels": {
+    "Block crack": 3,
+    "D01": 179,
+    "D0w0": 1,
+    "D11": 45,
+    "D43": 793,
+    "D44": 5057,
+    "D50": 3581,
+    "Repair": 1046
+  },
+  "previous_fingerprints_changed": 0,
+  "previous_fingerprints_compared": 23766,
+  "retained_historical_candidate_edges": 557,
+  "screen_complete": true,
+  "target_annotation_flags": {
+    "difficult=0,truncated=0": 43158,
+    "difficult=0,truncated=1": 9340,
+    "difficult=1,truncated=0": 6,
+    "difficult=None,truncated=None": 2502
+  },
+  "valid_target_labels_before_exact_dedup": {
+    "D00": 26016,
+    "D10": 11830,
+    "D20": 10616,
+    "D40": 6544
+  }
+}
