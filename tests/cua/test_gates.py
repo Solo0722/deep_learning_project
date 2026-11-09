@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -53,6 +54,22 @@ def test_prepare_dataset_writes_outputs(synthetic_train, mk, tmp_path):
     assert json.loads((out / "source.json").read_text())["image_root"]
     assert len(read_records(out / "train.jsonl")) + len(read_records(out / "reference.jsonl")) == 1200
     assert gates["cooccurrence"] == json.loads((out / "gates.json").read_text())["cooccurrence"]
+
+
+def test_prepare_rdd_cli_stores_absolute_image_root(synthetic_train, mk, tmp_path, monkeypatch):
+    import cua.datasets.rdd as rdd
+    import cua.prepare as prepare
+
+    splits = {"train": synthetic_train(400, 3, 4, seed=1), "val": [mk(labels=[0, 1])],
+              "test": [mk(labels=[1, 2])]}
+    monkeypatch.setattr(rdd, "load_rdd", lambda path: splits)
+    monkeypatch.setattr(rdd, "RDD_CLASSES", ("a", "b", "c", "d"))
+    (tmp_path / "imgs").mkdir()
+    monkeypatch.chdir(tmp_path)
+    assert prepare.main(["rdd", "--splits", "s", "--images", "imgs", "--out", "o"]) == 0
+    stored = json.loads((tmp_path / "o" / "source.json").read_text())["image_root"]
+    assert Path(stored).is_absolute()
+    assert Path(stored) == (tmp_path / "imgs").resolve()
 
 
 def test_reference_shortfall_reported(synthetic_train, mk, tmp_path):

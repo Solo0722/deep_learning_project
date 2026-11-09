@@ -15,6 +15,12 @@ from cua.train import TrainConfig, full_schedule, read_history, train
 pytestmark = pytest.mark.filterwarnings("ignore:Changing trainable_backbone_layers")
 
 
+@pytest.fixture(autouse=True)
+def _cpu_only(monkeypatch):
+    """The trainer picks CUDA when available; these tests assume CPU (exact equality, no AMP skips)."""
+    monkeypatch.setattr(torch.cuda, "is_available", lambda: False)
+
+
 def tiny_cfg(**kw):
     base = TrainConfig(run_id="tiny", dataset="tiny", detector="fasterrcnn", seed=0, epoch_lr=(1.0,),
                        edit=None, lr_warmup_iters=2, batch_size=3, amp=True, workers=0,
@@ -89,6 +95,74 @@ def test_train_writes_history_and_complete(tiny_data):
     ck = _state(run / "last.pt")
     assert ck["epoch"] == 2 and ck["cfg_digest"] == cfg_json["digest"] and ck["global_iter"] == 2
     assert set(ck) >= {"model", "optimizer", "scaler", "epoch", "global_iter", "cfg_digest", "best_macro"}
+
+
+def test_best_pt_holds_model_and_metadata_only(tiny_data):
+    assert train(tiny_cfg(epoch_lr=(1.0,)), *tiny_data) == 0
+    run = tiny_data[1] / "tiny"
+    best = _state(run / "best.pt")
+    assert set(best) == {"model", "epoch", "best_macro", "best_epoch", "cfg_digest"}
+    assert best["cfg_digest"] == tiny_cfg(epoch_lr=(1.0,)).digest() and best["epoch"] == 1
+    assert set(_state(run / "last.pt")) >= {"model", "optimizer", "scaler"}
+
+
+def test_val_predictions_are_compact_and_rounded(tiny_data, monkeypatch):
+    import cua.train as T
+    real = T.predict
+
+    def jittered(*a, **k):
+        preds = real(*a, **k)
+        for p in preds:  # guarantee long decimals even if the tiny model predicts nothing
+            p["boxes"] = np.vstack([p["boxes"], [[1.234567, 2.345678, 30.456789, 40.987654]]])
+            p["scores"] = np.append(p["scores"], 0.123456789)
+            p["labels"] = np.append(p["labels"], 0)
+        return preds
+
+    monkeypatch.setattr(T, "predict", jittered)
+    assert train(tiny_cfg(epoch_lr=(1.0,)), *tiny_data) == 0
+    run = tiny_data[1] / "tiny"
+    for name in ("val_predictions_last.json", "val_predictions_best.json"):
+        text = (run / name).read_text()
+        assert "\n" not in text and ": " not in text and ", " not in text
+        for p in json.loads(text):
+            assert all(round(v, 2) == v for box in p["boxes"] for v in box)
+            assert all(round(v, 4) == v for v in p["scores"])
+            assert [1.23, 2.35, 30.46, 40.99] in p["boxes"] and 0.1235 in p["scores"]
+
+
+def test_predict_uses_configured_workers(tiny_data, monkeypatch):
+    import cua.train as T
+    seen = []
+    real = T.predict
+
+    def spy(*a, **k):
+        seen.append(k.get("num_workers"))
+        return real(*a, **k)
+
+    monkeypatch.setattr(T, "predict", spy)
+    assert train(tiny_cfg(epoch_lr=(1.0,), workers=0), *tiny_data) == 0
+    assert seen == [0]
+
+
+class _SpyScaler:
+    def __init__(self):
+        self.loaded = []
+
+    def load_state_dict(self, sd):
+        self.loaded.append(sd)
+
+
+@pytest.mark.parametrize("use_amp", [True, False])
+def test_init_from_warm_loads_scaler_only_with_amp(use_amp):
+    import cua.train as T
+    model = torch.nn.Linear(2, 1)
+    opt = torch.optim.SGD(model.parameters(), lr=0.1, momentum=0.9)
+    ic = {"model": {k: v.clone() + 1 for k, v in model.state_dict().items()},
+          "optimizer": opt.state_dict(), "scaler": {"scale": 1024.0, "_growth_tracker": 3}}
+    scaler = _SpyScaler()
+    T._init_from_warm(ic, model, opt, scaler, use_amp)
+    assert all(torch.equal(model.state_dict()[k], ic["model"][k]) for k in ic["model"])
+    assert scaler.loaded == ([ic["scaler"]] if use_amp else [])
 
 
 def test_refuses_overwrite_and_resume_of_complete(tiny_data):

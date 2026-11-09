@@ -44,7 +44,7 @@ def prepare_dataset(
     write_records(out_dir / "test.jsonl", splits["test"])
     write_classes(out_dir / "classes.json", tuple(classes))
     (out_dir / "source.json").write_text(
-        json.dumps({"image_root": str(Path(image_root))}), encoding="utf-8"
+        json.dumps({"image_root": str(Path(image_root).resolve())}), encoding="utf-8"
     )
     ref_counts = _class_totals(ref, n_classes)
     gates = {

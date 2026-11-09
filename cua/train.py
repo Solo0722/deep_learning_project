@@ -1,7 +1,8 @@
 """Detector trainer with exact resume and SLURM deadline stop.
 
-Run layout (`runs_root/<run_id>/`): config.json, history.jsonl, last.pt, best.pt,
-val_predictions_last.json, val_predictions_best.json, COMPLETE.json. Every write is atomic
+Run layout (`runs_root/<run_id>/`): config.json, history.jsonl, last.pt (full resume state), best.pt
+(model weights plus metadata only), val_predictions_last.json, val_predictions_best.json (compact JSON,
+boxes rounded to 2 decimals, scores to 4), COMPLETE.json. Resume reads only last.pt. Every write is atomic
 (tmp file + os.replace). Per-epoch randomness (shuffle order, torch global RNG used by the
 detectors' samplers, keyed augmentation) is derived from (seed, epoch), so a resumed run follows
 the same trajectory as an uninterrupted one.
@@ -16,6 +17,7 @@ import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
+import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
@@ -83,8 +85,8 @@ def _write_text(path: Path, text: str) -> None:
     _replace_from_tmp(path, lambda p: p.write_text(text, encoding="utf-8"))
 
 
-def _write_json(path: Path, obj) -> None:
-    _write_text(path, json.dumps(obj))
+def _write_json(path: Path, obj, compact: bool = False) -> None:
+    _write_text(path, json.dumps(obj, separators=(",", ":")) if compact else json.dumps(obj))
 
 
 def _write_history(path: Path, rows: list[dict]) -> None:
@@ -154,7 +156,7 @@ def _settle_pending(out: Path, ckpt_epoch: int, best_epoch: int | None) -> None:
     delete every other pending file (from an epoch that last.pt does not contain)."""
     if best_epoch is not None and best_epoch == ckpt_epoch:
         _promote_pending(out, ckpt_epoch)
-    for f in out.iterdir():
+    for f in list(out.iterdir()):
         if _PENDING in f.name:
             f.unlink()
 
@@ -221,8 +223,19 @@ def _train_one_epoch(model, optimizer, scaler, loader, device, use_amp: bool, cf
 
 
 def _predictions_json(preds: list[dict]) -> list[dict]:
-    return [{"image_index": int(p["image_index"]), "boxes": p["boxes"].tolist(),
-             "scores": p["scores"].tolist(), "labels": p["labels"].tolist()} for p in preds]
+    """Compact form: boxes rounded to 2 decimals (pixels), scores to 4."""
+    return [{"image_index": int(p["image_index"]),
+             "boxes": np.round(np.asarray(p["boxes"], np.float64), 2).tolist(),
+             "scores": np.round(np.asarray(p["scores"], np.float64), 4).tolist(),
+             "labels": np.asarray(p["labels"]).tolist()} for p in preds]
+
+
+def _init_from_warm(ic: dict, model, optimizer, scaler, use_amp: bool) -> None:
+    """Arm start: warm run's model, optimizer and (with AMP) GradScaler state from its last.pt."""
+    model.load_state_dict(ic["model"])
+    optimizer.load_state_dict(ic["optimizer"])
+    if use_amp and ic.get("scaler"):
+        scaler.load_state_dict(ic["scaler"])
 
 
 # ---- entry point ----
@@ -272,6 +285,8 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     use_amp = bool(cfg.amp and device.type == "cuda")
+    if device.type == "cuda":
+        torch.backends.cudnn.benchmark = True
     torch.manual_seed(cfg.seed)
     model = build_detector(cfg.detector, len(classes), cfg.size, cfg.pretrained).to(device)
     params = [p for p in model.parameters() if p.requires_grad]
@@ -300,9 +315,7 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         _write_json(out / "config.json", {"config": asdict(cfg), "digest": digest,
                                           "max_train_images": max_train_images})
         if init_ckpt is not None:
-            ic = _load(init_ckpt, device)
-            model.load_state_dict(ic["model"])
-            optimizer.load_state_dict(ic["optimizer"])
+            _init_from_warm(_load(init_ckpt, device), model, optimizer, scaler, use_amp)
 
     last_epoch = cfg.first_epoch + len(cfg.epoch_lr) - 1
     prev_seconds = history[-1]["seconds"] if history else None
@@ -322,11 +335,11 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         losses, global_iter = _train_one_epoch(model, optimizer, scaler, loader, device, use_amp, cfg,
                                                epoch, lr_mult, global_iter, warm_up)
 
-        preds = predict(model, val_ds, device, batch_size=2 * cfg.batch_size)
+        preds = predict(model, val_ds, device, batch_size=2 * cfg.batch_size, num_workers=cfg.workers)
         metrics = coco_metrics(val_recs, preds, classes)
         score = -math.inf if metrics["macro_ap50"] is None else float(metrics["macro_ap50"])
         preds_json = _predictions_json(preds)
-        _write_json(out / "val_predictions_last.json", preds_json)
+        _write_json(out / "val_predictions_last.json", preds_json, compact=True)
         improved = score > best or best_epoch is None
         if improved:
             best, best_epoch = score, epoch
@@ -338,8 +351,10 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         # Kill safety: best candidates are staged as pending files, committed by last.pt (which records
         # best_epoch), then promoted. Resume promotes or discards pendings according to last.pt.
         if improved:
-            _save(_pending_path(out, "best.pt", epoch), state)
-            _write_json(_pending_path(out, "val_predictions_best.json", epoch), preds_json)
+            _save(_pending_path(out, "best.pt", epoch),
+                  {"model": state["model"], "epoch": epoch, "best_macro": best, "best_epoch": best_epoch,
+                   "cfg_digest": digest})
+            _write_json(_pending_path(out, "val_predictions_best.json", epoch), preds_json, compact=True)
         _save(ckpt_path, state)
         if improved:
             _promote_pending(out, epoch)
