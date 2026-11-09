@@ -105,6 +105,86 @@ def test_load_voc_is_deterministic(tmp_path):
     assert [r.group for r in a["val"]] == [r.group for r in b["val"]]
 
 
+def test_border_boxes_are_clamped_not_rejected():
+    counts = {"clamped_boxes": 0, "dropped_boxes": 0}
+    rec = parse_voc_xml(FIX / "000010.xml", year="2007", counts=counts)
+    # xmin=0 -> -1 after conversion, clamped to 0; xmax=100 equals width, kept as is
+    assert rec.boxes[0].tolist() == [0.0, 0.0, 100.0, 80.0]
+    assert rec.boxes[1].tolist() == [0.0, 0.0, 50.0, 40.0]
+    assert rec.labels.tolist() == [VOC_CLASSES.index("cat"), VOC_CLASSES.index("dog")]
+
+
+def test_degenerate_boxes_after_clamp_are_dropped_and_counted():
+    counts = {"clamped_boxes": 0, "dropped_boxes": 0}
+    rec = parse_voc_xml(FIX / "000010.xml", year="2007", counts=counts)
+    # the third object lies fully outside the image (x1 = 100 = width) and is dropped
+    assert len(rec.labels) == 2
+    assert counts == {"clamped_boxes": 1, "dropped_boxes": 1}
+
+
+def test_nested_parts_are_not_counted_as_objects():
+    counts = {"clamped_boxes": 0, "dropped_boxes": 0}
+    rec = parse_voc_xml(FIX / "000011.xml", year="2007", counts=counts)
+    assert rec.labels.tolist() == [VOC_CLASSES.index("person")]
+    assert rec.boxes.tolist() == [[19.0, 29.0, 120.0, 150.0]]
+
+
+def test_missing_difficult_defaults_to_not_ignored():
+    rec = parse_voc_xml(FIX / "000007.xml", year="2007")
+    assert rec.ignore.tolist() == [False]
+
+
+def test_truncated_and_occluded_do_not_change_boxes_or_ignore():
+    rec = parse_voc_xml(FIX / "000007.xml", year="2007")
+    assert rec.boxes[0].tolist() == [49.0, 59.0, 120.0, 180.0]
+    assert rec.ignore.tolist() == [False]
+
+
+def test_malformed_xml_error_names_the_file(tmp_path):
+    import pytest
+
+    bad = tmp_path / "000099.xml"
+    bad.write_text("<annotation><object><name>cat</name></object></annotation>", encoding="utf-8")
+    with pytest.raises(ValueError, match="000099.xml"):
+        parse_voc_xml(bad, year="2007")
+
+
+def test_load_voc_reports_box_fix_totals(tmp_path):
+    devkit = _write_devkit(tmp_path / "VOCdevkit")
+    # add one clamp+drop image to VOC2007 trainval
+    (devkit / "VOC2007" / "Annotations" / "000010.xml").write_text(
+        (FIX / "000010.xml").read_text(encoding="utf-8"), encoding="utf-8"
+    )
+    (devkit / "VOC2007" / "ImageSets" / "Main" / "trainval.txt").write_text(
+        "000001\n000002\n000003\n000004\n000010\n", encoding="utf-8"
+    )
+    stats = {}
+    splits = load_voc(devkit, val_fraction=0.5, seed=0, stats=stats)
+    assert stats == {"clamped_boxes": 1, "dropped_boxes": 1}
+    assert len(splits["train"]) + len(splits["val"]) == 9
+
+
+def test_voc_cli_writes_box_fixes_into_gates(tmp_path, monkeypatch):
+    import json
+
+    import cua.prepare as prepare
+
+    devkit = _write_devkit(tmp_path / "VOCdevkit")
+    captured = {}
+
+    def fake_prepare(name, splits, classes, out_dir, image_root, *, extra=None, **kw):
+        captured.update(name=name, extra=extra, out_dir=out_dir, image_root=image_root)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "gates.json").write_text(json.dumps({"voc_box_fixes": extra}), encoding="utf-8")
+        return {"reference_shortfall": []}
+
+    monkeypatch.setattr(prepare, "prepare_dataset", fake_prepare)
+    prepare.main(["voc", "--devkit", str(devkit), "--out", str(tmp_path / "o")])
+    assert captured["name"] == "voc"
+    assert captured["image_root"] == devkit
+    assert captured["extra"] == {"voc_box_fixes": {"clamped_boxes": 0, "dropped_boxes": 0}}
+
+
 def test_voc_cli_subcommand_parses_devkit_and_out(tmp_path):
     from cua.prepare import build_parser
 

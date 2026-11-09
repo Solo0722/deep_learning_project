@@ -26,6 +26,7 @@ def prepare_dataset(
     n_target: int = 1000,
     min_per_class: int = 100,
     seed: int = 0,
+    extra: dict | None = None,
 ) -> dict:
     """Run data gates, carve the reference split, and write the dataset directory."""
     n_classes = len(classes)
@@ -59,6 +60,7 @@ def prepare_dataset(
             "test": len(splits["test"]),
         },
     }
+    gates.update(extra or {})
     (out_dir / "gates.json").write_text(json.dumps(gates, indent=2), encoding="utf-8")
     return gates
 
@@ -84,7 +86,11 @@ def _cmd_voc(args: argparse.Namespace) -> None:
     from cua.datasets.voc import VOC_CLASSES, load_voc
 
     devkit = Path(args.devkit)
-    gates = prepare_dataset("voc", load_voc(devkit), VOC_CLASSES, Path(args.out), devkit)
+    stats: dict = {}
+    splits = load_voc(devkit, stats=stats)
+    gates = prepare_dataset(
+        "voc", splits, VOC_CLASSES, Path(args.out), devkit, extra={"voc_box_fixes": stats}
+    )
     _warn_shortfall(gates)
 
 
