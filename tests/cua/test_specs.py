@@ -147,3 +147,30 @@ def test_cli_unknown_spec(monkeypatch, capsys):
         run_mod.main(["--spec", "bogus", "--data-root", "d", "--runs-root", "r"])
     assert e.value.code == 2
     assert "bogus" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("dataset", DATASETS)
+@pytest.mark.parametrize("detector", DETECTORS)
+def test_every_arm_continues_its_warm_run(dataset, detector):
+    specs = part_a_specs(dataset, detector)
+    by_id = {s.run_id: s for s in specs}
+    arms = [s for s in specs if s.init_run is not None]
+    assert len(arms) == 3 * (1 + len(valid_menu(dataset)))
+    for arm in arms:
+        warm = by_id[arm.init_run]
+        assert (warm.dataset, warm.detector, warm.size, warm.pretrained, warm.seed) ==                (arm.dataset, arm.detector, arm.size, arm.pretrained, arm.seed)
+        assert arm.first_epoch == warm.first_epoch + len(warm.epoch_lr)
+
+
+def test_menu_has_no_reserved_arm_names():
+    assert not {"warm", "base"} & set(MENU_ORDER)
+
+
+def test_epochs_validation_and_duplicate_edits():
+    for bad in (0, -3):
+        with pytest.raises(ValueError):
+            budget_specs("rdd", "fasterrcnn", epochs=bad)
+        with pytest.raises(ValueError):
+            proxy_specs(["blur"], bad)
+    with pytest.raises(ValueError):
+        proxy_specs(["blur", "blur"], 20)

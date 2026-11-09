@@ -23,7 +23,9 @@ def _check(dataset: str, detector: str) -> None:
 
 def budget_specs(dataset: str, detector: str, epochs: int | None = None) -> list[TrainConfig]:
     _check(dataset, detector)
-    n = epochs or BUDGET_EPOCHS[dataset]
+    n = epochs if epochs is not None else BUDGET_EPOCHS[dataset]
+    if n < 1:
+        raise ValueError(f"epochs must be >= 1, got {n}")
     return [TrainConfig(run_id=f"budget-{dataset}-{detector}-e{n}", dataset=dataset, detector=detector,
                         seed=0, epoch_lr=full_schedule(n), edit=None)]
 
@@ -44,6 +46,10 @@ def part_a_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2)
 
 
 def proxy_specs(edits: list[str], epochs: int) -> list[TrainConfig]:
+    if epochs < 1:
+        raise ValueError(f"epochs must be >= 1, got {epochs}")
+    if len(set(edits)) != len(edits):
+        raise ValueError(f"Duplicate edits: {edits!r}")
     menu = valid_menu("rdd")
     for e in edits:
         if e not in menu:
