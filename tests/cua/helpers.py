@@ -109,12 +109,20 @@ def problem_where_class_2_has_no_gt():
 
 
 def synthetic_deltas(edits, classes, seeds, conflict_edit, effect, noise, seed,
-                     dataset="rdd", detector="fasterrcnn"):
-    """Delta rows for one dataset/detector pair. The conflict edit helps half the classes (+effect) and hurts
-    the other half (-effect); every delta gets Gaussian noise."""
+                     dataset="rdd", detector="fasterrcnn", base_noise=0.0, missing_frac=0.0):
+    """Delta rows (arm - base) for one dataset/detector pair.
+
+    The conflict edit helps half the classes (+effect) and hurts the other half (-effect); every delta gets
+    Gaussian `noise`. With base_noise > 0 one base-run error b is drawn per (seed, cls) and subtracted from every
+    edit's delta in that cell, as in real arm - base data. `missing_frac` drops that fraction of rows at random.
+    """
     from cua.augment.menu import MENU_ORDER
 
     rng = np.random.default_rng(seed)
+    rng_b = np.random.default_rng([seed, 1])
+    rng_m = np.random.default_rng([seed, 2])
+    b = {(s, c): rng_b.normal(0.0, base_noise) if base_noise > 0 else 0.0
+         for s in range(seeds) for c in range(classes)}
     rows = []
     for s in range(seeds):
         for ei, e in enumerate(MENU_ORDER[:edits]):
@@ -122,6 +130,9 @@ def synthetic_deltas(edits, classes, seeds, conflict_edit, effect, noise, seed,
                 mu = 0.0
                 if conflict_edit is not None and ei == conflict_edit:
                     mu = effect if c < classes // 2 else -effect
+                delta = float(mu + rng.normal(0.0, noise) - b[(s, c)])
+                if missing_frac and rng_m.random() < missing_frac:
+                    continue
                 rows.append({"dataset": dataset, "detector": detector, "seed": s, "edit": e,
-                             "cls": f"c{c}", "delta": float(mu + rng.normal(0.0, noise))})
+                             "cls": f"c{c}", "delta": delta})
     return rows

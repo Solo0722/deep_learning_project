@@ -44,10 +44,37 @@ def test_interaction_f_value_hand_computed():
     for ((e, c), m), (r0, r1) in zip(cell.items(), signs):
         rows += [_row(e, 0, c, m + r0), _row(e, 1, c, m + r1)]
     out = interaction_test(rows)
-    # Seed effect is exactly zero by symmetry, so the full-model residual is the within-cell residual:
-    # 8 * 0.25 = 2 on df2 = 8 - 5 = 3. Interaction contrast 1-0-0+3 = 4 -> SS = 2 * 4^2 / 4 = 8 on df1 = 1.
-    assert (out["df1"], out["df2"]) == (1, 3)
-    assert out["F"] == pytest.approx(8.0 / (2.0 / 3.0))
+    # seed:cls absorbs the shared base, so work on D[s,c] = y[b] - y[a]:
+    # D_x = (-2, 0), D_y = (4, 2). Full model: one mean per class (RSS 2 + 2 = 4, df 4 - 2 = 2);
+    # reduced: one grand mean (SS between = 2 * 2^2 + 2 * 2^2 = 16, df1 = 1). Factor 1/2 cancels in the ratio.
+    assert (out["df1"], out["df2"]) == (1, 2)
+    assert out["F"] == pytest.approx(16.0 / (4.0 / 2.0))
+
+
+def test_interaction_f_matches_balanced_two_way_formula():
+    """Independent reference: hand-coded least squares by alternating projections (no design matrix)."""
+    rng = np.random.default_rng(5)
+    E, C, S = 3, 3, 4
+    y = rng.normal(size=(S, E, C)) + np.array([[0.0, 1.0, -1.0]] * E) * np.arange(E)[:, None]
+    rows = [_row(f"e{e}", s, f"c{c}", y[s, e, c]) for s in range(S) for e in range(E) for c in range(C)]
+    out = interaction_test(rows)
+    # Reduced fit = alpha[s,c] + beta[e]; full fit = alpha[s,c] + beta[e,c]; both balanced, so projections converge.
+    def fit(extra_inter):
+        mu = np.zeros_like(y)
+        for _ in range(500):
+            r = y - mu
+            a = r.mean(axis=1, keepdims=True)  # seed:cls (mean over edits)
+            mu = mu + a
+            r = y - mu
+            e_eff = r.mean(axis=0, keepdims=True) if extra_inter else r.mean(axis=(0, 2), keepdims=True)
+            mu = mu + e_eff
+        return float(((y - mu) ** 2).sum())
+    rss_f, rss_r = fit(True), fit(False)
+    df1 = (E - 1) * (C - 1)
+    df_f = S * E * C - (S * C + (E - 1) * C)
+    F = ((rss_r - rss_f) / df1) / (rss_f / df_f)
+    assert (out["df1"], out["df2"]) == (df1, df_f)
+    assert out["F"] == pytest.approx(F, rel=1e-6)
 
 
 def test_interaction_matches_statsmodels_if_available():
@@ -153,5 +180,70 @@ def test_cli_end_to_end(tmp_path):
     tests = json.loads((out / "tests.json").read_text())
     assert set(tests["rdd-fasterrcnn"]) == {"interaction", "edit_class"}
     assert (out / "heatmap_rdd_fasterrcnn.png").exists()
-    assert (out / "proxy.json").exists()
+    proxy = json.loads((out / "proxy.json").read_text())
+    assert isinstance(proxy["e20"]["rho"], float)
     assert len(proxy_deltas(runs)) == 4
+
+
+def _reject_rate(n_sims, alpha=0.05, **kw):
+    hits = 0
+    for i in range(n_sims):
+        d = synthetic_deltas(seed=1000 + i, **kw)
+        hits += interaction_test(d)["p"] < alpha
+    return hits / n_sims
+
+
+_NULL = dict(edits=6, classes=5, seeds=3, conflict_edit=None, effect=0.0, noise=1.0, base_noise=1.0)
+
+
+def test_null_calibration_fast():
+    assert 0.0 <= _reject_rate(60, **_NULL) <= 0.2
+
+
+@pytest.mark.slow
+def test_null_calibration_monte_carlo():
+    assert 0.02 <= _reject_rate(200, **_NULL) <= 0.09
+
+
+def test_power_with_shared_base_noise():
+    alt = dict(_NULL, conflict_edit=0, effect=2.0)
+    assert _reject_rate(40, **alt) >= 0.9
+
+
+def test_old_model_fails_power_check():
+    """The pre-R15 model (no seed:cls term) has base noise in its residual and cannot detect the effect."""
+    from cua.analysis import part_a as pa
+    import numpy as np
+
+    def old(d):
+        y = np.array([r["delta"] for r in d])
+        main = [np.ones(len(d))] + pa._dummies([r["seed"] for r in d]) + pa._dummies([r["edit"] for r in d])             + pa._dummies([r["cls"] for r in d])
+        inter = pa._dummies([r["edit"] + "|" + r["cls"] for r in d], drop_first=False)
+        return pa._f_test(y, main, main + inter)["p"]
+
+    alt = dict(_NULL, conflict_edit=0, effect=2.0)
+    old_rate = np.mean([old(synthetic_deltas(seed=1000 + i, **alt)) < 0.05 for i in range(40)])
+    assert old_rate < 0.7  # measured 0.525 (new model: 1.0)
+
+
+def test_calibration_with_missing_cells():
+    rate = _reject_rate(60, **dict(_NULL, missing_frac=0.15))
+    assert rate <= 0.2
+
+
+def test_proxy_agreement_rejects_mixed_budgets():
+    rows = [{"edit": e, "cls": c, "delta": 1.0 * i, "epochs": n}
+            for n in (10, 20) for i, (e, c) in enumerate((e, c) for e in "ab" for c in "xy")]
+    with pytest.raises(ValueError):
+        proxy_agreement(rows, rows)
+
+
+def test_warnings_for_missing_base_and_empty_runs(tmp_path, capsys):
+    _write_run(tmp_path, "A-rdd-fasterrcnn-s0-translate", {"x": 1.0})
+    d = tmp_path / "A-rdd-fasterrcnn-s0-base"
+    d.mkdir()
+    (d / "COMPLETE.json").write_text("{}", encoding="utf-8")
+    rows = load_final(tmp_path, "A-")
+    deltas(rows)
+    err = capsys.readouterr().err
+    assert "no per-class" in err and "no matching base" in err

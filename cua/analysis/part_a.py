@@ -33,6 +33,7 @@ def load_final(runs_root: Path, prefix: str) -> list[dict]:
     """Last-epoch per-class AP50 of every complete Part A arm (warm runs skipped; base arm has edit 'base')."""
     out: list[dict] = []
     incomplete = 0
+    no_data = 0
     for d in sorted(Path(runs_root).iterdir()):
         if not d.is_dir() or not d.name.startswith(prefix):
             continue
@@ -42,11 +43,16 @@ def load_final(runs_root: Path, prefix: str) -> list[dict]:
         if not (d / "COMPLETE.json").exists():
             incomplete += 1
             continue
-        for cls, ap in _final_rows(d):
+        rows = _final_rows(d)
+        if not rows:
+            no_data += 1
+        for cls, ap in rows:
             out.append({"dataset": m[1], "detector": m[2], "seed": int(m[3]), "edit": m[4],
                         "cls": cls, "ap50": ap})
     if incomplete:
         print(f"warning: skipped {incomplete} incomplete run(s) under {runs_root}", file=sys.stderr)
+    if no_data:
+        print(f"warning: {no_data} complete run(s) under {runs_root} have no per-class AP50 data", file=sys.stderr)
     return out
 
 
@@ -54,14 +60,18 @@ def deltas(rows: list[dict]) -> list[dict]:
     """arm - base matched on (dataset, detector, seed, cls); cells without a base are skipped."""
     base = {(r["dataset"], r["detector"], r["seed"], r["cls"]): r["ap50"] for r in rows if r["edit"] == "base"}
     out = []
+    missing = 0
     for r in rows:
         if r["edit"] == "base":
             continue
         b = base.get((r["dataset"], r["detector"], r["seed"], r["cls"]))
         if b is None:
+            missing += 1
             continue
         out.append({"dataset": r["dataset"], "detector": r["detector"], "seed": r["seed"],
                     "edit": r["edit"], "cls": r["cls"], "delta": r["ap50"] - b})
+    if missing:
+        print(f"warning: skipped {missing} arm cell(s) with no matching base", file=sys.stderr)
     return out
 
 
@@ -123,6 +133,11 @@ def _f_test(y: np.ndarray, reduced: list[np.ndarray], full: list[np.ndarray]) ->
     return {"F": float(F), "df1": df1, "df2": df_f, "p": float(stats.f.sf(F, df1, df_f))}
 
 
+def _seed_cls(d: list[dict]) -> list[np.ndarray]:
+    """seed:cls cell indicators (collinear with the seed and cls dummies; rank handles it)."""
+    return _dummies([str(r["seed"]) + "|" + r["cls"] for r in d], drop_first=False)
+
+
 def _single_pair(d: list[dict]) -> None:
     pairs = {(r["dataset"], r["detector"]) for r in d}
     if len(pairs) > 1:
@@ -130,17 +145,24 @@ def _single_pair(d: list[dict]) -> None:
 
 
 def interaction_test(d: list[dict]) -> dict:
-    """Nested OLS F-test: delta ~ seed + edit + cls  vs  + edit:cls (one dataset x detector pair)."""
+    """Nested OLS F-test for H1 (one dataset x detector pair).
+
+    Reduced: delta ~ seed + edit + cls + seed:cls; full: reduced + edit:cls. Every delta in a (seed, cls) cell is
+    arm - base and shares that cell's base-run noise; the seed:cls dummies absorb it exactly (ruling R15).
+    """
     _single_pair(d)
     y = np.array([r["delta"] for r in d], dtype=np.float64)
     main = [np.ones(len(d))] + _dummies([r["seed"] for r in d]) + _dummies([r["edit"] for r in d]) \
-        + _dummies([r["cls"] for r in d])
+        + _dummies([r["cls"] for r in d]) + _seed_cls(d)
     inter = _dummies([r["edit"] + "\0" + r["cls"] for r in d], drop_first=False)
     return _f_test(y, main, main + inter)
 
 
 def edit_class_tests(d: list[dict]) -> list[dict]:
-    """Per edit: F-test for cls in delta ~ seed + cls; Holm across edits (first-appearance order)."""
+    """Per edit: F-test for cls in delta ~ seed + cls; Holm across edits.
+
+    Results are returned in first-appearance order of the edits in the input (each has F, df1, df2, p, p_holm).
+    """
     _single_pair(d)
     res = []
     for e in dict.fromkeys(r["edit"] for r in d):
@@ -160,7 +182,15 @@ def budget_plateaued(curve: list[float], tol: float = 0.3, tail_frac: float = 0.
 
 
 def proxy_agreement(short: list[dict], full: list[dict], n_boot: int = 2000, seed: int = 0) -> dict:
-    """Spearman rho between seed-averaged short-run and full-run deltas over (edit, cls) cells, bootstrap CI."""
+    """Spearman rho between Part A and proxy deltas over (edit, cls) cells, with a bootstrap CI over cells.
+
+    `short`: Part A delta rows (short schedule, several seeds), averaged over seeds per (edit, cls).
+    `full`: proxy-run delta rows (full schedule, one seed), one per (edit, cls) and one budget (`epochs`).
+    Rows carrying several distinct `epochs` values raise ValueError.
+    """
+    budgets = {r["epochs"] for r in (*short, *full) if "epochs" in r}
+    if len(budgets) > 1:
+        raise ValueError(f"proxy_agreement needs a single budget, got epochs {sorted(budgets)}")
     acc: dict[tuple, list[float]] = {}
     for r in short:
         acc.setdefault((r["edit"], r["cls"]), []).append(r["delta"])
@@ -181,7 +211,7 @@ def proxy_agreement(short: list[dict], full: list[dict], n_boot: int = 2000, see
         if not np.isnan(r):
             rhos.append(r)
     lo, hi = (float(np.percentile(rhos, 2.5)), float(np.percentile(rhos, 97.5))) if rhos else (float("nan"),) * 2
-    return {"rho": rho, "lo": lo, "hi": hi, "n_cells": len(keys)}
+    return {"rho": rho, "lo": lo, "hi": hi, "n_cells": len(keys), "n_boot_valid": len(rhos)}
 
 
 # ---- heatmap ----
@@ -222,6 +252,7 @@ def heatmap(d: list[dict], out_png: Path) -> None:
         for j in range(len(classes)):
             if np.isfinite(mean[i, j]):
                 ax.text(j, i, f"{mean[i, j]:.1f}", ha="center", va="center", fontsize=8,
+                        color="white" if abs(mean[i, j]) > 0.6 * lim else "black",
                         fontweight="bold" if sig[i, j] else "normal")
     fig.colorbar(im, ax=ax, label="mean delta AP50 (pts)")
     ax.set_title("Per-class AP50 delta (bold: seed-mean CI excludes 0)")
@@ -260,13 +291,17 @@ def main(argv: list[str] | None = None) -> int:
         heatmap(sub, args.out / f"heatmap_{ds}_{det}.png")
     (args.out / "tests.json").write_text(json.dumps(tests, indent=2), encoding="utf-8")
 
-    full = proxy_deltas(args.runs_root)
-    if full:
+    proxy_rows = proxy_deltas(args.runs_root)
+    if proxy_rows:
         short = [r for r in d if r["dataset"] == "rdd" and r["detector"] == "fasterrcnn"]
-        try:
-            proxy = proxy_agreement(short, full)
-        except ValueError as e:
-            proxy = {"error": str(e)}
+        proxy: dict = {}
+        for n in sorted({r["epochs"] for r in proxy_rows}):
+            full = [r for r in proxy_rows if r["epochs"] == n]
+            try:
+                res = proxy_agreement(short, full)
+            except ValueError as e:
+                res = {"error": str(e)}
+            proxy[f"e{n}"] = {k: (None if isinstance(v, float) and np.isnan(v) else v) for k, v in res.items()}
         (args.out / "proxy.json").write_text(json.dumps(proxy, indent=2), encoding="utf-8")
     return 0
 
