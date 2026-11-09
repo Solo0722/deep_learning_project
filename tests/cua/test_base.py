@@ -175,3 +175,22 @@ def test_property_mixed_valid_and_subpixel_inputs():
         assert len(b) == 4
         assert (b >= 0).all() and (b <= 640 + 1e-6).all()
         assert ((b[:, 2] - b[:, 0]) * (b[:, 3] - b[:, 1]) > 0).all()
+
+
+def test_flip_rejected_falls_back_to_identity(monkeypatch):
+    import cua.augment.base as base_mod
+
+    real_affine = base_mod.affine_sample
+    flip = hflip_matrix(640)
+
+    def reject_flip(sample, matrix):
+        if np.allclose(matrix, flip):
+            return None
+        return real_affine(sample, matrix)
+
+    monkeypatch.setattr(base_mod, "affine_sample", reject_flip)
+    s = toy_sample(boxes=[[0., 0., 640., 640.]])
+    out = base_geometry(s, _UpOnly(flip=True))
+    assert out is not None
+    assert np.array_equal(out.rgb, s.rgb)
+    assert out.boxes[0].tolist() == [0.0, 0.0, 640.0, 640.0]

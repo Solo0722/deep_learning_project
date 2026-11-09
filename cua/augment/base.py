@@ -1,6 +1,8 @@
 """Base geometry augmentation: horizontal flip then scale jitter."""
 from __future__ import annotations
 
+import numpy as np
+
 from cua.augment.boxes import affine_sample, compose, hflip_matrix, scale_matrix
 from cua.image import Sample
 
@@ -20,6 +22,8 @@ def base_geometry(sample: Sample, rng) -> Sample:
         if out is not None:
             return out
     out = affine_sample(sample, flip_m if flip else scale_matrix(1.0, size))
+    if out is None:
+        out = affine_sample(sample, np.eye(3))
     if out is None:
         raise RuntimeError("base_geometry fallback (flip/identity) rejected a sample; affine_sample must never reject these")
     return out
