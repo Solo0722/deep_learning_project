@@ -8,7 +8,7 @@ from pathlib import Path, PurePosixPath
 import numpy as np
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, eq=False)
 class Record:
     """One annotated image.
 
@@ -32,6 +32,8 @@ class Record:
         ignore = np.asarray(self.ignore, dtype=bool).reshape(-1)
         if not (len(boxes) == len(labels) == len(ignore)):
             raise ValueError("boxes, labels and ignore must have equal length")
+        if not np.isfinite(boxes).all():
+            raise ValueError("boxes must be finite (no NaN or inf)")
         if len(boxes):
             x1, y1, x2, y2 = boxes.T
             if np.any(x2 <= x1) or np.any(y2 <= y1):
@@ -42,6 +44,23 @@ class Record:
         object.__setattr__(self, "boxes", boxes)
         object.__setattr__(self, "labels", labels)
         object.__setattr__(self, "ignore", ignore)
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Record):
+            return NotImplemented
+        return (
+            self.image == other.image
+            and self.width == other.width
+            and self.height == other.height
+            and self.group == other.group
+            and self.source == other.source
+            and np.array_equal(self.boxes, other.boxes)
+            and np.array_equal(self.labels, other.labels)
+            and np.array_equal(self.ignore, other.ignore)
+        )
+
+    def __hash__(self) -> int:
+        return hash((self.image, self.width, self.height, self.group, self.source))
 
     def class_set(self) -> frozenset[int]:
         """Class ids present among non-ignored boxes."""

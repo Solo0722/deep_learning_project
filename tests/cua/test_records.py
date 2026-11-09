@@ -46,3 +46,42 @@ def test_non_relative_image_path_rejected(path):
 def test_classes_roundtrip(tmp_path):
     write_classes(tmp_path / "c.json", ("cat", "dog"))
     assert read_classes(tmp_path / "c.json") == ("cat", "dog")
+
+
+def _rec(boxes, labels, ignore=None, image="a.jpg"):
+    n = len(labels)
+    return Record(image, 100, 100, np.asarray(boxes, dtype=float).reshape(-1, 4),
+                  np.asarray(labels, dtype=np.int64),
+                  np.zeros(n, bool) if ignore is None else np.asarray(ignore, bool), "g", "s")
+
+
+@pytest.mark.parametrize("n", [0, 1, 3])
+def test_independently_built_equal_records_compare_equal(n):
+    boxes = [[float(i), float(i), float(i) + 5, float(i) + 5] for i in range(n)]
+    a = _rec(boxes, list(range(n)))
+    b = _rec([list(x) for x in boxes], list(range(n)))
+    assert a is not b
+    assert a == b
+
+
+def test_record_differing_in_one_box_is_not_equal():
+    a = _rec([[0., 0., 5., 5.], [1., 1., 6., 6.], [2., 2., 7., 7.]], [0, 1, 2])
+    b = _rec([[0., 0., 5., 5.], [1., 1., 6., 6.], [2., 2., 7., 8.]], [0, 1, 2])
+    assert a != b
+
+
+def test_equal_records_hash_equal_and_dedupe_in_set():
+    a = _rec([[0., 0., 5., 5.], [1., 1., 6., 6.]], [0, 1])
+    b = _rec([[0., 0., 5., 5.], [1., 1., 6., 6.]], [0, 1])
+    assert hash(a) == hash(b)
+    assert len({a, b}) == 1
+
+
+def test_eq_with_non_record_is_false():
+    assert _rec([[0., 0., 5., 5.]], [0]) != "not a record"
+
+
+@pytest.mark.parametrize("bad", [[np.nan, 0., 5., 5.], [0., 0., np.inf, 5.], [-np.inf, 0., 5., 5.]])
+def test_non_finite_box_rejected(bad):
+    with pytest.raises(ValueError):
+        Record("a.jpg", 10, 10, np.array([bad]), np.array([0]), np.array([False]), "g", "s")
