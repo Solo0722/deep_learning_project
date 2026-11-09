@@ -185,6 +185,31 @@ def test_cli_end_to_end(tmp_path):
     assert len(proxy_deltas(runs)) == 4
 
 
+def test_cli_budget_output(tmp_path):
+    runs = tmp_path / "runs"
+    run = runs / "budget-rdd-fasterrcnn-e5"
+    run.mkdir(parents=True)
+    curve = [10.0, 20.0, 30.0, 30.1, 30.2]
+    run.joinpath("history.jsonl").write_text(
+        "".join(json.dumps({"epoch": i + 1, "metrics": {"macro_ap50": v, "per_class": {}}}) + "\n"
+                for i, v in enumerate(curve)), encoding="utf-8")
+    (run / "COMPLETE.json").write_text("{}", encoding="utf-8")
+    flat = runs / "budget-voc-fasterrcnn-e5"
+    flat.mkdir()
+    steep = [10.0, 20.0, 30.0, 40.0, 50.0]
+    flat.joinpath("history.jsonl").write_text(
+        "".join(json.dumps({"epoch": i + 1, "metrics": {"macro_ap50": v}}) + "\n"
+                for i, v in enumerate(steep)), encoding="utf-8")
+    out = tmp_path / "out"
+    assert main(["--runs-root", str(runs), "--out", str(out)]) == 0
+    assert not (out / "budget.json").exists()
+    assert main(["--runs-root", str(runs), "--out", str(out), "--budget"]) == 0
+    budget = json.loads((out / "budget.json").read_text())
+    assert budget["budget-rdd-fasterrcnn-e5"] == {"curve": curve, "plateaued": True, "complete": True}
+    assert budget["budget-voc-fasterrcnn-e5"] == {"curve": steep, "plateaued": False, "complete": False}
+    assert budget_plateaued(curve) is True
+
+
 def _reject_rate(n_sims, alpha=0.05, **kw):
     hits = 0
     for i in range(n_sims):

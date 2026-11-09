@@ -181,6 +181,26 @@ def budget_plateaued(curve: list[float], tol: float = 0.3, tail_frac: float = 0.
     return curve[-1] - curve[round((1 - tail_frac) * len(curve)) - 1] < tol
 
 
+def budget_summary(runs_root: Path) -> dict:
+    """Per budget-* run: macro_ap50 curve over epochs (history order), plateau flag, and completeness.
+    `plateaued` is None (with an `error`) when the curve is too short or has missing values."""
+    out: dict = {}
+    for d in sorted(Path(runs_root).iterdir()):
+        if not d.is_dir() or not d.name.startswith("budget-"):
+            continue
+        curve = [(h.get("metrics") or {}).get("macro_ap50") for h in read_history(d)]
+        entry: dict = {"curve": curve, "plateaued": None, "complete": (d / "COMPLETE.json").exists()}
+        if any(v is None for v in curve):
+            entry["error"] = "curve has epochs without macro_ap50"
+        else:
+            try:
+                entry["plateaued"] = bool(budget_plateaued([float(v) for v in curve]))
+            except ValueError as e:
+                entry["error"] = str(e)
+        out[d.name] = entry
+    return out
+
+
 def proxy_agreement(short: list[dict], full: list[dict], n_boot: int = 2000, seed: int = 0) -> dict:
     """Spearman rho between Part A and proxy deltas over (edit, cls) cells, with a bootstrap CI over cells.
 
@@ -269,6 +289,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--runs-root", type=Path, required=True)
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--prefix", default="A-")
+    ap.add_argument("--budget", action="store_true",
+                    help="also write budget.json: macro_ap50 curve and plateau flag of every budget-* run")
     args = ap.parse_args(argv)
     args.out.mkdir(parents=True, exist_ok=True)
 
@@ -303,6 +325,10 @@ def main(argv: list[str] | None = None) -> int:
                 res = {"error": str(e)}
             proxy[f"e{n}"] = {k: (None if isinstance(v, float) and np.isnan(v) else v) for k, v in res.items()}
         (args.out / "proxy.json").write_text(json.dumps(proxy, indent=2), encoding="utf-8")
+
+    if args.budget:
+        (args.out / "budget.json").write_text(json.dumps(budget_summary(args.runs_root), indent=2),
+                                              encoding="utf-8")
     return 0
 
 
