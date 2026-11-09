@@ -82,6 +82,18 @@ def _cmd_rdd(args: argparse.Namespace) -> None:
     _warn_shortfall(gates)
 
 
+def _voc_duplicate_counts(splits: dict, devkit: Path) -> dict:
+    """Near-duplicate hash pairs between official VOC splits (reported, never regrouped)."""
+    from cua.dedup import cross_split_duplicates, dhash
+    from cua.image import load_rgb
+
+    h = {k: [dhash(load_rgb(devkit, r)) for r in splits[k]] for k in ("train", "val", "test")}
+    return {
+        "train_vs_test": cross_split_duplicates(h["train"], h["test"]),
+        "val_vs_test": cross_split_duplicates(h["val"], h["test"]),
+    }
+
+
 def _cmd_voc(args: argparse.Namespace) -> None:
     from cua.datasets.voc import VOC_CLASSES, load_voc
 
@@ -89,7 +101,30 @@ def _cmd_voc(args: argparse.Namespace) -> None:
     stats: dict = {}
     splits = load_voc(devkit, stats=stats)
     gates = prepare_dataset(
-        "voc", splits, VOC_CLASSES, Path(args.out), devkit, extra={"voc_box_fixes": stats}
+        "voc", splits, VOC_CLASSES, Path(args.out), devkit,
+        extra={
+            "voc_box_fixes": stats,
+            "voc_cross_split_duplicates": _voc_duplicate_counts(splits, devkit),
+        },
+    )
+    _warn_shortfall(gates)
+
+
+def _cmd_dacl10k(args: argparse.Namespace) -> None:
+    from cua.datasets.dacl10k import load_dacl10k
+
+    root = Path(args.root)
+    stats: dict = {}
+    splits, retained = load_dacl10k(root, seed=args.seed, stats=stats)
+    gates = prepare_dataset(
+        "dacl10k", splits, retained, Path(args.out), root, seed=args.seed,
+        extra={
+            "dacl10k_retained_classes": list(retained),
+            "dacl10k_excluded_classes": stats["excluded"],
+            "dacl10k_parse_counts": {
+                k: stats[k] for k in ("clipped_boxes", "dropped_degenerate")
+            },
+        },
     )
     _warn_shortfall(gates)
 
@@ -106,6 +141,11 @@ def build_parser() -> argparse.ArgumentParser:
     voc.add_argument("--devkit", required=True, help="VOCdevkit directory (image root)")
     voc.add_argument("--out", required=True)
     voc.set_defaults(func=_cmd_voc)
+    dacl = sub.add_parser("dacl10k", help="prepare the dacl10k dataset")
+    dacl.add_argument("--root", required=True, help="dacl10k root (annotations/ and images/)")
+    dacl.add_argument("--out", required=True)
+    dacl.add_argument("--seed", type=int, default=0)
+    dacl.set_defaults(func=_cmd_dacl10k)
     return p
 
 

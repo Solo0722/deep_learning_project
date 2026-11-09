@@ -189,10 +189,14 @@ def test_voc_cli_writes_box_fixes_into_gates(tmp_path, monkeypatch):
         return {"reference_shortfall": []}
 
     monkeypatch.setattr(prepare, "prepare_dataset", fake_prepare)
+    monkeypatch.setattr(prepare, "_voc_duplicate_counts", lambda splits, devkit: {"stub": 1})
     prepare.main(["voc", "--devkit", str(devkit), "--out", str(tmp_path / "o")])
     assert captured["name"] == "voc"
     assert captured["image_root"] == devkit
-    assert captured["extra"] == {"voc_box_fixes": {"clamped_boxes": 0, "dropped_boxes": 0}}
+    assert captured["extra"] == {
+        "voc_box_fixes": {"clamped_boxes": 0, "dropped_boxes": 0},
+        "voc_cross_split_duplicates": {"stub": 1},
+    }
 
 
 def test_prepare_dataset_writes_voc_box_fixes_into_real_gates_json(tmp_path, mk):
@@ -229,3 +233,40 @@ def test_voc_cli_subcommand_parses_devkit_and_out(tmp_path):
     assert args.dataset == "voc"
     assert args.devkit == str(tmp_path)
     assert args.out == str(tmp_path / "o")
+
+
+def test_voc_cli_records_cross_split_duplicates(tmp_path, monkeypatch, noise_image, brighten):
+    from PIL import Image
+
+    import cua.prepare as prepare
+
+    devkit = _write_devkit(tmp_path / "VOCdevkit")
+    ids = {"2007": ["000001", "000002", "000003", "000004", "000005", "000006"],
+           "2012": ["2012_000001", "2012_000002", "2012_000003", "2012_000004"]}
+    def smooth(s):  # structured image: coarse noise upscaled, so the 9x8 hash is stable
+        small = Image.fromarray(noise_image(seed=s, size=(12, 16)))
+        return np.asarray(small.resize((352, 500), Image.Resampling.BICUBIC))
+
+    seed = 0
+    for year, names in ids.items():
+        (devkit / f"VOC{year}" / "JPEGImages").mkdir(parents=True, exist_ok=True)
+        for name in names:
+            seed += 1
+            img = smooth(seed)
+            if name == "000005":  # a test image that duplicates trainval image 000001 (seed 1)
+                img = brighten(smooth(1), 1.05)
+            Image.fromarray(img).save(
+                devkit / f"VOC{year}" / "JPEGImages" / f"{name}.jpg", quality=95
+            )
+    captured = {}
+
+    def fake_prepare(name, splits, classes, out_dir, image_root, *, extra=None, **kw):
+        captured["extra"] = extra
+        return {"reference_shortfall": []}
+
+    monkeypatch.setattr(prepare, "prepare_dataset", fake_prepare)
+    prepare.main(["voc", "--devkit", str(devkit), "--out", str(tmp_path / "o")])
+    dup = captured["extra"]["voc_cross_split_duplicates"]
+    assert set(dup) == {"train_vs_test", "val_vs_test"}
+    assert dup["train_vs_test"] + dup["val_vs_test"] == 1
+    assert "voc_box_fixes" in captured["extra"]

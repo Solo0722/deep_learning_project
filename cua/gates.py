@@ -36,6 +36,16 @@ def class_box_stats(records: list[Record], n_classes: int) -> list[dict]:
     ]
 
 
+def retained_classes(
+    classes: tuple[str, ...], stats: list[dict], min_count: int = 300, max_large: float = 0.5
+) -> tuple[str, ...]:
+    """Classes with at least `min_count` boxes and a large-box share of at most `max_large`."""
+    return tuple(
+        c for c, s in zip(classes, stats)
+        if s["count"] >= min_count and s["large_fraction"] <= max_large
+    )
+
+
 def _class_counts(records: list[Record], n_classes: int) -> np.ndarray:
     counts = np.zeros(n_classes, dtype=np.int64)
     for r in records:

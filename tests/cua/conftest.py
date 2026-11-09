@@ -33,3 +33,24 @@ def _synthetic_train(n_groups, per_group, n_classes, seed):
 @pytest.fixture
 def synthetic_train():
     return _synthetic_train
+
+
+def _noise_image(seed, size=(64, 48)):
+    """Mid-range uniform noise RGB uint8 image of (width, height) `size`; far from clipping."""
+    rng = np.random.default_rng(seed)
+    return rng.integers(20, 200, size=(size[1], size[0], 3), dtype=np.uint8)
+
+
+def _brighten(img, factor):
+    """Scale brightness by `factor`, rounding and clipping to uint8."""
+    return np.clip(np.rint(img.astype(np.float64) * factor), 0, 255).astype(np.uint8)
+
+
+@pytest.fixture
+def noise_image():
+    return _noise_image
+
+
+@pytest.fixture
+def brighten():
+    return _brighten

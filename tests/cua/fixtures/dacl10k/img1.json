@@ -1,0 +1,45 @@
+{
+ "imageWidth": 200,
+ "imageHeight": 100,
+ "imagePath": "img1.jpg",
+ "shapes": [
+  {
+   "label": "Rust",
+   "points": [
+    [
+     10,
+     20
+    ],
+    [
+     110,
+     25
+    ],
+    [
+     60,
+     60
+    ]
+   ]
+  },
+  {
+   "label": "Bearing",
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     50,
+     0
+    ],
+    [
+     50,
+     50
+    ],
+    [
+     0,
+     50
+    ]
+   ]
+  }
+ ]
+}
