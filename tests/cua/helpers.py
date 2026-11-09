@@ -24,3 +24,9 @@ def covered_fraction(out, s, box: int) -> float:
     b = s.rgb[y0:y1, x0:x1]
     changed = (a != b).any(axis=-1)
     return float(changed.mean()) if changed.size else 0.0
+
+
+def toy_fetch(j: int):
+    """Deterministic toy sample that varies with j (different fill and box)."""
+    off = float(j % 7) * 10.0
+    return toy_sample(boxes=[[50.0 + off, 60.0 + off, 200.0 + off, 220.0 + off]], fill=(40 + 13 * j) % 256)
