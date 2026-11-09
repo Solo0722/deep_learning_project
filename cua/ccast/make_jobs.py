@@ -12,7 +12,8 @@ from cua.train import TrainConfig
 
 DEFAULT_PROJECT = "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research"
 _TEMPLATE = Path(__file__).with_name("job_template.pbs")
-_PYTEST_BLOCK = '''pytest -q -x -m "not slow" tests/cua || exit $?
+# CUDA hidden: the gate tests assume the CPU trainer (exact equality, no AMP step skips).
+_PYTEST_BLOCK = '''CUDA_VISIBLE_DEVICES= pytest -q -x -m "not slow" tests/cua || exit $?
 '''
 _MARGIN_S = 20 * 60
 _SMOKE_WALLTIME_S = 3600

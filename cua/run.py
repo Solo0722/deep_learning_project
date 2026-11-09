@@ -1,4 +1,8 @@
-"""CLI: python -m cua.run --spec <run_id> --data-root DIR --runs-root DIR [--resume] ..."""
+"""CLI: python -m cua.run --spec <run_id> --data-root DIR --runs-root DIR [--resume] ...
+
+A run whose COMPLETE.json already exists is reported ("already complete") and exits 0 without
+training, so resubmitting a finished job is harmless.
+"""
 from __future__ import annotations
 
 import argparse
@@ -24,6 +28,10 @@ def main(argv: list[str] | None = None) -> None:
     except KeyError as e:
         print(f"error: {e.args[0]}", file=sys.stderr)
         sys.exit(2)
+    complete = args.runs_root / cfg.run_id / "COMPLETE.json"
+    if complete.exists():
+        print(f"{cfg.run_id}: already complete ({complete}); nothing to do")
+        sys.exit(0)
     deadline = None if args.deadline_seconds is None else time.monotonic() + args.deadline_seconds
     code = train(cfg, args.data_root, args.runs_root, resume=args.resume, deadline=deadline,
                  max_train_images=args.max_train_images)

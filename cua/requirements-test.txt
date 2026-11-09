@@ -5,3 +5,4 @@ Pillow
 pycocotools
 scipy
 pytest
+matplotlib

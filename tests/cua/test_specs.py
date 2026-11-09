@@ -141,6 +141,23 @@ def test_cli_defaults_and_zero_exit(monkeypatch, tmp_path):
     assert k["resume"] is False and k["deadline"] is None and k["max_train_images"] is None
 
 
+def test_cli_complete_run_exits_zero_without_training(monkeypatch, tmp_path, capsys):
+    monkeypatch.setattr(run_mod, "train", lambda *a, **k: pytest.fail("train must not run"))
+    run = tmp_path / "r" / "A-rdd-fasterrcnn-s1-blur"
+    run.mkdir(parents=True)
+    (run / "COMPLETE.json").write_text("{}", encoding="utf-8")
+    for extra in ([], ["--resume"]):
+        with pytest.raises(SystemExit) as e:
+            run_mod.main(["--spec", "A-rdd-fasterrcnn-s1-blur", "--data-root", str(tmp_path / "d"),
+                          "--runs-root", str(tmp_path / "r"), *extra])
+        assert e.value.code == 0
+        assert "already complete" in capsys.readouterr().out
+
+
+def test_proxy_specs_pass_edit_p():
+    assert all(s.edit_p == 0.5 for s in proxy_specs(["blur"], 20))
+
+
 def test_cli_unknown_spec(monkeypatch, capsys):
     monkeypatch.setattr(run_mod, "train", lambda *a, **k: pytest.fail("train must not run"))
     with pytest.raises(SystemExit) as e:

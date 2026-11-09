@@ -55,7 +55,8 @@ def proxy_specs(edits: list[str], epochs: int) -> list[TrainConfig]:
         if e not in menu:
             raise ValueError(f"Edit {e!r} is not valid for dataset 'rdd'")
     return [TrainConfig(run_id=f"proxy-rdd-fasterrcnn-e{epochs}-{edit or 'base'}", dataset="rdd",
-                        detector="fasterrcnn", seed=0, epoch_lr=full_schedule(epochs), edit=edit)
+                        detector="fasterrcnn", seed=0, epoch_lr=full_schedule(epochs), edit=edit,
+                        edit_p=0.5)
             for edit in (None, *edits)]
 
 

@@ -19,13 +19,13 @@ def test_arm_jobs_depend_on_warm(tmp_path):
 def test_walltime_and_deadline(tmp_path):
     make_jobs(budget_specs("rdd", "fasterrcnn"), tmp_path)
     job = (tmp_path / "budget-rdd-fasterrcnn-e20.pbs").read_text()
-    assert "walltime=24:00:00" in job and "--deadline-seconds 85200" in job
+    assert "walltime=24:00:00" in job and "--deadline-seconds $(( 85200 - SECONDS ))" in job
 
 
 def test_a_family_walltime_and_resources(tmp_path):
     make_jobs(part_a_specs("rdd", "fasterrcnn", seeds=(0,)), tmp_path)
     job = (tmp_path / "A-rdd-fasterrcnn-s0-blur.pbs").read_text()
-    assert "walltime=06:00:00" in job and "--deadline-seconds 20400" in job
+    assert "walltime=06:00:00" in job and "--deadline-seconds $(( 20400 - SECONDS ))" in job
     assert "#PBS -q gpus" in job
     assert "#PBS -l select=1:ncpus=4:mem=32gb:ngpus=1:glist=a10" in job
     assert "#PBS -W group_list=x-ccast-prj-aaboah" in job and "#PBS -j oe" in job
@@ -39,7 +39,7 @@ def test_a_family_walltime_and_resources(tmp_path):
 def test_proxy_walltime(tmp_path):
     make_jobs(proxy_specs(["blur"], 20), tmp_path)
     job = (tmp_path / "proxy-rdd-fasterrcnn-e20-blur.pbs").read_text()
-    assert "walltime=24:00:00" in job and "--deadline-seconds 85200" in job
+    assert "walltime=24:00:00" in job and "--deadline-seconds $(( 85200 - SECONDS ))" in job
 
 
 def test_smoke_applies_to_warm_and_arms(tmp_path):
@@ -47,7 +47,7 @@ def test_smoke_applies_to_warm_and_arms(tmp_path):
     for rid in ("A-rdd-fasterrcnn-s0-warm", "A-rdd-fasterrcnn-s0-blur", "A-rdd-fasterrcnn-s0-base"):
         job = (tmp_path / f"{rid}.pbs").read_text()
         assert "--max-train-images 64" in job and "walltime=01:00:00" in job
-        assert "--deadline-seconds 2400" in job
+        assert "--deadline-seconds $(( 2400 - SECONDS ))" in job
         assert f"--runs-root {ROOT}/cua_runs_smoke " in job and f"{ROOT}/cua_runs/" not in job
     normal = tmp_path / "n"
     make_jobs(part_a_specs("rdd", "fasterrcnn", seeds=(0,)), normal)
@@ -59,7 +59,7 @@ def test_pytest_only_in_non_arm_jobs(tmp_path):
     make_jobs(part_a_specs("rdd", "fasterrcnn", seeds=(0,)), tmp_path)
     make_jobs(budget_specs("rdd", "fasterrcnn"), tmp_path)
     make_jobs(proxy_specs(["blur"], 20), tmp_path)
-    cmd = 'pytest -q -x -m "not slow" tests/cua'
+    cmd = 'CUDA_VISIBLE_DEVICES= pytest -q -x -m "not slow" tests/cua'
     assert cmd in (tmp_path / "A-rdd-fasterrcnn-s0-warm.pbs").read_text()
     assert cmd in (tmp_path / "budget-rdd-fasterrcnn-e20.pbs").read_text()
     assert cmd in (tmp_path / "proxy-rdd-fasterrcnn-e20-base.pbs").read_text()
@@ -79,9 +79,22 @@ def test_pytest_failure_precedes_training(tmp_path):
 def test_resume_and_exit3_handling(tmp_path):
     make_jobs(budget_specs("rdd", "fasterrcnn"), tmp_path)
     job = (tmp_path / "budget-rdd-fasterrcnn-e20.pbs").read_text()
-    assert "CUA_RESUME" in job and "--resume" in job
-    assert "qsub -v CUA_RESUME=1" in job and "budget-rdd-fasterrcnn-e20.pbs" in job
+    assert "CUA_RESUME" not in job
+    run_line = next(ln for ln in job.splitlines() if ln.startswith("python -m cua.run "))
+    assert " --resume" in run_line  # every job resumes: a plain qsub both starts and resumes
+    pbs = (tmp_path / "budget-rdd-fasterrcnn-e20.pbs").resolve().as_posix()
+    assert f'echo "qsub {pbs}"' in job
     assert "exit 3" in job
+
+
+def test_every_job_resumes_and_sets_torch_home(tmp_path):
+    make_jobs(part_a_specs("rdd", "fasterrcnn", seeds=(0,)), tmp_path)
+    for p in tmp_path.glob("*.pbs"):
+        job = p.read_text()
+        run_line = next(ln for ln in job.splitlines() if ln.startswith("python -m cua.run "))
+        assert " --resume" in run_line, p.name
+        assert f"export TORCH_HOME={ROOT}/torch_home" in job, p.name
+        assert job.index("export TORCH_HOME") < job.index("python -m cua.run")
 
 
 def test_job_names_short_and_unique(tmp_path):
