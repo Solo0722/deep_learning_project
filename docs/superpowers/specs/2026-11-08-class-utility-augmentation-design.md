@@ -63,7 +63,7 @@ Claims we will not make: first class-adaptive augmentation; first online augment
 - **Faster R-CNN ResNet-50-FPN** (torchvision, COCO-pretrained) — primary.
 - **RetinaNet ResNet-50-FPN** (torchvision, COCO-pretrained) — second family; matches the detectors reported by Zoph et al. and Scale-Aware AutoAug.
 - 640×640 letterbox for all datasets, SGD (momentum 0.9, wd 5e-4), batch 4, linear LR warm-up, step decay at ~60% and ~80% of training.
-- **Epoch budget per dataset** is fixed once, before Part C, from a base-recipe run: the smallest budget at which base-recipe validation AP50 has plateaued (gain < 0.3 AP50 over the last 20% of epochs). RDD starts from the existing 20-epoch schedule.
+- **Epoch budget per dataset** is fixed once, before Part C, from a base-recipe run at a candidate budget (RDD 20, VOC 20, dacl10k 30 epochs). The budget is accepted if validation AP50 has plateaued (final-epoch AP50 minus AP50 at 80% of the epochs < 0.3); otherwise it is extended by 50% and the check repeats.
 - **Mixed precision on**, TF32 allowed, no strict determinism mode. Repeatability comes from seeds, not bitwise equality.
 - **Seeds:** {0, 1, 2}, shared across arms (head init, data order, augmentation RNG). Escalate to 5 seeds for the H2 comparison only if its 95% CI spans zero and its width exceeds 1.0 AP50.
 
