@@ -18,6 +18,26 @@ def hflip_matrix(size: int) -> np.ndarray:
     return np.array([[-1.0, 0.0, float(size)], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
 
 
+def vflip_matrix(size: int) -> np.ndarray:
+    return np.array([[1.0, 0.0, 0.0], [0.0, -1.0, float(size)], [0.0, 0.0, 1.0]])
+
+
+def translate_matrix(dx: float, dy: float) -> np.ndarray:
+    return np.array([[1.0, 0.0, float(dx)], [0.0, 1.0, float(dy)], [0.0, 0.0, 1.0]])
+
+
+def rotate_matrix(deg: float, size: int) -> np.ndarray:
+    """Rotation about the canvas centre; positive angle is counter-clockwise on screen (y axis points down)."""
+    t = np.deg2rad(deg)
+    c, s = np.cos(t), np.sin(t)
+    cx = size / 2.0
+    return np.array([
+        [c, s, cx - c * cx - s * cx],
+        [-s, c, cx + s * cx - c * cx],
+        [0.0, 0.0, 1.0],
+    ])
+
+
 def scale_matrix(s: float, size: int) -> np.ndarray:
     c = size / 2.0
     return np.array([[s, 0.0, c - s * c], [0.0, s, c - s * c], [0.0, 0.0, 1.0]])

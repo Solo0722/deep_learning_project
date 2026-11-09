@@ -15,3 +15,12 @@ def toy_sample(boxes=None, fill: int | None = None):
         rgb = np.stack([xx % 256, yy % 256, (xx * 3 + yy * 5) % 256], axis=-1).astype(np.uint8)
     n = len(boxes)
     return Sample(rgb, boxes, np.arange(n, dtype=np.int64), np.zeros(n, dtype=bool))
+
+
+def covered_fraction(out, s, box: int) -> float:
+    """Fraction of box `box`'s integer pixel region where out.rgb differs from s.rgb in any channel."""
+    x0, y0, x1, y1 = (int(round(v)) for v in s.boxes[box])
+    a = out.rgb[y0:y1, x0:x1]
+    b = s.rgb[y0:y1, x0:x1]
+    changed = (a != b).any(axis=-1)
+    return float(changed.mean()) if changed.size else 0.0
