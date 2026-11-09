@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def toy_sample(boxes=None):
     """Deterministic non-uniform 640x640 Sample; labels 0..N-1, no ignored boxes."""
     from cua.image import Sample

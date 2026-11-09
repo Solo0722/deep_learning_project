@@ -44,8 +44,13 @@ def _hull(boxes: np.ndarray, matrix: np.ndarray) -> np.ndarray:
 def _valid(boxes: np.ndarray, limit: np.ndarray) -> np.ndarray:
     """Inside the canvas (within eps) and at least 1 px wide and tall."""
     inside = ((boxes >= -_EPS) & (boxes <= limit + _EPS)).all(axis=1)
-    big = ((boxes[:, 2] - boxes[:, 0]) >= 1.0) & ((boxes[:, 3] - boxes[:, 1]) >= 1.0)
+    big = ((boxes[:, 2] - boxes[:, 0]) >= 1.0 - _EPS) & ((boxes[:, 3] - boxes[:, 1]) >= 1.0 - _EPS)
     return inside & big
+
+
+def _clipped_area(boxes: np.ndarray, limit: np.ndarray) -> np.ndarray:
+    c = np.clip(boxes, 0.0, limit)
+    return np.clip(c[:, 2] - c[:, 0], 0.0, None) * np.clip(c[:, 3] - c[:, 1], 0.0, None)
 
 
 def affine_sample(sample: Sample, matrix: np.ndarray) -> Sample | None:
@@ -61,8 +66,12 @@ def affine_sample(sample: Sample, matrix: np.ndarray) -> Sample | None:
     out_valid = _valid(hull, limit)
     if (in_valid & ~out_valid & ~ignore).any():
         return None  # a valid box was pushed out of the canvas or collapsed by this transform
+    in_area = _clipped_area(boxes, limit)
     hull = np.clip(hull, 0.0, limit)
-    small = ((hull[:, 2] - hull[:, 0]) < 1.0) | ((hull[:, 3] - hull[:, 1]) < 1.0)
+    out_area = _clipped_area(hull, limit)
+    if (~in_valid & ~ignore & (in_area > _EPS) & (out_area <= _EPS)).any():
+        return None  # an invalid box that still overlapped the canvas lost all its visible area
+    small = ((hull[:, 2] - hull[:, 0]) < 1.0 - _EPS) | ((hull[:, 3] - hull[:, 1]) < 1.0 - _EPS)
     keep = ~(small & ignore)  # ignored degenerate boxes are dropped; non-ignored are always kept
     inverse = np.linalg.inv(matrix)
     with Image.fromarray(sample.rgb) as image:
