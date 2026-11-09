@@ -63,17 +63,29 @@ def prepare_dataset(
     return gates
 
 
+def _warn_shortfall(gates: dict) -> None:
+    if gates["reference_shortfall"]:
+        print(
+            f"WARNING: reference quota unmet for classes {gates['reference_shortfall']}",
+            file=sys.stderr,
+        )
+
+
 def _cmd_rdd(args: argparse.Namespace) -> None:
     from cua.datasets.rdd import RDD_CLASSES, load_rdd
 
     gates = prepare_dataset(
         "rdd", load_rdd(Path(args.splits)), RDD_CLASSES, Path(args.out), Path(args.images)
     )
-    if gates["reference_shortfall"]:
-        print(
-            f"WARNING: reference quota unmet for classes {gates['reference_shortfall']}",
-            file=sys.stderr,
-        )
+    _warn_shortfall(gates)
+
+
+def _cmd_voc(args: argparse.Namespace) -> None:
+    from cua.datasets.voc import VOC_CLASSES, load_voc
+
+    devkit = Path(args.devkit)
+    gates = prepare_dataset("voc", load_voc(devkit), VOC_CLASSES, Path(args.out), devkit)
+    _warn_shortfall(gates)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -84,6 +96,10 @@ def build_parser() -> argparse.ArgumentParser:
     rdd.add_argument("--images", required=True)
     rdd.add_argument("--out", required=True)
     rdd.set_defaults(func=_cmd_rdd)
+    voc = sub.add_parser("voc", help="prepare the PASCAL VOC dataset")
+    voc.add_argument("--devkit", required=True, help="VOCdevkit directory (image root)")
+    voc.add_argument("--out", required=True)
+    voc.set_defaults(func=_cmd_voc)
     return p
 
 
