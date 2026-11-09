@@ -1,7 +1,8 @@
 """Trainer tests: CPU, pretrained=False, size 320, augment=False, 6 tiny synthetic images."""
 import json
+import shutil
 import time
-from dataclasses import replace
+from dataclasses import asdict, replace
 
 import numpy as np
 import pytest
@@ -112,6 +113,7 @@ def test_deadline_stop_then_resume_continues(tiny_data):
 
 # ---- controller-requested tests ----
 
+@pytest.mark.slow  # about 50 s on CPU (6 epochs)
 def test_resume_is_equivalent_to_uninterrupted_run(tiny_data):
     data_root, runs_root = tiny_data
     cfg = tiny_cfg(epoch_lr=(1.0, 1.0, 0.1))
@@ -216,16 +218,165 @@ def test_init_run_requires_complete_and_matching_config(tiny_data):
     assert not (runs_root / "arm" / "last.pt").exists()
 
 
-def test_init_run_rejects_mismatched_architecture(tiny_data):
-    data_root, runs_root = tiny_data
-    warm_cfg = tiny_cfg(run_id="warm")
+def _fake_warm(runs_root, final_epoch=1, max_train_images=None, **overrides):
+    """A complete-looking warm run (config.json + COMPLETE.json only; checks fail before loading)."""
     run = runs_root / "warm"
     run.mkdir(parents=True)
-    (run / "config.json").write_text(json.dumps({"config": {**json.loads(json.dumps(
-        warm_cfg.__dict__)), "detector": "retinanet"}, "digest": "x"}))
-    (run / "COMPLETE.json").write_text("{}")
+    cfg = {**json.loads(json.dumps(asdict(tiny_cfg(run_id="warm")))), **overrides}
+    (run / "config.json").write_text(json.dumps({"config": cfg, "digest": "x",
+                                                 "max_train_images": max_train_images}))
+    (run / "COMPLETE.json").write_text(json.dumps({"final_epoch": final_epoch}))
+
+
+@pytest.mark.parametrize("warm,train_kw", [
+    (dict(detector="retinanet"), {}),
+    (dict(size=640), {}),
+    (dict(pretrained=True), {}),
+    (dict(seed=7), {}),
+    (dict(final_epoch=3), {}),          # arm first_epoch=2 must be warm final_epoch + 1
+    (dict(max_train_images=2), {}),     # warm used a subset, arm uses the full train set
+    ({}, dict(max_train_images=2)),
+])
+def test_init_run_rejects_mismatches(tiny_data, warm, train_kw):
+    data_root, runs_root = tiny_data
+    _fake_warm(runs_root, **warm)
     with pytest.raises(ValueError):
-        train(tiny_cfg(run_id="arm", init_run="warm", first_epoch=2), data_root, runs_root)
+        train(tiny_cfg(run_id="arm", init_run="warm", first_epoch=2), data_root, runs_root, **train_kw)
+    assert not (runs_root / "arm").exists()
+
+
+# ---- kill safety of best.pt ----
+
+class _Killed(Exception):
+    pass
+
+
+def _fake_macros(monkeypatch, values):
+    """Override val macro_ap50 with successive `values` (real metrics otherwise)."""
+    import cua.train as T
+    real = T.coco_metrics
+    it = iter(values)
+
+    def fake(*a, **k):
+        m = real(*a, **k)
+        m["macro_ap50"] = next(it)
+        return m
+
+    monkeypatch.setattr(T, "coco_metrics", fake)
+
+
+def _pendings(run):
+    return sorted(f.name for f in run.iterdir() if ".pending." in f.name)
+
+
+def test_kill_before_last_pt_discards_pending_best(tiny_data, monkeypatch):
+    import cua.train as T
+    data_root, runs_root = tiny_data
+    run = runs_root / "tiny"
+    cfg = tiny_cfg(epoch_lr=(1.0, 1.0), batch_size=1)
+    real_save = T._save
+
+    def killing_save(path, obj):
+        if path.name == "last.pt" and obj["epoch"] == 2:
+            raise _Killed
+        return real_save(path, obj)
+
+    monkeypatch.setattr(T, "_save", killing_save)
+    _fake_macros(monkeypatch, [10.0, 20.0, 5.0])  # run: e1=10, e2=20 (killed); resume: e2=5
+    with pytest.raises(_Killed):
+        train(cfg, data_root, runs_root, max_train_images=1)
+    assert _pendings(run) == ["best.pt.pending.e2", "val_predictions_best.json.pending.e2"]
+    best_preds_e1 = (run / "val_predictions_best.json").read_text()
+    monkeypatch.setattr(T, "_save", real_save)
+    assert train(cfg, data_root, runs_root, resume=True, max_train_images=1) == 0
+    assert _pendings(run) == []
+    hist = read_history(run)
+    assert [h["metrics"]["macro_ap50"] for h in hist] == [10.0, 5.0]
+    best = _state(run / "best.pt")
+    assert best["epoch"] == 1 and best["best_macro"] == 10.0 and best["best_epoch"] == 1
+    assert _state(run / "last.pt")["best_macro"] == 10.0
+    assert (run / "val_predictions_best.json").read_text() == best_preds_e1
+    assert json.loads((run / "COMPLETE.json").read_text())["best_macro_ap50"] == 10.0
+
+
+def test_kill_after_last_pt_before_promote_promotes_on_resume(tiny_data, monkeypatch):
+    import cua.train as T
+    data_root, runs_root = tiny_data
+    run = runs_root / "tiny"
+    cfg = tiny_cfg(epoch_lr=(1.0, 1.0), batch_size=1)
+    real_promote = T._promote_pending
+
+    def killing_promote(out, epoch):
+        if epoch == 2:
+            raise _Killed
+        return real_promote(out, epoch)
+
+    monkeypatch.setattr(T, "_promote_pending", killing_promote)
+    _fake_macros(monkeypatch, [10.0, 20.0])
+    with pytest.raises(_Killed):
+        train(cfg, data_root, runs_root, max_train_images=1)
+    assert _state(run / "best.pt")["epoch"] == 1
+    assert [h["epoch"] for h in read_history(run)] == [1]  # killed before the history write
+    monkeypatch.setattr(T, "_promote_pending", real_promote)
+    assert train(cfg, data_root, runs_root, resume=True, max_train_images=1) == 0
+    assert _pendings(run) == []
+    hist = read_history(run)  # epoch 2's row restored from last.pt
+    assert [h["epoch"] for h in hist] == [1, 2] and hist[1]["metrics"]["macro_ap50"] == 20.0
+    best = _state(run / "best.pt")
+    assert best["epoch"] == 2 and best["best_macro"] == 20.0
+    assert (run / "val_predictions_best.json").read_text() == (run / "val_predictions_last.json").read_text()
+
+
+# ---- own decisions ----
+
+def test_resume_restores_history_row_from_last_pt(tiny_data):
+    data_root, runs_root = tiny_data
+    cfg = tiny_cfg(epoch_lr=(1.0, 1.0), batch_size=1)
+    assert train(cfg, data_root, runs_root, deadline=after_first_epoch(), max_train_images=1) == 3
+    row1 = read_history(runs_root / "tiny")[0]
+    (runs_root / "tiny" / "history.jsonl").unlink()
+    assert train(cfg, data_root, runs_root, resume=True, max_train_images=1) == 0
+    hist = read_history(runs_root / "tiny")
+    assert [h["epoch"] for h in hist] == [1, 2] and hist[0] == row1
+
+
+def test_resume_refuses_changed_max_train_images(tiny_data):
+    data_root, runs_root = tiny_data
+    cfg = tiny_cfg()
+    run = runs_root / "tiny"
+    run.mkdir(parents=True)
+    (run / "config.json").write_text(json.dumps({"config": asdict(cfg), "digest": cfg.digest(),
+                                                 "max_train_images": None}))
+    (run / "last.pt").write_bytes(b"not reached")
+    with pytest.raises(RuntimeError, match="max_train_images"):
+        train(cfg, data_root, runs_root, resume=True, max_train_images=2)
+
+
+def test_resume_of_pre_checkpoint_dir_starts_fresh(tiny_data):
+    data_root, runs_root = tiny_data
+    cfg = tiny_cfg(batch_size=1)
+    run = runs_root / "tiny"
+    run.mkdir(parents=True)
+    (run / "config.json").write_text(json.dumps({"config": asdict(cfg), "digest": cfg.digest(),
+                                                 "max_train_images": 1}))
+    for name in ("best.pt", "val_predictions_last.json", "best.pt.pending.e1", "last.pt.tmp"):
+        (run / name).write_text("stale")
+    assert train(cfg, data_root, runs_root, resume=True, max_train_images=1) == 0
+    assert _state(run / "best.pt")["epoch"] == 1 and _pendings(run) == []
+    assert not (run / "last.pt.tmp").exists()
+    other = runs_root / "wrongdigest"
+    other.mkdir()
+    (other / "config.json").write_text(json.dumps({"digest": "different"}))
+    with pytest.raises(RuntimeError):
+        train(tiny_cfg(run_id="wrongdigest"), data_root, runs_root, resume=True)
+
+
+def test_augment_path_trains_at_640(tiny_data):
+    data_root, runs_root = tiny_data
+    shutil.copytree(data_root / "tiny", data_root / "voc")
+    cfg = tiny_cfg(dataset="voc", augment=True, size=640, edit="blur", batch_size=2)
+    assert train(cfg, data_root, runs_root, max_train_images=2) == 0
+    assert [h["epoch"] for h in read_history(runs_root / "tiny")] == [1]
 
 
 def test_edit_without_augment_raises(tiny_data):

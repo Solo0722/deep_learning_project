@@ -28,7 +28,9 @@ from cua.records import read_classes, read_records
 
 STOPPED_AT_DEADLINE = 3
 _PRE_CHECKPOINT_ARTEFACTS = {"config.json", "best.pt", "val_predictions_last.json", "val_predictions_best.json"}
-_INIT_MUST_MATCH = ("dataset", "detector", "size", "pretrained")
+_INIT_MUST_MATCH = ("dataset", "detector", "size", "pretrained", "seed")
+_PENDING = ".pending.e"  # best.pt.pending.e<epoch>, val_predictions_best.json.pending.e<epoch>
+_BEST_FILES = ("best.pt", "val_predictions_best.json")
 
 
 @dataclass(frozen=True)
@@ -114,16 +116,47 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError("first_epoch must be >= 1")
 
 
-def _check_init_run(cfg: TrainConfig, runs_root: Path) -> Path:
+def _check_init_run(cfg: TrainConfig, runs_root: Path, max_train_images: int | None) -> Path:
+    """The warm run must be complete, share architecture, dataset and seed, use the same training
+    subset, and end exactly at first_epoch - 1 (so keyed draws continue it)."""
     init_dir = runs_root / cfg.init_run
     if not (init_dir / "COMPLETE.json").exists():
         raise RuntimeError(f"init_run {cfg.init_run!r} is not complete: {init_dir / 'COMPLETE.json'} missing")
-    init_cfg = json.loads((init_dir / "config.json").read_text(encoding="utf-8"))["config"]
+    stored = json.loads((init_dir / "config.json").read_text(encoding="utf-8"))
+    init_cfg = stored["config"]
     for key in _INIT_MUST_MATCH:
         if init_cfg.get(key) != getattr(cfg, key):
             raise ValueError(f"init_run {cfg.init_run!r} has {key}={init_cfg.get(key)!r}, "
                              f"this run has {getattr(cfg, key)!r}")
+    if stored.get("max_train_images") != max_train_images:
+        raise ValueError(f"init_run {cfg.init_run!r} used max_train_images={stored.get('max_train_images')}, "
+                         f"this run uses {max_train_images}")
+    final = json.loads((init_dir / "COMPLETE.json").read_text(encoding="utf-8")).get("final_epoch")
+    if final is None or cfg.first_epoch != int(final) + 1:
+        raise ValueError(f"first_epoch={cfg.first_epoch} must be init_run final_epoch + 1 (final_epoch={final})")
     return init_dir / "last.pt"
+
+
+def _pending_path(out: Path, name: str, epoch: int) -> Path:
+    return out / f"{name}{_PENDING}{epoch}"
+
+
+def _promote_pending(out: Path, epoch: int) -> None:
+    """Move epoch's pending best files into place (each os.replace is atomic; idempotent per file)."""
+    for name in _BEST_FILES:
+        pending = _pending_path(out, name, epoch)
+        if pending.exists():
+            os.replace(pending, out / name)
+
+
+def _settle_pending(out: Path, ckpt_epoch: int, best_epoch: int | None) -> None:
+    """On resume: promote pending best files of the checkpointed epoch if it was the best epoch;
+    delete every other pending file (from an epoch that last.pt does not contain)."""
+    if best_epoch is not None and best_epoch == ckpt_epoch:
+        _promote_pending(out, ckpt_epoch)
+    for f in out.iterdir():
+        if _PENDING in f.name:
+            f.unlink()
 
 
 def _prepare_fresh_dir(out: Path, digest: str) -> bool:
@@ -137,7 +170,8 @@ def _prepare_fresh_dir(out: Path, digest: str) -> bool:
     names = {f.name for f in files}
     if any(f.is_dir() for f in files) or "config.json" not in names:
         return False
-    if any(n not in _PRE_CHECKPOINT_ARTEFACTS and not n.endswith(".tmp") for n in names):
+    if any(n not in _PRE_CHECKPOINT_ARTEFACTS and not n.endswith(".tmp") and _PENDING not in n
+           for n in names):
         return False
     if json.loads((out / "config.json").read_text(encoding="utf-8")).get("digest") != digest:
         return False
@@ -202,7 +236,7 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     out = runs_root / cfg.run_id
     digest = cfg.digest()
     transform = ArmTransform(cfg.dataset, cfg.edit, cfg.seed, cfg.edit_p) if cfg.augment else None
-    init_ckpt = _check_init_run(cfg, runs_root) if cfg.init_run is not None else None
+    init_ckpt = _check_init_run(cfg, runs_root, max_train_images) if cfg.init_run is not None else None
 
     # Refusal / resume decision (before anything is written).
     ckpt_path = out / "last.pt"
@@ -246,7 +280,7 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
 
     out.mkdir(parents=True, exist_ok=True)
     warm_up = cfg.init_run is None
-    global_iter, best = 0, -math.inf
+    global_iter, best, best_epoch = 0, -math.inf, None
     start = cfg.first_epoch
     history: list[dict] = []
     if resume_ckpt:
@@ -257,6 +291,8 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         optimizer.load_state_dict(ck["optimizer"])
         scaler.load_state_dict(ck["scaler"])
         global_iter, best, start = int(ck["global_iter"]), float(ck["best_macro"]), int(ck["epoch"]) + 1
+        best_epoch = None if ck["best_epoch"] is None else int(ck["best_epoch"])
+        _settle_pending(out, int(ck["epoch"]), best_epoch)
         # last.pt is authoritative: drop history beyond it, restore its row if the kill came first.
         history = [h for h in read_history(out) if h["epoch"] < int(ck["epoch"])] + [ck["history_row"]]
         _write_history(out / "history.jsonl", history)
@@ -286,22 +322,27 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         losses, global_iter = _train_one_epoch(model, optimizer, scaler, loader, device, use_amp, cfg,
                                                epoch, lr_mult, global_iter, warm_up)
 
-        preds = predict(model, val_ds, device, batch_size=cfg.batch_size)
+        preds = predict(model, val_ds, device, batch_size=2 * cfg.batch_size)
         metrics = coco_metrics(val_recs, preds, classes)
         score = -math.inf if metrics["macro_ap50"] is None else float(metrics["macro_ap50"])
         preds_json = _predictions_json(preds)
         _write_json(out / "val_predictions_last.json", preds_json)
-        improved = score > best or not (out / "best.pt").exists()
-        best = max(best, score)
+        improved = score > best or best_epoch is None
+        if improved:
+            best, best_epoch = score, epoch
         row = {"epoch": epoch, "lr_mult": lr_mult, "losses": losses, "metrics": metrics,
                "seconds": time.monotonic() - t0}
         state = {"model": model.state_dict(), "optimizer": optimizer.state_dict(),
                  "scaler": scaler.state_dict(), "epoch": epoch, "global_iter": global_iter,
-                 "cfg_digest": digest, "best_macro": best, "history_row": row}
+                 "cfg_digest": digest, "best_macro": best, "best_epoch": best_epoch, "history_row": row}
+        # Kill safety: best candidates are staged as pending files, committed by last.pt (which records
+        # best_epoch), then promoted. Resume promotes or discards pendings according to last.pt.
         if improved:
-            _save(out / "best.pt", state)
-            _write_json(out / "val_predictions_best.json", preds_json)
+            _save(_pending_path(out, "best.pt", epoch), state)
+            _write_json(_pending_path(out, "val_predictions_best.json", epoch), preds_json)
         _save(ckpt_path, state)
+        if improved:
+            _promote_pending(out, epoch)
         history.append(row)
         _write_history(out / "history.jsonl", history)
         prev_seconds = row["seconds"]
