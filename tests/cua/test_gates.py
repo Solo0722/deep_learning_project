@@ -53,3 +53,20 @@ def test_prepare_dataset_writes_outputs(synthetic_train, mk, tmp_path):
     assert json.loads((out / "source.json").read_text())["image_root"]
     assert len(read_records(out / "train.jsonl")) + len(read_records(out / "reference.jsonl")) == 1200
     assert gates["cooccurrence"] == json.loads((out / "gates.json").read_text())["cooccurrence"]
+
+
+def test_reference_shortfall_reported(synthetic_train, mk, tmp_path):
+    train = synthetic_train(400, 3, 4, seed=1)
+    train = [r for r in train if 3 not in r.class_set()]
+    # exactly five class-3 objects remain
+    train += [mk(image=f"img/rare{i}.jpg", labels=[0, 3], group=f"rare{i}") for i in range(5)]
+    splits = {"train": train, "val": [mk(labels=[0, 1])], "test": [mk(labels=[1, 2])]}
+    gates = prepare_dataset("toy", splits, ("a", "b", "c", "d"), tmp_path / "o", tmp_path,
+                            n_target=100, min_per_class=20)
+    assert gates["reference_shortfall"] == ["d"]
+    assert json.loads((tmp_path / "o" / "gates.json").read_text())["reference_shortfall"] == ["d"]
+
+
+def test_reference_split_seed_changes_result(synthetic_train):
+    train = synthetic_train(400, 3, 4, seed=1)
+    assert reference_split(train, 4, 100, 20, seed=0)[1] != reference_split(train, 4, 100, 20, seed=1)[1]

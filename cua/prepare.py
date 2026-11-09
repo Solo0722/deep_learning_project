@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from cua.gates import GateFailure, class_box_stats, cooccurrence_rate, reference_split
@@ -15,14 +16,24 @@ def _class_totals(records: list[Record], n_classes: int) -> list[int]:
     return [s["count"] for s in class_box_stats(records, n_classes)]
 
 
-def prepare_dataset(name: str, splits: dict, classes: tuple, out_dir: Path, image_root: Path) -> dict:
+def prepare_dataset(
+    name: str,
+    splits: dict,
+    classes: tuple,
+    out_dir: Path,
+    image_root: Path,
+    *,
+    n_target: int = 1000,
+    min_per_class: int = 100,
+    seed: int = 0,
+) -> dict:
     """Run data gates, carve the reference split, and write the dataset directory."""
     n_classes = len(classes)
     train = splits["train"]
     co = cooccurrence_rate(train)
     if co < MIN_COOCCURRENCE:
         raise GateFailure(f"{name}: co-occurrence {co:.3f} < {MIN_COOCCURRENCE}")
-    rest, ref = reference_split(train, n_classes)
+    rest, ref = reference_split(train, n_classes, n_target, min_per_class, seed)
 
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -34,11 +45,13 @@ def prepare_dataset(name: str, splits: dict, classes: tuple, out_dir: Path, imag
     (out_dir / "source.json").write_text(
         json.dumps({"image_root": str(Path(image_root))}), encoding="utf-8"
     )
+    ref_counts = _class_totals(ref, n_classes)
     gates = {
         "dataset": name,
         "cooccurrence": co,
         "class_stats": class_box_stats(train, n_classes),
-        "reference_class_counts": _class_totals(ref, n_classes),
+        "reference_class_counts": ref_counts,
+        "reference_shortfall": [classes[c] for c in range(n_classes) if ref_counts[c] < min_per_class],
         "split_sizes": {
             "train": len(rest),
             "reference": len(ref),
@@ -53,7 +66,14 @@ def prepare_dataset(name: str, splits: dict, classes: tuple, out_dir: Path, imag
 def _cmd_rdd(args: argparse.Namespace) -> None:
     from cua.datasets.rdd import RDD_CLASSES, load_rdd
 
-    prepare_dataset("rdd", load_rdd(Path(args.splits)), RDD_CLASSES, Path(args.out), Path(args.images))
+    gates = prepare_dataset(
+        "rdd", load_rdd(Path(args.splits)), RDD_CLASSES, Path(args.out), Path(args.images)
+    )
+    if gates["reference_shortfall"]:
+        print(
+            f"WARNING: reference quota unmet for classes {gates['reference_shortfall']}",
+            file=sys.stderr,
+        )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -72,7 +92,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args.func(args)
     except GateFailure as e:
-        print(f"GATE FAILURE: {e}")
+        print(f"GATE FAILURE: {e}", file=sys.stderr)
         return 1
     return 0
 
