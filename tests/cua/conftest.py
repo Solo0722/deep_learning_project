@@ -46,6 +46,19 @@ def _brighten(img, factor):
     return np.clip(np.rint(img.astype(np.float64) * factor), 0, 255).astype(np.uint8)
 
 
+def _smooth_image(seed, size=(352, 500)):
+    """Structured image: coarse noise upscaled, so its 9x8 dhash is stable under mild changes."""
+    from PIL import Image
+
+    small = Image.fromarray(_noise_image(seed, size=(12, 16)))
+    return np.asarray(small.resize(size, Image.Resampling.BICUBIC))
+
+
+@pytest.fixture
+def smooth_image():
+    return _smooth_image
+
+
 @pytest.fixture
 def noise_image():
     return _noise_image

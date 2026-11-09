@@ -22,6 +22,19 @@ def dhash(rgb: np.ndarray) -> int:
     return value
 
 
+def hash_records(root, records) -> list[int]:
+    """dhash of each record's image under `root`; an unreadable image raises ValueError naming it."""
+    from cua.image import load_rgb
+
+    out = []
+    for r in records:
+        try:
+            out.append(dhash(load_rgb(root, r)))
+        except (OSError, ValueError) as e:
+            raise ValueError(f"cannot read image {r.image} under {root}: {e}") from e
+    return out
+
+
 def _popcount_table(x: np.ndarray) -> np.ndarray:
     """Per-element bit count of a uint64 array via a byte lookup table (numpy < 2.0 fallback)."""
     x = np.ascontiguousarray(x, dtype=np.uint64)

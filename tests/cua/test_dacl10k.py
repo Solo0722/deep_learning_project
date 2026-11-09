@@ -5,7 +5,7 @@ import pytest
 from PIL import Image
 
 from cua.datasets.dacl10k import DACL_DAMAGE, load_dacl10k, parse_dacl_json
-from cua.gates import retained_classes
+from cua.gates import GateFailure, retained_classes
 
 FIX = Path(__file__).parent / "fixtures" / "dacl10k"
 
@@ -126,3 +126,68 @@ def test_dacl10k_cli_passes_exclusions_into_extra(tmp_path, monkeypatch, noise_i
     assert extra["dacl10k_retained_classes"] == ["Crack"]
     assert "Rust" in extra["dacl10k_excluded_classes"]
     assert set(extra["dacl10k_excluded_classes"]["Rust"]) == {"count", "large_fraction"}
+
+
+def test_load_dacl10k_different_seeds_assign_groups_differently(tmp_path, noise_image, brighten):
+    _write_root(tmp_path, noise_image, brighten)
+
+    def assignment(seed):
+        splits, _ = load_dacl10k(tmp_path, seed=seed)
+        return {r.group: s for s, rs in splits.items() for r in rs}
+
+    assert assignment(0) != assignment(5)
+
+
+def _write_remap_root(root: Path, noise_image):
+    """Crack (excluded, 1 box/img) sits before Rust (30/img) and Spalling (30/img), both retained."""
+    (root / "annotations" / "train").mkdir(parents=True)
+    (root / "images" / "train").mkdir(parents=True)
+    shapes = (
+        [{"label": "Rust", "points": [[i, 2], [i + 5, 2], [i + 5, 9], [i, 9]]} for i in range(30)]
+        + [{"label": "Spalling", "points": [[i, 20], [i + 7, 20], [i + 7, 30], [i, 30]]} for i in range(30)]
+        + [{"label": "Crack", "points": [[50, 50], [60, 50], [60, 60], [50, 60]]}]
+    )
+    for k in range(40):
+        img = noise_image(seed=k)
+        Image.fromarray(img).save(root / "images" / "train" / f"im{k:02d}.png")
+        (root / "annotations" / "train" / f"im{k:02d}.json").write_text(json.dumps({
+            "imageWidth": img.shape[1], "imageHeight": img.shape[0],
+            "imagePath": f"im{k:02d}.png", "shapes": shapes}), encoding="utf-8")
+
+
+def test_labels_are_reindexed_to_retained_classes_with_boxes_paired(tmp_path, noise_image):
+    _write_remap_root(tmp_path, noise_image)
+    splits, retained = load_dacl10k(tmp_path, seed=0)
+    assert retained == ("Rust", "Spalling")          # Crack (index 0) excluded: indices shift
+    everything = splits["train"] + splits["val"] + splits["test"]
+    assert len(everything) == 40
+    for r in everything:
+        assert len(r.boxes) == 60 == len(r.labels) == len(r.ignore)
+        rust = r.boxes[:, 1] == 2.0
+        spall = r.boxes[:, 1] == 20.0
+        assert rust.sum() == 30 and spall.sum() == 30
+        assert (r.labels[rust] == 0).all()           # Rust was 4, now 0
+        assert (r.labels[spall] == 1).all()          # Spalling was 8, now 1
+        assert not (r.boxes[:, 1] == 50.0).any()     # the Crack box is gone
+
+
+def test_gate_failure_when_no_class_is_retained(tmp_path, noise_image):
+    (tmp_path / "annotations" / "train").mkdir(parents=True)
+    (tmp_path / "images" / "train").mkdir(parents=True)
+    img = noise_image(seed=0)
+    Image.fromarray(img).save(tmp_path / "images" / "train" / "a.png")
+    (tmp_path / "annotations" / "train" / "a.json").write_text(json.dumps({
+        "imageWidth": 64, "imageHeight": 48, "imagePath": "a.png",
+        "shapes": [{"label": "Crack", "points": [[1, 1], [9, 1], [9, 9]]}]}), encoding="utf-8")
+    with pytest.raises(GateFailure, match="no damage class"):
+        load_dacl10k(tmp_path, seed=0)
+
+
+def test_load_dacl10k_unreadable_image_error_names_path(tmp_path, noise_image):
+    (tmp_path / "annotations" / "train").mkdir(parents=True)
+    (tmp_path / "images" / "train").mkdir(parents=True)
+    (tmp_path / "images" / "train" / "bad.png").write_bytes(b"garbage")
+    (tmp_path / "annotations" / "train" / "bad.json").write_text(json.dumps({
+        "imageWidth": 64, "imageHeight": 48, "imagePath": "bad.png", "shapes": []}), encoding="utf-8")
+    with pytest.raises(ValueError, match="bad.png"):
+        load_dacl10k(tmp_path, seed=0)

@@ -84,10 +84,9 @@ def _cmd_rdd(args: argparse.Namespace) -> None:
 
 def _voc_duplicate_counts(splits: dict, devkit: Path) -> dict:
     """Near-duplicate hash pairs between official VOC splits (reported, never regrouped)."""
-    from cua.dedup import cross_split_duplicates, dhash
-    from cua.image import load_rgb
+    from cua.dedup import cross_split_duplicates, hash_records
 
-    h = {k: [dhash(load_rgb(devkit, r)) for r in splits[k]] for k in ("train", "val", "test")}
+    h = {k: hash_records(devkit, splits[k]) for k in ("train", "val", "test")}
     return {
         "train_vs_test": cross_split_duplicates(h["train"], h["test"]),
         "val_vs_test": cross_split_duplicates(h["val"], h["test"]),

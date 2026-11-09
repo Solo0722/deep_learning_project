@@ -10,11 +10,19 @@ def test_dhash_is_64_bit_int(noise_image):
     assert isinstance(h, int) and 0 <= h < 2**64
 
 
-def test_dhash_groups_near_duplicates(noise_image, brighten):
-    img = noise_image(seed=0)
+def test_dhash_groups_near_duplicates(smooth_image, brighten):
+    img = smooth_image(seed=0)
     shifted = brighten(img, 1.05)
-    g = duplicate_groups([dhash(img), dhash(shifted), dhash(noise_image(seed=9))])
+    assert bin(dhash(img) ^ dhash(shifted)).count("1") < 4  # comfortably inside max_distance
+    g = duplicate_groups([dhash(img), dhash(shifted), dhash(smooth_image(seed=9))])
     assert g[0] == g[1] != g[2]
+
+
+def test_hash_records_names_unreadable_image(tmp_path, mk):
+    (tmp_path / "img").mkdir()
+    (tmp_path / "img" / "a.jpg").write_bytes(b"not an image")
+    with pytest.raises(ValueError, match="img/a.jpg"):
+        dedup.hash_records(tmp_path, [mk(image="img/a.jpg")])
 
 
 def test_brighten_clips_to_uint8(brighten):

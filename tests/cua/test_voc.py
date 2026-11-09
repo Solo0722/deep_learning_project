@@ -235,7 +235,7 @@ def test_voc_cli_subcommand_parses_devkit_and_out(tmp_path):
     assert args.out == str(tmp_path / "o")
 
 
-def test_voc_cli_records_cross_split_duplicates(tmp_path, monkeypatch, noise_image, brighten):
+def test_voc_cli_records_cross_split_duplicates(tmp_path, monkeypatch, smooth_image, brighten):
     from PIL import Image
 
     import cua.prepare as prepare
@@ -243,18 +243,14 @@ def test_voc_cli_records_cross_split_duplicates(tmp_path, monkeypatch, noise_ima
     devkit = _write_devkit(tmp_path / "VOCdevkit")
     ids = {"2007": ["000001", "000002", "000003", "000004", "000005", "000006"],
            "2012": ["2012_000001", "2012_000002", "2012_000003", "2012_000004"]}
-    def smooth(s):  # structured image: coarse noise upscaled, so the 9x8 hash is stable
-        small = Image.fromarray(noise_image(seed=s, size=(12, 16)))
-        return np.asarray(small.resize((352, 500), Image.Resampling.BICUBIC))
-
     seed = 0
     for year, names in ids.items():
         (devkit / f"VOC{year}" / "JPEGImages").mkdir(parents=True, exist_ok=True)
         for name in names:
             seed += 1
-            img = smooth(seed)
+            img = smooth_image(seed)
             if name == "000005":  # a test image that duplicates trainval image 000001 (seed 1)
-                img = brighten(smooth(1), 1.05)
+                img = brighten(smooth_image(1), 1.05)
             Image.fromarray(img).save(
                 devkit / f"VOC{year}" / "JPEGImages" / f"{name}.jpg", quality=95
             )

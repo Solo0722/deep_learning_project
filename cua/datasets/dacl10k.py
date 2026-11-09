@@ -8,9 +8,8 @@ from pathlib import Path
 
 import numpy as np
 
-from cua.dedup import dhash, duplicate_groups
-from cua.gates import class_box_stats, retained_classes
-from cua.image import load_rgb
+from cua.dedup import duplicate_groups, hash_records
+from cua.gates import GateFailure, class_box_stats, retained_classes
 from cua.records import Record
 
 DACL_DAMAGE = (
@@ -116,7 +115,7 @@ def load_dacl10k(
         rec = parse_dacl_json(ann, DACL_DAMAGE, counts=counts)
         image = f"images/{ann.parent.name}/{Path(rec.image).name}"
         records.append(dataclasses.replace(rec, image=image))
-    hashes = [dhash(load_rgb(root, r)) for r in records]
+    hashes = hash_records(root, records)
     gids = duplicate_groups(hashes)
     records = [dataclasses.replace(r, group=f"dup-{g}") for r, g in zip(records, gids)]
 
@@ -126,6 +125,11 @@ def load_dacl10k(
 
     train_stats = class_box_stats(splits["train"], len(DACL_DAMAGE))
     retained = retained_classes(DACL_DAMAGE, train_stats)
+    if not retained:
+        raise GateFailure(
+            "dacl10k: no damage class passed the exclusion gate "
+            f"(train stats: {dict(zip(DACL_DAMAGE, train_stats))})"
+        )
     remap = {DACL_DAMAGE.index(c): i for i, c in enumerate(retained)}
     for name, recs in splits.items():
         out = []
