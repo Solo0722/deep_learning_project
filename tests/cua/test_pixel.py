@@ -1,5 +1,6 @@
 import numpy as np
 import pytest
+from PIL import Image
 
 from cua.augment.pixel import (
     PIXEL_EDITS, blur, brightness, contrast, hue, jpeg, noise, saturation, sharpen,
@@ -61,12 +62,98 @@ def test_constant_image_is_unchanged_by_contrast_saturation_sharpen_blur(edit):
     assert np.array_equal(out.rgb, s.rgb)
 
 
-def test_jpeg_quality_draw_in_range():
+class SpyRng:
+    """Records each draw and returns the low or high endpoint of the requested range."""
+
+    def __init__(self, end):
+        self.end = end
+        self.calls = []
+
+    def uniform(self, lo, hi):
+        self.calls.append(("uniform", lo, hi))
+        return lo if self.end == "low" else hi
+
+    def integers(self, lo, hi):
+        self.calls.append(("integers", lo, hi))
+        return lo if self.end == "low" else hi - 1
+
+    def normal(self, loc, scale, size=None):
+        self.calls.append(("normal", loc, scale))
+        return np.zeros(size)
+
+
+SPY_CASES = [
+    (brightness, ("uniform", 0.7, 1.3)),
+    (contrast, ("uniform", 0.7, 1.3)),
+    (saturation, ("uniform", 0.5, 1.5)),
+    (hue, ("uniform", -0.05, 0.05)),
+    (blur, ("uniform", 0.5, 1.5)),
+    (sharpen, ("uniform", 1.5, 2.5)),
+    (jpeg, ("integers", 30, 61)),
+    (noise, ("normal", 0.0, 0.03 * 255)),
+]
+
+
+@pytest.mark.parametrize("end", ["low", "high"])
+@pytest.mark.parametrize("edit,expected", SPY_CASES, ids=[c[0].__name__ for c in SPY_CASES])
+def test_strength_draws_match_global_ranges(edit, expected, end):
+    rng = SpyRng(end)
+    out = edit(toy_sample(), rng)  # both endpoints must run without error
+    assert out.rgb.shape == (640, 640, 3)
+    assert len(rng.calls) == 1
+    kind, *args = rng.calls[0]
+    assert kind == expected[0]
+    assert args == pytest.approx(list(expected[1:]))
+
+
+def test_brightness_endpoints_apply_drawn_factor():
     s = toy_sample(fill=100)
-    # Constant images compress losslessly-ish; check the output stays close to the input.
-    for i in range(20):
-        out = jpeg(s, np.random.default_rng(i))
-        assert np.abs(out.rgb.astype(int) - 100).max() <= 3
+    low = brightness(s, SpyRng("low")).rgb[0, 0, 0]
+    high = brightness(s, SpyRng("high")).rgb[0, 0, 0]
+    assert int(low) == 70 and int(high) == 130
+
+
+def test_jpeg_quality_stays_in_range_and_covers_endpoints(monkeypatch):
+    captured = []
+    real_save = Image.Image.save
+
+    def spy_save(self, fp, format=None, **params):
+        if format == "JPEG":
+            captured.append(params["quality"])
+        return real_save(self, fp, format=format, **params)
+
+    monkeypatch.setattr(Image.Image, "save", spy_save)
+    s = toy_sample(fill=100)
+    for seed in range(500):
+        jpeg(s, np.random.default_rng(seed))
+    assert len(captured) == 500
+    assert min(captured) >= 30 and max(captured) <= 60
+    assert 30 in captured and 60 in captured
+
+
+def test_noise_std_matches_sigma():
+    out = noise(toy_sample(fill=128), np.random.default_rng(0))
+    deviation = out.rgb.astype(np.float64) - 128.0
+    assert abs(float(deviation.std()) - 0.03 * 255) < 0.15
+
+
+def test_hue_endpoint_wraps_pure_red_to_expected_hsv():
+    red = toy_sample(fill=0)
+    red.rgb[...] = np.array([255, 0, 0], dtype=np.uint8)
+    out = hue(red, SpyRng("low"))  # shift = round(-0.05 * 255) = -13; H 0 -> 243
+    expected = np.asarray(Image.new("HSV", (1, 1), (243, 255, 255)).convert("RGB"), dtype=np.uint8)[0, 0]
+    assert np.all(out.rgb == expected)
+
+
+def test_hue_mixed_image_keeps_grey_and_changes_colour():
+    s = toy_sample(fill=128)
+    s.rgb[:, 320:] = np.array([200, 50, 80], dtype=np.uint8)
+    grey_half = s.rgb[:, :320].copy()
+    colour_half = s.rgb[:, 320:].copy()
+    for seed in range(10):
+        out = hue(s, np.random.default_rng(seed))
+        assert np.array_equal(out.rgb[:, :320], grey_half)
+        assert (out.rgb[:, 320:] != colour_half).any()
 
 
 def test_pixel_edits_registry():

@@ -55,7 +55,8 @@ def hue(sample: Sample, rng: np.random.Generator) -> Sample:
             arr = np.asarray(hsv, dtype=np.uint8).copy()
         grey = arr[..., 1] == 0
         arr[..., 0] = ((arr[..., 0].astype(np.int64) + shift) % 256).astype(np.uint8)
-        with Image.fromarray(arr, "HSV") as shifted:
+        height, width = arr.shape[:2]
+        with Image.frombytes("HSV", (width, height), arr.tobytes()) as shifted:
             out = np.asarray(shifted.convert("RGB"), dtype=np.uint8).copy()
     out[grey] = sample.rgb[grey]
     return _with_rgb(sample, out)
