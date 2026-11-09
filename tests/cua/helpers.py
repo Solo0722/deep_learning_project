@@ -106,3 +106,22 @@ def problem_where_class_2_has_no_gt():
         out.append(_pred(p["image_index"], boxes, np.concatenate([p["scores"], rng.uniform(0, 1, extra)]),
                          np.concatenate([p["labels"], np.full(extra, 2)])))
     return records, out
+
+
+def synthetic_deltas(edits, classes, seeds, conflict_edit, effect, noise, seed,
+                     dataset="rdd", detector="fasterrcnn"):
+    """Delta rows for one dataset/detector pair. The conflict edit helps half the classes (+effect) and hurts
+    the other half (-effect); every delta gets Gaussian noise."""
+    from cua.augment.menu import MENU_ORDER
+
+    rng = np.random.default_rng(seed)
+    rows = []
+    for s in range(seeds):
+        for ei, e in enumerate(MENU_ORDER[:edits]):
+            for c in range(classes):
+                mu = 0.0
+                if conflict_edit is not None and ei == conflict_edit:
+                    mu = effect if c < classes // 2 else -effect
+                rows.append({"dataset": dataset, "detector": detector, "seed": s, "edit": e,
+                             "cls": f"c{c}", "delta": float(mu + rng.normal(0.0, noise))})
+    return rows
