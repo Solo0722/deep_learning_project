@@ -42,8 +42,8 @@ Add `--smoke` (64 training images, 1 h walltime, deadline 2400 s, runs under `cu
 python -m cua.ccast.make_jobs --family part_a --dataset rdd --detector fasterrcnn --seeds 0 --smoke --out jobs/smoke
 bash jobs/smoke/submit.sh
 ```
-Smoke applies to the warm run and all arms alike (the trainer requires them to match). Check the logs, then delete
-nothing: real runs go to `cua_runs`.
+Smoke applies to the warm run and all arms alike (the trainer requires them to match). Check the logs; smoke output stays in
+`cua_runs_smoke` and never touches `cua_runs`. Use a separate `--out` directory for smoke jobs (make_jobs refuses to mix them).
 
 ## Submit order
 
@@ -66,5 +66,9 @@ Arms that were already held with a failed dependency can be removed with `qdel`.
 ```
 find $P/cua_runs -name COMPLETE.json | wc -l
 ```
-Expected count: Part A has 129 runs per detector (3 seeds x (warm + base + valid edits): 42 rdd + 42 voc + 45 dacl10k),
-so 258 for both detectors, plus the budget and proxy runs. Logs: `tail $P/cua_runs/_logs/<run_id>.log`.
+Expected COMPLETE.json counts:
+- Part A: 129 per detector (3 seeds x (warm + base + valid edits): 42 rdd + 42 voc + 45 dacl10k), 258 for both.
+- Budget: 3 per detector (one per dataset).
+- Proxy: 1 + the number of chosen edits (the base run plus one per edit).
+
+ Logs: `tail $P/cua_runs/_logs/<run_id>.log`.

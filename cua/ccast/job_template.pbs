@@ -14,9 +14,13 @@ set -uo pipefail
 
 cd ${project}/cua_code || exit 1
 
-source /mmfs1/apps/pyenvs/anaconda3-2022.05/etc/profile.d/conda.sh
-conda activate pytorch
-source ${project}/.venvs/rdd_detection_v1/bin/activate
+# conda/venv activate scripts reference unset variables, so nounset is off while activating.
+set +u
+source /mmfs1/apps/pyenvs/anaconda3-2022.05/etc/profile.d/conda.sh || { echo "conda.sh failed"; exit 1; }
+conda activate pytorch || { echo "conda activate pytorch failed"; exit 1; }
+source ${project}/.venvs/rdd_detection_v1/bin/activate || { echo "venv activate failed"; exit 1; }
+set -u
+python -c "import torch, torchvision, pycocotools; print(torch.__version__, torchvision.__version__)" || exit 1
 
 echo "run_id: ${run_id}"
 echo "started: $$(date -u +%Y-%m-%dT%H:%M:%SZ) on $$(hostname)"

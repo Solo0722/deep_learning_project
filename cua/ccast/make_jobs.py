@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import sys
 from pathlib import Path
 from string import Template
 
@@ -51,6 +52,17 @@ def make_jobs(specs: list[TrainConfig], out_dir: Path, project: str = DEFAULT_PR
         raise ValueError(f"make_jobs needs a single (dataset, detector) pair, got {sorted(pairs)}")
     out_dir = Path(out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
+    mode = "smoke" if smoke else "real"
+    marker = out_dir / ".mode"
+    if marker.exists():
+        existing = marker.read_text(encoding="utf-8").strip()
+    else:
+        existing = mode if not any(out_dir.glob("*.pbs")) else None
+    if existing is not None and existing != mode:
+        raise ValueError(f"{out_dir} already holds {existing} jobs; use a different --out for {mode} jobs")
+    if existing is None:
+        raise ValueError(f"{out_dir} holds .pbs files of unknown mode; use an empty --out")
+    _write(marker, mode + "\n")
     template = Template(_TEMPLATE.read_text(encoding="utf-8"))
     project = project.rstrip("/")
     runs_root = f"{project}/{'cua_runs_smoke' if smoke else 'cua_runs'}"
@@ -121,6 +133,10 @@ def main(argv: list[str] | None = None) -> int:
             if a.epochs is None:
                 ap.error("--epochs is required for the proxy family")
             specs = proxy_specs(_csv(a.edits), a.epochs)
+        for label, value in (("--out", a.out.resolve().as_posix()), ("--project", a.project)):
+            if not value.startswith("/"):
+                print(f"warning: {label} {value!r} is not a POSIX absolute path; these jobs must be generated "
+                      f"on the cluster to be submittable", file=sys.stderr)
         submit = make_jobs(specs, a.out, project=a.project, smoke=a.smoke)
     except ValueError as e:
         ap.error(str(e))

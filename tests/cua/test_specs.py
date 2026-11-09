@@ -158,7 +158,8 @@ def test_every_arm_continues_its_warm_run(dataset, detector):
     assert len(arms) == 3 * (1 + len(valid_menu(dataset)))
     for arm in arms:
         warm = by_id[arm.init_run]
-        assert (warm.dataset, warm.detector, warm.size, warm.pretrained, warm.seed) ==                (arm.dataset, arm.detector, arm.size, arm.pretrained, arm.seed)
+        assert ((warm.dataset, warm.detector, warm.size, warm.pretrained, warm.seed)
+                == (arm.dataset, arm.detector, arm.size, arm.pretrained, arm.seed))
         assert arm.first_epoch == warm.first_epoch + len(warm.epoch_lr)
 
 

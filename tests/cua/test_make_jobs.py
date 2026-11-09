@@ -176,3 +176,33 @@ def test_cli_families(tmp_path):
     with pytest.raises(SystemExit):
         cli_main(["--family", "proxy", "--dataset", "voc", "--detector", "fasterrcnn", "--out", str(out),
                   "--epochs", "10", "--edits", "blur"])
+
+
+def test_activation_runs_without_nounset(tmp_path):
+    make_jobs(budget_specs("rdd", "fasterrcnn"), tmp_path)
+    job = (tmp_path / "budget-rdd-fasterrcnn-e20.pbs").read_text()
+    off, on = job.index("\nset +u\n"), job.index("\nset -u\n")
+    for needle in ("conda.sh", "conda activate pytorch", "rdd_detection_v1/bin/activate"):
+        assert off < job.index(needle) < on
+        line = next(ln for ln in job.splitlines() if needle in ln and not ln.startswith("#"))
+        assert "|| {" in line and "exit 1" in line
+    assert "import torch, torchvision, pycocotools" in job[on:]
+
+
+def test_smoke_and_real_cannot_share_out_dir(tmp_path):
+    specs = budget_specs("rdd", "fasterrcnn")
+    make_jobs(specs, tmp_path, smoke=True)
+    with pytest.raises(ValueError):
+        make_jobs(specs, tmp_path)
+    make_jobs(specs, tmp_path, smoke=True)  # same mode may be regenerated
+    other = tmp_path / "other"
+    make_jobs(specs, other)
+    with pytest.raises(ValueError):
+        make_jobs(specs, other, smoke=True)
+
+
+def test_cli_warns_on_non_posix_paths(tmp_path, capsys):
+    cli_main(["--family", "budget", "--dataset", "rdd", "--detector", "fasterrcnn", "--out", str(tmp_path / "w"),
+              "--project", "C:/proj"])
+    err = capsys.readouterr().err
+    assert "cluster" in err and "--project" in err
