@@ -239,7 +239,7 @@ Each unit is tested independently (box correctness for every edit, policy sampli
 | dacl10k polygon→box conversion gives odd boxes | Exclusion rule in §3, documented |
 | Short-run proxy disagrees with full runs | Proxy check; fallback rule in §7 |
 | Compute overrun | Priority order in §12 |
-| Course scope (original proposal: crop classification, from-scratch CNN) | Confirm with instructors that pretrained detection is acceptable |
+| Course scope (original proposal: crop classification, from-scratch CNN) | Resolved 2026-11-08: instructor confirmed the pretrained-detection, multi-domain scope is acceptable |
 
 ## 16. Out of scope
 
