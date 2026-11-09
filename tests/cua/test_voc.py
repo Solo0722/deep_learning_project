@@ -114,6 +114,16 @@ def test_border_boxes_are_clamped_not_rejected():
     assert rec.labels.tolist() == [VOC_CLASSES.index("cat"), VOC_CLASSES.index("dog")]
 
 
+def test_kept_boxes_overflowing_edges_are_clamped_and_counted():
+    counts = {"clamped_boxes": 0, "dropped_boxes": 0}
+    rec = parse_voc_xml(FIX / "000012.xml", year="2007", counts=counts)
+    # cat: xmax=105 on width 100 -> kept, clamped to 100; xmin 50 -> 49
+    assert rec.boxes[0].tolist() == [49.0, 9.0, 100.0, 20.0]
+    # dog: ymax=95 on height 80 -> kept, clamped to 80
+    assert rec.boxes[1].tolist() == [9.0, 59.0, 40.0, 80.0]
+    assert counts == {"clamped_boxes": 2, "dropped_boxes": 0}
+
+
 def test_degenerate_boxes_after_clamp_are_dropped_and_counted():
     counts = {"clamped_boxes": 0, "dropped_boxes": 0}
     rec = parse_voc_xml(FIX / "000010.xml", year="2007", counts=counts)
@@ -183,6 +193,33 @@ def test_voc_cli_writes_box_fixes_into_gates(tmp_path, monkeypatch):
     assert captured["name"] == "voc"
     assert captured["image_root"] == devkit
     assert captured["extra"] == {"voc_box_fixes": {"clamped_boxes": 0, "dropped_boxes": 0}}
+
+
+def test_prepare_dataset_writes_voc_box_fixes_into_real_gates_json(tmp_path, mk):
+    import json
+
+    from cua.prepare import prepare_dataset
+
+    # every record has two classes, so the co-occurrence gate passes (rate 1.0)
+    train = [mk(image=f"VOC2007/JPEGImages/t{i}.jpg", labels=[0, 1], group=f"2007/t{i}")
+             for i in range(6)]
+    fixes = {"clamped_boxes": 3, "dropped_boxes": 1}
+    out = tmp_path / "out"
+    gates = prepare_dataset(
+        "voc",
+        {"train": train, "val": [], "test": []},
+        VOC_CLASSES,
+        out,
+        tmp_path,
+        n_target=4,
+        min_per_class=2,
+        extra={"voc_box_fixes": fixes},
+    )
+    written = json.loads((out / "gates.json").read_text(encoding="utf-8"))
+    assert written["voc_box_fixes"] == fixes
+    assert written["dataset"] == "voc"
+    assert written["cooccurrence"] == 1.0
+    assert gates["voc_box_fixes"] == fixes
 
 
 def test_voc_cli_subcommand_parses_devkit_and_out(tmp_path):
