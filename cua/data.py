@@ -22,6 +22,8 @@ class DetectionDataset(Dataset):
     """
 
     def __init__(self, records: list[Record], root: Path, transform: ArmTransform | None, size: int = 640):
+        if transform is not None and size != 640:
+            raise ValueError(f"Augmentation (mosaic canvas) is 640-only; got size={size} with a transform")
         self.records, self.root, self.transform, self.size = list(records), Path(root), transform, size
         self.epoch = 0
 
@@ -42,7 +44,7 @@ class DetectionDataset(Dataset):
                 return self.transform.base(self._load(j)[0], self.epoch, j)
 
             sample = self.transform(sample, self.epoch, i, fetch, len(self.records))
-        image = torch.from_numpy(np.ascontiguousarray(sample.rgb)).permute(2, 0, 1).float() / 255.0
+        image = torch.from_numpy(np.ascontiguousarray(sample.rgb)).permute(2, 0, 1).float().div(255.0).contiguous()
         ign = np.asarray(sample.ignore, dtype=bool)
         boxes = np.asarray(sample.boxes, dtype=np.float32).reshape(-1, 4)
         labels = np.asarray(sample.labels, dtype=np.int64).reshape(-1)

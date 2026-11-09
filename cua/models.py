@@ -9,6 +9,15 @@ from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.retinanet import RetinaNetClassificationHead
 
 
+class _NoBackgroundClassificationHead(RetinaNetClassificationHead):
+    """RetinaNet head whose unused class-0 logit is a constant -1e4 (fp16-safe, no gradient)."""
+
+    def forward(self, x):
+        out = super().forward(x)  # (N, HWA, K)
+        const = torch.full_like(out[..., :1], -1e4)
+        return torch.cat([const, out[..., 1:]], dim=-1)
+
+
 def build_detector(name: Literal["fasterrcnn", "retinanet"], num_classes: int, size: int = 640,
                    pretrained: bool = True) -> torch.nn.Module:
     """Detector expecting size x size letterboxed inputs (torchvision's resize is a no-op)."""
@@ -23,7 +32,7 @@ def build_detector(name: Literal["fasterrcnn", "retinanet"], num_classes: int, s
     elif name == "retinanet":
         model = retinanet_resnet50_fpn(score_thresh=0.001, nms_thresh=0.5, detections_per_img=100, **common)
         old = model.head.classification_head
-        model.head.classification_head = RetinaNetClassificationHead(
+        model.head.classification_head = _NoBackgroundClassificationHead(
             old.cls_logits.in_channels, model.anchor_generator.num_anchors_per_location()[0], num_classes + 1)
     else:
         raise ValueError(f"Unknown detector: {name!r}")
