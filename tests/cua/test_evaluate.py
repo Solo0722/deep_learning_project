@@ -44,6 +44,20 @@ def test_fast_ap50_with_exactly_tied_scores_across_images():
         assert abs(fast[k] - coco["per_class"][name]["ap50"]) < 1e-9
 
 
+def test_ignored_gt_is_scanned_last():
+    # Crowd (ignored) GT listed before a regular GT of the same class; the detection overlaps both,
+    # with crowd IoU 1.0 > regular IoU 0.9. COCO scans regular GTs first, so this is a true positive.
+    rec = Record("img/x.jpg", 200, 200, np.array([[0., 0., 100., 100.], [0., 0., 50., 100.]]),
+                 np.array([0, 0]), np.array([True, False]), "g", "s")
+    pred = {"image_index": 0, "boxes": np.array([[0., 0., 50., 90.]]), "scores": np.array([0.9]),
+            "labels": np.array([0])}
+    coco = coco_metrics([rec], [pred], ("a",))
+    assert coco["per_class"]["a"]["ap50"] == pytest.approx(100.0)
+    m = image_matches([rec], [pred], 1)
+    assert m.tp[0].tolist() == [True] and m.ignored[0].tolist() == [False]
+    assert ap50_from_matches(m, np.arange(1))[0] == coco["per_class"]["a"]["ap50"]
+
+
 def test_maxdet_truncation_is_exercised():
     recs, preds = random_detection_problem(10, 3, seed=4, with_ignored=True)
     assert (preds[0]["labels"] == 0).sum() > 100
@@ -134,6 +148,16 @@ def test_bootstrap_ci_contains_point_and_is_deterministic():
     assert r1["diff"] == pytest.approx(expected)
 
 
+def test_bootstrap_rejects_different_ground_truth():
+    recs, preds = random_detection_problem(20, 2, seed=1)
+    ma = image_matches(recs, preds, 2)
+    other, _ = random_detection_problem(20, 2, seed=2)
+    mb = image_matches(other, [dict(p, labels=p["labels"] % 2) for p in preds], 2)
+    assert not np.array_equal(ma.gt_count, mb.gt_count)
+    with pytest.raises(ValueError, match="gt_count"):
+        paired_bootstrap(ma, mb, n_boot=10)
+
+
 def test_bootstrap_rejects_mismatched_image_counts():
     recs, preds = random_detection_problem(20, 2, seed=1)
     ma = image_matches(recs, preds, 2)
@@ -152,23 +176,66 @@ def _disk_records(tmp_path):
     return recs
 
 
-def test_predict_tiny_untrained_detector(tmp_path):
+class _StubDetector(torch.nn.Module):
+    """Eval-mode detector returning fixed canvas-space outputs (1-based labels) for every image."""
+
+    def __init__(self, outputs):
+        super().__init__()
+        self.outputs = outputs
+        self.seen_devices = []
+
+    def forward(self, images):
+        assert not self.training
+        self.seen_devices += [im.device for im in images]
+        return [self.outputs[i % len(self.outputs)] for i in range(len(images))]
+
+
+def test_predict_restores_clips_and_relabels_exactly(tmp_path):
+    # 80x60 image at size 640: scale 8, resized 640x480, pad_left 0, pad_top 80.
+    recs = _disk_records(tmp_path)[:1]
+    out_canvas = {
+        "boxes": torch.tensor([[80., 160., 240., 400.],    # -> [10, 10, 30, 40]
+                               [600., 40., 700., 200.],    # -> [75, -5, 87.5, 15] -> clipped [75, 0, 80, 15]
+                               [0., 80., 640., 560.]]),    # label 0: dropped
+        "scores": torch.tensor([0.9, 0.5, 0.99]),
+        "labels": torch.tensor([2, 3, 0]),
+    }
+    model = _StubDetector([out_canvas])
+    model.train()
+    ds = DetectionDataset(recs, tmp_path, transform=None, size=640)
+    g = ds[0][1]["geometry"]
+    assert (g["resized_width"], g["resized_height"], g["pad_left"], g["pad_top"]) == (640, 480, 0, 80)
+    out = predict(model, ds, "cpu")
+    assert model.training  # mode restored
+    assert len(out) == 1 and out[0]["image_index"] == 0
+    np.testing.assert_allclose(out[0]["boxes"], [[10., 10., 30., 40.], [75., 0., 80., 15.]], rtol=0, atol=1e-9)
+    assert out[0]["boxes"].dtype == np.float64
+    np.testing.assert_array_equal(out[0]["labels"], [1, 2])
+    assert out[0]["labels"].dtype == np.int64
+    np.testing.assert_allclose(out[0]["scores"], [0.9, 0.5], rtol=1e-6)
+    assert all(d.type == "cpu" for d in model.seen_devices)
+
+
+def test_predict_handles_no_detections(tmp_path):
+    recs = _disk_records(tmp_path)
+    empty = {"boxes": torch.zeros((0, 4)), "scores": torch.zeros(0), "labels": torch.zeros(0, dtype=torch.int64)}
+    out = predict(_StubDetector([empty]), DetectionDataset(recs, tmp_path, transform=None, size=640), "cpu")
+    assert [p["image_index"] for p in out] == [0, 1]
+    for p in out:
+        assert p["boxes"].shape == (0, 4) and p["scores"].shape == (0,) and p["labels"].shape == (0,)
+
+
+def test_predict_real_detector_smoke(tmp_path):
     from cua.models import build_detector
 
-    torch.manual_seed(0)
     recs = _disk_records(tmp_path)
     model = build_detector("retinanet", 3, size=640, pretrained=False)
     out = predict(model, DetectionDataset(recs, tmp_path, transform=None, size=640), "cpu", batch_size=2)
     assert [p["image_index"] for p in out] == [0, 1]
-    assert sum(len(p["scores"]) for p in out) > 0
-    for p, r in zip(out, recs):
+    for p in out:
         n = len(p["scores"])
         assert p["boxes"].shape == (n, 4) and p["boxes"].dtype == np.float64
         assert p["labels"].shape == (n,) and p["labels"].dtype == np.int64
-        assert ((p["labels"] >= 0) & (p["labels"] < 3)).all()
-        b = p["boxes"]
-        assert (b[:, [0, 2]] >= 0).all() and (b[:, [0, 2]] <= r.width).all()
-        assert (b[:, [1, 3]] >= 0).all() and (b[:, [1, 3]] <= r.height).all()
 
 
 def test_predict_rejects_transform(tmp_path):

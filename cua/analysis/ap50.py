@@ -193,6 +193,8 @@ def paired_bootstrap(ma: Matches, mb: Matches, n_boot: int = 1000, seed: int = 0
         raise ValueError(f"image counts differ: {ma.n_images} vs {mb.n_images}")
     if ma.n_classes != mb.n_classes:
         raise ValueError(f"class counts differ: {ma.n_classes} vs {mb.n_classes}")
+    if not np.array_equal(ma.gt_count, mb.gt_count):
+        raise ValueError("Matches were built from different ground truth (gt_count differs)")
     n = ma.n_images
     full = np.arange(n)
     diff = _macro(mb, full) - _macro(ma, full)

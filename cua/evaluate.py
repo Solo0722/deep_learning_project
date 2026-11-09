@@ -17,11 +17,13 @@ from cua.records import Record
 
 
 def predict(model, dataset: DetectionDataset, device, batch_size: int = 8) -> list[dict]:
-    """Run the detector; boxes restored to and clipped within the original image, labels 0-based."""
+    """Run the detector (moved to `device`); boxes restored to and clipped within the original image,
+    labels 0-based (label 0 dropped). The model's train/eval mode is restored afterwards."""
     if dataset.transform is not None:
         raise ValueError("predict needs an un-augmented dataset (transform=None)")
     device = torch.device(device)
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, collate_fn=collate, num_workers=0)
+    model.to(device)
     was_training = model.training
     model.eval()
     out = []
