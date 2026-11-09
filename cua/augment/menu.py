@@ -31,9 +31,13 @@ class ArmTransform:
             raise ValueError(f"Edit {edit!r} is not valid for dataset {dataset!r}")
         self.dataset, self.edit, self.seed, self.p = dataset, edit, seed, p
 
+    def base(self, sample: Sample, epoch: int, index: int) -> Sample:
+        """Base geometry for item `index` (the same call __call__ and mosaic fetches use)."""
+        return base_geometry(sample, keyed_rng(self.seed, epoch, index, "base"))
+
     def __call__(self, sample: Sample, epoch: int, index: int,
                  fetch: Callable[[int], Sample], n_items: int) -> Sample:
-        base = base_geometry(sample, keyed_rng(self.seed, epoch, index, "base"))
+        base = self.base(sample, epoch, index)
         er = keyed_rng(self.seed, epoch, index, "edit")
         applied = er.random() < self.p  # always drawn so the coin is identical across arms
         if not applied or self.edit is None:

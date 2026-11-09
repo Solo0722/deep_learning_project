@@ -218,3 +218,10 @@ def test_voc_menu():
 def test_mosaic_rejects_empty_dataset():
     with pytest.raises(ValueError):
         ArmTransform("rdd", "mosaic", seed=0, p=1.0)(toy_sample(), 0, 0, toy_fetch, 0)
+
+
+def test_base_method_agrees_with_call_when_edit_not_applied():
+    t = ArmTransform("rdd", "blur", p=0.0, seed=4)
+    a = t.base(toy_sample(), 2, 7)
+    b = t(toy_sample(), 2, 7, toy_fetch, 100)
+    assert np.array_equal(a.rgb, b.rgb) and np.array_equal(a.boxes, b.boxes)
