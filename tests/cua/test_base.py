@@ -3,7 +3,7 @@ import numpy as np
 from cua.augment.base import base_geometry
 from cua.augment.boxes import affine_sample, compose, hflip_matrix, scale_matrix
 from cua.augment.rng import keyed_rng
-from conftest import toy_sample
+from helpers import toy_sample
 
 
 def test_same_key_same_draws_regardless_of_other_streams():
@@ -11,6 +11,12 @@ def test_same_key_same_draws_regardless_of_other_streams():
     _ = keyed_rng(0, 4, 17, "edit").random(100)
     b = base_geometry(toy_sample(), keyed_rng(0, 4, 17, "base"))
     assert np.array_equal(a.rgb, b.rgb) and np.array_equal(a.boxes, b.boxes)
+    r1 = keyed_rng(0, 4, 17, "base")
+    first = r1.random(5)
+    _ = keyed_rng(0, 4, 17, "edit"), keyed_rng(0, 4, 17, "mosaic")
+    assert np.array_equal(first, keyed_rng(0, 4, 17, "base").random(5))
+    draws = [keyed_rng(0, 4, 17, n).random(3).tolist() for n in ("base", "edit", "mosaic")]
+    assert len({tuple(d) for d in draws}) == 3
 
 
 def test_keys_differ():
@@ -32,6 +38,8 @@ def test_box_touching_edge_rejects_upscale():
 def test_empty_sample_passes_base():
     out = base_geometry(toy_sample(boxes=[]), keyed_rng(0, 0, 0, "base"))
     assert out.boxes.shape == (0, 4)
+    assert out.labels.shape == (0,) and out.ignore.shape == (0,)
+    assert out.rgb.shape == (640, 640, 3) and out.rgb.dtype == np.uint8
 
 
 def test_identity_leaves_rgb_unchanged():
@@ -101,3 +109,28 @@ def test_base_falls_back_to_scale_one_keeps_flip():
     assert out.boxes[0].tolist() == [0.0, 0.0, 640.0, 640.0]
     out2 = base_geometry(s, _UpOnly(flip=False))
     assert np.array_equal(out2.rgb, s.rgb)
+
+
+def test_tiny_box_does_not_raise_and_is_kept():
+    s = toy_sample(boxes=[[100., 100., 100.5, 100.5]])
+    for k in range(20):
+        out = base_geometry(s, keyed_rng(0, 0, k, "base"))
+        assert out.boxes.shape == (1, 4)
+
+
+def test_slightly_outside_box_clipped_not_raised():
+    s = toy_sample(boxes=[[-3., 10., 100., 200.]])
+    for k in range(20):
+        out = base_geometry(s, keyed_rng(0, 0, k, "base"))
+        assert out.boxes.shape == (1, 4)
+        assert (out.boxes >= 0).all() and (out.boxes <= 640).all()
+
+
+def test_base_geometry_property_boxes_valid():
+    s = toy_sample(boxes=[[0., 0., 640., 640.], [300., 300., 330., 320.], [5., 600., 80., 640.]])
+    for k in range(200):
+        out = base_geometry(s, keyed_rng(1, 2, k, "base"))
+        assert out.rgb.shape == (640, 640, 3)
+        b = out.boxes
+        assert (b >= 0).all() and (b <= 640 + 1e-6).all()
+        assert ((b[:, 2] - b[:, 0]) >= 1).all() and ((b[:, 3] - b[:, 1]) >= 1).all()

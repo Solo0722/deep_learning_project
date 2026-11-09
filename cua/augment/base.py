@@ -20,5 +20,6 @@ def base_geometry(sample: Sample, rng) -> Sample:
         if out is not None:
             return out
     out = affine_sample(sample, flip_m if flip else scale_matrix(1.0, size))
-    assert out is not None  # hflip / identity never reject valid boxes
+    if out is None:
+        raise RuntimeError("base_geometry fallback (flip/identity) rejected a sample; affine_sample must never reject these")
     return out

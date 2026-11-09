@@ -41,8 +41,15 @@ def _hull(boxes: np.ndarray, matrix: np.ndarray) -> np.ndarray:
     return np.concatenate([pts.min(axis=1), pts.max(axis=1)], axis=1)
 
 
+def _valid(boxes: np.ndarray, limit: np.ndarray) -> np.ndarray:
+    """Inside the canvas (within eps) and at least 1 px wide and tall."""
+    inside = ((boxes >= -_EPS) & (boxes <= limit + _EPS)).all(axis=1)
+    big = ((boxes[:, 2] - boxes[:, 0]) >= 1.0) & ((boxes[:, 3] - boxes[:, 1]) >= 1.0)
+    return inside & big
+
+
 def affine_sample(sample: Sample, matrix: np.ndarray) -> Sample | None:
-    """Warp image (bilinear, pad 114) and boxes (corner hull). None if a kept box leaves the canvas or collapses."""
+    """Warp image (bilinear, pad 114) and boxes (corner hull). None if a valid non-ignored box becomes invalid; already-invalid boxes are clipped and kept."""
     matrix = np.asarray(matrix, dtype=np.float64)
     height, width = sample.rgb.shape[:2]
     boxes = np.asarray(sample.boxes, dtype=np.float64).reshape(-1, 4)
@@ -50,14 +57,13 @@ def affine_sample(sample: Sample, matrix: np.ndarray) -> Sample | None:
     ignore = np.asarray(sample.ignore, dtype=bool)
     limit = np.array([width, height, width, height], dtype=np.float64)
 
-    outside = ((hull < -_EPS) | (hull > limit + _EPS)).any(axis=1)
-    if (outside & ~ignore).any():
-        return None
+    in_valid = _valid(boxes, limit)
+    out_valid = _valid(hull, limit)
+    if (in_valid & ~out_valid & ~ignore).any():
+        return None  # a valid box was pushed out of the canvas or collapsed by this transform
     hull = np.clip(hull, 0.0, limit)
     small = ((hull[:, 2] - hull[:, 0]) < 1.0) | ((hull[:, 3] - hull[:, 1]) < 1.0)
-    if (small & ~ignore).any():
-        return None
-    keep = ~small  # only ignored boxes can be small here
+    keep = ~(small & ignore)  # ignored degenerate boxes are dropped; non-ignored are always kept
     inverse = np.linalg.inv(matrix)
     with Image.fromarray(sample.rgb) as image:
         with image.transform((width, height), Image.Transform.AFFINE,
