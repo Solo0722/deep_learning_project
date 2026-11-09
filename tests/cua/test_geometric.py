@@ -163,3 +163,54 @@ def test_determinism(edit):
     b = edit(s, np.random.default_rng(7))
     assert np.array_equal(a.rgb, b.rgb) and np.array_equal(a.boxes, b.boxes)
     assert np.array_equal(a.labels, b.labels) and np.array_equal(a.ignore, b.ignore)
+
+
+def _square_sample():
+    rgb = np.zeros((640, 640, 3), dtype=np.uint8)
+    rgb[270:370, 270:370] = 255
+    return Sample(rgb, np.array([[270., 270., 370., 370.]]), np.zeros(1, dtype=np.int64), np.zeros(1, dtype=bool))
+
+
+def _check_agreement(src, out, matrix):
+    assert not np.array_equal(out.boxes, src.boxes), "transform must be non-identity"
+    ys, xs = np.nonzero(out.rgb.min(axis=-1) > 128)
+    box = out.boxes[0]
+    assert xs.min() >= box[0] - 1.5 and ys.min() >= box[1] - 1.5
+    assert xs.max() + 1 <= box[2] + 1.5 and ys.max() + 1 <= box[3] + 1.5
+    # bright extent also not much smaller than the box hull minus rotation slack: centroid check
+    expected = (matrix @ np.array([320., 320., 1.]))[:2]
+    got = np.array([xs.mean() + 0.5, ys.mean() + 0.5])
+    assert np.abs(got - expected).max() <= 1.0
+
+
+@pytest.mark.parametrize("deg", [-8.0, 9.0])
+def test_rotate_matrix_image_and_boxes_agree(deg):
+    from cua.augment.boxes import affine_sample
+    s = _square_sample()
+    m = rotate_matrix(deg, 640)
+    _check_agreement(s, affine_sample(s, m), m)
+
+
+@pytest.mark.parametrize("seed", [0, 2, 3, 4, 5])
+def test_rotate_edit_image_and_boxes_agree(seed):
+    s = _square_sample()
+    angle = sampled_rotation_angle(np.random.default_rng(seed))
+    assert abs(angle) > 0.5
+    _check_agreement(s, rotate(s, np.random.default_rng(seed)), rotate_matrix(angle, 640))
+
+
+@pytest.mark.parametrize("seed", [0, 1, 2, 3, 4])
+def test_translate_edit_image_and_boxes_agree(seed):
+    s = _square_sample()
+    ref = np.random.default_rng(seed)
+    dx, dy = ref.uniform(-64, 64), ref.uniform(-64, 64)
+    _check_agreement(s, translate(s, np.random.default_rng(seed)), translate_matrix(dx, dy))
+
+
+@pytest.mark.parametrize("edit", ALL)
+def test_edits_do_not_mutate_input(edit):
+    s = toy_sample(boxes=[[300., 300., 340., 340.]])
+    rgb, boxes, labels, ign = s.rgb.copy(), s.boxes.copy(), s.labels.copy(), s.ignore.copy()
+    edit(s, np.random.default_rng(2))
+    assert np.array_equal(s.rgb, rgb) and np.array_equal(s.boxes, boxes)
+    assert np.array_equal(s.labels, labels) and np.array_equal(s.ignore, ign)
