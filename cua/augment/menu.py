@@ -39,6 +39,8 @@ class ArmTransform:
         if not applied or self.edit is None:
             return base
         if self.edit == "mosaic":
+            if n_items < 1:
+                raise ValueError("mosaic needs n_items >= 1")
             mr = keyed_rng(self.seed, epoch, index, "mosaic")
             others = []
             for _ in range(3):

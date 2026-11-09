@@ -121,3 +121,100 @@ def test_base_unaffected_by_edit():
     b = base_geometry(s, keyed_rng(0, 1, 2, "base"))
     out = ArmTransform("rdd", "mosaic", seed=0, p=0.0)(s, 1, 2, toy_fetch, 10)
     assert np.array_equal(out.rgb, b.rgb) and np.array_equal(out.boxes, b.boxes)
+
+
+class _SeqStub:
+    """uniform() returns the given values in order (cx, then cy)."""
+
+    def __init__(self, *vals):
+        self.vals = list(vals)
+
+    def uniform(self, lo, hi):
+        return self.vals.pop(0)
+
+
+def _tile(fill, box, label=0, ignore=False):
+    from cua.image import Sample
+    s = toy_sample(boxes=[box], fill=fill)
+    return Sample(s.rgb, s.boxes, np.array([label], dtype=np.int64), np.array([ignore]))
+
+
+def test_mosaic_geometry_distinct_centre_crops_both_axes():
+    # cx=200, cy=400: origins (-120,80), (200,80), (-120,400), (200,400); bottom tiles cropped at y=640
+    tiles = [_tile(10, [400., 300., 560., 500.]), _tile(20, [100., 100., 300., 200.]),
+             _tile(30, [400., 100., 500., 200.]), _tile(40, [200., 400., 400., 600.])]
+    out = mosaic(tiles[0], tiles[1:], _SeqStub(200.0, 400.0))
+    expected = [[80, 230, 160, 330], [250, 130, 350, 180], [80, 450, 130, 500], [300, 600, 400, 640]]
+    assert np.allclose(out.boxes, expected)
+    assert out.rgb.shape == (640, 640, 3)
+    px = lambda y, x: int(out.rgb[y, x, 0])
+    assert (px(100, 50), px(100, 300), px(500, 50), px(500, 300)) == (10, 20, 30, 40)
+    assert px(639, 300) == 40 and px(639, 199) == 30 and px(79, 100) == 114 and px(79, 300) == 114
+    assert px(10, 10) == 114 and px(100, 600) == 114 and px(500, 600) == 114
+    assert px(399, 100) == 10 and px(400, 100) == 30 and px(100, 199) == 10 and px(100, 200) == 20
+
+
+def test_mosaic_label_ignore_alignment_after_filter():
+    from cua.image import Sample
+    s0 = toy_sample(boxes=[[400., 300., 560., 500.], [40., 300., 280., 500.], [420., 400., 500., 460.]], fill=10)
+    tile0 = Sample(s0.rgb, s0.boxes, np.array([5, 6, 7], dtype=np.int64), np.array([False, True, True]))
+    others = [_tile(20, [100., 100., 300., 200.], 8, False), _tile(30, [400., 100., 500., 200.], 9, True),
+              _tile(40, [200., 100., 400., 300.], 10, False)]
+    out = mosaic(tile0, others, _SeqStub(200.0, 400.0))
+    triples = [(tuple(float(v) for v in np.round(b, 6)), int(l), bool(i)) for b, l, i in zip(out.boxes, out.labels, out.ignore)]
+    assert triples == [
+        ((80., 230., 160., 330.), 5, False),      # tile 0 box A
+        ((90., 280., 130., 310.), 7, True),       # tile 0 box B (box X, label 6 ignored, 17% visible, dropped)
+        ((250., 130., 350., 180.), 8, False),
+        ((80., 450., 130., 500.), 9, True),
+        ((300., 450., 400., 550.), 10, False),
+    ]
+    assert out.labels.dtype == s0.labels.dtype and out.ignore.dtype == bool
+
+
+def test_armtransform_uses_fetched_samples_unmodified():
+    from PIL import Image
+    seed, epoch, index = 3, 2, 7
+    calls = {}
+
+    def fetch(j):
+        s = toy_sample(boxes=[])
+        s.rgb = ((s.rgb.astype(np.int32) + 17 * j) % 256).astype(np.uint8)
+        calls[len(calls)] = s.rgb.copy()
+        return s
+    out = ArmTransform("rdd", "mosaic", seed=seed, p=1.0)(toy_sample(), epoch, index, fetch, 100)
+    er = keyed_rng(seed, epoch, index, "edit")
+    assert er.random() < 1.0
+    cx, cy = int(round(float(er.uniform(160, 480)))), int(round(float(er.uniform(160, 480))))
+    assert len(calls) == 3
+    for k, (ox, oy) in zip(range(3), [(cx, cy - 320), (cx - 320, cy), (cx, cy)]):
+        with Image.fromarray(calls[k]) as im, im.resize((320, 320), Image.Resampling.BILINEAR) as r:
+            tile = np.asarray(r)
+        x0, y0, x1, y1 = max(ox, 0), max(oy, 0), min(ox + 320, 640), min(oy + 320, 640)
+        assert np.array_equal(out.rgb[y0:y1, x0:x1], tile[y0 - oy:y1 - oy, x0 - ox:x1 - ox])
+
+
+def test_coin_is_first_draw_on_edit_stream_and_base_unchanged(monkeypatch):
+    from cua.augment import menu
+    seen = {}
+
+    def spy(sample, rng):
+        seen["state"] = rng.bit_generator.state
+        seen["rgb"] = sample.rgb.copy()
+        return sample
+    monkeypatch.setitem(menu.EDITS, "noise", spy)
+    p1 = ArmTransform("rdd", "noise", seed=4, p=1.0)(toy_sample(), 6, 9, toy_fetch, 20)
+    ref = keyed_rng(4, 6, 9, "edit")
+    ref.random()
+    assert seen["state"] == ref.bit_generator.state
+    p0 = ArmTransform("rdd", "noise", seed=4, p=0.0)(toy_sample(), 6, 9, toy_fetch, 20)
+    assert np.array_equal(seen["rgb"], p0.rgb) and np.array_equal(p1.rgb, p0.rgb)
+
+
+def test_voc_menu():
+    assert len(valid_menu("voc")) == 12 and "vflip" not in valid_menu("voc")
+
+
+def test_mosaic_rejects_empty_dataset():
+    with pytest.raises(ValueError):
+        ArmTransform("rdd", "mosaic", seed=0, p=1.0)(toy_sample(), 0, 0, toy_fetch, 0)
