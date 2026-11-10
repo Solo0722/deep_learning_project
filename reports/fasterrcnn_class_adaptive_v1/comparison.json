@@ -1,0 +1,743 @@
+{
+  "aggregate_comparison": [
+    {
+      "AP50": 51.141785068855825,
+      "AP50_95": 22.82311872580586,
+      "AP75": 17.090964508633316,
+      "AR100": 43.835988358591074,
+      "condition": "identity",
+      "epoch": 14,
+      "label": "Identity",
+      "selection": "best"
+    },
+    {
+      "AP50": 50.687342256247014,
+      "AP50_95": 22.809927107298847,
+      "AP75": 17.295072538328764,
+      "AR100": 44.33894276688166,
+      "condition": "image_level",
+      "epoch": 14,
+      "label": "Fixed image-level",
+      "selection": "best"
+    },
+    {
+      "AP50": 50.16015069779196,
+      "AP50_95": 22.554994567835628,
+      "AP75": 16.570391100922432,
+      "AR100": 44.078223203246154,
+      "condition": "local",
+      "epoch": 18,
+      "label": "Fixed local",
+      "selection": "best"
+    },
+    {
+      "AP50": 51.033367714538,
+      "AP50_95": 23.059391549608378,
+      "AP75": 17.30177281710695,
+      "AR100": 44.280716242677,
+      "condition": "online_shared",
+      "epoch": 14,
+      "label": "Online shared local",
+      "selection": "best"
+    },
+    {
+      "AP50": 50.18263441445902,
+      "AP50_95": 22.56320421239544,
+      "AP75": 16.975369296906486,
+      "AR100": 43.87438328089441,
+      "condition": "class_adaptive",
+      "epoch": 18,
+      "label": "Online class-adaptive local",
+      "selection": "best"
+    },
+    {
+      "AP50": 50.20009921812068,
+      "AP50_95": 22.392050310292788,
+      "AP75": 16.80048004954427,
+      "AR100": 42.81345248998788,
+      "condition": "identity",
+      "epoch": 20,
+      "label": "Identity",
+      "selection": "final"
+    },
+    {
+      "AP50": 50.54142847671965,
+      "AP50_95": 22.574570181559544,
+      "AP75": 16.518986781722287,
+      "AR100": 43.68204726595592,
+      "condition": "image_level",
+      "epoch": 20,
+      "label": "Fixed image-level",
+      "selection": "final"
+    },
+    {
+      "AP50": 49.81355197949549,
+      "AP50_95": 22.48709577474763,
+      "AP75": 16.86678542636218,
+      "AR100": 43.80487187552061,
+      "condition": "local",
+      "epoch": 20,
+      "label": "Fixed local",
+      "selection": "final"
+    },
+    {
+      "AP50": 50.34986521531852,
+      "AP50_95": 22.587837006875496,
+      "AP75": 16.955631042391985,
+      "AR100": 43.43783540251976,
+      "condition": "online_shared",
+      "epoch": 20,
+      "label": "Online shared local",
+      "selection": "final"
+    },
+    {
+      "AP50": 49.834842637455964,
+      "AP50_95": 22.49292402088257,
+      "AP75": 17.0084831167562,
+      "AR100": 43.69871485352895,
+      "condition": "class_adaptive",
+      "epoch": 20,
+      "label": "Online class-adaptive local",
+      "selection": "final"
+    }
+  ],
+  "analysis_source_sha256": "757edbabef90139e91c432f536bdfb8a94c780f27629eafedf6184323970de80",
+  "class_adaptive_minus_control_changes_pp": {
+    "best": {
+      "identity": {
+        "AP50": -0.959150654396812,
+        "AP50_95": -0.2599145134104197,
+        "AP75": -0.1155952117268294,
+        "AR100": 0.03839492230334196
+      },
+      "image_level": {
+        "AP50": -0.5047078417879991,
+        "AP50_95": -0.24672289490340615,
+        "AP75": -0.31970324142227835,
+        "AR100": -0.46455948598724817
+      },
+      "local": {
+        "AP50": 0.0224837166670544,
+        "AP50_95": 0.008209644559811768,
+        "AP75": 0.40497819598405427,
+        "AR100": -0.20383992235173953
+      },
+      "online_shared": {
+        "AP50": -0.8507333000789874,
+        "AP50_95": -0.49618733721293884,
+        "AP75": -0.32640352020046337,
+        "AR100": -0.40633296178258504
+      }
+    },
+    "final": {
+      "identity": {
+        "AP50": -0.36525658066471345,
+        "AP50_95": 0.10087371058978001,
+        "AP75": 0.20800306721192874,
+        "AR100": 0.8852623635410672
+      },
+      "image_level": {
+        "AP50": -0.7065858392636903,
+        "AP50_95": -0.08164616067697639,
+        "AP75": 0.4894963350339121,
+        "AR100": 0.01666758757302711
+      },
+      "local": {
+        "AP50": 0.021290657960471027,
+        "AP50_95": 0.005828246134939596,
+        "AP75": 0.14169769039401592,
+        "AR100": -0.10615702199166521
+      },
+      "online_shared": {
+        "AP50": -0.5150225778625617,
+        "AP50_95": -0.09491298599292874,
+        "AP75": 0.052852074364212465,
+        "AR100": 0.2608794510091883
+      }
+    }
+  },
+  "controller_diagnostics": {
+    "additional_image_forwards_each": 71680,
+    "applied_by_level": {
+      "1": 12443,
+      "2": 22002,
+      "3": 110123
+    },
+    "applied_percent_by_level": {
+      "1": 8.607022300924132,
+      "2": 15.21913563167506,
+      "3": 76.17384206740081
+    },
+    "class_adaptive_applied": 144568,
+    "class_adaptive_changed": 144418,
+    "class_set_summary": [
+      {
+        "active_updates": 10,
+        "applied": 63509,
+        "applied_fraction": 1.0,
+        "changed_images": 63509,
+        "class_set": "0",
+        "identity": 0,
+        "insufficient_support": 0,
+        "labels": "D00",
+        "level_1": 0,
+        "level_2": 10009,
+        "level_3": 53500,
+        "no_admissible_family": 0,
+        "observed_updates": 10,
+        "opportunities": 63509,
+        "unobserved_class_set": 0
+      },
+      {
+        "active_updates": 10,
+        "applied": 25353,
+        "applied_fraction": 1.0,
+        "changed_images": 25239,
+        "class_set": "1",
+        "identity": 0,
+        "insufficient_support": 0,
+        "labels": "D10",
+        "level_1": 5373,
+        "level_2": 2787,
+        "level_3": 17193,
+        "no_admissible_family": 0,
+        "observed_updates": 10,
+        "opportunities": 25353,
+        "unobserved_class_set": 0
+      },
+      {
+        "active_updates": 10,
+        "applied": 34471,
+        "applied_fraction": 1.0,
+        "changed_images": 34467,
+        "class_set": "2",
+        "identity": 0,
+        "insufficient_support": 0,
+        "labels": "D20",
+        "level_1": 1831,
+        "level_2": 3820,
+        "level_3": 28820,
+        "no_admissible_family": 0,
+        "observed_updates": 10,
+        "opportunities": 34471,
+        "unobserved_class_set": 0
+      },
+      {
+        "active_updates": 9,
+        "applied": 12645,
+        "applied_fraction": 0.8962364448224538,
+        "changed_images": 12617,
+        "class_set": "3",
+        "identity": 1464,
+        "insufficient_support": 1464,
+        "labels": "D40",
+        "level_1": 2902,
+        "level_2": 3848,
+        "level_3": 5895,
+        "no_admissible_family": 0,
+        "observed_updates": 10,
+        "opportunities": 14109,
+        "unobserved_class_set": 0
+      },
+      {
+        "active_updates": 9,
+        "applied": 8142,
+        "applied_fraction": 0.8965972910472415,
+        "changed_images": 8138,
+        "class_set": "0,1",
+        "identity": 939,
+        "insufficient_support": 939,
+        "labels": "D00+D10",
+        "level_1": 1889,
+        "level_2": 1538,
+        "level_3": 4715,
+        "no_admissible_family": 0,
+        "observed_updates": 10,
+        "opportunities": 9081,
+        "unobserved_class_set": 0
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,2",
+        "identity": 2933,
+        "insufficient_support": 2630,
+        "labels": "D00+D20",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 9,
+        "opportunities": 2933,
+        "unobserved_class_set": 303
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,3",
+        "identity": 498,
+        "insufficient_support": 308,
+        "labels": "D00+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 6,
+        "opportunities": 498,
+        "unobserved_class_set": 190
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "1,2",
+        "identity": 2250,
+        "insufficient_support": 2250,
+        "labels": "D10+D20",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 10,
+        "opportunities": 2250,
+        "unobserved_class_set": 0
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "1,3",
+        "identity": 191,
+        "insufficient_support": 97,
+        "labels": "D10+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 5,
+        "opportunities": 191,
+        "unobserved_class_set": 94
+      },
+      {
+        "active_updates": 1,
+        "applied": 448,
+        "applied_fraction": 0.10062893081761007,
+        "changed_images": 448,
+        "class_set": "2,3",
+        "identity": 4004,
+        "insufficient_support": 4004,
+        "labels": "D20+D40",
+        "level_1": 448,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 10,
+        "opportunities": 4452,
+        "unobserved_class_set": 0
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,1,2",
+        "identity": 719,
+        "insufficient_support": 485,
+        "labels": "D00+D10+D20",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 7,
+        "opportunities": 719,
+        "unobserved_class_set": 234
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,1,3",
+        "identity": 97,
+        "insufficient_support": 0,
+        "labels": "D00+D10+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 0,
+        "opportunities": 97,
+        "unobserved_class_set": 97
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,2,3",
+        "identity": 313,
+        "insufficient_support": 174,
+        "labels": "D00+D20+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 5,
+        "opportunities": 313,
+        "unobserved_class_set": 139
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "1,2,3",
+        "identity": 126,
+        "insufficient_support": 23,
+        "labels": "D10+D20+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 2,
+        "opportunities": 126,
+        "unobserved_class_set": 103
+      },
+      {
+        "active_updates": 0,
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,1,2,3",
+        "identity": 49,
+        "insufficient_support": 4,
+        "labels": "D00+D10+D20+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "observed_updates": 1,
+        "opportunities": 49,
+        "unobserved_class_set": 45
+      }
+    ],
+    "fallback_reasons": {
+      "insufficient_support": 12378,
+      "no_admissible_family": 0,
+      "unobserved_class_set": 1205
+    },
+    "identity_fallbacks": 13583,
+    "identity_fraction_percent": 8.588627324518972,
+    "online_shared_applied": 158151,
+    "online_shared_changed": 156819,
+    "opportunities": 158151,
+    "photometric_probability_when_two_families_eligible": {
+      "max": 0.5421707607324807,
+      "mean_absolute_deviation_from_half": 0.008686510468219676,
+      "min": 0.4479368619607774
+    },
+    "probe_minutes_class_adaptive": 57.18667655947308,
+    "probe_minutes_online_shared": 56.412284014094624
+  },
+  "controller_record_sha256": "cef4b627e3b502eff2f1f75db1203699c91fae1f127dc696802f5de97617f913",
+  "epochs_each": 20,
+  "evidence": {
+    "class_adaptive": {
+      "archive_sha256": "c4817b3cb3bc69813776d06662a9070a7415e9552cab7c6b331c5237414d9b74",
+      "audit_source_sha256": "07fc94fcc0f6118936fb3b48cb17c8a59f2536d49cb242800939f673f7b7250d",
+      "maximum_recomputed_metric_error": 0.0,
+      "recomputed_epochs": [
+        18,
+        20
+      ],
+      "scope": "Archive and source hashes and selected records rechecked; existing direct COCO recomputation retained",
+      "verification_sha256": "cbd83904870c812aff45e06e15136ff11ac2bb559e5bd096b003258a680ec670"
+    },
+    "identity": {
+      "archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+      "audit_source_sha256": "3f885dab491549ce56b24aad57747ad06faac484570b1304758a16b06855b1d6",
+      "maximum_recomputed_metric_error": 0.0,
+      "recomputed_epochs": [
+        14,
+        20
+      ],
+      "scope": "Archive and source hashes and selected records rechecked; existing direct COCO recomputation retained",
+      "verification_sha256": "526269d04a643489acb5f8fe41e53fe76581538d66eef7cac76dcbc1c9ca86c9"
+    },
+    "image_level": {
+      "archive_sha256": "28b28bee01376cc10fe0a60dca7ddfb9cd97ec9b548597fe316d94db164bfd7c",
+      "audit_source_sha256": "97178d7a779d558e5def29fd827fd467c873f9dc49cf7db3df11463f642d1392",
+      "maximum_recomputed_metric_error": 0.0,
+      "recomputed_epochs": [
+        14,
+        20
+      ],
+      "scope": "Archive and source hashes and selected records rechecked; existing direct COCO recomputation retained",
+      "verification_sha256": "8db69ed119de3f86bae6713eb836f4838efcd150fa254c0a7767cb33db507cc3"
+    },
+    "local": {
+      "archive_sha256": "6f1efc305780b1ab018a807bd728460b04582586166f6aeb616e693c6cfdcbac",
+      "audit_source_sha256": "e22f32096999c1b14585650e72fc52d415b010f0a902488cf55a6763e1ecabcb",
+      "maximum_recomputed_metric_error": 0.0,
+      "recomputed_epochs": [
+        18,
+        20
+      ],
+      "scope": "Archive and source hashes and selected records rechecked; existing direct COCO recomputation retained",
+      "verification_sha256": "19b4c79668af27d98daad7720aa23e75f282ec63436f24a7cbc01d0fac63bb8a"
+    },
+    "online_shared": {
+      "archive_sha256": "b30df4e003be14cf8a53059341451c5101261d98d32e58cdc94866c793f0a231",
+      "audit_source_sha256": "81017542d7ff7d0582c73287becca338371c27f280f06b38a376dae7081e4203",
+      "maximum_recomputed_metric_error": 0.0,
+      "recomputed_epochs": [
+        14,
+        20
+      ],
+      "scope": "Archive and source hashes and selected records rechecked; existing direct COCO recomputation retained",
+      "verification_sha256": "b14c3956764ba454d244c7c78c0b4ee9d2aa8ba8840be745a4e129587fab1ea9"
+    }
+  },
+  "identical_validation_ground_truth": true,
+  "image_presentations_each": 537260,
+  "limits": [
+    "One seed/run per condition; no estimate of variation across training repetitions, no significance or equivalence claim.",
+    "Validation selects checkpoints and supplies comparisons; no untouched test estimate.",
+    "Pre-augmentation divergence prevents assigning small later score differences solely to augmentation.",
+    "Exact-set conditioning changes support, fallback frequency, strengths and weighting together; their separate downstream effects are not identified.",
+    "Fixed local uses level 2 while online methods select from a three-level grid; no fixed mild-strength or uniform-weight ablation has been run.",
+    "Policy arithmetic reconstructed from saved observations; raw detector matching, per-ROI losses, pixels and checkpoint tensor bytes were not independently rerun.",
+    "The run records do not independently supply the batch job test/smoke logs; full-run completion is separately established."
+  ],
+  "matched_actual_edit_exposure": false,
+  "matched_application_opportunities": true,
+  "matched_nonaugmentation_configuration": true,
+  "matched_online_probe_budget_and_prospective_panels": true,
+  "negative_images_at_selected_epoch": [
+    {
+      "condition": "identity",
+      "confidence_threshold": 0.25,
+      "epoch": 14,
+      "fraction_percent": 39.12448700410397,
+      "images_with_predictions": 858,
+      "negative_images": 2193,
+      "prediction_boxes": 1637
+    },
+    {
+      "condition": "image_level",
+      "confidence_threshold": 0.25,
+      "epoch": 14,
+      "fraction_percent": 39.53488372093023,
+      "images_with_predictions": 867,
+      "negative_images": 2193,
+      "prediction_boxes": 1640
+    },
+    {
+      "condition": "local",
+      "confidence_threshold": 0.25,
+      "epoch": 18,
+      "fraction_percent": 37.254901960784316,
+      "images_with_predictions": 817,
+      "negative_images": 2193,
+      "prediction_boxes": 1538
+    },
+    {
+      "condition": "online_shared",
+      "confidence_threshold": 0.25,
+      "epoch": 14,
+      "fraction_percent": 40.40127678978568,
+      "images_with_predictions": 886,
+      "negative_images": 2193,
+      "prediction_boxes": 1707
+    },
+    {
+      "condition": "class_adaptive",
+      "confidence_threshold": 0.25,
+      "epoch": 18,
+      "fraction_percent": 36.75330597355221,
+      "images_with_predictions": 806,
+      "negative_images": 2193,
+      "prediction_boxes": 1527
+    }
+  ],
+  "negative_prediction_scope": "False positives relative to retained target annotations; no fresh visual audit of annotation completeness",
+  "new_training_or_detector_inference_executed": false,
+  "next_action": "Preserve the negative primary comparison. Inspect retention versus useful augmentation strength and exact-set support before further GPU work; any revised estimator is a new declared condition. Use matched repetitions to assess reliability, not outcome-driven threshold changes.",
+  "optimizer_steps_each": 134320,
+  "per_class_selected_comparison": [
+    {
+      "class": "D00",
+      "class_adaptive_AP50": 50.33667656083398,
+      "class_adaptive_AP50_95": 24.235281030283776,
+      "class_adaptive_minus_identity_AP50_95_pp": -0.5089779467827044,
+      "class_adaptive_minus_identity_AP50_pp": -0.9874340059722209,
+      "class_adaptive_minus_image_level_AP50_95_pp": -0.548928468001697,
+      "class_adaptive_minus_image_level_AP50_pp": -0.7248717794899995,
+      "class_adaptive_minus_local_AP50_95_pp": 0.1456018475807147,
+      "class_adaptive_minus_local_AP50_pp": 0.2055976583497765,
+      "class_adaptive_minus_online_shared_AP50_95_pp": -0.6701145596425179,
+      "class_adaptive_minus_online_shared_AP50_pp": -0.3173044724420926,
+      "description": "Longitudinal cracks",
+      "identity_AP50": 51.324110566806205,
+      "identity_AP50_95": 24.74425897706648,
+      "image_level_AP50": 51.06154834032398,
+      "image_level_AP50_95": 24.784209498285474,
+      "local_AP50": 50.131078902484205,
+      "local_AP50_95": 24.089679182703062,
+      "online_shared_AP50": 50.653981033276075,
+      "online_shared_AP50_95": 24.905395589926293,
+      "validation_targets": 3888
+    },
+    {
+      "class": "D10",
+      "class_adaptive_AP50": 46.09156245589556,
+      "class_adaptive_AP50_95": 19.44589904701268,
+      "class_adaptive_minus_identity_AP50_95_pp": -0.760325366600853,
+      "class_adaptive_minus_identity_AP50_pp": -1.9033725846245075,
+      "class_adaptive_minus_image_level_AP50_95_pp": -0.8196275531503289,
+      "class_adaptive_minus_image_level_AP50_pp": -1.7522167684595968,
+      "class_adaptive_minus_local_AP50_95_pp": -0.07420731399384872,
+      "class_adaptive_minus_local_AP50_pp": -0.509835151544058,
+      "class_adaptive_minus_online_shared_AP50_95_pp": -0.6040906742357299,
+      "class_adaptive_minus_online_shared_AP50_pp": -1.8017743801160113,
+      "description": "Transverse cracks",
+      "identity_AP50": 47.99493504052007,
+      "identity_AP50_95": 20.206224413613537,
+      "image_level_AP50": 47.84377922435516,
+      "image_level_AP50_95": 20.26552660016301,
+      "local_AP50": 46.60139760743962,
+      "local_AP50_95": 19.52010636100653,
+      "online_shared_AP50": 47.89333683601157,
+      "online_shared_AP50_95": 20.049989721248412,
+      "validation_targets": 1770
+    },
+    {
+      "class": "D20",
+      "class_adaptive_AP50": 63.024366915990726,
+      "class_adaptive_AP50_95": 30.06942628684347,
+      "class_adaptive_minus_identity_AP50_95_pp": 0.09401324918877352,
+      "class_adaptive_minus_identity_AP50_pp": 0.07358644082567922,
+      "class_adaptive_minus_image_level_AP50_95_pp": 0.4389017774439674,
+      "class_adaptive_minus_image_level_AP50_pp": 0.6166297337769855,
+      "class_adaptive_minus_local_AP50_95_pp": -0.045004443057095056,
+      "class_adaptive_minus_local_AP50_pp": 0.2970199618953284,
+      "class_adaptive_minus_online_shared_AP50_95_pp": -0.09282195229336487,
+      "class_adaptive_minus_online_shared_AP50_pp": 0.013208751773086114,
+      "description": "Alligator cracks",
+      "identity_AP50": 62.95078047516505,
+      "identity_AP50_95": 29.975413037654697,
+      "image_level_AP50": 62.407737182213744,
+      "image_level_AP50_95": 29.630524509399503,
+      "local_AP50": 62.727346954095395,
+      "local_AP50_95": 30.114430729900565,
+      "online_shared_AP50": 63.01115816421764,
+      "online_shared_AP50_95": 30.162248239136837,
+      "validation_targets": 1592
+    },
+    {
+      "class": "D40",
+      "class_adaptive_AP50": 41.2779317251158,
+      "class_adaptive_AP50_95": 16.502210485441836,
+      "class_adaptive_minus_identity_AP50_95_pp": 0.13563201055311613,
+      "class_adaptive_minus_identity_AP50_pp": -1.0193824678161878,
+      "class_adaptive_minus_image_level_AP50_95_pp": -0.057237335905571673,
+      "class_adaptive_minus_image_level_AP50_pp": -0.15837255297938002,
+      "class_adaptive_minus_local_AP50_95_pp": 0.0064484877094872495,
+      "class_adaptive_minus_local_AP50_pp": 0.09715239796715402,
+      "class_adaptive_minus_online_shared_AP50_95_pp": -0.6177221626801427,
+      "class_adaptive_minus_online_shared_AP50_pp": -1.2970630995309373,
+      "description": "Potholes",
+      "identity_AP50": 42.297314192931985,
+      "identity_AP50_95": 16.36657847488872,
+      "image_level_AP50": 41.43630427809518,
+      "image_level_AP50_95": 16.559447821347405,
+      "local_AP50": 41.18077932714864,
+      "local_AP50_95": 16.495761997732348,
+      "online_shared_AP50": 42.57499482464674,
+      "online_shared_AP50_95": 17.119932648121978,
+      "validation_targets": 975
+    }
+  ],
+  "primary_comparison": "Class-adaptive versus online shared: full-validation AP50:95 at independently selected checkpoints; earliest maximum wins",
+  "reused_evidence_loader_sha256": "94e0cf0e48a3320c56045d41349747c7deace55ffc864d6d4c227c55606b7683",
+  "runtime": [
+    {
+      "condition": "identity",
+      "gpu": "NVIDIA A10",
+      "host": "gpu0035",
+      "hours": 11.09099457434482,
+      "pbs_job": "794364.bright04"
+    },
+    {
+      "condition": "image_level",
+      "gpu": "NVIDIA A10",
+      "host": "gpu0021",
+      "hours": 11.512790571166098,
+      "pbs_job": "795553.bright04"
+    },
+    {
+      "condition": "local",
+      "gpu": "NVIDIA A10",
+      "host": "gpu0020",
+      "hours": 13.259789388487116,
+      "pbs_job": "795787.bright04"
+    },
+    {
+      "condition": "online_shared",
+      "gpu": "NVIDIA A10",
+      "host": "gpu0020",
+      "hours": 14.143136921317007,
+      "pbs_job": "796146.bright04"
+    },
+    {
+      "condition": "class_adaptive",
+      "gpu": "NVIDIA A10",
+      "host": "gpu0020",
+      "hours": 14.452385614440363,
+      "pbs_job": "796544.bright04"
+    }
+  ],
+  "runtime_scope": "Full-run invocation including validation and probes, excluding smoke/tests; between-run times do not isolate controller overhead",
+  "scale": "Metrics on 0-100 scale; differences are percentage points",
+  "seed": 42,
+  "selected_epochs": {
+    "class_adaptive": 18,
+    "identity": 14,
+    "image_level": 14,
+    "local": 18,
+    "online_shared": 14
+  },
+  "status": "verified_descriptive_comparison_one_run_per_condition",
+  "test_data_read": false,
+  "training_images": 26863,
+  "unaugmented_epoch1": {
+    "interpretation": "Trajectories differ before augmentation; cause unknown. Not a standard error and not a valid correction to later scores.",
+    "metrics": {
+      "class_adaptive_AP50": 39.0893002984947,
+      "class_adaptive_AP50_95": 16.51846647583124,
+      "class_adaptive_augmentation_applied": 0,
+      "epoch": 1,
+      "identity_AP50": 39.30672368602557,
+      "identity_AP50_95": 16.537085673069267,
+      "identity_augmentation_applied": 0,
+      "image_level_AP50": 37.85028386196977,
+      "image_level_AP50_95": 15.891975339206446,
+      "image_level_augmentation_applied": 0,
+      "local_AP50": 39.44922906031626,
+      "local_AP50_95": 16.423888577134168,
+      "local_augmentation_applied": 0,
+      "online_shared_AP50": 37.685716363093924,
+      "online_shared_AP50_95": 15.733007161343245,
+      "online_shared_augmentation_applied": 0
+    }
+  },
+  "validation_images": 5760,
+  "validation_targets": 8225,
+  "verdict": "The implemented class-adaptive controller executed its declared policy, but no observed AP50:95 gain over online shared or identity was obtained in this development run."
+}

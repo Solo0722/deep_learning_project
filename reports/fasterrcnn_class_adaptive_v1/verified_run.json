@@ -1,0 +1,4572 @@
+{
+  "application_opportunities_match_fixed_controls": true,
+  "augmentation_applied_images": 144568,
+  "augmentation_changed_pixels": 3367797242,
+  "best": {
+    "checkpoint_file": "epoch_018_step_00120888_b845577eb926.pt",
+    "epoch": 18,
+    "validation_AP50_95": 0.2256320421239544
+  },
+  "command": [
+    "baseline.py",
+    "--root",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+    "--splits",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_splits_v1",
+    "--weights",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/weights/detection_v1",
+    "--out",
+    "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/runs/fasterrcnn_class_adaptive_seed42_v1",
+    "--max-seconds",
+    "81000"
+  ],
+  "committed_probe_image_forwards": 71680,
+  "completed_epochs": 20,
+  "controller_evidence_recomputed": true,
+  "controller_identity_images": 13583,
+  "controller_updates": [
+    {
+      "epoch": 2,
+      "file": "controller/epoch_002_a44ae4e0a3a4.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0699961948400038,
+                "family": "photometric",
+                "level": 2,
+                "probability": 0.46140612341100506
+              },
+              {
+                "difficulty": 0.11838908309576351,
+                "family": "blur_noise",
+                "level": 2,
+                "probability": 0.538593876588995
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0704998761869373,
+                "family": "photometric",
+                "level": 2,
+                "probability": 0.5421707607324807
+              },
+              {
+                "difficulty": 0.017589812025182134,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 0.4578292392675193
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.037489689194428584,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 1.0
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.020944619977972426,
+                "family": "photometric",
+                "level": 2,
+                "probability": 0.5022007531338106
+              },
+              {
+                "difficulty": 0.018193650802550667,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 0.49779924686618937
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          }
+        },
+        "epoch": 2,
+        "id": "b8ed9328738723c87dc4f0e72fc67bdfd7ecec0326f42919658e2b56f487a2bb",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "7e965f9829d82825fe5379152c8ba73793fedef638e0ba59d76552bd0ba0fa29",
+      "step": 6716,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 69,
+            "detected_objects": 73,
+            "objects": 113,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 16,
+            "detected_objects": 20,
+            "objects": 27,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 14,
+            "detected_objects": 17,
+            "objects": 21,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 2,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 2,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 27,
+            "detected_objects": 27,
+            "objects": 33,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 6,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 4,
+            "objects": 6,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 54,
+            "detected_objects": 55,
+            "objects": 65,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 5,
+            "detected_objects": 6,
+            "objects": 8,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 4,
+            "detected_objects": 5,
+            "objects": 9,
+            "sufficient": false
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 6,
+            "detected_objects": 6,
+            "objects": 23,
+            "sufficient": false
+          }
+        }
+      }
+    },
+    {
+      "epoch": 4,
+      "file": "controller/epoch_004_0c7df2944dcc.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.49332951897100397
+              },
+              {
+                "difficulty": 0.008338874345367458,
+                "family": "blur_noise",
+                "level": 2,
+                "probability": 0.5066704810289961
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.06575224609093745,
+                "family": "photometric",
+                "level": 2,
+                "probability": 0.5269780780481091
+              },
+              {
+                "difficulty": 0.03197837545615527,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 0.47302192195189097
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.013402181945306693,
+                "family": "photometric",
+                "level": 2,
+                "probability": 0.49946612738904683
+              },
+              {
+                "difficulty": 0.014069523105260004,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 0.5005338726109533
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.008060212117092543,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.4479368619607774
+              },
+              {
+                "difficulty": 0.07351041807656317,
+                "family": "blur_noise",
+                "level": 2,
+                "probability": 0.5520631380392226
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.03965996755278501,
+                "family": "photometric",
+                "level": 2,
+                "probability": 0.5217315456013443
+              },
+              {
+                "difficulty": 0.012468761709538156,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 0.47826845439865573
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 4,
+        "id": "b36af4d61ca3f07d5eb1f8b17a4c3315042bf24fac362ae3297c01d988d6a037",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "7895fced9e2372095caf00624276ce6f76800f487a578fa14aa19d39e05d5e28",
+      "step": 20148,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 75,
+            "detected_objects": 75,
+            "objects": 93,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 12,
+            "detected_objects": 16,
+            "objects": 21,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 13,
+            "detected_objects": 15,
+            "objects": 19,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 5,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 4,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 4,
+            "objects": 7,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 3,
+            "detected_objects": 4,
+            "objects": 7,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 5,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 3,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 4,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 36,
+            "detected_objects": 36,
+            "objects": 44,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 3,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 3,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 44,
+            "detected_objects": 46,
+            "objects": 57,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 8,
+            "detected_objects": 9,
+            "objects": 10,
+            "sufficient": true
+          },
+          "3": {
+            "detected_clusters": 7,
+            "detected_objects": 7,
+            "objects": 11,
+            "sufficient": false
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 20,
+            "detected_objects": 20,
+            "objects": 30,
+            "sufficient": true
+          }
+        }
+      }
+    },
+    {
+      "epoch": 6,
+      "file": "controller/epoch_006_93034a2d8aad.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.486943327827133
+              },
+              {
+                "difficulty": 0.016326640430351192,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 0.513056672172867
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.03192226817125043,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5020454729107904
+              },
+              {
+                "difficulty": 0.029365404745496995,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 0.49795452708920973
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.012148571073636634,
+                "family": "photometric",
+                "level": 1,
+                "probability": 0.48857752680783983
+              },
+              {
+                "difficulty": 0.02643054551366084,
+                "family": "blur_noise",
+                "level": 2,
+                "probability": 0.5114224731921603
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 6,
+        "id": "51b6da7e49c0e6a7eaac529885f3a9cd58acb2ad3c27c8ef257f362c00907a2d",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "13e57f64ee48050930a7a76e138525351dddfeb1c52b1f1b26acd054aeae64d3",
+      "step": 33580,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 88,
+            "detected_objects": 93,
+            "objects": 123,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 11,
+            "detected_objects": 13,
+            "objects": 14,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 8,
+            "detected_objects": 8,
+            "objects": 12,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 4,
+            "detected_objects": 4,
+            "objects": 5,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 4,
+            "detected_objects": 4,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 2,
+            "detected_objects": 7,
+            "objects": 9,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 4,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 31,
+            "detected_objects": 32,
+            "objects": 44,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 5,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 3,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 36,
+            "detected_objects": 36,
+            "objects": 48,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 4,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 4,
+            "detected_objects": 10,
+            "objects": 10,
+            "sufficient": true
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 17,
+            "detected_objects": 18,
+            "objects": 23,
+            "sufficient": true
+          }
+        }
+      }
+    },
+    {
+      "epoch": 8,
+      "file": "controller/epoch_008_0a78f2e5e302.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.01939109408103856,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.4972040797106839
+              },
+              {
+                "difficulty": 0.022886051361500463,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 0.5027959202893161
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.02550110822693535,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.45260361741898836
+              },
+              {
+                "difficulty": 0.0850262168310485,
+                "family": "blur_noise",
+                "level": 2,
+                "probability": 0.5473963825810116
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.015703194649650268,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.505024181896285
+              },
+              {
+                "difficulty": 0.00942263698128876,
+                "family": "blur_noise",
+                "level": 2,
+                "probability": 0.49497581810371516
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 8,
+        "id": "5f296bd9d010ebaa0cb7d7c1dad3d536662ca10e2a312be833006a28b07b2c0d",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "8c8cf82fc8bce070f2135b313de3cfec9b39af0ef22dbb2f1588efcad7211192",
+      "step": 47012,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 77,
+            "detected_objects": 82,
+            "objects": 102,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 15,
+            "detected_objects": 16,
+            "objects": 18,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 14,
+            "detected_objects": 18,
+            "objects": 21,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 3,
+            "detected_objects": 5,
+            "objects": 7,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 3,
+            "detected_objects": 4,
+            "objects": 4,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 4,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 5,
+            "detected_objects": 5,
+            "objects": 6,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 6,
+            "detected_objects": 7,
+            "objects": 7,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 3,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 40,
+            "detected_objects": 40,
+            "objects": 48,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 4,
+            "detected_objects": 4,
+            "objects": 5,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 5,
+            "detected_objects": 5,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 46,
+            "detected_objects": 47,
+            "objects": 58,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 3,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 12,
+            "detected_objects": 12,
+            "objects": 20,
+            "sufficient": true
+          }
+        }
+      }
+    },
+    {
+      "epoch": 10,
+      "file": "controller/epoch_010_806ffb81b98a.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.005396475390734983,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5036690207072408
+              },
+              {
+                "difficulty": 0.0008100708770040482,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.49633097929275916
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0068298991487363665,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5054635795066197
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.4945364204933803
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.016682330854003818,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.46196558285898637
+              },
+              {
+                "difficulty": 0.06436941908055324,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5380344171410137
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 10,
+        "id": "cea03ac57b227a50f019d420728cec13b96ad378bcc87025593fafd181d1cc4f",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "77ddfc17af05569d9bc87ae23942ee99f086e331caa9d97380adaf8502a47257",
+      "step": 60444,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 85,
+            "detected_objects": 89,
+            "objects": 117,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 8,
+            "detected_objects": 11,
+            "objects": 13,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 9,
+            "detected_objects": 9,
+            "objects": 9,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 2,
+            "detected_objects": 3,
+            "objects": 3,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 3,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 2,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 36,
+            "detected_objects": 37,
+            "objects": 41,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 5,
+            "detected_objects": 5,
+            "objects": 5,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 43,
+            "detected_objects": 43,
+            "objects": 49,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 8,
+            "detected_objects": 9,
+            "objects": 9,
+            "sufficient": true
+          },
+          "3": {
+            "detected_clusters": 5,
+            "detected_objects": 5,
+            "objects": 9,
+            "sufficient": false
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 22,
+            "detected_objects": 23,
+            "objects": 32,
+            "sufficient": true
+          }
+        }
+      }
+    },
+    {
+      "epoch": 12,
+      "file": "controller/epoch_012_9c5c91f6f4fa.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.013072595440828207,
+                "family": "photometric",
+                "level": 2,
+                "probability": 0.5104556940581222
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.4895443059418778
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.012919140587995231,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.49807266428810626
+              },
+              {
+                "difficulty": 0.015328328872198864,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5019273357118937
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 1.0
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 12,
+        "id": "ec4012ff0ba1820cbc36cceefaa95102bae2b09becf6e9795a50dbd9af5a543d",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "d4168d97b6de76080f28cc8798f8f9f1a0f2b710ccdaef9640f1eed0a5a5d761",
+      "step": 73876,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 78,
+            "detected_objects": 82,
+            "objects": 97,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 16,
+            "detected_objects": 21,
+            "objects": 23,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 15,
+            "detected_objects": 17,
+            "objects": 19,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 2,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 5,
+            "detected_objects": 6,
+            "objects": 8,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 5,
+            "detected_objects": 7,
+            "objects": 8,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 2,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 2,
+            "detected_objects": 7,
+            "objects": 10,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 30,
+            "detected_objects": 30,
+            "objects": 35,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 3,
+            "objects": 3,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 55,
+            "detected_objects": 57,
+            "objects": 72,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 5,
+            "detected_objects": 8,
+            "objects": 8,
+            "sufficient": true
+          },
+          "3": {
+            "detected_clusters": 5,
+            "detected_objects": 6,
+            "objects": 10,
+            "sufficient": false
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 12,
+            "detected_objects": 13,
+            "objects": 30,
+            "sufficient": true
+          }
+        }
+      }
+    },
+    {
+      "epoch": 14,
+      "file": "controller/epoch_014_10830d309de3.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.004064980799585774,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5028752218809527
+              },
+              {
+                "difficulty": 0.0004708915475847123,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.49712477811904743
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.015118630432777952,
+                "family": "photometric",
+                "level": 1,
+                "probability": 0.5120912196025841
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 2,
+                "probability": 0.48790878039741603
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 14,
+        "id": "7613d956e546dfbd0ea8c217415c758ab93daeaf6bd241a546297a0280dc1069",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "9bfaa8d3a78de9ad24914760f2858a1d1e14e9eed27cd02ae41c8d38c01dbcd4",
+      "step": 87308,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 90,
+            "detected_objects": 96,
+            "objects": 118,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 11,
+            "detected_objects": 15,
+            "objects": 16,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 10,
+            "detected_objects": 11,
+            "objects": 13,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 4,
+            "detected_objects": 4,
+            "objects": 4,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 4,
+            "detected_objects": 6,
+            "objects": 6,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 3,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 2,
+            "detected_objects": 3,
+            "objects": 5,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 4,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 31,
+            "detected_objects": 33,
+            "objects": 38,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 5,
+            "detected_objects": 7,
+            "objects": 8,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 5,
+            "detected_objects": 6,
+            "objects": 7,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 42,
+            "detected_objects": 42,
+            "objects": 47,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 6,
+            "detected_objects": 7,
+            "objects": 7,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 4,
+            "detected_objects": 5,
+            "objects": 7,
+            "sufficient": false
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 27,
+            "detected_objects": 32,
+            "objects": 41,
+            "sufficient": true
+          }
+        }
+      }
+    },
+    {
+      "epoch": 16,
+      "file": "controller/epoch_016_aca872f0fe29.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.01904068468747201,
+                "family": "photometric",
+                "level": 1,
+                "probability": 0.46344144078015037
+              },
+              {
+                "difficulty": 0.06486676889757301,
+                "family": "blur_noise",
+                "level": 2,
+                "probability": 0.5365585592198496
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 16,
+        "id": "344bb0ee67e8a9a495d7aca7fc01172152537374774faeb15c1823a7904ad86f",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "43c222c2acf70c5197f516a3b563329f137a250750419713f3b40e2dc2b14d24",
+      "step": 100740,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 78,
+            "detected_objects": 82,
+            "objects": 108,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 9,
+            "detected_objects": 11,
+            "objects": 13,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 7,
+            "detected_objects": 7,
+            "objects": 10,
+            "sufficient": false
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 1,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 3,
+            "detected_objects": 4,
+            "objects": 5,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 4,
+            "detected_objects": 4,
+            "objects": 4,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 2,
+            "objects": 4,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 3,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 4,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 36,
+            "detected_objects": 38,
+            "objects": 45,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 3,
+            "detected_objects": 4,
+            "objects": 4,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 3,
+            "detected_objects": 5,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 53,
+            "detected_objects": 56,
+            "objects": 60,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 4,
+            "detected_objects": 4,
+            "objects": 4,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 4,
+            "detected_objects": 4,
+            "objects": 5,
+            "sufficient": false
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 25,
+            "detected_objects": 25,
+            "objects": 30,
+            "sufficient": true
+          }
+        }
+      }
+    },
+    {
+      "epoch": 18,
+      "file": "controller/epoch_018_3667f5b4d713.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.013830520279200401,
+                "family": "blur_noise",
+                "level": 1,
+                "probability": 1.0
+              }
+            ],
+            "reason": "active"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 9.384929883683854e-05,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5000750794381879
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.49992492056181226
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 18,
+        "id": "d98471779cb61db750726fdb6145814196d792bda8a424f77ee7e68ed3c97568",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "cb2e806e71d9298d3f994184017921bfd282c90799cdaec8b8d90c9c059c88e6",
+      "step": 114172,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 87,
+            "detected_objects": 93,
+            "objects": 108,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 12,
+            "detected_objects": 13,
+            "objects": 13,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 9,
+            "detected_objects": 10,
+            "objects": 13,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 3,
+            "detected_objects": 5,
+            "objects": 6,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 2,
+            "detected_objects": 3,
+            "objects": 4,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 2,
+            "detected_objects": 2,
+            "objects": 3,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 6,
+            "detected_objects": 6,
+            "objects": 6,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 6,
+            "detected_objects": 6,
+            "objects": 6,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 32,
+            "detected_objects": 33,
+            "objects": 34,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 6,
+            "detected_objects": 9,
+            "objects": 9,
+            "sufficient": true
+          },
+          "2": {
+            "detected_clusters": 6,
+            "detected_objects": 7,
+            "objects": 7,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 54,
+            "detected_objects": 54,
+            "objects": 62,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 9,
+            "detected_objects": 9,
+            "objects": 9,
+            "sufficient": true
+          },
+          "3": {
+            "detected_clusters": 9,
+            "detected_objects": 12,
+            "objects": 12,
+            "sufficient": true
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 20,
+            "detected_objects": 21,
+            "objects": 25,
+            "sufficient": true
+          }
+        }
+      }
+    },
+    {
+      "epoch": 20,
+      "file": "controller/epoch_020_75bff6ad6f1e.json.gz",
+      "policy": {
+        "class_sets": {
+          "0": {
+            "classes": [
+              0
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1": {
+            "classes": [
+              0,
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "0,1,2": {
+            "classes": [
+              0,
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,1,2,3": {
+            "classes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,1,3": {
+            "classes": [
+              0,
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,2": {
+            "classes": [
+              0,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "0,2,3": {
+            "classes": [
+              0,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "0,3": {
+            "classes": [
+              0,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1": {
+            "classes": [
+              1
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "1,2": {
+            "classes": [
+              1,
+              2
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "1,2,3": {
+            "classes": [
+              1,
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "1,3": {
+            "classes": [
+              1,
+              3
+            ],
+            "families": [],
+            "reason": "unobserved_class_set"
+          },
+          "2": {
+            "classes": [
+              2
+            ],
+            "families": [
+              {
+                "difficulty": 0.0,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.5
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.5
+              }
+            ],
+            "reason": "active"
+          },
+          "2,3": {
+            "classes": [
+              2,
+              3
+            ],
+            "families": [],
+            "reason": "insufficient_support"
+          },
+          "3": {
+            "classes": [
+              3
+            ],
+            "families": [
+              {
+                "difficulty": 0.01969235746436042,
+                "family": "photometric",
+                "level": 3,
+                "probability": 0.515745745445299
+              },
+              {
+                "difficulty": 0.0,
+                "family": "blur_noise",
+                "level": 3,
+                "probability": 0.48425425455470095
+              }
+            ],
+            "reason": "active"
+          }
+        },
+        "epoch": 20,
+        "id": "02518d157fdfd4d2acb88cc9e70d2027c596c2a239ecc612532784820af1cb6b",
+        "version": "online_class_adaptive_local_v1"
+      },
+      "probe_image_forwards": 7168,
+      "sha256": "65b9b948dafe0acca9df193f2684edaa5072fa16116114c8f118acb57b14971b",
+      "step": 127604,
+      "support": {
+        "0": {
+          "0": {
+            "detected_clusters": 96,
+            "detected_objects": 102,
+            "objects": 122,
+            "sufficient": true
+          }
+        },
+        "0,1": {
+          "0": {
+            "detected_clusters": 11,
+            "detected_objects": 13,
+            "objects": 16,
+            "sufficient": true
+          },
+          "1": {
+            "detected_clusters": 10,
+            "detected_objects": 12,
+            "objects": 13,
+            "sufficient": true
+          }
+        },
+        "0,1,2": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 1,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 2,
+            "sufficient": false
+          }
+        },
+        "0,1,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,1,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,2": {
+          "0": {
+            "detected_clusters": 8,
+            "detected_objects": 10,
+            "objects": 13,
+            "sufficient": true
+          },
+          "2": {
+            "detected_clusters": 6,
+            "detected_objects": 6,
+            "objects": 9,
+            "sufficient": false
+          }
+        },
+        "0,2,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "0,3": {
+          "0": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1": {
+          "1": {
+            "detected_clusters": 31,
+            "detected_objects": 32,
+            "objects": 39,
+            "sufficient": true
+          }
+        },
+        "1,2": {
+          "1": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          }
+        },
+        "1,2,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "2": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "1,3": {
+          "1": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 0,
+            "detected_objects": 0,
+            "objects": 0,
+            "sufficient": false
+          }
+        },
+        "2": {
+          "2": {
+            "detected_clusters": 59,
+            "detected_objects": 60,
+            "objects": 62,
+            "sufficient": true
+          }
+        },
+        "2,3": {
+          "2": {
+            "detected_clusters": 1,
+            "detected_objects": 1,
+            "objects": 1,
+            "sufficient": false
+          },
+          "3": {
+            "detected_clusters": 1,
+            "detected_objects": 2,
+            "objects": 2,
+            "sufficient": false
+          }
+        },
+        "3": {
+          "3": {
+            "detected_clusters": 20,
+            "detected_objects": 20,
+            "objects": 22,
+            "sufficient": true
+          }
+        }
+      }
+    }
+  ],
+  "cuda_visible_devices": "GPU-a5a7e7fd-12e8-3560-b51f-b47b56b7a58c",
+  "effective_model": {
+    "image_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "image_std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "normalization": "FrozenBatchNorm2d, eps=0.0; ImageNet RGB mean/std",
+    "parameters": 41314536,
+    "reinitialized": "ROI classification and class-specific box regression predictors",
+    "trainable_backbone_stages": 5,
+    "trainable_parameters": 41314536,
+    "transferred_state_keys": [
+      "backbone.body.bn1.bias",
+      "backbone.body.bn1.running_mean",
+      "backbone.body.bn1.running_var",
+      "backbone.body.bn1.weight",
+      "backbone.body.conv1.weight",
+      "backbone.body.layer1.0.bn1.bias",
+      "backbone.body.layer1.0.bn1.running_mean",
+      "backbone.body.layer1.0.bn1.running_var",
+      "backbone.body.layer1.0.bn1.weight",
+      "backbone.body.layer1.0.bn2.bias",
+      "backbone.body.layer1.0.bn2.running_mean",
+      "backbone.body.layer1.0.bn2.running_var",
+      "backbone.body.layer1.0.bn2.weight",
+      "backbone.body.layer1.0.bn3.bias",
+      "backbone.body.layer1.0.bn3.running_mean",
+      "backbone.body.layer1.0.bn3.running_var",
+      "backbone.body.layer1.0.bn3.weight",
+      "backbone.body.layer1.0.conv1.weight",
+      "backbone.body.layer1.0.conv2.weight",
+      "backbone.body.layer1.0.conv3.weight",
+      "backbone.body.layer1.0.downsample.0.weight",
+      "backbone.body.layer1.0.downsample.1.bias",
+      "backbone.body.layer1.0.downsample.1.running_mean",
+      "backbone.body.layer1.0.downsample.1.running_var",
+      "backbone.body.layer1.0.downsample.1.weight",
+      "backbone.body.layer1.1.bn1.bias",
+      "backbone.body.layer1.1.bn1.running_mean",
+      "backbone.body.layer1.1.bn1.running_var",
+      "backbone.body.layer1.1.bn1.weight",
+      "backbone.body.layer1.1.bn2.bias",
+      "backbone.body.layer1.1.bn2.running_mean",
+      "backbone.body.layer1.1.bn2.running_var",
+      "backbone.body.layer1.1.bn2.weight",
+      "backbone.body.layer1.1.bn3.bias",
+      "backbone.body.layer1.1.bn3.running_mean",
+      "backbone.body.layer1.1.bn3.running_var",
+      "backbone.body.layer1.1.bn3.weight",
+      "backbone.body.layer1.1.conv1.weight",
+      "backbone.body.layer1.1.conv2.weight",
+      "backbone.body.layer1.1.conv3.weight",
+      "backbone.body.layer1.2.bn1.bias",
+      "backbone.body.layer1.2.bn1.running_mean",
+      "backbone.body.layer1.2.bn1.running_var",
+      "backbone.body.layer1.2.bn1.weight",
+      "backbone.body.layer1.2.bn2.bias",
+      "backbone.body.layer1.2.bn2.running_mean",
+      "backbone.body.layer1.2.bn2.running_var",
+      "backbone.body.layer1.2.bn2.weight",
+      "backbone.body.layer1.2.bn3.bias",
+      "backbone.body.layer1.2.bn3.running_mean",
+      "backbone.body.layer1.2.bn3.running_var",
+      "backbone.body.layer1.2.bn3.weight",
+      "backbone.body.layer1.2.conv1.weight",
+      "backbone.body.layer1.2.conv2.weight",
+      "backbone.body.layer1.2.conv3.weight",
+      "backbone.body.layer2.0.bn1.bias",
+      "backbone.body.layer2.0.bn1.running_mean",
+      "backbone.body.layer2.0.bn1.running_var",
+      "backbone.body.layer2.0.bn1.weight",
+      "backbone.body.layer2.0.bn2.bias",
+      "backbone.body.layer2.0.bn2.running_mean",
+      "backbone.body.layer2.0.bn2.running_var",
+      "backbone.body.layer2.0.bn2.weight",
+      "backbone.body.layer2.0.bn3.bias",
+      "backbone.body.layer2.0.bn3.running_mean",
+      "backbone.body.layer2.0.bn3.running_var",
+      "backbone.body.layer2.0.bn3.weight",
+      "backbone.body.layer2.0.conv1.weight",
+      "backbone.body.layer2.0.conv2.weight",
+      "backbone.body.layer2.0.conv3.weight",
+      "backbone.body.layer2.0.downsample.0.weight",
+      "backbone.body.layer2.0.downsample.1.bias",
+      "backbone.body.layer2.0.downsample.1.running_mean",
+      "backbone.body.layer2.0.downsample.1.running_var",
+      "backbone.body.layer2.0.downsample.1.weight",
+      "backbone.body.layer2.1.bn1.bias",
+      "backbone.body.layer2.1.bn1.running_mean",
+      "backbone.body.layer2.1.bn1.running_var",
+      "backbone.body.layer2.1.bn1.weight",
+      "backbone.body.layer2.1.bn2.bias",
+      "backbone.body.layer2.1.bn2.running_mean",
+      "backbone.body.layer2.1.bn2.running_var",
+      "backbone.body.layer2.1.bn2.weight",
+      "backbone.body.layer2.1.bn3.bias",
+      "backbone.body.layer2.1.bn3.running_mean",
+      "backbone.body.layer2.1.bn3.running_var",
+      "backbone.body.layer2.1.bn3.weight",
+      "backbone.body.layer2.1.conv1.weight",
+      "backbone.body.layer2.1.conv2.weight",
+      "backbone.body.layer2.1.conv3.weight",
+      "backbone.body.layer2.2.bn1.bias",
+      "backbone.body.layer2.2.bn1.running_mean",
+      "backbone.body.layer2.2.bn1.running_var",
+      "backbone.body.layer2.2.bn1.weight",
+      "backbone.body.layer2.2.bn2.bias",
+      "backbone.body.layer2.2.bn2.running_mean",
+      "backbone.body.layer2.2.bn2.running_var",
+      "backbone.body.layer2.2.bn2.weight",
+      "backbone.body.layer2.2.bn3.bias",
+      "backbone.body.layer2.2.bn3.running_mean",
+      "backbone.body.layer2.2.bn3.running_var",
+      "backbone.body.layer2.2.bn3.weight",
+      "backbone.body.layer2.2.conv1.weight",
+      "backbone.body.layer2.2.conv2.weight",
+      "backbone.body.layer2.2.conv3.weight",
+      "backbone.body.layer2.3.bn1.bias",
+      "backbone.body.layer2.3.bn1.running_mean",
+      "backbone.body.layer2.3.bn1.running_var",
+      "backbone.body.layer2.3.bn1.weight",
+      "backbone.body.layer2.3.bn2.bias",
+      "backbone.body.layer2.3.bn2.running_mean",
+      "backbone.body.layer2.3.bn2.running_var",
+      "backbone.body.layer2.3.bn2.weight",
+      "backbone.body.layer2.3.bn3.bias",
+      "backbone.body.layer2.3.bn3.running_mean",
+      "backbone.body.layer2.3.bn3.running_var",
+      "backbone.body.layer2.3.bn3.weight",
+      "backbone.body.layer2.3.conv1.weight",
+      "backbone.body.layer2.3.conv2.weight",
+      "backbone.body.layer2.3.conv3.weight",
+      "backbone.body.layer3.0.bn1.bias",
+      "backbone.body.layer3.0.bn1.running_mean",
+      "backbone.body.layer3.0.bn1.running_var",
+      "backbone.body.layer3.0.bn1.weight",
+      "backbone.body.layer3.0.bn2.bias",
+      "backbone.body.layer3.0.bn2.running_mean",
+      "backbone.body.layer3.0.bn2.running_var",
+      "backbone.body.layer3.0.bn2.weight",
+      "backbone.body.layer3.0.bn3.bias",
+      "backbone.body.layer3.0.bn3.running_mean",
+      "backbone.body.layer3.0.bn3.running_var",
+      "backbone.body.layer3.0.bn3.weight",
+      "backbone.body.layer3.0.conv1.weight",
+      "backbone.body.layer3.0.conv2.weight",
+      "backbone.body.layer3.0.conv3.weight",
+      "backbone.body.layer3.0.downsample.0.weight",
+      "backbone.body.layer3.0.downsample.1.bias",
+      "backbone.body.layer3.0.downsample.1.running_mean",
+      "backbone.body.layer3.0.downsample.1.running_var",
+      "backbone.body.layer3.0.downsample.1.weight",
+      "backbone.body.layer3.1.bn1.bias",
+      "backbone.body.layer3.1.bn1.running_mean",
+      "backbone.body.layer3.1.bn1.running_var",
+      "backbone.body.layer3.1.bn1.weight",
+      "backbone.body.layer3.1.bn2.bias",
+      "backbone.body.layer3.1.bn2.running_mean",
+      "backbone.body.layer3.1.bn2.running_var",
+      "backbone.body.layer3.1.bn2.weight",
+      "backbone.body.layer3.1.bn3.bias",
+      "backbone.body.layer3.1.bn3.running_mean",
+      "backbone.body.layer3.1.bn3.running_var",
+      "backbone.body.layer3.1.bn3.weight",
+      "backbone.body.layer3.1.conv1.weight",
+      "backbone.body.layer3.1.conv2.weight",
+      "backbone.body.layer3.1.conv3.weight",
+      "backbone.body.layer3.2.bn1.bias",
+      "backbone.body.layer3.2.bn1.running_mean",
+      "backbone.body.layer3.2.bn1.running_var",
+      "backbone.body.layer3.2.bn1.weight",
+      "backbone.body.layer3.2.bn2.bias",
+      "backbone.body.layer3.2.bn2.running_mean",
+      "backbone.body.layer3.2.bn2.running_var",
+      "backbone.body.layer3.2.bn2.weight",
+      "backbone.body.layer3.2.bn3.bias",
+      "backbone.body.layer3.2.bn3.running_mean",
+      "backbone.body.layer3.2.bn3.running_var",
+      "backbone.body.layer3.2.bn3.weight",
+      "backbone.body.layer3.2.conv1.weight",
+      "backbone.body.layer3.2.conv2.weight",
+      "backbone.body.layer3.2.conv3.weight",
+      "backbone.body.layer3.3.bn1.bias",
+      "backbone.body.layer3.3.bn1.running_mean",
+      "backbone.body.layer3.3.bn1.running_var",
+      "backbone.body.layer3.3.bn1.weight",
+      "backbone.body.layer3.3.bn2.bias",
+      "backbone.body.layer3.3.bn2.running_mean",
+      "backbone.body.layer3.3.bn2.running_var",
+      "backbone.body.layer3.3.bn2.weight",
+      "backbone.body.layer3.3.bn3.bias",
+      "backbone.body.layer3.3.bn3.running_mean",
+      "backbone.body.layer3.3.bn3.running_var",
+      "backbone.body.layer3.3.bn3.weight",
+      "backbone.body.layer3.3.conv1.weight",
+      "backbone.body.layer3.3.conv2.weight",
+      "backbone.body.layer3.3.conv3.weight",
+      "backbone.body.layer3.4.bn1.bias",
+      "backbone.body.layer3.4.bn1.running_mean",
+      "backbone.body.layer3.4.bn1.running_var",
+      "backbone.body.layer3.4.bn1.weight",
+      "backbone.body.layer3.4.bn2.bias",
+      "backbone.body.layer3.4.bn2.running_mean",
+      "backbone.body.layer3.4.bn2.running_var",
+      "backbone.body.layer3.4.bn2.weight",
+      "backbone.body.layer3.4.bn3.bias",
+      "backbone.body.layer3.4.bn3.running_mean",
+      "backbone.body.layer3.4.bn3.running_var",
+      "backbone.body.layer3.4.bn3.weight",
+      "backbone.body.layer3.4.conv1.weight",
+      "backbone.body.layer3.4.conv2.weight",
+      "backbone.body.layer3.4.conv3.weight",
+      "backbone.body.layer3.5.bn1.bias",
+      "backbone.body.layer3.5.bn1.running_mean",
+      "backbone.body.layer3.5.bn1.running_var",
+      "backbone.body.layer3.5.bn1.weight",
+      "backbone.body.layer3.5.bn2.bias",
+      "backbone.body.layer3.5.bn2.running_mean",
+      "backbone.body.layer3.5.bn2.running_var",
+      "backbone.body.layer3.5.bn2.weight",
+      "backbone.body.layer3.5.bn3.bias",
+      "backbone.body.layer3.5.bn3.running_mean",
+      "backbone.body.layer3.5.bn3.running_var",
+      "backbone.body.layer3.5.bn3.weight",
+      "backbone.body.layer3.5.conv1.weight",
+      "backbone.body.layer3.5.conv2.weight",
+      "backbone.body.layer3.5.conv3.weight",
+      "backbone.body.layer4.0.bn1.bias",
+      "backbone.body.layer4.0.bn1.running_mean",
+      "backbone.body.layer4.0.bn1.running_var",
+      "backbone.body.layer4.0.bn1.weight",
+      "backbone.body.layer4.0.bn2.bias",
+      "backbone.body.layer4.0.bn2.running_mean",
+      "backbone.body.layer4.0.bn2.running_var",
+      "backbone.body.layer4.0.bn2.weight",
+      "backbone.body.layer4.0.bn3.bias",
+      "backbone.body.layer4.0.bn3.running_mean",
+      "backbone.body.layer4.0.bn3.running_var",
+      "backbone.body.layer4.0.bn3.weight",
+      "backbone.body.layer4.0.conv1.weight",
+      "backbone.body.layer4.0.conv2.weight",
+      "backbone.body.layer4.0.conv3.weight",
+      "backbone.body.layer4.0.downsample.0.weight",
+      "backbone.body.layer4.0.downsample.1.bias",
+      "backbone.body.layer4.0.downsample.1.running_mean",
+      "backbone.body.layer4.0.downsample.1.running_var",
+      "backbone.body.layer4.0.downsample.1.weight",
+      "backbone.body.layer4.1.bn1.bias",
+      "backbone.body.layer4.1.bn1.running_mean",
+      "backbone.body.layer4.1.bn1.running_var",
+      "backbone.body.layer4.1.bn1.weight",
+      "backbone.body.layer4.1.bn2.bias",
+      "backbone.body.layer4.1.bn2.running_mean",
+      "backbone.body.layer4.1.bn2.running_var",
+      "backbone.body.layer4.1.bn2.weight",
+      "backbone.body.layer4.1.bn3.bias",
+      "backbone.body.layer4.1.bn3.running_mean",
+      "backbone.body.layer4.1.bn3.running_var",
+      "backbone.body.layer4.1.bn3.weight",
+      "backbone.body.layer4.1.conv1.weight",
+      "backbone.body.layer4.1.conv2.weight",
+      "backbone.body.layer4.1.conv3.weight",
+      "backbone.body.layer4.2.bn1.bias",
+      "backbone.body.layer4.2.bn1.running_mean",
+      "backbone.body.layer4.2.bn1.running_var",
+      "backbone.body.layer4.2.bn1.weight",
+      "backbone.body.layer4.2.bn2.bias",
+      "backbone.body.layer4.2.bn2.running_mean",
+      "backbone.body.layer4.2.bn2.running_var",
+      "backbone.body.layer4.2.bn2.weight",
+      "backbone.body.layer4.2.bn3.bias",
+      "backbone.body.layer4.2.bn3.running_mean",
+      "backbone.body.layer4.2.bn3.running_var",
+      "backbone.body.layer4.2.bn3.weight",
+      "backbone.body.layer4.2.conv1.weight",
+      "backbone.body.layer4.2.conv2.weight",
+      "backbone.body.layer4.2.conv3.weight",
+      "backbone.fpn.inner_blocks.0.bias",
+      "backbone.fpn.inner_blocks.0.weight",
+      "backbone.fpn.inner_blocks.1.bias",
+      "backbone.fpn.inner_blocks.1.weight",
+      "backbone.fpn.inner_blocks.2.bias",
+      "backbone.fpn.inner_blocks.2.weight",
+      "backbone.fpn.inner_blocks.3.bias",
+      "backbone.fpn.inner_blocks.3.weight",
+      "backbone.fpn.layer_blocks.0.bias",
+      "backbone.fpn.layer_blocks.0.weight",
+      "backbone.fpn.layer_blocks.1.bias",
+      "backbone.fpn.layer_blocks.1.weight",
+      "backbone.fpn.layer_blocks.2.bias",
+      "backbone.fpn.layer_blocks.2.weight",
+      "backbone.fpn.layer_blocks.3.bias",
+      "backbone.fpn.layer_blocks.3.weight",
+      "roi_heads.box_head.fc6.bias",
+      "roi_heads.box_head.fc6.weight",
+      "roi_heads.box_head.fc7.bias",
+      "roi_heads.box_head.fc7.weight",
+      "rpn.head.bbox_pred.bias",
+      "rpn.head.bbox_pred.weight",
+      "rpn.head.cls_logits.bias",
+      "rpn.head.cls_logits.weight",
+      "rpn.head.conv.bias",
+      "rpn.head.conv.weight"
+    ]
+  },
+  "elapsed_seconds": 52028.588211985305,
+  "finished_utc": "2026-10-27T13:25:21.849503+00:00",
+  "gpu": "NVIDIA A10",
+  "host": "gpu0020",
+  "image_presentations": 537260,
+  "optimizer_steps": 134320,
+  "pbs_job": "796544.bright04",
+  "peak_cuda_memory_allocated_bytes": 2857788416,
+  "profile": "full",
+  "resume": false,
+  "started_utc": "2026-10-26T22:58:15.747917+00:00",
+  "status": "complete",
+  "test_data_read": false
+}
