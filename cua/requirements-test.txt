@@ -1,8 +1,9 @@
 torch
 torchvision
-numpy
+# torch 2.3 is built against NumPy 1.x
+numpy<2
 Pillow
 pycocotools
-scipy
+scipy<1.14
 pytest
-matplotlib
+matplotlib<3.10
