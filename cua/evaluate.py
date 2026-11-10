@@ -82,7 +82,8 @@ def coco_metrics(records: list[Record], predictions, classes) -> dict:
     images, cats, gt_anns, dt_anns = _coco_inputs(records, predictions, n_classes)
     with contextlib.redirect_stdout(io.StringIO()):
         gt = COCO()
-        gt.dataset = {"images": images, "categories": cats, "annotations": gt_anns}
+        # pycocotools 2.0.10 (CCAST) reads dataset["info"] in loadRes; 2.0.11 does not.
+        gt.dataset = {"info": {}, "images": images, "categories": cats, "annotations": gt_anns}
         gt.createIndex()
         if dt_anns:
             dt = gt.loadRes(dt_anns)
