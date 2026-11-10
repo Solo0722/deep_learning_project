@@ -6,4 +6,4 @@ Pillow
 pycocotools
 scipy<1.14
 pytest
-matplotlib<3.10
+matplotlib
