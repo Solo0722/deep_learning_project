@@ -1,0 +1,66 @@
+% =====================================================================
+% STAGE 1 drop-in: title, keywords, Introduction, Fig. 1.
+% Replace everything in main.tex from \title{...} down to (but not
+% including) \section{Related Work}. Authors are intentionally blank.
+% =====================================================================
+
+\title{Class-Aware Augmentation Selection for Multi-Class Object Detection}
+\maketitle
+
+% \begin{abstract}
+% Written last (Stage 7).
+% \end{abstract}
+
+\begin{IEEEkeywords}
+augmentation policy, data augmentation, gradient alignment, infrastructure inspection, multi-class images, object detection
+\end{IEEEkeywords}
+
+\section{Introduction}
+\label{sec:intro}
+
+Data augmentation is part of almost every object-detection training recipe, and detection augmentation policies, whether designed by hand or found by search, typically apply one distribution of edits to every training image~\cite{zoph2020det,chen2021scale}. Detection images, however, often contain more than one kind of object, and an edit applied to the whole image reaches every object in it at once. In our split of the RDD2022 road-damage dataset~\cite{arya2024rdd}, 35\% of the training and validation images that contain damage contain more than one damage class. The corresponding rate is \todo{x}\% for the bridge-inspection images of dacl10k~\cite{flotzinger2024dacl10k}, where colour-defined defects such as rust appear beside shape-defined cracks, and \todo{y}\% for PASCAL VOC~\cite{everingham2010voc}. Automated road and bridge inspection depends on detecting each of these damage categories~\cite{shang2024automated,zheng2024deep,vision2025inspection}, so for such data the relevant question is not only whether an augmentation helps on average, but which classes it helps.
+
+There are concrete reasons to expect that an edit which helps one class does not help another. Colour jitter alters the cue that defines rust while leaving the geometry of a crack intact; Gaussian blur can erase a hairline crack while barely changing the outline of a pothole. Evidence from recognition points the same way: augmentation that raises average ImageNet accuracy can lower the accuracy of individual classes~\cite{kirichenko2023}, and augmentation methods for road-damage classification differ in their effect on individual damage classes~\cite{tsuchiya2019}. Detection makes the choice harder, because the edit for an image is a joint decision that must serve every class the image contains. Yet the evidence that detection classes differ in \emph{which edits help them learn} remains indirect, drawn from classification or from accuracy averaged over classes.
+
+Existing augmentation methods do not make this joint decision. Shared policies, from AutoAugment, RandAugment and TrivialAugment to their detection counterparts, select one policy for the whole dataset~\cite{cubuk2019auto,cubuk2020rand,muller2021trivial,zoph2020det,chen2021scale}. Class-conditioned policies set augmentation parameters from the label of a sample~\cite{yoo2023,cheung2022adaaug,ahn2023cuda}; this presumes one label per image and leaves open which class should govern an image that contains several. Online methods adapt the policy during training but differ in the signal they read. Tolerance-based controllers such as CTAugment and CUDA adjust augmentation magnitudes according to whether the model still recognizes augmented examples~\cite{berthelot2020,ahn2023cuda}. Recognizability, however, measures what the model can already handle, not what it gains from training on the edited image. Benefit-based methods target that gain directly: BDA rewards an augmentation by the training gain it produces over an unaugmented reference~\cite{lu2023bda}, and DDAS and MADAug optimize the policy against a held-out loss~\cite{liu2021ddas,hou2023madaug}. Each of them, however, scores an augmentation with a single objective pooled over classes, so a gain for frequent classes can mask a loss for a rare one. In detection, PSIS adapts how many instance-switched samples each class receives to its detection accuracy~\cite{wang2019psis}, but not which edit each image receives. What remains open is a benefit signal resolved by class and a rule that combines it into one decision for an image that contains several classes.
+
+We propose Class-Utility Augmentation (CUA), which chooses the augmentation for each training image according to the classes the image contains and how much each candidate edit currently helps those classes learn. We call this quantity the \emph{class utility} of an edit: the estimated amount an augmentation helps a given class learn. CUA estimates class utility during training by asking, for every candidate edit and every class, whether a gradient step on the edited image would lower that class's loss on a held-out \emph{reference set} more than a step on the unedited image would. This first-order estimate is a gradient alignment, the quantity TracIn uses to trace the influence of training examples~\cite{pruthi2020tracin}; CUA computes it separately for each class and each edit. For each training image, CUA averages the utilities of the classes present, keeps ``no edit'' as a candidate with zero utility, removes any edit that is reliably harmful to one of those classes, and samples one edit from the remaining candidates (Fig.~\ref{fig:teaser}). Because utilities are estimated from the current detector, the preferred edits can change as training progresses, and because ``no edit'' is always available, CUA can decline to augment an image when no edit helps its classes. The method adds no policy network and no separate search phase; its only cost is a periodic gradient computation on a small batch.
+
+We evaluate CUA on road damage (RDD2022), bridge damage (dacl10k) and everyday objects (PASCAL VOC) with two detector families, Faster R-CNN~\cite{ren2017faster} and RetinaNet~\cite{lin2017focal}. The method rests on the premise that classes respond differently to the same edit, and we measure this premise directly. An edit-wise measurement study trains detectors with one edit at a time and records the change in each class's AP50, and a class-targeted study applies an edit only to one class's objects, separating its direct effect on that class from spill-over to the others. In the edit-wise study, \todo{N} of the \todo{M} edits change AP50 in opposite directions for two classes of the same dataset; for example, \todo{edit} changes the AP50 of \todo{class A} by \todo{+x.x} and that of \todo{class B} by \todo{$-$y.y} on \todo{dataset}. We then compare CUA with \emph{shared-utility augmentation}, an otherwise identical policy that pools utility across classes, so that any difference between the two is attributable to class information alone. Relative to shared-utility augmentation, CUA changes test macro AP50 by \todo{a.a} to \todo{b.b} across the six dataset--detector pairs, with 95\% intervals excluding zero in \todo{k} of the six, and its online utility estimates rank-agree with the measured per-class effects with Spearman $\rho=\todo{0.xx}$.
+
+Our contributions are as follows:
+\begin{itemize}
+    \item We propose Class-Utility Augmentation, an online augmentation policy for multi-class object detection that scores each candidate edit by its estimated training benefit for each class and combines these scores over the classes present in an image, with an explicit no-edit option and a per-class harm block. It requires no policy network and no separate search phase.
+    \item We measure class-specific augmentation effects in detection across three domains and two detector families, with paired seeds and image-level bootstrap intervals, and separate the direct effect of an edit on a class from its spill-over to other classes.
+    \item We compare CUA with a shared-utility counterpart that differs from it only in class information, as well as with the base recipe, uniform augmentation and a policy built from the measured effects, and we test whether the online utility estimates agree with the measured per-class effects.
+\end{itemize}
+
+% ---------------------------------------------------------------------
+% Fig. 1 (teaser). Single-column: IEEEtran cannot place figure* on page 1.
+% Replace each \fbox placeholder with the commented \includegraphics line
+% once figures/build_teaser.py has produced the files.
+% ---------------------------------------------------------------------
+\begin{figure}[t]
+\centering
+\setlength{\fboxsep}{0pt}
+\begin{minipage}[t]{0.32\columnwidth}\centering
+\fbox{\parbox[c][0.75\linewidth][c]{0.96\linewidth}{\centering\scriptsize\todo{unedited}}}\\[1pt]
+% \includegraphics[width=\linewidth]{figures/teaser_unedited.png}\\[1pt]
+{\footnotesize (a) Unedited}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\columnwidth}\centering
+\fbox{\parbox[c][0.75\linewidth][c]{0.96\linewidth}{\centering\scriptsize\todo{edit 1}}}\\[1pt]
+% \includegraphics[width=\linewidth]{figures/teaser_EDIT1.png}\\[1pt]
+{\footnotesize (b) \todo{Edit 1}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\columnwidth}\centering
+\fbox{\parbox[c][0.75\linewidth][c]{0.96\linewidth}{\centering\scriptsize\todo{edit 2}}}\\[1pt]
+% \includegraphics[width=\linewidth]{figures/teaser_EDIT2.png}\\[1pt]
+{\footnotesize (c) \todo{Edit 2}}
+\end{minipage}\\[5pt]
+\fbox{\parbox[c][0.42\columnwidth][c]{0.985\columnwidth}{\centering\scriptsize\todo{bar chart: per-class $\Delta$AP50 for each edit}}}\\[1pt]
+% \includegraphics[width=\columnwidth]{figures/teaser_effects.pdf}\\[1pt]
+{\footnotesize (d) Per-class change in validation AP50}
+\caption[Classes in one image can need different augmentations]{Classes in the same image can need different augmentations. (a)--(c)~A \todo{dataset} training image containing \todo{class A} and \todo{class B}, unedited and under the two edits. (d)~Change in validation AP50 of each class when the detector is trained with each edit, relative to the base recipe (mean over three seeds; bars: $\pm$1~s.d.). \todo{Edit 1} raises the AP50 of \todo{class A} but lowers that of \todo{class B}, so any policy shared across classes trades one class against the other. CUA instead chooses the edit for each image from the classes it contains.}
+\label{fig:teaser}
+\end{figure}

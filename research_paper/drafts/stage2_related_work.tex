@@ -1,0 +1,68 @@
+% =====================================================================
+% STAGE 2 drop-in: Related Work and Table I.
+% Replace everything in main.tex from \section{Related Work} down to
+% (but not including) \section{Methodology}.
+% =====================================================================
+
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Augmentation for Infrastructure Damage Detection}
+
+Work on road and bridge damage has used augmentation mainly to obtain more informative training examples from limited annotations, and several studies have found that the useful choice depends on the damage type. Tsuchiya \emph{et al.}~\cite{tsuchiya2019} compared augmentation methods by their effect on the classification accuracy of each road-damage class and selected methods accordingly. Aghayan-Mashhady and Amirkhani~\cite{aghayan2024} combined bounding-box augmentation with samples synthesized by generative adversarial networks for road-damage detection, and Pham \emph{et al.}~\cite{rdd_detectron2} set augmentation probabilities for each damage type and country from an exploration of the data before training. Instance-level methods place damage into new contexts, as in content- and perspective-aware cut-and-paste~\cite{rdd_cutpaste}. In all of these, the dependence on the damage type is fixed before training and examined within one domain. CUA instead estimates it from the detector during training, and we measure it across road damage, bridge damage and general objects.
+
+\subsection{Augmentation Policies for Detection}
+
+Automatic augmentation selects operations, probabilities and magnitudes for a whole dataset. AutoAugment~\cite{cubuk2019auto} searches this space with validation performance as the reward, RandAugment~\cite{cubuk2020rand} reduces the search to an operation count and a shared magnitude, and TrivialAugment~\cite{muller2021trivial} samples a single operation and strength uniformly at random, which makes it a strong tuning-free baseline. Detection adds the question of where an operation is applied. Zoph \emph{et al.}~\cite{zoph2020det} learn policies that include operations restricted to the content of each box, Scale-Aware AutoAug~\cite{chen2021scale} searches image- and box-level policies conditioned on object scale, and InterAug~\cite{thopalli2023interaug} provides a tuning-free policy for detection. These policies condition on location or scale, but every image receives edits from the same distribution regardless of the classes it contains. We use a TrivialAugment-style uniform policy over the same augmentation menu as CUA as a baseline, so that the comparison measures the value of choosing edits rather than the value of the menu.
+
+\subsection{Class-Aware Augmentation}
+
+Averaged gains can hide class-level losses. Kirichenko \emph{et al.}~\cite{kirichenko2023} showed that standard augmentation can lower accuracy for individual ImageNet classes while raising average accuracy, a finding consistent with the class-dependent road-damage results above~\cite{tsuchiya2019}. Several methods therefore condition augmentation on the class. Yoo and Kang~\cite{yoo2023} derive class-specific augmentation parameters from an initially trained classifier and decay them on a schedule while retraining. AdaAug~\cite{cheung2022adaaug} learns class- and instance-adaptive policies in a search phase and reuses them for training. CUDA~\cite{ahn2023cuda} maintains a separate augmentation severity for each class in long-tailed recognition. These methods take the label of a sample as the key that selects its policy, which is well defined when each image has one label but not when it contains objects of several classes. In detection, PSIS~\cite{wang2019psis} switches instances of the same class between images and allocates more switching to classes with low detection accuracy; it adapts how many new samples each class receives rather than which appearance edit helps it learn. CUA conditions the edit for each image on the full set of classes it contains.
+
+\subsection{Online Augmentation: Tolerance, Benefit and Influence}
+
+Online methods adapt augmentation to the model during training, and they differ in the signal they read. \emph{Tolerance-based} methods ask whether the current model still recognizes augmented examples. CTAugment, the augmentation component of ReMixMatch~\cite{berthelot2020}, updates per-operation magnitude statistics from the model's predictions on augmented labeled examples, pooling observations across classes. CUDA~\cite{ahn2023cuda} raises or lowers each class's severity according to how well augmented examples of that class are recognized, and TeachAugment~\cite{suzuki2022teach} learns transformations that are hard for the target model while remaining recognizable to a teacher. Recognizability, however, describes what the model already handles; an edit can be easy to recognize and teach little, or hard to recognize and teach a great deal.
+
+\emph{Benefit-based} methods instead reward an augmentation for what training on it achieves. BDA~\cite{lu2023bda} measures the training gain an augmentation produces relative to a paired unaugmented reference. DDAS~\cite{liu2021ddas} uses a one-step gradient update to estimate how the augmentation distribution affects a held-out loss, and applies the resulting search to detection as well as classification. MADAug~\cite{hou2023madaug} learns an input-dependent policy jointly with the classifier through a bilevel validation objective. RangeAugment~\cite{mehta2022rangeaugment} learns magnitude ranges online from the task loss, including for detection, and AdaAugment~\cite{yang2025adaaugment} sets instance-level magnitudes with an actor--critic controller driven by loss feedback. Each of these methods scores augmentation with an objective pooled over classes, so a policy that helps the frequent classes can be preferred even when it harms a rare one. CUA uses the same kind of benefit signal but keeps it separate for every class.
+
+The benefit estimate in CUA is a first-order influence estimate. TracIn~\cite{pruthi2020tracin} measures the influence of a training example on a test loss by the alignment between their gradients, scaled by the learning rate. CUA applies the same first-order reasoning to a pair of training batches, edited and unedited, and to one reference loss per class, so the difference in alignment estimates how much one edit changes what a step teaches each class. Unlike DDAS and MADAug, CUA does not differentiate through the augmentation or learn policy parameters; it evaluates a fixed, discrete menu of edits and turns the estimates directly into sampling probabilities.
+
+\subsection{Positioning}
+
+Table~\ref{tab:policies} summarizes these methods by the signal they use and by whether that signal is resolved by class. None of the ingredients of CUA is new in isolation: class conditioning, online adaptation, held-out benefit signals and gradient-alignment influence estimates all have precedents. What the methods above leave open is their combination for multi-class detection, namely a benefit estimate kept separate for each class, combined into one decision for an image that contains several classes, with ``no edit'' as an explicit candidate. Because this combination can only help if classes respond differently to the same edit, we measure that premise directly, and we compare CUA with shared-utility augmentation, which removes class information and changes nothing else.
+
+\begin{table*}[t]
+\caption{Augmentation Methods Grouped by Feedback Signal and Class Resolution}
+\label{tab:policies}
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}p{0.155\textwidth}p{0.145\textwidth}p{0.115\textwidth}p{0.06\textwidth}Y@{}}
+\toprule
+\textbf{Method} & \textbf{Original setting} & \textbf{Signal} & \textbf{Per class} & \textbf{Relation to CUA} \\
+\midrule
+TrivialAugment~\cite{muller2021trivial} & Classification & None & No & Uniform augmentation baseline in our comparison. \\
+Zoph \emph{et al.}~\cite{zoph2020det} & Detection & Offline search & No & Box-level operations; one policy for the dataset. \\
+Scale-Aware AutoAug~\cite{chen2021scale} & Detection & Offline search & No & Conditioned on object scale rather than class. \\
+Pham \emph{et al.}~\cite{rdd_detectron2} & Road-damage detection & Data exploration & Yes & Per-class probabilities fixed before training. \\
+PSIS~\cite{wang2019psis} & Detection & Validation AP & Yes & Adapts per-class instance switching, not the appearance edit. \\
+Yoo and Kang~\cite{yoo2023} & Classification & Offline, then schedule & Yes & One label per sample selects the parameters. \\
+AdaAug~\cite{cheung2022adaaug} & Classification & Learned offline & Yes & One label per sample; policy reused after search. \\
+CTAugment~\cite{berthelot2020} & Semi-supervised classification & Tolerance & No & Statistics pooled across classes. \\
+CUDA~\cite{ahn2023cuda} & Long-tailed classification & Tolerance & Yes & One label per sample selects the severity. \\
+BDA~\cite{lu2023bda} & Classification & Benefit & No & Paired training gain, pooled across classes. \\
+DDAS~\cite{liu2021ddas} & Classification, detection & Benefit & No & One-step held-out loss, pooled across classes. \\
+MADAug~\cite{hou2023madaug} & Classification & Benefit (learned) & Implicit & Input-dependent policy learned from one pooled validation loss. \\
+RangeAugment~\cite{mehta2022rangeaugment} & Classification, detection & Task loss (learned) & No & Learns magnitude ranges online. \\
+AdaAugment~\cite{yang2025adaaugment} & Classification & Loss feedback (learned) & No & Instance-level magnitudes from an actor--critic controller. \\
+\midrule
+CUA (ours) & Multi-class detection & Benefit & Yes & Per-class benefit combined over the classes in each image; no-edit option and per-class harm block. \\
+\bottomrule
+\end{tabularx}
+\vspace{3pt}
+\begin{minipage}{\textwidth}
+\footnotesize
+Signal: \emph{tolerance} = whether the current model recognizes augmented examples; \emph{benefit} = whether training on augmented data reduces a held-out or reference loss. CTAugment is the augmentation component of ReMixMatch.
+\end{minipage}
+\end{table*}
