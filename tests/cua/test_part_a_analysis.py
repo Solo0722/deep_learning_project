@@ -272,3 +272,17 @@ def test_warnings_for_missing_base_and_empty_runs(tmp_path, capsys):
     deltas(rows)
     err = capsys.readouterr().err
     assert "no per-class" in err and "no matching base" in err
+
+
+def test_menu_order_matches_menu():
+    from cua.analysis import part_a
+    from cua.augment.menu import MENU_ORDER
+    assert part_a.MENU_ORDER == MENU_ORDER
+
+
+def test_part_a_does_not_import_torch():
+    import subprocess
+    import sys
+    code = "import sys, cua.analysis.part_a; print('torch' in sys.modules)"
+    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True)
+    assert out.stdout.strip() == "False"

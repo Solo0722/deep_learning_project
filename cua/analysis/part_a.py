@@ -12,8 +12,18 @@ from pathlib import Path
 import numpy as np
 from scipy import stats
 
-from cua.augment.menu import MENU_ORDER
-from cua.train import read_history
+# No torch/PIL imports here: on the CCAST login node they take many minutes to load.
+# MENU_ORDER mirrors cua.augment.menu.MENU_ORDER (a test checks they agree).
+MENU_ORDER = ("translate", "rotate", "vflip", "brightness", "contrast", "saturation", "hue",
+              "blur", "noise", "jpeg", "sharpen", "erase", "mosaic")
+
+
+def read_history(run_dir: Path) -> list[dict]:
+    """Same as cua.train.read_history, without importing the trainer."""
+    path = Path(run_dir) / "history.jsonl"
+    if not path.exists():
+        return []
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 _A_RE = re.compile(r"^A-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _PROXY_RE = re.compile(r"^proxy-rdd-fasterrcnn-e(\d+)-([^-]+)$")
