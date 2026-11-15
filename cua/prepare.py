@@ -121,7 +121,9 @@ def _cmd_dacl10k(args: argparse.Namespace) -> None:
             "dacl10k_retained_classes": list(retained),
             "dacl10k_excluded_classes": stats["excluded"],
             "dacl10k_parse_counts": {
-                k: stats[k] for k in ("clipped_boxes", "dropped_degenerate")
+                k: stats[k]
+                for k in ("clipped_boxes", "dropped_degenerate", "unlabelled_skipped", "other_labels")
+                if k in stats
             },
         },
     )
@@ -141,7 +143,7 @@ def build_parser() -> argparse.ArgumentParser:
     voc.add_argument("--out", required=True)
     voc.set_defaults(func=_cmd_voc)
     dacl = sub.add_parser("dacl10k", help="prepare the dacl10k dataset")
-    dacl.add_argument("--root", required=True, help="dacl10k root (annotations/ and images/)")
+    dacl.add_argument("--root", required=True, help="dacl10k root (samples.json + data/, or annotations/ + images/)")
     dacl.add_argument("--out", required=True)
     dacl.add_argument("--seed", type=int, default=0)
     dacl.set_defaults(func=_cmd_dacl10k)

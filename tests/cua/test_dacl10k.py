@@ -191,3 +191,68 @@ def test_load_dacl10k_unreadable_image_error_names_path(tmp_path, noise_image):
         "imageWidth": 64, "imageHeight": 48, "imagePath": "bad.png", "shapes": []}), encoding="utf-8")
     with pytest.raises(ValueError, match="bad.png"):
         load_dacl10k(tmp_path, seed=0)
+
+
+# --- FiftyOne export (Hugging Face mirror Voxel51/dacl10k) ---
+
+from cua.datasets.dacl10k import parse_fiftyone_sample  # noqa: E402
+
+
+def _poly(label, rings):
+    return {"_cls": "Polyline", "label": label, "points": rings, "closed": True, "filled": True}
+
+
+def _sample(path, w, h, polylines, tags=("train",)):
+    field = None if polylines is None else {"_cls": "Polylines", "polylines": polylines}
+    return {"filepath": path, "tags": list(tags), "name": Path(path).stem,
+            "metadata": {"width": w, "height": h}, "semseg_ground_truth_filled": field}
+
+
+def test_fiftyone_normalised_points_scale_to_pixels_and_rings_union():
+    s = _sample("data/data_0/a.jpg", 200, 100, [
+        _poly("Rust", [[[0.05, 0.2], [0.55, 0.2], [0.55, 0.6]]]),
+        _poly("Spalling", [[[0.1, 0.1], [0.2, 0.1], [0.2, 0.2]], [[0.5, 0.5], [0.6, 0.5], [0.6, 0.7]]]),
+        _poly("Bearing", [[[0.0, 0.0], [0.5, 0.0], [0.5, 0.5]]]),
+    ])
+    counts = {}
+    rec = parse_fiftyone_sample(s, DACL_DAMAGE, counts=counts)
+    assert rec.image == "data/data_0/a.jpg" and (rec.width, rec.height) == (200, 100)
+    assert [DACL_DAMAGE[i] for i in rec.labels] == ["Rust", "Spalling"]
+    assert rec.boxes.ravel().tolist() == pytest.approx([10.0, 20.0, 110.0, 60.0, 20.0, 10.0, 120.0, 70.0])
+    assert counts["other_labels"] == {"Bearing": 1}
+
+
+def test_fiftyone_unlabelled_samples_are_skipped():
+    counts = {}
+    assert parse_fiftyone_sample(_sample("t.jpg", 10, 10, None), DACL_DAMAGE, counts=counts) is None
+    assert parse_fiftyone_sample(_sample("u.jpg", 10, 10, [], tags=("test",)), DACL_DAMAGE, counts=counts) is None
+    assert counts["unlabelled_skipped"] == 2
+    empty = parse_fiftyone_sample(_sample("v.jpg", 10, 10, [], tags=("validation",)), DACL_DAMAGE)
+    assert empty is not None and len(empty.boxes) == 0  # labelled image with no damage stays
+
+
+def test_fiftyone_bad_sample_raises_naming_file():
+    s = _sample("data/x/bad.jpg", 0, 10, [_poly("Rust", [[[0, 0], [1, 0], [1, 1]]])])
+    with pytest.raises(ValueError, match="bad.jpg"):
+        parse_fiftyone_sample(s, DACL_DAMAGE)
+
+
+def test_load_dacl10k_reads_samples_json(tmp_path, noise_image):
+    samples = []
+    for k in range(40):
+        img = noise_image(seed=k)
+        rel = f"data/data_{k % 3}/im{k:02d}.png"
+        (tmp_path / rel).parent.mkdir(parents=True, exist_ok=True)
+        Image.fromarray(img).save(tmp_path / rel)
+        h, w = img.shape[:2]
+        polys = [_poly("Crack", [[[i / w, 2 / h], [(i + 5) / w, 2 / h], [(i + 5) / w, 9 / h]]]) for i in range(30)]
+        samples.append(_sample(rel, w, h, polys))
+    samples.append(_sample("data/data_0/testdev.png", 64, 48, None, tags=("test",)))  # no file on disk
+    (tmp_path / "samples.json").write_text(json.dumps({"samples": samples}), encoding="utf-8")
+    stats = {}
+    splits, retained = load_dacl10k(tmp_path, seed=0, stats=stats)
+    assert retained == ("Crack",)
+    everything = splits["train"] + splits["val"] + splits["test"]
+    assert len(everything) == 40 and all(len(r.boxes) == 30 for r in everything)
+    assert all(r.image.startswith("data/data_") for r in everything)
+    assert stats["unlabelled_skipped"] == 1

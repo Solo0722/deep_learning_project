@@ -1,33 +1,28 @@
-# dacl10k format: ASSUMPTION, confirm on CCAST
+# dacl10k format (confirmed on CCAST, 2026-11-14)
 
-The dacl10k dataset was NOT available on the development machine when `cua/datasets/dacl10k.py`
-was written (plan Task 5 Step 1 is an operator step). The adapter targets an ASSUMED labelme-style
-layout. Everything below is unverified until checked against the real download.
+The official downloads (S3, GigaMove) are gone. We use the Hugging Face mirror `Voxel51/dacl10k`
+(FiftyOne export, 8,922 images, CC BY-NC 4.0), downloaded with `hf download --repo-type dataset`.
 
-## Assumed layout
+## Layout
 
 ```
-<root>/annotations/<split>/<name>.json     # splits e.g. train, validation (and testdev if labelled)
-<root>/images/<split>/<name>.jpg
+<root>/samples.json            # {"samples": [...]}, one entry per image
+<root>/data/data_<k>/<name>.jpg
 ```
 
-Every `*.json` under `<root>/annotations/*/` is pooled; the image is `<root>/images/<split>/` plus the
-basename of `imagePath`. The adapter ignores the official splits and re-splits by duplicate group.
+Each sample: `filepath` (relative to root), `tags` (official split: train / validation / test),
+`metadata.width`, `metadata.height`, and `semseg_ground_truth_filled.polylines`. Each polyline has
+`label` and `points` = list of rings, each a list of `[x, y]` normalised to [0, 1].
 
-## Assumed JSON keys
+## Conversion (`parse_fiftyone_sample`)
 
-Top level: `imageWidth`, `imageHeight`, `imagePath`, `shapes`.
-Each shape: `label` (string) and `points` (`[[x, y], ...]`, polygon vertices in image pixels).
-Each polygon becomes one box (min/max of its points, clipped to the image). Shapes with fewer than
-3 distinct points, or collinear points, are dropped; so are shapes whose clipped box is empty.
-Labels not in `DACL_DAMAGE` (component labels such as "Bearing") are dropped.
+- One box per polyline: min/max over all its rings, scaled to pixels, clipped to the image.
+- Degenerate polygons (<3 distinct points, collinear) and empty clipped boxes are dropped and counted.
+- Labels not in `DACL_DAMAGE` (component classes such as Bearing, EJoint, Drainage) are dropped and
+  counted in `other_labels`, which goes into the prepare report so label-name mismatches show up.
+- Unlabelled samples (field missing/null, or tagged `test` with no polylines) are skipped, so the
+  unlabelled test-dev images never become damage-free negatives.
+- Official splits are ignored; images are re-split 70/15/15 by near-duplicate group.
 
-## To check on CCAST (do these, then update the adapter/tests if anything differs)
-
-1. Key names: are they exactly `imageWidth`, `imageHeight`, `imagePath`, `shapes`, `label`, `points`?
-2. Label names: do the damage labels match `DACL_DAMAGE` exactly (spelling, case)? Update the tuple if not.
-3. Test labels: are annotations present for the official test split? If not, only train/validation
-   are pooled (as designed), but record this here.
-4. Bridge id: does any file name encode a bridge identifier? If so, use it as `Record.group`
-   instead of `duplicate_groups` and note it here.
-5. Directory layout: does it match the assumed layout above? Adjust `load_dacl10k` if not.
+The older labelme-style layout (`<root>/annotations/<split>/*.json`) is still read when
+`samples.json` is absent.
