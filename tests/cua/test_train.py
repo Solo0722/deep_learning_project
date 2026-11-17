@@ -476,3 +476,31 @@ def test_digest_is_stable_and_sensitive():
     a, b = tiny_cfg(), tiny_cfg()
     assert a.digest() == b.digest() and len(a.digest()) == 64
     assert tiny_cfg(seed=1).digest() != a.digest()
+
+
+def test_digest_unchanged_for_existing_specs():
+    from cua.experiments.specs import part_a_specs
+    specs = part_a_specs("rdd", "fasterrcnn", (0,))
+    assert specs[0].digest() == "4c63658d0428b1daf190a09da78e843cf9ed44a266b29e0af61a0814f3946200"
+    assert specs[2].run_id.endswith("-translate")
+    assert specs[2].digest() == "0b5522a1478db708c5f7ffb88ea424ae6f6bdd8b5ca29d913bf3b1dad41f7f88"
+
+
+def test_digest_changes_with_new_fields():
+    assert tiny_cfg(policy="cua").digest() != tiny_cfg().digest()
+    assert tiny_cfg(policy="cua", epsilon=0.2).digest() != tiny_cfg(policy="cua").digest()
+
+
+@pytest.mark.parametrize("kw", [
+    dict(policy="nope"),
+    dict(policy="uniform", edit="blur", augment=True, size=640),
+    dict(policy="cua", epsilon=1.5),
+    dict(policy="cua", epsilon=-0.1),
+    dict(policy="cua", theta="all"),
+    dict(policy="cua", est_every=0),
+    dict(policy="cua", weights="softmax"),
+])
+def test_validate_rejects_bad_policy_fields(kw):
+    from cua.train import _validate
+    with pytest.raises(ValueError):
+        _validate(tiny_cfg(**kw))

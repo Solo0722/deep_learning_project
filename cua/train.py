@@ -14,7 +14,7 @@ import json
 import math
 import os
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 
 import numpy as np
@@ -54,10 +54,33 @@ class TrainConfig:
     pretrained: bool = True
     size: int = 640
     augment: bool = True
+    # Plan 2 (Part C policies). Left out of the digest while at their defaults, so the digests of
+    # runs created before these fields existed do not change.
+    policy: str = "arm"  # arm (Part A edit/edit_p) | uniform | measured | shared | cua
+    est_every: int = 200
+    est_batch: int = 8
+    ref_batch: int = 64
+    theta: str = "head_fpn"  # head | head_fpn
+    epsilon: float = 0.1
+    beta: float = 0.9
+    est_start_epoch: int = 2
+    weights: str = "equal"  # equal | inv_ap
+    harm_block: bool = True
+    allow_identity: bool = True
 
     def digest(self) -> str:
-        """SHA-256 of the config as sorted JSON (tuples become lists); holds no paths."""
-        return hashlib.sha256(json.dumps(asdict(self), sort_keys=True).encode("utf-8")).hexdigest()
+        """SHA-256 of the config as sorted JSON (tuples become lists); holds no paths.
+        Plan-2 fields are omitted while they equal their defaults."""
+        d = asdict(self)
+        for f in fields(self):
+            if f.name in _PLAN2_FIELDS and d[f.name] == f.default:
+                del d[f.name]
+        return hashlib.sha256(json.dumps(d, sort_keys=True).encode("utf-8")).hexdigest()
+
+
+_PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "theta", "epsilon", "beta",
+                           "est_start_epoch", "weights", "harm_block", "allow_identity"})
+POLICIES = ("arm", "uniform", "measured", "shared", "cua")
 
 
 def full_schedule(epochs: int) -> tuple[float, ...]:
@@ -116,6 +139,21 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError(f"edit={cfg.edit!r} requires augment=True")
     if cfg.first_epoch < 1:
         raise ValueError("first_epoch must be >= 1")
+    if cfg.policy not in POLICIES:
+        raise ValueError(f"policy must be one of {POLICIES}, got {cfg.policy!r}")
+    if cfg.policy != "arm" and cfg.edit is not None:
+        raise ValueError(f"policy={cfg.policy!r} chooses edits itself; edit must be None, got {cfg.edit!r}")
+    if not 0.0 <= cfg.epsilon <= 1.0:
+        raise ValueError(f"epsilon must be in [0, 1], got {cfg.epsilon}")
+    if not 0.0 <= cfg.beta < 1.0:
+        raise ValueError(f"beta must be in [0, 1), got {cfg.beta}")
+    if cfg.theta not in ("head", "head_fpn"):
+        raise ValueError(f"theta must be 'head' or 'head_fpn', got {cfg.theta!r}")
+    if cfg.weights not in ("equal", "inv_ap"):
+        raise ValueError(f"weights must be 'equal' or 'inv_ap', got {cfg.weights!r}")
+    for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch"):
+        if getattr(cfg, name) < 1:
+            raise ValueError(f"{name} must be >= 1, got {getattr(cfg, name)}")
 
 
 def _check_init_run(cfg: TrainConfig, runs_root: Path, max_train_images: int | None) -> Path:
