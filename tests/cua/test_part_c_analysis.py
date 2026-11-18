@@ -1,0 +1,173 @@
+"""Part C statistics, tables and figures on synthetic run directories (no training)."""
+import csv
+import json
+import math
+
+import numpy as np
+import pytest
+
+from cua.analysis.part_c import compare, h3_baseline, h4_agreement, load_runs, seed_t_interval, summarize
+from cua.augment.menu import valid_menu
+from cua.records import Record, write_classes, write_records
+
+MENU = valid_menu("voc")
+GT = [[10.0, 10.0, 40.0, 40.0], [50.0, 20.0, 80.0, 50.0]]
+
+
+@pytest.fixture
+def data_root(tmp_path):
+    d = tmp_path / "data" / "voc"
+    d.mkdir(parents=True)
+    recs = [Record(f"img/{i}.png", 96, 64, np.array(GT), np.array([0, 1]), np.array([False, False]), f"g{i}", "s")
+            for i in range(3)]
+    write_records(d / "test.jsonl", recs)
+    write_classes(d / "classes.json", ("a", "b"))
+    return tmp_path / "data"
+
+
+def _preds(quality: str):
+    """'good': both GT boxes found on every image; 'poor': only class a found."""
+    out = []
+    for i in range(3):
+        boxes, labels = (GT, [0, 1]) if quality == "good" else (GT[:1], [0])
+        out.append({"image_index": i, "boxes": boxes, "scores": [0.9] * len(labels), "labels": labels})
+    return out
+
+
+def _run(runs, rid, test_ap=None, val=50.0, preds="good", utility=None, est_seconds=0.0, complete=True):
+    d = runs / rid
+    d.mkdir(parents=True)
+    (d / "config.json").write_text(json.dumps({"digest": "x"}), encoding="utf-8")
+    if complete:
+        (d / "COMPLETE.json").write_text("{}", encoding="utf-8")
+    hist = [{"epoch": e, "seconds": 100.0, "metrics": {"macro_ap50": val - 2 + e},
+             "policy": {"estimator_seconds": est_seconds}} for e in (1, 2)]
+    (d / "history.jsonl").write_text("".join(json.dumps(h) + "\n" for h in hist), encoding="utf-8")
+    if test_ap is not None:
+        (d / "test_metrics.json").write_text(json.dumps({
+            "macro_ap50": test_ap, "ap50_95": test_ap / 2, "ap_small": None, "ap_medium": 1.0, "ap_large": 2.0,
+            "fp_images": {"count": 0, "n_target_free": 0, "fraction": None}}), encoding="utf-8")
+        (d / "test_predictions.json").write_text(json.dumps(_preds(preds)), encoding="utf-8")
+    if utility is not None:
+        (d / "utility.jsonl").write_text("".join(json.dumps(r) + "\n" for r in utility), encoding="utf-8")
+    return d
+
+
+def _deltas(path, value):
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=["dataset", "detector", "seed", "edit", "cls", "delta"])
+        w.writeheader()
+        for s in (0, 1, 2):
+            for k, e in enumerate(MENU):
+                for j, c in enumerate(("a", "b")):
+                    w.writerow({"dataset": "voc", "detector": "fasterrcnn", "seed": s, "edit": e, "cls": c,
+                                "delta": value(k, j)})
+    return path
+
+
+def _util_rows():
+    u = [[float(k + j) for j in range(2)] for k in range(len(MENU))]
+    return [{"u": u, "valid": [[True, True]] * len(MENU)}]
+
+
+@pytest.fixture
+def runs(tmp_path):
+    r = tmp_path / "runs"
+    for s, (base, uni, meas, sh, cua) in enumerate([(40.0, 41.0, 41.5, 42.0, 43.0), (40.5, 41.2, 41.0, 42.1, 43.0),
+                                                     (40.2, 41.4, 41.8, 41.9, 43.0)]):
+        _run(r, f"C-voc-fasterrcnn-s{s}-base", base, preds="poor")
+        _run(r, f"C-voc-fasterrcnn-s{s}-uniform", uni, preds="poor")
+        _run(r, f"C-voc-fasterrcnn-s{s}-measured", meas, preds="poor")
+        _run(r, f"C-voc-fasterrcnn-s{s}-shared", sh, preds="poor", est_seconds=20.0)
+        _run(r, f"C-voc-fasterrcnn-s{s}-cua", cua + (s - 1) * 0.1, val=50.0, preds="good",
+             utility=_util_rows(), est_seconds=30.0)
+    return r
+
+
+def test_seed_t_interval_known_values():
+    t = seed_t_interval([1.0, 2.0, 3.0])
+    half = 4.302653 * 1.0 / math.sqrt(3)
+    assert t["mean"] == pytest.approx(2.0) and t["n"] == 3
+    assert t["lo"] == pytest.approx(2.0 - half, abs=1e-5) and t["hi"] == pytest.approx(2.0 + half, abs=1e-5)
+    one = seed_t_interval([1.0])
+    assert one["lo"] is None and one["hi"] is None
+
+
+def test_compare_pairs_seeds_and_claims(runs, data_root):
+    from cua.analysis.part_c import build_matches
+    rows = load_runs(runs)
+    m = build_matches(runs, data_root, rows)
+    c = compare(rows, "voc", "fasterrcnn", "shared", "cua", matches=m)
+    assert c["n_seeds"] == 3 and c["seeds"] == [0, 1, 2]
+    assert c["t"]["lo"] > 0 and c["boot"]["lo"] > 0 and c["claim"] is True
+
+
+def test_unpaired_seed_is_dropped(tmp_path):
+    r = tmp_path / "runs"
+    for s in (0, 1, 2):
+        _run(r, f"C-voc-fasterrcnn-s{s}-shared", 42.0 + s)
+    for s in (0, 1):
+        _run(r, f"C-voc-fasterrcnn-s{s}-cua", 43.0 + s * 1.1)
+    c = compare(load_runs(r), "voc", "fasterrcnn", "shared", "cua")
+    assert c["n_seeds"] == 2 and c["seeds"] == [0, 1]
+    r2 = tmp_path / "runs2"
+    _run(r2, "C-voc-fasterrcnn-s0-shared", 42.0)
+    _run(r2, "C-voc-fasterrcnn-s0-cua", 43.0)
+    c2 = compare(load_runs(r2), "voc", "fasterrcnn", "shared", "cua")
+    assert c2["claim"] is False and c2["note"] == "fewer than 2 paired seeds"
+
+
+def test_h3_baseline_is_better_mean(runs):
+    assert h3_baseline(load_runs(runs), "voc", "fasterrcnn") == "uniform"
+
+
+def test_escalation_flag(tmp_path, data_root):
+    for name, diffs, expect in (("wide", [-0.6, 0.1, 0.9], True), ("tight", [0.9, 1.0, 1.1], False)):
+        r = tmp_path / name
+        for s, dlt in enumerate(diffs):
+            _run(r, f"C-voc-fasterrcnn-s{s}-shared", 42.0)
+            _run(r, f"C-voc-fasterrcnn-s{s}-cua", 42.0 + dlt)
+        res = summarize(r, data_root, _deltas(tmp_path / f"{name}.csv", lambda k, j: k + j), n_boot=20)
+        assert res["h2"]["voc-fasterrcnn"]["escalate_to_5_seeds"] is expect
+
+
+def test_h4_uses_valid_cells_only(tmp_path, data_root):
+    r = tmp_path / "runs"
+    u1 = [[float(k + j) for j in range(2)] for k in range(len(MENU))]
+    u2 = [row[:] for row in u1]
+    u2[0][0] = 1e9
+    valid2 = [[True, True] for _ in MENU]
+    valid2[0][0] = False
+    _run(r, "C-voc-fasterrcnn-s0-cua", 43.0, utility=[{"u": u1, "valid": [[True, True]] * len(MENU)},
+                                                         {"u": u2, "valid": valid2}])
+    rows = list(csv.DictReader(open(_deltas(tmp_path / "d.csv", lambda k, j: k + j), encoding="utf-8")))
+    h = h4_agreement(r, rows, "voc", "fasterrcnn", ("a", "b"), n_boot=50)
+    assert h["n_cells"] == 2 * len(MENU) and h["n_runs"] == 1
+    assert h["rho"] == pytest.approx(1.0) and math.isfinite(h["lo"])
+
+
+def test_ablation_compares_validation_only(runs, data_root, tmp_path):
+    for s in (0, 1, 2):
+        _run(runs, f"X-voc-fasterrcnn-s{s}-noharm", val=49.0 + 0.1 * s)
+    res = summarize(runs, data_root, _deltas(tmp_path / "d.csv", lambda k, j: k + j), n_boot=20)
+    ab = res["ablations"]["voc"]["noharm"]
+    assert ab["boot"] is None and ab["n_seeds"] == 3 and ab["metric"] == "val"
+    assert ab["t"]["mean"] == pytest.approx(np.mean([49.0 + 0.1 * s - 50.0 for s in (0, 1, 2)]))
+
+
+def test_missing_lists_unevaluated_runs(runs, data_root, tmp_path):
+    _run(runs, "C-voc-fasterrcnn-s3-cua")  # complete, not evaluated on test
+    res = summarize(runs, data_root, _deltas(tmp_path / "d.csv", lambda k, j: k + j), n_boot=20)
+    assert "C-voc-fasterrcnn-s3-cua" in res["missing"]
+
+
+def test_summary_arms_overhead_and_secondary(runs, data_root, tmp_path):
+    res = summarize(runs, data_root, _deltas(tmp_path / "d.csv", lambda k, j: k + j), n_boot=20)
+    arms = res["arms"]["voc-fasterrcnn"]
+    assert arms["cua"]["mean"] == pytest.approx(43.0) and arms["base"]["n"] == 3
+    assert res["h3"]["voc-fasterrcnn"]["baseline"] == "uniform"
+    assert res["overhead"]["voc-fasterrcnn"]["cua"] == pytest.approx(30.0 / 100.0)
+    assert res["overhead"]["voc-fasterrcnn"]["shared"] == pytest.approx(0.2)
+    sec = res["secondary"]["voc-fasterrcnn"]["cua"]
+    assert sec["ap_small"] is None and sec["fp_fraction"] is None and sec["ap_large"] == pytest.approx(2.0)
+    json.dumps(res)  # results.json must serialise
