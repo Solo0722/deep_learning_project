@@ -70,10 +70,17 @@ ABLATIONS = {"noharm": {"harm_block": False}, "noid": {"allow_identity": False},
 ABLATION_DATASETS = ("rdd", "dacl10k")
 
 
+# Which tuned settings each policy uses. base/uniform use none, so they can start before tuning ends
+# and keep their digests whatever CUA_SETTINGS becomes.
+_USES_SETTINGS = {"base": (), "uniform": (), "measured": ("epsilon",),
+                  "shared": ("est_every", "theta", "epsilon"), "cua": ("est_every", "theta", "epsilon")}
+
+
 def _c_config(run_id: str, dataset: str, detector: str, seed: int, policy: str, **over) -> TrainConfig:
+    tuned = {k: CUA_SETTINGS[k] for k in _USES_SETTINGS[policy]}
     return TrainConfig(run_id=run_id, dataset=dataset, detector=detector, seed=seed,
                        epoch_lr=full_schedule(BUDGET_EPOCHS[dataset]), edit=None, policy=policy,
-                       **{**CUA_SETTINGS, **over})
+                       **{**tuned, **over})
 
 
 def part_c_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2),

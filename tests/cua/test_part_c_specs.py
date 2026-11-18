@@ -97,3 +97,18 @@ def test_make_jobs_policies_filter(tmp_path):
     jobs_main(["--family", "part_c", "--dataset", "voc", "--detector", "retinanet", "--seeds", "0",
                "--policies", "cua,shared", "--out", str(out)])
     assert sorted(p.stem for p in out.glob("*.pbs")) == ["C-voc-retinanet-s0-cua", "C-voc-retinanet-s0-shared"]
+
+
+def test_tuned_settings_only_touch_the_policies_that_use_them(monkeypatch):
+    """base/uniform start before tuning ends; a later change to CUA_SETTINGS must not change their
+    digests (resume would refuse). measured uses epsilon only; shared/cua use all three."""
+    import cua.experiments.specs as S
+    before = {s.run_id: s.digest() for s in part_c_specs("rdd", "fasterrcnn", seeds=(0,))}
+    monkeypatch.setattr(S, "CUA_SETTINGS", {"est_every": 400, "theta": "head", "epsilon": 0.2})
+    after = {s.run_id: s for s in part_c_specs("rdd", "fasterrcnn", seeds=(0,))}
+    for pol in ("base", "uniform"):
+        assert after[f"C-rdd-fasterrcnn-s0-{pol}"].digest() == before[f"C-rdd-fasterrcnn-s0-{pol}"]
+    m = after["C-rdd-fasterrcnn-s0-measured"]
+    assert m.epsilon == 0.2 and (m.est_every, m.theta) == (200, "head_fpn")
+    c = after["C-rdd-fasterrcnn-s0-cua"]
+    assert (c.est_every, c.theta, c.epsilon) == (400, "head", 0.2)
