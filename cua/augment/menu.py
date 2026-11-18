@@ -42,7 +42,21 @@ class ArmTransform:
         applied = er.random() < self.p  # always drawn so the coin is identical across arms
         if not applied or self.edit is None:
             return base
-        if self.edit == "mosaic":
+        return self._render(base, self.edit, er, epoch, index, fetch, n_items)
+
+    def apply(self, sample: Sample, epoch: int, index: int, fetch: Callable[[int], Sample], n_items: int,
+              edit: str | None) -> Sample:
+        """Base geometry plus `edit` (None = identity), with no coin: the policy already chose."""
+        if edit is not None and edit not in valid_menu(self.dataset):
+            raise ValueError(f"Edit {edit!r} is not valid for dataset {self.dataset!r}")
+        base = self.base(sample, epoch, index)
+        if edit is None:
+            return base
+        return self._render(base, edit, keyed_rng(self.seed, epoch, index, "edit"), epoch, index, fetch, n_items)
+
+    def _render(self, base: Sample, edit: str, er, epoch: int, index: int,
+                fetch: Callable[[int], Sample], n_items: int) -> Sample:
+        if edit == "mosaic":
             if n_items < 1:
                 raise ValueError("mosaic needs n_items >= 1")
             mr = keyed_rng(self.seed, epoch, index, "mosaic")
@@ -53,4 +67,4 @@ class ArmTransform:
                     j = int(mr.integers(0, n_items))
                 others.append(fetch(j))
             return mosaic(base, others, er)
-        return EDITS[self.edit](base, er)
+        return EDITS[edit](base, er)

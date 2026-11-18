@@ -37,13 +37,21 @@ class DetectionDataset(Dataset):
         rec = self.records[j]
         return letterbox(load_rgb(self.root, rec), rec, self.size)
 
-    def __getitem__(self, i: int):
+    def __getitem__(self, item):
+        """`item` is an index, or an (index, edit) pair from a policy sampler (edit None = identity)."""
+        chosen = isinstance(item, tuple)
+        i, edit = item if chosen else (item, None)
+        if chosen and self.transform is None:
+            raise ValueError("an (index, edit) item needs a transform")
         sample, geometry = self._load(i)
         if self.transform is not None:
             def fetch(j: int) -> Sample:
                 return self.transform.base(self._load(j)[0], self.epoch, j)
 
-            sample = self.transform(sample, self.epoch, i, fetch, len(self.records))
+            if chosen:
+                sample = self.transform.apply(sample, self.epoch, i, fetch, len(self.records), edit)
+            else:
+                sample = self.transform(sample, self.epoch, i, fetch, len(self.records))
         image = torch.from_numpy(np.ascontiguousarray(sample.rgb)).permute(2, 0, 1).float().div(255.0).contiguous()
         ign = np.asarray(sample.ignore, dtype=bool)
         boxes = np.asarray(sample.boxes, dtype=np.float32).reshape(-1, 4)

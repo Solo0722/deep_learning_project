@@ -21,11 +21,14 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from cua.augment.menu import ArmTransform
+from cua.augment.menu import ArmTransform, valid_menu
 from cua.augment.rng import keyed_rng
 from cua.data import DetectionDataset, collate
+from cua.estimator.utility import Estimator
 from cua.evaluate import coco_metrics, predict
 from cua.models import build_detector
+from cua.policy import IdentityPolicy, UniformPolicy, UtilityPolicy, UtilityTable
+from cua.policy_sampler import PolicyBatchSampler
 from cua.records import read_classes, read_records
 
 STOPPED_AT_DEADLINE = 3
@@ -151,6 +154,8 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError(f"theta must be 'head' or 'head_fpn', got {cfg.theta!r}")
     if cfg.weights not in ("equal", "inv_ap"):
         raise ValueError(f"weights must be 'equal' or 'inv_ap', got {cfg.weights!r}")
+    if cfg.policy != "arm" and not cfg.augment:
+        raise ValueError(f"policy={cfg.policy!r} needs augment=True")
     for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch"):
         if getattr(cfg, name) < 1:
             raise ValueError(f"{name} must be >= 1, got {getattr(cfg, name)}")
@@ -228,7 +233,8 @@ def _lr_factor(global_iter: int, warmup_iters: int, warm_up: bool) -> float:
 
 
 def _train_one_epoch(model, optimizer, scaler, loader, device, use_amp: bool, cfg: TrainConfig,
-                     epoch: int, lr_mult: float, global_iter: int, warm_up: bool) -> tuple[dict, int]:
+                     epoch: int, lr_mult: float, global_iter: int, warm_up: bool,
+                     after_step=None) -> tuple[dict, int]:
     """One pass over `loader`; returns (mean losses per key plus 'total', updated global_iter)."""
     model.train()
     sums: dict[str, float] = {}
@@ -255,6 +261,8 @@ def _train_one_epoch(model, optimizer, scaler, loader, device, use_amp: bool, cf
             sums[k] = sums.get(k, 0.0) + v
         n += 1
         global_iter += 1
+        if after_step is not None:
+            after_step(global_iter, lr)
     if n == 0:
         raise RuntimeError(f"Epoch {epoch} saw no training batches")
     return {k: v / n for k, v in sums.items()}, global_iter
@@ -266,6 +274,28 @@ def _predictions_json(preds: list[dict]) -> list[dict]:
              "boxes": np.round(np.asarray(p["boxes"], np.float64), 2).tolist(),
              "scores": np.round(np.asarray(p["scores"], np.float64), 4).tolist(),
              "labels": np.asarray(p["labels"]).tolist()} for p in preds]
+
+
+def _load_measured(ds_dir: Path, detector: str, classes: tuple[str, ...],
+                   menu: tuple[str, ...]) -> UtilityTable:
+    """Part A measured-effect table (written by cua.measured): mean dAP50 and its seed s.e."""
+    path = ds_dir / f"measured_{detector}.json"
+    if not path.exists():
+        raise FileNotFoundError(f"{path} is missing; run python -m cua.measured first")
+    d = json.loads(path.read_text(encoding="utf-8"))
+    if tuple(d["classes"]) != tuple(classes):
+        raise ValueError(f"{path}: classes {d['classes']} differ from the dataset's {list(classes)}")
+    if tuple(d["edits"]) != tuple(menu):
+        raise ValueError(f"{path}: edits {d['edits']} differ from the valid menu {list(menu)}")
+    mean = np.asarray(d["mean"], dtype=np.float64).reshape(len(menu), len(classes))
+    se = np.asarray(d["se"], dtype=np.float64).reshape(mean.shape)
+    return UtilityTable(mean=mean, se=se, count=np.full(mean.shape, int(d["n_seeds"]), dtype=np.int64))
+
+
+def _read_jsonl(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    return [json.loads(x) for x in path.read_text(encoding="utf-8").splitlines() if x.strip()]
 
 
 def _init_from_warm(ic: dict, model, optimizer, scaler, use_amp: bool) -> None:
@@ -320,6 +350,11 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     val_recs = read_records(ds_dir / "val.jsonl")
     train_ds = DetectionDataset(train_recs, image_root, transform, cfg.size)
     val_ds = DetectionDataset(val_recs, image_root, None, cfg.size)
+    menu = valid_menu(cfg.dataset) if cfg.policy != "arm" else ()
+    measured = _load_measured(ds_dir, cfg.detector, classes, menu) if cfg.policy == "measured" else None
+    estimating = cfg.policy in ("shared", "cua")
+    ref_recs = read_records(ds_dir / "reference.jsonl") if estimating else None
+    ref_ds = DetectionDataset(ref_recs, image_root, None, cfg.size) if estimating else None
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     use_amp = bool(cfg.amp and device.type == "cuda")
@@ -330,6 +365,28 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     params = [p for p in model.parameters() if p.requires_grad]
     optimizer = torch.optim.SGD(params, lr=cfg.base_lr, momentum=0.9, weight_decay=5e-4)
     scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
+
+    estimator = (Estimator(model, cfg.detector, cfg.theta, menu, len(classes), est_batch=cfg.est_batch,
+                           ref_batch=cfg.ref_batch, beta=cfg.beta, amp=use_amp, device=device,
+                           workers=max(1, cfg.workers)) if estimating else None)
+    weights = np.ones(len(classes))
+    weights_fn = (lambda: weights) if cfg.weights == "inv_ap" else None
+    knobs = dict(epsilon=cfg.epsilon, harm_block=cfg.harm_block, allow_identity=cfg.allow_identity)
+    if cfg.policy == "base":
+        main_policy = IdentityPolicy()
+    elif cfg.policy == "uniform":
+        main_policy = UniformPolicy(menu)
+    elif cfg.policy == "measured":
+        main_policy = UtilityPolicy(menu, lambda: measured, shared=False, weights_fn=weights_fn,
+                                    min_estimates=1, **knobs)
+    elif cfg.policy == "shared":
+        main_policy = UtilityPolicy(menu, estimator.shared.table, shared=True, **knobs)
+    elif cfg.policy == "cua":
+        main_policy = UtilityPolicy(menu, estimator.cua.table, shared=False, weights_fn=weights_fn, **knobs)
+    else:
+        main_policy = None
+    uniform_policy = UniformPolicy(menu)
+    utility_rows: list[dict] = []
 
     out.mkdir(parents=True, exist_ok=True)
     warm_up = cfg.init_run is None
@@ -346,6 +403,15 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         global_iter, best, start = int(ck["global_iter"]), float(ck["best_macro"]), int(ck["epoch"]) + 1
         best_epoch = None if ck["best_epoch"] is None else int(ck["best_epoch"])
         _settle_pending(out, int(ck["epoch"]), best_epoch)
+        if main_policy is not None:
+            ps = ck["policy_state"]
+            weights[:] = np.asarray(ps["weights"], dtype=np.float64)
+            if estimator is not None:
+                estimator.cua.load_state_dict(ps["cua"])
+                estimator.shared.load_state_dict(ps["shared"])
+                utility_rows = ([r for r in _read_jsonl(out / "utility.jsonl") if r["epoch"] < int(ck["epoch"])]
+                                + list(ps["utility_rows"]))
+                _write_history(out / "utility.jsonl", utility_rows)
         # last.pt is authoritative: drop history beyond it, restore its row if the kill came first.
         history = [h for h in read_history(out) if h["epoch"] < int(ck["epoch"])] + [ck["history_row"]]
         _write_history(out / "history.jsonl", history)
@@ -367,11 +433,38 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         train_ds.set_epoch(epoch)
         order = torch.randperm(len(train_ds), generator=torch.Generator().manual_seed(
             _derived_seed(cfg.seed, epoch, "shuffle"))).tolist()
-        loader = DataLoader(train_ds, batch_size=cfg.batch_size, sampler=order, collate_fn=collate,
-                            num_workers=cfg.workers, persistent_workers=False,
-                            pin_memory=device.type == "cuda")
+        epoch_rows: list[dict] = []
+        est_seconds = [0.0]
+        after_step = None
+        sampler = None
+        if main_policy is None:
+            loader = DataLoader(train_ds, batch_size=cfg.batch_size, sampler=order, collate_fn=collate,
+                                num_workers=cfg.workers, persistent_workers=False,
+                                pin_memory=device.type == "cuda")
+        else:
+            def policy_fn(epoch=epoch):
+                return uniform_policy if estimator is not None and epoch < cfg.est_start_epoch else main_policy
+
+            sampler = PolicyBatchSampler(train_recs, policy_fn, cfg.batch_size, order, cfg.seed, epoch, menu,
+                                         classes)
+            loader = DataLoader(train_ds, batch_sampler=sampler, collate_fn=collate, num_workers=cfg.workers,
+                                persistent_workers=False, pin_memory=device.type == "cuda")
+            if estimator is not None and epoch >= cfg.est_start_epoch:
+                def after_step(gi, lr, epoch=epoch):
+                    if gi % cfg.est_every:
+                        return
+                    res = estimator.estimate(lambda i, e: train_ds[(i, e)], lambda i: ref_ds[i], len(train_ds),
+                                             ref_recs, keyed_rng(cfg.seed, epoch, gi, "estimate"), lr, epoch, gi)
+                    tab, sh = estimator.cua.table(), estimator.shared.table()
+                    epoch_rows.append({
+                        "epoch": epoch, "global_iter": gi, "lr": lr, "u": res["u"].tolist(),
+                        "mean": tab.mean.tolist(), "se": tab.se.tolist(), "count": tab.count.tolist(),
+                        "Lc": res["Lc"].tolist(), "valid": res["valid"].tolist(),
+                        "shared_mean": sh.mean[:, 0].tolist(), "shared_se": sh.se[:, 0].tolist(),
+                        "seconds": res["seconds"]})
+                    est_seconds[0] += res["seconds"]
         losses, global_iter = _train_one_epoch(model, optimizer, scaler, loader, device, use_amp, cfg,
-                                               epoch, lr_mult, global_iter, warm_up)
+                                               epoch, lr_mult, global_iter, warm_up, after_step)
 
         preds = predict(model, val_ds, device, batch_size=2 * cfg.batch_size, num_workers=cfg.workers)
         metrics = coco_metrics(val_recs, preds, classes)
@@ -381,11 +474,21 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         improved = score > best or best_epoch is None
         if improved:
             best, best_epoch = score, epoch
+        if cfg.weights == "inv_ap":
+            per = metrics.get("per_class") or {}
+            weights[:] = [1.0 / max(float((per.get(c) or {}).get("ap50") or 1.0), 1.0) for c in classes]
         row = {"epoch": epoch, "lr_mult": lr_mult, "losses": losses, "metrics": metrics,
                "seconds": time.monotonic() - t0}
+        if sampler is not None:
+            row["policy"] = {**sampler.stats(), "estimator_seconds": est_seconds[0], "estimates": len(epoch_rows),
+                             "fallbacks": getattr(main_policy, "fallbacks", 0)}
         state = {"model": model.state_dict(), "optimizer": optimizer.state_dict(),
                  "scaler": scaler.state_dict(), "epoch": epoch, "global_iter": global_iter,
                  "cfg_digest": digest, "best_macro": best, "best_epoch": best_epoch, "history_row": row}
+        if main_policy is not None:
+            state["policy_state"] = {"weights": weights.tolist(), "utility_rows": epoch_rows,
+                                     "cua": estimator.cua.state_dict() if estimator else None,
+                                     "shared": estimator.shared.state_dict() if estimator else None}
         # Kill safety: best candidates are staged as pending files, committed by last.pt (which records
         # best_epoch), then promoted. Resume promotes or discards pendings according to last.pt.
         if improved:
@@ -398,6 +501,9 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
             _promote_pending(out, epoch)
         history.append(row)
         _write_history(out / "history.jsonl", history)
+        if estimator is not None:
+            utility_rows += epoch_rows
+            _write_history(out / "utility.jsonl", utility_rows)
         prev_seconds = row["seconds"]
 
     _write_json(out / "COMPLETE.json", {"final_epoch": last_epoch,
