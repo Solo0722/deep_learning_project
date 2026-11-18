@@ -174,6 +174,12 @@ def h4_agreement(runs_root: Path, deltas_rows, dataset: str, detector: str, clas
     res = proxy_agreement(short, full, n_boot=n_boot, seed=seed)
     res["n_runs"] = len(per_run)
     res["cells"] = [{"edit": f["edit"], "cls": f["cls"], "u": f["delta"]} for f in full]
+    pa: dict[tuple, list[float]] = {}
+    for r in short:
+        pa.setdefault((r["edit"], r["cls"]), []).append(r["delta"])
+    joined = [f for f in full if (f["edit"], f["cls"]) in pa]
+    res["x"] = [float(np.mean(pa[(f["edit"], f["cls"])])) for f in joined]
+    res["y"] = [f["delta"] for f in joined]
     return res
 
 
@@ -244,3 +250,127 @@ def summarize(runs_root: Path, data_root: Path, deltas_csv: Path, n_boot: int = 
     res["missing"] += [r["run_id"] for r in rows if r["kind"] == "C" and r["test"] is None]
     res["missing"] = sorted(set(res["missing"]))
     return res
+
+
+# ---- tables, figures, CLI ----
+
+DS_NAME = {"rdd": "RDD2022", "voc": "VOC", "dacl10k": "dacl10k"}
+DET_NAME = {"fasterrcnn": "Faster R-CNN", "retinanet": "RetinaNet"}
+ARM_NAME = {"base": "Base", "uniform": "Uniform", "measured": "Measured", "shared": "Shared", "cua": "Class-utility"}
+
+
+def _split_key(key: str) -> tuple[str, str]:
+    ds, det = key.rsplit("-", 1)
+    return ds, det
+
+
+def write_tables(results: dict, out: Path) -> None:
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
+    with open(out / "main_table.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["dataset", "detector"] + [f"{a}_{s}" for a in ARMS for s in ("mean", "sd")])
+        for key, arms in results["arms"].items():
+            ds, det = _split_key(key)
+            w.writerow([ds, det] + [arms.get(a, {}).get(s) for a in ARMS for s in ("mean", "sd")])
+    lines = [r"\begin{table}[t]", r"\centering",
+             r"\caption{Test macro AP50 (\%), mean $\pm$ s.d. over 3 seeds. Best mean per row in bold.}",
+             r"\label{tab:main}", r"\resizebox{\columnwidth}{!}{%", r"\begin{tabular}{ll" + "c" * len(ARMS) + "}",
+             r"\toprule", "Dataset & Detector & " + " & ".join(ARM_NAME[a] for a in ARMS) + r" \\", r"\midrule"]
+    for key, arms in results["arms"].items():
+        ds, det = _split_key(key)
+        means = {a: arms[a]["mean"] for a in ARMS if a in arms and arms[a]["mean"] is not None}
+        best = max(means, key=means.get) if means else None
+        cells = []
+        for a in ARMS:
+            if a not in means:
+                cells.append("--")
+                continue
+            sd = arms[a]["sd"]
+            txt = f"{means[a]:.1f}" + (rf" $\pm$ {sd:.1f}" if sd is not None else "")
+            cells.append(rf"\textbf{{{txt}}}" if a == best else txt)
+        lines.append(f"{DS_NAME.get(ds, ds)} & {DET_NAME.get(det, det)} & " + " & ".join(cells) + r" \\")
+    lines += [r"\bottomrule", r"\end{tabular}}", r"\end{table}"]
+    (out / "main_table.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    with open(out / "comparisons.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["kind", "dataset", "detector", "a", "b", "metric", "n_seeds", "t_mean", "t_lo", "t_hi",
+                    "boot_lo", "boot_hi", "claim", "note"])
+
+        def row(kind, ds, det, c):
+            b = c.get("boot") or {}
+            w.writerow([kind, ds, det, c["a"], c["b"], c["metric"], c["n_seeds"], c["t"]["mean"], c["t"]["lo"],
+                        c["t"]["hi"], b.get("lo"), b.get("hi"), c["claim"], c.get("note", "")])
+
+        for kind in ("h2", "h3", "vs_measured"):
+            for key, c in results[kind].items():
+                row(kind, *_split_key(key), c)
+        for ds, abl in results["ablations"].items():
+            for c in abl.values():
+                row("ablation", ds, "fasterrcnn", c)
+
+
+def write_figures(results: dict, out: Path) -> None:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
+    items = []
+    for kind, label in (("h2", "CUA - shared"), ("h3", "CUA - best simple")):
+        for key, c in results[kind].items():
+            if c["t"]["mean"] is None:
+                continue
+            ds, det = _split_key(key)
+            lo, hi = ((c["boot"]["lo"], c["boot"]["hi"]) if c.get("boot") else (c["t"]["lo"], c["t"]["hi"]))
+            items.append((f"{DS_NAME.get(ds, ds)} / {DET_NAME.get(det, det)}: {label}", c["t"]["mean"], lo, hi))
+    fig, ax = plt.subplots(figsize=(6, 0.4 * max(len(items), 2) + 1))
+    for i, (name, m, lo, hi) in enumerate(items):
+        if lo is not None and hi is not None:
+            ax.plot([lo, hi], [i, i], color="black", linewidth=1)
+        ax.plot([m], [i], marker="o", color="black", markersize=4)
+    ax.axvline(0, color="black", linestyle="--", linewidth=0.8)
+    ax.set_yticks(range(len(items)))
+    ax.set_yticklabels([x[0] for x in items], fontsize=7)
+    ax.invert_yaxis()
+    ax.set_xlabel("Difference in test macro AP50 (points)")
+    fig.tight_layout()
+    fig.savefig(out / "fig_differences.png", dpi=200)
+    plt.close(fig)
+    for key, h in results["h4"].items():
+        if "cells" not in h:
+            continue
+        ds, det = _split_key(key)
+        # x: Part A delta (seed mean), y: time-averaged u
+        fig, ax = plt.subplots(figsize=(4, 3.5))
+        ax.scatter(h["x"], h["y"], s=10, facecolors="none", edgecolors="black")
+        ax.set_xlabel(r"Part A $\Delta$AP50 (points)")
+        ax.set_ylabel("Mean estimated utility")
+        ax.set_title(f"{DS_NAME.get(ds, ds)} / {DET_NAME.get(det, det)}: "
+                     rf"$\rho$ = {h['rho']:.2f} [{h['lo']:.2f}, {h['hi']:.2f}]", fontsize=8)
+        fig.tight_layout()
+        fig.savefig(out / f"fig_h4_{ds}_{det}.png", dpi=200)
+        plt.close(fig)
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+    ap = argparse.ArgumentParser(prog="cua.analysis.part_c")
+    ap.add_argument("--runs-root", type=Path, required=True)
+    ap.add_argument("--data-root", type=Path, required=True)
+    ap.add_argument("--deltas", type=Path, required=True)
+    ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--n-boot", type=int, default=1000)
+    a = ap.parse_args(argv)
+    res = summarize(a.runs_root, a.data_root, a.deltas, n_boot=a.n_boot)
+    a.out.mkdir(parents=True, exist_ok=True)
+    (a.out / "results.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
+    write_tables(res, a.out)
+    write_figures(res, a.out)
+    print(f"wrote {a.out}; missing or unevaluated runs: {len(res['missing'])}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

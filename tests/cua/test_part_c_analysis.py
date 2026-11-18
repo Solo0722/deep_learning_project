@@ -140,7 +140,8 @@ def test_h4_uses_valid_cells_only(tmp_path, data_root):
     valid2[0][0] = False
     _run(r, "C-voc-fasterrcnn-s0-cua", 43.0, utility=[{"u": u1, "valid": [[True, True]] * len(MENU)},
                                                          {"u": u2, "valid": valid2}])
-    rows = list(csv.DictReader(open(_deltas(tmp_path / "d.csv", lambda k, j: k + j), encoding="utf-8")))
+    with open(_deltas(tmp_path / "d.csv", lambda k, j: k + j), encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
     h = h4_agreement(r, rows, "voc", "fasterrcnn", ("a", "b"), n_boot=50)
     assert h["n_cells"] == 2 * len(MENU) and h["n_runs"] == 1
     assert h["rho"] == pytest.approx(1.0) and math.isfinite(h["lo"])
@@ -171,3 +172,36 @@ def test_summary_arms_overhead_and_secondary(runs, data_root, tmp_path):
     sec = res["secondary"]["voc-fasterrcnn"]["cua"]
     assert sec["ap_small"] is None and sec["fp_fraction"] is None and sec["ap_large"] == pytest.approx(2.0)
     json.dumps(res)  # results.json must serialise
+
+
+# ---- tables, figures, CLI (Task 4) ----
+
+def test_cli_writes_tables_and_figures(runs, data_root, tmp_path):
+    from cua.analysis.part_c import main
+    out = tmp_path / "out"
+    d = _deltas(tmp_path / "d.csv", lambda k, j: k + j)
+    assert main(["--runs-root", str(runs), "--data-root", str(data_root), "--deltas", str(d), "--out", str(out),
+                 "--n-boot", "20"]) == 0
+    for name in ("results.json", "main_table.csv", "main_table.tex", "comparisons.csv", "fig_differences.png"):
+        assert (out / name).exists(), name
+    assert list(out.glob("fig_h4_*.png"))
+    json.loads((out / "results.json").read_text(encoding="utf-8"))
+
+
+def test_latex_bolds_row_best(runs, data_root, tmp_path):
+    from cua.analysis.part_c import write_tables
+    res = summarize(runs, data_root, _deltas(tmp_path / "d.csv", lambda k, j: k + j), n_boot=20)
+    write_tables(res, tmp_path)
+    rows = [x for x in (tmp_path / "main_table.tex").read_text(encoding="utf-8").splitlines() if x.startswith("VOC")]
+    assert len(rows) == 1 and rows[0].count(r"\textbf{") == 1 and r"\textbf{43.0" in rows[0]
+    with open(tmp_path / "main_table.csv", newline="", encoding="utf-8") as f:
+        r = list(csv.DictReader(f))
+    assert r[0]["dataset"] == "voc" and float(r[0]["cua_mean"]) == pytest.approx(43.0)
+
+
+def test_comparisons_csv_has_h2_h3_rows(runs, data_root, tmp_path):
+    from cua.analysis.part_c import write_tables
+    write_tables(summarize(runs, data_root, _deltas(tmp_path / "d.csv", lambda k, j: k + j), n_boot=20), tmp_path)
+    with open(tmp_path / "comparisons.csv", newline="", encoding="utf-8") as f:
+        kinds = {(r["kind"], r["a"], r["b"]) for r in csv.DictReader(f)}
+    assert ("h2", "shared", "cua") in kinds and ("h3", "uniform", "cua") in kinds
