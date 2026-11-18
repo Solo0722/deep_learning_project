@@ -207,3 +207,32 @@ def paired_bootstrap(ma: Matches, mb: Matches, n_boot: int = 1000, seed: int = 0
         warnings.simplefilter("ignore", RuntimeWarning)
         lo, hi = np.nanpercentile(diffs, [2.5, 97.5])
     return {"diff": float(diff), "lo": float(lo), "hi": float(hi)}
+
+
+def paired_bootstrap_seeds(pairs: list, n_boot: int = 1000, seed: int = 0) -> dict:
+    """Seed-pooled paired image bootstrap of the macro AP50 difference (b - a).
+
+    `pairs` is one (Matches a, Matches b) per seed, all built on the same test images and GT. Every
+    resample draws one image index vector and uses it for every arm and every seed; its difference is
+    the mean over seeds of the per-seed differences. `diff` is that mean on all images."""
+    if not pairs:
+        raise ValueError("paired_bootstrap_seeds needs at least one (a, b) pair")
+    ref = pairs[0][0]
+    for ma, mb in pairs:
+        for m in (ma, mb):
+            if m.n_images != ref.n_images or m.n_classes != ref.n_classes:
+                raise ValueError("pairs differ in image or class counts")
+            if not np.array_equal(m.gt_count, ref.gt_count):
+                raise ValueError("Matches were built from different ground truth (gt_count differs)")
+    n = ref.n_images
+
+    def mean_diff(idx):
+        return float(np.mean([_macro(mb, idx) - _macro(ma, idx) for ma, mb in pairs]))
+
+    diff = mean_diff(np.arange(n))
+    rng = np.random.default_rng(seed)
+    diffs = np.array([mean_diff(rng.integers(0, n, n)) for _ in range(n_boot)])
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        lo, hi = np.nanpercentile(diffs, [2.5, 97.5])
+    return {"diff": diff, "lo": float(lo), "hi": float(hi), "n_seeds": len(pairs)}

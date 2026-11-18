@@ -5,7 +5,7 @@ import pytest
 import torch
 from PIL import Image
 
-from cua.analysis.ap50 import ap50_from_matches, image_matches, paired_bootstrap
+from cua.analysis.ap50 import ap50_from_matches, image_matches, paired_bootstrap, paired_bootstrap_seeds
 from cua.data import DetectionDataset
 from cua.evaluate import coco_metrics, predict
 from cua.records import Record
@@ -255,3 +255,41 @@ def test_bootstrap_speed():
     t0 = time.perf_counter()
     paired_bootstrap(ma, mb, n_boot=1000, seed=0)
     assert time.perf_counter() - t0 < 30.0
+
+
+# ---- seed-pooled paired bootstrap (Plan 3) ----
+
+def test_pooled_bootstrap_single_pair_matches_paired_bootstrap():
+    recs, preds = random_detection_problem(60, 3, seed=3, with_ignored=True)
+    ma, mb = image_matches(recs, preds, 3), image_matches(recs, _degraded(preds, 2), 3)
+    one = paired_bootstrap(ma, mb, n_boot=200, seed=4)
+    pooled = paired_bootstrap_seeds([(ma, mb)], n_boot=200, seed=4)
+    assert (pooled["diff"], pooled["lo"], pooled["hi"]) == (one["diff"], one["lo"], one["hi"])
+    assert pooled["n_seeds"] == 1
+
+
+def test_pooled_bootstrap_averages_seeds():
+    recs, preds = random_detection_problem(60, 3, seed=3)
+    ma, mb = image_matches(recs, preds, 3), image_matches(recs, _degraded(preds, 2), 3)
+    p1 = paired_bootstrap(ma, mb, n_boot=50)
+    r = paired_bootstrap_seeds([(ma, mb), (ma, ma)], n_boot=200, seed=0)
+    assert p1["diff"] != 0
+    assert r["diff"] == pytest.approx((p1["diff"] + 0.0) / 2, abs=1e-12)
+    assert r["n_seeds"] == 2 and r["lo"] <= r["diff"] <= r["hi"]
+
+
+def test_pooled_bootstrap_ignores_absent_class():
+    recs, preds = problem_where_class_2_has_no_gt()
+    ma = image_matches(recs, preds, 3)
+    mb = image_matches(recs, _degraded(preds, 1), 3)
+    r = paired_bootstrap_seeds([(ma, mb), (ma, mb)], n_boot=100)
+    assert np.isfinite([r["diff"], r["lo"], r["hi"]]).all()
+
+
+def test_pooled_bootstrap_rejects_different_ground_truth():
+    recs, preds = random_detection_problem(20, 2, seed=1)
+    ma = image_matches(recs, preds, 2)
+    other, _ = random_detection_problem(20, 2, seed=2)
+    mb = image_matches(other, [dict(p, labels=p["labels"] % 2) for p in preds], 2)
+    with pytest.raises(ValueError):
+        paired_bootstrap_seeds([(ma, ma), (ma, mb)], n_boot=10)
