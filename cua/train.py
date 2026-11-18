@@ -56,7 +56,7 @@ class TrainConfig:
     augment: bool = True
     # Plan 2 (Part C policies). Left out of the digest while at their defaults, so the digests of
     # runs created before these fields existed do not change.
-    policy: str = "arm"  # arm (Part A edit/edit_p) | uniform | measured | shared | cua
+    policy: str = "arm"  # arm (Part A edit/edit_p) | base | uniform | measured | shared | cua
     est_every: int = 200
     est_batch: int = 8
     ref_batch: int = 64
@@ -80,7 +80,7 @@ class TrainConfig:
 
 _PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "theta", "epsilon", "beta",
                            "est_start_epoch", "weights", "harm_block", "allow_identity"})
-POLICIES = ("arm", "uniform", "measured", "shared", "cua")
+POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua")
 
 
 def full_schedule(epochs: int) -> tuple[float, ...]:
