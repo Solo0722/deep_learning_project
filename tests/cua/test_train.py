@@ -508,6 +508,6 @@ def test_validate_rejects_bad_policy_fields(kw):
 
 def test_base_policy_is_valid_without_edit():
     from cua.train import _validate
-    _validate(tiny_cfg(policy="base"))
+    _validate(tiny_cfg(policy="base", augment=True, size=640))
     with pytest.raises(ValueError):
         _validate(tiny_cfg(policy="base", edit="blur", augment=True, size=640))
