@@ -5,6 +5,10 @@ reference loss from one SGD step on the edited instead of the unedited estimatio
 to the current class loss. g are gradients of the full training loss on the estimation batch; h_c is
 the gradient of the per-class masked loss on a shared stratified reference batch; all are restricted
 to theta_s, with every other parameter frozen during the estimation passes.
+
+The estimation passes always run in float32, whatever the training run's AMP setting: summed class
+losses overflowed fp16 in the backward pass on CCAST (NaN/inf utilities), and reduced precision
+changes the sign of small utilities.
 """
 from __future__ import annotations
 
@@ -18,7 +22,6 @@ from cua.estimator.class_loss import class_losses
 from cua.estimator.params import only_theta, theta_params
 from cua.policy import UtilityTable
 
-AMP_LOSS_SCALE = 2.0 ** 10
 REF_CHUNK = 8
 
 
@@ -117,9 +120,8 @@ class Estimator:
         return images, targets
 
     def _grad(self, loss, params) -> torch.Tensor:
-        scale = AMP_LOSS_SCALE if self.amp else 1.0
-        grads = torch.autograd.grad(loss * scale, params, allow_unused=True, retain_graph=True)
-        return _flat(grads, params) / scale
+        grads = torch.autograd.grad(loss, params, allow_unused=True, retain_graph=True)
+        return _flat(grads, params)
 
     def estimate(self, train_render, ref_render, n_train: int, ref_records, rng: np.random.Generator,
                  lr: float, epoch: int, global_iter: int) -> dict:
@@ -137,7 +139,7 @@ class Estimator:
             by_edit[o] = rendered[len(b_idx) * (k + 1):len(b_idx) * (k + 2)]
 
         devices = [self.device] if self.device.type == "cuda" else []
-        autocast = dict(device_type=self.device.type, enabled=self.amp)
+        autocast = dict(device_type=self.device.type, enabled=False)  # fp32 always (module docstring)
         with torch.random.fork_rng(devices=devices), only_theta(model, params):
             # reference: h_c and L_c, accumulated over chunks
             h = torch.zeros(self.num_classes, sum(p.numel() for p in params), device=self.device)

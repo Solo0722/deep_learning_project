@@ -113,3 +113,15 @@ def test_nonfinite_raises(mk, monkeypatch):
     monkeypatch.setattr(U, "utility_from_grads", lambda *a, **k: np.full((1, NC), np.nan))
     with pytest.raises(RuntimeError, match="global iteration 200"):
         est.estimate(tr, rr, 6, _ref_records(mk), np.random.default_rng(1), lr=0.01, epoch=2, global_iter=200)
+
+
+def test_estimator_runs_in_fp32_even_when_training_uses_amp(mk):
+    """On CCAST (A10, fp16 autocast) summed class losses overflowed in the backward pass and every
+    utility of three RDD classes came out NaN/inf. The estimator's passes must ignore AMP."""
+    tr, rr = _renderers()
+    a = _estimator(("brightness",))
+    out_fp32 = a.estimate(tr, rr, 6, _ref_records(mk), np.random.default_rng(1), lr=0.01, epoch=2, global_iter=200)
+    b = _estimator(("brightness",))
+    b.amp = True
+    out_amp = b.estimate(tr, rr, 6, _ref_records(mk), np.random.default_rng(1), lr=0.01, epoch=2, global_iter=200)
+    assert np.array_equal(out_fp32["u"], out_amp["u"])
