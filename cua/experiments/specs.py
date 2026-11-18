@@ -60,6 +60,48 @@ def proxy_specs(edits: list[str], epochs: int) -> list[TrainConfig]:
             for edit in (None, *edits)]
 
 
+# Part C (Plan 2). CUA_SETTINGS are the estimator/policy settings frozen after tuning (spec 9.4);
+# they are passed explicitly so TrainConfig defaults never move.
+CUA_SETTINGS = {"est_every": 200, "theta": "head_fpn", "epsilon": 0.1}
+PART_C_POLICIES = ("base", "uniform", "measured", "shared", "cua")
+TUNE_VARIANTS = {"default": {}, "k100": {"est_every": 100}, "k400": {"est_every": 400}, "head": {"theta": "head"},
+                 "eps0.05": {"epsilon": 0.05}, "eps0.2": {"epsilon": 0.2}}
+ABLATIONS = {"noharm": {"harm_block": False}, "noid": {"allow_identity": False}, "invap": {"weights": "inv_ap"}}
+ABLATION_DATASETS = ("rdd", "dacl10k")
+
+
+def _c_config(run_id: str, dataset: str, detector: str, seed: int, policy: str, **over) -> TrainConfig:
+    return TrainConfig(run_id=run_id, dataset=dataset, detector=detector, seed=seed,
+                       epoch_lr=full_schedule(BUDGET_EPOCHS[dataset]), edit=None, policy=policy,
+                       **{**CUA_SETTINGS, **over})
+
+
+def part_c_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2),
+                 policies: tuple[str, ...] = PART_C_POLICIES) -> list[TrainConfig]:
+    _check(dataset, detector)
+    for pol in policies:
+        if pol not in PART_C_POLICIES:
+            raise ValueError(f"Unknown policy: {pol!r}")
+    return [_c_config(f"C-{dataset}-{detector}-s{seed}-{pol}", dataset, detector, seed, pol)
+            for seed in seeds for pol in policies]
+
+
+def tune_specs() -> list[TrainConfig]:
+    """One factor at a time around CUA_SETTINGS (RDD, Faster R-CNN, seed 0, validation only)."""
+    return [_c_config(f"T-rdd-fasterrcnn-s0-{name}", "rdd", "fasterrcnn", 0, "cua", **over)
+            for name, over in TUNE_VARIANTS.items()]
+
+
+def ablation_specs(dataset: str, seeds: tuple[int, ...] = (0, 1, 2)) -> list[TrainConfig]:
+    if dataset not in ABLATION_DATASETS:
+        raise ValueError(f"Ablations run on {ABLATION_DATASETS}, got {dataset!r}")
+    return [_c_config(f"X-{dataset}-fasterrcnn-s{seed}-{name}", dataset, "fasterrcnn", seed, "cua", **over)
+            for seed in seeds for name, over in ABLATIONS.items()]
+
+
+_C_RE = re.compile(r"^C-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
+_T_RE = re.compile(r"^T-rdd-fasterrcnn-s0-([^-]+)$")
+_X_RE = re.compile(r"^X-([^-]+)-fasterrcnn-s(\d+)-([^-]+)$")
 _BUDGET_RE = re.compile(r"^budget-([^-]+)-([^-]+)-e(\d+)$")
 _A_RE = re.compile(r"^A-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _PROXY_RE = re.compile(r"^proxy-rdd-fasterrcnn-e(\d+)-([^-]+)$")
@@ -75,10 +117,18 @@ def resolve(run_id: str) -> TrainConfig:
             candidates = part_a_specs(m[1], m[2], seeds=(int(m[3]),))
         elif m := _PROXY_RE.match(run_id):
             candidates = proxy_specs([] if m[2] == "base" else [m[2]], int(m[1]))
+        elif m := _C_RE.match(run_id):
+            candidates = part_c_specs(m[1], m[2], seeds=(int(m[3]),), policies=(m[4],))
+        elif _T_RE.match(run_id):
+            candidates = tune_specs()
+        elif m := _X_RE.match(run_id):
+            candidates = ablation_specs(m[1], seeds=(int(m[2]),))
     except ValueError:
         candidates = []
     for spec in candidates:
         if spec.run_id == run_id:
             return spec
     raise KeyError(f"Unknown run spec {run_id!r}: expected budget-<dataset>-<detector>-e<N>, "
-                   f"A-<dataset>-<detector>-s<seed>-<edit|warm|base> or proxy-rdd-fasterrcnn-e<N>-<edit|base>")
+                   f"A-<dataset>-<detector>-s<seed>-<edit|warm|base>, proxy-rdd-fasterrcnn-e<N>-<edit|base>, "
+                   f"C-<dataset>-<detector>-s<seed>-<policy>, T-rdd-fasterrcnn-s0-<variant> or "
+                   f"X-<rdd|dacl10k>-fasterrcnn-s<seed>-<ablation>")

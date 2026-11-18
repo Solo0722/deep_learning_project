@@ -7,7 +7,8 @@ import sys
 from pathlib import Path
 from string import Template
 
-from cua.experiments.specs import budget_specs, part_a_specs, proxy_specs
+from cua.experiments.specs import (PART_C_POLICIES, ablation_specs, budget_specs, part_a_specs, part_c_specs,
+                                   proxy_specs, tune_specs)
 from cua.train import TrainConfig
 
 DEFAULT_PROJECT = "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research"
@@ -113,13 +114,14 @@ def _csv(text: str) -> list[str]:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="cua.ccast.make_jobs")
-    ap.add_argument("--family", required=True, choices=("budget", "part_a", "proxy"))
+    ap.add_argument("--family", required=True, choices=("budget", "part_a", "proxy", "part_c", "tune", "ablation"))
     ap.add_argument("--dataset", required=True)
     ap.add_argument("--detector", required=True)
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--epochs", type=int, default=None)
     ap.add_argument("--edits", default="")
     ap.add_argument("--seeds", default="0,1,2")
+    ap.add_argument("--policies", default=",".join(PART_C_POLICIES), help="part_c only")
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--project", default=DEFAULT_PROJECT)
     a = ap.parse_args(argv)
@@ -128,6 +130,17 @@ def main(argv: list[str] | None = None) -> int:
             specs = budget_specs(a.dataset, a.detector, a.epochs)
         elif a.family == "part_a":
             specs = part_a_specs(a.dataset, a.detector, tuple(int(x) for x in _csv(a.seeds)))
+        elif a.family == "part_c":
+            specs = part_c_specs(a.dataset, a.detector, tuple(int(x) for x in _csv(a.seeds)),
+                                 tuple(_csv(a.policies)))
+        elif a.family == "tune":
+            if (a.dataset, a.detector) != ("rdd", "fasterrcnn"):
+                ap.error("the tune family is fixed to --dataset rdd --detector fasterrcnn")
+            specs = tune_specs()
+        elif a.family == "ablation":
+            if a.detector != "fasterrcnn":
+                ap.error("the ablation family is fixed to --detector fasterrcnn")
+            specs = ablation_specs(a.dataset, tuple(int(x) for x in _csv(a.seeds)))
         else:
             if (a.dataset, a.detector) != ("rdd", "fasterrcnn"):
                 ap.error("the proxy family is fixed to --dataset rdd --detector fasterrcnn")
