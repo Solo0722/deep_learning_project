@@ -181,3 +181,19 @@ def test_cua_resume_equals_uninterrupted(data):
     ma = torch.load(runs_root / "straight" / "p" / "last.pt", weights_only=True)["model"]
     mb = torch.load(split / "p" / "last.pt", weights_only=True)["model"]
     assert all(torch.equal(ma[k], mb[k]) for k in ma)
+
+
+@pytest.mark.slow
+def test_fallbacks_are_logged_per_epoch(data, monkeypatch):
+    """Review finding: the policy's fallback counter is cumulative; history must log each epoch's own count."""
+    class CountingUniform(UniformPolicy):
+        fallbacks = 0
+
+        def probs(self, class_set):
+            self.fallbacks += 1
+            return super().probs(class_set)
+
+    monkeypatch.setattr(T, "UniformPolicy", CountingUniform)
+    data_root, runs_root = data
+    assert train(cfg(epoch_lr=(1.0, 0.1)), data_root, runs_root) == 0
+    assert [h["policy"]["fallbacks"] for h in read_history(runs_root / "p")] == [3, 3]

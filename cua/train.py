@@ -434,6 +434,7 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         order = torch.randperm(len(train_ds), generator=torch.Generator().manual_seed(
             _derived_seed(cfg.seed, epoch, "shuffle"))).tolist()
         epoch_rows: list[dict] = []
+        fallbacks0 = getattr(main_policy, "fallbacks", 0)  # the policy counts cumulatively; log per epoch
         est_seconds = [0.0]
         after_step = None
         sampler = None
@@ -481,7 +482,7 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
                "seconds": time.monotonic() - t0}
         if sampler is not None:
             row["policy"] = {**sampler.stats(), "estimator_seconds": est_seconds[0], "estimates": len(epoch_rows),
-                             "fallbacks": getattr(main_policy, "fallbacks", 0)}
+                             "fallbacks": getattr(main_policy, "fallbacks", 0) - fallbacks0}
         state = {"model": model.state_dict(), "optimizer": optimizer.state_dict(),
                  "scaler": scaler.state_dict(), "epoch": epoch, "global_iter": global_iter,
                  "cfg_digest": digest, "best_macro": best, "best_epoch": best_epoch, "history_row": row}
