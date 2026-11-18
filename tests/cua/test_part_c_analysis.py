@@ -167,8 +167,8 @@ def test_summary_arms_overhead_and_secondary(runs, data_root, tmp_path):
     arms = res["arms"]["voc-fasterrcnn"]
     assert arms["cua"]["mean"] == pytest.approx(43.0) and arms["base"]["n"] == 3
     assert res["h3"]["voc-fasterrcnn"]["baseline"] == "uniform"
-    assert res["overhead"]["voc-fasterrcnn"]["cua"] == pytest.approx(30.0 / 100.0)
-    assert res["overhead"]["voc-fasterrcnn"]["shared"] == pytest.approx(0.2)
+    assert res["overhead"]["voc-fasterrcnn"]["cua"]["share"] == pytest.approx(30.0 / 100.0)
+    assert res["overhead"]["voc-fasterrcnn"]["shared"]["share"] == pytest.approx(0.2)
     sec = res["secondary"]["voc-fasterrcnn"]["cua"]
     assert sec["ap_small"] is None and sec["fp_fraction"] is None and sec["ap_large"] == pytest.approx(2.0)
     json.dumps(res)  # results.json must serialise
@@ -205,3 +205,52 @@ def test_comparisons_csv_has_h2_h3_rows(runs, data_root, tmp_path):
     with open(tmp_path / "comparisons.csv", newline="", encoding="utf-8") as f:
         kinds = {(r["kind"], r["a"], r["b"]) for r in csv.DictReader(f)}
     assert ("h2", "shared", "cua") in kinds and ("h3", "uniform", "cua") in kinds
+
+
+# ---- final-review fixes ----
+
+def test_claim_is_directional(tmp_path):
+    r = tmp_path / "runs"
+    for s, d in enumerate([-1.0, -1.1, -0.9]):
+        _run(r, f"C-voc-fasterrcnn-s{s}-shared", 42.0)
+        _run(r, f"C-voc-fasterrcnn-s{s}-cua", 42.0 + d)
+    c = compare(load_runs(r), "voc", "fasterrcnn", "shared", "cua")
+    assert c["direction"] == -1 and c["claim"] is False
+
+
+def test_forest_plot_draws_both_intervals(runs, data_root, tmp_path, monkeypatch):
+    import matplotlib.axes
+    from cua.analysis.part_c import write_figures
+    res = summarize(runs, data_root, _deltas(tmp_path / "d.csv", lambda k, j: k + j), n_boot=20)
+    widths = []
+    orig = matplotlib.axes.Axes.plot
+
+    def spy(self, *a, **k):
+        widths.append(k.get("linewidth"))
+        return orig(self, *a, **k)
+
+    monkeypatch.setattr(matplotlib.axes.Axes, "plot", spy)
+    write_figures(res, tmp_path / "figs")
+    # per row: a t-interval line and a bootstrap line of different widths
+    assert len({w for w in widths if w is not None and w > 0.9}) >= 2
+
+
+def test_seed_count_follows_the_runs(tmp_path, data_root):
+    from cua.analysis.part_c import write_tables
+    r = tmp_path / "runs"
+    for s in range(5):
+        _run(r, f"C-voc-fasterrcnn-s{s}-shared", 42.0 + 0.1 * s)
+        _run(r, f"C-voc-fasterrcnn-s{s}-cua", 43.0 + 0.1 * s)
+    for s in range(3):
+        _run(r, f"C-voc-fasterrcnn-s{s}-base", 40.0)
+    res = summarize(r, data_root, _deltas(tmp_path / "d.csv", lambda k, j: k + j), n_boot=10)
+    assert "C-voc-fasterrcnn-s4-base" in res["missing"]
+    write_tables(res, tmp_path / "t")
+    tex = (tmp_path / "t" / "main_table.tex").read_text(encoding="utf-8")
+    assert "3 seeds" not in tex and "$^{3}$" in tex
+
+
+def test_overhead_reports_share_and_extra(runs, data_root, tmp_path):
+    res = summarize(runs, data_root, _deltas(tmp_path / "d.csv", lambda k, j: k + j), n_boot=20)
+    o = res["overhead"]["voc-fasterrcnn"]["cua"]
+    assert o["share"] == pytest.approx(0.30) and o["extra"] == pytest.approx(0.30 / 0.70)

@@ -49,11 +49,15 @@ def load_runs(runs_root: Path) -> list[dict]:
         vals = [float(v) for v in vals if v is not None]
         est = [(h.get("policy") or {}).get("estimator_seconds") for h in hist]
         secs = sum(float(h.get("seconds") or 0.0) for h in hist)
-        overhead = (sum(float(e) for e in est if e) / secs) if any(est) and secs > 0 else None
+        est_s = sum(float(e) for e in est if e)
+        overhead = (est_s / secs) if est_s > 0 and secs > 0 else None
+        # share: fraction of epoch wall time (training + estimator + validation) spent estimating;
+        # extra: estimator time relative to the rest of the epoch
+        overhead_extra = (est_s / (secs - est_s)) if overhead is not None and secs > est_s else None
         tm = d / "test_metrics.json"
         out.append({"run_id": d.name, "dir": d, "kind": d.name[0], "dataset": m[1], "detector": m[2],
                     "seed": int(m[3]), "arm": m[4], "best_val": max(vals) if vals else None,
-                    "overhead": overhead,
+                    "overhead": overhead, "overhead_extra": overhead_extra,
                     "test": json.loads(tm.read_text(encoding="utf-8")) if tm.exists() else None})
     return out
 
@@ -120,7 +124,7 @@ def compare(rows, dataset: str, detector: str, arm_a: str, arm_b: str, metric: s
     seeds = sorted(set(a) & set(b))
     t = seed_t_interval([b[s] - a[s] for s in seeds])
     out = {"a": arm_a, "b": arm_b, "metric": metric, "n_seeds": len(seeds), "seeds": seeds, "t": t,
-           "boot": None, "claim": False, "note": ""}
+           "boot": None, "direction": 0, "claim": False, "note": ""}
     if len(seeds) < 2:
         out["note"] = "fewer than 2 paired seeds"
         return out
@@ -134,7 +138,9 @@ def compare(rows, dataset: str, detector: str, arm_a: str, arm_b: str, metric: s
         else:
             out["note"] = "test predictions missing for some seeds; bootstrap skipped"
             side = 0
-    out["claim"] = side != 0
+    # direction: +1 b reliably better, -1 reliably worse, 0 not shown; claim means "b beats a"
+    out["direction"] = side
+    out["claim"] = side == 1
     return out
 
 
@@ -207,9 +213,10 @@ def summarize(runs_root: Path, data_root: Path, deltas_csv: Path, n_boot: int = 
             if v:
                 res["arms"][key][arm] = {**_mean_sd(v.values()), "per_seed": {str(s): v[s] for s in sorted(v)}}
             arm_rows = [r for r in rows if r["kind"] == "C" and (r["dataset"], r["detector"], r["arm"]) == (ds, det, arm)]
-            ov = [r["overhead"] for r in arm_rows if r["overhead"] is not None]
+            ov = [r for r in arm_rows if r["overhead"] is not None]
             if arm in ("shared", "cua") and ov:
-                res["overhead"][key][arm] = float(np.mean(ov))
+                res["overhead"][key][arm] = {"share": float(np.mean([r["overhead"] for r in ov])),
+                                             "extra": float(np.mean([r["overhead_extra"] for r in ov]))}
             tests = [r["test"] for r in arm_rows if r["test"] is not None]
             if tests:
                 sec = {}
@@ -242,7 +249,8 @@ def summarize(runs_root: Path, data_root: Path, deltas_csv: Path, n_boot: int = 
             res["ablations"][ds][name] = compare(rows, ds, "fasterrcnn", "cua", name, metric="val")
     present = {r["run_id"] for r in rows}
     for ds, det in combos:
-        for s in SEEDS:
+        seen = {r["seed"] for r in rows if r["kind"] == "C" and (r["dataset"], r["detector"]) == (ds, det)}
+        for s in sorted(set(SEEDS) | seen):
             for arm in ARMS:
                 rid = f"C-{ds}-{det}-s{s}-{arm}"
                 if rid not in present:
@@ -274,13 +282,15 @@ def write_tables(results: dict, out: Path) -> None:
             ds, det = _split_key(key)
             w.writerow([ds, det] + [arms.get(a, {}).get(s) for a in ARMS for s in ("mean", "sd")])
     lines = [r"\begin{table}[t]", r"\centering",
-             r"\caption{Test macro AP50 (\%), mean $\pm$ s.d. over 3 seeds. Best mean per row in bold.}",
+             r"\caption{Test macro AP50 (\%), mean $\pm$ s.d. over seeds. Best mean per row in bold. "
+             r"A superscript gives an arm's seed count where it is below the row's largest.}",
              r"\label{tab:main}", r"\resizebox{\columnwidth}{!}{%", r"\begin{tabular}{ll" + "c" * len(ARMS) + "}",
              r"\toprule", "Dataset & Detector & " + " & ".join(ARM_NAME[a] for a in ARMS) + r" \\", r"\midrule"]
     for key, arms in results["arms"].items():
         ds, det = _split_key(key)
         means = {a: arms[a]["mean"] for a in ARMS if a in arms and arms[a]["mean"] is not None}
         best = max(means, key=means.get) if means else None
+        n_max = max((arms[a]["n"] for a in means), default=0)
         cells = []
         for a in ARMS:
             if a not in means:
@@ -288,6 +298,8 @@ def write_tables(results: dict, out: Path) -> None:
                 continue
             sd = arms[a]["sd"]
             txt = f"{means[a]:.1f}" + (rf" $\pm$ {sd:.1f}" if sd is not None else "")
+            if arms[a]["n"] < n_max:
+                txt += f"$^{{{arms[a]['n']}}}$"
             cells.append(rf"\textbf{{{txt}}}" if a == best else txt)
         lines.append(f"{DS_NAME.get(ds, ds)} & {DET_NAME.get(det, det)} & " + " & ".join(cells) + r" \\")
     lines += [r"\bottomrule", r"\end{tabular}}", r"\end{table}"]
@@ -323,13 +335,20 @@ def write_figures(results: dict, out: Path) -> None:
             if c["t"]["mean"] is None:
                 continue
             ds, det = _split_key(key)
-            lo, hi = ((c["boot"]["lo"], c["boot"]["hi"]) if c.get("boot") else (c["t"]["lo"], c["t"]["hi"]))
-            items.append((f"{DS_NAME.get(ds, ds)} / {DET_NAME.get(det, det)}: {label}", c["t"]["mean"], lo, hi))
+            boot = (c["boot"]["lo"], c["boot"]["hi"]) if c.get("boot") else None
+            name = f"{DS_NAME.get(ds, ds)} / {DET_NAME.get(det, det)}: {label}"
+            if kind == "h3":
+                name += f" ({c['baseline']})"
+            items.append((name, c["t"]["mean"], (c["t"]["lo"], c["t"]["hi"]), boot, c["claim"]))
     fig, ax = plt.subplots(figsize=(6, 0.4 * max(len(items), 2) + 1))
-    for i, (name, m, lo, hi) in enumerate(items):
-        if lo is not None and hi is not None:
-            ax.plot([lo, hi], [i, i], color="black", linewidth=1)
-        ax.plot([m], [i], marker="o", color="black", markersize=4)
+    # thin line: seed-level t interval; thick line: image bootstrap; filled marker: claim holds
+    for i, (name, m, t_iv, boot, claim) in enumerate(items):
+        if t_iv[0] is not None:
+            ax.plot(list(t_iv), [i, i], color="black", linewidth=1.0)
+        if boot is not None:
+            ax.plot(list(boot), [i, i], color="black", linewidth=3.0)
+        ax.plot([m], [i], marker="o", color="black", markersize=5,
+                markerfacecolor="black" if claim else "white")
     ax.axvline(0, color="black", linestyle="--", linewidth=0.8)
     ax.set_yticks(range(len(items)))
     ax.set_yticklabels([x[0] for x in items], fontsize=7)
