@@ -18,6 +18,12 @@ MENU_ORDER = ("translate", "rotate", "vflip", "brightness", "contrast", "saturat
               "blur", "noise", "jpeg", "sharpen", "erase", "mosaic")
 
 
+def full_schedule(epochs: int) -> tuple[float, ...]:
+    """Same as cua.train.full_schedule, without importing the trainer."""
+    a, b = round(0.6 * epochs) + 1, round(0.8 * epochs) + 1
+    return tuple(1.0 if e < a else (0.1 if e < b else 0.01) for e in range(1, epochs + 1))
+
+
 def read_history(run_dir: Path) -> list[dict]:
     """Same as cua.train.read_history, without importing the trainer."""
     path = Path(run_dir) / "history.jsonl"
@@ -185,10 +191,18 @@ def edit_class_tests(d: list[dict]) -> list[dict]:
     return res
 
 
-def budget_plateaued(curve: list[float], tol: float = 0.3, tail_frac: float = 0.2) -> bool:
-    if len(curve) < 2:
-        raise ValueError(f"Budget curve needs at least 2 points, got {len(curve)}")
-    return curve[-1] - curve[round((1 - tail_frac) * len(curve)) - 1] < tol
+def budget_plateaued(curve: list[float], lr_mults, tol: float = 0.3) -> bool:
+    """Plateaued when the final epoch gains less than `tol` macro AP50 over the first epoch run at the
+    final learning rate (the first epoch after the last LR drop). `lr_mults` is the full schedule."""
+    lr_mults = list(lr_mults)
+    drops = [i for i in range(1, len(lr_mults)) if lr_mults[i] < lr_mults[i - 1]]
+    if not drops:
+        raise ValueError("Budget schedule has no LR drop")
+    first = drops[-1]
+    if len(curve) < len(lr_mults):
+        raise ValueError(f"Budget curve stops at epoch {len(curve)}, before the end of the "
+                         f"{len(lr_mults)}-epoch schedule (last LR drop at epoch {first + 1})")
+    return curve[len(lr_mults) - 1] - curve[first] < tol
 
 
 def budget_summary(runs_root: Path) -> dict:
@@ -198,13 +212,18 @@ def budget_summary(runs_root: Path) -> dict:
     for d in sorted(Path(runs_root).iterdir()):
         if not d.is_dir() or not d.name.startswith("budget-"):
             continue
-        curve = [(h.get("metrics") or {}).get("macro_ap50") for h in read_history(d)]
+        hist = read_history(d)
+        curve = [(h.get("metrics") or {}).get("macro_ap50") for h in hist]
         entry: dict = {"curve": curve, "plateaued": None, "complete": (d / "COMPLETE.json").exists()}
+        m = re.search(r"-e(\d+)$", d.name)
+        lr = full_schedule(int(m[1])) if m else tuple(h.get("lr_mult") for h in hist)
         if any(v is None for v in curve):
             entry["error"] = "curve has epochs without macro_ap50"
+        elif any(v is None for v in lr):
+            entry["error"] = "cannot tell the LR schedule"
         else:
             try:
-                entry["plateaued"] = bool(budget_plateaued([float(v) for v in curve]))
+                entry["plateaued"] = bool(budget_plateaued([float(v) for v in curve], lr))
             except ValueError as e:
                 entry["error"] = str(e)
         out[d.name] = entry

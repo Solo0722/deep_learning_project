@@ -5,6 +5,7 @@ import pytest
 
 from cua.analysis.part_a import (budget_plateaued, deltas, edit_class_tests, heatmap, holm, interaction_test,
                                  load_final, main, proxy_agreement, proxy_deltas)
+from cua.train import full_schedule
 from helpers import synthetic_deltas
 
 
@@ -20,10 +21,17 @@ def test_no_interaction_under_null():
 
 
 def test_budget_plateau_rule():
-    assert budget_plateaued([10, 20, 30, 40, 41.0, 41.1, 41.2, 41.25, 41.3, 41.3])
-    assert not budget_plateaued([10, 20, 30, 35, 38, 40, 42, 44, 46, 48.0])
-    with pytest.raises(ValueError):
-        budget_plateaued([1.0])
+    """Final epoch vs the first epoch after the last LR drop (full_schedule(20): drop to 0.01 at epoch 17)."""
+    lr = full_schedule(20)
+    flat = [float(e) for e in range(16)] + [40.0, 40.1, 40.2, 40.25]
+    assert budget_plateaued(flat, lr)
+    rising = [float(e) for e in range(16)] + [40.0, 40.2, 40.4, 40.6]
+    assert not budget_plateaued(rising, lr)
+    assert budget_plateaued(rising, lr, tol=1.0)
+    with pytest.raises(ValueError, match="LR drop"):
+        budget_plateaued([1.0, 2.0, 3.0], (1.0, 1.0, 1.0))
+    with pytest.raises(ValueError, match="before"):
+        budget_plateaued(flat[:15], lr)
 
 
 def test_holm_is_monotone():
@@ -187,16 +195,16 @@ def test_cli_end_to_end(tmp_path):
 
 def test_cli_budget_output(tmp_path):
     runs = tmp_path / "runs"
-    run = runs / "budget-rdd-fasterrcnn-e5"
+    run = runs / "budget-rdd-fasterrcnn-e10"
     run.mkdir(parents=True)
-    curve = [10.0, 20.0, 30.0, 30.1, 30.2]
+    curve = [10.0, 20.0, 30.0, 30.1, 30.2, 30.3, 31.0, 31.2, 31.3, 31.4]  # 0.01 from epoch 9
     run.joinpath("history.jsonl").write_text(
-        "".join(json.dumps({"epoch": i + 1, "metrics": {"macro_ap50": v, "per_class": {}}}) + "\n"
-                for i, v in enumerate(curve)), encoding="utf-8")
+        "".join(json.dumps({"epoch": i + 1, "lr_mult": m, "metrics": {"macro_ap50": v, "per_class": {}}}) + "\n"
+                for i, (v, m) in enumerate(zip(curve, full_schedule(10)))), encoding="utf-8")
     (run / "COMPLETE.json").write_text("{}", encoding="utf-8")
-    flat = runs / "budget-voc-fasterrcnn-e5"
+    flat = runs / "budget-voc-fasterrcnn-e10"
     flat.mkdir()
-    steep = [10.0, 20.0, 30.0, 40.0, 50.0]
+    steep = [10.0, 20.0, 30.0, 40.0, 50.0, 55.0, 60.0, 61.0, 62.0, 63.0]  # no lr_mult: schedule from the name
     flat.joinpath("history.jsonl").write_text(
         "".join(json.dumps({"epoch": i + 1, "metrics": {"macro_ap50": v}}) + "\n"
                 for i, v in enumerate(steep)), encoding="utf-8")
@@ -205,9 +213,9 @@ def test_cli_budget_output(tmp_path):
     assert not (out / "budget.json").exists()
     assert main(["--runs-root", str(runs), "--out", str(out), "--budget"]) == 0
     budget = json.loads((out / "budget.json").read_text())
-    assert budget["budget-rdd-fasterrcnn-e5"] == {"curve": curve, "plateaued": True, "complete": True}
-    assert budget["budget-voc-fasterrcnn-e5"] == {"curve": steep, "plateaued": False, "complete": False}
-    assert budget_plateaued(curve) is True
+    assert budget["budget-rdd-fasterrcnn-e10"] == {"curve": curve, "plateaued": True, "complete": True}
+    assert budget["budget-voc-fasterrcnn-e10"] == {"curve": steep, "plateaued": False, "complete": False}
+    assert budget_plateaued(curve, full_schedule(10)) is True
 
 
 def _reject_rate(n_sims, alpha=0.05, **kw):
