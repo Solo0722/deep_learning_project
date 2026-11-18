@@ -28,6 +28,9 @@ python -c "import torch, torchvision, pycocotools; print(torch.__version__, torc
 echo "run_id: ${run_id}"
 echo "started: $$(date -u +%Y-%m-%dT%H:%M:%SZ) on $$(hostname)"
 ${pytest_block}
+# Some nodes (gpu0020) report a GPU that cannot allocate. Hold the node so PBS does not hand it the
+# next queued job, then fail; resubmit with the same qsub line.
+python -c "import torch; torch.zeros(1).cuda()" >/dev/null 2>&1 || { echo "GPU unusable on $$(hostname); holding node 30 min"; sleep 1800; exit 1; }
 # The deadline counts from job start (bash SECONDS), so activation and pytest come out of the margin.
 rc=0
 python -m cua.run --spec ${run_id} --data-root ${data_root} --runs-root ${runs_root} --deadline-seconds $$(( ${deadline} - SECONDS ))${smoke_args} --resume || rc=$$?

@@ -219,3 +219,15 @@ def test_cli_warns_on_non_posix_paths(tmp_path, capsys):
               "--project", "C:/proj"])
     err = capsys.readouterr().err
     assert "cluster" in err and "--project" in err
+
+
+def test_pbs_guards_against_unusable_gpu_before_training(tmp_path):
+    """A node whose GPU cannot allocate (seen on gpu0020) must not burn the job: hold it and exit 1."""
+    from cua.ccast.make_jobs import main as jobs_main
+    out = tmp_path / "jobs"
+    jobs_main(["--family", "part_c", "--dataset", "rdd", "--detector", "fasterrcnn", "--seeds", "0",
+               "--policies", "cua", "--out", str(out)])
+    text = (out / "C-rdd-fasterrcnn-s0-cua.pbs").read_text(encoding="utf-8")
+    guard = text.find("torch.zeros(1).cuda()")
+    assert 0 < guard < text.find("python -m cua.run")
+    assert 'GPU unusable on $(hostname)' in text and "sleep 1800; exit 1" in text
