@@ -126,6 +126,24 @@ class Estimator:
     def estimate(self, train_render, ref_render, n_train: int, ref_records, rng: np.random.Generator,
                  lr: float, epoch: int, global_iter: int) -> dict:
         t0 = time.monotonic()
+        g0, go, h, lc, valid_c = self.gradients(train_render, ref_render, n_train, ref_records, rng)
+        u = utility_from_grads(g0, go, h, lc, lr, self.delta)
+        valid = np.broadcast_to(valid_c, u.shape).copy()
+        if not np.isfinite(u[valid]).all():
+            raise RuntimeError(f"Non-finite class utility at epoch {epoch}, global iteration {global_iter}: "
+                               f"{u.tolist()}")
+        self.cua.update(u, valid)
+        u_shared = np.zeros((len(self.menu), 1))
+        if valid_c.any():
+            u_shared[:, 0] = u[:, valid_c].mean(axis=1)
+        self.shared.update(u_shared, np.full(u_shared.shape, bool(valid_c.any())))
+        return {"u": u, "Lc": lc.cpu().numpy(), "valid": valid, "u_shared": u_shared,
+                "seconds": time.monotonic() - t0}
+
+    def gradients(self, train_render, ref_render, n_train: int, ref_records, rng: np.random.Generator):
+        """One estimation round's raw quantities: g0 (P,), go (|O|, P), h (C, P), lc (C,) as tensors
+        and valid_c (C,) bool. `estimate` turns them into utilities; the offline utility check
+        (cua.analysis.utility_check) scores other functions of the same quantities."""
         model, params = self.model, theta_params(self.model, self.detector, self.theta)
         b_idx = [int(i) for i in rng.choice(n_train, size=min(self.est_batch, n_train), replace=False)]
         r_idx = stratified_reference(ref_records, min(self.ref_batch, len(ref_records)), rng)
@@ -169,15 +187,4 @@ class Estimator:
 
             g0 = batch_grad(by_edit[None])
             go = torch.stack([g0 if o is None else batch_grad(by_edit[o]) for o in self.menu])
-        u = utility_from_grads(g0, go, h, lc, lr, self.delta)
-        valid = np.broadcast_to(valid_c, u.shape).copy()
-        if not np.isfinite(u[valid]).all():
-            raise RuntimeError(f"Non-finite class utility at epoch {epoch}, global iteration {global_iter}: "
-                               f"{u.tolist()}")
-        self.cua.update(u, valid)
-        u_shared = np.zeros((len(self.menu), 1))
-        if valid_c.any():
-            u_shared[:, 0] = u[:, valid_c].mean(axis=1)
-        self.shared.update(u_shared, np.full(u_shared.shape, bool(valid_c.any())))
-        return {"u": u, "Lc": lc.cpu().numpy(), "valid": valid, "u_shared": u_shared,
-                "seconds": time.monotonic() - t0}
+        return g0, go, h, lc, valid_c
