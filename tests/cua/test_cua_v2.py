@@ -86,8 +86,8 @@ def _est(menu, **kw):
     torch.manual_seed(0)
     m = build_detector("fasterrcnn", NC, size=320, pretrained=False)
     m.train()
-    return LookaheadEstimator(m, "fasterrcnn", "head", menu, NC, est_batch=4, steps=2, ref_batch=3,
-                              device=torch.device("cpu"), **kw)
+    kw = {"est_batch": 4, "steps": 2, "ref_batch": 3, **kw}
+    return LookaheadEstimator(m, "fasterrcnn", "head", menu, NC, device=torch.device("cpu"), **kw)
 
 
 @pytest.mark.slow
@@ -106,14 +106,23 @@ def test_lookahead_shapes_restores_weights_and_leaves_grads(mk):
 
 
 @pytest.mark.slow
-def test_instance_norm_shrinks_the_extra_object_effect(mk):
-    tr, rr = _renderers()
-    refs = [mk(image=f"img/{i}.jpg", labels=[i % NC]) for i in range(8)]
-    raw = _est(("many",), instance_norm=False).estimate(tr, rr, 8, refs, np.random.default_rng(0), lr=0.05,
-                                                         epoch=2, global_iter=400)["u"]
-    nrm = _est(("many",), instance_norm=True).estimate(tr, rr, 8, refs, np.random.default_rng(0), lr=0.05,
-                                                        epoch=2, global_iter=400)["u"]
-    assert np.abs(nrm).sum() < np.abs(raw).sum()
+@pytest.mark.parametrize("clip", [0.0, 1e-3])
+def test_instance_norm_scales_the_edited_step_by_object_ratio(clip):
+    """'many' has 4x the objects of the clean images, so its step is 1/4 of the unscaled one,
+    also when the clip is active (scaling is applied after the clip)."""
+    from cua.estimator.params import only_theta, theta_params
+    tr, _ = _renderers(4)
+    items = [tr(i, "many") for i in range(4)]
+    clean = [tr(i, None) for i in range(4)]
+    deltas = {}
+    for scale in (False, True):
+        est = _est(("many",), clip=clip, steps=1)
+        params = theta_params(est.model, "fasterrcnn", "head")
+        before = [p.detach().clone() for p in params]
+        with only_theta(est.model, params):
+            est._steps(items, clean, params, step_lr=1e-3, seed=0, scale_objects=scale)
+        deltas[scale] = torch.cat([(p.detach() - b).reshape(-1) for p, b in zip(params, before)])
+    assert (deltas[True] - 0.25 * deltas[False]).abs().max() < 1e-2 * (0.25 * deltas[False]).abs().max()
 
 
 def test_lookahead_validates_steps():
@@ -177,3 +186,17 @@ def test_epoch_deltas_reads_the_first_arm_epoch(tmp_path):
     rows = epoch_deltas(tmp_path, 4)
     assert [(r["edit"], r["cls"], r["delta"]) for r in rows] == [("blur", "X", 3.0)]
     assert [r["delta"] for r in epoch_deltas(tmp_path, 6)] == [-2.0]
+
+
+@pytest.mark.slow
+def test_clip_keeps_a_huge_step_finite_and_nonfinite_rounds_are_skipped(mk, monkeypatch):
+    tr, rr = _renderers()
+    refs = [mk(image=f"img/{i}.jpg", labels=[i % NC]) for i in range(8)]
+    est = _est((None, "brightness"), lr_scale=1e4, clip=1.0)
+    out = est.estimate(tr, rr, 8, refs, np.random.default_rng(0), lr=0.01, epoch=2, global_iter=400)
+    assert np.isfinite(out["u"]).all() and not out.get("skipped")
+    bad = _est((None, "brightness"))
+    monkeypatch.setattr(bad, "_ref_losses", lambda refs, seed: (torch.full((NC,), float("nan"), dtype=torch.float64),
+                                                                torch.ones(NC, dtype=torch.bool)))
+    res = bad.estimate(tr, rr, 8, refs, np.random.default_rng(0), lr=0.01, epoch=2, global_iter=400)
+    assert res["skipped"] and bad.skipped == 1 and bad.cua.table().count.sum() == 0

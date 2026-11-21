@@ -92,7 +92,7 @@ def collect(runs_root: Path, data_root: Path, dataset: str, detector: str, run: 
             res = est.estimate(lambda i, e: train_ds[(i, e)], lambda i: ref_ds[i], len(train_ds), ref_recs,
                                keyed_rng(seed, 0, r, "utility_check"), lr, 0, r)
             rows.append({"round": r, "valid": res["valid"][0].tolist(), "Lc": res["Lc"].tolist(),
-                         "look": res["u"].tolist()})
+                         "look": res["u"].tolist(), "skipped": bool(res.get("skipped"))})
             print(f"{run}/{ckpt} round {r}: {time.monotonic() - t0:.1f} s", flush=True)
             continue
         g0, go, h, lc, valid_c = est.gradients(lambda i, e: train_ds[(i, e)], lambda i: ref_ds[i],

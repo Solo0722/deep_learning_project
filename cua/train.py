@@ -76,6 +76,7 @@ class TrainConfig:
     estimator: str = "grad"  # grad (v1 one-step alignment) | lookahead (v2)
     lookahead_steps: int = 4
     lookahead_lr_scale: float = 10.0
+    lookahead_clip: float = 5.0  # global grad-norm clip per lookahead step (0 = off)
     instance_norm: bool = True  # lookahead only
     min_t: float = 0.0  # policy ignores cells with |mean| < min_t * se
     prior: str = "none"  # none | probe (<data>/<dataset>/probe_<detector>.json, combined on the z scale)
@@ -92,7 +93,8 @@ class TrainConfig:
 
 _PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "theta", "epsilon", "beta",
                            "est_start_epoch", "weights", "harm_block", "allow_identity", "estimator",
-                           "lookahead_steps", "lookahead_lr_scale", "instance_norm", "min_t", "prior"})
+                           "lookahead_steps", "lookahead_lr_scale", "lookahead_clip", "instance_norm", "min_t",
+                           "prior"})
 POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua")
 
 
@@ -391,6 +393,7 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         estimator = LookaheadEstimator(model, cfg.detector, cfg.theta, menu, len(classes), est_batch=cfg.est_batch,
                                        steps=cfg.lookahead_steps, ref_batch=cfg.ref_batch,
                                        lr_scale=cfg.lookahead_lr_scale, instance_norm=cfg.instance_norm,
+                                       clip=cfg.lookahead_clip,
                                        beta=cfg.beta, device=device, workers=max(1, cfg.workers))
     else:
         estimator = Estimator(model, cfg.detector, cfg.theta, menu, len(classes), est_batch=cfg.est_batch,
@@ -496,7 +499,7 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
                         "mean": tab.mean.tolist(), "se": tab.se.tolist(), "count": tab.count.tolist(),
                         "Lc": res["Lc"].tolist(), "valid": res["valid"].tolist(),
                         "shared_mean": sh.mean[:, 0].tolist(), "shared_se": sh.se[:, 0].tolist(),
-                        "seconds": res["seconds"]})
+                        "seconds": res["seconds"], **({"skipped": True} if res.get("skipped") else {})})
                     est_seconds[0] += res["seconds"]
         losses, global_iter = _train_one_epoch(model, optimizer, scaler, loader, device, use_amp, cfg,
                                                epoch, lr_mult, global_iter, warm_up, after_step)

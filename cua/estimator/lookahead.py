@@ -15,6 +15,10 @@ information and over-rated mosaic. v2 measures the effect directly:
      edited step), so an edit that packs more objects into the batch (mosaic) does not get a larger
      update just for that.
 
+  3. Each step's gradient is clipped to global norm `clip` (RetinaNet's head diverged within 4
+     unclipped steps at 10x the training lr on CCAST). A round whose utilities are still not finite
+     is skipped (trackers not updated, `skipped` set) instead of stopping the training run.
+
 Only theta_s moves and it is restored afterwards; optimizer state and .grad are never touched.
 Every pass runs in float32. The trackers and the returned dict match Estimator, so the trainer and
 the policy use either one unchanged.
@@ -39,7 +43,7 @@ def _n_objects(items) -> int:
 class LookaheadEstimator:
     def __init__(self, model, detector: str, theta: str, menu: tuple, num_classes: int, *,
                  est_batch: int = 16, steps: int = 4, ref_batch: int = 32, lr_scale: float = 10.0,
-                 instance_norm: bool = True, delta: float = 0.01, beta: float = 0.98,
+                 instance_norm: bool = True, delta: float = 0.01, beta: float = 0.98, clip: float = 5.0,
                  device: torch.device | None = None, workers: int = 4):
         if steps < 1 or est_batch < steps:
             raise ValueError(f"need est_batch >= steps >= 1, got est_batch={est_batch}, steps={steps}")
@@ -47,6 +51,8 @@ class LookaheadEstimator:
         self.menu, self.num_classes = tuple(menu), int(num_classes)
         self.est_batch, self.steps, self.ref_batch = int(est_batch), int(steps), int(ref_batch)
         self.lr_scale, self.instance_norm, self.delta = float(lr_scale), bool(instance_norm), float(delta)
+        self.clip = float(clip)
+        self.skipped = 0
         self.device = device if device is not None else next(model.parameters()).device
         self.workers = max(1, int(workers))
         self.cua = EmaTracker((len(self.menu), self.num_classes), beta)
@@ -77,9 +83,15 @@ class LookaheadEstimator:
             images, targets = self._to_device(chunk)
             torch.manual_seed(seed + j)
             loss = sum(self.model(images, targets).values()).float()
-            if scale_objects:
-                loss = loss * (_n_objects(cchunk) / max(_n_objects(chunk), 1))
             grads = torch.autograd.grad(loss, params, allow_unused=True)
+            f = 1.0
+            if self.clip > 0:
+                norm = torch.sqrt(sum((g.double() ** 2).sum() for g in grads if g is not None))
+                f = min(1.0, self.clip / max(float(norm), 1e-12)) if torch.isfinite(norm) else 0.0
+            if scale_objects:  # after the clip, so clipping cannot undo fix 1
+                f *= _n_objects(cchunk) / max(_n_objects(chunk), 1)
+            if f != 1.0:
+                grads = [None if g is None else g * f for g in grads]
             with torch.no_grad():
                 for p, g in zip(params, grads):
                     if g is not None:
@@ -129,8 +141,11 @@ class LookaheadEstimator:
         valid_c = valid_t.cpu().numpy()
         valid = np.broadcast_to(valid_c, u.shape).copy()
         if not np.isfinite(u[valid]).all():
-            raise RuntimeError(f"Non-finite class utility at epoch {epoch}, global iteration {global_iter}: "
-                               f"{u.tolist()}")
+            self.skipped += 1
+            z = np.zeros_like(u)
+            return {"u": z, "Lc": np.nan_to_num(lc0.cpu().numpy()), "valid": np.zeros_like(valid),
+                    "u_shared": np.zeros((len(self.menu), 1)), "skipped": True,
+                    "seconds": time.monotonic() - t0}
         self.cua.update(u, valid)
         u_shared = np.zeros((len(self.menu), 1))
         if valid_c.any():
