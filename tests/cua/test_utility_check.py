@@ -36,3 +36,12 @@ def test_summarize_one_correlates_with_part_a(tmp_path):
     p = tmp_path / "d.csv"
     p.write_text("dataset,detector,seed,edit,cls,delta\nrdd,frcnn,0,a,X,1\nrdd,frcnn,1,a,X,3\nvoc,frcnn,0,a,X,9\n")
     assert UC.part_a_means(p, "rdd", "frcnn") == {("a", "X"): 2.0}
+
+
+def test_summarize_lookahead_only_rows():
+    menu, classes = ["a", "b"], ["X", "Y"]
+    pa = {("a", "X"): 1.0, ("a", "Y"): 2.0, ("b", "X"): 3.0, ("b", "Y"): 4.0}
+    rows = [{"valid": [True, True], "look": [[1.0, 2.0], [3.0, 4.0]]}] * 2
+    r = UC.summarize_one({"run": "r", "ckpt": "c", "menu": menu, "classes": classes, "rows": rows}, pa)
+    assert list(r["all_cells"]) == ["look"] and abs(r["all_cells"]["look"] - 1.0) < 1e-9
+    assert "dot_vs_ratio_edit_level" not in r and set(r["per_edit"]["a"]) == {"look", "part_a"}

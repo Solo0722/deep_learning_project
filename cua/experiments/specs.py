@@ -83,14 +83,31 @@ def _c_config(run_id: str, dataset: str, detector: str, seed: int, policy: str, 
                        **{**tuned, **over})
 
 
+# CUA v2 (fixes after the Part C diagnosis): lookahead estimator with instance normalisation (fixes
+# 1, 3), larger batch / slower average / |t| gate (fix 2), 1-epoch probe prior (fix 4). Arms
+# shared2 and cua2 differ from shared and cua only in these settings.
+V2_SETTINGS = {"estimator": "lookahead", "est_every": 400, "est_batch": 16, "ref_batch": 32, "beta": 0.98,
+               "min_t": 2.0, "prior": "probe", "theta": "head_fpn", "epsilon": 0.1}
+V2_POLICIES = {"shared2": "shared", "cua2": "cua"}
+
+
 def part_c_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2),
                  policies: tuple[str, ...] = PART_C_POLICIES) -> list[TrainConfig]:
     _check(dataset, detector)
     for pol in policies:
-        if pol not in PART_C_POLICIES:
+        if pol not in PART_C_POLICIES and pol not in V2_POLICIES:
             raise ValueError(f"Unknown policy: {pol!r}")
-    return [_c_config(f"C-{dataset}-{detector}-s{seed}-{pol}", dataset, detector, seed, pol)
-            for seed in seeds for pol in policies]
+    out = []
+    for seed in seeds:
+        for pol in policies:
+            rid = f"C-{dataset}-{detector}-s{seed}-{pol}"
+            if pol in V2_POLICIES:
+                out.append(TrainConfig(run_id=rid, dataset=dataset, detector=detector, seed=seed,
+                                       epoch_lr=full_schedule(BUDGET_EPOCHS[dataset]), edit=None,
+                                       policy=V2_POLICIES[pol], **V2_SETTINGS))
+            else:
+                out.append(_c_config(rid, dataset, detector, seed, pol))
+    return out
 
 
 def tune_specs() -> list[TrainConfig]:

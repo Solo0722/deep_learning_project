@@ -24,10 +24,12 @@ from torch.utils.data import DataLoader
 from cua.augment.menu import ArmTransform, valid_menu
 from cua.augment.rng import keyed_rng
 from cua.data import DetectionDataset, collate
+from cua.estimator.lookahead import LookaheadEstimator
 from cua.estimator.utility import Estimator
 from cua.evaluate import coco_metrics, predict
 from cua.models import build_detector
-from cua.policy import IdentityPolicy, UniformPolicy, UtilityPolicy, UtilityTable
+from cua.policy import (IdentityPolicy, UniformPolicy, UtilityPolicy, UtilityTable, combine_with_prior,
+                        shared_prior)
 from cua.policy_sampler import PolicyBatchSampler
 from cua.records import read_classes, read_records
 
@@ -70,6 +72,13 @@ class TrainConfig:
     weights: str = "equal"  # equal | inv_ap
     harm_block: bool = True
     allow_identity: bool = True
+    # CUA v2 (fixes after the Part C diagnosis); also out of the digest at their defaults.
+    estimator: str = "grad"  # grad (v1 one-step alignment) | lookahead (v2)
+    lookahead_steps: int = 4
+    lookahead_lr_scale: float = 10.0
+    instance_norm: bool = True  # lookahead only
+    min_t: float = 0.0  # policy ignores cells with |mean| < min_t * se
+    prior: str = "none"  # none | probe (<data>/<dataset>/probe_<detector>.json, combined on the z scale)
 
     def digest(self) -> str:
         """SHA-256 of the config as sorted JSON (tuples become lists); holds no paths.
@@ -82,7 +91,8 @@ class TrainConfig:
 
 
 _PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "theta", "epsilon", "beta",
-                           "est_start_epoch", "weights", "harm_block", "allow_identity"})
+                           "est_start_epoch", "weights", "harm_block", "allow_identity", "estimator",
+                           "lookahead_steps", "lookahead_lr_scale", "instance_norm", "min_t", "prior"})
 POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua")
 
 
@@ -156,7 +166,15 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError(f"weights must be 'equal' or 'inv_ap', got {cfg.weights!r}")
     if cfg.policy != "arm" and not cfg.augment:
         raise ValueError(f"policy={cfg.policy!r} needs augment=True")
-    for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch"):
+    if cfg.estimator not in ("grad", "lookahead"):
+        raise ValueError(f"estimator must be 'grad' or 'lookahead', got {cfg.estimator!r}")
+    if cfg.prior not in ("none", "probe"):
+        raise ValueError(f"prior must be 'none' or 'probe', got {cfg.prior!r}")
+    if cfg.prior != "none" and cfg.policy not in ("shared", "cua"):
+        raise ValueError(f"prior={cfg.prior!r} applies to the shared/cua policies only")
+    if cfg.min_t < 0:
+        raise ValueError(f"min_t must be >= 0, got {cfg.min_t}")
+    for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch", "lookahead_steps"):
         if getattr(cfg, name) < 1:
             raise ValueError(f"{name} must be >= 1, got {getattr(cfg, name)}")
 
@@ -277,9 +295,10 @@ def _predictions_json(preds: list[dict]) -> list[dict]:
 
 
 def _load_measured(ds_dir: Path, detector: str, classes: tuple[str, ...],
-                   menu: tuple[str, ...]) -> UtilityTable:
-    """Part A measured-effect table (written by cua.measured): mean dAP50 and its seed s.e."""
-    path = ds_dir / f"measured_{detector}.json"
+                   menu: tuple[str, ...], name: str = "measured") -> UtilityTable:
+    """Part A measured-effect table (written by cua.measured): mean dAP50 and its seed s.e.
+    name="probe": the first-arm-epoch table (CUA v2 prior)."""
+    path = ds_dir / f"{name}_{detector}.json"
     if not path.exists():
         raise FileNotFoundError(f"{path} is missing; run python -m cua.measured first")
     d = json.loads(path.read_text(encoding="utf-8"))
@@ -366,12 +385,23 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     optimizer = torch.optim.SGD(params, lr=cfg.base_lr, momentum=0.9, weight_decay=5e-4)
     scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
 
-    estimator = (Estimator(model, cfg.detector, cfg.theta, menu, len(classes), est_batch=cfg.est_batch,
-                           ref_batch=cfg.ref_batch, beta=cfg.beta, amp=use_amp, device=device,
-                           workers=max(1, cfg.workers)) if estimating else None)
+    if not estimating:
+        estimator = None
+    elif cfg.estimator == "lookahead":
+        estimator = LookaheadEstimator(model, cfg.detector, cfg.theta, menu, len(classes), est_batch=cfg.est_batch,
+                                       steps=cfg.lookahead_steps, ref_batch=cfg.ref_batch,
+                                       lr_scale=cfg.lookahead_lr_scale, instance_norm=cfg.instance_norm,
+                                       beta=cfg.beta, device=device, workers=max(1, cfg.workers))
+    else:
+        estimator = Estimator(model, cfg.detector, cfg.theta, menu, len(classes), est_batch=cfg.est_batch,
+                              ref_batch=cfg.ref_batch, beta=cfg.beta, amp=use_amp, device=device,
+                              workers=max(1, cfg.workers))
+    prior = _load_measured(ds_dir, cfg.detector, classes, menu, "probe") if cfg.prior == "probe" else None
     weights = np.ones(len(classes))
     weights_fn = (lambda: weights) if cfg.weights == "inv_ap" else None
     knobs = dict(epsilon=cfg.epsilon, harm_block=cfg.harm_block, allow_identity=cfg.allow_identity)
+    if cfg.min_t > 0:  # omitted at the default so v1 policies are constructed exactly as before
+        knobs["min_t"] = cfg.min_t
     if cfg.policy == "base":
         main_policy = IdentityPolicy()
     elif cfg.policy == "uniform":
@@ -380,9 +410,13 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         main_policy = UtilityPolicy(menu, lambda: measured, shared=False, weights_fn=weights_fn,
                                     min_estimates=1, **knobs)
     elif cfg.policy == "shared":
-        main_policy = UtilityPolicy(menu, estimator.shared.table, shared=True, **knobs)
+        shared_table = (estimator.shared.table if prior is None else
+                        (lambda sp=shared_prior(prior): combine_with_prior(estimator.shared.table(), sp)))
+        main_policy = UtilityPolicy(menu, shared_table, shared=True, **knobs)
     elif cfg.policy == "cua":
-        main_policy = UtilityPolicy(menu, estimator.cua.table, shared=False, weights_fn=weights_fn, **knobs)
+        cua_table = (estimator.cua.table if prior is None else
+                     (lambda: combine_with_prior(estimator.cua.table(), prior)))
+        main_policy = UtilityPolicy(menu, cua_table, shared=False, weights_fn=weights_fn, **knobs)
     else:
         main_policy = None
     uniform_policy = UniformPolicy(menu)

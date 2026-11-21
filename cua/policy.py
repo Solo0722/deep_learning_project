@@ -59,11 +59,12 @@ class UtilityPolicy:
     def __init__(self, menu: tuple[str, ...], table_fn: Callable[[], UtilityTable], *, shared: bool,
                  epsilon: float = 0.1, harm_block: bool = True, allow_identity: bool = True,
                  weights_fn: Callable[[], np.ndarray] | None = None,
-                 min_estimates: int = MIN_ESTIMATES, z: float = HARM_Z):
+                 min_estimates: int = MIN_ESTIMATES, z: float = HARM_Z, min_t: float = 0.0):
         self.menu = tuple(menu)
         self.table_fn, self.shared, self.epsilon = table_fn, shared, epsilon
         self.harm_block, self.allow_identity = harm_block, allow_identity
         self.weights_fn, self.min_estimates, self.z = weights_fn, min_estimates, z
+        self.min_t = float(min_t)
         self.fallbacks = 0
 
     def probs(self, class_set):
@@ -73,6 +74,10 @@ class UtilityPolicy:
             return (None, *self.menu), np.full(n, 1.0 / n)
         cols = [0] if self.shared else sorted(class_set)
         mean, se, count = t.mean[:, cols], t.se[:, cols], t.count[:, cols]
+        if self.min_t > 0:
+            # CUA v2 (fix 2): a cell counts only once it is clearly non-zero; otherwise it scores 0.
+            sure = (count >= self.min_estimates) & (np.abs(mean) >= self.min_t * se)
+            mean = np.where(sure, mean, 0.0)
         if self.shared or self.weights_fn is None:
             w = np.ones(len(cols))
         else:
@@ -106,3 +111,29 @@ def choose(policy: Policy, class_set: frozenset[int], rng: np.random.Generator,
         return menu[int(rng.integers(0, len(menu)))]
     cands, p = policy.probs(class_set)
     return cands[int(rng.choice(len(cands), p=p))]
+
+
+# ---- CUA v2 fix 4: a cheap measured prior combined with the online estimate ----
+
+def _z(t: UtilityTable, min_count: int) -> np.ndarray:
+    ok = (t.count >= min_count) & (t.se > 0)
+    return np.where(ok, t.mean / np.where(t.se > 0, t.se, 1.0), 0.0), ok
+
+
+def shared_prior(prior: UtilityTable) -> UtilityTable:
+    """Collapse a per-class prior to one column: class-mean effect and its standard error."""
+    c = prior.mean.shape[1]
+    return UtilityTable(mean=prior.mean.mean(axis=1, keepdims=True),
+                        se=np.sqrt((prior.se ** 2).sum(axis=1, keepdims=True)) / c,
+                        count=prior.count.min(axis=1, keepdims=True))
+
+
+def combine_with_prior(online: UtilityTable, prior: UtilityTable, min_count: int = MIN_ESTIMATES) -> UtilityTable:
+    """Stouffer combination on the z scale (the two sources have different units): where the online
+    cell has at least `min_count` updates, z = (z_prior + z_online) / sqrt(2); otherwise z = z_prior.
+    Returned as mean = z, se = 1, so the policy's harm block and |t| gate read z directly."""
+    zp, okp = _z(prior, 1)
+    zo, oko = _z(online, min_count)
+    z = np.where(oko & okp, (zp + zo) / np.sqrt(2.0), np.where(okp, zp, zo))
+    count = np.maximum(online.count, np.where(okp, min_count, 0))
+    return UtilityTable(mean=z, se=np.ones_like(z), count=count.astype(np.int64))

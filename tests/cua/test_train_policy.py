@@ -197,3 +197,21 @@ def test_fallbacks_are_logged_per_epoch(data, monkeypatch):
     data_root, runs_root = data
     assert train(cfg(epoch_lr=(1.0, 0.1)), data_root, runs_root) == 0
     assert [h["policy"]["fallbacks"] for h in read_history(runs_root / "p")] == [3, 3]
+
+
+@pytest.mark.slow
+def test_cua_v2_lookahead_with_probe_prior_trains(data):
+    data_root, runs_root = data
+    probe = {"edits": list(MENU), "classes": ["a", "b"], "mean": [[1.0, -1.0]] * len(MENU),
+             "se": [[0.5, 0.5]] * len(MENU), "n_seeds": 3}
+    c = cfg(policy="cua", estimator="lookahead", lookahead_steps=2, est_every=1, est_start_epoch=1,
+            est_batch=2, ref_batch=2, min_t=2.0, prior="probe", beta=0.98)
+    with pytest.raises(FileNotFoundError):
+        train(c, data_root, runs_root)
+    (data_root / "voc" / "probe_fasterrcnn.json").write_text(json.dumps(probe), encoding="utf-8")
+    import shutil
+    shutil.rmtree(runs_root / "p", ignore_errors=True)
+    assert train(c, data_root, runs_root) == 0
+    rows = _rows(runs_root / "p" / "utility.jsonl")
+    assert len(rows) == 2 and np.asarray(rows[0]["u"]).shape == (len(MENU), 2)
+    assert np.isfinite(np.asarray(rows[0]["u"])).all()

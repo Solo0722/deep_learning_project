@@ -24,6 +24,8 @@ from cua.augment.menu import valid_menu
 from cua.records import read_classes, read_records
 
 ARMS = ("base", "uniform", "measured", "shared", "cua")
+V2_ARMS = ("shared2", "cua2")  # CUA v2 (lookahead estimator, gate, probe prior); see cua.experiments.specs
+V2_KINDS = ("v2_h2", "v2_h3", "v2_vs_measured", "v2_vs_v1")
 SEEDS = (0, 1, 2)
 _C_RE = re.compile(r"^C-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _X_RE = re.compile(r"^X-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
@@ -208,13 +210,13 @@ def summarize(runs_root: Path, data_root: Path, deltas_csv: Path, n_boot: int = 
         res["arms"][key] = {}
         res["overhead"][key] = {}
         res["secondary"][key] = {}
-        for arm in ARMS:
+        for arm in ARMS + V2_ARMS:
             v = _by_seed(rows, ds, det, arm, "test")
             if v:
                 res["arms"][key][arm] = {**_mean_sd(v.values()), "per_seed": {str(s): v[s] for s in sorted(v)}}
             arm_rows = [r for r in rows if r["kind"] == "C" and (r["dataset"], r["detector"], r["arm"]) == (ds, det, arm)]
             ov = [r for r in arm_rows if r["overhead"] is not None]
-            if arm in ("shared", "cua") and ov:
+            if arm in ("shared", "cua", *V2_ARMS) and ov:
                 res["overhead"][key][arm] = {"share": float(np.mean([r["overhead"] for r in ov])),
                                              "extra": float(np.mean([r["overhead_extra"] for r in ov]))}
             tests = [r["test"] for r in arm_rows if r["test"] is not None]
@@ -238,6 +240,11 @@ def summarize(runs_root: Path, data_root: Path, deltas_csv: Path, n_boot: int = 
         base = h3_baseline(rows, ds, det)
         res["h3"][key] = {**compare(rows, ds, det, base, "cua", matches=matches, n_boot=n_boot), "baseline": base}
         res["vs_measured"][key] = compare(rows, ds, det, "measured", "cua", matches=matches, n_boot=n_boot)
+        res.setdefault("measured_vs_baseline", {})[key] = {
+            **compare(rows, ds, det, base, "measured", matches=matches, n_boot=n_boot), "baseline": base}
+        if _by_seed(rows, ds, det, "cua2", "test"):
+            for kind, a in (("v2_h2", "shared2"), ("v2_h3", base), ("v2_vs_measured", "measured"), ("v2_vs_v1", "cua")):
+                res.setdefault(kind, {})[key] = compare(rows, ds, det, a, "cua2", matches=matches, n_boot=n_boot)
         try:
             res["h4"][key] = h4_agreement(runs_root, deltas_rows, ds, det,
                                           read_classes(Path(data_root) / ds / "classes.json"))
@@ -314,8 +321,8 @@ def write_tables(results: dict, out: Path) -> None:
             w.writerow([kind, ds, det, c["a"], c["b"], c["metric"], c["n_seeds"], c["t"]["mean"], c["t"]["lo"],
                         c["t"]["hi"], b.get("lo"), b.get("hi"), c["claim"], c.get("note", "")])
 
-        for kind in ("h2", "h3", "vs_measured"):
-            for key, c in results[kind].items():
+        for kind in ("h2", "h3", "vs_measured", "measured_vs_baseline", *V2_KINDS):
+            for key, c in results.get(kind, {}).items():
                 row(kind, *_split_key(key), c)
         for ds, abl in results["ablations"].items():
             for c in abl.values():
