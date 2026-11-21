@@ -120,7 +120,7 @@ def test_instance_norm_scales_the_edited_step_by_object_ratio(clip):
         params = theta_params(est.model, "fasterrcnn", "head")
         before = [p.detach().clone() for p in params]
         with only_theta(est.model, params):
-            est._steps(items, clean, params, step_lr=1e-3, seed=0, scale_objects=scale)
+            est._steps(items, clean, params, step_lr=1.0 if clip else 1e-3, seed=0, scale_objects=scale)
         deltas[scale] = torch.cat([(p.detach() - b).reshape(-1) for p, b in zip(params, before)])
     assert (deltas[True] - 0.25 * deltas[False]).abs().max() < 1e-2 * (0.25 * deltas[False]).abs().max()
 
