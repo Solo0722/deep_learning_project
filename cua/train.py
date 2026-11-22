@@ -28,8 +28,8 @@ from cua.estimator.lookahead import LookaheadEstimator
 from cua.estimator.utility import Estimator
 from cua.evaluate import coco_metrics, predict
 from cua.models import build_detector
-from cua.policy import (IdentityPolicy, UniformPolicy, UtilityPolicy, UtilityTable, combine_with_prior,
-                        shared_prior)
+from cua.policy import (IdentityPolicy, TablePolicy, UniformPolicy, UtilityPolicy, UtilityTable,
+                        combine_with_prior, shared_prior)
 from cua.policy_sampler import PolicyBatchSampler
 from cua.records import read_classes, read_records
 
@@ -80,6 +80,9 @@ class TrainConfig:
     instance_norm: bool = True  # lookahead only
     min_t: float = 0.0  # policy ignores cells with |mean| < min_t * se
     prior: str = "none"  # none | probe (<data>/<dataset>/probe_<detector>.json, combined on the z scale)
+    # Per-class PBT (cua.pbt): fixed logit table read from table_path; out of the digest at defaults.
+    table_path: str | None = None
+    table_eps: float = 0.1
 
     def digest(self) -> str:
         """SHA-256 of the config as sorted JSON (tuples become lists); holds no paths.
@@ -94,8 +97,8 @@ class TrainConfig:
 _PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "theta", "epsilon", "beta",
                            "est_start_epoch", "weights", "harm_block", "allow_identity", "estimator",
                            "lookahead_steps", "lookahead_lr_scale", "lookahead_clip", "instance_norm", "min_t",
-                           "prior"})
-POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua")
+                           "prior", "table_path", "table_eps"})
+POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua", "table")
 
 
 def full_schedule(epochs: int) -> tuple[float, ...]:
@@ -176,6 +179,10 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError(f"prior={cfg.prior!r} applies to the shared/cua policies only")
     if cfg.min_t < 0:
         raise ValueError(f"min_t must be >= 0, got {cfg.min_t}")
+    if (cfg.policy == "table") != (cfg.table_path is not None):
+        raise ValueError("policy='table' needs table_path, and table_path needs policy='table'")
+    if not 0.0 <= cfg.table_eps <= 1.0:
+        raise ValueError(f"table_eps must be in [0, 1], got {cfg.table_eps}")
     for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch", "lookahead_steps"):
         if getattr(cfg, name) < 1:
             raise ValueError(f"{name} must be >= 1, got {getattr(cfg, name)}")
@@ -313,6 +320,16 @@ def _load_measured(ds_dir: Path, detector: str, classes: tuple[str, ...],
     return UtilityTable(mean=mean, se=se, count=np.full(mean.shape, int(d["n_seeds"]), dtype=np.int64))
 
 
+def load_table(path: Path, classes: tuple[str, ...], menu: tuple[str, ...], epsilon: float) -> TablePolicy:
+    """PBT logit table JSON: {"menu": [...], "classes": [...], "shared": bool, "logits": [[...]]}."""
+    d = json.loads(Path(path).read_text(encoding="utf-8"))
+    if tuple(d["menu"]) != tuple(menu):
+        raise ValueError(f"{path}: menu {d['menu']} differs from the valid menu {list(menu)}")
+    if tuple(d["classes"]) != tuple(classes):
+        raise ValueError(f"{path}: classes {d['classes']} differ from the dataset's {list(classes)}")
+    return TablePolicy(menu, np.asarray(d["logits"], dtype=np.float64), shared=bool(d["shared"]), epsilon=epsilon)
+
+
 def _read_jsonl(path: Path) -> list[dict]:
     if not path.exists():
         return []
@@ -416,6 +433,8 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         shared_table = (estimator.shared.table if prior is None else
                         (lambda sp=shared_prior(prior): combine_with_prior(estimator.shared.table(), sp)))
         main_policy = UtilityPolicy(menu, shared_table, shared=True, **knobs)
+    elif cfg.policy == "table":
+        main_policy = load_table(Path(cfg.table_path), classes, menu, cfg.table_eps)
     elif cfg.policy == "cua":
         cua_table = (estimator.cua.table if prior is None else
                      (lambda: combine_with_prior(estimator.cua.table(), prior)))

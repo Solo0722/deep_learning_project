@@ -102,6 +102,27 @@ class UtilityPolicy:
         return tuple(cands), p / p.sum()
 
 
+class TablePolicy:
+    """Fixed logit table (per-class PBT). logits has shape (1 + |menu|, C), row 0 = identity; C = 1
+    for the pooled (shared) variant. p = (1-eps) softmax(mean over c in S of logits[:, c]) + eps/n."""
+
+    def __init__(self, menu: tuple[str, ...], logits: np.ndarray, *, shared: bool, epsilon: float = 0.1):
+        self.candidates = (None, *menu)
+        self.logits = np.asarray(logits, dtype=np.float64)
+        if self.logits.ndim != 2 or self.logits.shape[0] != len(self.candidates):
+            raise ValueError(f"logits must have shape ({len(self.candidates)}, C), got {self.logits.shape}")
+        if shared and self.logits.shape[1] != 1:
+            raise ValueError("a shared table has exactly one column")
+        self.shared, self.epsilon = shared, float(epsilon)
+
+    def probs(self, class_set):
+        cols = [0] if self.shared else sorted(class_set)
+        s = self.logits[:, cols].mean(axis=1)
+        e = np.exp(s - s.max())
+        p = (1.0 - self.epsilon) * e / e.sum() + self.epsilon / len(s)
+        return self.candidates, p / p.sum()
+
+
 def choose(policy: Policy, class_set: frozenset[int], rng: np.random.Generator,
            menu: tuple[str, ...]) -> str | None:
     """Sample one edit. Images without target objects: identity (p = 0.5) else a uniform menu edit."""
