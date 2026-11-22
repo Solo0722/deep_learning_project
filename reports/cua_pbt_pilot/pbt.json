@@ -1,0 +1,1 @@
+{"pbt_id": "PBT-rdd-fasterrcnn-s0-pc", "dataset": "rdd", "detector": "fasterrcnn", "seed": 0, "shared": false, "members": 4, "window": 2, "epochs": 20, "sigma": 1.0, "table_eps": 0.1}
