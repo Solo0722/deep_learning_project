@@ -107,9 +107,29 @@ def test_paste_adds_labelled_boxes_inside_content_without_covering_objects():
                         assert iw * ih / ((box[2] - box[0]) * (box[3] - box[1])) <= 0.3 + 1e-9
 
 
+def test_lower_region_and_size_cap():
+    recs = _recs()
+    rng = np.random.default_rng(1)
+    samples = [_sample(r, rng) for r in recs]
+    cp = CopyPaste(recs, 3, "balanced", 5, p=1.0, max_objects=3, region="lower")
+    seen = 0
+    for epoch in range(1, 8):
+        for i in range(4):
+            out, pasted = cp(samples[i], epoch, i, lambda j: samples[j])
+            c = content_of(recs[i], 640)
+            new = out.boxes[len(out.boxes) - len(pasted):]
+            seen += len(new)
+            assert np.all(new[:, 1] >= c.top + c.height // 2) and np.all(new[:, 3] <= c.top + c.height)
+            assert np.all(new[:, 2] - new[:, 0] <= 0.5 * c.width + 1)
+            assert np.all(new[:, 3] - new[:, 1] <= 0.5 * (c.height - c.height // 2) + 1)
+    assert seen > 0
+    with pytest.raises(ValueError):
+        CopyPaste(recs, 3, "balanced", 5, region="top")
+
+
 def test_paste_specs_and_validation():
     c = resolve("P-rdd-fasterrcnn-s2-cpada")
-    assert (c.policy, c.cp_mode, c.seed) == ("uniform", "adaptive", 2)
+    assert (c.policy, c.cp_mode, c.seed, c.cp_region) == ("uniform", "adaptive", 2, "lower")
     assert resolve("P-voc-retinanet-s0-cpbal").cp_mode == "balanced"
     with pytest.raises(KeyError):
         resolve("P-rdd-fasterrcnn-s0-cpfoo")

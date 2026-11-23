@@ -12,7 +12,9 @@ objects); arms differ only in the class distribution the pasted objects are draw
 Pasting happens on the letterboxed image before base geometry and the policy edit, so pasted objects
 go through the same augmentation as original ones. A paste is placed inside the image content (not the
 letterbox padding) where it covers at most MAX_COVER of any existing or earlier pasted box, and is
-blended with a linear feather of FEATHER pixels. Draws are keyed by (seed, epoch, index), so a run
+blended with a linear feather of FEATHER pixels. region="lower" restricts pastes to the lower half of
+the content (where the road is in road-scene images). Each paste is scaled so its sides are at most
+MAX_FRAC of the content width and of the placement region's height. Draws are keyed by (seed, epoch, index), so a run
 is reproducible and resumable.
 """
 from __future__ import annotations
@@ -32,6 +34,8 @@ SCALE_RANGE = (0.8, 1.2)
 MAX_COVER = 0.3
 FEATHER = 4
 PLACE_TRIES = 10
+MAX_FRAC = 0.5
+REGIONS = ("full", "lower")
 
 
 @dataclass(frozen=True)
@@ -86,11 +90,14 @@ class CopyPaste:
     training record j (no augmentation)."""
 
     def __init__(self, records: list[Record], n_classes: int, mode: str, seed: int, *, p: float = 0.5,
-                 max_objects: int = 3, epsilon: float = 0.2, size: int = 640):
+                 max_objects: int = 3, epsilon: float = 0.2, size: int = 640, region: str = "full"):
         if mode not in MODES:
             raise ValueError(f"copy-paste mode must be one of {MODES}, got {mode!r}")
         if not 0.0 <= p <= 1.0 or max_objects < 1 or not 0.0 <= epsilon <= 1.0:
             raise ValueError("need 0 <= p <= 1, max_objects >= 1 and 0 <= epsilon <= 1")
+        if region not in REGIONS:
+            raise ValueError(f"region must be one of {REGIONS}, got {region!r}")
+        self.region = region
         self.records, self.mode, self.seed = records, mode, int(seed)
         self.p, self.max_objects, self.epsilon, self.size = float(p), int(max_objects), float(epsilon), int(size)
         self.bank = build_bank(records, n_classes, size)
@@ -137,6 +144,9 @@ class CopyPaste:
             return sample, []
         rng = keyed_rng(self.seed, epoch, index, "paste_place")
         content = content_of(self.records[index], self.size)
+        if self.region == "lower":
+            half = content.height // 2
+            content = Content(content.left, content.top + half, content.width, content.height - half)
         rgb = sample.rgb.copy()
         boxes = [np.asarray(sample.boxes, dtype=np.float64).reshape(-1, 4)]
         labels = [np.asarray(sample.labels, dtype=np.int64).reshape(-1)]
@@ -153,7 +163,7 @@ class CopyPaste:
                 continue
             s = float(rng.uniform(*SCALE_RANGE))
             w, h = crop.shape[1] * s, crop.shape[0] * s
-            fit = min(1.0, 0.9 * content.width / w, 0.9 * content.height / h)
+            fit = min(1.0, MAX_FRAC * content.width / w, MAX_FRAC * content.height / h)
             w, h = max(2, int(round(w * fit))), max(2, int(round(h * fit)))
             placed = None
             for _ in range(PLACE_TRIES):

@@ -89,6 +89,7 @@ class TrainConfig:
     cp_p: float = 0.5
     cp_max: int = 3
     cp_eps: float = 0.2
+    cp_region: str = "full"  # full | lower (paste only into the lower half of the image)
     cp_every: int = 1  # adaptive: refresh class probabilities from reference AP50 every N epochs
 
     def digest(self) -> str:
@@ -105,7 +106,7 @@ _PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "the
                            "est_start_epoch", "weights", "harm_block", "allow_identity", "estimator",
                            "lookahead_steps", "lookahead_lr_scale", "lookahead_clip", "instance_norm", "min_t",
                            "prior", "table_path", "table_eps", "cp_mode", "cp_p", "cp_max", "cp_eps",
-                           "cp_every"})
+                           "cp_every", "cp_region"})
 POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua", "table")
 
 
@@ -195,6 +196,8 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError(f"cp_mode must be 'none' or one of {PASTE_MODES}, got {cfg.cp_mode!r}")
     if cfg.cp_mode != "none" and not cfg.augment:
         raise ValueError("copy-paste needs augment=True")
+    if cfg.cp_region not in ("full", "lower"):
+        raise ValueError(f"cp_region must be 'full' or 'lower', got {cfg.cp_region!r}")
     if not 0.0 <= cfg.cp_p <= 1.0 or not 0.0 <= cfg.cp_eps <= 1.0:
         raise ValueError("cp_p and cp_eps must be in [0, 1]")
     for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch", "lookahead_steps", "cp_max", "cp_every"):
@@ -412,7 +415,7 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     paste = None
     if cfg.cp_mode != "none":
         paste = CopyPaste(train_recs, len(classes), cfg.cp_mode, cfg.seed, p=cfg.cp_p, max_objects=cfg.cp_max,
-                          epsilon=cfg.cp_eps, size=cfg.size)
+                          epsilon=cfg.cp_eps, size=cfg.size, region=cfg.cp_region)
         train_ds.paste = paste
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

@@ -127,6 +127,8 @@ def ablation_specs(dataset: str, seeds: tuple[int, ...] = (0, 1, 2)) -> list[Tra
 # pasting; arms differ only in which classes the pasted objects come from. The no-paste control is the
 # existing C-<ds>-<det>-s<seed>-uniform run (identical config without copy-paste).
 PASTE_ARMS = {"cprand": "random", "cpbal": "balanced", "cpada": "adaptive"}
+# Road damage only occurs on the road, which fills the lower part of road-scene images.
+PASTE_REGION = {"rdd": "lower", "dacl10k": "full", "voc": "full"}
 
 
 def paste_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2),
@@ -137,7 +139,7 @@ def paste_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2),
             raise ValueError(f"Unknown copy-paste arm: {a!r}")
     return [TrainConfig(run_id=f"P-{dataset}-{detector}-s{seed}-{a}", dataset=dataset, detector=detector,
                         seed=seed, epoch_lr=full_schedule(BUDGET_EPOCHS[dataset]), edit=None, policy="uniform",
-                        cp_mode=PASTE_ARMS[a])
+                        cp_mode=PASTE_ARMS[a], cp_region=PASTE_REGION[dataset])
             for seed in seeds for a in arms]
 
 

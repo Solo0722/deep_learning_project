@@ -24,13 +24,14 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--n", type=int, default=8)
     ap.add_argument("--mode", default="balanced")
+    ap.add_argument("--region", default="full", choices=("full", "lower"))
     a = ap.parse_args(argv)
     ds = a.data_root / a.dataset
     classes = read_classes(ds / "classes.json")
     root = Path(json.loads((ds / "source.json").read_text(encoding="utf-8"))["image_root"])
     root = root if root.is_absolute() else ds / root
     recs = read_records(ds / "train.jsonl")
-    cp = CopyPaste(recs, len(classes), a.mode, 0, p=1.0)
+    cp = CopyPaste(recs, len(classes), a.mode, 0, p=1.0, region=a.region)
     load = lambda j: letterbox(load_rgb(root, recs[j]), recs[j], 640)[0]  # noqa: E731
     a.out.mkdir(parents=True, exist_ok=True)
     rng = np.random.default_rng(0)
