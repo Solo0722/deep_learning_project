@@ -26,6 +26,7 @@ class DetectionDataset(Dataset):
             raise ValueError(f"Augmentation (mosaic canvas) is 640-only; got size={size} with a transform")
         self.records, self.root, self.transform, self.size = list(records), Path(root), transform, size
         self.epoch = 0
+        self.paste = None  # cua.augment.paste.CopyPaste, applied before the transform (training only)
 
     def set_epoch(self, epoch: int) -> None:
         self.epoch = int(epoch)
@@ -44,6 +45,8 @@ class DetectionDataset(Dataset):
         if chosen and self.transform is None:
             raise ValueError("an (index, edit) item needs a transform")
         sample, geometry = self._load(i)
+        if self.paste is not None and self.transform is not None:
+            sample, _ = self.paste(sample, self.epoch, i, lambda j: self._load(j)[0])
         if self.transform is not None:
             def fetch(j: int) -> Sample:
                 return self.transform.base(self._load(j)[0], self.epoch, j)

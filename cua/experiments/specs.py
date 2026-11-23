@@ -123,6 +123,25 @@ def ablation_specs(dataset: str, seeds: tuple[int, ...] = (0, 1, 2)) -> list[Tra
             for seed in seeds for name, over in ABLATIONS.items()]
 
 
+# Class-adaptive copy-paste pilot. Every arm uses the uniform edit policy plus the same amount of
+# pasting; arms differ only in which classes the pasted objects come from. The no-paste control is the
+# existing C-<ds>-<det>-s<seed>-uniform run (identical config without copy-paste).
+PASTE_ARMS = {"cprand": "random", "cpbal": "balanced", "cpada": "adaptive"}
+
+
+def paste_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2),
+                arms: tuple[str, ...] = tuple(PASTE_ARMS)) -> list[TrainConfig]:
+    _check(dataset, detector)
+    for a in arms:
+        if a not in PASTE_ARMS:
+            raise ValueError(f"Unknown copy-paste arm: {a!r}")
+    return [TrainConfig(run_id=f"P-{dataset}-{detector}-s{seed}-{a}", dataset=dataset, detector=detector,
+                        seed=seed, epoch_lr=full_schedule(BUDGET_EPOCHS[dataset]), edit=None, policy="uniform",
+                        cp_mode=PASTE_ARMS[a])
+            for seed in seeds for a in arms]
+
+
+_P_RE = re.compile(r"^P-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _C_RE = re.compile(r"^C-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _T_RE = re.compile(r"^T-rdd-fasterrcnn-s0-([^-]+)$")
 _X_RE = re.compile(r"^X-([^-]+)-fasterrcnn-s(\d+)-([^-]+)$")
@@ -141,6 +160,8 @@ def resolve(run_id: str) -> TrainConfig:
             candidates = part_a_specs(m[1], m[2], seeds=(int(m[3]),))
         elif m := _PROXY_RE.match(run_id):
             candidates = proxy_specs([] if m[2] == "base" else [m[2]], int(m[1]))
+        elif m := _P_RE.match(run_id):
+            candidates = paste_specs(m[1], m[2], seeds=(int(m[3]),), arms=(m[4],))
         elif m := _C_RE.match(run_id):
             candidates = part_c_specs(m[1], m[2], seeds=(int(m[3]),), policies=(m[4],))
         elif _T_RE.match(run_id):
@@ -154,5 +175,5 @@ def resolve(run_id: str) -> TrainConfig:
             return spec
     raise KeyError(f"Unknown run spec {run_id!r}: expected budget-<dataset>-<detector>-e<N>, "
                    f"A-<dataset>-<detector>-s<seed>-<edit|warm|base>, proxy-rdd-fasterrcnn-e<N>-<edit|base>, "
-                   f"C-<dataset>-<detector>-s<seed>-<policy>, T-rdd-fasterrcnn-s0-<variant> or "
+                   f"C-<dataset>-<detector>-s<seed>-<policy>, P-<dataset>-<detector>-s<seed>-<cprand|cpbal|cpada>, T-rdd-fasterrcnn-s0-<variant> or "
                    f"X-<rdd|dacl10k>-fasterrcnn-s<seed>-<ablation>")

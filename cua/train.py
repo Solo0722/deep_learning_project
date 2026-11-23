@@ -22,6 +22,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from cua.augment.menu import ArmTransform, valid_menu
+from cua.augment.paste import MODES as PASTE_MODES, CopyPaste, adaptive_probs
 from cua.augment.rng import keyed_rng
 from cua.data import DetectionDataset, collate
 from cua.estimator.lookahead import LookaheadEstimator
@@ -83,6 +84,12 @@ class TrainConfig:
     # Per-class PBT (cua.pbt): fixed logit table read from table_path; out of the digest at defaults.
     table_path: str | None = None
     table_eps: float = 0.1
+    # Class-adaptive copy-paste (cua.augment.paste); out of the digest at defaults.
+    cp_mode: str = "none"  # none | random | balanced | adaptive
+    cp_p: float = 0.5
+    cp_max: int = 3
+    cp_eps: float = 0.2
+    cp_every: int = 1  # adaptive: refresh class probabilities from reference AP50 every N epochs
 
     def digest(self) -> str:
         """SHA-256 of the config as sorted JSON (tuples become lists); holds no paths.
@@ -97,7 +104,8 @@ class TrainConfig:
 _PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "theta", "epsilon", "beta",
                            "est_start_epoch", "weights", "harm_block", "allow_identity", "estimator",
                            "lookahead_steps", "lookahead_lr_scale", "lookahead_clip", "instance_norm", "min_t",
-                           "prior", "table_path", "table_eps"})
+                           "prior", "table_path", "table_eps", "cp_mode", "cp_p", "cp_max", "cp_eps",
+                           "cp_every"})
 POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua", "table")
 
 
@@ -183,7 +191,13 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError("policy='table' needs table_path, and table_path needs policy='table'")
     if not 0.0 <= cfg.table_eps <= 1.0:
         raise ValueError(f"table_eps must be in [0, 1], got {cfg.table_eps}")
-    for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch", "lookahead_steps"):
+    if cfg.cp_mode not in ("none", *PASTE_MODES):
+        raise ValueError(f"cp_mode must be 'none' or one of {PASTE_MODES}, got {cfg.cp_mode!r}")
+    if cfg.cp_mode != "none" and not cfg.augment:
+        raise ValueError("copy-paste needs augment=True")
+    if not 0.0 <= cfg.cp_p <= 1.0 or not 0.0 <= cfg.cp_eps <= 1.0:
+        raise ValueError("cp_p and cp_eps must be in [0, 1]")
+    for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch", "lookahead_steps", "cp_max", "cp_every"):
         if getattr(cfg, name) < 1:
             raise ValueError(f"{name} must be >= 1, got {getattr(cfg, name)}")
 
@@ -391,8 +405,15 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     menu = valid_menu(cfg.dataset) if cfg.policy != "arm" else ()
     measured = _load_measured(ds_dir, cfg.detector, classes, menu) if cfg.policy == "measured" else None
     estimating = cfg.policy in ("shared", "cua")
-    ref_recs = read_records(ds_dir / "reference.jsonl") if estimating else None
-    ref_ds = DetectionDataset(ref_recs, image_root, None, cfg.size) if estimating else None
+    adaptive_paste = cfg.cp_mode == "adaptive"
+    needs_ref = estimating or adaptive_paste
+    ref_recs = read_records(ds_dir / "reference.jsonl") if needs_ref else None
+    ref_ds = DetectionDataset(ref_recs, image_root, None, cfg.size) if needs_ref else None
+    paste = None
+    if cfg.cp_mode != "none":
+        paste = CopyPaste(train_recs, len(classes), cfg.cp_mode, cfg.seed, p=cfg.cp_p, max_objects=cfg.cp_max,
+                          epsilon=cfg.cp_eps, size=cfg.size)
+        train_ds.paste = paste
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     use_amp = bool(cfg.amp and device.type == "cuda")
@@ -459,6 +480,8 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         global_iter, best, start = int(ck["global_iter"]), float(ck["best_macro"]), int(ck["epoch"]) + 1
         best_epoch = None if ck["best_epoch"] is None else int(ck["best_epoch"])
         _settle_pending(out, int(ck["epoch"]), best_epoch)
+        if paste is not None and adaptive_paste:
+            paste.set_probs(np.asarray(ck["paste_state"]["probs"], dtype=np.float64))
         if main_policy is not None:
             ps = ck["policy_state"]
             weights[:] = np.asarray(ps["weights"], dtype=np.float64)
@@ -520,6 +543,13 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
                         "shared_mean": sh.mean[:, 0].tolist(), "shared_se": sh.se[:, 0].tolist(),
                         "seconds": res["seconds"], **({"skipped": True} if res.get("skipped") else {})})
                     est_seconds[0] += res["seconds"]
+        paste_row = None
+        if paste is not None:
+            planned = np.zeros(len(classes), dtype=np.int64)
+            for i in range(len(train_ds)):
+                for c, _, _ in paste.plan(epoch, i):
+                    planned[c] += 1
+            paste_row = {"probs": paste.probs.tolist(), "planned": dict(zip(classes, planned.tolist()))}
         losses, global_iter = _train_one_epoch(model, optimizer, scaler, loader, device, use_amp, cfg,
                                                epoch, lr_mult, global_iter, warm_up, after_step)
 
@@ -534,14 +564,25 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         if cfg.weights == "inv_ap":
             per = metrics.get("per_class") or {}
             weights[:] = [1.0 / max(float((per.get(c) or {}).get("ap50") or 1.0), 1.0) for c in classes]
+        if adaptive_paste and (epoch - cfg.first_epoch + 1) % cfg.cp_every == 0:
+            ref_preds = predict(model, ref_ds, device, batch_size=2 * cfg.batch_size, num_workers=cfg.workers)
+            ref_per = coco_metrics(ref_recs, ref_preds, classes).get("per_class") or {}
+            ref_ap = [(ref_per.get(c) or {}).get("ap50") for c in classes]
+            paste.set_probs(adaptive_probs(ref_ap, paste.has_objects, cfg.cp_eps))
+            paste_row["ref_ap50"] = ref_ap
+            paste_row["next_probs"] = paste.probs.tolist()
         row = {"epoch": epoch, "lr_mult": lr_mult, "losses": losses, "metrics": metrics,
                "seconds": time.monotonic() - t0}
+        if paste_row is not None:
+            row["paste"] = paste_row
         if sampler is not None:
             row["policy"] = {**sampler.stats(), "estimator_seconds": est_seconds[0], "estimates": len(epoch_rows),
                              "fallbacks": getattr(main_policy, "fallbacks", 0) - fallbacks0}
         state = {"model": model.state_dict(), "optimizer": optimizer.state_dict(),
                  "scaler": scaler.state_dict(), "epoch": epoch, "global_iter": global_iter,
                  "cfg_digest": digest, "best_macro": best, "best_epoch": best_epoch, "history_row": row}
+        if paste is not None:
+            state["paste_state"] = {"probs": paste.probs.tolist()}
         if main_policy is not None:
             state["policy_state"] = {"weights": weights.tolist(), "utility_rows": epoch_rows,
                                      "cua": estimator.cua.state_dict() if estimator else None,
