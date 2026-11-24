@@ -93,3 +93,7 @@ reports/**/returned_records/observations/
 
 # Submission snapshot: duplicate of top-level folders; the .zip is the archive.
 /RDD_Prototype_Submission_2026-10-26/
+
+# Page-render QA images of report PDFs (regenerable; the PDFs are tracked).
+reports/*/render/
+reports/*/rendered*/
