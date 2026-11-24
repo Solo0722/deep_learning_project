@@ -1,0 +1,27 @@
+{
+  "arm": "geometry_only",
+  "completed_epoch": 8,
+  "controller_updates": [],
+  "effective_model": {
+    "image_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "image_std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "normalization": "FrozenBatchNorm2d, eps=0.0; ImageNet RGB mean/std",
+    "parameters": 41314536,
+    "reinitialized": "ROI classification and class-specific box regression predictors",
+    "trainable_backbone_stages": 5,
+    "trainable_parameters": 41314536,
+    "transferred_state_keys": []
+  },
+  "status": "complete",
+  "step": 53728,
+  "training_seconds": 43967.45236845501,
+  "validation_seconds": 4066.539335006848
+}

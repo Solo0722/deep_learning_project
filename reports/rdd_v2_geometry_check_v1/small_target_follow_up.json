@@ -1,0 +1,38 @@
+{
+  "cases": [
+    {
+      "after_0_95_scale_box_dimensions": [
+        10.17275616438355,
+        0.9966727005870857
+      ],
+      "image": "Norway/train/images/Norway_005967.jpg",
+      "image_sha256": "9cf99bbbd7d9b854a8ee3b19bb7d4746138cc2dae2aaaa7b1cf7c81b3d4c39b5",
+      "included_in_56_image_pixel_check": false,
+      "object": {
+        "box_xyxy": [
+          1588.99,
+          1243.78,
+          1650.06,
+          1249.77
+        ],
+        "class_index": 1,
+        "difficult": "0",
+        "label": "D10",
+        "object_index": 12,
+        "truncated": "0"
+      },
+      "prepared_box_dimensions": [
+        10.708164383561632,
+        1.0491291585127218
+      ],
+      "raw_dimensions": [
+        3650,
+        2044
+      ],
+      "rgb_sha256": "1100f7d1842754e8d2130c968e2c20b4ee741befb5afaba026980681e7779786",
+      "xml_sha256": "72391bb8d992a283f4238c0e618f2dbdafed557c92df9977b4ba0bc114fb8810"
+    }
+  ],
+  "interpretation": "Positive-area coordinates survive, but saved previews do not establish the visibility of this thin object after bilinear downscaling. Do not silently drop or relabel it.",
+  "status": "include_in_next_bounded_check_not_a_failed_coordinate_invariant"
+}

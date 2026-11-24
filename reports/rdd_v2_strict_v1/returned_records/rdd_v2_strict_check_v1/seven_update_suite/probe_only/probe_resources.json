@@ -1,0 +1,2576 @@
+{
+  "condition": "probe_only",
+  "elapsed_seconds": 8.25945339910686,
+  "hard_timeout_seconds": 360,
+  "kind": "probe",
+  "peak_allocated_bytes": 4911081472,
+  "peak_reserved_bytes": 7767851008,
+  "python_roi_align_calls": [
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1602,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        324,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        74,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1602,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        324,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        74,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1652,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        288,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        60,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1569,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        359,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        70,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1603,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        339,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        56,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1620,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        327,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        53,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1614,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        321,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        64,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1599,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        327,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        73,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1583,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        341,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        75,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1586,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        351,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        61,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1573,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        359,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        67,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1607,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        338,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        53,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1607,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        321,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        72,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1596,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        330,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        74,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1612,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        317,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        71,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1583,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        336,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        81,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        1,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        801,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        1,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        159,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        1,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        40,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        1,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        0,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1233,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        582,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        182,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        3,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1282,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        557,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        159,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1286,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        553,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        159,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1248,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        589,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        161,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1270,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        570,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        156,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        4,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1244,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        588,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        166,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1292,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        553,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        153,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1246,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        588,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        164,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1288,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        552,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        158,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1282,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        561,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        155,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1279,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        560,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        158,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        3,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1286,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        556,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        156,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1280,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        559,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        159,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1272,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        563,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        162,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        2,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        3,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        1,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        635,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        1,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        284,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        1,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        79,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        1,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    }
+  ],
+  "stage": "seven_update_suite",
+  "started_unix": 1793599630.03698,
+  "state": "complete",
+  "step": null,
+  "timing_scope": "Instrumented wall time including CPU copies/hashing/phase-record writes; not pure kernel throughput.",
+  "total_gpu_bytes": 23684841472
+}

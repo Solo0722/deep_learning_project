@@ -1,0 +1,106 @@
+[
+  {
+    "file": "previews/panel_A_anchor_0.png",
+    "mode": "RGB",
+    "size": [
+      1280,
+      1280
+    ]
+  },
+  {
+    "file": "previews/panel_A_anchor_1.png",
+    "mode": "RGB",
+    "size": [
+      1280,
+      1280
+    ]
+  },
+  {
+    "file": "previews/panel_A_anchor_2.png",
+    "mode": "RGB",
+    "size": [
+      1280,
+      1280
+    ]
+  },
+  {
+    "file": "previews/panel_A_anchor_3.png",
+    "mode": "RGB",
+    "size": [
+      1280,
+      1280
+    ]
+  },
+  {
+    "file": "previews/panel_B_anchor_0.png",
+    "mode": "RGB",
+    "size": [
+      1280,
+      1280
+    ]
+  },
+  {
+    "file": "previews/panel_B_anchor_1.png",
+    "mode": "RGB",
+    "size": [
+      1280,
+      1280
+    ]
+  },
+  {
+    "file": "previews/panel_B_anchor_2.png",
+    "mode": "RGB",
+    "size": [
+      1280,
+      1280
+    ]
+  },
+  {
+    "file": "previews/panel_B_anchor_3.png",
+    "mode": "RGB",
+    "size": [
+      1280,
+      1280
+    ]
+  },
+  {
+    "file": "thin_case/prepared_boxes.png",
+    "mode": "RGB",
+    "size": [
+      640,
+      640
+    ]
+  },
+  {
+    "file": "thin_case/prepared_rgb.png",
+    "mode": "RGB",
+    "size": [
+      640,
+      640
+    ]
+  },
+  {
+    "file": "thin_case/raw_crop_rgb.png",
+    "mode": "RGB",
+    "size": [
+      191,
+      135
+    ]
+  },
+  {
+    "file": "thin_case/scale095_boxes.png",
+    "mode": "RGB",
+    "size": [
+      640,
+      640
+    ]
+  },
+  {
+    "file": "thin_case/scale095_rgb.png",
+    "mode": "RGB",
+    "size": [
+      640,
+      640
+    ]
+  }
+]

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="468" height="304" preserveAspectRatio="xMinYMin meet" viewBox="0 0 468 304" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="468" height="304"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-304)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="468" height="304" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 38,70 L 42,70 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="25.0" y="67.0" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,134) scale(1,-1)">14</text>
+			<path d="M 38,112 L 42,112 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="25.0" y="109.0" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,218) scale(1,-1)">16</text>
+			<path d="M 38,154 L 42,154 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="25.0" y="151.0" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,302) scale(1,-1)">18</text>
+			<path d="M 38,196 L 42,196 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="25.0" y="193.0" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,386) scale(1,-1)">20</text>
+			<path d="M 38,238 L 42,238 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="25.0" y="235.0" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,470) scale(1,-1)">22</text>
+			<path d="M 38,280 L 42,280 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="25.0" y="277.0" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,554) scale(1,-1)">24</text>
+			<path d="M 42,66 L 42,70 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="39.75" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">1</text>
+			<path d="M 106.736842,66 L 106.736842,70 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="104.48684210526315" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">4</text>
+			<path d="M 193.052632,66 L 193.052632,70 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="190.80263157894737" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">8</text>
+			<path d="M 279.368421,66 L 279.368421,70 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="274.86842105263156" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">12</text>
+			<path d="M 365.684211,66 L 365.684211,70 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="361.1842105263158" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">16</text>
+			<path d="M 452,66 L 452,70 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="447.5" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">20</text>
+			<path d="M 42,70 L 42,280 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<path d="M 42,70 L 452,70 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<text x="42" y="291" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,582) scale(1,-1)">Validation AP50:95</text>
+			<text x="234.225" y="42" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,84) scale(1,-1)">Epoch</text>
+			<polyline points="42 123.2788, 63.57895 96.82744, 85.15789 172.689, 106.7368 205.0531, 128.3158 204.8323, 149.8947 203.5581, 171.4737 182.3587, 193.0526 183.1727, 214.6316 189.6015, 236.2105 169.5933, 257.7895 109.841, 279.3684 147.6766, 300.9474 250.5045, 322.5263 255.2855, 344.1053 244.0885, 365.6842 247.2, 387.2632 248.367, 408.8421 248.5155, 430.4211 246.8761, 452 246.2331" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd;"/>
+			<circle cx="42.0" cy="123.2787991344546" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<circle cx="106.73684210526315" cy="205.05309885546086" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<circle cx="171.4736842105263" cy="182.3586734027004" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<circle cx="236.21052631578945" cy="169.59326367963558" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<circle cx="300.9473684210526" cy="250.50447700489283" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<circle cx="365.6842105263158" cy="247.1999513003444" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<circle cx="430.4210526315789" cy="246.87613056473907" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<polyline points="42 25, 61 25" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd;"/>
+			<circle cx="51.5" cy="25" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="66" y="22" style="font-family: Times-Roman; font-size: 8.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,44) scale(1,-1)">Identity</text>
+			<polyline points="42 109.7315, 63.57895 132.8978, 85.15789 170.8649, 106.7368 173.0902, 128.3158 194.4569, 149.8947 195.277, 171.4737 189.6236, 193.0526 155.1493, 214.6316 184.1148, 236.2105 168.2332, 257.7895 91.81302, 279.3684 182.9398, 300.9474 246.6304, 322.5263 255.0085, 344.1053 245.6406, 365.6842 248.1249, 387.2632 251.7021, 408.8421 253.8583, 430.4211 251.8476, 452 250.066" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd; stroke-dasharray: 6, 3;"/>
+			<polyline points="171 25, 190 25" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd; stroke-dasharray: 6, 3;"/>
+			<text x="195" y="22" style="font-family: Times-Roman; font-size: 8.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,44) scale(1,-1)">Fixed image level</text>
+			<polyline points="42 120.9017, 63.57895 131.7279, 85.15789 124.9049, 106.7368 173.8592, 128.3158 167.922, 149.8947 175.3994, 171.4737 175.5172, 193.0526 157.5, 214.6316 153.3487, 236.2105 156.791, 257.7895 111.8485, 279.3684 143.7643, 300.9474 230.2634, 322.5263 247.3915, 344.1053 236.811, 365.6842 226.3623, 387.2632 247.7468, 408.8421 249.6549, 430.4211 248.2884, 452 248.229" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd; stroke-dasharray: 1, 2;"/>
+			<polyline points="309 25, 328 25" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd; stroke-dasharray: 1, 2;"/>
+			<text x="333" y="22" style="font-family: Times-Roman; font-size: 8.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,44) scale(1,-1)">Fixed local</text>
+			<polyline points="42 106.3932, 63.57895 96.33753, 85.15789 158.7277, 106.7368 192.5915, 128.3158 188.4941, 149.8947 195.2162, 171.4737 184.8742, 193.0526 190.7862, 214.6316 191.6564, 236.2105 184.8302, 257.7895 124.3236, 279.3684 151.7015, 300.9474 251.6853, 322.5263 260.2472, 344.1053 249.0142, 365.6842 247.9092, 387.2632 251.2641, 408.8421 255.2411, 430.4211 251.3621, 452 250.3446" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd; stroke-dasharray: 8, 2, 1, 2;"/>
+			<polyline points="42 11, 61 11" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd; stroke-dasharray: 8, 2, 1, 2;"/>
+			<text x="66" y="8" style="font-family: Times-Roman; font-size: 8.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,16) scale(1,-1)">Online shared local</text>
+			<polyline points="42 122.8878, 63.57895 130.7993, 85.15789 167.7793, 106.7368 188.4813, 128.3158 178.6626, 149.8947 188.3852, 171.4737 190.4019, 193.0526 175.7265, 214.6316 147.4506, 236.2105 158.6802, 257.7895 144.5253, 279.3684 145.4092, 300.9474 231.2925, 322.5263 247.7193, 344.1053 233.0119, 365.6842 238.418, 387.2632 247.2354, 408.8421 249.8273, 430.4211 247.9416, 452 248.3514" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd; stroke-dasharray: 3, 2;"/>
+			<circle cx="42.0" cy="122.88779599245602" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="106.73684210526315" cy="188.48130013160585" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="171.4736842105263" cy="190.40187511867555" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="236.21052631578945" cy="158.68021950455216" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="300.9473684210526" cy="231.29246721504666" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="365.6842105263158" cy="238.41800258548292" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="430.4210526315789" cy="247.9415869864471" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polyline points="241 11, 260 11" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.05; fill: None; fill-rule: evenodd; stroke-dasharray: 3, 2;"/>
+			<circle cx="250.5" cy="11" r="1.6" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="265" y="8" style="font-family: Times-Roman; font-size: 8.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,16) scale(1,-1)">Class adaptive local</text>
+		</g>
+	</g>
+</svg>

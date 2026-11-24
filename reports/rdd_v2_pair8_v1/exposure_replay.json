@@ -1,0 +1,540 @@
+{
+  "audit_seconds": 76.50614259997383,
+  "epochs": {
+    "2": {
+      "all_metadata_counts_match": true,
+      "applied_opportunities": {
+        "class_adaptive": 8347,
+        "geometry_only": 0
+      },
+      "borrowed_opportunities": {
+        "class_adaptive": 1050,
+        "geometry_only": 0
+      },
+      "class_adaptive_action_disagreements": {
+        "vs_fixed_local": 2898,
+        "vs_own_global_shared": 4949
+      },
+      "class_adaptive_opportunity_weighted_TV": {
+        "fixed_local": 0.30426433981602535,
+        "own_global_shared": 0.3709037179026823
+      },
+      "geometry_and_opportunities": {
+        "accepted": 21801,
+        "cropped_annotation": 5062,
+        "images": 26863,
+        "opportunities": 8347,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "logged_pairing_sha256": "e00d888b47e060a7da3c1d3a3dcf324aac6d760e91a5eba86dca775bcb5a4b47",
+      "opportunities_by_class_set": {
+        "0": 3358,
+        "0,1": 464,
+        "0,1,2": 36,
+        "0,1,3": 5,
+        "0,2": 154,
+        "0,2,3": 10,
+        "0,3": 30,
+        "1": 1298,
+        "1,2": 113,
+        "1,2,3": 6,
+        "1,3": 13,
+        "2": 1874,
+        "2,3": 219,
+        "3": 767
+      },
+      "sampled_action_counts": {
+        "class_adaptive": {
+          "brightness_down/1": 356,
+          "brightness_down/2": 275,
+          "brightness_down/3": 40,
+          "brightness_up/1": 369,
+          "brightness_up/2": 147,
+          "brightness_up/3": 142,
+          "contrast_down/1": 497,
+          "contrast_down/2": 51,
+          "contrast_down/3": 54,
+          "contrast_up/1": 235,
+          "contrast_up/2": 237,
+          "contrast_up/3": 238,
+          "gamma_brighten/1": 637,
+          "gamma_brighten/2": 57,
+          "gamma_brighten/3": 59,
+          "gamma_darken/1": 322,
+          "gamma_darken/2": 343,
+          "gamma_darken/3": 112,
+          "gaussian_blur/1": 1878,
+          "gaussian_blur/2": 241,
+          "gaussian_noise/1": 695,
+          "gaussian_noise/2": 690,
+          "gaussian_noise/3": 672
+        },
+        "geometry_only": {
+          "identity/None": 8347
+        }
+      },
+      "status": "pass"
+    },
+    "3": {
+      "all_metadata_counts_match": true,
+      "applied_opportunities": {
+        "class_adaptive": 8246,
+        "geometry_only": 0
+      },
+      "borrowed_opportunities": {
+        "class_adaptive": 1086,
+        "geometry_only": 0
+      },
+      "class_adaptive_action_disagreements": {
+        "vs_fixed_local": 2868,
+        "vs_own_global_shared": 4926
+      },
+      "class_adaptive_opportunity_weighted_TV": {
+        "fixed_local": 0.3054073355431491,
+        "own_global_shared": 0.36992447516645244
+      },
+      "geometry_and_opportunities": {
+        "accepted": 21744,
+        "cropped_annotation": 5119,
+        "images": 26863,
+        "opportunities": 8246,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "logged_pairing_sha256": "98ba42bab119ad73e724749b5d0d182deb95732fc14d1de500c7fd603941a9d0",
+      "opportunities_by_class_set": {
+        "0": 3290,
+        "0,1": 507,
+        "0,1,2": 31,
+        "0,1,2,3": 1,
+        "0,1,3": 4,
+        "0,2": 154,
+        "0,2,3": 12,
+        "0,3": 22,
+        "1": 1344,
+        "1,2": 106,
+        "1,2,3": 6,
+        "1,3": 11,
+        "2": 1827,
+        "2,3": 232,
+        "3": 699
+      },
+      "sampled_action_counts": {
+        "class_adaptive": {
+          "brightness_down/1": 332,
+          "brightness_down/2": 287,
+          "brightness_down/3": 62,
+          "brightness_up/1": 385,
+          "brightness_up/2": 125,
+          "brightness_up/3": 148,
+          "contrast_down/1": 529,
+          "contrast_down/2": 43,
+          "contrast_down/3": 51,
+          "contrast_up/1": 231,
+          "contrast_up/2": 243,
+          "contrast_up/3": 235,
+          "gamma_brighten/1": 621,
+          "gamma_brighten/2": 51,
+          "gamma_brighten/3": 45,
+          "gamma_darken/1": 312,
+          "gamma_darken/2": 320,
+          "gamma_darken/3": 71,
+          "gaussian_blur/1": 1797,
+          "gaussian_blur/2": 237,
+          "gaussian_noise/1": 693,
+          "gaussian_noise/2": 758,
+          "gaussian_noise/3": 670
+        },
+        "geometry_only": {
+          "identity/None": 8246
+        }
+      },
+      "status": "pass"
+    },
+    "4": {
+      "all_metadata_counts_match": true,
+      "applied_opportunities": {
+        "class_adaptive": 8280,
+        "geometry_only": 0
+      },
+      "borrowed_opportunities": {
+        "class_adaptive": 384,
+        "geometry_only": 0
+      },
+      "class_adaptive_action_disagreements": {
+        "vs_fixed_local": 1503,
+        "vs_own_global_shared": 865
+      },
+      "class_adaptive_opportunity_weighted_TV": {
+        "fixed_local": 0.1655897745571678,
+        "own_global_shared": 0.0966888083736005
+      },
+      "geometry_and_opportunities": {
+        "accepted": 21674,
+        "cropped_annotation": 5189,
+        "images": 26863,
+        "opportunities": 8280,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "logged_pairing_sha256": "324f62c44c810e1d93940f0c55f88b6a2d07d7a30c184f4297cf9e947066138e",
+      "opportunities_by_class_set": {
+        "0": 3352,
+        "0,1": 460,
+        "0,1,2": 42,
+        "0,1,2,3": 2,
+        "0,1,3": 2,
+        "0,2": 155,
+        "0,2,3": 18,
+        "0,3": 23,
+        "1": 1333,
+        "1,2": 127,
+        "1,2,3": 6,
+        "1,3": 9,
+        "2": 1786,
+        "2,3": 217,
+        "3": 748
+      },
+      "sampled_action_counts": {
+        "class_adaptive": {
+          "brightness_down/1": 236,
+          "brightness_down/2": 263,
+          "brightness_down/3": 172,
+          "brightness_up/1": 239,
+          "brightness_up/2": 239,
+          "brightness_up/3": 223,
+          "contrast_down/1": 321,
+          "contrast_down/2": 213,
+          "contrast_down/3": 159,
+          "contrast_up/1": 228,
+          "contrast_up/2": 223,
+          "contrast_up/3": 212,
+          "gamma_brighten/1": 203,
+          "gamma_brighten/2": 253,
+          "gamma_brighten/3": 235,
+          "gamma_darken/1": 216,
+          "gamma_darken/2": 258,
+          "gamma_darken/3": 251,
+          "gaussian_blur/1": 1858,
+          "gaussian_blur/2": 211,
+          "gaussian_noise/1": 678,
+          "gaussian_noise/2": 693,
+          "gaussian_noise/3": 696
+        },
+        "geometry_only": {
+          "identity/None": 8280
+        }
+      },
+      "status": "pass"
+    },
+    "5": {
+      "all_metadata_counts_match": true,
+      "applied_opportunities": {
+        "class_adaptive": 8311,
+        "geometry_only": 0
+      },
+      "borrowed_opportunities": {
+        "class_adaptive": 371,
+        "geometry_only": 0
+      },
+      "class_adaptive_action_disagreements": {
+        "vs_fixed_local": 1431,
+        "vs_own_global_shared": 899
+      },
+      "class_adaptive_opportunity_weighted_TV": {
+        "fixed_local": 0.1648451182502467,
+        "own_global_shared": 0.09776033102047797
+      },
+      "geometry_and_opportunities": {
+        "accepted": 21720,
+        "cropped_annotation": 5143,
+        "images": 26863,
+        "opportunities": 8311,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "logged_pairing_sha256": "560e77aa197581e69ad107350ab6de54b8571c7dfd2969edc0b1e9fa7dea1ca7",
+      "opportunities_by_class_set": {
+        "0": 3316,
+        "0,1": 463,
+        "0,1,2": 35,
+        "0,1,2,3": 3,
+        "0,1,3": 3,
+        "0,2": 148,
+        "0,2,3": 18,
+        "0,3": 24,
+        "1": 1328,
+        "1,2": 116,
+        "1,2,3": 7,
+        "1,3": 17,
+        "2": 1867,
+        "2,3": 221,
+        "3": 745
+      },
+      "sampled_action_counts": {
+        "class_adaptive": {
+          "brightness_down/1": 243,
+          "brightness_down/2": 202,
+          "brightness_down/3": 210,
+          "brightness_up/1": 233,
+          "brightness_up/2": 208,
+          "brightness_up/3": 222,
+          "contrast_down/1": 282,
+          "contrast_down/2": 229,
+          "contrast_down/3": 159,
+          "contrast_up/1": 232,
+          "contrast_up/2": 217,
+          "contrast_up/3": 246,
+          "gamma_brighten/1": 240,
+          "gamma_brighten/2": 233,
+          "gamma_brighten/3": 225,
+          "gamma_darken/1": 231,
+          "gamma_darken/2": 239,
+          "gamma_darken/3": 257,
+          "gaussian_blur/1": 1842,
+          "gaussian_blur/2": 227,
+          "gaussian_noise/1": 701,
+          "gaussian_noise/2": 709,
+          "gaussian_noise/3": 724
+        },
+        "geometry_only": {
+          "identity/None": 8311
+        }
+      },
+      "status": "pass"
+    },
+    "6": {
+      "all_metadata_counts_match": true,
+      "applied_opportunities": {
+        "class_adaptive": 8316,
+        "geometry_only": 0
+      },
+      "borrowed_opportunities": {
+        "class_adaptive": 608,
+        "geometry_only": 0
+      },
+      "class_adaptive_action_disagreements": {
+        "vs_fixed_local": 1131,
+        "vs_own_global_shared": 1082
+      },
+      "class_adaptive_opportunity_weighted_TV": {
+        "fixed_local": 0.10686561381006053,
+        "own_global_shared": 0.11916953930844947
+      },
+      "geometry_and_opportunities": {
+        "accepted": 21778,
+        "cropped_annotation": 5085,
+        "images": 26863,
+        "opportunities": 8316,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "logged_pairing_sha256": "08d3ac3357563bc147ba2b5013a14a923fcb38f2aebe7dea165ed51080240baa",
+      "opportunities_by_class_set": {
+        "0": 3339,
+        "0,1": 485,
+        "0,1,2": 42,
+        "0,1,2,3": 3,
+        "0,1,3": 8,
+        "0,2": 156,
+        "0,2,3": 15,
+        "0,3": 19,
+        "1": 1342,
+        "1,2": 115,
+        "1,2,3": 8,
+        "1,3": 8,
+        "2": 1825,
+        "2,3": 234,
+        "3": 717
+      },
+      "sampled_action_counts": {
+        "class_adaptive": {
+          "brightness_down/1": 210,
+          "brightness_down/2": 250,
+          "brightness_down/3": 244,
+          "brightness_up/1": 236,
+          "brightness_up/2": 223,
+          "brightness_up/3": 242,
+          "contrast_down/1": 235,
+          "contrast_down/2": 239,
+          "contrast_down/3": 233,
+          "contrast_up/1": 239,
+          "contrast_up/2": 225,
+          "contrast_up/3": 237,
+          "gamma_brighten/1": 244,
+          "gamma_brighten/2": 246,
+          "gamma_brighten/3": 221,
+          "gamma_darken/1": 214,
+          "gamma_darken/2": 243,
+          "gamma_darken/3": 224,
+          "gaussian_blur/1": 1254,
+          "gaussian_blur/2": 759,
+          "gaussian_noise/1": 643,
+          "gaussian_noise/2": 731,
+          "gaussian_noise/3": 724
+        },
+        "geometry_only": {
+          "identity/None": 8316
+        }
+      },
+      "status": "pass"
+    },
+    "7": {
+      "all_metadata_counts_match": true,
+      "applied_opportunities": {
+        "class_adaptive": 8274,
+        "geometry_only": 0
+      },
+      "borrowed_opportunities": {
+        "class_adaptive": 630,
+        "geometry_only": 0
+      },
+      "class_adaptive_action_disagreements": {
+        "vs_fixed_local": 1153,
+        "vs_own_global_shared": 1044
+      },
+      "class_adaptive_opportunity_weighted_TV": {
+        "fixed_local": 0.10722343082749412,
+        "own_global_shared": 0.11868000161149439
+      },
+      "geometry_and_opportunities": {
+        "accepted": 21625,
+        "cropped_annotation": 5238,
+        "images": 26863,
+        "opportunities": 8274,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "logged_pairing_sha256": "18c70c3db3df93c474e014967037d190d090b69a0d7c45f2934172eebe291fe1",
+      "opportunities_by_class_set": {
+        "0": 3258,
+        "0,1": 451,
+        "0,1,2": 43,
+        "0,1,2,3": 3,
+        "0,1,3": 2,
+        "0,2": 168,
+        "0,2,3": 16,
+        "0,3": 30,
+        "1": 1382,
+        "1,2": 130,
+        "1,2,3": 7,
+        "1,3": 9,
+        "2": 1807,
+        "2,3": 222,
+        "3": 746
+      },
+      "sampled_action_counts": {
+        "class_adaptive": {
+          "brightness_down/1": 241,
+          "brightness_down/2": 218,
+          "brightness_down/3": 251,
+          "brightness_up/1": 211,
+          "brightness_up/2": 210,
+          "brightness_up/3": 236,
+          "contrast_down/1": 262,
+          "contrast_down/2": 227,
+          "contrast_down/3": 196,
+          "contrast_up/1": 245,
+          "contrast_up/2": 227,
+          "contrast_up/3": 229,
+          "gamma_brighten/1": 216,
+          "gamma_brighten/2": 238,
+          "gamma_brighten/3": 219,
+          "gamma_darken/1": 221,
+          "gamma_darken/2": 219,
+          "gamma_darken/3": 258,
+          "gaussian_blur/1": 1290,
+          "gaussian_blur/2": 764,
+          "gaussian_noise/1": 689,
+          "gaussian_noise/2": 721,
+          "gaussian_noise/3": 686
+        },
+        "geometry_only": {
+          "identity/None": 8274
+        }
+      },
+      "status": "pass"
+    },
+    "8": {
+      "all_metadata_counts_match": true,
+      "applied_opportunities": {
+        "class_adaptive": 8427,
+        "geometry_only": 0
+      },
+      "borrowed_opportunities": {
+        "class_adaptive": 1138,
+        "geometry_only": 0
+      },
+      "class_adaptive_action_disagreements": {
+        "vs_fixed_local": 1126,
+        "vs_own_global_shared": 2754
+      },
+      "class_adaptive_opportunity_weighted_TV": {
+        "fixed_local": 0.11212966259246422,
+        "own_global_shared": 0.2662968237015534
+      },
+      "geometry_and_opportunities": {
+        "accepted": 21817,
+        "cropped_annotation": 5046,
+        "images": 26863,
+        "opportunities": 8427,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "logged_pairing_sha256": "70b9f2f01183f8561bda1c5d7ec06578a0941281d85eb4954ba0487c10c9028c",
+      "opportunities_by_class_set": {
+        "0": 3343,
+        "0,1": 468,
+        "0,1,2": 49,
+        "0,1,2,3": 2,
+        "0,1,3": 6,
+        "0,2": 159,
+        "0,2,3": 19,
+        "0,3": 28,
+        "1": 1410,
+        "1,2": 121,
+        "1,2,3": 6,
+        "1,3": 12,
+        "2": 1827,
+        "2,3": 241,
+        "3": 736
+      },
+      "sampled_action_counts": {
+        "class_adaptive": {
+          "brightness_down/1": 258,
+          "brightness_down/2": 218,
+          "brightness_down/3": 255,
+          "brightness_up/1": 235,
+          "brightness_up/2": 215,
+          "brightness_up/3": 208,
+          "contrast_down/1": 323,
+          "contrast_down/2": 206,
+          "contrast_down/3": 192,
+          "contrast_up/1": 260,
+          "contrast_up/2": 198,
+          "contrast_up/3": 239,
+          "gamma_brighten/1": 263,
+          "gamma_brighten/2": 269,
+          "gamma_brighten/3": 203,
+          "gamma_darken/1": 221,
+          "gamma_darken/2": 235,
+          "gamma_darken/3": 227,
+          "gaussian_blur/1": 1392,
+          "gaussian_blur/2": 593,
+          "gaussian_blur/3": 155,
+          "gaussian_noise/1": 676,
+          "gaussian_noise/2": 704,
+          "gaussian_noise/3": 682
+        },
+        "geometry_only": {
+          "identity/None": 8427
+        }
+      },
+      "status": "pass"
+    }
+  },
+  "identical_fork_metadata": true,
+  "scope": "Independent keyed action sampling and all-annotation affine replay, checked against every non-pixel exposure counter. Logged pairing hashes agree. Raw pixels unavailable: pixel hashes and changed-pixel totals not rerendered.",
+  "status": "pass"
+}

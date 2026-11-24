@@ -1,0 +1,19 @@
+{
+  "all_four_classes_have_negative_final_AP_difference": true,
+  "all_seven_recorded_epochs_have_negative_AP_difference": true,
+  "applied_appearance_opportunities": 58201,
+  "blur_or_noise_actions": 29133,
+  "blur_or_noise_percent": 50.055840964931875,
+  "borrowed_opportunities": 5267,
+  "borrowed_percent": 9.049672686036322,
+  "changed_appearance_images": 57809,
+  "controller_probe_minutes": 55.07322359420359,
+  "epoch": 8,
+  "limits": "One development seed and horizon; no seed-variance or test-generalization claim. No full tensor re-inference.",
+  "main_and_gate_recorded_hours": 27.769653435907223,
+  "primary_delta_AP50_95_points": -1.24767116388953,
+  "primary_relative_change_percent": -6.338322326764956,
+  "seed": 42,
+  "status": "audited",
+  "verdict": "Current v2 class-adaptive recipe did not beat geometry-only at the declared fixed endpoint; do not scale the unchanged recipe."
+}

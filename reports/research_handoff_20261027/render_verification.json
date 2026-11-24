@@ -1,0 +1,361 @@
+{
+  "pages": 31,
+  "exporter": "WPS Docs",
+  "rasterizer": "C:\\Users\\SOLOMON\\.codex\\plugins\\cache\\openai-primary-runtime\\documents\\26.1020.11618\\skills\\documents\\render_docx.py",
+  "dpi": 150,
+  "pages_info": [
+    {
+      "page": 1,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-1.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2172,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n1\nRoad Damage Augmentation Research Handoff\nComprehensive transfer record for a receiving AI | 27 October 2026\nResearcher",
+      "ending": "n inspect the audited\nversion-1 code and reports. Do not restart completed jobs, treat the old manuscript as a version-2 specification,\nor describe the revised method as validated."
+    },
+    {
+      "page": 2,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-2.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2740,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n2\nHow to use this document\nSections Purpose\n1\u20133 Research question, chronological development, data preparation and frozen",
+      "ending": "checked for this document. Remote CCAST paths are\nsupported by saved run evidence and user transcripts; no new SSH inspection of current cluster storage or job\nstate was performed."
+    },
+    {
+      "page": 3,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-3.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3621,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n3\n1 Research objective and version 1 conclusion\nThe research question is whether local appearance augmentation can be sel",
+      "ending": "tables. The detection split was rebuilt with historical exposure and full-pool\nsimilarity groups taken into account; the crop and detection validation sets are not interchangeable."
+    },
+    {
+      "page": 4,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-4.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2901,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n4\n2 2 Detector engineering checks\nBefore full training, the project verified image and XML integrity, model-specific labe",
+      "ending": "ge points. It supplied partial evidence of learning, followed later by\nthe full validation baseline reported here. Reloaded predictions matched before and after checkpoint recovery"
+    },
+    {
+      "page": 5,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-5.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2814,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n5\nfor both models in the returned records. YOLO showed a classification-loss and parameter-update spike on an\nall-negativ",
+      "ending": "ntation is preserved rather than applying EXIF rotation. Empty target lists mean that none of the four target\nclasses is annotated; they do not establish visually healthy pavement."
+    },
+    {
+      "page": 6,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-6.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2954,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n6\n3 2 Frozen splits and leakage safeguards\nTable 5 Frozen detection partitions\nPartition Images Target bearing No targets",
+      "ending": "s avoids repeatedly transforming pixels where annotations overlap. The union is a box-based support,\nnot a pixel-level damage segmentation; background inside a box can also change."
+    },
+    {
+      "page": 7,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-7.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3440,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n7\nx\u0303 = x + \u03b1G \u2299 [To,m(x) \u2212 x] (1)\nIn Equation 1, x is the prepared image, T is operation o at strength m, and \u03b1 is zero o",
+      "ending": "ckpoints; resuming a\ncommitted update does not run it again. A probe interrupted before commitment is reconstructed from the same\ncheckpoint, with partial work recorded separately."
+    },
+    {
+      "page": 8,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-8.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3748,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n8\n4 4 Retention and exact class set support\nThe controller first measures whether damage that the current detector recogn",
+      "ending": "re unchanged or every object became easier. The denominator offset 0.1 limits instability near zero\nreference loss, and the upper cap is 5.\nDf,s = 1\n|s| |f| \u2211c\u2208s \u2211o\u2208f Ac|s,o,m\u2217 (6)"
+    },
+    {
+      "page": 9,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-9.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3357,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n9\npf|s = 0.8\nexp(Df,s/0.25)\n\u2211g\u2208F\u209b exp(Dg,s/0.25) + 0.2\n|F\u209b| (7)\nF is the set of eligible families. Equation 7 uses temper",
+      "ending": "0\nimage presentations over 26,863 training images. [S2-S4]\nTable 9 Shared training and evaluation settings\nSetting Value\nDetector Faster R-CNN ResNet-50 FPN; COCO_V1 initialization"
+    },
+    {
+      "page": 10,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-10.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3180,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n10\nSetting Value\nInput 640 by 640 letterboxed RGB; stored orientation\nClasses Four foreground damage classes plus backgro",
+      "ending": "g and deterministic augmentation\ndecisions do not imply bitwise-identical GPU training: full deterministic algorithms were not enabled, and the\nmeasured warmup trajectories differ."
+    },
+    {
+      "page": 11,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-11.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2299,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n11\n6 Detection results\n6 1 Selected checkpoints and final epochs\nTable 10 Validation performance at the selected checkpoi",
+      "ending": "ne shared Class adaptive\nD00 24.744 24.784 24.090 24.905 24.235\nD10 20.206 20.266 19.520 20.050 19.446\nD20 29.975 29.631 30.114 30.162 30.069\nD40 16.367 16.559 16.496 17.120 16.502"
+    },
+    {
+      "page": 12,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-12.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 1994,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n12\nTable 13 Selected checkpoint AP50 by class\nClass Identity Image level Local Online shared Class adaptive\nD00 51.324 51",
+      "ending": "nal scores as a correction, and they are not\nan estimate of final-run variance. They show why nominal seed matching is insufficient to claim perfectly\npaired training trajectories."
+    },
+    {
+      "page": 13,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-13.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2870,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n13\n6 4 Predictions on images without target annotations\nTable 14 Selected checkpoint detections on 2193 no-target images\n",
+      "ending": "stinguish the value of the feedback mechanism from the value of this realized\nstrength distribution. A matched fixed mild or uniform-family control is still needed for attribution."
+    },
+    {
+      "page": 14,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-14.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2354,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n14\nTable 16 Applied strength distribution in the online conditions\nStrength Online shared edits Online shared share Class",
+      "ending": "f applied edits, compared with 18.79% under online shared. This\nis a substantial change in the realized intervention. It is consistent with less restrictive conditioning for common"
+    },
+    {
+      "page": 15,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-15.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 4044,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n15\nsupported sets, but the records do not establish that stronger edits caused the AP decrease. Support, family\nchoices, ",
+      "ending": "s could not have been\navoided on the old panels even with perfect reference detection. Thus a meaningful part of the support problem\nis panel allocation, not just detector failure."
+    },
+    {
+      "page": 16,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-16.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3399,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n16\nTable 18 Training availability for the highest exposure exact sets\nExact class set Groups Images Source clusters Activ",
+      "ending": "used the AP result.\nNo test-set, unseen-country, deployment or repeated-seed result is available. Crop, training-subset and detection\nvalidation results answer different questions."
+    },
+    {
+      "page": 17,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-17.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3475,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n17\n10 Review of the redesign and reasons for changing direction\nSource: RDD_Methodology_Redesign_and_Execution_Plan.docx ",
+      "ending": "\nFalse. Clean and transformed features still require backbone work unless\nexplicitly reused in a valid way. Version 2 must record additional image forwards,\nROI work and wall time."
+    },
+    {
+      "page": 18,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-18.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2598,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n18\nOriginal assertion or suggestion Assessment carried into the revision\nFour class estimates solve mixed-set\nbehavior\nPo",
+      "ending": "ot new contributions of this project. A new claim must concern a demonstrated\nresidual capability of the complete, controlled method, not a renamed combination of known operations."
+    },
+    {
+      "page": 19,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-19.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3952,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n19\n11 Latest version 2 methodology and unresolved specification\nStatus: conversational design only. The working descripti",
+      "ending": "rejected. Its opaque interior must contain all copied target boxes.\nFeathering occurs outside that interior so that the blend does not erase the labeled damage. The source image is"
+    },
+    {
+      "page": 20,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-20.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 4476,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n20\nnot modified. The recipient gains transformed labels for the copied objects. Non-target annotated objects also\nrequire",
+      "ending": "e frozen probe panel, render candidate views, collect detection and diagnostic\nobservations, validate support, build the admissible-action sets, commit the controller together with"
+    },
+    {
+      "page": 21,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-21.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3477,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n21\nmodel/optimizer/RNG state, then resume ordinary detector training. During inference and validation, use the\ndetector a",
+      "ending": "oup veto/support rule.\nProbe and compute\nbudget\nPanel composition, number of candidate views, repeated noise draws, matched online forward\ncount and a measured pilot timing budget."
+    },
+    {
+      "page": 22,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-22.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2364,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n22\nUnresolved item Minimum decision needed\nExperimental decision\nrule\nPilot length, predeclared continuation criteria, re",
+      "ending": "s. The frozen environment listing is rdd_detection_v1_environment.txt. Local\nWindows tests used a different Python/PyTorch environment and do not replace target-environment checks."
+    },
+    {
+      "page": 23,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-23.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3060,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n23\n12 2 Batch jobs and what disconnection means\nThe production wrapper requests queue gpus, one A10, four CPU cores, 32 G",
+      "ending": "one is assigned. CUDA NMS and RoI Align forward/backward already\npassed in the project environment; do not rerun them routinely without a changed environment or a relevant\nfailure."
+    },
+    {
+      "page": 24,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-24.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 993,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n24\n12 4 Package and result transfer discipline\nOnce the specification and checks exist, create a uniquely named version-2",
+      "ending": "S file used Windows CRLF endings. This non-mutating workaround made its checks\npass; do not change hashed source files to fix the manifest:\ntr -d '\\r' < SHA256SUMS | sha256sum -c -"
+    },
+    {
+      "page": 25,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-25.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3449,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n25\n13 Repository, artifact inventory and provenance\n13 1 What is and is not on GitHub\nRepository: https://github.com/Solo",
+      "ending": ".\nfasterrcnn_class_adaptive_v1/ Completed exact-set controller package, including controller.py,\nclass_set_feedback.py, shared_controller.py, probe_runner.py and\nprobe_detector.py."
+    },
+    {
+      "page": 26,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-26.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2960,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n26\nLocation What to read or reuse\nreports/conventional_seed42_v1/analysis/ Crop baseline RESULTS.md, verification.json, c",
+      "ending": "pportunities.\naudit_ccast_results.py; audit_class_controller.py;\ndiagnose_strength_support.py\nAudit implementation. Inspect dependencies and invocation before\nreproducing analyses."
+    },
+    {
+      "page": 27,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-27.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2718,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n27\n13 4 Completed result archives\nThese five archives were downloaded to the local project root and their hashes were ver",
+      "ending": "the relevant\nrecords archives. For training/resume, access to CCAST raw data, weights and full checkpoints is additionally\nrequired. This Word document does not embed those assets."
+    },
+    {
+      "page": 28,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-28.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2617,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n28\n13 6 Evidence keys used in the historical sections\nBracketed S identifiers in Sections 1\u20139 refer to the source groups ",
+      "ending": "is. reports/fasterrcnn_class_adaptive_v1/strength_support_diagnostics.json;\nstrength_selection_diagnostic_cells.csv; class_set_training_inventory.csv; diagnose_strength_support.py."
+    },
+    {
+      "page": 29,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-29.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3654,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n29\n14 Writing status, course context and collaboration requirements\n14 1 Manuscript and contribution boundaries\nThe proje",
+      "ending": "lines.pdf. Written deliverables after 5 October are due at 11:59 PM\nCentral Time in that schedule; presentation arrangements are separate. This is the supplied course schedule, not"
+    },
+    {
+      "page": 30,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-30.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2471,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n30\na live check for later instructor changes. The 26 October prototype package was prepared, but this handoff does\nnot ve",
+      "ending": "vague to answer usefully. Here's what you need to define first.\u201d and identify\nthe minimum missing information. Do not force either phrase into an otherwise straightforward request."
+    },
+    {
+      "page": 31,
+      "path": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\research_handoff_20261027\\rendered_release\\page-31.png",
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2853,
+      "opening": "RDD2022 research handoff | Status verified 27 October 2026\n31\n15 Ready-to-use prompt for the receiving AI\nThe following prompt can accompany this document. It is an explicit starti",
+      "ending": " the evidence. It is not evidence that all files\nhave been shared, that a current CCAST allocation exists, or that the remaining version-2 engineering choices\nare already resolved."
+    }
+  ],
+  "visual_inspection": "Complete: all 31 pages inspected; changed pages rechecked after corrections. Release raster images match the final checked set.",
+  "visually_inspected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "checks": [
+    "No clipping, overlapping text or missing glyphs observed",
+    "Tables and native equations legible",
+    "Source index complete",
+    "Black-and-white rendering confirmed on all pages",
+    "Command activation block remains copyable",
+    "Nine inactive class sets verified against CSV"
+  ],
+  "final_docx_sha256": "c093740713410a9058bde3675edc230fcc627d9ad79e714fda0a40b119f436ac"
+}

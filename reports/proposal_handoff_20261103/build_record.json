@@ -1,0 +1,12 @@
+{
+  "output": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\output\\reports\\Class_Adaptive_Augmentation_Project_Proposal_and_Related_Work_2026-11-03.docx",
+  "words": 3672,
+  "references": 18,
+  "sha256": "a8006c6d4e2b21ecbf948b460d469ae9c9603904985cffbd05231768a0b52338",
+  "scope": "Proposal, literature limitations and evidence boundaries; no proposed methodology",
+  "verified_result_sources": [
+    "reports/fasterrcnn_class_adaptive_v1/aggregate_comparison.csv",
+    "reports/rdd_v2_pair8_v1/endpoint_comparison.csv",
+    "reports/rdd_v2_pilot_v1/RESULTS.md"
+  ]
+}

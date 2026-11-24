@@ -1,0 +1,182 @@
+{
+  "execution_changes": [
+    "Two arms, fixed epoch 8, four frozen update panels.",
+    "Strict backend settings, installed RoIAlign hash, production-loop equality gate.",
+    "Defensive copy of optimizer state on warmup fork; immutable payload checked by gate.",
+    "Class-adaptive runs first to expose full probe cost before training the control arm.",
+    "Resource records, probe limit, raw gate evidence in main archives."
+  ],
+  "files": {
+    "README.md": {
+      "changed": true,
+      "current_sha256": "778d8d8150f3854e77bc7fb6879151c77266489390324e445883d0619374d1ff",
+      "original_sha256": "8d72af273665d9d3e0b0c1ff7420d2c341fcc365a501789b49872734367b95ff",
+      "source": "rdd_v2_pilot_v1\\README.md"
+    },
+    "augmentation.py": {
+      "changed": false,
+      "current_sha256": "ee055ce44d58855cdd30375a7191d1e6193f56c076627937e48f10194e3ac8cb",
+      "original_sha256": "ee055ce44d58855cdd30375a7191d1e6193f56c076627937e48f10194e3ac8cb",
+      "source": "rdd_v2_pilot_v1\\augmentation.py"
+    },
+    "baseline.py": {
+      "changed": false,
+      "current_sha256": "6db1015206ea6f5cdbd0817564eb19cdda4fafcda224772307a74a7c3eba0559",
+      "original_sha256": "6db1015206ea6f5cdbd0817564eb19cdda4fafcda224772307a74a7c3eba0559",
+      "source": "rdd_v2_pilot_v1\\baseline.py"
+    },
+    "checkpoints.py": {
+      "changed": false,
+      "current_sha256": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+      "original_sha256": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+      "source": "rdd_v2_pilot_v1\\checkpoints.py"
+    },
+    "controller.py": {
+      "changed": false,
+      "current_sha256": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+      "original_sha256": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+      "source": "rdd_v2_pilot_v1\\controller.py"
+    },
+    "detector.py": {
+      "changed": false,
+      "current_sha256": "c6b262e7fca0b610a053e421490bbf54a9301a16ea1160563f1de8e707922dcb",
+      "original_sha256": "c6b262e7fca0b610a053e421490bbf54a9301a16ea1160563f1de8e707922dcb",
+      "source": "rdd_v2_pilot_v1\\detector.py"
+    },
+    "diagnostic.py": {
+      "changed": false,
+      "current_sha256": "577942a60ec36b985cbb766205a19ee5c54cc8225a74f9ec63a2f38c1a83b5a2",
+      "original_sha256": "577942a60ec36b985cbb766205a19ee5c54cc8225a74f9ec63a2f38c1a83b5a2",
+      "source": "rdd_v2_pilot_v1\\diagnostic.py"
+    },
+    "exposure_plan.json": {
+      "changed": true,
+      "current_sha256": "092b65eb159cc85996c866d868359292ab49dcb57c207892cb98812e8e91b060",
+      "original_sha256": "131253a71f93e9c64dc6a1a4ea4710bae3c5ae96baf345796d5a303b05330bdb",
+      "source": "rdd_v2_pilot_v1\\exposure_plan.json"
+    },
+    "geometry.py": {
+      "changed": false,
+      "current_sha256": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+      "original_sha256": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+      "source": "rdd_v2_pilot_v1\\geometry.py"
+    },
+    "integration.py": {
+      "changed": false,
+      "current_sha256": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+      "original_sha256": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+      "source": "rdd_v2_pilot_v1\\integration.py"
+    },
+    "job.pbs": {
+      "changed": true,
+      "current_sha256": "d6795d3e198b39f911583330287b7bbe4c1525283b88b72518f8d018ef0efd8f",
+      "original_sha256": "475c96693bcd6e07ce87c0ffefdc0c298164d1b9e11cf0feaf5275e63f2619cc",
+      "source": "rdd_v2_pilot_v1\\job.pbs"
+    },
+    "local_augmentation.py": {
+      "changed": false,
+      "current_sha256": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+      "original_sha256": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+      "source": "rdd_v2_pilot_v1\\local_augmentation.py"
+    },
+    "metrics.py": {
+      "changed": false,
+      "current_sha256": "e339fbb81bd9b7432a375bcea54122c937c409bae7b82f35591c196ae85204ff",
+      "original_sha256": "e339fbb81bd9b7432a375bcea54122c937c409bae7b82f35591c196ae85204ff",
+      "source": "rdd_v2_pilot_v1\\metrics.py"
+    },
+    "models.py": {
+      "changed": false,
+      "current_sha256": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+      "original_sha256": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+      "source": "rdd_v2_pilot_v1\\models.py"
+    },
+    "observer.py": {
+      "changed": false,
+      "current_sha256": "17160e9c71a106e3957c16a273a40dcd42cd09fdd31025c751e75c298caee876",
+      "original_sha256": "17160e9c71a106e3957c16a273a40dcd42cd09fdd31025c751e75c298caee876",
+      "source": "rdd_v2_pilot_v1\\observer.py"
+    },
+    "panel_plan.json": {
+      "changed": true,
+      "current_sha256": "e0a4bdbf2a97d685d63185b4f3ab9b61a5bf5631c9c247666a608907708edf0f",
+      "original_sha256": "884fc54abae137a19b3a07f6abf0eb0fb858e9ec6170e6ac462373aba1ae1e9e",
+      "source": "rdd_v2_pilot_v1\\panel_plan.json"
+    },
+    "pilot.py": {
+      "changed": true,
+      "current_sha256": "bc8dabc0d275cb1ae74d996988300df2ea7650eaebba3fa90c736e168ed6f95f",
+      "original_sha256": "86e79089e37d0aa62c2b492cfeed8987e1e402631eca3874dde430686ca9b69e",
+      "source": "rdd_v2_pilot_v1\\pilot.py"
+    },
+    "protocol.json": {
+      "changed": true,
+      "current_sha256": "f20c73c930976e722361e4e81dce244283a89af0a88aeac6f98a2ee27cd6791b",
+      "original_sha256": "482d0fe5e4b6bf80bf948252d9a1740d4a182096a439a06951adc24ccff0340f",
+      "source": "rdd_v2_pilot_v1\\protocol.json"
+    },
+    "rdd_data.py": {
+      "changed": false,
+      "current_sha256": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+      "original_sha256": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+      "source": "rdd_v2_pilot_v1\\rdd_data.py"
+    },
+    "run_job.sh": {
+      "changed": true,
+      "current_sha256": "9497b55fa385831800a4fe7ceccf06baa66d59f01377f883639f9438ede2ccc7",
+      "original_sha256": "c4cc7c1467967816561e86b1058ceac5539d5ff7dae7e7ad26c755f407376e81",
+      "source": "rdd_v2_pilot_v1\\run_job.sh"
+    },
+    "select_training_cases.py": {
+      "changed": false,
+      "current_sha256": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+      "original_sha256": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+      "source": "rdd_v2_pilot_v1\\select_training_cases.py"
+    },
+    "shared_augmentation.py": {
+      "changed": false,
+      "current_sha256": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+      "original_sha256": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+      "source": "rdd_v2_pilot_v1\\shared_augmentation.py"
+    },
+    "smoke.py": {
+      "original_sha256": "cebbfcc099ce80bf1833460be68e576cb2280c86ed385feb98c0ad6943e8c98b",
+      "removed_from_new_package": true,
+      "source": "rdd_v2_pilot_v1\\smoke.py"
+    },
+    "smoke_selection.json": {
+      "changed": false,
+      "current_sha256": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+      "original_sha256": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+      "source": "rdd_v2_pilot_v1\\smoke_selection.json"
+    },
+    "status.sh": {
+      "changed": true,
+      "current_sha256": "c9e9d868f879d4fdf2bbc2e5c24c605f32e21e921b0564be05b7edb6c2b3e00b",
+      "original_sha256": "b5dc15734fb375a21c89fc465dfb1da6a454ad8806cbcf0572f5a500f34ad776",
+      "source": "rdd_v2_pilot_v1\\status.sh"
+    },
+    "submit.sh": {
+      "changed": true,
+      "current_sha256": "ca5be11bbbd63c80803d529d8fbe5e8e6c3bd1e599987b1a946f37df0038312e",
+      "original_sha256": "dae6d637bf5560742a4bd0eabf5540e8a534176a8c4b5d2549a885edc5f9d2ce",
+      "source": "rdd_v2_pilot_v1\\submit.sh"
+    },
+    "tests/test_baseline.py": {
+      "changed": false,
+      "current_sha256": "fc1d61f3a5c54d654d582b0f6cd2b7959afd59b6a33691d39c06a40d1171e458",
+      "original_sha256": "fc1d61f3a5c54d654d582b0f6cd2b7959afd59b6a33691d39c06a40d1171e458",
+      "source": "rdd_v2_pilot_v1\\tests\\test_baseline.py"
+    },
+    "tests/test_pilot.py": {
+      "changed": true,
+      "current_sha256": "26216f3c2a3cd2130c1406e12b3c8c998bb3fd2076196b84914cb115e487edf8",
+      "original_sha256": "adfd594664f7bf03fdfeb3399f6bd16a5991bea7b7687f1635861553684d2adf",
+      "source": "rdd_v2_pilot_v1\\tests\\test_pilot.py"
+    }
+  },
+  "method_changes": "None: geometry, appearance bank, controller thresholds/routing/sampling and original recipe unchanged.",
+  "source_package": "rdd_v2_pilot_v1",
+  "trace_state_sha256": "01c3f6c47d420e6dc9d5c0c12360729213eac3431df623902bf47275adb62972",
+  "trace_state_source": "rdd_v2_repro_v2/trace_state.py"
+}

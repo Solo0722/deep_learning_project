@@ -1,0 +1,11 @@
+{
+  "actual_cpu_fasterrcnn_update_equivalence": "pass",
+  "archive": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\rdd_v2_repro_v1.tar.gz",
+  "archive_payloads_verified": true,
+  "bytes": 102893,
+  "ccast_job_submitted": false,
+  "files": 41,
+  "manifest_sha256": "4e447d91ffa95f8b75d2b984c68fedb95c7aae290a95d4c6c1c0c1a8ab8fa4ab",
+  "sha256": "3cd3e6f61c4e029e9c50e9aa26bcff42a650face45f86266768870baa3208baa",
+  "unit_tests": 16
+}

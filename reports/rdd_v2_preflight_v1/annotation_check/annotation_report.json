@@ -1,0 +1,127 @@
+{
+  "accepted_candidates": 1174644,
+  "annotation_failures": 0,
+  "by_class_multilabel_images": {
+    "D00": {
+      "accepted_candidates": 377390,
+      "images": 9488,
+      "rejected_candidates": 134962
+    },
+    "D10": {
+      "accepted_candidates": 201576,
+      "images": 5399,
+      "rejected_candidates": 89970
+    },
+    "D20": {
+      "accepted_candidates": 207360,
+      "images": 5891,
+      "rejected_candidates": 110754
+    },
+    "D40": {
+      "accepted_candidates": 104054,
+      "images": 2578,
+      "rejected_candidates": 35158
+    }
+  },
+  "by_source": {
+    "China_Drone": {
+      "accepted_candidates": 61504,
+      "images": 1678,
+      "rejected_candidates": 29108
+    },
+    "China_MotorBike": {
+      "accepted_candidates": 39850,
+      "images": 1383,
+      "rejected_candidates": 34832
+    },
+    "Czech": {
+      "accepted_candidates": 104736,
+      "images": 1978,
+      "rejected_candidates": 2076
+    },
+    "India": {
+      "accepted_candidates": 260216,
+      "images": 5394,
+      "rejected_candidates": 31060
+    },
+    "Japan": {
+      "accepted_candidates": 281424,
+      "images": 7353,
+      "rejected_candidates": 115638
+    },
+    "Norway": {
+      "accepted_candidates": 296886,
+      "images": 5714,
+      "rejected_candidates": 11670
+    },
+    "United_States": {
+      "accepted_candidates": 130028,
+      "images": 3363,
+      "rejected_candidates": 51574
+    }
+  },
+  "candidates_per_image": 54,
+  "disabled_images": [],
+  "images": 26863,
+  "interpretation": "Enumeration over the declared bank, not measured training exposure; disabled images would use identity.",
+  "maximum_inverse_error": 1.7053025658242404e-13,
+  "pixel_selection": [
+    "China_Drone/train/images/China_Drone_002195.jpg",
+    "China_Drone/train/images/China_Drone_000061.jpg",
+    "China_Drone/train/images/China_Drone_000441.jpg",
+    "China_Drone/train/images/China_Drone_000237.jpg",
+    "China_Drone/train/images/China_Drone_000333.jpg",
+    "China_Drone/train/images/China_Drone_001882.jpg",
+    "China_Drone/train/images/China_Drone_001022.jpg",
+    "China_Drone/train/images/China_Drone_000028.jpg",
+    "China_MotorBike/train/images/China_MotorBike_001450.jpg",
+    "China_MotorBike/train/images/China_MotorBike_000200.jpg",
+    "China_MotorBike/train/images/China_MotorBike_000192.jpg",
+    "China_MotorBike/train/images/China_MotorBike_001001.jpg",
+    "China_MotorBike/train/images/China_MotorBike_000579.jpg",
+    "China_MotorBike/train/images/China_MotorBike_000412.jpg",
+    "China_MotorBike/train/images/China_MotorBike_001626.jpg",
+    "China_MotorBike/train/images/China_MotorBike_000247.jpg",
+    "Czech/train/images/Czech_000062.jpg",
+    "Czech/train/images/Czech_000905.jpg",
+    "Czech/train/images/Czech_003583.jpg",
+    "Czech/train/images/Czech_001437.jpg",
+    "Czech/train/images/Czech_000306.jpg",
+    "Czech/train/images/Czech_000887.jpg",
+    "Czech/train/images/Czech_001259.jpg",
+    "Czech/train/images/Czech_000417.jpg",
+    "India/train/images/India_006613.jpg",
+    "India/train/images/India_002279.jpg",
+    "India/train/images/India_003754.jpg",
+    "India/train/images/India_000268.jpg",
+    "India/train/images/India_001869.jpg",
+    "India/train/images/India_004277.jpg",
+    "India/train/images/India_002667.jpg",
+    "India/train/images/India_004798.jpg",
+    "Japan/train/images/Japan_001438.jpg",
+    "Japan/train/images/Japan_012301.jpg",
+    "Japan/train/images/Japan_002438.jpg",
+    "Japan/train/images/Japan_001166.jpg",
+    "Japan/train/images/Japan_003488.jpg",
+    "Japan/train/images/Japan_000171.jpg",
+    "Japan/train/images/Japan_010156.jpg",
+    "Japan/train/images/Japan_003859.jpg",
+    "Norway/train/images/Norway_005858.jpg",
+    "Norway/train/images/Norway_003750.jpg",
+    "Norway/train/images/Norway_005961.jpg",
+    "Norway/train/images/Norway_004153.jpg",
+    "Norway/train/images/Norway_001876.jpg",
+    "Norway/train/images/Norway_003784.jpg",
+    "Norway/train/images/Norway_007548.jpg",
+    "Norway/train/images/Norway_007736.jpg",
+    "United_States/train/images/United_States_004132.jpg",
+    "United_States/train/images/United_States_000721.jpg",
+    "United_States/train/images/United_States_000257.jpg",
+    "United_States/train/images/United_States_002921.jpg",
+    "United_States/train/images/United_States_003251.jpg",
+    "United_States/train/images/United_States_001344.jpg",
+    "United_States/train/images/United_States_000200.jpg",
+    "United_States/train/images/United_States_004093.jpg"
+  ],
+  "rejected_candidates": 275958
+}

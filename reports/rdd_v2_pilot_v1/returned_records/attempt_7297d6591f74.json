@@ -1,0 +1,10 @@
+{
+  "attempt": "7297d6591f74",
+  "elapsed_seconds": 29587.016918275505,
+  "finished_utc": "2026-10-29T09:58:21.754485+00:00",
+  "gpu": "NVIDIA A10",
+  "hostname": "gpu0021",
+  "job": "797282.bright04",
+  "started_utc": "2026-10-29T01:45:14.739495+00:00",
+  "status": "complete"
+}

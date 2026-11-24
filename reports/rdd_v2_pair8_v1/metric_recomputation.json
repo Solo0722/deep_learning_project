@@ -1,0 +1,240 @@
+{
+  "results": {
+    "class_adaptive": {
+      "epoch": 8,
+      "images": 5760,
+      "maximum_metric_error": 0.0,
+      "metrics": {
+        "AP50": 0.41971571982593003,
+        "AP50_95": 0.18436893608415675,
+        "AP75": 0.13415414396607805,
+        "AP_large": 0.2006487403324522,
+        "AP_medium": 0.14957303534537514,
+        "AP_small": 0.0740081602734148,
+        "AR100": 0.43009514370035085
+      },
+      "no_target_boxes": 2890,
+      "no_target_images": 2193,
+      "no_target_images_with_predictions": 1147,
+      "per_class": {
+        "D00": {
+          "AP50": 0.4437219755502951,
+          "AP50_95": 0.2151656776186566,
+          "AP_small": 0.0833525236893855
+        },
+        "D10": {
+          "AP50": 0.3913827598932926,
+          "AP50_95": 0.15742591118911625,
+          "AP_small": 0.056489695786216834
+        },
+        "D20": {
+          "AP50": 0.5094011841470258,
+          "AP50_95": 0.22719772825094167,
+          "AP_small": 0.023564356435643564
+        },
+        "D40": {
+          "AP50": 0.33435695971310675,
+          "AP50_95": 0.1376864272779124,
+          "AP_small": 0.13262606518241324
+        }
+      },
+      "prediction_boxes": 534961,
+      "seconds": 56.50349199998891,
+      "target_boxes": 8225,
+      "threshold_diagnostic": {
+        "confidence": 0.25,
+        "false_positives": 19748,
+        "iou": 0.5,
+        "per_class": {
+          "D00": {
+            "fp": 7804,
+            "recall": 0.6270576131687243,
+            "targets": 3888,
+            "tp": 2438
+          },
+          "D10": {
+            "fp": 4854,
+            "recall": 0.6807909604519774,
+            "targets": 1770,
+            "tp": 1205
+          },
+          "D20": {
+            "fp": 2256,
+            "recall": 0.6714824120603015,
+            "targets": 1592,
+            "tp": 1069
+          },
+          "D40": {
+            "fp": 4834,
+            "recall": 0.6266666666666667,
+            "targets": 975,
+            "tp": 611
+          }
+        },
+        "precision": 0.2123170196641538,
+        "recall": 0.6471732522796353,
+        "target_objects": 8225,
+        "true_positives": 5323
+      }
+    },
+    "common_warmup": {
+      "epoch": 1,
+      "images": 5760,
+      "maximum_metric_error": 0.0,
+      "metrics": {
+        "AP50": 0.39308423163365824,
+        "AP50_95": 0.16537695531081556,
+        "AP75": 0.10907450057493538,
+        "AP_large": 0.16763404382023336,
+        "AP_medium": 0.13495951080383714,
+        "AP_small": 0.0713454287206492,
+        "AR100": 0.40712068464798923
+      },
+      "no_target_boxes": 2060,
+      "no_target_images": 2193,
+      "no_target_images_with_predictions": 946,
+      "per_class": {
+        "D00": {
+          "AP50": 0.42289022243161006,
+          "AP50_95": 0.19539902372970702,
+          "AP_small": 0.0870024282677448
+        },
+        "D10": {
+          "AP50": 0.36937530101021254,
+          "AP50_95": 0.1456106128842186,
+          "AP_small": 0.054526917483369144
+        },
+        "D20": {
+          "AP50": 0.4948768471437142,
+          "AP50_95": 0.21840841879977502,
+          "AP_small": 0.05049504950495049
+        },
+        "D40": {
+          "AP50": 0.28519455594909593,
+          "AP50_95": 0.10208976582956159,
+          "AP_small": 0.09335731962653236
+        }
+      },
+      "prediction_boxes": 525980,
+      "seconds": 61.64111030002823,
+      "target_boxes": 8225,
+      "threshold_diagnostic": {
+        "confidence": 0.25,
+        "false_positives": 15485,
+        "iou": 0.5,
+        "per_class": {
+          "D00": {
+            "fp": 6097,
+            "recall": 0.5787037037037037,
+            "targets": 3888,
+            "tp": 2250
+          },
+          "D10": {
+            "fp": 4473,
+            "recall": 0.631638418079096,
+            "targets": 1770,
+            "tp": 1118
+          },
+          "D20": {
+            "fp": 3740,
+            "recall": 0.6928391959798995,
+            "targets": 1592,
+            "tp": 1103
+          },
+          "D40": {
+            "fp": 1175,
+            "recall": 0.39897435897435896,
+            "targets": 975,
+            "tp": 389
+          }
+        },
+        "precision": 0.23887933153108873,
+        "recall": 0.5908814589665653,
+        "target_objects": 8225,
+        "true_positives": 4860
+      }
+    },
+    "geometry_only": {
+      "epoch": 8,
+      "images": 5760,
+      "maximum_metric_error": 0.0,
+      "metrics": {
+        "AP50": 0.4432721432484961,
+        "AP50_95": 0.19684564772305205,
+        "AP75": 0.1455807841458903,
+        "AP_large": 0.21176710701732027,
+        "AP_medium": 0.16264217056723668,
+        "AP_small": 0.08105951641467644,
+        "AR100": 0.4370450957057111
+      },
+      "no_target_boxes": 3371,
+      "no_target_images": 2193,
+      "no_target_images_with_predictions": 1239,
+      "per_class": {
+        "D00": {
+          "AP50": 0.45977867788524734,
+          "AP50_95": 0.2239151819728564,
+          "AP_small": 0.09438306883233118
+        },
+        "D10": {
+          "AP50": 0.4048804304604367,
+          "AP50_95": 0.1650689445915,
+          "AP_small": 0.07379223052885897
+        },
+        "D20": {
+          "AP50": 0.5455651206860356,
+          "AP50_95": 0.24782204304546757,
+          "AP_small": 0.014560362286228626
+        },
+        "D40": {
+          "AP50": 0.3628643439622648,
+          "AP50_95": 0.1505764212823843,
+          "AP_small": 0.141502404011287
+        }
+      },
+      "prediction_boxes": 541038,
+      "seconds": 58.72654809994856,
+      "target_boxes": 8225,
+      "threshold_diagnostic": {
+        "confidence": 0.25,
+        "false_positives": 21456,
+        "iou": 0.5,
+        "per_class": {
+          "D00": {
+            "fp": 8876,
+            "recall": 0.6561213991769548,
+            "targets": 3888,
+            "tp": 2551
+          },
+          "D10": {
+            "fp": 3794,
+            "recall": 0.668361581920904,
+            "targets": 1770,
+            "tp": 1183
+          },
+          "D20": {
+            "fp": 2327,
+            "recall": 0.7047738693467337,
+            "targets": 1592,
+            "tp": 1122
+          },
+          "D40": {
+            "fp": 6459,
+            "recall": 0.6728205128205128,
+            "targets": 975,
+            "tp": 656
+          }
+        },
+        "precision": 0.20439038860872144,
+        "recall": 0.6701519756838906,
+        "target_objects": 8225,
+        "true_positives": 5512
+      }
+    }
+  },
+  "scope": "Official COCOeval from saved predictions and independently constructed GT. No detector re-inference; original-image pixel-area definitions.",
+  "versions": {
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11"
+  }
+}

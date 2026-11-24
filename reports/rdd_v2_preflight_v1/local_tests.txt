@@ -1,0 +1,33 @@
+PIXELS 1/56 S/train/images/test.png
+GEOMETRY PREFLIGHT: annotations_complete_pixels_not_checked
+Archive: C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\reports\rdd_v2_preflight_v1\tmp\tmphy_g5qjc\results.tar.gz
+Archive SHA-256: 6ff1b50a60c5635df9c73665fe8ffb6b93ae2dd4ae393481a9df1a6c35c65eb0
+test_balancing_does_not_weight_six_photo_operations_sixfold (test_preflight.ControllerTests.test_balancing_does_not_weight_six_photo_operations_sixfold) ... ok
+test_each_strength_is_gated_independently (test_preflight.ControllerTests.test_each_strength_is_gated_independently) ... ok
+test_keyed_sampling_preserves_global_rng_and_is_reproducible (test_preflight.ControllerTests.test_keyed_sampling_preserves_global_rng_and_is_reproducible) ... ok
+test_leave_one_cluster_exposes_support_boundary (test_preflight.ControllerTests.test_leave_one_cluster_exposes_support_boundary) ... ok
+test_minimum_support_counts_independent_clusters (test_preflight.ControllerTests.test_minimum_support_counts_independent_clusters) ... ok
+test_no_support_routes_to_explicit_identity (test_preflight.ControllerTests.test_no_support_routes_to_explicit_identity) ... ok
+test_pooled_evidence_can_cross_mixtures_but_is_marked_borrowed (test_preflight.ControllerTests.test_pooled_evidence_can_cross_mixtures_but_is_marked_borrowed) ... ok
+test_probe_parser_noise_draws_count_one_object (test_preflight.ControllerTests.test_probe_parser_noise_draws_count_one_object) ... ok
+test_reference_misses_cannot_inflate_support (test_preflight.ControllerTests.test_reference_misses_cannot_inflate_support) ... ok
+test_shared_policy_and_class_routing_differ_only_by_gate (test_preflight.ControllerTests.test_shared_policy_and_class_routing_differ_only_by_gate) ... ok
+test_supported_mixed_failure_vetoes_pooled_success (test_preflight.ControllerTests.test_supported_mixed_failure_vetoes_pooled_success) ... ok
+test_all_classes_and_flags_are_preserved_without_rotation (test_preflight.GeometryTests.test_all_classes_and_flags_are_preserved_without_rotation) ... ok
+test_cropped_other_annotation_rejects_even_when_target_fits (test_preflight.GeometryTests.test_cropped_other_annotation_rejects_even_when_target_fits) ... ok
+test_every_bank_candidate_inverts_and_sampling_is_train_only (test_preflight.GeometryTests.test_every_bank_candidate_inverts_and_sampling_is_train_only) ... ok
+test_flip_fractional_coordinates_and_non_target_boxes (test_preflight.GeometryTests.test_flip_fractional_coordinates_and_non_target_boxes) ... ok
+test_fractional_subpixel_and_empty_images_survive (test_preflight.GeometryTests.test_fractional_subpixel_and_empty_images_survive) ... ok
+test_invalid_other_annotation_is_not_silently_removed (test_preflight.GeometryTests.test_invalid_other_annotation_is_not_silently_removed) ... ok
+test_letterbox_actual_axis_scales_match_reader (test_preflight.GeometryTests.test_letterbox_actual_axis_scales_match_reader) ... ok
+test_pixel_runner_reads_hashes_and_records_54_candidates (test_preflight.GeometryTests.test_pixel_runner_reads_hashes_and_records_54_candidates) ... ok
+test_real_pixels_and_labels_follow_same_horizontal_flip (test_preflight.GeometryTests.test_real_pixels_and_labels_follow_same_horizontal_flip) ... ok
+test_uniform_scale_translation_has_known_edge_mapping (test_preflight.GeometryTests.test_uniform_scale_translation_has_known_edge_mapping) ... ok
+test_changed_manifest_is_rejected_before_output (test_preflight.OutputTests.test_changed_manifest_is_rejected_before_output) ... ok
+test_complete_archive_and_refusal_to_replace_prior_result (test_preflight.OutputTests.test_complete_archive_and_refusal_to_replace_prior_result) ... ok
+test_failure_saved_without_success_archive (test_preflight.OutputTests.test_failure_saved_without_success_archive) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 1.829s
+
+OK

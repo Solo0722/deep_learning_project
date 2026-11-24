@@ -1,0 +1,16 @@
+{
+  "additional_updates_each": 47012,
+  "archive_files": 35,
+  "arms": [
+    "geometry_only",
+    "class_adaptive"
+  ],
+  "bytes": 99423,
+  "endpoint": 8,
+  "local_validation": "pass",
+  "members_verified": true,
+  "package": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\rdd_v2_pair8_v1.tar.gz",
+  "payload_files": 34,
+  "remote_submission": "not performed",
+  "sha256": "fbebbf012aa24802b1c96362d54df6463a51c787900e7106c13365486285b533"
+}

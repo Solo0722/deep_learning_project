@@ -1,0 +1,115 @@
+{
+  "classes": [
+    "D00",
+    "D10",
+    "D20",
+    "D40"
+  ],
+  "continuation": {
+    "decision": "If pooled support remains absent, class decisions collapse to a shared policy, or small support perturbations change decisions extensively, diagnose the panel/action design before training. Do not relax thresholds just to pass.",
+    "full_run": "Requires a reviewed preflight and bounded matched pilot; no automatic submission or escalation to full/multi-seed training.",
+    "hard_requirements": [
+      "zero annotation/coordinate invariance failures",
+      "no held-out data or modified historical inputs",
+      "review real-image overlays",
+      "supported class decisions and their instability explicitly reported",
+      "fresh repeated training-only panels on a common frozen detector before relying on the new renderer/controller",
+      "measured compute within declared next-stage budget"
+    ],
+    "pilot": "After preflight, prepare four matched arms (geometry only, fixed appearance, shared online appearance, class-adaptive appearance), branched from a common warmup checkpoint. Pilot length and cost cap are to be frozen using preflight timings, not selected after seeing pilot AP. Short pilots are for behavior/convergence and cost, not final winners."
+  },
+  "controller": {
+    "actions": "Eight existing appearance operations times three independently tested levels, 24 actions. Mean the two Gaussian-noise draws within each object; count each reference object once.",
+    "limitation": "Admissibility is a detector-tolerance measurement, not a semantic guarantee or an estimate of training utility.",
+    "minimum_detected_clusters": 8,
+    "minimum_detected_objects": 16,
+    "mixed_veto": "For a mixed set, a sufficiently supported constituent class with retention below threshold vetoes that action. Missing direct evidence never certifies a mixed set; flag borrowed evidence. Use the same 16-object/8-cluster rule for direct evidence.",
+    "pooling": "Pool selected-group reference-detected objects per class across class sets, preserving image/object/cluster identities. Reference misses stay in recall diagnostics, not retention denominators.",
+    "reference_confidence": 0.25,
+    "reference_iou": 0.5,
+    "retention_threshold": 0.8,
+    "routing": "Intersect admissible actions of the classes in the edited group. Unsupported constituent class means identity.",
+    "sampling": "Uniform eligible family, then uniform eligible operation in that family, then uniform eligible tested level for that operation. No largest-level preference and no loss-hardness weighting.",
+    "shared_comparator": "One global action set: intersection over all four pooled class sets, with the union of all supported mixed-set vetoes removed. Same measurements, thresholds and sampling rule.",
+    "state": "Rebuild at each update; no stale carry, threshold relaxation or identity-as-success reporting"
+  },
+  "deferred": {
+    "copy_paste": "Disabled. Needs reviewed donor/recipient regions, annotation closure, compatible road/camera context and its own correctness checks.",
+    "fixed_roi_diagnostic": "Not used by this controller and not claimed verified by replay. Implement and validate fixed/mapped ROIs before reporting any new auxiliary-loss comparison.",
+    "new_local_blending": "Not implemented in this stage; archived observations only support the v1 renderer. Separate pixel/annotation inspection and fresh observations are required before changing it.",
+    "training": "No optimizer, checkpoint selection, validation tuning or full run in this package."
+  },
+  "expected_train_images": 26863,
+  "geometry": {
+    "annotations": "Transform every target and every valid non-target annotation with the same continuous-edge affine map; preserve labels, IDs, difficult and truncated flags",
+    "bank_size": 54,
+    "horizontal_flip": [
+      false,
+      true
+    ],
+    "interpolation": "Pillow bilinear; exact slicing for flip and integer placement; fill RGB (114,114,114)",
+    "limits": "Preserving annotated boxes does not prove label completeness, image realism or learning benefit. Zoom may crop unannotated context. Existing truncated annotations remain flagged. Horizontal reflection does not exchange longitudinal and transverse classes; it preserves their relation to the reflected road.",
+    "order": "Existing RGB/640 letterbox, optional horizontal flip, isotropic resize of the square canvas, integer translation on a fixed 640 canvas",
+    "rejection": "Any transformed annotation outside the canvas rejects the entire candidate to identity. Never clip/drop a target. Invalid non-target boxes disable geometry for that image and are reported.",
+    "resized_canvas_sizes": [
+      608,
+      640,
+      672
+    ],
+    "sampling": "One uniform draw from the full 54-candidate bank; reject to identity without resampling. This is a preflight bank, not a claim of optimal magnitude.",
+    "size": 640,
+    "translations_pixels": [
+      -16,
+      0,
+      16
+    ]
+  },
+  "remote_geometry_check": {
+    "expected_numpy": "1.26.4",
+    "expected_pillow": "10.3.0",
+    "manifest_scope": "All 26863 training rows, all 54 geometry candidates; no validation/test manifests",
+    "outputs": "Numerical report, per-source/class acceptance counts, per-image records, contact sheets and a checksum archive. Successful execution is not visual review approval.",
+    "pixel_scope": "Deterministic subset of 56 training images covering sources, classes, negatives and annotation edge cases; every bank candidate rendered, numerical checks saved; bounded representative contact sheets",
+    "raw_inputs": "Verify image/XML/RGB hashes using the unchanged v1 reader; preserve input files",
+    "resources": "CPU allocation: 2 CPUs, 8 GB, 1 hour, zero GPUs"
+  },
+  "retrospective": {
+    "bootstrap_draws": 256,
+    "bootstrap_interpretation": "Selection-frequency sensitivity conditional on observed class support, not a confidence bound or a formal acceptance test; no object-level independence assumption",
+    "denominators": "Report pooled support, available actions, routing coverage over panel groups, borrowed evidence, mixed vetoes, class differentiation and total-variation distance to the shared distribution. Do not reinterpret panel frequencies as training exposure.",
+    "epochs": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ],
+    "not_identified": [
+      "new renderer or geometry retention",
+      "fixed-ROI loss",
+      "repeated-panel variability at one fixed model",
+      "future validation AP",
+      "effect of a new controller on the training trajectory"
+    ],
+    "source": "Archived v1 training-only observations, existing renderer and detector trajectories. No new inference or training.",
+    "stability": [
+      "leave one source cluster out",
+      "two deterministic disjoint cluster halves",
+      "conditional cluster bootstrap of retention",
+      "leave one source collection out"
+    ],
+    "trajectories": [
+      "fasterrcnn_online_shared_v1",
+      "fasterrcnn_class_adaptive_v1"
+    ]
+  },
+  "seed": 42,
+  "status": "Engineering preflight and retrospective feasibility study; not a full training protocol or efficacy test",
+  "train_manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+  "version": "rdd_v2_preflight_v1"
+}

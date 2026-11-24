@@ -1,0 +1,230 @@
+{
+  "clipping": [
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 0
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 1
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 2
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 3
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 4
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 5
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 6
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 7
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 8
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 9
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 10
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 11
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 12
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 13
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 14
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 15
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 16
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 46
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 362
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 659
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 1084
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 2239
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 3816
+    },
+    {
+      "after_clipping": 100,
+      "before_clipping": 100,
+      "boxes_clipped": 0,
+      "collapsed_after_clipping": 0,
+      "image_id": 5039
+    }
+  ],
+  "metrics": {
+    "AP50": 0.21972832732500527,
+    "AP50_95": 0.11145283021670878,
+    "AP75": 0.08759984556078493,
+    "AP_large": 0.2219656353998974,
+    "AP_medium": 0.0855431318055139,
+    "AP_small": 0.0,
+    "AR100": 0.4004411764705882,
+    "area_scope": "COCO small/medium/large in original-image pixel area; source resolution affects this diagnostic",
+    "evaluation_images": 24,
+    "negative_confidence": 0.25,
+    "no_target_images": 7,
+    "no_target_images_with_predictions": 7,
+    "no_target_predicted_boxes": {
+      "10": 1,
+      "16": 16,
+      "3": 2,
+      "362": 5,
+      "4": 1,
+      "6": 10,
+      "659": 3
+    },
+    "per_class": {
+      "D00": {
+        "AP50": 0.24461012143874708,
+        "AP50_95": 0.12264646657181795,
+        "AP_small": 0.0,
+        "target_count": 17
+      },
+      "D10": {
+        "AP50": 0.3302365497818231,
+        "AP50_95": 0.14092647531814073,
+        "AP_small": null,
+        "target_count": 15
+      },
+      "D20": {
+        "AP50": 0.1538461538461538,
+        "AP50_95": 0.0718964204112719,
+        "AP_small": null,
+        "target_count": 2
+      },
+      "D40": {
+        "AP50": 0.15022048423329723,
+        "AP50_95": 0.11034195856560443,
+        "AP_small": 0.0,
+        "target_count": 8
+      }
+    },
+    "prediction_boxes": 2400,
+    "scope": "Frozen validation partition; unaugmented stored images; test data not read",
+    "target_boxes": 42
+  },
+  "state_audit": {
+    "gradient_sha256": "12a4077516d6ef9acc1afed64b86026f1345b803817a2b234c32b750e5811d12",
+    "model_optimizer_rng_modes_unchanged": true,
+    "model_sha256": "2b4319603ee595d77747e4ec3c56eb3d8fe4baabd3b52660b60efe10530f1b34",
+    "rng_sha256": "385714f3b565f2d0a90b4d0521a515d883e9ca25bea410a8852031fdf2fed997"
+  }
+}

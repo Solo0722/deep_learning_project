@@ -1,0 +1,150 @@
+{
+  "pages": 9,
+  "reference_links": 18,
+  "document_colors": [
+    "000000"
+  ],
+  "required_scores_present": true,
+  "all_reference_entries_present": true,
+  "renderer": "Microsoft Word PDF export then pypdfium2 rasterization",
+  "canonical_renderer_limitation": "LibreOffice soffice.exe is not available on PATH",
+  "page_summaries": [
+    {
+      "page": 1,
+      "words": 405,
+      "first_lines": [
+        "Page 1",
+        "Class Adaptive Augmentation for Multi Class Object",
+        "Detection"
+      ],
+      "last_lines": [
+        "A change that suppresses a background shortcut could help one class yet erase a discriminative cue for",
+        "another. These examples explain the hypothesis; they are not established causal findings from the",
+        "project. Published classification research documents uneven class-level effects, but those results do not",
+        "by themselves establish the same mechanisms in road damage detection. [11]"
+      ]
+    },
+    {
+      "page": 2,
+      "words": 475,
+      "first_lines": [
+        "Page 2",
+        "2 2 Multi object images introduce coupled decisions",
+        "An image can contain several object classes, so a whole-image decision exposes them to the same"
+      ],
+      "last_lines": [
+        " General applicability. Seek a formulation that is not tied to road-specific class names, while",
+        "allowing transformation validity to depend on the domain.",
+        " A defensible contribution. Establish what the proposed framework adds beyond existing class-",
+        "adaptive, instance-adaptive and detection-specific methods and their straightforward combinations."
+      ]
+    },
+    {
+      "page": 3,
+      "words": 371,
+      "first_lines": [
+        "Page 3",
+        "3 1 Research questions",
+        " RQ1. Under what conditions do classes within the same image benefit from conflicting"
+      ],
+      "last_lines": [
+        "needs a substantive justification. Their standard policies do not explicitly coordinate separate class-",
+        "dependent choices for objects within one image. That scope limitation makes them useful background,",
+        "but they are insufficient by themselves to establish novelty for class adaptation because later work",
+        "already addresses it. [16–18]"
+      ]
+    },
+    {
+      "page": 4,
+      "words": 458,
+      "first_lines": [
+        "Page 4",
+        "4 2 Online and class dependent augmentation",
+        "CTAugment, introduced with ReMixMatch, learns magnitude-bin preferences from the network’s"
+      ],
+      "last_lines": [
+        "solely on model tolerance. Its searched policies can vary over training, while the reported formulation",
+        "does not explicitly allocate class-conditioned regional decisions among co-occurring objects. The",
+        "relevant distinction is the proposed handling of class interactions, not merely use of validation feedback",
+        "or detection augmentation. [5]"
+      ]
+    },
+    {
+      "page": 5,
+      "words": 518,
+      "first_lines": [
+        "Page 5",
+        "4 4 Object and context aware detection augmentation",
+        "Zoph et al. search augmentation strategies specifically for object detection, including image-level and"
+      ],
+      "last_lines": [
+        "YOLOv3 detection. It is an especially close domain precedent. Its augmentation choices are derived",
+        "before subsequent training and applied at image level when relevant classes are present, rather than",
+        "resolving separate regional preferences online in a mixed-class image. Road-specific class-aware",
+        "augmentation cannot be claimed as new without addressing this work. [12]"
+      ]
+    },
+    {
+      "page": 6,
+      "words": 454,
+      "first_lines": [
+        "Page 6",
+        "Tao et al. investigate class- and modality-dependent augmentation for pavement distress detection with",
+        "paired intensity and range imagery. Their image-level choice combines class preferences, including a"
+      ],
+      "last_lines": [
+        "The following results are included only to preserve the project’s factual starting point. They are single-",
+        "seed validation results on road damage detection with Faster R-CNN. AP50:95 is reported on a 0–100",
+        "scale. The project has not yet demonstrated an improvement against CUDA, CTAugment, MADAug,",
+        "BDA, DDAS or other named published methods in a common detection comparison."
+      ]
+    },
+    {
+      "page": 7,
+      "words": 339,
+      "first_lines": [
+        "Page 7",
+        "Table 1 Version 1 results at each condition’s best validation checkpoint",
+        "Condition Best epoch AP50:95"
+      ],
+      "last_lines": [
+        "The project has also produced data preparation, detector integration, metric checks, checkpoint checks",
+        "and debugging evidence. Those establish useful engineering capability. They do not substitute for",
+        "evidence of scientific novelty or better detection, and the completed comparisons did not isolate which",
+        "transformations caused each class’s learning gain or loss."
+      ]
+    },
+    {
+      "page": 8,
+      "words": 426,
+      "first_lines": [
+        "Page 8",
+        "7 Evidence boundaries and independent review brief",
+        "The established facts are that augmentation can have uneven class effects in published settings; class-"
+      ],
+      "last_lines": [
+        "[6] Zoph et al. Learning Data Augmentation Strategies for Object Detection. ECCV, 2020. Primary source",
+        "[7] Chen et al. Scale-Aware Automatic Augmentation for Object Detection. CVPR, 2021. Primary source",
+        "[8] Wang et al. Data Augmentation for Object Detection via Progressive and Selective Instance-Switching. Author",
+        "preprint, 2019. Primary source"
+      ]
+    },
+    {
+      "page": 9,
+      "words": 245,
+      "first_lines": [
+        "Page 9",
+        "[9] Thopalli, Devi and Thiagarajan. InterAug: A Tuning-Free Augmentation Policy for Data-Efficient and Robust",
+        "Object Detection. ICCV Workshops, 2023, pp. 253–261. Primary source"
+      ],
+      "last_lines": [
+        "reports/rdd_v2_strict_v1/RESULTS.md",
+        "[W4] Strict epoch 8 paired comparison.",
+        "reports/rdd_v2_pair8_v1/RESULTS.md",
+        "reports/rdd_v2_pair8_v1/endpoint_comparison.csv"
+      ]
+    }
+  ],
+  "visual_review": "All nine rendered pages inspected; no clipping, overlap, orphaned captions or split result tables.",
+  "scope_review": "Performance objective retained across domains; proposed methodology excluded; published capabilities separated from inferred gaps and preliminary project results."
+}

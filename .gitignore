@@ -72,3 +72,24 @@ desktop.ini
 
 OCTOBER_12_CHECKLIST.md
 METHOD_PROTOCOL.md
+
+# SSH keys and other private key material: never commit.
+id_rsa*
+id_ed25519*
+id_ed25522*
+*.pem
+*.key
+
+# Session handoff notes and agent scratch (personal, not for a public repo).
+/HANDOFF.md
+/.superpowers/
+~$*
+
+# Per-epoch prediction and controller dumps pulled back from CCAST (20-25 MB each).
+# Summaries, figures, and small JSON in returned_records/ stay tracked.
+reports/**/returned_records/**/*.json.gz
+reports/**/returned_records/**/*.jsonl.gz
+reports/**/returned_records/observations/
+
+# Submission snapshot: duplicate of top-level folders; the .zip is the archive.
+/RDD_Prototype_Submission_2026-10-26/

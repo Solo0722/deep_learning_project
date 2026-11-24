@@ -1,0 +1,64 @@
+{
+  "scope": "Direct inspection of all eight 1280x1280 sheets (32 displayed views) and all five additional thin-case PNGs at original resolution",
+  "status": "No observed implementation blocker; renderer and label-quality limitations remain",
+  "observations": [
+    {
+      "file": "previews/panel_A_anchor_0.png",
+      "image": "United_States/train/images/United_States_003830.jpg",
+      "finding": "The selected narrow D00 region is edited; other D00 regions and the surrounding scene remain aligned. Strong blur softens the thin crack. No visible box displacement."
+    },
+    {
+      "file": "previews/panel_A_anchor_1.png",
+      "image": "Japan/train/images/Japan_011922.jpg",
+      "finding": "The overlapping D10/D20 group is edited together. Strong darkening creates a clearly visible rectangular/L-shaped intensity transition; blur weakens crack texture; noise is localized. This is a mask-realism limitation, not an unexplained coordinate change."
+    },
+    {
+      "file": "previews/panel_A_anchor_2.png",
+      "image": "Japan/train/images/Japan_011692.jpg",
+      "finding": "The D20/D10 overlap group is edited together while the separate D10 box stays unchanged. Darkening and noise have visible box-shaped boundaries; alligator structure remains visible in the displayed examples."
+    },
+    {
+      "file": "previews/panel_A_anchor_3.png",
+      "image": "India/train/images/India_003609.jpg",
+      "finding": "The selected overlapping D40/D20 pair changes together; the separate D40 instance remains unchanged. Road detail is already weak in the reference, and strong blur weakens it further. Geometry and boxes appear aligned."
+    },
+    {
+      "file": "previews/panel_B_anchor_0.png",
+      "image": "China_Drone/train/images/China_Drone_001167.jpg",
+      "finding": "The right-edge D00 box remains aligned. Its top portion is partly hidden by the 20-pixel preview title bar; the numerical annotation audit supplies the coordinate check there. Blur visibly reduces crack contrast."
+    },
+    {
+      "file": "previews/panel_B_anchor_1.png",
+      "image": "China_Drone/train/images/China_Drone_001007.jpg",
+      "finding": "The transverse crack remains visible within its D10 box. Brightness and noise boundaries are visibly rectangular; no displacement or change outside the selected neighborhood was observed."
+    },
+    {
+      "file": "previews/panel_B_anchor_2.png",
+      "image": "India/train/images/India_007376.jpg",
+      "finding": "The selected D20 annotation includes road context and part of a vehicle; the entire rectangle is affected, as specified. The other D20 box remains unchanged. D43 annotation metadata remains present. This renderer is box-group-local, not a segmentation of damage pixels."
+    },
+    {
+      "file": "previews/panel_B_anchor_3.png",
+      "image": "China_MotorBike/train/images/China_MotorBike_001766.jpg",
+      "finding": "The stored D40 annotation encloses elongated, crack-like damage. Its class is visually ambiguous from this image and should not be presented as an independently certified pothole label. The source annotation was preserved; no relabeling or exclusion was performed. Blur weakens detail but no geometric displacement is visible."
+    }
+  ],
+  "thin_case": {
+    "image": "Norway/train/images/Norway_005967.jpg",
+    "object_index": 12,
+    "files_inspected": ["raw_crop_rgb.png", "prepared_rgb.png", "prepared_boxes.png", "scale095_rgb.png", "scale095_boxes.png"],
+    "finding": "The raw crop contains transverse road damage; the selected box occupies a very small portion of the prepared road scene. Dense overlay labels obscure individual distant boxes, so the unannotated RGB views were inspected too. The roughly one-pixel-high target is difficult to resolve at 640 even before the extra shrink. A positive-area box does not establish that its fine detail remains learnable.",
+    "prepared_height_pixels": 1.0491291585126987,
+    "scaled_height_pixels": 0.9966727005870553,
+    "scaled_rgb_recomputation_max_error": 0,
+    "decision": "Retain the frozen annotation and monitor small-target behavior; do not introduce post-hoc filtering or relabeling."
+  },
+  "numerical_preview_check": "All 24 displayed candidate tiles have zero changed pixels outside the transformed selected-mask footprint plus a conservative one-pixel interpolation halo, excluding their intentional title bars. The overlays can cover pixels; this check does not replace raw-pixel verification of every candidate.",
+  "policy_context": "The sheets deliberately show strongest candidate levels, not only admitted actions. All eight displayed strong-blur cases and seven of eight strong-darkening cases are rejected by their panel's routed policy. Visible artifacts can still occur for admitted noise or milder intensity edits.",
+  "limits": [
+    "Only eight selected images are displayed; this is not exhaustive semantic review of all 512 images or all 13824 appearance candidates.",
+    "No annotation relabeling, exclusion, threshold adjustment or renderer change was made after viewing these results.",
+    "The retained one-pixel boundary taper does not remove rectangular appearance seams. These are a plausible training shortcut, not a measured cause of a downstream AP change.",
+    "No training or validation/test evaluation was performed by this diagnostic."
+  ]
+}

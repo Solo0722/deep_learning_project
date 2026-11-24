@@ -1,0 +1,25 @@
+test_empty_and_invalid_predictions (test_diagnostic.MeasurementTests.test_empty_and_invalid_predictions) ... ok
+test_matching_one_to_one_class_correct_and_confidence_ordered (test_diagnostic.MeasurementTests.test_matching_one_to_one_class_correct_and_confidence_ordered) ... ok
+test_noise_draws_are_averaged_not_extra_support (test_diagnostic.MeasurementTests.test_noise_draws_are_averaged_not_extra_support) ... ok
+test_repeat_parity_detects_count_and_coordinate_changes (test_diagnostic.MeasurementTests.test_repeat_parity_detects_count_and_coordinate_changes) ... ok
+test_shared_collapse_and_balanced_strength_not_maximum (test_diagnostic.MeasurementTests.test_shared_collapse_and_balanced_strength_not_maximum) ... ok
+test_support_failure_does_not_become_action_agreement (test_diagnostic.MeasurementTests.test_support_failure_does_not_become_action_agreement) ... ok
+test_frozen_context_accepts_no_change_and_rejects_mutation (test_diagnostic.ObserverTests.test_frozen_context_accepts_no_change_and_rejects_mutation) ... skipped 'PyTorch absent locally; execute on CCAST'
+test_frozen_context_rejects_global_rng_change (test_diagnostic.ObserverTests.test_frozen_context_rejects_global_rng_change) ... skipped 'PyTorch absent locally; execute on CCAST'
+test_budget_stop_leaves_no_complete_archive (test_diagnostic.OutputTests.test_budget_stop_leaves_no_complete_archive) ... ok
+PANEL A images=1/1 detector_images=33
+PANEL B images=1/1 detector_images=62
+test_collection_budget_pairing_and_saved_observations (test_diagnostic.OutputTests.test_collection_budget_pairing_and_saved_observations) ... ok
+test_output_overlap_existing_and_archive_preserved (test_diagnostic.OutputTests.test_output_overlap_existing_and_archive_preserved) ... ok
+test_package_mutation_is_rejected (test_diagnostic.OutputTests.test_package_mutation_is_rejected) ... ok
+test_balanced_disjoint_clusters_and_order_independence (test_diagnostic.PanelTests.test_balanced_disjoint_clusters_and_order_independence) ... ok
+test_insufficient_support_population_and_heldout_rejected (test_diagnostic.PanelTests.test_insufficient_support_population_and_heldout_rejected) ... ok
+test_identity_geometry_exactly_reuses_v1_local_renderer (test_diagnostic.RendererTests.test_identity_geometry_exactly_reuses_v1_local_renderer) ... ok
+test_noise_repeats_deterministically_without_global_rng_change (test_diagnostic.RendererTests.test_noise_repeats_deterministically_without_global_rng_change) ... ok
+test_paired_geometry_all_actions_preserve_metadata_and_reference (test_diagnostic.RendererTests.test_paired_geometry_all_actions_preserve_metadata_and_reference) ... ok
+test_rejected_geometry_preserves_appearance_and_all_annotations (test_diagnostic.RendererTests.test_rejected_geometry_preserves_appearance_and_all_annotations) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 14.489s
+
+OK (skipped=2)

@@ -1,0 +1,69 @@
+[
+  {
+    "anchor_class": 1,
+    "file": "previews/panel_A_anchor_1.png",
+    "image": "Japan/train/images/Japan_011922.jpg",
+    "object_indices": [
+      0,
+      1
+    ]
+  },
+  {
+    "anchor_class": 3,
+    "file": "previews/panel_A_anchor_3.png",
+    "image": "India/train/images/India_003609.jpg",
+    "object_indices": [
+      0,
+      2
+    ]
+  },
+  {
+    "anchor_class": 2,
+    "file": "previews/panel_A_anchor_2.png",
+    "image": "Japan/train/images/Japan_011692.jpg",
+    "object_indices": [
+      0,
+      2
+    ]
+  },
+  {
+    "anchor_class": 0,
+    "file": "previews/panel_A_anchor_0.png",
+    "image": "United_States/train/images/United_States_003830.jpg",
+    "object_indices": [
+      0
+    ]
+  },
+  {
+    "anchor_class": 0,
+    "file": "previews/panel_B_anchor_0.png",
+    "image": "China_Drone/train/images/China_Drone_001167.jpg",
+    "object_indices": [
+      0
+    ]
+  },
+  {
+    "anchor_class": 3,
+    "file": "previews/panel_B_anchor_3.png",
+    "image": "China_MotorBike/train/images/China_MotorBike_001766.jpg",
+    "object_indices": [
+      0
+    ]
+  },
+  {
+    "anchor_class": 2,
+    "file": "previews/panel_B_anchor_2.png",
+    "image": "India/train/images/India_007376.jpg",
+    "object_indices": [
+      1
+    ]
+  },
+  {
+    "anchor_class": 1,
+    "file": "previews/panel_B_anchor_1.png",
+    "image": "China_Drone/train/images/China_Drone_001007.jpg",
+    "object_indices": [
+      0
+    ]
+  }
+]

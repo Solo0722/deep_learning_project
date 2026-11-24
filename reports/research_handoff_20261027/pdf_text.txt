@@ -1,0 +1,1309 @@
+RDD2022 research handoff | Status verified 27 October 2026
+1
+Road Damage Augmentation Research Handoff
+Comprehensive transfer record for a receiving AI | 27 October 2026
+Researcher: Solomon Owusu Ansah. This document consolidates the project history, implemented algorithms,
+audited results, latest proposed revision, execution environment and source locations. It is a handoff record, not
+a claim that the proposed method succeeded. No new training experiment was run while preparing it.
+Read this first
+The implemented class-adaptive controller did not improve the primary validation metric over its online shared
+comparator. At each run’s selected checkpoint, AP50:95 was 22.563 for class adaptive, 23.059 for online shared,
+and 22.823 for identity on a 0–100 scale. The adaptive difference was −0.496 percentage points versus online
+shared and −0.260 versus identity. These are descriptive results from one seed, not a significance test.
+Workstream Status at handoff
+Data and engineering Frozen full-image splits, checked loaders, GPU integration, metrics, checkpoints and
+resumable PBS training exist.
+Earlier crop study One conventional-augmentation custom-CNN baseline completed. It answers a different task
+from full-image detection.
+Version 1 detection All five 20-epoch Faster R-CNN conditions completed and were audited. The test partition
+remains unevaluated.
+Version 1 diagnosis Strength-selection behavior, changing ROI samples and sparse exact class-set support were
+measured. Their causal contribution to AP is not established.
+Version 2 A revised direction was discussed: whole-image geometry, local appearance, controlled group
+copy-paste and per-class admissibility. No version-2 code, package or experiment is present.
+Immediate next work Resolve the explicit protocol gaps, implement a new versioned package, run preflight checks
+and a matched short pilot before any full experiment.
+The receiving AI should start with Sections 10–11 and the source map in Section 13, then inspect the audited
+version-1 code and reports. Do not restart completed jobs, treat the old manuscript as a version-2 specification,
+or describe the revised method as validated.
+
+RDD2022 research handoff | Status verified 27 October 2026
+2
+How to use this document
+Sections Purpose
+1–3 Research question, chronological development, data preparation and frozen splits.
+4–5 Exact implemented version-1 controller and controlled training design, including equations and
+parameter choices.
+6–9 Numerical comparisons, controller exposure, diagnosis, audit scope and limits of the evidence.
+10–11 Review of the external redesign document, latest version-2 direction and unresolved implementation
+decisions.
+12–13 CCAST operation and recovery, hashes, code and evidence locations, GitHub status and transfer
+checklist.
+14–15 Manuscript/course context, collaboration requirements and a prompt to start the next AI session.
+Evidence labels used throughout: completed means an observed execution; verified means checked against
+saved artifacts within the stated audit scope; inference means a plausible explanation that has not been isolated
+experimentally; proposed means a future design. Unit tests, synthetic data and same-training-image learning
+checks are software or feasibility evidence, not generalization evidence.
+Metric convention: AP values in comparison tables are percentages on a 0–100 scale unless a table explicitly
+shows fractions. A difference of 0.5 points means 0.5 percentage points, not a 50% relative gain. The chosen
+checkpoint maximizes validation AP50:95, with the earliest epoch winning a tie.
+Name in discussion Meaning and package
+Identity No study augmentation; fasterrcnn_baseline_v1. Standard resize/letterbox still occurs.
+Fixed image level Earlier name: fixed shared augmentation; fasterrcnn_shared_v1. The entire image content
+receives a fixed-bank appearance edit.
+Fixed local Same fixed operation bank, applied to one overlap group; fasterrcnn_local_v1.
+Online shared local One feedback-selected local policy shared across classes; fasterrcnn_online_shared_v1.
+Online class adaptive local Version 1 routes by the exact set of classes in a group; fasterrcnn_class_adaptive_v1.
+Version 2 proposes pooling evidence per class instead.
+Current local project root: C:\Users\SOLOMON\OneDrive - North Dakota University
+System\deep_learning_project
+Current repository: https://github.com/Solo0722/deep_learning_project. At this handoff, local and remote main
+point to 8ed2567c6f5a26960949e12116f4fa1c0b8a403b. Completed class-adaptive audit files and newer reports
+are still untracked locally; the repository link alone does not contain this complete handoff state.
+Snapshot scope: filesystem and repository status were checked for this document. Remote CCAST paths are
+supported by saved run evidence and user transcripts; no new SSH inspection of current cluster storage or job
+state was performed.
+
+RDD2022 research handoff | Status verified 27 October 2026
+3
+1 Research objective and version 1 conclusion
+The research question is whether local appearance augmentation can be selected online according to the damage
+classes present in an overlapping group of annotations, while preserving the detector’s ability to recognize those
+objects. A common policy may be limited by the most sensitive class. Conditioning decisions on the actual class
+combination could allow different strengths in different regions. This is the motivating hypothesis; it is not an
+established property of the completed system.
+The proposed contribution is the augmentation controller: overlap-group construction, a shared local edit,
+detector-based retention constraints, class-balanced difficulty feedback, exact-class-set policy selection, and
+reproducible online updates. The full-image experiments use an existing Faster R-CNN with a ResNet-50
+feature pyramid backbone and COCO initialization. The detector architecture itself is not newly designed. The
+earlier crop classifier was a separate, custom network trained from scratch.
+Five detection conditions have completed the same 20-epoch optimizer budget: identity, fixed image-level
+augmentation, fixed local augmentation, online shared local augmentation, and online class-adaptive local
+augmentation. Online shared has the highest observed selected AP50:95; identity has the highest observed
+selected AP50. Class adaptation is nearly equal numerically to fixed local in this run and lower than its primary
+online-shared comparator. No statistical equivalence, significant difference, or population-level ranking can be
+inferred from one run per condition. [S3, S4]
+The version-1 results motivate revising the observation rule, support allocation and action bank. The subsequent
+redesign review and the latest version-2 discussion are documented in Sections 10 and 11. Version 2 has not
+been implemented or evaluated; the older version-1 recommendation is not the current execution specification.
+2 Development history and experiment scope
+2 1 Earlier crop classification study
+The project initially used annotated road-damage crops as classification inputs. The completed conventional-
+augmentation baseline used a randomly initialized CNN with 695,732 trainable parameters, unweighted cross-
+entropy, AdamW, batch size 64, and a 20-epoch cosine learning-rate schedule. It selected epoch 20 by validation
+macro-F1. On 8,242 validation crops, 7,461 predictions were correct: accuracy was 90.524% and macro-F1 was
+0.891457. [S6]
+Table 1 Historical crop classification results
+Class Support Precision Recall F1
+D00 3898 0.9042 0.9472 0.9252
+D10 1771 0.9524 0.9368 0.9445
+D20 1592 0.8759 0.8021 0.8374
+D40 981 0.8686 0.8491 0.8588
+The largest directional error was D20 classified as D00: 223 crops, or 14.01% of D20 examples. A box-aspect-
+ratio comparator achieved 67.03% accuracy and 0.4439 macro-F1, while the majority-class comparator achieved
+47.29% accuracy and 0.1605 macro-F1. The CNN exceeded those controls, but their results also showed why
+annotation geometry and source cues needed attention. The error pattern alone did not identify its cause.
+The full-image formulation was adopted to study augmentation with localization, multiple objects, overlapping
+boxes, and images without target annotations. Crop accuracy is therefore historical feasibility evidence, not a
+baseline in the detection AP tables. The detection split was rebuilt with historical exposure and full-pool
+similarity groups taken into account; the crop and detection validation sets are not interchangeable.
+
+RDD2022 research handoff | Status verified 27 October 2026
+4
+2 2 Detector engineering checks
+Before full training, the project verified image and XML integrity, model-specific label adapters, coordinate
+conversion, target-negative examples, synthetic CUDA execution, real-image forward and backward passes,
+checkpoint recovery, and metric behavior. Synthetic and small-subset checks were used to detect
+implementation faults before committing to longer jobs. Passing them establishes software behavior under the
+tested cases; it does not establish augmentation efficacy. [S7-S10]
+Table 2 Completed engineering stages
+Stage Observed evidence Scope
+Data audit 8 focused tests passed Input integrity and exclusion handling
+Training loader 22 tests; 15 real images passed All four classes, empty targets, geometry
+Detector integration 14 tests; both detectors ran on 15
+images Finite loss, gradients, updates and inference
+Small learning check 18 tests; 200 updates per detector Training-only learning and checkpoint checks
+YOLO diagnostic Fixed checkpoints; no optimizer steps Normalization sensitivity on 15 training images
+Class-adaptive package 81 local focused tests passed Policy, exposure, replay and resume behavior
+The 81-test class-adaptive result is a local result, with zero errors, failures, or skips. A separate actual
+pretrained-model CPU check exercised synthetic 128-pixel inputs and verified initialization parity, probe-state
+preservation, policy reconstruction, and checkpoint replay. It did not use RDD pixels or establish CUDA
+behavior or accuracy. Target-host test and smoke terminal logs are not included in the returned class-adaptive
+archive, so that archive alone cannot independently certify those test counts. The subsequent full CCAST
+training run is separately recorded as complete. [S11]
+2 3 Small training check and YOLO diagnosis
+Both detectors were first checked on the same 15 selected training images containing 16 retained boxes. Each
+received 200 updates. Faster R-CNN improved, while YOLOv8n failed to retain useful detections at the end of
+this particular custom-loop check. Table 3 reports training-subset measurements on a 0-100 scale. They must not
+be interpreted as held-out performance or evidence that one architecture is generally superior. [S8]
+Table 3 Training subset learning check
+Detector Step AP50 AP50:95
+Faster R-CNN 0 0.000 0.000
+Faster R-CNN 50 7.306 1.192
+Faster R-CNN 100 19.021 6.821
+Faster R-CNN 200 35.517 17.554
+YOLOv8n 0 0.000 0.000
+YOLOv8n 50 0.000 0.000
+YOLOv8n 100 0.518 0.231
+YOLOv8n 200 0.000 0.000
+The Faster R-CNN result did not meet the predeclared small-subset engineering review threshold of final AP50
+at least 50 with a gain of at least 10 percentage points. It supplied partial evidence of learning, followed later by
+the full validation baseline reported here. Reloaded predictions matched before and after checkpoint recovery
+
+RDD2022 research handoff | Status verified 27 October 2026
+5
+for both models in the returned records. YOLO showed a classification-loss and parameter-update spike on an
+all-negative batch near the end of training, but that observation did not establish a unique cause.
+The YOLO follow-up held checkpoint weights and input batches fixed and changed only the use of BatchNorm
+statistics at inference. At step 100, AP50 increased from 0.518 with running statistics to 17.197 with current
+batch statistics. At step 200, it increased from 0 to 8.077. AP50:95 changed from 0.231 to 4.077 at step 100 and
+from 0 to 3.777 at step 200. Returning to running statistics reproduced the original predictions. All six saved
+evaluations were independently recomputed. [S9]
+This isolated normalization sensitivity in the tested setup, but it did not repair learning or validate batch-statistic
+inference. At step 200, 13 of 16 targets had a raw candidate box at IoU at least 0.5 under the intervention, but
+only three had such a candidate with sufficient correct-class score. Candidate availability is not one-to-one recall.
+A proposed normalization-only retraining comparison was deferred to keep the main augmentation study
+focused. No full YOLO augmentation comparison or full-image scratch-initialization comparison has been
+completed.
+3 Dataset preparation and partitioning
+3 1 Raw inputs and retained labels
+The audit covered 38,385 image/XML pairs from seven RDD2022 source collections. All discovered training
+image files had matching XML files and vice versa. The four retained damage categories are D00 longitudinal
+cracks, D10 transverse cracks, D20 alligator cracks, and D40 potholes. Labels outside this set remain separate
+from the four-class target list. [S1]
+Table 4 Audited raw source collections
+Source Image and XML pairs
+China Drone 2,401
+China MotorBike 1,977
+Czech 2,829
+India 7,706
+Japan 10,506
+Norway 8,161
+United States 4,805
+Two images were excluded. United_States_003917.jpg duplicated the pixels of a retained image while two
+annotation boxes differed; annotations were not merged. India_006389.jpg had a sole ambiguous label, D0w0,
+which was neither guessed into a target class nor treated as a target-negative image. One zero-width D20 box in
+Japan_001265.jpg was removed while the image and its other three valid targets were retained. The resulting
+pool contains 38,383 images and 55,002 target boxes.
+Boxes use continuous XYXY edges clipped to the stored image bounds without an origin shift or integer
+rounding in the annotation representation. Valid difficult or truncated targets remain included. Stored image
+orientation is preserved rather than applying EXIF rotation. Empty target lists mean that none of the four target
+classes is annotated; they do not establish visually healthy pavement.
+
+RDD2022 research handoff | Status verified 27 October 2026
+6
+3 2 Frozen splits and leakage safeguards
+Table 5 Frozen detection partitions
+Partition Images Target bearing No targets Target boxes
+Training 26,863 16,630 10,233 38,530
+Validation 5,760 3,567 2,193 8,225
+Reserved test 5,760 3,569 2,191 8,247
+Table 6 Target box distribution
+Class Training Validation Reserved test
+D00 18,226 3,888 3,899
+D10 8,283 1,770 1,776
+D20 7,435 1,592 1,589
+D40 4,586 975 983
+The allocation targets a 70/15/15 split and preserves historical anchors. Source-image similarity clusters and
+candidate links remain within a single partition. Two components with previous training/validation conflicts
+were assigned to training, including six historically validated images, so known training exposure was not
+presented as fresh held-out evidence. Historical test target-bearing images were preserved. The frozen split audit
+recorded zero group crossings and zero candidate-edge crossings.
+This is a custom mixed-source detection split, not an official cross-country generalization experiment.
+Perceptual matches are grouping candidates rather than certified duplicates. The screening procedure cannot
+establish complete geographic or capture-sequence independence. Historical validation exposure also remains
+relevant to interpreting development decisions. Test partition counts in this report are preparation metadata, not
+test performance; no test detector evaluation was conducted.
+3 3 Shared preprocessing and adapters
+Full images are converted to RGB, resized with aspect ratio preserved, and letterboxed to 640 by 640 pixels.
+Box scaling uses the actual resized dimensions, including separate axis scales caused by integer size rounding.
+Detector adapters map the foreground labels consistently; Faster R-CNN reserves label zero for background and
+uses labels one through four for damage. Target-negative images remain valid training examples. Evaluation
+transforms predictions back to the original stored coordinates and clips them to the image bounds.
+4 Implemented version 1 methodology
+4 1 Local groups and a single shared edit
+For each prepared target-bearing image, target boxes are rasterized by flooring minima and ceiling maxima
+within the valid image content. An overlap graph connects boxes whose raster supports share positive area. Each
+connected component forms one augmentation group, including singleton boxes. The group class set contains
+every distinct damage class represented in that component. Four classes allow 15 possible nonempty exact sets.
+[S2]
+At an augmentation opportunity, one group is selected uniformly. A candidate appearance transform is
+computed from the full resized image content and composited once within the union of the selected group’s
+boxes. This avoids repeatedly transforming pixels where annotations overlap. The union is a box-based support,
+not a pixel-level damage segmentation; background inside a box can also change.
+
+RDD2022 research handoff | Status verified 27 October 2026
+7
+x̃ = x + αG ⊙ [To,m(x) − x] (1)
+In Equation 1, x is the prepared image, T is operation o at strength m, and α is zero outside the group union, one
+in its one-pixel-eroded interior, and 0.5 on the outer eight-neighbor boundary layer. A one-pixel-wide support
+retains alpha 0.5. Candidate operations and final composition use the declared clipping and uint8 rounding rules.
+The labels and coordinates remain fixed. Preserving coordinates does not prove that every edit preserves
+visually recognizable damage.
+4 2 Candidate augmentation bank
+The first controller uses a bounded appearance-only bank to keep annotations geometrically valid and make
+feedback interpretable. The photometric family contains brightness up/down, contrast up/down, and gamma
+brightening/darkening. The second family contains Gaussian blur and Gaussian noise. A larger bank, including
+geometric transforms, would require additional label transformation and validity checks and has not been tested
+here. Restricting this first study is an implementation control, not a claim that other augmentations are
+ineffective.
+Table 7 Candidate strength grid
+Operation parameter Level 1 Level 2 Level 3
+Brightness and contrast decrease factor 0.9 0.8 0.7
+Brightness and contrast increase factor 1.1 1.2 1.3
+Gamma brightening exponent 0.9 0.8 0.7
+Gamma darkening exponent 1.1 1.2 1.3
+Gaussian blur radius in pixels 0.4 0.8 1.2
+Gaussian noise standard deviation 0.01 0.02 0.03
+Noise is independent across pixels and RGB channels in the stored RGB/255 representation. Contrast uses the
+full-content mean luminance. These operations act on stored color values rather than linear-light intensities.
+Fixed controls use level 2. They sample the two families with equal probability and sample operations uniformly
+within the selected family. Therefore, each photometric operation has conditional probability 1/12 and each
+blur/noise operation has probability 1/4; the eight operations are not globally equiprobable.
+4 3 Paired online probes
+The controller updates before epochs 2, 4, 6, through 20, after one unaugmented warmup epoch. Policies remain
+fixed between updates. Each update selects 256 target-bearing training images in total using keyed hash ranking,
+preferring distinct source clusters, and then selects one group per image uniformly. This is not a budget of 256
+images per class or per class set. The shared and class-adaptive online conditions use the same prospective
+image/group panels.
+Every selected image supplies an unmodified reference view and transformed views at three strengths for all
+eight operations. Gaussian noise uses two independent draws, each paired across strengths. The other seven
+operations use one view per strength. This gives 28 image forwards per probe image: one reference plus 27
+transformed views. Ten updates require 71,680 additional image forwards per online run, plus auxiliary ROI
+computations.
+Probes use training data in evaluation/inference mode and do not take optimizer steps. The implementation
+preserves parameters, buffers, gradients, and random-number-generator state across probing. Policy decisions
+and noise have separate keyed random streams. Policies are stored with training checkpoints; resuming a
+committed update does not run it again. A probe interrupted before commitment is reconstructed from the same
+checkpoint, with partial work recorded separately.
+
+RDD2022 research handoff | Status verified 27 October 2026
+8
+4 4 Retention and exact class set support
+The controller first measures whether damage that the current detector recognizes remains detectable after
+augmentation. Standard predictions are matched to ground-truth boxes one-to-one, in descending score order,
+requiring the correct class, confidence at least 0.25, and IoU at least 0.5. Matching is performed against the full
+image; retention then uses objects in the selected group that were detected in the reference view.
+Rc|s,o,m =
+∑j∈J(c,s)dⱼ0dⱼo,m
+∑j∈J(c,s)dⱼ0 (2)
+Here s is the exact group class set, c is a class in s, and J(c,s) contains class-c objects in selected groups with
+exact set s. Each d indicates a class-correct matched detection. Repeated noise draws are averaged within the
+object before aggregation, so they do not count as independent support. A class that is poorly detected initially
+can have few eligible denominator objects even when many annotations exist. Retention measures conditional
+stability of existing detections; it cannot certify initially missed objects or semantic correctness.
+Every represented class in an exact set must have at least eight distinct reference-detected group objects
+spanning at least four source clusters. Each family-strength candidate must then retain at least 80% for every
+represented class and every operation in that family. This is a joint constraint: one sensitive class or operation
+can reject the family-strength candidate. The minimum support reduces decisions based on one or two detections,
+but it is not a statistical precision guarantee.
+Mf,s = {m : minc∈s, o∈f Rc|s,o,m ≥ 0.80}, mf,s
+∗ = max Mf,s (3)
+Equation 3 describes the implemented strength rule after support is sufficient. It selects the strongest passing
+tested level even if a weaker level fails; no monotonicity assumption is imposed. Missing or insufficiently
+supported sets and sets without an admissible family receive identity. Version 1 does not borrow support from
+another set, back off to the shared policy, retain a stale policy, or resample a different group to force an edit.
+4 5 Auxiliary difficulty and family probabilities
+For difficulty feedback, the detector’s evaluation RPN proposals are assigned to target objects by the ROI
+matcher. One explicitly self-assigned ground-truth ROI is also included per object so that a missing proposal
+does not remove that object’s auxiliary observation. These extra ground-truth ROIs are used only for feedback;
+they are not included as ordinary output detections.
+ℓj =
+1
+nj
+∑r∈Pⱼ [ℓCE(r) + ℓSmoothL1(r)] (4)
+P is the assigned ROI set and n is its size for object j. The per-ROI term combines classification cross-entropy
+and class-specific SmoothL1 box loss, summed across four coordinates with beta 1/9. The controller excludes
+background and RPN loss from this difficulty measure. Loss is averaged over ROIs within an object, over
+repeated draws within an object, and then over all selected-group objects within each class and exact set,
+including reference misses. Only retention and support restrict to reference-detected objects. Reference and
+transformed views generate their own proposals in version 1; this later becomes an important measurement
+limitation.
+Ac|s,o,m = clip(
+L̄ c|s
+o,m − L̄ c|s
+0
+L̄ c|s
+0 + 0.1 , 0, 5) (5)
+The mean is taken before subtraction and clipping in Equation 5. A harder object and an easier object may offset
+each other. A zero score therefore means that the normalized net class mean increase did not exceed zero, not
+that pixels were unchanged or every object became easier. The denominator offset 0.1 limits instability near zero
+reference loss, and the upper cap is 5.
+Df,s = 1
+|s| |f| ∑c∈s ∑o∈f Ac|s,o,m∗ (6)
+
+RDD2022 research handoff | Status verified 27 October 2026
+9
+pf|s = 0.8
+exp(Df,s/0.25)
+∑g∈Fₛ exp(Dg,s/0.25) + 0.2
+|Fₛ| (7)
+F is the set of eligible families. Equation 7 uses temperature 0.25 and exploration mass 0.2; with one eligible
+family its probability is one. An operation is then chosen uniformly within the selected family at its selected
+strength. Crucially, the difficulty score chooses family probabilities, not the strength within a family. Strength is
+already fixed by the maximum passing level in Equation 3. All numerical settings were engineering choices for
+this development protocol, not demonstrated optimal values.
+4 6 Training loop and comparator distinction
+After warmup, each target-bearing training image has an augmentation opportunity with probability 0.5. A
+selected group receives its current exact-set policy, or identity if the policy cannot act. Images without targets
+remain unchanged. Keyed decisions use the run seed, epoch, image identifier, and a purpose-specific key
+independently of global training randomness. Training then uses the normal Faster R-CNN detection loss and
+optimizer update; the controller does not introduce a separate learned network or backpropagate through its
+decisions.
+Ldet = LRPN cls + LRPN box + LROI cls + LROI box (8)
+The online shared local control uses the same operations, panels, grid, retention threshold, difficulty
+construction, and update schedule, but pools selected groups across exact class sets into one shared policy with
+constraints over all four classes. The proposed condition restricts feedback and routing to each exact class set.
+This comparison changes support and downstream edit exposure as a consequence of conditioning. It does not
+isolate class routing while holding every realized transformation fixed.
+5 Full experiment design and implementation
+Table 8 Five completed detection conditions
+Condition Edit region Policy
+Identity No edit No training augmentation
+Fixed image level Full resized image content Level 2; equal families
+Fixed local One overlap group union Same fixed choices; local mask
+Online shared local One overlap group union One feedback-selected policy for all groups
+Class adaptive local One overlap group union Feedback-selected policy per exact class set
+The sequence separates several questions: whether the fixed appearance policy helps; whether localizing that
+policy helps; whether online shared selection helps relative to fixed local; and whether exact-class-set
+conditioning helps relative to online shared. The primary proposed-method contrast is the last pair. The fixed-to-
+online comparison also introduces access to three strength levels instead of one, so any difference cannot be
+attributed solely to online feedback.
+Every condition starts fresh from the same COCO weight file with a newly initialized five-class ROI predictor.
+No condition starts from another condition’s best learned checkpoint. The frozen manifests, preprocessing,
+nominal seed 42, optimizer schedule, validation procedure, and 20-epoch budget match. All backbone stages are
+trainable; FrozenBatchNorm2d uses epsilon zero. The runs each complete 134,320 optimizer steps and 537,260
+image presentations over 26,863 training images. [S2-S4]
+Table 9 Shared training and evaluation settings
+Setting Value
+Detector Faster R-CNN ResNet-50 FPN; COCO_V1 initialization
+
+RDD2022 research handoff | Status verified 27 October 2026
+10
+Setting Value
+Input 640 by 640 letterboxed RGB; stored orientation
+Classes Four foreground damage classes plus background
+Epochs and batch size 20 epochs; training batch 4; validation batch 4
+Optimizer SGD; learning rate 0.0025; momentum 0.9
+Weight decay 0.0005
+Learning-rate warmup 1,000 steps; start factor 0.001
+Learning-rate decay Multiply by 0.1 after epochs 12 and 16
+Precision Float32; AMP and TF32 disabled
+Loader and CPU settings Two data workers; two CPU threads
+Validation Every epoch; unaugmented images
+Checkpoint selection Maximum validation AP50:95; earlier epoch on ties
+Prediction settings Score floor 0.001; NMS IoU 0.5; at most 100 detections
+Additional diagnostic No-target image detections at confidence 0.25
+AP50:95 averages precision over the four target classes and IoU thresholds from 0.50 to 0.95 in increments of
+0.05. AP50 and AP75 hold the IoU threshold at 0.50 and 0.75, respectively. AR100 measures average recall
+with at most 100 detections. All AP and AR values in this report use a 0-100 scale. Differences between them
+are percentage points. These detection measures combine classification, localization, ranking, and missed/extra
+detections; they are not simple classification accuracy.
+Validation uses 5,760 images and 8,225 target boxes. The same validation set selects each checkpoint and
+supplies the reported development comparison. The final-epoch values are also shown to make selection effects
+visible. The reserved test partition is excluded. Repeated consultation of validation results during staged
+development prevents treating this comparison as a final untouched evaluation.
+5 1 CCAST execution and reproducibility
+Full experiments ran as PBS batch jobs on CCAST using one NVIDIA A10, four allocated CPU cores, 32 GB
+requested RAM, and a 24-hour wall-time request. The batch workflow checks package integrity, activates the
+project environment, runs its validation stages, records training output, and writes recoverable checkpoints.
+Submission occurs from a login node; the scheduler supplies the GPU allocation. A disconnected SSH
+monitoring session does not by itself terminate an already submitted batch job.
+The recorded full-run software is Python 3.12.3, PyTorch 2.3.0, TorchVision 0.18.0, CUDA build 12.1, NumPy
+1.26.4, Pillow 10.3.0, and pycocotools 2.0.10. YOLO development additionally used ultralytics-opencv-headless
+8.4.182 and opencv-python-headless 4.11.0.86. Local verification used its separately recorded local versions;
+those results are not described as target-environment executions.
+Code packages, manifests, weights, configurations, and returned archives are pinned by SHA-256. Full
+checkpoint binaries remain on CCAST, while the downloaded records contain configuration, metrics,
+predictions, controller observations, decisions, and checkpoint metadata. Saved predictions support independent
+metric recomputation without rerunning detector inference. Seed matching and deterministic augmentation
+decisions do not imply bitwise-identical GPU training: full deterministic algorithms were not enabled, and the
+measured warmup trajectories differ.
+
+RDD2022 research handoff | Status verified 27 October 2026
+11
+6 Detection results
+6 1 Selected checkpoints and final epochs
+Table 10 Validation performance at the selected checkpoint
+Condition Epoch AP50:95 AP50 AP75 AR100
+Identity 14 22.823 51.142 17.091 43.836
+Fixed image level 14 22.810 50.687 17.295 44.339
+Fixed local 18 22.555 50.160 16.570 44.078
+Online shared local 14 23.059 51.033 17.302 44.281
+Class adaptive local 18 22.563 50.183 16.975 43.874
+Online shared local achieves 23.059 AP50:95, 0.236 points above identity. Fixed image-level augmentation is
+0.013 points below identity, and fixed local is 0.268 points below identity. The class-adaptive result is 0.496
+points below online shared, 0.260 below identity, 0.247 below fixed image level, and only 0.008 above fixed
+local. The observed primary comparison therefore does not support an accuracy benefit from exact-class-set
+conditioning. It also does not establish that the method is universally harmful. [S3, S4]
+Identity achieves the largest AP50, at 51.142. The fact that online shared leads AP50:95 but not AP50 matters:
+no single condition dominates every reported accuracy measure. The AP50-to-AP50:95 gap is consistent with
+substantial sensitivity to tighter localization requirements, but does not identify which object sizes, sources, or
+annotation properties cause the gap.
+Table 11 Final epoch 20 validation performance
+Condition AP50:95 AP50 AP75 AR100
+Identity 22.392 50.200 16.800 42.813
+Fixed image level 22.575 50.541 16.519 43.682
+Fixed local 22.487 49.814 16.867 43.805
+Online shared local 22.588 50.350 16.956 43.438
+Class adaptive local 22.493 49.835 17.008 43.699
+Final-epoch AP50:95 ranges from 22.392 to 22.588. The class-adaptive final score is 22.493, slightly above
+identity at that endpoint, while its selected-checkpoint score remains below identity. This does not justify
+changing the primary criterion after observing the result. The declared checkpoint-selection rule is applied
+consistently to every condition.
+6 2 Class level results
+Table 12 Selected checkpoint AP50:95 by class
+Class Identity Image level Local Online shared Class adaptive
+D00 24.744 24.784 24.090 24.905 24.235
+D10 20.206 20.266 19.520 20.050 19.446
+D20 29.975 29.631 30.114 30.162 30.069
+D40 16.367 16.559 16.496 17.120 16.502
+
+RDD2022 research handoff | Status verified 27 October 2026
+12
+Table 13 Selected checkpoint AP50 by class
+Class Identity Image level Local Online shared Class adaptive
+D00 51.324 51.062 50.131 50.654 50.337
+D10 47.995 47.844 46.601 47.893 46.092
+D20 62.951 62.408 62.727 63.011 63.024
+D40 42.297 41.436 41.181 42.575 41.278
+Class-adaptive AP50:95 is lower than online shared for every class: D00 by 0.670 points, D10 by 0.604, D20 by
+0.093, and D40 by 0.618. D20 has the highest AP50:95 in every condition, while D40 has the lowest. The class
+distribution and source mixture differ, so these rankings are descriptive and should not be reduced to a single
+claim about intrinsic class difficulty. D20 AP50 under class adaptation is marginally above online shared, but
+that isolated change does not overturn the aggregate or per-class AP50:95 comparison.
+6 3 Learning trajectories and selection limits
+The learning curves show improvements across the training schedule and a pronounced increase after epoch 12,
+when the learning rate first decays. Similar timing across conditions prevents attributing that change uniquely to
+the controller. The best checkpoints occur at epoch 14 for identity, image-level, and online shared, and at epoch
+18 for fixed local and class adaptive. These runs do not establish convergence beyond the declared schedule.
+Figure 1 Validation AP50:95 across all 20 epochs. Black line patterns identify conditions. These are individual
+development trajectories, not mean curves or confidence intervals.
+Epoch 1 is unaugmented in every condition, yet AP50:95 already differs: identity 16.537, fixed image level
+15.892, fixed local 16.424, online shared 15.733, and class adaptive 16.518. The cause is not established by the
+saved evidence. These initial differences cannot be subtracted from final scores as a correction, and they are not
+an estimate of final-run variance. They show why nominal seed matching is insufficient to claim perfectly
+paired training trajectories.
+
+RDD2022 research handoff | Status verified 27 October 2026
+13
+6 4 Predictions on images without target annotations
+Table 14 Selected checkpoint detections on 2193 no-target images
+Condition Images with detections Predicted boxes Image fraction
+Identity 858 1,637 39.12%
+Fixed image level 867 1,640 39.53%
+Fixed local 817 1,538 37.25%
+Online shared local 886 1,707 40.40%
+Class adaptive local 806 1,527 36.75%
+These counts use confidence 0.25. Class adaptation produces the smallest no-target image fraction, 36.75%,
+compared with 40.40% for online shared and 39.12% for identity. This is useful descriptive evidence, but lower
+false alarms at one threshold can accompany weaker positive-image detection. It does not establish a better
+operating point at matched recall. The detections are false positives relative to retained annotations; the images
+were not visually certified to contain no road damage.
+6 5 Runtime and computation
+Table 15 Recorded full run time and execution identity
+Condition Hours Host PBS job
+Identity 11.09 gpu0035 794364.bright04
+Fixed image level 11.51 gpu0021 795553.bright04
+Fixed local 13.26 gpu0020 795787.bright04
+Online shared local 14.14 gpu0020 796146.bright04
+Class adaptive local 14.45 gpu0020 796544.bright04
+The five full runs total 64.46 recorded run-hours. These intervals include training, validation, and online probes
+where applicable, but exclude the preceding tests and smoke checks. They are not end-to-end project labor or
+complete allocation billing. Differences between runs do not isolate controller overhead because execution
+conditions and augmentation paths also differ.
+Recorded probe time is 56.41 minutes for online shared and 57.19 minutes for class adaptation. Both use 71,680
+extra image forwards with no additional detector optimizer steps. Thus the optimizer budgets match while total
+forward computation does not match the fixed and identity controls. No inference-speed improvement is
+claimed; the controller operates during training.
+7 Observed controller behavior
+7 1 Online shared policy
+The shared controller acted on all 158,151 scheduled augmentation opportunities, and 156,819 applications
+changed pixels. Its class support was sufficient at all ten updates. It selected blur/noise level 1 at every update;
+photometric strength varied across levels 1, 2, and 3 and was initially ineligible. When both families were
+eligible, probabilities stayed near one half. [S5]
+This behavior provides a concrete explanation for why the online condition is not equivalent to the fixed level-2
+local baseline. Most blur/noise edits became milder, while photometric settings changed over training. The
+observed AP difference cannot distinguish the value of the feedback mechanism from the value of this realized
+strength distribution. A matched fixed mild or uniform-family control is still needed for attribution.
+
+RDD2022 research handoff | Status verified 27 October 2026
+14
+Table 16 Applied strength distribution in the online conditions
+Strength Online shared edits Online shared share Class adaptive edits Class adaptive share
+1 120,242 76.03% 12,443 8.61%
+2 8,193 5.18% 22,002 15.22%
+3 29,716 18.79% 110,123 76.17%
+7 2 Class adaptive exposure and sparse support
+The class-adaptive condition shared the same 158,151 opportunities but applied 144,568 edits; 13,583
+opportunities, or 8.59%, received identity. Of the applied edits, 144,418 changed pixels and 150 did not. The
+fallback reasons were 1,205 unobserved class-set cases and 12,378 insufficient-support cases. No opportunity
+fell back because a sufficiently supported set had no admissible family. Equal opportunities therefore did not
+produce equal actual edit exposure. [S4]
+Table 17 Exact class set activation and realized exposure
+Exact class set Active updates Opportunities Applied Identity
+D00 10/10 63,509 63,509 0
+D10 10/10 25,353 25,353 0
+D20 10/10 34,471 34,471 0
+D40 9/10 14,109 12,645 1,464
+D00+D10 9/10 9,081 8,142 939
+D00+D20 0/10 2,933 0 2,933
+D00+D40 0/10 498 0 498
+D10+D20 0/10 2,250 0 2,250
+D10+D40 0/10 191 0 191
+D20+D40 1/10 4,452 448 4,004
+D00+D10+D20 0/10 719 0 719
+D00+D10+D40 0/10 97 0 97
+D00+D20+D40 0/10 313 0 313
+D10+D20+D40 0/10 126 0 126
+D00+D10+D20+D40 0/10 49 0 49
+All singleton sets except D40 were active at every update; D40 and D00+D10 were active at nine. D20+D40
+was active at only one update. Nine of the 15 possible sets never activated. That is a serious coverage limitation
+for mixed groups, but it does not mean that most training opportunities were disabled: common singleton sets
+dominate the total, and 91.41% of all opportunities still received an edit.
+The local fixed and shared-online controls selected 199,490 boxes within 158,151 group applications, including
+26,843 applications involving more than one box. The local support changes only a portion of the image content
+and preserves unselected regions. This locality is part of the intervention, not a claim that every annotated object
+receives an augmentation in each epoch.
+Class adaptation selected level 3 for 76.17% of applied edits, compared with 18.79% under online shared. This
+is a substantial change in the realized intervention. It is consistent with less restrictive conditioning for common
+
+RDD2022 research handoff | Status verified 27 October 2026
+15
+supported sets, but the records do not establish that stronger edits caused the AP decrease. Support, family
+choices, detector trajectories, and realized exposure also differ.
+8 Retrospective diagnosis of strength and support
+After the completed class-adaptive run, saved training observations and frozen training metadata were examined
+without new optimizer steps, detector inference, or test evaluation. The analysis reconstructs decisions on the
+observed trajectory. It cannot predict the accuracy of a controller that would have changed that trajectory. [S12]
+8 1 Strongest passing is not the same as most useful
+Of 95 active family/update/class-set states, 52 had exactly zero clipped net difficulty. Those states accounted for
+97,048 of 144,568 applied edits, or 67.13%. In 44 states the selected strength had zero difficulty although
+another eligible strength had a positive score; those states accounted for 82,914 applications. This follows from
+the implemented rule: strength maximizes the passing level, while difficulty is used only after strength selection.
+For example, the D00 photometric state at epoch 4 selected level 3 with difficulty zero and minimum retention
+about 0.907; all three levels were eligible and level 1 had a positive difficulty of about 0.0088. This is evidence
+that the maximum-level rule can ignore the measured difficulty ordering. It is not evidence that level 1 would
+produce better validation AP.
+For 94.26% of applied edits, both family probabilities were within 0.05 of one half. Consequently, much of this
+run’s adaptation was expressed through admissible strength and fallback behavior rather than sharply different
+family weights. A zero clipped net score does not imply an unchanged image, no harder object, or no possible
+regularization benefit. The score’s aggregation and clipping prevent those stronger interpretations.
+A leave-one-source-cluster-out sensitivity check found six selected states whose retention decision failed under
+at least one cluster deletion. They routed 3,186 applications. This is a descriptive sensitivity check, not a
+confidence interval or a formal significance test; nevertheless, it shows that the minimum support threshold does
+not guarantee a stable decision.
+8 2 The auxiliary loss compares changing ROI samples
+Across 20,752 correlated object-operation comparisons at selected states, the number of assigned positive ROIs
+changed in 86.64% of cases. Auxiliary loss decreased in 77.90%. The mean ROI count rose from 15.05 in the
+reference view to 16.87 in the transformed view. In zero-score states, mean count rose from 15.91 to 18.19 and
+loss decreased in 86.49% of comparisons.
+The measured association between loss change and ROI-count change was approximately -0.534. These
+repeated observations are correlated, so the coefficient is descriptive and does not establish causation. More
+fundamentally, the observer averages over a different proposal sample after the transformation. An apparent loss
+decrease can combine an appearance effect with changes in which ROIs are measured. It is therefore too strong
+to interpret this auxiliary difference as an isolated estimate of object difficulty.
+The records do not support the specific explanation that harder proposals disappeared and caused the decrease;
+average proposal counts increased. Saved feedback contains object summaries and ROI counts but not the full
+per-ROI boxes and logits required to reconstruct a fixed-ROI counterfactual. A new frozen-checkpoint probe is
+needed to evaluate that measurement change.
+8 3 Sparse panels rather than absent training examples
+Among 20,709 opportunities for mixed-class groups, 12,119 received identity, a fallback fraction of 58.52%.
+Annotation availability alone implies that at least 8,798 of the total 13,583 fallbacks could not have been
+avoided on the old panels even with perfect reference detection. Thus a meaningful part of the support problem
+is panel allocation, not just detector failure.
+
+RDD2022 research handoff | Status verified 27 October 2026
+16
+Table 18 Training availability for the highest exposure exact sets
+Exact class set Groups Images Source clusters Active updates
+D00 13,453 8,143 7,971 10/10
+D10 5,252 3,916 3,867 10/10
+D20 5,399 4,514 4,456 10/10
+D40 3,082 1,921 1,877 9/10
+D00+D10 1,671 1,562 1,552 9/10
+D00+D20 462 452 440 0/10
+D10+D20 376 373 371 0/10
+D20+D40 654 645 637 1/10
+D00+D20 is present in 440 training source clusters but never activated; D10+D20 is present in 371 clusters and
+also never activated. D20+D40 appears in 637 clusters and activated once. Those examples show that poor panel
+support is not equivalent to an absence of the group type in the training pool. Availability is only an upper
+bound on detectable support, and inventories across sets can share source clusters or images.
+The four singleton sets plus D00+D10, D00+D20, D10+D20, and D20+D40 account for 156,158 of 158,151
+opportunities, or 98.74%. This motivates prioritizing those eight strata within the same probe budget. It does not
+justify claiming that a stratified panel will necessarily meet detector-based support or improve AP, and it does
+not remove the need to record unsupported rare sets.
+9 Verification and evidential limits
+The latest class-adaptive archive contains 123 members. Member checksums and checksum coverage were
+verified, archived source bytes match the released package, and configuration/environment records match the
+declared protocol. The frozen training/validation separation, original-coordinate validation ground truth, epoch
+histories, prediction coverage and geometry, training budget, and best/final checkpoint metadata were checked.
+[S4]
+Independent COCO evaluation recomputed the selected epoch 18 and final epoch 20, including per-class metrics,
+with maximum discrepancy zero. All ten controller updates and all 15 exact-set states per update were
+reconstructed from saved per-object observations using an independent aggregation implementation. Training
+decisions, sample order, group geometry, fallbacks, and exposure counts were replayed across all 20 epochs.
+Earlier conditions retain their prior independent metric audits; the comparison also checked their original
+archive hashes and saved records.
+These audits do not constitute independent reruns of the detector or raw-pixel pipeline. Full checkpoint tensors
+were not re-executed locally, and raw probe boxes/logits were not archived. Reported pixel-change counters and
+state-preservation flags were checked for consistency with source and records, not reproduced from a fresh live
+GPU model. Unit tests and successful training are complementary evidence, not substitutes for performance
+confirmation.
+The principal scientific limitations are one seed per condition, checkpoint selection on the same validation set
+used for reporting, a narrow operation bank, no full YOLO or scratch-initialization replication, no matched
+fixed-strength realization control, unequal online forward cost, and unequal edit exposure after class-set
+fallbacks. Warmup trajectory differences limit causal attribution. The observed support and ROI issues identify
+plausible intervention targets, but do not prove which mechanism caused the AP result.
+No test-set, unseen-country, deployment or repeated-seed result is available. Crop, training-subset and detection
+validation results answer different questions.
+
+RDD2022 research handoff | Status verified 27 October 2026
+17
+10 Review of the redesign and reasons for changing direction
+Source: RDD_Methodology_Redesign_and_Execution_Plan.docx in the user’s Downloads folder. The
+document is a proposal to assess, not an instruction that automatically overrides experimental evidence. It was
+read and compared with the completed audits. Its two routes were Approach A, context-decoupled local
+synthesis, and Approach B, feature-space augmentation with an IoU curriculum. Neither route has been
+executed in this project.
+10 1 Which criticisms are supported
+Issue Evidence and verdict
+Exact class-set sparsity Supported. Nine of fifteen possible sets never obtained an active policy. Mixed-class
+opportunities fell back to identity 58.52% of the time. Training examples do exist for
+several affected sets; the probe support was the limitation.
+Strength-selection rule Supported as a design limitation. The strongest passing level was selected even when it
+had zero clipped difficulty or a lower level had a positive score. Stronger appearance
+change is not automatically more useful training.
+Auxiliary loss comparability Supported measurement concern. Reference and edited views used different positive
+proposals. ROI counts changed in 86.64% of the examined pairs, so loss changes cannot
+be interpreted purely as the effect on the same object samples.
+Narrow action bank Fact. Version 1 used six photometric operations plus blur and noise. It did not test context
+relocation, copy-paste or a broad geometric bank. The missed benefit of those alternatives
+is still a hypothesis.
+Mask boundaries caused
+failure
+Unproven. A narrow taper could introduce artifacts, but no renderer ablation isolated its
+effect on accuracy. Smooth blending is a proposed intervention, not an established cure.
+Class imbalance caused
+failure
+Unproven causal claim. Class frequencies differ, but the five runs did not isolate
+imbalance from other mechanisms. Sampling changes need their own controls.
+CUDA nondeterminism
+explains scores
+Not established. Pre-augmentation epoch-1 trajectories differed, but neither repeated-run
+variance nor the precise source of those differences was measured.
+Three corrections to older summaries: nine of fifteen class sets never activated (six did); 94.26% counts
+augmentation applications with near-uniform family probabilities, not policy states; and the dataset contains
+seven collections from six countries.
+10 2 What Approach A proposed and what survived review
+The external document proposed smooth distance-based masks, Fourier-amplitude perturbations, copy-paste
+with Poisson or color-space matching, factorization into four class-level policies, and an EMA-based GT-ROI
+observer. Its useful direction was to address both support fragmentation and the limited set of appearance-only
+interventions. Its technical guarantees and budget estimates were too strong.
+Original assertion or suggestion Assessment carried into the revision
+Preserving Fourier phase preserves
+crack semantics
+Not a guarantee. Amplitude changes can alter fine-edge visibility and contrast;
+blur is a simple counterexample to phase alone being sufficient. Fourier
+augmentation was not retained in the initial version-2 bank.
+GT ROIs and no_grad make
+feedback zero cost
+False. Clean and transformed features still require backbone work unless
+explicitly reused in a valid way. Version 2 must record additional image forwards,
+ROI work and wall time.
+
+RDD2022 research handoff | Status verified 27 October 2026
+18
+Original assertion or suggestion Assessment carried into the revision
+Four class estimates solve mixed-set
+behavior
+Pooling improves sample availability, but marginal evidence does not prove safety
+for every overlap combination. Version 2 adds joint admissibility and a supported
+mixed-group veto.
+Use a simple minimum of maximum
+safe levels
+Unsafe without monotonicity. Each tested action/strength must retain its own
+admissibility result; a failing lower level cannot be assumed safe because a higher
+one passed.
+Copy individual defects from RGB
+boxes
+The data has boxes, not verified instance masks or crack skeletons. An RGB box
+contains pavement/context. Version 2 proposes copying an annotated group with
+context and explicit label closure, not pretending it is a segmented object.
+Pasting into no-target images gives
+clean background
+No-target annotations do not establish healthy pavement or a valid road region.
+Recipient areas need review; background and camera compatibility cannot be
+assumed.
+Fixed speedup and success
+thresholds
+The proposed 3–5× minority exposure, 95 GPU-hour plan, arbitrary strength caps
+and early-epoch AP gates were not demonstrated or accepted as evidence.
+Measure cost and freeze justified gates before running.
+The revision therefore retains smooth local rendering, class-pooled evidence and controlled context relocation as
+hypotheses to test. It removes the claims of zero-cost feedback, guaranteed semantic preservation, automatically
+correct mixtures and predetermined improvement.
+10 3 Why Approach B is not the next experiment
+Approach B would add ROI feature-style mixing, DropBlock and a rising IoU threshold, approximately 0.5 to
+0.65. These changes move the intervention inside the detector and change supervision or feature distributions at
+the same time. They would make it harder to identify whether local augmentation policy is responsible for any
+change. Higher IoU thresholds can also reduce positive assignments when proposal quality is insufficient. The
+latest direction keeps this route deferred; it is not an implemented fallback or a second active experiment.
+Relevant prior-art anchors discussed during review include Copy-Paste (arXiv:2012.07177), Fourier Domain
+Adaptation (arXiv:2004.05498), MixStyle (arXiv:2104.02008) and Cascade R-CNN (arXiv:1712.00726). Their
+established ingredients are not new contributions of this project. A new claim must concern a demonstrated
+residual capability of the complete, controlled method, not a renamed combination of known operations.
+
+RDD2022 research handoff | Status verified 27 October 2026
+19
+11 Latest version 2 methodology and unresolved specification
+Status: conversational design only. The working description is class-adaptive group augmentation with whole-
+image geometry and controlled group copy-paste. The latest discussion supersedes the earlier suggestion to keep
+exact-set policies and merely switch to the weakest admissible strength. It does not supersede the recorded
+version-1 results. No version-2 experiment can be reported until a new protocol and implementation exist.
+11 1 Research question and invariant training setup
+The revised question is whether class-conditioned admissibility improves training when the action bank includes
+context and geometric variation, while avoiding independent edits to overlapping damage labels. The primary
+comparison is class-adaptive versus shared online selection under the same expanded bank. The proposed
+detector remains Faster R-CNN with ResNet-50 FPN and COCO initialization, using the existing frozen data
+splits, 640-pixel letterbox and 20-epoch training recipe. Architecture novelty is not claimed. A retention gate is a
+measured detection-stability rule, not proof of unchanged human semantics.
+11 2 Three augmentation components
+Component Proposed behavior and annotation rule
+Shared whole-image
+geometry
+Horizontal reflection, modest isotropic scaling and translation on a fixed canvas. Transform
+every box with the entire image. Reject transformations that crop annotated damage under
+the declared policy. Use the same geometry distribution in every new arm.
+In-place local appearance Retain the current appearance families as candidates, render one connected overlap group
+once, and replace the very narrow taper with a specified smooth blend. Original target boxes
+remain valid because objects do not move.
+Controlled group copy-
+paste
+Copy a complete annotated overlap group with surrounding context to a reviewed
+compatible road region. Transfer every included annotation, maintain orientation, and
+preserve the original donor. This is a context-patch intervention with boxes, not mask-based
+instance transplantation.
+Horizontal flipping does not convert a transverse crack into a longitudinal crack by itself. A left-right reflection
+maps a horizontal line to a horizontal line and a vertical line to a vertical line; applied to the whole scene, it also
+reflects the road direction. The intended crack category is relative to the road, not merely to the x or y axis of the
+image. A 90-degree rotation of an isolated crack patch can change that relation and is excluded. Vertical flips,
+arbitrary local rotations and anisotropic stretching are also excluded from the initial bank. Even label-preserving
+whole-scene geometry still needs visual and annotation checks for realistic use.
+For a continuous XYXY box in an image of width W, horizontal reflection maps [xmin, ymin, xmax, ymax] to
+[W − xmax, ymin, W − xmin, ymax]. Scale and translation must use the same affine transform for pixels and
+boxes. The implementation must follow the project’s continuous-coordinate convention rather than mix it with
+inclusive integer-pixel formulas.
+11 3 Controlled group copy-paste
+The proposed donor bank uses training images only. Sample a target class uniformly, then an eligible donor
+group containing that class; the exact handling of groups eligible for multiple classes still needs specification.
+Proposed uniform donor scales are 0.9, 1.0 and 1.1. Keep the group’s orientation and use compatible
+road/camera views rather than freely exchanging vehicle-camera and drone patches.
+The patch must include the complete selected group, a defined context margin, and all annotations intersecting
+the copied region, or the candidate must be rejected. Its opaque interior must contain all copied target boxes.
+Feathering occurs outside that interior so that the blend does not erase the labeled damage. The source image is
+
+RDD2022 research handoff | Status verified 27 October 2026
+20
+not modified. The recipient gains transformed labels for the copied objects. Non-target annotated objects also
+require explicit handling; they cannot silently become unlabeled artifacts.
+Recipients are proposed to come from training images with no target boxes, using reviewed pasteable road
+regions. Reject placements that overlap known annotations or violate road/camera compatibility. An empty
+target list is not proof that the area contains no damage. The proposed copy-paste probability is 0.25 on eligible
+opportunities, leaving most negative training presentations unchanged. The donor bank, recipient bank, nominal
+opportunity schedule and rejection bookkeeping must be identical across the augmented comparators.
+These banks and masks do not yet exist as a reviewed version-2 artifact. Building them is substantive dataset
+work, not a minor coding detail. If sufficiently reliable recipient regions cannot be obtained within the available
+time, copy-paste must be explicitly deferred and the scientific claim narrowed; it must not be replaced silently
+by arbitrary rectangle pasting.
+11 4 Per-class admissibility and group decisions
+Replace fifteen exact class-set policy tables with evidence pooled per damage class and candidate action. For
+each tested operation/strength, measure how many reference-detected objects remain correctly detected in the
+edited view. The proposed reference detection rule remains confidence at least 0.25 and IoU at least 0.5, with a
+retention threshold of 0.8. The proposed minimum support increases to sixteen reference-detected objects from
+eight distinct source clusters per class and action. These are engineering choices awaiting implementation and
+sensitivity assessment, not validated statistical guarantees.
+A group containing several classes can use an action only when it is admissible for every constituent class.
+Sufficiently supported direct observations on that mixed group can veto an action that the pooled marginal
+estimates would admit. When a decision borrows per-class evidence because the exact mixture has little support,
+record that fact. When even a constituent class/action lacks support, retain identity. The exact mixed-group veto
+threshold has not yet been frozen.
+The latest proposal does not maximize the clipped loss-increase score and does not automatically choose the
+strongest passing level. It uses balanced random sampling over eligible families, operations and tested strengths,
+with the precise hierarchy to be fixed in the configuration. The auxiliary loss remains a diagnostic. Thus version
+2 is an adaptive admissibility controller, not a claim to directly optimize downstream learning gain.
+This remains distinct from online shared local augmentation: the shared comparator uses one common
+admissibility policy across classes, whereas the adaptive controller routes a group through the intersection of its
+constituent class policies. If the resulting class policies are identical in practice, the two methods may behave
+similarly; logs must expose that outcome rather than assume differentiation.
+11 5 Probe observer and update loop
+The proposed update schedule remains before epochs 2, 4, 6, …, 20, after one common unaugmented warmup
+epoch. Probe the frozen detector on training-only panels without optimizer, gradient, parameter, normalization-
+buffer or global-RNG changes. Ordinary detector predictions provide the retention measurement. Use matched
+GT boxes and deterministic nearby ROIs, fixed or geometrically mapped across views, for a comparable
+auxiliary loss diagnostic; GT ROIs must never be inserted into inference predictions.
+For an in-place edit, compare the same objects before and after the edit. For copy-paste, compare donor objects
+with their transformed copies and inspect recipient detections before and after pasting, including false positives
+outside the pasted region. The mapping of boxes, retained support, source clusters and recipient context must be
+archived. Feedback is not zero cost: record backbone image forwards, auxiliary ROI work, wall time and
+failed/restarted probes. The exact panel allocation and forward budget are still unresolved and must be matched
+between the two online arms.
+At each update: select the frozen probe panel, render candidate views, collect detection and diagnostic
+observations, validate support, build the admissible-action sets, commit the controller together with
+
+RDD2022 research handoff | Status verified 27 October 2026
+21
+model/optimizer/RNG state, then resume ordinary detector training. During inference and validation, use the
+detector alone without augmentation or ground-truth-dependent controller routing.
+11 6 New comparison arms and experimental sequence
+New arm Role
+Standard geometry only Controls for the shared whole-image geometric bank. It is a new baseline, not the
+historical identity run.
+Fixed expanded augmentation Uses the same local appearance and copy-paste renderer/banks with a fixed declared
+sampling distribution.
+Online shared expanded
+augmentation
+Uses feedback to define one common admissible-action distribution. Controls for
+online selection without class routing.
+Online class-adaptive expanded
+augmentation
+Uses per-class pooled evidence and joint group admissibility. Primary comparator:
+the online shared expanded arm.
+Create a common unaugmented warmup checkpoint for each seed, then branch the four arms from the same
+model, optimizer, scheduler and random states. Use the same subsequent image order and separate keyed
+augmentation streams. Check actual repeatability on the target CUDA stack; warn_only=True permits
+nondeterministic operations and is not a determinism guarantee. Record any remaining limits.
+Execution order: one consolidated renderer/annotation/controller preflight; a matched short pilot; then the full
+20-epoch comparison only if the pipeline has usable support, correct annotations, reproducible checkpoint
+recovery and acceptable measured cost. After the protocol is frozen, use matched repeated seeds and the
+necessary component ablations. Reserve the test partition for a final settled comparison. Do not repeatedly tune
+against it.
+Primary endpoint: selected validation AP50:95 under the frozen selection rule. Secondary diagnostics include
+AP50, AP75, per-class AP, negative-image false alarms, localization errors, final-epoch metrics,
+applied/changed/rejected/fallback counts, policy differences across classes and total compute. A copy-paste-
+removal ablation is needed for a claim about the context intervention. A renderer ablation is needed if smoother
+masks are claimed to cause a gain. The old version-1 runs remain historical evidence; they cannot serve as
+matched controls for a changed operation bank.
+11 7 Decisions that must be frozen before implementation
+Unresolved item Minimum decision needed
+Whole-image geometry Flip probability, scale and translation bounds, canvas padding, interpolation, clipping rules
+and precise rejection of cropped annotations.
+Appearance and blending Version-2 candidate magnitudes, application probability, context margin, mask
+function/width and handling of adjacent annotations. Do not assume every version-1 number
+was already accepted for version 2.
+Donor and recipient
+banks
+Review procedure, saved region format, source/camera compatibility, annotation closure,
+donor reuse limits and bank size feasible within the project deadline.
+Sampling and exposure How multi-class donor groups are weighted, the probability hierarchy, rejection
+caps/fallbacks and how nominal opportunities and realized exposure are compared.
+Observer Deterministic nearby-ROI geometry and assignments, loss aggregation, transformed-ROI
+clipping and the exact mixed-group veto/support rule.
+Probe and compute
+budget
+Panel composition, number of candidate views, repeated noise draws, matched online forward
+count and a measured pilot timing budget.
+
+RDD2022 research handoff | Status verified 27 October 2026
+22
+Unresolved item Minimum decision needed
+Experimental decision
+rule
+Pilot length, predeclared continuation criteria, repeated-seed count, uncertainty analysis and
+ablations justified by the claims. Three seeds alone do not guarantee significance.
+Course scope Whether using a standardized COCO-pretrained detector satisfies the original course
+requirement for a custom CNN trained from scratch. Instructor approval is not established in
+the records.
+Recommendation for the receiving AI: consolidate these items into one reviewable protocol/configuration
+before writing the new controller. Do not declare the design finished merely because the overall concept has
+been named. Keep the class-pooled admissibility direction separate from the still-unvalidated semantic and
+engineering assumptions of context relocation.
+12 CCAST environment, execution and recovery
+12 1 Locations and pinned environment
+SSH account and host: solomon.owusu.1@prime.ccast.ndsu.edu. Login-node names vary, including login0003
+and login0004. The project root on CCAST is:
+/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research
+Path relative to remote project root Purpose
+dataset/raw Original country/source images and Pascal VOC XML annotations.
+dataset/detection_splits_v1 Frozen train.jsonl, val.jsonl, test.jsonl and split provenance.
+weights/detection_v1 Official COCO Faster R-CNN and YOLO checkpoints plus
+SHA256SUMS.
+.venvs/rdd_detection_v1 Project virtual environment layered on the shared conda pytorch
+environment.
+runs Training outputs, controller records, full checkpoints and exported
+records archives.
+runs/baseline_job_logs Live PBS logs named <PBS_JOBID>.log.
+Dependency Verified CCAST version
+Python / CUDA build 3.12.3 / PyTorch CUDA 12.1
+torch / torchvision 2.3.0 / 0.18.0
+NumPy / Pillow 1.26.4 / 10.3.0
+ultralytics-opencv-headless 8.4.182
+opencv-python-headless / pycocotools 4.11.0.86 / 2.0.10
+Hardware used One NVIDIA A10 per GPU job, approximately 23,028 MiB reported
+memory.
+The shared conda environment is /mmfs1/apps/pyenvs/anaconda3-2022.05/envs/pytorch. pip check passed after
+installing the project additions. The frozen environment listing is rdd_detection_v1_environment.txt. Local
+Windows tests used a different Python/PyTorch environment and do not replace target-environment checks.
+
+RDD2022 research handoff | Status verified 27 October 2026
+23
+12 2 Batch jobs and what disconnection means
+The production wrapper requests queue gpus, one A10, four CPU cores, 32 GB RAM and 24 hours under group
+x-ccast-prj-aaboah. submit.sh is run on a login node; the PBS job activates conda and the project environment
+itself. No interactive GPU allocation or manual environment activation is required merely to submit it. GPU
+training and heavy tests run inside the allocation, never directly on the login node.
+# Historical production PBS resource pattern
+#PBS -q gpus
+#PBS -l select=1:ncpus=4:mem=32gb:ngpus=1:glist=a10
+#PBS -l walltime=24:00:00
+#PBS -W group_list=x-ccast-prj-aaboah
+#PBS -j oe
+A submitted PBS batch job continues after SSH disconnection. An interactive session may not. After
+reconnecting, inspect qstat and the saved log before allocating another GPU or submitting a duplicate. No active
+job is assumed at this handoff; all five recorded version-1 full runs are complete.
+# Windows PowerShell: reconnect
+ssh solomon.owusu.1@prime.ccast.ndsu.edu
+# CCAST Bash: inspect only
+qstat -u solomon.owusu.1
+project=/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research
+tail -n 80 "$project/runs/baseline_job_logs/796544.bright04.log"
+Completed condition PBS job ID
+Identity 794364.bright04
+Fixed image level 795553.bright04
+Fixed local 795787.bright04
+Online shared local 796146.bright04
+Online class-adaptive local 796544.bright04
+The version-1 wrapper checks package hashes, runs unit tests, executes a separate real-data GPU smoke,
+validates its gate and launches full training in a fresh process. Start refuses existing output or submission records.
+Full .pt checkpoints stay on CCAST. If an unfinished run reaches its time budget, wait for the old job to end,
+inspect its saved status and then explicitly use bash submit.sh resume in that verified package. Do not delete a
+run to force a retry. There is no automatic resubmission.
+12 3 Interactive diagnostics when genuinely needed
+For a new targeted interactive check, the historical allocation command was interact -c 4 -g 1 -m 16 -t 1. Run it
+on the login node and wait for the allocated-node prompt before the activation block. The two steps cannot
+simply be pasted as if the new shell were already running. Batch scripts are preferable for long work.
+interact -c 4 -g 1 -m 16 -t 1
+# Run only after the allocation has opened its compute-node shell
+source /mmfs1/apps/pyenvs/anaconda3-2022.05/etc/profile.d/conda.sh
+conda activate pytorch
+project=/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research
+source "$project/.venvs/rdd_detection_v1/bin/activate"
+Before GPU computation, check PBS_JOBID, the expected sys.prefix, torch.cuda.is_available() and
+torch.cuda.device_count()==1. Respect the scheduler’s CUDA_VISIBLE_DEVICES. nvidia-smi may list all
+four physical GPUs even when only one is assigned. CUDA NMS and RoI Align forward/backward already
+passed in the project environment; do not rerun them routinely without a changed environment or a relevant
+failure.
+
+RDD2022 research handoff | Status verified 27 October 2026
+24
+12 4 Package and result transfer discipline
+Once the specification and checks exist, create a uniquely named version-2 package. Record its hash, upload
+with scp, compare SHA-256 on CCAST, refuse an existing extraction directory, extract with tar --keep-old-files,
+check SHA256SUMS and submit through the wrapper. No version-2 package or valid launch command exists
+yet.
+For a completed run, download the emitted records archive and verify its SHA-256. Inspect run status,
+source/config hashes, checkpoint metadata, metrics and controller records before the next experiment. A
+completed log alone does not establish scientific validity. Records archives do not include full model
+checkpoints unless their manifests explicitly say so.
+An early SHA256SUMS file used Windows CRLF endings. This non-mutating workaround made its checks
+pass; do not change hashed source files to fix the manifest:
+tr -d '\r' < SHA256SUMS | sha256sum -c -
+
+RDD2022 research handoff | Status verified 27 October 2026
+25
+13 Repository, artifact inventory and provenance
+13 1 What is and is not on GitHub
+Repository: https://github.com/Solo0722/deep_learning_project. The working branch is main. Local HEAD and
+the GitHub main branch were both verified at commit 8ed2567c6f5a26960949e12116f4fa1c0b8a403b, whose
+subject is “Add main manuscript and references for RDD Prototype Submission.” The earlier memory that
+GitHub contained only an initial bootstrap is outdated.
+Before this handoff was generated, git status showed no tracked-file modifications but did show untracked
+additions. These include the completed class-adaptive audit/analysis files, output/, and
+reports/experiment_report_20261027/. This handoff and its build/QA files are additional local artifacts. No
+commit, push or publication was performed for this request. Sharing the repository URL alone omits these local
+additions, raw data, remote checkpoints and the external redesign document.
+Treat saved run protocols and verified audit outputs as the authority for completed experiments. The latest
+conversation defines proposed changes; this handoff records them with unresolved items. PROJECT_PLAN.md
+and some older review JSON files are historical snapshots and may say that work is pending even though later
+runs completed it. research_paper/main.tex is the current manuscript source but is not a frozen version-2
+implementation specification.
+13 2 Source map
+All relative paths in the following map are relative to the local project root printed on page 2. The same package
+names appear under the remote project root. The receiving AI should inspect actual files and dates before editing.
+Location What to read or reuse
+PROJECT_PLAN.md; DATA_AUDIT.md;
+METHOD_REVIEW.md
+Original scope, crop-era decisions and historical methodological review.
+Read chronologically, not as current run status.
+dataset_splits_v1/ Earlier crop-classification split package. Do not substitute it for the full-
+image detector manifests.
+detection_splits_v1/ Frozen full-image manifests; README, summary.json, config.json,
+reviewed_policy.json, excluded_images.json and excluded_objects.json
+document construction.
+audit_dataset.py; audit_detection_data.py;
+make_splits.py; make_detection_splits.py
+Data audit and split generation. Regeneration must use the frozen policy and
+new output paths.
+materialize_crops.py; train_baseline.py;
+BASELINE_RUNBOOK.md
+Earlier crop extraction and custom-CNN baseline implementation.
+pilot_runner.py; PILOT_RUNBOOK.md;
+reports/pilot_verification_v1/
+Earlier crop-controller development and local synthetic verification. Not a
+completed adaptive crop efficacy experiment.
+detection_loader_v1/; detection_integration_v1/ Image/annotation adapters, representative training selection and two-
+detector real-image integration checks.
+detection_learning_v1/;
+detection_diagnostics_v1/
+Small training-only learning check and YOLO normalization diagnostic.
+fasterrcnn_baseline_v1/; fasterrcnn_shared_v1/;
+fasterrcnn_local_v1/
+Three fixed baseline training packages. Each protocol.json and README
+explains its exact condition.
+fasterrcnn_online_shared_v1/ Online shared controller and frozen probe implementation used as the
+principal adaptive comparator.
+fasterrcnn_class_adaptive_v1/ Completed exact-set controller package, including controller.py,
+class_set_feedback.py, shared_controller.py, probe_runner.py and
+probe_detector.py.
+
+RDD2022 research handoff | Status verified 27 October 2026
+26
+Location What to read or reuse
+reports/conventional_seed42_v1/analysis/ Crop baseline RESULTS.md, verification.json, curves, confusion matrix
+and per-class metrics.
+reports/detection_learning_v1/;
+reports/detection_diagnostics_v1/
+Saved learning metrics and YOLO diagnostic review; later status supersedes
+their old prospective next-step fields.
+reports/fasterrcnn_baseline_v1/;
+reports/fasterrcnn_shared_v1/;
+reports/fasterrcnn_local_v1/;
+reports/fasterrcnn_online_shared_v1/
+Per-condition result audits and comparisons. Confirm each file name from
+the folder before relying on it.
+reports/fasterrcnn_class_adaptive_v1/ Latest consolidated five-arm audit, comparisons, support/strength diagnosis
+and replay records; important local untracked material.
+research_paper/main.tex;
+research_paper/references.bib
+Current manuscript and bibliography. Keep the existing editor/source when
+asked to edit; do not silently switch to an alternate draft.
+output/reports/RDD_Experiment_Report_2026-
+10-27.docx
+Earlier detailed black-and-white experimental report; Sections 10–11 of this
+handoff supersede its prospective next steps.
+reports/research_handoff_20261027/ This handoff’s builder, source snapshot manifest and rendering/verification
+records.
+External redesign source, outside the repository:
+C:\Users\SOLOMON\Downloads\RDD_Methodology_Redesign_and_Execution_Plan.docx
+Also preserve the original proposal “Road Defect CNN – Class Adaptive Augmentation.docx” and
+Deep_Learning_Project_Deadlines.pdf. The prototype submission ZIP from 26 October is a time-specific
+submission snapshot, not a guarantee that all later audit files are included.
+13 3 Start with these exact audit files
+File in reports/fasterrcnn_class_adaptive_v1/ Use
+RESULTS.md Human-readable conclusion and caveats for the completed adaptive
+run.
+aggregate_comparison.csv; per_class_comparison.csv Selected and final metrics for all five conditions and each damage
+class.
+negative_image_comparison.csv;
+runtime_comparison.csv
+False-alarm diagnostics and measured training/probe runtime.
+comparison_curves.csv; comparison.json Epoch trajectories and consolidated comparison provenance.
+ccast_verification.json; recomputed_metrics.json Archive/source/run checks and independent metric recomputation
+from saved predictions.
+controller_verification.json;
+controller_class_set_rounds.csv
+Decision replay and per-update exact-set policy behavior.
+strength_support_diagnostics.json;
+strength_selection_diagnostic_cells.csv
+Strongest-admissible selection, zero-score activity and support
+sensitivity.
+class_set_training_inventory.csv;
+class_set_summary.csv;
+controller_class_set_exposure.csv
+Training availability versus actual panel support and applied/fallback
+opportunities.
+audit_ccast_results.py; audit_class_controller.py;
+diagnose_strength_support.py
+Audit implementation. Inspect dependencies and invocation before
+reproducing analyses.
+
+RDD2022 research handoff | Status verified 27 October 2026
+27
+13 4 Completed result archives
+These five archives were downloaded to the local project root and their hashes were verified during the recorded
+result audits. The handoff reproduces those recorded hashes; it does not imply a fresh rehash of every large
+archive. Each archive is also under the remote runs/ directory. Reverify it before transfer or new extraction.
+Identity
+fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz
+SHA-256: 4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f
+Fixed image level
+fasterrcnn_shared_seed42_v1_records_31a774d9401a.tar.gz
+SHA-256: 28b28bee01376cc10fe0a60dca7ddfb9cd97ec9b548597fe316d94db164bfd7c
+Fixed local
+fasterrcnn_local_seed42_v1_records_b047925ba90a.tar.gz
+SHA-256: 6f1efc305780b1ab018a807bd728460b04582586166f6aeb616e693c6cfdcbac
+Online shared local
+fasterrcnn_online_shared_seed42_v1_records_437f03a837f3.tar.gz
+SHA-256: b30df4e003be14cf8a53059341451c5101261d98d32e58cdc94866c793f0a231
+Online class-adaptive local
+fasterrcnn_class_adaptive_seed42_v1_records_26e50b915ed9.tar.gz
+SHA-256: c4817b3cb3bc69813776d06662a9070a7415e9552cab7c6b331c5237414d9b74
+The complete records archive for the adaptive run contained 123 audited members. Saved predictions enabled
+selected/final COCO metric recomputation, and observations enabled replay of the controller decisions. This did
+not independently reconstruct unsaved raw probe logits/ROIs or rerun GPU training from raw images.
+13 5 Other reproducibility hashes and minimum transfer set
+rdd_detection_v1_environment.txt
+SHA-256: f07b523b024d61f46fe407df674fa2361a2f9332ed489f794f7b8b20024d77c8
+weights/detection_v1/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth
+SHA-256: 258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384
+weights/detection_v1/yolov8n.pt
+SHA-256: f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36
+detection_learning_check_v1.tar.gz
+SHA-256: 0ab14951c60bf566e2585ea66648d3bc743e2c427558b1f85b762ed50dd9693a
+detection_diagnostic_check_v1.tar.gz
+SHA-256: 14dd16aad80c0dbf546994aa4c2aad80c6dfb215ca5d7f7a222e218b5557193f
+For reasoning-only continuity, give the next AI this handoff, the external redesign DOCX and access to the
+current manuscript, fasterrcnn_class_adaptive_v1/, fasterrcnn_online_shared_v1/ and the complete
+reports/fasterrcnn_class_adaptive_v1/ folder. For implementation, also provide the frozen split package, all
+baseline packages and tests, and the environment listing. For independent metric re-audit, provide the relevant
+records archives. For training/resume, access to CCAST raw data, weights and full checkpoints is additionally
+required. This Word document does not embed those assets.
+
+RDD2022 research handoff | Status verified 27 October 2026
+28
+13 6 Evidence keys used in the historical sections
+Bracketed S identifiers in Sections 1–9 refer to the source groups below. Within each group, subsequent bare
+filenames belong to the named folder unless another path is given.
+[S1] Dataset and exclusions. detection_splits_v1/summary.json; config.json; excluded_images.json; excluded_objects.json;
+reports/detection_split_review_v1/verification.json.
+[S2] Executed method and training recipe. fasterrcnn_class_adaptive_v1/protocol.json; controller.py; class_set_feedback.py;
+probe_detector.py; probe_runner.py; local_augmentation.py; shared_augmentation.py; baseline.py.
+[S3] Five-condition numeric comparison. reports/fasterrcnn_class_adaptive_v1/aggregate_comparison.csv;
+per_class_comparison.csv; negative_image_comparison.csv; runtime_comparison.csv; comparison_curves.csv;
+comparison.json.
+[S4] Completed class-adaptive audit. reports/fasterrcnn_class_adaptive_v1/ccast_verification.json;
+controller_verification.json; RESULTS.md; class_set_summary.csv; recomputed_metrics.json.
+[S5] Earlier detector-condition audits. reports/fasterrcnn_baseline_v1/ccast_verification.json;
+reports/fasterrcnn_shared_v1/ccast_verification.json; reports/fasterrcnn_local_v1/ccast_verification.json;
+reports/fasterrcnn_online_shared_v1/ccast_verification.json and controller_verification.json.
+[S6] Historical crop classifier. reports/conventional_seed42_v1/analysis/RESULTS.md; verification.json;
+per_class_metrics.csv.
+[S7] Real-image loader and integration. reports/detection_loader_v1/ccast_verification.json;
+reports/detection_integration_v1/ccast_verification.json; corresponding test outputs retained in the project conversation.
+[S8] Training-only learning check. reports/detection_learning_v1/metrics.csv; ccast_verification.json;
+post_learning_review.json.
+[S9] Completed YOLO normalization diagnostic. reports/detection_diagnostics_v1/post_diagnostic_review.json;
+ccast_verification.json; metrics.csv.
+[S10] Preparation and frozen split verification. reports/detection_preparation_v1/verification.json;
+reports/detection_split_review_v1/verification.json; detection_preparation_v1/tests/test_audit_detection_data.py.
+[S11] Local class-adaptive implementation checks. fasterrcnn_class_adaptive_v1/LOCAL_VALIDATION.json;
+tests/test_class_controller.py; tests/test_online_resume.py.
+[S12] Retrospective strength and support analysis. reports/fasterrcnn_class_adaptive_v1/strength_support_diagnostics.json;
+strength_selection_diagnostic_cells.csv; class_set_training_inventory.csv; diagnose_strength_support.py.
+
+RDD2022 research handoff | Status verified 27 October 2026
+29
+14 Writing status, course context and collaboration requirements
+14 1 Manuscript and contribution boundaries
+The project’s active LaTeX document is research_paper/main.tex, with references.bib in the same directory. The
+user previously requested preservation of the methodology structure and equations while adding a submission-
+style experimental setup. Do not replace the current file or update scientific claims merely because a new
+method has been discussed. When asked to revise it, inspect the actual source, edit in place, preserve the open
+editor and compile using the built-in document compiler.
+The manuscript must distinguish the earlier custom crop CNN from the standardized full-image Faster R-CNN
+detector. The augmentation controller is the proposed methodological contribution; neither Faster R-CNN nor
+YOLO becomes a custom architecture by changing its output classes. The original plan required training a
+custom CNN from scratch. The user later chose full-image detection and authorized a pretrained Faster R-CNN
+baseline, but the record does not show instructor confirmation that this change satisfies the original requirement.
+Do not conceal this scope question or invent permission.
+Current defensible contribution statement: a working, audited overlap-group class-adaptive augmentation
+prototype and a controlled single-seed development comparison that documents negative accuracy evidence and
+concrete support/observer limitations. Not defensible: state-of-the-art performance, proven semantic safety,
+causal explanations of failure, class-adaptive superiority, cross-country generalization, test-set performance or
+successful version-2 results.
+Related-work notes and audits include RELATED_WORKS_RESEARCH.md,
+research_paper/METHOD_PROTOCOL.md and research_paper/SOURCE_AUDIT.md. Prior comparisons
+discussed PSIS, RangeAugment, CUDA, MADAug, CTAugment, TeachAugment, BDA and InterAug. Before a
+novelty claim, verify the primary sources and identify what the nearest method already does. Neither adaptive
+magnitude selection, class-conditioned augmentation, overlap grouping, copy-paste nor style mixing alone
+establishes novelty here.
+Primary reference entry points for the receiving AI: the RDD repository at
+https://github.com/sekilab/RoadDamageDetector; the TorchVision detection tutorial at
+https://docs.pytorch.org/tutorials/intermediate/torchvision_tutorial.html; the papers listed in Section 10; and
+PyTorch’s reproducibility documentation at https://docs.pytorch.org/docs/stable/notes/randomness.html. This
+handoff is not a new exhaustive literature review. Recheck citations and current documentation when they
+become material to implementation or submission.
+14 2 Course milestones from the supplied schedule
+Date in 2026 Required deliverable
+26 October Working proposed-method prototype, baseline comparison or documented debugging evidence,
+updated methods section.
+2 November Preliminary comparative results, curves/error analysis, draft results and remaining experiment
+plan.
+9 November Main comparison and ablations, repeat-run or suitable robustness evidence, revised results.
+16 November Complete manuscript draft and remaining experiment list.
+23 November Revised manuscript, essential remaining experiments and response to feedback.
+4 December Final manuscript, reproducible code, data documentation, slides and response to feedback.
+Source: Deep_Learning_Project_Deadlines.pdf. Written deliverables after 5 October are due at 11:59 PM
+Central Time in that schedule; presentation arrangements are separate. This is the supplied course schedule, not
+
+RDD2022 research handoff | Status verified 27 October 2026
+30
+a live check for later instructor changes. The 26 October prototype package was prepared, but this handoff does
+not verify submission acceptance or a grade.
+14 3 Working agreement for the next AI
+Be direct and evidence-bounded. Separate measured failure, missing measurement, inference and proposed
+intervention. Do not agree reflexively, present speculation as fact, or promise that a new operation will fix an
+unisolated cause. Reason through crack labels, road context, annotation transforms, overlap and evaluation
+consequences before sending a training command.
+The user prefers a concise plain-language explanation before formal detail, then concrete work. For CCAST
+guidance, safe blocks of commands with checksum and error guards are now preferred when commands can
+truly run together; otherwise give one command and wait for its output. Label Windows PowerShell versus
+CCAST Bash. Do not make the user repeatedly reactivate environments for batch submissions that already do it.
+Keep the main research objective in view. The YOLO diagnostic was a legitimate investigation but was deferred
+when it distracted from the Faster R-CNN comparison. Avoid repeated broad testing after relevant checks pass,
+additional full experiments without an interpretable comparison, and unbounded diagnostic branches. Before
+broad implementation, provide one concrete design and its material assumptions for review; do not turn every
+routine reversible action into a permission request.
+Use plain black-and-white reports without decorative formatting. Write manuscripts as papers for submission,
+not chronological progress notes. Verify local and remote repository contents before telling the user that a link
+contains the latest work. Do not publish, send messages, overwrite completed experiments, or launch remote
+training merely because it appears in this handoff.
+The user’s explicit response rules require the standalone sentence “You are wrong about this.” when correcting a
+demonstrably false user claim, followed by the specific correction. Do not use it for an uncertain question, a
+preference, or correction of the AI’s own mistake. When essential missing context makes a request impossible to
+answer usefully, use “This is too vague to answer usefully. Here's what you need to define first.” and identify
+the minimum missing information. Do not force either phrase into an otherwise straightforward request.
+
+RDD2022 research handoff | Status verified 27 October 2026
+31
+15 Ready-to-use prompt for the receiving AI
+The following prompt can accompany this document. It is an explicit starting brief; access to the listed files is
+still necessary.
+I am continuing an RDD2022 road-damage detection project. Read this handoff completely and inspect the
+source files that support your next action. Five version-1 Faster R-CNN augmentation conditions are complete.
+The online class-adaptive run did not improve the primary validation score over online shared. The latest
+direction is a proposed version 2, not implemented or tested. Do not claim an efficacy result for it.
+My immediate goal is to make the version-2 methodology fully specified and reviewable before starting its
+experiments. Preserve the frozen full-image split and version-1 evidence. Start from Sections 10 and 11: shared
+whole-image geometry, smooth group-local appearance, controlled annotation-aware group copy-paste, pooled
+per-class admissibility and balanced sampling of admissible actions. Auxiliary loss is diagnostic; do not silently
+restore the old strongest-passing or maximum-hardness rule.
+First inspect fasterrcnn_class_adaptive_v1/protocol.json, controller.py, class_set_feedback.py,
+probe_detector.py, probe_runner.py and local_augmentation.py; then inspect
+reports/fasterrcnn_class_adaptive_v1/RESULTS.md, strength_support_diagnostics.json,
+controller_verification.json and the comparison CSVs. Read
+RDD_Methodology_Redesign_and_Execution_Plan.docx as a proposal with the corrections in this handoff.
+Verify Git status because the latest audit/report files were untracked at handoff.
+Return one concrete protocol covering the unresolved items in Section 11.7, including annotation invariants,
+reviewed donor/recipient banks, mixed-group veto, exact sampling, matched compute and pilot continuation
+criteria. Flag only decisions that genuinely require my input; use evidence and reasonable defaults for routine
+choices. Do not prepare a full GPU run until the preflight and short-pilot plan is defined. Do not resume YOLO
+or Approach B without a reason connected to the main question.
+After the protocol is settled, implement in a new versioned package, preserve old outputs, test the material
+failure modes, and give CCAST commands in safe copy-pasteable blocks. Use common warmup checkpoints
+and matched order/random streams for comparisons. Keep the test set untouched until the final settled
+evaluation. Report what is measured, what is inferred and what remains unknown. Be direct; avoid speculative
+assurances and unnecessary detours.
+This handoff is complete enough to resume reasoning and locate the evidence. It is not evidence that all files
+have been shared, that a current CCAST allocation exists, or that the remaining version-2 engineering choices
+are already resolved.

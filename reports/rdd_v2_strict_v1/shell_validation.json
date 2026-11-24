@@ -1,0 +1,25 @@
+{
+  "method": "Git Bash bash -n on all four scripts; read-only syntax checks succeeded",
+  "scripts": {
+    "job.pbs": {
+      "status": "pass",
+      "lf_only": true,
+      "sha256": "529ad3d1ff35a20d4119e4408163f150112809b2928ca494d502e090de4317ff"
+    },
+    "run_job.sh": {
+      "status": "pass",
+      "lf_only": true,
+      "sha256": "46c9fd7a882d5070ee39f0a52f2ae2937ea9896eb59d41b6c1717067058ed6a0"
+    },
+    "submit.sh": {
+      "status": "pass",
+      "lf_only": true,
+      "sha256": "f79308696d5f517c05816152b9b38973e15c3ab88d8b7f744a07f41b69779f5a"
+    },
+    "status.sh": {
+      "status": "pass",
+      "lf_only": true,
+      "sha256": "d97baa13c7d10abc0440b74a9ea0b156ed5dfa51af606cd0a8852ca6da6fc486"
+    }
+  }
+}

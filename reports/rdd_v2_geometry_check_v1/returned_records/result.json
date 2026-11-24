@@ -1,0 +1,27 @@
+{
+  "Pillow": "10.3.0",
+  "annotation_failures": 0,
+  "held_out_data_used": false,
+  "numpy": "1.26.4",
+  "pixel_check": {
+    "pixel_failures": 0,
+    "rendered_candidates": 3024,
+    "rendered_images": 56,
+    "selected_images": 56,
+    "visual_review": "pending"
+  },
+  "platform": "Linux-5.14.0-570.119.1.el9_6.x86_64-x86_64-with-glibc2.34",
+  "protocol_sha256": "4394cf573d2a63603ccd2d343513eb43ad172a015c738daab2c34cef1dd12e09",
+  "python": "3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]",
+  "seconds": 103.48532828316092,
+  "source_sha256": {
+    "controller.py": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+    "geometry.py": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+    "geometry_check.py": "1d4d1d1043a517b388d5cda4ead7d109764722a2dabc5e4387e4cb52acb72a65",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "replay.py": "458a09f6a8857152f43b28dbcba2e28f7d43feb10e35e9879dbebb4c436e6833"
+  },
+  "status": "numerical_complete_visual_review_pending",
+  "train_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+  "training_or_gpu_inference": false
+}

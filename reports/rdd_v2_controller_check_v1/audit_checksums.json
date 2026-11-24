@@ -1,0 +1,9 @@
+{
+  "RESULTS.md": "45290b90843509ca5dd04b116bd88f87e23a7f51d4216dbe095f66fc554e1c2c",
+  "audit_returned.py": "507beb49a44bbb6310df45eac51e563814aa5431e884842b59353285115fbde9",
+  "follow_up_analysis.json": "86d9e065e6a0c9d8855840743641767bae4ce2c4c97afc44d65ed4f89084765b",
+  "image_inventory.json": "ea6bff827e2fd9a5cca373d0c628ae4d6e44f85f554298c91d7234eacf811f8f",
+  "interpret_results.py": "5c55e892da6d38986eb70c75b2d3a83d5d3ad271b3da0d0ad8d6cf9454bc8008",
+  "numerical_audit.json": "f6298597b4c1db450ea2ecad79fc36c42c9d47631dee18dfc1a770dbf086a890",
+  "visual_review.json": "5c1102d236f03799e31fefeb687248d789bfe98a66423acb709c3555354f6be3"
+}

@@ -1,0 +1,77 @@
+test_all_negative_production_batch_can_train_and_hash (test_repro.DiagnosticTests.test_all_negative_production_batch_can_train_and_hash) ... ok
+test_archive_preserves_evidence_excludes_checkpoint_and_refuses_overwrite (test_repro.DiagnosticTests.test_archive_preserves_evidence_excludes_checkpoint_and_refuses_overwrite) ... Records archive: C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\tmp\rdd_repro_v2_tests\rdd_repro_test_ibepw0cq\records_records.tar.gz
+Archive SHA-256: 755d05da4681d5d241599b84de5a42883040a1ee81a7582876d22d3c727ed62f
+ok
+test_budget_stop_preserves_partial_records (test_repro.DiagnosticTests.test_budget_stop_preserves_partial_records) ... DIAGNOSTIC condition=control_a update=1/3 loss=11.2480659 first_difference=None seconds=0.05
+ok
+test_changed_gradient_is_localized_to_backward (test_repro.DiagnosticTests.test_changed_gradient_is_localized_to_backward) ... DIAGNOSTIC condition=control_a update=1/3 loss=11.2480659 first_difference=None seconds=0.05
+DIAGNOSTIC condition=control_a update=2/3 loss=11.5679436 first_difference=None seconds=0.05
+DIAGNOSTIC condition=control_a update=3/3 loss=7.4818721 first_difference=None seconds=0.05
+DIAGNOSTIC condition=control_b update=1/3 loss=11.2480659 first_difference={'step': 1, 'phase': 'backward', 'changed_paths': 2} seconds=0.05
+DIAGNOSTIC condition=control_b update=2/3 loss=11.5681829 first_difference={'step': 1, 'phase': 'backward', 'changed_paths': 2} seconds=0.07
+DIAGNOSTIC condition=control_b update=3/3 loss=7.4824300 first_difference={'step': 1, 'phase': 'backward', 'changed_paths': 2} seconds=0.08
+DIAGNOSTIC condition=probe_only update=1/3 loss=11.2480659 first_difference=None seconds=0.08
+DIAGNOSTIC condition=probe_only update=2/3 loss=11.5679436 first_difference=None seconds=0.07
+DIAGNOSTIC condition=probe_only update=3/3 loss=7.4818721 first_difference=None seconds=0.09
+DIAGNOSTIC condition=resume_only update=1/3 loss=11.2480659 first_difference=None seconds=0.07
+DIAGNOSTIC condition=resume_only update=2/3 loss=11.5679436 first_difference=None seconds=0.07
+DIAGNOSTIC condition=resume_only update=3/3 loss=7.4818721 first_difference=None seconds=0.06
+ok
+test_existing_suite_refused (test_repro.DiagnosticTests.test_existing_suite_refused) ... ok
+test_forward_input_mutation_is_rejected (test_repro.DiagnosticTests.test_forward_input_mutation_is_rejected) ... ok
+test_four_conditions_match_on_stochastic_cpu_fixture (test_repro.DiagnosticTests.test_four_conditions_match_on_stochastic_cpu_fixture) ... DIAGNOSTIC condition=control_a update=1/3 loss=11.2480659 first_difference=None seconds=0.06
+DIAGNOSTIC condition=control_a update=2/3 loss=11.5679436 first_difference=None seconds=0.06
+DIAGNOSTIC condition=control_a update=3/3 loss=7.4818721 first_difference=None seconds=0.05
+DIAGNOSTIC condition=control_b update=1/3 loss=11.2480659 first_difference=None seconds=0.06
+DIAGNOSTIC condition=control_b update=2/3 loss=11.5679436 first_difference=None seconds=0.06
+DIAGNOSTIC condition=control_b update=3/3 loss=7.4818721 first_difference=None seconds=0.08
+DIAGNOSTIC condition=probe_only update=1/3 loss=11.2480659 first_difference=None seconds=0.08
+DIAGNOSTIC condition=probe_only update=2/3 loss=11.5679436 first_difference=None seconds=0.08
+DIAGNOSTIC condition=probe_only update=3/3 loss=7.4818721 first_difference=None seconds=0.07
+DIAGNOSTIC condition=resume_only update=1/3 loss=11.2480659 first_difference=None seconds=0.06
+DIAGNOSTIC condition=resume_only update=2/3 loss=11.5679436 first_difference=None seconds=0.08
+DIAGNOSTIC condition=resume_only update=3/3 loss=7.4818721 first_difference=None seconds=0.07
+ok
+test_instrumented_update_matches_original_update (test_repro.DiagnosticTests.test_instrumented_update_matches_original_update) ... ok
+test_materialize_exercises_real_file_loader_geometry_and_collation (test_repro.DiagnosticTests.test_materialize_exercises_real_file_loader_geometry_and_collation) ... ok
+test_materialized_input_mutation_is_rejected (test_repro.DiagnosticTests.test_materialized_input_mutation_is_rejected) ... ok
+test_nonfinite_gradient_does_not_update_parameters (test_repro.DiagnosticTests.test_nonfinite_gradient_does_not_update_parameters) ... ok
+test_nonfinite_loss_does_not_update_parameters (test_repro.DiagnosticTests.test_nonfinite_loss_does_not_update_parameters) ... ok
+test_probe_buffer_mutation_is_rejected (test_repro.DiagnosticTests.test_probe_buffer_mutation_is_rejected) ... DIAGNOSTIC condition=control_a update=1/3 loss=11.2480659 first_difference=None seconds=0.06
+DIAGNOSTIC condition=control_a update=2/3 loss=11.5679436 first_difference=None seconds=0.06
+DIAGNOSTIC condition=control_a update=3/3 loss=7.4818721 first_difference=None seconds=0.06
+DIAGNOSTIC condition=control_b update=1/3 loss=11.2480659 first_difference=None seconds=0.07
+DIAGNOSTIC condition=control_b update=2/3 loss=11.5679436 first_difference=None seconds=0.08
+DIAGNOSTIC condition=control_b update=3/3 loss=7.4818721 first_difference=None seconds=0.07
+ok
+test_probe_rng_leak_is_rejected (test_repro.DiagnosticTests.test_probe_rng_leak_is_rejected) ... DIAGNOSTIC condition=control_a update=1/3 loss=11.2480659 first_difference=None seconds=0.07
+DIAGNOSTIC condition=control_a update=2/3 loss=11.5679436 first_difference=None seconds=0.07
+DIAGNOSTIC condition=control_a update=3/3 loss=7.4818721 first_difference=None seconds=0.07
+DIAGNOSTIC condition=control_b update=1/3 loss=11.2480659 first_difference=None seconds=0.08
+DIAGNOSTIC condition=control_b update=2/3 loss=11.5679436 first_difference=None seconds=0.08
+DIAGNOSTIC condition=control_b update=3/3 loss=7.4818721 first_difference=None seconds=0.07
+ok
+test_production_collation_includes_all_fields_and_negative_targets (test_repro.DiagnosticTests.test_production_collation_includes_all_fields_and_negative_targets) ... ok
+test_resume_state_mutation_is_rejected (test_repro.DiagnosticTests.test_resume_state_mutation_is_rejected) ... DIAGNOSTIC condition=control_a update=1/3 loss=11.2480659 first_difference=None seconds=0.08
+DIAGNOSTIC condition=control_a update=2/3 loss=11.5679436 first_difference=None seconds=0.08
+DIAGNOSTIC condition=control_a update=3/3 loss=7.4818721 first_difference=None seconds=0.08
+DIAGNOSTIC condition=control_b update=1/3 loss=11.2480659 first_difference=None seconds=0.08
+DIAGNOSTIC condition=control_b update=2/3 loss=11.5679436 first_difference=None seconds=0.08
+DIAGNOSTIC condition=control_b update=3/3 loss=7.4818721 first_difference=None seconds=0.08
+DIAGNOSTIC condition=probe_only update=1/3 loss=11.2480659 first_difference=None seconds=0.07
+DIAGNOSTIC condition=probe_only update=2/3 loss=11.5679436 first_difference=None seconds=0.07
+DIAGNOSTIC condition=probe_only update=3/3 loss=7.4818721 first_difference=None seconds=0.07
+DIAGNOSTIC condition=resume_only update=1/3 loss=11.2480659 first_difference=None seconds=0.06
+ok
+test_bfloat16_singleton_uses_dense_byte_payload (test_repro.StateTests.test_bfloat16_singleton_uses_dense_byte_payload) ... ok
+test_compare_reports_known_difference_and_values (test_repro.StateTests.test_compare_reports_known_difference_and_values) ... ok
+test_empty_shapes_and_dtypes_hash_without_storage_access (test_repro.StateTests.test_empty_shapes_and_dtypes_hash_without_storage_access) ... ok
+test_nonempty_strides_match_independent_numpy_bytes (test_repro.StateTests.test_nonempty_strides_match_independent_numpy_bytes) ... ok
+test_nonfinite_values_are_rejected (test_repro.StateTests.test_nonfinite_values_are_rejected) ... ok
+test_reported_zero_stride_failure_is_reproduced_by_legacy_conversion (test_repro.StateTests.test_reported_zero_stride_failure_is_reproduced_by_legacy_conversion) ... ok
+test_structure_dtype_empty_and_signed_zero_are_distinguished (test_repro.StateTests.test_structure_dtype_empty_and_signed_zero_are_distinguished) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 14.535s
+
+OK

@@ -1,0 +1,115 @@
+{
+  "actual_cpu_model": {
+    "comparison": {
+      "actual_sha256": "685fb80299dab6370e33a50c230f2664ebb4a24913ab1737eb0ef794f0031cb1",
+      "changes": [],
+      "equal": true,
+      "expected_sha256": "685fb80299dab6370e33a50c230f2664ebb4a24913ab1737eb0ef794f0031cb1",
+      "missing_paths": [],
+      "unexpected_paths": []
+    },
+    "effective_model": {
+      "image_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "image_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "normalization": "FrozenBatchNorm2d, eps=0.0; ImageNet RGB mean/std",
+      "parameters": 41314536,
+      "reinitialized": "ROI classification and class-specific box regression predictors",
+      "trainable_backbone_stages": 5,
+      "trainable_parameters": 41314536,
+      "transferred_state_keys": []
+    },
+    "gradient_norm": 1125.992431640625,
+    "gradient_norm_exact": true,
+    "instrumented_and_comparison_seconds": 29.333683900000324,
+    "losses": {
+      "loss_box_reg": 0.11020740866661072,
+      "loss_classifier": 5.634462833404541,
+      "loss_objectness": 1.8010787963867188,
+      "loss_rpn_box_reg": 1.8876205682754517
+    },
+    "losses_exact": true,
+    "model_optimizer_rng_gradients_exact": true,
+    "original_seconds": 25.218456999999034,
+    "scope": "Actual randomly initialized Faster R-CNN, 640 pixels, two synthetic images with four classes and an empty target; one original update versus one instrumented update from the same state. CPU only, not CCAST CUDA evidence.",
+    "status": "pass",
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "created_utc": "2026-10-29T16:39:27.787153+00:00",
+  "environment_boundary": "Windows CPU validation differs from pinned CCAST Python 3.12 / torch 2.3.0 / torchvision 0.18.0. No local CUDA result.",
+  "initial_test_correction": "Seven negative tests initially expected RuntimeError although the unchanged source guard raises ValueError. Expectations corrected; rejection guards were not weakened.",
+  "initial_test_log_sha256": "443a7c2276298f17a2d1dec2c55729912d8f80661d3fad6f22a18eb5a859a1cf",
+  "local_versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  },
+  "metadata_preflight": {
+    "all_training_only": true,
+    "appearance_identity": true,
+    "archived_input_and_decision_hashes_pinned": true,
+    "batch_sizes": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      2
+    ],
+    "images": 26,
+    "local_reference_note": "RNG/data ordering here is a local metadata check; actual pinned CCAST materialization is gated separately.",
+    "positive_images": 17,
+    "runtime_pixel_replay_pending_ccast": true,
+    "status": "pass"
+  },
+  "pending": [
+    "Pinned CCAST runtime and raw-pixel replay",
+    "Actual seven-update four-condition CUDA diagnostic"
+  ],
+  "scope": "Implementation validation only; no accuracy, causal-root-identification or superiority claim.",
+  "shell_syntax": {
+    "scripts": {
+      "job.pbs": {
+        "lf_only": true,
+        "sha256": "d7ab2c6dfbc0680e73ff353c98bfe4be89689d1d8179f2cf8fea7f9ba9c31d6b",
+        "status": "pass"
+      },
+      "run_job.sh": {
+        "lf_only": true,
+        "sha256": "93c0b686a00d7ef029680a4f74114e81558546d094debf47251276974e5ef823",
+        "status": "pass"
+      },
+      "status.sh": {
+        "lf_only": true,
+        "sha256": "995540c959457729c9e42b08b828c0192ccb7e6c69389dc7f3c23cb7e38f7f09",
+        "status": "pass"
+      },
+      "submit.sh": {
+        "lf_only": true,
+        "sha256": "e0a5152e85ca62c44f02a2bfe4103668ee681c43fdf9ed56a81b46405e6088cd",
+        "status": "pass"
+      }
+    },
+    "tool_execution": "Git Bash -n, exec chunk fc9ebb, exit 0; read-only check outside sandbox after named-object initialization failed inside it."
+  },
+  "skips": 0,
+  "status": "pass",
+  "test_log_sha256": "f792032a3e5ed269eb44c21213e5fc65eeecbbfb3dd06591c189aa4379fdfbec",
+  "unit_test_seconds": 27.942,
+  "unit_tests": 16
+}

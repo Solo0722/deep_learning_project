@@ -1,0 +1,116 @@
+{
+  "administrative_seconds": 3000,
+  "analysis": [
+    "Separate support/recall/allowed actions for A and B; never pool panels to rescue support",
+    "Clean vs geometry recall, including objects lost/found, from selected groups",
+    "Per-class cross-panel allowed-action disagreement and probability TV; unsupported agreement is undefined",
+    "Shared vs class-specific policy difference on the same observations",
+    "Exact mixed-set support/borrowed flags, LOCO sensitivity, cluster halves, conditional bootstrap and source withholding",
+    "Record changed pixels before/after geometry; all rendered views counted, unchanged candidate draws retained"
+  ],
+  "batch_size": 2,
+  "bootstrap_draws": 256,
+  "checkpoint": {
+    "bytes": 331117946,
+    "file": "epoch_001_step_00006716_04dccd11bbd2.pt",
+    "metadata_source_archive": "fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz",
+    "metadata_source_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+    "relative_path": "runs/fasterrcnn_identity_seed42_v1/checkpoints/epoch_001_step_00006716_04dccd11bbd2.pt",
+    "selection": "Fixed first unaugmented epoch; not the validation-selected best checkpoint",
+    "sha256": "dbd619334a57ad4422e929b90b327f80d1ca3bfc5b86f6f37594714ec138e858"
+  },
+  "continuation": {
+    "next_stage": "Only after review: freeze a bounded four-arm training pilot from a common warmup state; do not start a 20-epoch run from this package",
+    "scientific": "Review both-panel support, class differentiation and panel/cluster sensitivity. No scalar stability threshold is claimed validated. Unsupported or collapsed policies require a design decision before a matched pilot, not threshold relaxation. Completion is not an automatic go signal.",
+    "technical": "Verified inputs/checkpoint, exact forward budget, finite valid predictions, frozen model/gradients/RNG, repeat parity, manual preview review"
+  },
+  "controller": {
+    "actions": "Eight existing appearance operations times three independently tested levels, 24 actions. Mean the two Gaussian-noise draws within each object; count each reference object once.",
+    "limitation": "Admissibility is a detector-tolerance measurement, not a semantic guarantee or an estimate of training utility.",
+    "minimum_detected_clusters": 8,
+    "minimum_detected_objects": 16,
+    "mixed_veto": "For a mixed set, a sufficiently supported constituent class with retention below threshold vetoes that action. Missing direct evidence never certifies a mixed set; flag borrowed evidence. Use the same 16-object/8-cluster rule for direct evidence.",
+    "pooling": "Pool selected-group reference-detected objects per class across class sets, preserving image/object/cluster identities. Reference misses stay in recall diagnostics, not retention denominators.",
+    "reference_confidence": 0.25,
+    "reference_iou": 0.5,
+    "retention_threshold": 0.8,
+    "routing": "Intersect admissible actions of the classes in the edited group. Unsupported constituent class means identity.",
+    "sampling": "Uniform eligible family, then uniform eligible operation in that family, then uniform eligible tested level for that operation. No largest-level preference and no loss-hardness weighting.",
+    "shared_comparator": "One global action set: intersection over all four pooled class sets, with the union of all supported mixed-set vetoes removed. Same measurements, thresholds and sampling rule.",
+    "size": 640,
+    "state": "Rebuild at each update; no stale carry, threshold relaxation or identity-as-success reporting"
+  },
+  "cpu_threads": 4,
+  "deferred": {
+    "copy_paste": "disabled",
+    "fixed_roi_auxiliary_loss": "not implemented or used",
+    "new_blending_mask": "disabled; exact existing renderer retained",
+    "training": "not implemented",
+    "validation_test": "not read"
+  },
+  "evaluation": {
+    "max_detections": 100,
+    "nms_iou": 0.5,
+    "score_threshold": 0.001
+  },
+  "expected_environment": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/.venvs/rdd_detection_v1",
+  "expected_train_images": 26863,
+  "geometry": {
+    "annotations": "Transform every target and every valid non-target annotation with the same continuous-edge affine map; preserve labels, IDs, difficult and truncated flags",
+    "bank_size": 54,
+    "horizontal_flip": [
+      false,
+      true
+    ],
+    "interpolation": "Pillow bilinear; exact slicing for flip and integer placement; fill RGB (114,114,114)",
+    "limits": "Preserving annotated boxes does not prove label completeness, image realism or learning benefit. Zoom may crop unannotated context. Existing truncated annotations remain flagged. Horizontal reflection does not exchange longitudinal and transverse classes; it preserves their relation to the reflected road.",
+    "order": "After letterbox and optional existing local appearance: optional reflection, isotropic canvas scaling, integer translation; geometry shared by each paired reference/action set",
+    "rejection": "Any transformed annotation outside the canvas rejects the entire candidate to identity. Never clip/drop a target. Invalid non-target boxes disable geometry for that image and are reported.",
+    "resized_canvas_sizes": [
+      608,
+      640,
+      672
+    ],
+    "sampling": "One uniform draw from the full 54-candidate bank; reject to identity without resampling. This is a preflight bank, not a claim of optimal magnitude.",
+    "size": 640,
+    "translations_pixels": [
+      -16,
+      0,
+      16
+    ]
+  },
+  "geometry_epoch_index": 1,
+  "max_detector_images": 14852,
+  "observer": "Ordinary Faster R-CNN predictions, no GT proposals or target argument. One-to-one class-correct matching after inference at score >=0.25 and IoU >=0.5. No optimizer, loss or backward. FP counts are local panel diagnostics, not population FPR.",
+  "panels": {
+    "count": 2,
+    "images_each": 256,
+    "limitations": "Cluster disjointness removes known duplicate cluster reuse, not all visual/route dependence. Different images can differ in source and difficulty; report composition. Only two panels and one model snapshot; exploratory development design, not a population precision claim.",
+    "no_adaptive_resampling": true,
+    "primary_groups_per_class": 64,
+    "rationale": "Resource-bounded enrichment to investigate earlier D40 support failures. 64 anchor groups are not 64 detectable potholes and do not guarantee the 16-object/8-cluster gate.",
+    "selection": "Hash-rank target-bearing training images within anchor class; rare classes first; alternate A/B slots; one source cluster across both panels; choose hash-ranked eligible overlap group"
+  },
+  "parity": "Repeat the same two-image geometry-reference batch once, four extra image forwards. Check labels/count/order exactly and boxes/scores within absolute 1e-5.",
+  "parity_tolerance": 1e-05,
+  "pipeline_order": "Existing 640 letterbox -> existing v1 local appearance union -> same whole-image geometry for every paired view. Clean and geometry-only views identify geometry-related misses. Do not substitute geometry-before-local in the later pilot without another renderer check.",
+  "precision": "float32; AMP/TF32 off; cudnn benchmark off, cudnn deterministic on; measured repeat parity, no general promise of CUDA bitwise training reproducibility",
+  "purpose": "Fresh training-only support and two-panel policy sensitivity at one fixed detector; not training utility or final efficacy",
+  "resources": "One A10 GPU, 4 CPUs, 32 GB RAM, one hour PBS; 50-minute in-program administrative cap including input/model setup. Stop without a complete archive if unfinished; no automatic retry or full training.",
+  "seed": 42,
+  "thin_case": {
+    "image": "Norway/train/images/Norway_005967.jpg",
+    "object_index": 12,
+    "purpose": "Additional raw crop, prepared RGB and 0.95-scale QA; no extra detector forwards or insertion into panel selection"
+  },
+  "train_manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+  "version": "rdd_v2_controller_check_v1",
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0"
+  },
+  "views": "clean + geometry-only reference + 24 appearance actions with two noise draws at each of its three levels (27 candidate draws)",
+  "views_per_image": 29
+}

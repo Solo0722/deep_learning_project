@@ -1,0 +1,26 @@
+{
+  "backward": {
+    "peak_allocated_bytes": 4365878784,
+    "peak_reserved_bytes": 13669236736,
+    "total_gpu_bytes": 23684841472,
+    "wall_seconds_since_previous_phase": 0.5049129072576761
+  },
+  "before": {
+    "peak_allocated_bytes": 581085696,
+    "peak_reserved_bytes": 13669236736,
+    "total_gpu_bytes": 23684841472,
+    "wall_seconds_since_previous_phase": 0.37994909286499023
+  },
+  "forward": {
+    "peak_allocated_bytes": 3551539712,
+    "peak_reserved_bytes": 13669236736,
+    "total_gpu_bytes": 23684841472,
+    "wall_seconds_since_previous_phase": 0.11826365068554878
+  },
+  "update": {
+    "peak_allocated_bytes": 4365878784,
+    "peak_reserved_bytes": 13669236736,
+    "total_gpu_bytes": 23684841472,
+    "wall_seconds_since_previous_phase": 0.5257409028708935
+  }
+}

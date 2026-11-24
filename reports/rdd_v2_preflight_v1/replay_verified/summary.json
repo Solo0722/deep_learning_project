@@ -1,0 +1,497 @@
+{
+  "limitations": [
+    "new renderer or geometry retention",
+    "fixed-ROI loss",
+    "repeated-panel variability at one fixed model",
+    "future validation AP",
+    "effect of a new controller on the training trajectory"
+  ],
+  "protocol_sha256": "4394cf573d2a63603ccd2d343513eb43ad172a015c738daab2c34cef1dd12e09",
+  "rounds": [
+    {
+      "active_groups": 226,
+      "active_groups_borrowing_direct_evidence": 5,
+      "active_mixed_groups": 23,
+      "admissible_class_actions_changed_by_one_cluster": 5,
+      "distinct_single_class_distributions": 4,
+      "epoch": 2,
+      "group_weighted_total_variation_to_shared": 0.8828125,
+      "groups_different_from_shared": 226,
+      "mixed_groups": 32,
+      "panel_groups": 256,
+      "pooled_class_actions": 55,
+      "shared_actions": 0,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2"
+      ],
+      "supported_classes": 3,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 39,
+      "active_mixed_groups": 39,
+      "admissible_class_actions_changed_by_one_cluster": 1,
+      "distinct_single_class_distributions": 4,
+      "epoch": 4,
+      "group_weighted_total_variation_to_shared": 0.14230685763888892,
+      "groups_different_from_shared": 255,
+      "mixed_groups": 39,
+      "panel_groups": 256,
+      "pooled_class_actions": 73,
+      "shared_actions": 14,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 30,
+      "active_mixed_groups": 30,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 3,
+      "epoch": 6,
+      "group_weighted_total_variation_to_shared": 0.12451171874999997,
+      "groups_different_from_shared": 254,
+      "mixed_groups": 30,
+      "panel_groups": 256,
+      "pooled_class_actions": 79,
+      "shared_actions": 16,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 230,
+      "active_groups_borrowing_direct_evidence": 30,
+      "active_mixed_groups": 30,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 3,
+      "epoch": 8,
+      "group_weighted_total_variation_to_shared": 0.8984375,
+      "groups_different_from_shared": 230,
+      "mixed_groups": 37,
+      "panel_groups": 256,
+      "pooled_class_actions": 66,
+      "shared_actions": 0,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2"
+      ],
+      "supported_classes": 3,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 27,
+      "active_mixed_groups": 27,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 2,
+      "epoch": 10,
+      "group_weighted_total_variation_to_shared": 0.0927734375,
+      "groups_different_from_shared": 190,
+      "mixed_groups": 27,
+      "panel_groups": 256,
+      "pooled_class_actions": 91,
+      "shared_actions": 22,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 44,
+      "active_mixed_groups": 32,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 3,
+      "epoch": 12,
+      "group_weighted_total_variation_to_shared": 0.08116319444444443,
+      "groups_different_from_shared": 221,
+      "mixed_groups": 32,
+      "panel_groups": 256,
+      "pooled_class_actions": 87,
+      "shared_actions": 20,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 32,
+      "active_mixed_groups": 32,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 2,
+      "epoch": 14,
+      "group_weighted_total_variation_to_shared": 0.04687499999999999,
+      "groups_different_from_shared": 216,
+      "mixed_groups": 32,
+      "panel_groups": 256,
+      "pooled_class_actions": 86,
+      "shared_actions": 20,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 27,
+      "active_mixed_groups": 27,
+      "admissible_class_actions_changed_by_one_cluster": 2,
+      "distinct_single_class_distributions": 2,
+      "epoch": 16,
+      "group_weighted_total_variation_to_shared": 0.02783203125,
+      "groups_different_from_shared": 57,
+      "mixed_groups": 27,
+      "panel_groups": 256,
+      "pooled_class_actions": 89,
+      "shared_actions": 22,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 37,
+      "active_mixed_groups": 37,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 2,
+      "epoch": 18,
+      "group_weighted_total_variation_to_shared": 0.09814453125,
+      "groups_different_from_shared": 201,
+      "mixed_groups": 37,
+      "panel_groups": 256,
+      "pooled_class_actions": 91,
+      "shared_actions": 22,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 23,
+      "active_mixed_groups": 23,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 2,
+      "epoch": 20,
+      "group_weighted_total_variation_to_shared": 0.041015625,
+      "groups_different_from_shared": 84,
+      "mixed_groups": 23,
+      "panel_groups": 256,
+      "pooled_class_actions": 90,
+      "shared_actions": 22,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_online_shared_v1"
+    },
+    {
+      "active_groups": 226,
+      "active_groups_borrowing_direct_evidence": 5,
+      "active_mixed_groups": 23,
+      "admissible_class_actions_changed_by_one_cluster": 3,
+      "distinct_single_class_distributions": 4,
+      "epoch": 2,
+      "group_weighted_total_variation_to_shared": 0.8828125,
+      "groups_different_from_shared": 226,
+      "mixed_groups": 32,
+      "panel_groups": 256,
+      "pooled_class_actions": 56,
+      "shared_actions": 0,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2"
+      ],
+      "supported_classes": 3,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 39,
+      "active_mixed_groups": 39,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 3,
+      "epoch": 4,
+      "group_weighted_total_variation_to_shared": 0.16471354166666669,
+      "groups_different_from_shared": 213,
+      "mixed_groups": 39,
+      "panel_groups": 256,
+      "pooled_class_actions": 86,
+      "shared_actions": 18,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 30,
+      "active_mixed_groups": 30,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 3,
+      "epoch": 6,
+      "group_weighted_total_variation_to_shared": 0.1476779513888889,
+      "groups_different_from_shared": 254,
+      "mixed_groups": 30,
+      "panel_groups": 256,
+      "pooled_class_actions": 92,
+      "shared_actions": 21,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 40,
+      "active_mixed_groups": 37,
+      "admissible_class_actions_changed_by_one_cluster": 22,
+      "distinct_single_class_distributions": 3,
+      "epoch": 8,
+      "group_weighted_total_variation_to_shared": 0.16786024305555555,
+      "groups_different_from_shared": 256,
+      "mixed_groups": 37,
+      "panel_groups": 256,
+      "pooled_class_actions": 93,
+      "shared_actions": 21,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 27,
+      "active_mixed_groups": 27,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 1,
+      "epoch": 10,
+      "group_weighted_total_variation_to_shared": 0.0,
+      "groups_different_from_shared": 0,
+      "mixed_groups": 27,
+      "panel_groups": 256,
+      "pooled_class_actions": 96,
+      "shared_actions": 24,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 44,
+      "active_mixed_groups": 32,
+      "admissible_class_actions_changed_by_one_cluster": 4,
+      "distinct_single_class_distributions": 2,
+      "epoch": 12,
+      "group_weighted_total_variation_to_shared": 0.08333333333333334,
+      "groups_different_from_shared": 256,
+      "mixed_groups": 32,
+      "panel_groups": 256,
+      "pooled_class_actions": 94,
+      "shared_actions": 21,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 32,
+      "active_mixed_groups": 32,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 2,
+      "epoch": 14,
+      "group_weighted_total_variation_to_shared": 0.04687499999999999,
+      "groups_different_from_shared": 216,
+      "mixed_groups": 32,
+      "panel_groups": 256,
+      "pooled_class_actions": 94,
+      "shared_actions": 22,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 27,
+      "active_mixed_groups": 27,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 2,
+      "epoch": 16,
+      "group_weighted_total_variation_to_shared": 0.18836805555555552,
+      "groups_different_from_shared": 217,
+      "mixed_groups": 27,
+      "panel_groups": 256,
+      "pooled_class_actions": 90,
+      "shared_actions": 18,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 37,
+      "active_mixed_groups": 37,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 1,
+      "epoch": 18,
+      "group_weighted_total_variation_to_shared": 0.0,
+      "groups_different_from_shared": 0,
+      "mixed_groups": 37,
+      "panel_groups": 256,
+      "pooled_class_actions": 96,
+      "shared_actions": 24,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    },
+    {
+      "active_groups": 256,
+      "active_groups_borrowing_direct_evidence": 23,
+      "active_mixed_groups": 23,
+      "admissible_class_actions_changed_by_one_cluster": 0,
+      "distinct_single_class_distributions": 1,
+      "epoch": 20,
+      "group_weighted_total_variation_to_shared": 0.0,
+      "groups_different_from_shared": 0,
+      "mixed_groups": 23,
+      "panel_groups": 256,
+      "pooled_class_actions": 96,
+      "shared_actions": 24,
+      "supported_class_names": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "supported_classes": 4,
+      "trajectory": "fasterrcnn_class_adaptive_v1"
+    }
+  ],
+  "source_sha256": {
+    "controller.py": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+    "geometry.py": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+    "geometry_check.py": "1d4d1d1043a517b388d5cda4ead7d109764722a2dabc5e4387e4cb52acb72a65",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "replay.py": "458a09f6a8857152f43b28dbcba2e28f7d43feb10e35e9879dbebb4c436e6833"
+  },
+  "sources": {
+    "fasterrcnn_class_adaptive_v1": {
+      "archive": "fasterrcnn_class_adaptive_seed42_v1_records_26e50b915ed9.tar.gz",
+      "archive_sha256": "c4817b3cb3bc69813776d06662a9070a7415e9552cab7c6b331c5237414d9b74",
+      "audit_sha256": "cbd83904870c812aff45e06e15136ff11ac2bb559e5bd096b003258a680ec670",
+      "controller_verification_sha256": "cef4b627e3b502eff2f1f75db1203699c91fae1f127dc696802f5de97617f913",
+      "historical_protocol_sha256": "651ebda915cf3a9d97eddf624ccebda423cefb4b8a7a472dc6e01971db494f1d",
+      "probe_member_sha256": {
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_002_a44ae4e0a3a4.json.gz": "7e965f9829d82825fe5379152c8ba73793fedef638e0ba59d76552bd0ba0fa29",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_004_0c7df2944dcc.json.gz": "7895fced9e2372095caf00624276ce6f76800f487a578fa14aa19d39e05d5e28",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_006_93034a2d8aad.json.gz": "13e57f64ee48050930a7a76e138525351dddfeb1c52b1f1b26acd054aeae64d3",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_008_0a78f2e5e302.json.gz": "8c8cf82fc8bce070f2135b313de3cfec9b39af0ef22dbb2f1588efcad7211192",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_010_806ffb81b98a.json.gz": "77ddfc17af05569d9bc87ae23942ee99f086e331caa9d97380adaf8502a47257",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_012_9c5c91f6f4fa.json.gz": "d4168d97b6de76080f28cc8798f8f9f1a0f2b710ccdaef9640f1eed0a5a5d761",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_014_10830d309de3.json.gz": "9bfaa8d3a78de9ad24914760f2858a1d1e14e9eed27cd02ae41c8d38c01dbcd4",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_016_aca872f0fe29.json.gz": "43c222c2acf70c5197f516a3b563329f137a250750419713f3b40e2dc2b14d24",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_018_3667f5b4d713.json.gz": "cb2e806e71d9298d3f994184017921bfd282c90799cdaec8b8d90c9c059c88e6",
+        "fasterrcnn_class_adaptive_seed42_v1/controller/epoch_020_75bff6ad6f1e.json.gz": "65b9b948dafe0acca9df193f2684edaa5072fa16116114c8f118acb57b14971b"
+      }
+    },
+    "fasterrcnn_online_shared_v1": {
+      "archive": "fasterrcnn_online_shared_seed42_v1_records_437f03a837f3.tar.gz",
+      "archive_sha256": "b30df4e003be14cf8a53059341451c5101261d98d32e58cdc94866c793f0a231",
+      "audit_sha256": "b14c3956764ba454d244c7c78c0b4ee9d2aa8ba8840be745a4e129587fab1ea9",
+      "controller_verification_sha256": "ce4f93f8e3acc82d122cf12ee79ca541c5297d81172a026c10d126dd59d2249e",
+      "historical_protocol_sha256": "484bb09534d37aab47c640ac6f5c4c322e6bc0a94fe713bbc30e4eafb18d71a0",
+      "probe_member_sha256": {
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_002_0a46ac8179d0.json.gz": "f57cfdc5b68cd794493f3e556d3fc5a58fee1e0371451a7f82728200f1467b53",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_004_2b2cc6a8efaf.json.gz": "7b399d42d3b9771db05ade9ae4ac39d3d8c1baeadf06d26b1cf4f86cce2c8247",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_006_856a48a8a889.json.gz": "104261ad8ebc8b9fe260d7650166b878c51b67b02563b73aa036d6c9bb435e5c",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_008_57d310230ec4.json.gz": "294cef9eefd01ed2cb093046ffff80b35e8f9c0e9acb5d9f55b78bf6c1583c44",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_010_47117910d917.json.gz": "94bab49f25893cf0c21941d4b798dd325aaecc15a76f21a8ae92cc6d956d7aa4",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_012_1e6df6d0296f.json.gz": "43d52f2fb845c867fef78e963ae2d31b5a686863306a352eeefd9e68b769a054",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_014_9a1a28d7d80a.json.gz": "088030832daef6907860bcefa3d6936f4f9b50de51656add319cf866b1a9dd7b",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_016_a09a5de0df58.json.gz": "5802ea775ad465897e9ecf64292913209e6fa62e5eb9db2a2957e44a26e3e49c",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_018_c94db04befe4.json.gz": "f82ba81c6dd2397d9d9b23c6172450df9cb096c3d0ddcd6412040b8e836f7aa2",
+        "fasterrcnn_online_shared_seed42_v1/controller/epoch_020_a3f0176c1624.json.gz": "e9be076af3c55333a01d9077a18adf528fdf2d38dce99ef14b5e9c4aa4b61b03"
+      }
+    }
+  },
+  "status": "retrospective_replay_complete_not_efficacy"
+}

@@ -1,0 +1,59 @@
+{
+  "amendment": {
+    "failure": "Tensor-byte hashing rejected an empty zero-stride int64 label tensor before training.",
+    "previous_diagnostic_updates_executed": 0,
+    "previous_job": "797431.bright04",
+    "previous_package": "rdd_v2_repro_v1",
+    "previous_records_sha256_user_reported": "c44213140dcdf9e211d2c1b1848b1503b456b62f46965383e6f161814a1635fd",
+    "scope": "Hash-layout compatibility repair and production-collation regression tests. Same data, checkpoint, four conditions and seven updates."
+  },
+  "batch_size": 4,
+  "comparison": "Exact equality plus tensor-level magnitudes and first-difference values. No post-hoc tolerance or AP-based pass threshold.",
+  "conditions": [
+    "control_a",
+    "control_b",
+    "probe_only",
+    "resume_only"
+  ],
+  "created_local_date": "2026-10-29",
+  "decision": "Report all conditions. Divergence is a diagnostic result, not a program failure. Invalid inputs, mutated observation state, nonfinite tensors or incomplete budget are explicit failures requiring review.",
+  "diagnostic_seconds": 2400,
+  "epoch_index": 1,
+  "expected_decision_sha256": "04d4198bddc61766ca5299e0dfef799c39ea1097e9335a02920d5e28770cda1d",
+  "expected_pairing_sha256": "c1ddf54f3cbbb43157a65591e63c8e842331391f5e2176d709001be0f23a73e0",
+  "initial_smoke_step": 7,
+  "limits": [
+    "Four serial conditions, one checkpoint, one seed and one machine are a causal debugging screen, not a variance estimate.",
+    "Instrumentation and pre-materialized inputs can change GPU timing; exact agreement here does not prove the archived smoke was deterministic.",
+    "No validation/test images or accuracy evaluation; no automatic longer training or resubmission.",
+    "The seven updates cover the archived interval of first known divergence; they are not an accuracy-learning budget."
+  ],
+  "minimum_free_disk_bytes": 10737418240,
+  "phase_order": [
+    "before",
+    "forward",
+    "backward",
+    "update"
+  ],
+  "probe_plan": "source_pilot/panel_plan.json: epoch 2 first two rows",
+  "question": "Locate the first observed difference under identical inputs, separating plain repeat execution, frozen probing, and mid-run restore.",
+  "reference_storage_limit_bytes": 8589934592,
+  "resume_after_update": 1,
+  "source_checkpoint": {
+    "bytes": 331117946,
+    "file": "epoch_001_step_00006716_04dccd11bbd2.pt",
+    "metadata_source_archive": "fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz",
+    "metadata_source_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+    "relative_path": "runs/fasterrcnn_identity_seed42_v1/checkpoints/epoch_001_step_00006716_04dccd11bbd2.pt",
+    "selection": "Fixed first unaugmented epoch; not the validation-selected best checkpoint",
+    "sha256": "dbd619334a57ad4422e929b90b327f80d1ca3bfc5b86f6f37594714ec138e858"
+  },
+  "source_manifest_sha256": "0f3ca6a52511422cabf1a38d41c350d5613ed235d4876fb6f7eb70dfe7aa3744",
+  "tensor_pair_export_limit_bytes": 8388608,
+  "train_images": 26,
+  "treatment": "All four conditions use the identical materialized geometry-only batches. Probe policy is recorded but never applied.",
+  "updates_per_condition": 7,
+  "version": "rdd_v2_repro_v2",
+  "warmup_steps": 0,
+  "workers": 0
+}

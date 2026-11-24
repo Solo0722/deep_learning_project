@@ -1,0 +1,11 @@
+{
+  "historical_tables_preserved": 18,
+  "native_equations_preserved": 8,
+  "historical_source_hashes_matched": 17,
+  "never_active_class_sets": 9,
+  "source_keys_complete": true,
+  "command_line_wrapping_checked": true,
+  "docx_sha256": "c093740713410a9058bde3675edc230fcc627d9ad79e714fda0a40b119f436ac",
+  "research_code_modified": false,
+  "new_experiments": false
+}

@@ -1,0 +1,14 @@
+{
+  "source_package": "rdd_v2_pilot_v1",
+  "source_manifest_sha256": "0f3ca6a52511422cabf1a38d41c350d5613ed235d4876fb6f7eb70dfe7aa3744",
+  "checkpoint": {
+    "bytes": 331117946,
+    "file": "epoch_001_step_00006716_04dccd11bbd2.pt",
+    "metadata_source_archive": "fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz",
+    "metadata_source_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+    "relative_path": "runs/fasterrcnn_identity_seed42_v1/checkpoints/epoch_001_step_00006716_04dccd11bbd2.pt",
+    "selection": "Fixed first unaugmented epoch; not the validation-selected best checkpoint",
+    "sha256": "dbd619334a57ad4422e929b90b327f80d1ca3bfc5b86f6f37594714ec138e858"
+  },
+  "prior_smoke_archive_sha256": "12e8f65b129a55199f105c28bc7303fe9b1b852e950f3a062a76675aee5d0777"
+}

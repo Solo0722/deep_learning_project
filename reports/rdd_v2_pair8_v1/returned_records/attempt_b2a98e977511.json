@@ -1,0 +1,23 @@
+{
+  "CUDA_VISIBLE_DEVICES": "GPU-a5a7e7fd-12e8-3560-b51f-b47b56b7a58c",
+  "attempt": "b2a98e977511",
+  "cuda_build": "12.1",
+  "cudnn_version": 8902,
+  "elapsed_seconds": 39480.2361533083,
+  "finished_utc": "2026-11-03T05:23:35.350610+00:00",
+  "gpu": "NVIDIA A10",
+  "hostname": "gpu0020",
+  "job": "799233.bright04",
+  "started_utc": "2026-11-02T18:25:35.114547+00:00",
+  "status": "budget_stopped",
+  "strict_settings": {
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true,
+    "fill_uninitialized_memory": true,
+    "matmul_tf32": false,
+    "warn_only": false
+  }
+}

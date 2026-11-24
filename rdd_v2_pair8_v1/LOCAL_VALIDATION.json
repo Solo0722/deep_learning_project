@@ -1,0 +1,265 @@
+{
+  "actual_cpu_model": {
+    "actual_train_batches": [
+      4,
+      1
+    ],
+    "batch_size": 4,
+    "device": "cpu",
+    "elapsed_seconds": 455.7589797000401,
+    "forks": [
+      {
+        "model_optimizer_rng_exact": true,
+        "model_sha256": "a791d72ae97513fd9834ec3c0723f221656bb1789813b2764e5f5196b588add3",
+        "optimizer_sha256": "6eef7d31d6b63611a259e991e2d115ced1cd6020cd149b3af21eb3d1c5c794ae",
+        "rng_sha256": "3d62aaf093af546e147cd1bdb39215035753c89add7458a3ceb87f561e648513"
+      },
+      {
+        "model_optimizer_rng_exact": true,
+        "model_sha256": "a791d72ae97513fd9834ec3c0723f221656bb1789813b2764e5f5196b588add3",
+        "optimizer_sha256": "6eef7d31d6b63611a259e991e2d115ced1cd6020cd149b3af21eb3d1c5c794ae",
+        "rng_sha256": "3d62aaf093af546e147cd1bdb39215035753c89add7458a3ceb87f561e648513"
+      }
+    ],
+    "image_size": 640,
+    "limitations": [
+      "Synthetic images, random weights, local CPU versions; no CCAST GPU execution or RDD learning conclusion.",
+      "The CCAST entry gate uses pinned epoch-1 weights, real selected train/val images and production workers=2."
+    ],
+    "optimizer_updates_each": 2,
+    "production_loop_exact": true,
+    "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "resume_exact": true,
+    "scope": "Actual fit/loader/baseline.update on tiny train/validation subsets; identity appearance only; no accuracy evidence",
+    "status": "pass",
+    "torch": "2.10.0+cpu",
+    "torchvision": "0.25.0+cpu",
+    "trace_records_per_arm": {
+      "class_adaptive": 4,
+      "geometry_only": 4
+    },
+    "train_images": 5,
+    "val_images": 5,
+    "validation_predictions_exact": true
+  },
+  "actual_cpu_model_log_sha256": "a6396fef1853e9f133836a74f21b3d8bd00f1784d09422e290854d6d92a1b321",
+  "created_utc": "2026-11-02T06:56:03.457349+00:00",
+  "device": "cpu",
+  "errors": 0,
+  "evidence_boundary": "Local Python/torch/torchvision differ from pinned CCAST versions. Synthetic CPU checks establish implementation behavior only. No new CCAST job has been submitted by this preparation.",
+  "failures": 0,
+  "initial_failure_log_sha256": "40e9c58767ae9e753a0d3a5596abc5e3c829261c5ad9ef06f544482e6c14ccd3",
+  "metadata_preflight": {
+    "epochs": {
+      "2": {
+        "accepted": 21801,
+        "cropped_annotation": 5062,
+        "images": 26863,
+        "opportunities": 8347,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "3": {
+        "accepted": 21744,
+        "cropped_annotation": 5119,
+        "images": 26863,
+        "opportunities": 8246,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "4": {
+        "accepted": 21674,
+        "cropped_annotation": 5189,
+        "images": 26863,
+        "opportunities": 8280,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "5": {
+        "accepted": 21720,
+        "cropped_annotation": 5143,
+        "images": 26863,
+        "opportunities": 8311,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "6": {
+        "accepted": 21778,
+        "cropped_annotation": 5085,
+        "images": 26863,
+        "opportunities": 8316,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "7": {
+        "accepted": 21625,
+        "cropped_annotation": 5238,
+        "images": 26863,
+        "opportunities": 8274,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      },
+      "8": {
+        "accepted": 21817,
+        "cropped_annotation": 5046,
+        "images": 26863,
+        "opportunities": 8427,
+        "positive_images": 16630,
+        "target_boxes_preserved": 38530
+      }
+    },
+    "panel_image_overlap": 3,
+    "panels": {
+      "2": {
+        "anchor_classes": {
+          "0": 64,
+          "1": 64,
+          "2": 64,
+          "3": 64
+        },
+        "clusters": 256,
+        "images": 256,
+        "sources": {
+          "China_Drone": 13,
+          "China_MotorBike": 22,
+          "Czech": 11,
+          "India": 53,
+          "Japan": 89,
+          "Norway": 25,
+          "United_States": 43
+        }
+      },
+      "4": {
+        "anchor_classes": {
+          "0": 64,
+          "1": 64,
+          "2": 64,
+          "3": 64
+        },
+        "clusters": 256,
+        "images": 256,
+        "sources": {
+          "China_Drone": 15,
+          "China_MotorBike": 22,
+          "Czech": 5,
+          "India": 46,
+          "Japan": 101,
+          "Norway": 29,
+          "United_States": 38
+        }
+      },
+      "6": {
+        "anchor_classes": {
+          "0": 64,
+          "1": 64,
+          "2": 64,
+          "3": 64
+        },
+        "clusters": 256,
+        "images": 256,
+        "sources": {
+          "China_Drone": 18,
+          "China_MotorBike": 16,
+          "Czech": 9,
+          "India": 52,
+          "Japan": 74,
+          "Norway": 32,
+          "United_States": 55
+        }
+      },
+      "8": {
+        "anchor_classes": {
+          "0": 64,
+          "1": 64,
+          "2": 64,
+          "3": 64
+        },
+        "clusters": 256,
+        "images": 256,
+        "sources": {
+          "China_Drone": 14,
+          "China_MotorBike": 29,
+          "Czech": 10,
+          "India": 40,
+          "Japan": 82,
+          "Norway": 34,
+          "United_States": 47
+        }
+      }
+    },
+    "scope": "Annotations and deterministic draws only; no pixels or model inference",
+    "train_manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7"
+  },
+  "pending": [
+    "Pinned CCAST GPU production-loop gate",
+    "Two-arm epoch-8 accuracy comparison"
+  ],
+  "post_test_change": "Serial full-run order was set to class-adaptive first; local gate and tested fit/update paths remain unchanged. Python 3.12 syntax and invariant checks passed after that change.",
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "resolved_local_findings": "Initial tests caught aliased CPU optimizer momentum on fork, fixed by deep copying; two new summary fixtures also had an incorrect class-constant reference, fixed before the successful rerun.",
+  "shell_syntax": {
+    "job.pbs": "Git Bash -n PASS",
+    "run_job.sh": "Git Bash -n PASS",
+    "status.sh": "Git Bash -n PASS",
+    "submit.sh": "Git Bash -n PASS"
+  },
+  "skips": 0,
+  "static_checks": {
+    "execution_order": [
+      "class_adaptive",
+      "geometry_only"
+    ],
+    "first_two_panels_unchanged": true,
+    "python312_syntax_files": 23,
+    "shell_lf_only": true,
+    "status": "pass",
+    "unchanged_core_files": [
+      "augmentation.py",
+      "baseline.py",
+      "checkpoints.py",
+      "controller.py",
+      "detector.py",
+      "diagnostic.py",
+      "geometry.py",
+      "integration.py",
+      "local_augmentation.py",
+      "metrics.py",
+      "models.py",
+      "observer.py",
+      "rdd_data.py",
+      "select_training_cases.py",
+      "shared_augmentation.py",
+      "smoke_selection.json"
+    ],
+    "unchanged_protocol_fields": [
+      "geometry",
+      "controller",
+      "application_probability",
+      "batch_size",
+      "learning_rate",
+      "momentum",
+      "weight_decay",
+      "warmup_steps",
+      "lr_decay_epochs",
+      "lr_gamma",
+      "image_size",
+      "seed",
+      "evaluation",
+      "manifests",
+      "checkpoint",
+      "versions",
+      "workers"
+    ]
+  },
+  "status": "pass",
+  "tests_log_sha256": "177118703e31ccd8cddf29435acb61eb00c88c27f882052034fac12626907038",
+  "unit_test_seconds": 47.636,
+  "unit_tests": 40,
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  }
+}

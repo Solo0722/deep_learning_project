@@ -1,0 +1,11 @@
+{
+  "actual_cpu_fasterrcnn_gate": "pass",
+  "archive": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\rdd_v2_strict_v1.tar.gz",
+  "archive_payloads_verified": true,
+  "bytes": 125586,
+  "ccast_gpu_tested": false,
+  "ccast_job_submitted": false,
+  "files": 51,
+  "sha256": "f1698acba680d90a08368a570f5f2debdb89e262cc5d902be3581ec6f9d8b784",
+  "unit_tests": 42
+}

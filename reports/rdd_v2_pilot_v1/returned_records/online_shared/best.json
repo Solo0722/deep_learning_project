@@ -1,0 +1,11 @@
+{
+  "bytes": 331262778,
+  "checkpoint_file": "epoch_004_step_00026864_4b2f23208ad2.pt",
+  "completed_epochs": 4,
+  "epoch": 4,
+  "file": "epoch_004_step_00026864_4b2f23208ad2.pt",
+  "label": "epoch_004",
+  "sha256": "d8972903344be3bb34a4ebd6554e92203d7dfe4720046a5020d5656c7f156bc6",
+  "step": 26864,
+  "validation_AP50_95": 0.19365559756264833
+}

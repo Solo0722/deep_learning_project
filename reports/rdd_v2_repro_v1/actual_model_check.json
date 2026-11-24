@@ -1,0 +1,48 @@
+{
+  "comparison": {
+    "actual_sha256": "685fb80299dab6370e33a50c230f2664ebb4a24913ab1737eb0ef794f0031cb1",
+    "changes": [],
+    "equal": true,
+    "expected_sha256": "685fb80299dab6370e33a50c230f2664ebb4a24913ab1737eb0ef794f0031cb1",
+    "missing_paths": [],
+    "unexpected_paths": []
+  },
+  "effective_model": {
+    "image_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "image_std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "normalization": "FrozenBatchNorm2d, eps=0.0; ImageNet RGB mean/std",
+    "parameters": 41314536,
+    "reinitialized": "ROI classification and class-specific box regression predictors",
+    "trainable_backbone_stages": 5,
+    "trainable_parameters": 41314536,
+    "transferred_state_keys": []
+  },
+  "gradient_norm": 1125.992431640625,
+  "gradient_norm_exact": true,
+  "instrumented_and_comparison_seconds": 29.333683900000324,
+  "losses": {
+    "loss_box_reg": 0.11020740866661072,
+    "loss_classifier": 5.634462833404541,
+    "loss_objectness": 1.8010787963867188,
+    "loss_rpn_box_reg": 1.8876205682754517
+  },
+  "losses_exact": true,
+  "model_optimizer_rng_gradients_exact": true,
+  "original_seconds": 25.218456999999034,
+  "scope": "Actual randomly initialized Faster R-CNN, 640 pixels, two synthetic images with four classes and an empty target; one original update versus one instrumented update from the same state. CPU only, not CCAST CUDA evidence.",
+  "status": "pass",
+  "versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  }
+}

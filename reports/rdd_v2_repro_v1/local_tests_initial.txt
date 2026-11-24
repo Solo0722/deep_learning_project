@@ -1,0 +1,179 @@
+test_archive_preserves_evidence_excludes_checkpoint_and_refuses_overwrite (test_repro.DiagnosticTests.test_archive_preserves_evidence_excludes_checkpoint_and_refuses_overwrite) ... Records archive: C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\tmp\rdd_repro_tests\rdd_repro_test_aca65a19\records_records.tar.gz
+Archive SHA-256: 4e4d755cf57e39a143ef72656564fd716b9df1df87f5d58690de288fa133557a
+ok
+test_budget_stop_preserves_partial_records (test_repro.DiagnosticTests.test_budget_stop_preserves_partial_records) ... DIAGNOSTIC condition=control_a update=1/3 loss=8.0811424 first_difference=None seconds=0.20
+ok
+test_changed_gradient_is_localized_to_backward (test_repro.DiagnosticTests.test_changed_gradient_is_localized_to_backward) ... DIAGNOSTIC condition=control_a update=1/3 loss=8.0811424 first_difference=None seconds=0.13
+DIAGNOSTIC condition=control_a update=2/3 loss=8.3589745 first_difference=None seconds=0.16
+DIAGNOSTIC condition=control_a update=3/3 loss=4.9723029 first_difference=None seconds=0.18
+DIAGNOSTIC condition=control_b update=1/3 loss=8.0811424 first_difference={'step': 1, 'phase': 'backward', 'changed_paths': 2} seconds=0.15
+DIAGNOSTIC condition=control_b update=2/3 loss=8.3591776 first_difference={'step': 1, 'phase': 'backward', 'changed_paths': 2} seconds=0.14
+DIAGNOSTIC condition=control_b update=3/3 loss=4.9727564 first_difference={'step': 1, 'phase': 'backward', 'changed_paths': 2} seconds=0.13
+DIAGNOSTIC condition=probe_only update=1/3 loss=8.0811424 first_difference=None seconds=0.12
+DIAGNOSTIC condition=probe_only update=2/3 loss=8.3589745 first_difference=None seconds=0.15
+DIAGNOSTIC condition=probe_only update=3/3 loss=4.9723029 first_difference=None seconds=0.14
+DIAGNOSTIC condition=resume_only update=1/3 loss=8.0811424 first_difference=None seconds=0.14
+DIAGNOSTIC condition=resume_only update=2/3 loss=8.3589745 first_difference=None seconds=0.14
+DIAGNOSTIC condition=resume_only update=3/3 loss=4.9723029 first_difference=None seconds=0.15
+ok
+test_existing_suite_refused (test_repro.DiagnosticTests.test_existing_suite_refused) ... ok
+test_forward_input_mutation_is_rejected (test_repro.DiagnosticTests.test_forward_input_mutation_is_rejected) ... ERROR
+test_four_conditions_match_on_stochastic_cpu_fixture (test_repro.DiagnosticTests.test_four_conditions_match_on_stochastic_cpu_fixture) ... DIAGNOSTIC condition=control_a update=1/3 loss=8.0811424 first_difference=None seconds=0.12
+DIAGNOSTIC condition=control_a update=2/3 loss=8.3589745 first_difference=None seconds=0.11
+DIAGNOSTIC condition=control_a update=3/3 loss=4.9723029 first_difference=None seconds=0.12
+DIAGNOSTIC condition=control_b update=1/3 loss=8.0811424 first_difference=None seconds=0.13
+DIAGNOSTIC condition=control_b update=2/3 loss=8.3589745 first_difference=None seconds=0.10
+DIAGNOSTIC condition=control_b update=3/3 loss=4.9723029 first_difference=None seconds=0.13
+DIAGNOSTIC condition=probe_only update=1/3 loss=8.0811424 first_difference=None seconds=0.13
+DIAGNOSTIC condition=probe_only update=2/3 loss=8.3589745 first_difference=None seconds=0.12
+DIAGNOSTIC condition=probe_only update=3/3 loss=4.9723029 first_difference=None seconds=0.11
+DIAGNOSTIC condition=resume_only update=1/3 loss=8.0811424 first_difference=None seconds=0.15
+DIAGNOSTIC condition=resume_only update=2/3 loss=8.3589745 first_difference=None seconds=0.13
+DIAGNOSTIC condition=resume_only update=3/3 loss=4.9723029 first_difference=None seconds=0.12
+ok
+test_instrumented_update_matches_original_update (test_repro.DiagnosticTests.test_instrumented_update_matches_original_update) ... ok
+test_materialized_input_mutation_is_rejected (test_repro.DiagnosticTests.test_materialized_input_mutation_is_rejected) ... ERROR
+test_nonfinite_gradient_does_not_update_parameters (test_repro.DiagnosticTests.test_nonfinite_gradient_does_not_update_parameters) ... ERROR
+test_nonfinite_loss_does_not_update_parameters (test_repro.DiagnosticTests.test_nonfinite_loss_does_not_update_parameters) ... ERROR
+test_probe_buffer_mutation_is_rejected (test_repro.DiagnosticTests.test_probe_buffer_mutation_is_rejected) ... DIAGNOSTIC condition=control_a update=1/3 loss=8.0811424 first_difference=None seconds=0.12
+DIAGNOSTIC condition=control_a update=2/3 loss=8.3589745 first_difference=None seconds=0.12
+DIAGNOSTIC condition=control_a update=3/3 loss=4.9723029 first_difference=None seconds=0.13
+DIAGNOSTIC condition=control_b update=1/3 loss=8.0811424 first_difference=None seconds=0.13
+DIAGNOSTIC condition=control_b update=2/3 loss=8.3589745 first_difference=None seconds=0.12
+DIAGNOSTIC condition=control_b update=3/3 loss=4.9723029 first_difference=None seconds=0.11
+ERROR
+test_probe_rng_leak_is_rejected (test_repro.DiagnosticTests.test_probe_rng_leak_is_rejected) ... DIAGNOSTIC condition=control_a update=1/3 loss=8.0811424 first_difference=None seconds=0.12
+DIAGNOSTIC condition=control_a update=2/3 loss=8.3589745 first_difference=None seconds=0.14
+DIAGNOSTIC condition=control_a update=3/3 loss=4.9723029 first_difference=None seconds=0.12
+DIAGNOSTIC condition=control_b update=1/3 loss=8.0811424 first_difference=None seconds=0.11
+DIAGNOSTIC condition=control_b update=2/3 loss=8.3589745 first_difference=None seconds=0.11
+DIAGNOSTIC condition=control_b update=3/3 loss=4.9723029 first_difference=None seconds=0.12
+ERROR
+test_resume_state_mutation_is_rejected (test_repro.DiagnosticTests.test_resume_state_mutation_is_rejected) ... DIAGNOSTIC condition=control_a update=1/3 loss=8.0811424 first_difference=None seconds=0.11
+DIAGNOSTIC condition=control_a update=2/3 loss=8.3589745 first_difference=None seconds=0.12
+DIAGNOSTIC condition=control_a update=3/3 loss=4.9723029 first_difference=None seconds=0.10
+DIAGNOSTIC condition=control_b update=1/3 loss=8.0811424 first_difference=None seconds=0.09
+DIAGNOSTIC condition=control_b update=2/3 loss=8.3589745 first_difference=None seconds=0.13
+DIAGNOSTIC condition=control_b update=3/3 loss=4.9723029 first_difference=None seconds=0.15
+DIAGNOSTIC condition=probe_only update=1/3 loss=8.0811424 first_difference=None seconds=0.15
+DIAGNOSTIC condition=probe_only update=2/3 loss=8.3589745 first_difference=None seconds=0.13
+DIAGNOSTIC condition=probe_only update=3/3 loss=4.9723029 first_difference=None seconds=0.10
+DIAGNOSTIC condition=resume_only update=1/3 loss=8.0811424 first_difference=None seconds=0.12
+ERROR
+test_compare_reports_known_difference_and_values (test_repro.StateTests.test_compare_reports_known_difference_and_values) ... ok
+test_nonfinite_values_are_rejected (test_repro.StateTests.test_nonfinite_values_are_rejected) ... ok
+test_structure_dtype_empty_and_signed_zero_are_distinguished (test_repro.StateTests.test_structure_dtype_empty_and_signed_zero_are_distinguished) ... ok
+
+======================================================================
+ERROR: test_forward_input_mutation_is_rejected (test_repro.DiagnosticTests.test_forward_input_mutation_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 176, in test_forward_input_mutation_is_rejected
+    r.traced_update(model, optimizer, self.batches[0], 'cpu')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\repro.py", line 177, in traced_update
+    d.require(batch_digest(images, targets) == batch['sha256'], 'Model mutated input pixels or targets')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\source_pilot\diagnostic.py", line 18, in require
+    raise ValueError(message)
+ValueError: Model mutated input pixels or targets
+
+======================================================================
+ERROR: test_materialized_input_mutation_is_rejected (test_repro.DiagnosticTests.test_materialized_input_mutation_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 166, in test_materialized_input_mutation_is_rejected
+    r.traced_update(model, optimizer, self.batches[0], 'cpu')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\repro.py", line 159, in traced_update
+    d.require(batch_digest(batch['images'], batch['targets']) == batch['sha256'], 'Materialized batch changed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\source_pilot\diagnostic.py", line 18, in require
+    raise ValueError(message)
+ValueError: Materialized batch changed
+
+======================================================================
+ERROR: test_nonfinite_gradient_does_not_update_parameters (test_repro.DiagnosticTests.test_nonfinite_gradient_does_not_update_parameters)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 192, in test_nonfinite_gradient_does_not_update_parameters
+    r.traced_update(model, optimizer, self.batches[0], 'cpu')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\repro.py", line 182, in traced_update
+    d.require(torch.isfinite(norm).item(), 'Nonfinite training gradient')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\source_pilot\diagnostic.py", line 18, in require
+    raise ValueError(message)
+ValueError: Nonfinite training gradient
+
+======================================================================
+ERROR: test_nonfinite_loss_does_not_update_parameters (test_repro.DiagnosticTests.test_nonfinite_loss_does_not_update_parameters)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 184, in test_nonfinite_loss_does_not_update_parameters
+    r.traced_update(model, optimizer, self.batches[0], 'cpu')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\repro.py", line 173, in traced_update
+    d.require(losses and all(v.numel() == 1 and torch.isfinite(v).item() for v in losses.values()),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              'Nonfinite/malformed loss')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\source_pilot\diagnostic.py", line 18, in require
+    raise ValueError(message)
+ValueError: Nonfinite/malformed loss
+
+======================================================================
+ERROR: test_probe_buffer_mutation_is_rejected (test_repro.DiagnosticTests.test_probe_buffer_mutation_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 147, in test_probe_buffer_mutation_is_rejected
+    self.run_suite(probe=bad_probe)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 96, in run_suite
+    return r.run_suite(**options)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\repro.py", line 265, in run_suite
+    d.require(comparison['equal'], 'Probe changed observable model/optimizer/RNG/mode state')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\source_pilot\diagnostic.py", line 18, in require
+    raise ValueError(message)
+ValueError: Probe changed observable model/optimizer/RNG/mode state
+
+======================================================================
+ERROR: test_probe_rng_leak_is_rejected (test_repro.DiagnosticTests.test_probe_rng_leak_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 138, in test_probe_rng_leak_is_rejected
+    self.run_suite(probe=leaking_probe)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 96, in run_suite
+    return r.run_suite(**options)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\repro.py", line 265, in run_suite
+    d.require(comparison['equal'], 'Probe changed observable model/optimizer/RNG/mode state')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\source_pilot\diagnostic.py", line 18, in require
+    raise ValueError(message)
+ValueError: Probe changed observable model/optimizer/RNG/mode state
+
+======================================================================
+ERROR: test_resume_state_mutation_is_rejected (test_repro.DiagnosticTests.test_resume_state_mutation_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 158, in test_resume_state_mutation_is_rejected
+    self.run_suite()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\tests\test_repro.py", line 96, in run_suite
+    return r.run_suite(**options)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\repro.py", line 325, in run_suite
+    d.require(comparison['equal'], 'Resume changed model/optimizer/RNG/mode state')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\rdd_v2_repro_v1\source_pilot\diagnostic.py", line 18, in require
+    raise ValueError(message)
+ValueError: Resume changed model/optimizer/RNG/mode state
+
+----------------------------------------------------------------------
+Ran 16 tests in 25.653s
+
+FAILED (errors=7)

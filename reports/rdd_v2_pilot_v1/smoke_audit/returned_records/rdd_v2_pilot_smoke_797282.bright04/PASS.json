@@ -1,0 +1,21 @@
+{
+  "additional_epochs": 2,
+  "forks_identical": true,
+  "geometry_order_opportunities_paired": true,
+  "online_support_warning": "Tiny smoke panels may fall back to identity; full pilot uses 256 images.",
+  "package_manifest_sha256": "0f3ca6a52511422cabf1a38d41c350d5613ed235d4876fb6f7eb70dfe7aa3744",
+  "probe_images_each_update": 2,
+  "report": {
+    "restore": {
+      "CUDA_trajectory_bitwise_claim": false,
+      "mid_epoch_resume": true,
+      "model_optimizer_rng_exact": true,
+      "prediction_parity_atol": 1e-05
+    }
+  },
+  "scope": "Actual CUDA four-arm pipeline on training/validation subsets, not learning evidence",
+  "status": "pass",
+  "subset_train_images": 26,
+  "subset_val_images": 24,
+  "thresholds_unchanged": true
+}

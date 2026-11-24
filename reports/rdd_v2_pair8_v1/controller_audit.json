@@ -1,0 +1,705 @@
+{
+  "pooled_and_mixed_set_rules_unchanged": true,
+  "scope": "Independent matching, affine boxes and retention policy replay. Pixel hashes checked as records; raw pixels and model tensors were not available for rerendering or inference.",
+  "updates": {
+    "class_adaptive/epoch_2": {
+      "audit_seconds": 18.357086900039576,
+      "controller_elapsed_seconds": 808.7678872831166,
+      "detector_images_including_parity": 7428,
+      "global_shared_actions": 9,
+      "model_state_matches_preceding_fork_or_validation": true,
+      "panel_images": 256,
+      "pooled": {
+        "0": {
+          "allowed_actions": 16,
+          "detected_clusters": 58,
+          "detected_objects": 61,
+          "objects": 94,
+          "reference_recall": 0.648936170212766,
+          "supported": true
+        },
+        "1": {
+          "allowed_actions": 14,
+          "detected_clusters": 50,
+          "detected_objects": 54,
+          "objects": 92,
+          "reference_recall": 0.5869565217391305,
+          "supported": true
+        },
+        "2": {
+          "allowed_actions": 23,
+          "detected_clusters": 55,
+          "detected_objects": 55,
+          "objects": 88,
+          "reference_recall": 0.625,
+          "supported": true
+        },
+        "3": {
+          "allowed_actions": 13,
+          "detected_clusters": 36,
+          "detected_objects": 42,
+          "objects": 81,
+          "reference_recall": 0.5185185185185185,
+          "supported": true
+        }
+      },
+      "pooled_actions_sensitive_to_removing_one_cluster": {
+        "0": [
+          "gamma_brighten/2"
+        ],
+        "1": [],
+        "2": [],
+        "3": [
+          "contrast_down/1"
+        ]
+      },
+      "routed": {
+        "0": {
+          "allowed_actions": 16,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 55,
+          "tv_vs_own_shared": 0.3333333333333333,
+          "vetoed_actions": 0
+        },
+        "0,1": {
+          "allowed_actions": 14,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 19,
+          "tv_vs_own_shared": 0.3333333333333333,
+          "vetoed_actions": 0
+        },
+        "0,1,2": {
+          "allowed_actions": 14,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.3333333333333333,
+          "vetoed_actions": 0
+        },
+        "0,1,2,3": {
+          "allowed_actions": 12,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 0,
+          "tv_vs_own_shared": 0.2833333333333333,
+          "vetoed_actions": 0
+        },
+        "0,1,3": {
+          "allowed_actions": 12,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.2833333333333333,
+          "vetoed_actions": 0
+        },
+        "0,2": {
+          "allowed_actions": 16,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 5,
+          "tv_vs_own_shared": 0.3333333333333333,
+          "vetoed_actions": 0
+        },
+        "0,2,3": {
+          "allowed_actions": 12,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.2833333333333333,
+          "vetoed_actions": 0
+        },
+        "0,3": {
+          "allowed_actions": 12,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 2,
+          "tv_vs_own_shared": 0.2833333333333333,
+          "vetoed_actions": 0
+        },
+        "1": {
+          "allowed_actions": 14,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 49,
+          "tv_vs_own_shared": 0.3333333333333333,
+          "vetoed_actions": 0
+        },
+        "1,2": {
+          "allowed_actions": 14,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 7,
+          "tv_vs_own_shared": 0.3333333333333333,
+          "vetoed_actions": 0
+        },
+        "1,2,3": {
+          "allowed_actions": 12,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.2833333333333333,
+          "vetoed_actions": 0
+        },
+        "1,3": {
+          "allowed_actions": 12,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.2833333333333333,
+          "vetoed_actions": 0
+        },
+        "2": {
+          "allowed_actions": 23,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 52,
+          "tv_vs_own_shared": 0.5416666666666666,
+          "vetoed_actions": 0
+        },
+        "2,3": {
+          "allowed_actions": 10,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 19,
+          "tv_vs_own_shared": 0.05555555555555555,
+          "vetoed_actions": 3
+        },
+        "3": {
+          "allowed_actions": 13,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 43,
+          "tv_vs_own_shared": 0.31666666666666665,
+          "vetoed_actions": 0
+        }
+      },
+      "status": "pass",
+      "views_recomputed": 7424
+    },
+    "class_adaptive/epoch_4": {
+      "audit_seconds": 11.59159450000152,
+      "controller_elapsed_seconds": 812.3788762204349,
+      "detector_images_including_parity": 7428,
+      "global_shared_actions": 19,
+      "model_state_matches_preceding_fork_or_validation": true,
+      "panel_images": 256,
+      "pooled": {
+        "0": {
+          "allowed_actions": 22,
+          "detected_clusters": 71,
+          "detected_objects": 79,
+          "objects": 113,
+          "reference_recall": 0.6991150442477876,
+          "supported": true
+        },
+        "1": {
+          "allowed_actions": 21,
+          "detected_clusters": 60,
+          "detected_objects": 64,
+          "objects": 86,
+          "reference_recall": 0.7441860465116279,
+          "supported": true
+        },
+        "2": {
+          "allowed_actions": 23,
+          "detected_clusters": 56,
+          "detected_objects": 58,
+          "objects": 94,
+          "reference_recall": 0.6170212765957447,
+          "supported": true
+        },
+        "3": {
+          "allowed_actions": 19,
+          "detected_clusters": 53,
+          "detected_objects": 64,
+          "objects": 98,
+          "reference_recall": 0.6530612244897959,
+          "supported": true
+        }
+      },
+      "pooled_actions_sensitive_to_removing_one_cluster": {
+        "0": [],
+        "1": [],
+        "2": [],
+        "3": [
+          "brightness_down/3"
+        ]
+      },
+      "routed": {
+        "0": {
+          "allowed_actions": 22,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 56,
+          "tv_vs_own_shared": 0.08333333333333333,
+          "vetoed_actions": 0
+        },
+        "0,1": {
+          "allowed_actions": 21,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 22,
+          "tv_vs_own_shared": 0.06944444444444445,
+          "vetoed_actions": 0
+        },
+        "0,1,2": {
+          "allowed_actions": 21,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 3,
+          "tv_vs_own_shared": 0.06944444444444445,
+          "vetoed_actions": 0
+        },
+        "0,1,2,3": {
+          "allowed_actions": 19,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 0,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "0,1,3": {
+          "allowed_actions": 19,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "0,2": {
+          "allowed_actions": 22,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 8,
+          "tv_vs_own_shared": 0.08333333333333333,
+          "vetoed_actions": 0
+        },
+        "0,2,3": {
+          "allowed_actions": 19,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 4,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "0,3": {
+          "allowed_actions": 19,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 2,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "1": {
+          "allowed_actions": 21,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 40,
+          "tv_vs_own_shared": 0.06944444444444445,
+          "vetoed_actions": 0
+        },
+        "1,2": {
+          "allowed_actions": 21,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 7,
+          "tv_vs_own_shared": 0.06944444444444445,
+          "vetoed_actions": 0
+        },
+        "1,2,3": {
+          "allowed_actions": 19,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 2,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "1,3": {
+          "allowed_actions": 19,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 2,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "2": {
+          "allowed_actions": 23,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 45,
+          "tv_vs_own_shared": 0.20833333333333331,
+          "vetoed_actions": 0
+        },
+        "2,3": {
+          "allowed_actions": 19,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 20,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "3": {
+          "allowed_actions": 19,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 44,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        }
+      },
+      "status": "pass",
+      "views_recomputed": 7424
+    },
+    "class_adaptive/epoch_6": {
+      "audit_seconds": 11.674393100023735,
+      "controller_elapsed_seconds": 812.0670558679849,
+      "detector_images_including_parity": 7428,
+      "global_shared_actions": 21,
+      "model_state_matches_preceding_fork_or_validation": true,
+      "panel_images": 256,
+      "pooled": {
+        "0": {
+          "allowed_actions": 23,
+          "detected_clusters": 62,
+          "detected_objects": 70,
+          "objects": 113,
+          "reference_recall": 0.6194690265486725,
+          "supported": true
+        },
+        "1": {
+          "allowed_actions": 22,
+          "detected_clusters": 60,
+          "detected_objects": 62,
+          "objects": 88,
+          "reference_recall": 0.7045454545454546,
+          "supported": true
+        },
+        "2": {
+          "allowed_actions": 23,
+          "detected_clusters": 68,
+          "detected_objects": 71,
+          "objects": 90,
+          "reference_recall": 0.7888888888888889,
+          "supported": true
+        },
+        "3": {
+          "allowed_actions": 22,
+          "detected_clusters": 46,
+          "detected_objects": 51,
+          "objects": 80,
+          "reference_recall": 0.6375,
+          "supported": true
+        }
+      },
+      "pooled_actions_sensitive_to_removing_one_cluster": {
+        "0": [],
+        "1": [
+          "gaussian_blur/2"
+        ],
+        "2": [],
+        "3": []
+      },
+      "routed": {
+        "0": {
+          "allowed_actions": 23,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 52,
+          "tv_vs_own_shared": 0.1527777777777778,
+          "vetoed_actions": 0
+        },
+        "0,1": {
+          "allowed_actions": 22,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 23,
+          "tv_vs_own_shared": 0.027777777777777776,
+          "vetoed_actions": 0
+        },
+        "0,1,2": {
+          "allowed_actions": 22,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 3,
+          "tv_vs_own_shared": 0.027777777777777776,
+          "vetoed_actions": 0
+        },
+        "0,1,2,3": {
+          "allowed_actions": 21,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 0,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "0,1,3": {
+          "allowed_actions": 21,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "0,2": {
+          "allowed_actions": 23,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 4,
+          "tv_vs_own_shared": 0.1527777777777778,
+          "vetoed_actions": 0
+        },
+        "0,2,3": {
+          "allowed_actions": 22,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 2,
+          "tv_vs_own_shared": 0.125,
+          "vetoed_actions": 0
+        },
+        "0,3": {
+          "allowed_actions": 22,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 3,
+          "tv_vs_own_shared": 0.125,
+          "vetoed_actions": 0
+        },
+        "1": {
+          "allowed_actions": 22,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 44,
+          "tv_vs_own_shared": 0.027777777777777776,
+          "vetoed_actions": 0
+        },
+        "1,2": {
+          "allowed_actions": 22,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 9,
+          "tv_vs_own_shared": 0.027777777777777776,
+          "vetoed_actions": 0
+        },
+        "1,2,3": {
+          "allowed_actions": 21,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "1,3": {
+          "allowed_actions": 21,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 0,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 0
+        },
+        "2": {
+          "allowed_actions": 23,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 52,
+          "tv_vs_own_shared": 0.1527777777777778,
+          "vetoed_actions": 0
+        },
+        "2,3": {
+          "allowed_actions": 22,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 13,
+          "tv_vs_own_shared": 0.125,
+          "vetoed_actions": 0
+        },
+        "3": {
+          "allowed_actions": 22,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 49,
+          "tv_vs_own_shared": 0.125,
+          "vetoed_actions": 0
+        }
+      },
+      "status": "pass",
+      "views_recomputed": 7424
+    },
+    "class_adaptive/epoch_8": {
+      "audit_seconds": 11.818155899993144,
+      "controller_elapsed_seconds": 870.4304551128298,
+      "detector_images_including_parity": 7428,
+      "global_shared_actions": 17,
+      "model_state_matches_preceding_fork_or_validation": true,
+      "panel_images": 256,
+      "pooled": {
+        "0": {
+          "allowed_actions": 23,
+          "detected_clusters": 73,
+          "detected_objects": 80,
+          "objects": 117,
+          "reference_recall": 0.6837606837606838,
+          "supported": true
+        },
+        "1": {
+          "allowed_actions": 22,
+          "detected_clusters": 66,
+          "detected_objects": 72,
+          "objects": 104,
+          "reference_recall": 0.6923076923076923,
+          "supported": true
+        },
+        "2": {
+          "allowed_actions": 24,
+          "detected_clusters": 75,
+          "detected_objects": 76,
+          "objects": 99,
+          "reference_recall": 0.7676767676767676,
+          "supported": true
+        },
+        "3": {
+          "allowed_actions": 18,
+          "detected_clusters": 35,
+          "detected_objects": 41,
+          "objects": 96,
+          "reference_recall": 0.4270833333333333,
+          "supported": true
+        }
+      },
+      "pooled_actions_sensitive_to_removing_one_cluster": {
+        "0": [],
+        "1": [],
+        "2": [],
+        "3": [
+          "brightness_up/3",
+          "gamma_brighten/2"
+        ]
+      },
+      "routed": {
+        "0": {
+          "allowed_actions": 23,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 46,
+          "tv_vs_own_shared": 0.3194444444444444,
+          "vetoed_actions": 0
+        },
+        "0,1": {
+          "allowed_actions": 22,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 30,
+          "tv_vs_own_shared": 0.19444444444444445,
+          "vetoed_actions": 0
+        },
+        "0,1,2": {
+          "allowed_actions": 22,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 7,
+          "tv_vs_own_shared": 0.19444444444444445,
+          "vetoed_actions": 0
+        },
+        "0,1,2,3": {
+          "allowed_actions": 18,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.08333333333333334,
+          "vetoed_actions": 0
+        },
+        "0,1,3": {
+          "allowed_actions": 18,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.08333333333333334,
+          "vetoed_actions": 0
+        },
+        "0,2": {
+          "allowed_actions": 23,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 6,
+          "tv_vs_own_shared": 0.3194444444444444,
+          "vetoed_actions": 0
+        },
+        "0,2,3": {
+          "allowed_actions": 18,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 2,
+          "tv_vs_own_shared": 0.08333333333333334,
+          "vetoed_actions": 0
+        },
+        "0,3": {
+          "allowed_actions": 18,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 1,
+          "tv_vs_own_shared": 0.08333333333333334,
+          "vetoed_actions": 0
+        },
+        "1": {
+          "allowed_actions": 22,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 44,
+          "tv_vs_own_shared": 0.19444444444444445,
+          "vetoed_actions": 0
+        },
+        "1,2": {
+          "allowed_actions": 22,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 7,
+          "tv_vs_own_shared": 0.19444444444444445,
+          "vetoed_actions": 0
+        },
+        "1,2,3": {
+          "allowed_actions": 18,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 0,
+          "tv_vs_own_shared": 0.08333333333333334,
+          "vetoed_actions": 0
+        },
+        "1,3": {
+          "allowed_actions": 18,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 2,
+          "tv_vs_own_shared": 0.08333333333333334,
+          "vetoed_actions": 0
+        },
+        "2": {
+          "allowed_actions": 24,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 44,
+          "tv_vs_own_shared": 0.3611111111111111,
+          "vetoed_actions": 0
+        },
+        "2,3": {
+          "allowed_actions": 17,
+          "borrowed": false,
+          "direct_supported": true,
+          "panel_groups": 24,
+          "tv_vs_own_shared": 0.0,
+          "vetoed_actions": 1
+        },
+        "3": {
+          "allowed_actions": 18,
+          "borrowed": true,
+          "direct_supported": false,
+          "panel_groups": 41,
+          "tv_vs_own_shared": 0.08333333333333334,
+          "vetoed_actions": 0
+        }
+      },
+      "status": "pass",
+      "views_recomputed": 7424
+    }
+  }
+}
