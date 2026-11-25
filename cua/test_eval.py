@@ -1,12 +1,14 @@
-"""One-time test-set evaluation of Part C main-comparison runs (spec §4, §10).
+"""One-time test-set evaluation of Part C main-comparison runs (spec §4, §10) and of the
+class-adaptive copy-paste pilot runs.
 
-CLI: python -m cua.test_eval --runs-root DIR --data-root DIR [--device cuda] [--prefix C-]
+CLI: python -m cua.test_eval --runs-root DIR --data-root DIR [--device cuda] [--prefix C-|P-]
 
-For every complete `C-<dataset>-<detector>-s<seed>-<policy>` run, loads best.pt (best validation
-macro AP50), predicts on the dataset's test.jsonl and writes test_predictions.json and
-test_metrics.json into the run directory. A run that already has test_metrics.json is skipped, so the
-test set is scored once per run and resubmitting the job continues where it stopped. Only Part C ids
-are accepted: tuning, ablation, Part A, budget and proxy runs never touch test.
+For every complete `C-<dataset>-<detector>-s<seed>-<policy>` (or, with --prefix P-,
+`P-<dataset>-<detector>-s<seed>-<arm>`) run, loads best.pt (best validation macro AP50), predicts on
+the dataset's test.jsonl and writes test_predictions.json and test_metrics.json into the run
+directory. A run that already has test_metrics.json is skipped, so the test set is scored once per run
+and resubmitting the job continues where it stopped. Only Part C and copy-paste ids are accepted:
+tuning, ablation, Part A, budget and proxy runs never touch test.
 """
 from __future__ import annotations
 
@@ -26,6 +28,7 @@ from cua.records import read_classes, read_records
 from cua.train import _predictions_json, _write_json
 
 PART_C_RE = re.compile(r"^C-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
+PASTE_RE = re.compile(r"^P-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 FP_SCORE = 0.5
 
 
@@ -44,8 +47,8 @@ def evaluate_run(run_dir: Path, data_root: Path, device: str = "cuda", batch_siz
     rid = run_dir.name
     if not (run_dir / "COMPLETE.json").exists():
         raise RuntimeError(f"{rid}: incomplete (no COMPLETE.json)")
-    if not PART_C_RE.match(rid):
-        raise ValueError(f"{rid}: only Part C main-comparison runs (C-...) are evaluated on test")
+    if not (PART_C_RE.match(rid) or PASTE_RE.match(rid)):
+        raise ValueError(f"{rid}: only Part C (C-...) and copy-paste (P-...) runs are evaluated on test")
     cfg = resolve(rid)
     stored = json.loads((run_dir / "config.json").read_text(encoding="utf-8")).get("digest")
     if stored != cfg.digest():
@@ -75,7 +78,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--runs-root", type=Path, required=True)
     ap.add_argument("--data-root", type=Path, required=True)
     ap.add_argument("--device", default="cuda")
-    ap.add_argument("--prefix", default="C-", choices=("C-",))
+    ap.add_argument("--prefix", default="C-", choices=("C-", "P-"))
     ap.add_argument("--workers", type=int, default=4)
     a = ap.parse_args(argv)
     refused = 0

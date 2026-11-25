@@ -2,6 +2,8 @@
 # One-time test-set evaluation of every complete Part C run (python -m cua.test_eval).
 # Idempotent: runs that already have test_metrics.json are skipped, so resubmitting continues.
 #   qsub $P/cua_code/cua/ccast/test_eval.pbs
+# Copy-paste pilot runs (P-...):
+#   qsub -v PREFIX=P- -o $P/cua_runs/_logs/test_eval_paste.log $P/cua_code/cua/ccast/test_eval.pbs
 #PBS -N cua_test_eval
 #PBS -q gpus
 #PBS -l select=1:ncpus=4:mem=32gb:ngpus=1:glist=a10
@@ -22,6 +24,6 @@ export PYTHONPATH=$P/cua_code
 echo "started: $(date -u +%Y-%m-%dT%H:%M:%SZ) on $(hostname)"
 python -c "import torch; torch.zeros(1).cuda()" >/dev/null 2>&1 || { echo "GPU unusable on $(hostname); holding node 30 min"; sleep 1800; exit 1; }
 rc=0
-python -m cua.test_eval --runs-root $P/cua_runs --data-root $P/cua_data || rc=$?
+python -m cua.test_eval --runs-root $P/cua_runs --data-root $P/cua_data --prefix "${PREFIX:-C-}" || rc=$?
 echo "finished: $(date -u +%Y-%m-%dT%H:%M:%SZ) exit code $rc"
 exit $rc

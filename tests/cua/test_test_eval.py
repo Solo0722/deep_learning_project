@@ -100,6 +100,19 @@ def test_refuses_digest_mismatch(tmp_path, capsys):
     assert not (d / "test_metrics.json").exists()
 
 
+def test_accepts_copy_paste_runs_with_p_prefix(tmp_path, capsys):
+    runs = tmp_path / "runs"
+    d = _stub_run(runs, "P-dacl10k-fasterrcnn-s0-cpada")  # passes the id check, stops at the digest check
+    with pytest.raises(RuntimeError, match="digest"):
+        evaluate_run(d, tmp_path, device="cpu")
+    _stub_run(runs, "P-dacl10k-fasterrcnn-s1-cpada", metrics={"sentinel": 1})
+    _stub_run(runs, RID)  # a C- run is not touched by a P- pass
+    assert main(["--runs-root", str(runs), "--data-root", str(tmp_path), "--prefix", "P-"]) == 1
+    out = capsys.readouterr().out
+    assert "P-dacl10k-fasterrcnn-s1-cpada: already evaluated" in out and "digest" in out
+    assert RID not in out
+
+
 def test_incomplete_run_is_reported_not_evaluated(tmp_path, capsys):
     d = _stub_run(tmp_path / "runs", RID, complete=False)
     assert main(["--runs-root", str(tmp_path / "runs"), "--data-root", str(tmp_path)]) == 0
