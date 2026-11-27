@@ -7,8 +7,9 @@ import sys
 from pathlib import Path
 from string import Template
 
-from cua.experiments.specs import (PART_C_POLICIES, PASTE_ARMS, ablation_specs, budget_specs, part_a_specs,
-                                   part_c_specs, paste_specs, proxy_specs, tune_specs)
+from cua.experiments.specs import (CONTROL_ARMS, PART_C_POLICIES, PASTE_ARMS, ablation_specs, budget_specs,
+                                   LOCAL_EDITS, STRENGTH_EDITS, STRENGTH_PILOT_LEVELS, control_specs, local_specs,
+                                   part_a_specs, part_c_specs, paste_specs, proxy_specs, strength_specs, tune_specs)
 from cua.train import TrainConfig
 
 DEFAULT_PROJECT = "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research"
@@ -41,11 +42,12 @@ def _write(path: Path, text: str) -> None:
 
 
 def make_jobs(specs: list[TrainConfig], out_dir: Path, project: str = DEFAULT_PROJECT,
-              smoke: bool = False) -> Path:
+              smoke: bool = False, external_init: bool = False) -> Path:
     """Write one <run_id>.pbs per spec plus submit.sh into out_dir; return the submit.sh path.
 
     All specs must share one (dataset, detector) pair. Non-arm jobs (init_run is None) are submitted first;
-    each arm is submitted with -W depend=afterok on the warm job of its seed.
+    each arm is submitted with -W depend=afterok on the warm job of its seed. With external_init, an arm whose
+    warm run is not in the spec list (an already complete run, checked by the trainer) is submitted without one.
     """
     if not specs:
         raise ValueError("No specs given")
@@ -101,6 +103,9 @@ def make_jobs(specs: list[TrainConfig], out_dir: Path, project: str = DEFAULT_PR
     if arms:
         lines.append("")
     for s in arms:
+        if s.init_run not in warm_vars and external_init:
+            lines.append(f"qsub {s.run_id}.pbs  # init_run {s.init_run} must already be complete")
+            continue
         if s.init_run not in warm_vars:
             raise ValueError(f"{s.run_id}: warm run {s.init_run!r} is not in the spec list")
         lines.append(f"qsub -W depend=afterok:${warm_vars[s.init_run]} {s.run_id}.pbs")
@@ -115,7 +120,7 @@ def _csv(text: str) -> list[str]:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="cua.ccast.make_jobs")
     ap.add_argument("--family", required=True, choices=("budget", "part_a", "proxy", "part_c", "tune", "ablation",
-                                                         "paste"))
+                                                         "paste", "control", "local", "strength"))
     ap.add_argument("--dataset", required=True)
     ap.add_argument("--detector", required=True)
     ap.add_argument("--out", required=True, type=Path)
@@ -124,6 +129,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--seeds", default="0,1,2")
     ap.add_argument("--policies", default=",".join(PART_C_POLICIES), help="part_c only")
     ap.add_argument("--arms", default=",".join(PASTE_ARMS), help="paste only")
+    ap.add_argument("--control-arms", default=",".join(CONTROL_ARMS), help="control only")
+    ap.add_argument("--levels", default=",".join(map(str, STRENGTH_PILOT_LEVELS)), help="strength only")
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--project", default=DEFAULT_PROJECT)
     a = ap.parse_args(argv)
@@ -137,6 +144,16 @@ def main(argv: list[str] | None = None) -> int:
                                  tuple(_csv(a.policies)))
         elif a.family == "paste":
             specs = paste_specs(a.dataset, a.detector, tuple(int(x) for x in _csv(a.seeds)), tuple(_csv(a.arms)))
+        elif a.family == "control":
+            specs = control_specs(a.dataset, a.detector, tuple(int(x) for x in _csv(a.seeds)),
+                                  tuple(_csv(a.control_arms)))
+        elif a.family == "local":
+            specs = local_specs(a.dataset, a.detector, tuple(int(x) for x in _csv(a.seeds)),
+                                tuple(_csv(a.edits)) if a.edits else LOCAL_EDITS)
+        elif a.family == "strength":
+            specs = strength_specs(a.dataset, a.detector, tuple(int(x) for x in _csv(a.seeds)),
+                                   tuple(_csv(a.edits)) if a.edits else STRENGTH_EDITS,
+                                   tuple(int(x) for x in _csv(a.levels)))
         elif a.family == "tune":
             if (a.dataset, a.detector) != ("rdd", "fasterrcnn"):
                 ap.error("the tune family is fixed to --dataset rdd --detector fasterrcnn")
@@ -155,7 +172,7 @@ def main(argv: list[str] | None = None) -> int:
             if not value.startswith("/"):
                 print(f"warning: {label} {value!r} is not a POSIX absolute path; these jobs must be generated "
                       f"on the cluster to be submittable", file=sys.stderr)
-        submit = make_jobs(specs, a.out, project=a.project, smoke=a.smoke)
+        submit = make_jobs(specs, a.out, project=a.project, smoke=a.smoke, external_init=a.family in ("local", "strength"))
     except ValueError as e:
         ap.error(str(e))
     print(f"wrote {len(specs)} job scripts and {submit}")

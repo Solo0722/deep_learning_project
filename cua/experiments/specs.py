@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import re
+from dataclasses import replace
 
 from cua.augment.menu import valid_menu
+from cua.augment.pixel import PIXEL_EDITS, SCALABLE_EDITS, STRENGTH_LEVELS
 from cua.train import TrainConfig, full_schedule
 
 DETECTORS = ("fasterrcnn", "retinanet")
@@ -127,6 +129,9 @@ def ablation_specs(dataset: str, seeds: tuple[int, ...] = (0, 1, 2)) -> list[Tra
 # pasting; arms differ only in which classes the pasted objects come from. The no-paste control is the
 # existing C-<ds>-<det>-s<seed>-uniform run (identical config without copy-paste).
 PASTE_ARMS = {"cprand": "random", "cpbal": "balanced", "cpada": "adaptive"}
+# Same as the arm without the "m", but pasting object polygons instead of box rectangles (dacl10k only:
+# it needs <data>/dacl10k/train_masks.json from cua.datasets.dacl10k_masks).
+PASTE_MASK_ARMS = {"cpbalm": "balanced", "cpadam": "adaptive"}
 # Road damage only occurs on the road, which fills the lower part of road-scene images.
 PASTE_REGION = {"rdd": "lower", "dacl10k": "full", "voc": "full"}
 
@@ -134,16 +139,88 @@ PASTE_REGION = {"rdd": "lower", "dacl10k": "full", "voc": "full"}
 def paste_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2),
                 arms: tuple[str, ...] = tuple(PASTE_ARMS)) -> list[TrainConfig]:
     _check(dataset, detector)
+    modes = {**PASTE_ARMS, **PASTE_MASK_ARMS}
     for a in arms:
-        if a not in PASTE_ARMS:
+        if a not in modes:
             raise ValueError(f"Unknown copy-paste arm: {a!r}")
+        if a in PASTE_MASK_ARMS and dataset != "dacl10k":
+            raise ValueError(f"mask arm {a!r} needs polygons, which only dacl10k has")
     return [TrainConfig(run_id=f"P-{dataset}-{detector}-s{seed}-{a}", dataset=dataset, detector=detector,
                         seed=seed, epoch_lr=full_schedule(BUDGET_EPOCHS[dataset]), edit=None, policy="uniform",
-                        cp_mode=PASTE_ARMS[a], cp_region=PASTE_REGION[dataset])
+                        cp_mode=modes[a], cp_region=PASTE_REGION[dataset], cp_mask=a in PASTE_MASK_ARMS)
             for seed in seeds for a in arms]
 
 
+# Positive control: the Part C arms with one planted edit added to the menu (cua.augment.menu.PLANT), which
+# deletes the annotations of the most frequent training class. Each arm is otherwise identical to its C- run.
+CONTROL_ARMS = ("uniform", "shared", "cua", "shared2", "cua2")
+
+
+def control_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2),
+                  arms: tuple[str, ...] = CONTROL_ARMS) -> list[TrainConfig]:
+    for a in arms:
+        if a not in CONTROL_ARMS:
+            raise ValueError(f"Unknown control arm: {a!r}")
+    out = []
+    for c in part_c_specs(dataset, detector, seeds, arms):
+        out.append(replace(c, run_id="K" + c.run_id[1:], plant="frequent"))
+    return out
+
+
+LOCAL_EDITS = tuple(e for e in valid_menu("dacl10k") if e in PIXEL_EDITS)
+
+
+def local_specs(dataset: str = "dacl10k", detector: str = "fasterrcnn", seeds: tuple[int, ...] = (0, 1, 2),
+                edits: tuple[str, ...] = LOCAL_EDITS) -> list[TrainConfig]:
+    """Object-local pilot (reports/cua_local/PROTOCOL.md): each L- run is its Part A twin with edit_scope='object'.
+
+    It branches from the existing A- warm checkpoint, and the A- base and whole-image arms are its comparisons,
+    so no warm or base runs are generated here.
+    """
+    if dataset != "dacl10k":
+        raise ValueError("object-local edits need polygon masks, which only dacl10k has")
+    for e in edits:
+        if e not in LOCAL_EDITS:
+            raise ValueError(f"Unknown or non-pixel edit for the local pilot: {e!r}")
+    out = []
+    for a in part_a_specs(dataset, detector, seeds):
+        if a.edit in edits:
+            out.append(replace(a, run_id="L" + a.run_id[1:], edit_scope="object"))
+    return out
+
+
+STRENGTH_EDITS = SCALABLE_EDITS
+STRENGTH_PILOT_LEVELS = (1, 2, 3)
+STRENGTH_PILOT_P = 1.0
+
+
+def strength_specs(dataset: str = "dacl10k", detector: str = "fasterrcnn", seeds: tuple[int, ...] = (0, 1, 2),
+                   edits: tuple[str, ...] = STRENGTH_EDITS,
+                   levels: tuple[int, ...] = STRENGTH_PILOT_LEVELS) -> list[TrainConfig]:
+    """Strength pilot (reports/cua_strength/PROTOCOL.md): each S- run is its Part A twin with the edit applied to
+    every image (edit_p = 1.0) at strength level 1, 2 or 3.
+
+    It branches from the existing A- warm checkpoint and the A- base arm is its comparison (the base arm applies no
+    edit, so its edit_p is irrelevant); no warm or base runs are generated here.
+    """
+    for e in edits:
+        if e not in STRENGTH_EDITS:
+            raise ValueError(f"Unknown or non-scalable edit for the strength pilot: {e!r}")
+    for lv in levels:
+        if lv not in STRENGTH_LEVELS:
+            raise ValueError(f"Strength pilot levels must be in {STRENGTH_LEVELS}, got {lv!r}")
+    out = []
+    for a in part_a_specs(dataset, detector, seeds):
+        if a.edit in edits:
+            for lv in levels:
+                out.append(replace(a, run_id=f"S{a.run_id[1:]}-x{lv}", edit_strength=lv, edit_p=STRENGTH_PILOT_P))
+    return out
+
+
+_S_RE = re.compile(r"^S-([^-]+)-([^-]+)-s(\d+)-([^-]+)-x(\d+)$")
+_L_RE = re.compile(r"^L-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _P_RE = re.compile(r"^P-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
+_K_RE = re.compile(r"^K-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _C_RE = re.compile(r"^C-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _T_RE = re.compile(r"^T-rdd-fasterrcnn-s0-([^-]+)$")
 _X_RE = re.compile(r"^X-([^-]+)-fasterrcnn-s(\d+)-([^-]+)$")
@@ -164,6 +241,12 @@ def resolve(run_id: str) -> TrainConfig:
             candidates = proxy_specs([] if m[2] == "base" else [m[2]], int(m[1]))
         elif m := _P_RE.match(run_id):
             candidates = paste_specs(m[1], m[2], seeds=(int(m[3]),), arms=(m[4],))
+        elif m := _S_RE.match(run_id):
+            candidates = strength_specs(m[1], m[2], seeds=(int(m[3]),), edits=(m[4],), levels=(int(m[5]),))
+        elif m := _L_RE.match(run_id):
+            candidates = local_specs(m[1], m[2], seeds=(int(m[3]),), edits=(m[4],))
+        elif m := _K_RE.match(run_id):
+            candidates = control_specs(m[1], m[2], seeds=(int(m[3]),), arms=(m[4],))
         elif m := _C_RE.match(run_id):
             candidates = part_c_specs(m[1], m[2], seeds=(int(m[3]),), policies=(m[4],))
         elif _T_RE.match(run_id):
@@ -177,5 +260,5 @@ def resolve(run_id: str) -> TrainConfig:
             return spec
     raise KeyError(f"Unknown run spec {run_id!r}: expected budget-<dataset>-<detector>-e<N>, "
                    f"A-<dataset>-<detector>-s<seed>-<edit|warm|base>, proxy-rdd-fasterrcnn-e<N>-<edit|base>, "
-                   f"C-<dataset>-<detector>-s<seed>-<policy>, P-<dataset>-<detector>-s<seed>-<cprand|cpbal|cpada>, T-rdd-fasterrcnn-s0-<variant> or "
+                   f"C-<dataset>-<detector>-s<seed>-<policy>, K-<dataset>-<detector>-s<seed>-<control arm>, L-dacl10k-<detector>-s<seed>-<pixel edit>, S-<dataset>-<detector>-s<seed>-<scalable edit>-x<1|2|3>, P-<dataset>-<detector>-s<seed>-<cprand|cpbal|cpada>, T-rdd-fasterrcnn-s0-<variant> or "
                    f"X-<rdd|dacl10k>-fasterrcnn-s<seed>-<ablation>")

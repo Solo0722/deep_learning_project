@@ -13,6 +13,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 from cua.augment.paste import CopyPaste
+from cua.datasets.dacl10k_masks import MASKS_FILE, load_masks
 from cua.image import letterbox, load_rgb
 from cua.records import read_classes, read_records
 
@@ -25,13 +26,15 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--n", type=int, default=8)
     ap.add_argument("--mode", default="balanced")
     ap.add_argument("--region", default="full", choices=("full", "lower"))
+    ap.add_argument("--masks", action="store_true", help="paste polygons from train_masks.json")
     a = ap.parse_args(argv)
     ds = a.data_root / a.dataset
     classes = read_classes(ds / "classes.json")
     root = Path(json.loads((ds / "source.json").read_text(encoding="utf-8"))["image_root"])
     root = root if root.is_absolute() else ds / root
     recs = read_records(ds / "train.jsonl")
-    cp = CopyPaste(recs, len(classes), a.mode, 0, p=1.0, region=a.region)
+    masks = load_masks(ds / MASKS_FILE, recs) if a.masks else None
+    cp = CopyPaste(recs, len(classes), a.mode, 0, p=1.0, region=a.region, masks=masks)
     load = lambda j: letterbox(load_rgb(root, recs[j]), recs[j], 640)[0]  # noqa: E731
     a.out.mkdir(parents=True, exist_ok=True)
     rng = np.random.default_rng(0)

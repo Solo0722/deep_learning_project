@@ -1,0 +1,424 @@
+{
+  "S1": {
+    "F": 24.26597745477025,
+    "df1": 154,
+    "df2": 336,
+    "p": 4.041591592363299e-121
+  },
+  "S1_pass": true,
+  "S2": {
+    "folds": [
+      {
+        "held_out": 0,
+        "gain": -0.12143340451119221,
+        "per_class": -0.12143340451119221,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "saturation@x3",
+          "Crack": "saturation@x3",
+          "Efflorescence": "none",
+          "ExposedRebars": "brightness@x2",
+          "Graffiti": "brightness@x1",
+          "Hollowareas": "contrast@x2",
+          "Restformwork": "saturation@x2",
+          "Rockpocket": "noise@x2",
+          "Rust": "brightness@x2",
+          "Spalling": "saturation@x3",
+          "Weathering": "none",
+          "Wetspot": "contrast@x1"
+        }
+      },
+      {
+        "held_out": 1,
+        "gain": -0.27749604594668625,
+        "per_class": -0.27749604594668625,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "saturation@x3",
+          "Crack": "saturation@x1",
+          "Efflorescence": "saturation@x1",
+          "ExposedRebars": "blur@x2",
+          "Graffiti": "contrast@x1",
+          "Hollowareas": "contrast@x2",
+          "Restformwork": "none",
+          "Rockpocket": "noise@x2",
+          "Rust": "none",
+          "Spalling": "saturation@x3",
+          "Weathering": "none",
+          "Wetspot": "contrast@x1"
+        }
+      },
+      {
+        "held_out": 2,
+        "gain": 0.0926153339316873,
+        "per_class": 0.0926153339316873,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "saturation@x3",
+          "Crack": "contrast@x3",
+          "Efflorescence": "none",
+          "ExposedRebars": "saturation@x3",
+          "Graffiti": "contrast@x2",
+          "Hollowareas": "contrast@x2",
+          "Restformwork": "saturation@x3",
+          "Rockpocket": "noise@x2",
+          "Rust": "none",
+          "Spalling": "none",
+          "Weathering": "brightness@x1",
+          "Wetspot": "saturation@x1"
+        }
+      }
+    ],
+    "mean": -0.1021047055087304,
+    "all_positive": false
+  },
+  "S2_pass": false,
+  "S2_level1_reference": {
+    "folds": [
+      {
+        "held_out": 0,
+        "gain": -0.19665821852933008,
+        "per_class": -0.19665821852933008,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "none",
+          "Crack": "contrast@x1",
+          "Efflorescence": "none",
+          "ExposedRebars": "none",
+          "Graffiti": "brightness@x1",
+          "Hollowareas": "contrast@x1",
+          "Restformwork": "brightness@x1",
+          "Rockpocket": "noise@x1",
+          "Rust": "brightness@x1",
+          "Spalling": "noise@x1",
+          "Weathering": "none",
+          "Wetspot": "contrast@x1"
+        }
+      },
+      {
+        "held_out": 1,
+        "gain": -0.34418936686052204,
+        "per_class": -0.34418936686052204,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "saturation@x1",
+          "Crack": "saturation@x1",
+          "Efflorescence": "saturation@x1",
+          "ExposedRebars": "noise@x1",
+          "Graffiti": "contrast@x1",
+          "Hollowareas": "brightness@x1",
+          "Restformwork": "none",
+          "Rockpocket": "noise@x1",
+          "Rust": "none",
+          "Spalling": "brightness@x1",
+          "Weathering": "none",
+          "Wetspot": "contrast@x1"
+        }
+      },
+      {
+        "held_out": 2,
+        "gain": -0.010616222754098903,
+        "per_class": -0.010616222754098903,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "none",
+          "Crack": "saturation@x1",
+          "Efflorescence": "none",
+          "ExposedRebars": "noise@x1",
+          "Graffiti": "none",
+          "Hollowareas": "contrast@x1",
+          "Restformwork": "none",
+          "Rockpocket": "noise@x1",
+          "Rust": "none",
+          "Spalling": "none",
+          "Weathering": "brightness@x1",
+          "Wetspot": "saturation@x1"
+        }
+      }
+    ],
+    "mean": -0.18382126938131702,
+    "all_positive": false
+  },
+  "S2_part_a_reference": {
+    "folds": [
+      {
+        "held_out": 0,
+        "gain": -0.045746948070571426,
+        "per_class": -0.045746948070571426,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "none",
+          "Crack": "contrast@A",
+          "Efflorescence": "noise@A",
+          "ExposedRebars": "blur@A",
+          "Graffiti": "brightness@A",
+          "Hollowareas": "contrast@A",
+          "Restformwork": "blur@A",
+          "Rockpocket": "blur@A",
+          "Rust": "brightness@A",
+          "Spalling": "noise@A",
+          "Weathering": "brightness@A",
+          "Wetspot": "blur@A"
+        }
+      },
+      {
+        "held_out": 1,
+        "gain": 0.1180540258117096,
+        "per_class": -0.07078475326466122,
+        "global": -0.1888387790763708,
+        "global_edit": "brightness@A",
+        "choice": {
+          "Cavity": "noise@A",
+          "Crack": "contrast@A",
+          "Efflorescence": "noise@A",
+          "ExposedRebars": "saturation@A",
+          "Graffiti": "brightness@A",
+          "Hollowareas": "saturation@A",
+          "Restformwork": "none",
+          "Rockpocket": "noise@A",
+          "Rust": "none",
+          "Spalling": "noise@A",
+          "Weathering": "blur@A",
+          "Wetspot": "blur@A"
+        }
+      },
+      {
+        "held_out": 2,
+        "gain": -0.06255410168314257,
+        "per_class": -0.06255410168314257,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "noise@A",
+          "Crack": "contrast@A",
+          "Efflorescence": "noise@A",
+          "ExposedRebars": "brightness@A",
+          "Graffiti": "brightness@A",
+          "Hollowareas": "contrast@A",
+          "Restformwork": "noise@A",
+          "Rockpocket": "noise@A",
+          "Rust": "noise@A",
+          "Spalling": "noise@A",
+          "Weathering": "saturation@A",
+          "Wetspot": "noise@A"
+        }
+      }
+    ],
+    "mean": 0.0032509920193318684,
+    "all_positive": false
+  },
+  "S3": [
+    {
+      "edit": "brightness",
+      "level": 1,
+      "mean_delta": -0.10715501463953352,
+      "class_sd": 0.23413260364025112,
+      "seed_sd": 0.5029623452856368,
+      "n_seeds": 3,
+      "lambda": 0.0
+    },
+    {
+      "edit": "brightness",
+      "level": 2,
+      "mean_delta": -0.2488803173712707,
+      "class_sd": 0.5094402711689865,
+      "seed_sd": 0.48806166787439276,
+      "n_seeds": 3,
+      "lambda": 0.5396375870602234
+    },
+    {
+      "edit": "brightness",
+      "level": 3,
+      "mean_delta": -0.42682223527170776,
+      "class_sd": 0.4543325340960128,
+      "seed_sd": 0.6336570987618437,
+      "n_seeds": 3,
+      "lambda": 0.13947707022619857
+    },
+    {
+      "edit": "contrast",
+      "level": 1,
+      "mean_delta": -0.12034981358144471,
+      "class_sd": 0.3300030310965587,
+      "seed_sd": 0.4574450497053178,
+      "n_seeds": 3,
+      "lambda": 0.15138581583575067
+    },
+    {
+      "edit": "contrast",
+      "level": 2,
+      "mean_delta": -0.28599566396660914,
+      "class_sd": 0.6257205215095493,
+      "seed_sd": 0.5151044386372142,
+      "n_seeds": 3,
+      "lambda": 0.6896659912674108
+    },
+    {
+      "edit": "contrast",
+      "level": 3,
+      "mean_delta": -0.49899976303884896,
+      "class_sd": 0.7073993207571828,
+      "seed_sd": 0.5376146426467864,
+      "n_seeds": 3,
+      "lambda": 0.7233428145764634
+    },
+    {
+      "edit": "saturation",
+      "level": 1,
+      "mean_delta": -0.16475309712541,
+      "class_sd": 0.32520870194242624,
+      "seed_sd": 0.516892715758143,
+      "n_seeds": 3,
+      "lambda": 0.0
+    },
+    {
+      "edit": "saturation",
+      "level": 2,
+      "mean_delta": -0.41182279878164135,
+      "class_sd": 0.7069882624952091,
+      "seed_sd": 0.6207724565481241,
+      "n_seeds": 3,
+      "lambda": 0.5110215992480251
+    },
+    {
+      "edit": "saturation",
+      "level": 3,
+      "mean_delta": -0.6718117787280552,
+      "class_sd": 1.396991327453259,
+      "seed_sd": 0.476430779841355,
+      "n_seeds": 3,
+      "lambda": 0.9309101004897129
+    },
+    {
+      "edit": "blur",
+      "level": 1,
+      "mean_delta": -0.7178822016767779,
+      "class_sd": 0.48083444923691226,
+      "seed_sd": 0.6756893040491653,
+      "n_seeds": 3,
+      "lambda": 0.06798850313093288
+    },
+    {
+      "edit": "blur",
+      "level": 2,
+      "mean_delta": -1.8053908995016066,
+      "class_sd": 1.1458019332863805,
+      "seed_sd": 0.756498638786394,
+      "n_seeds": 3,
+      "lambda": 0.7965499109201035
+    },
+    {
+      "edit": "blur",
+      "level": 3,
+      "mean_delta": -2.68455207685059,
+      "class_sd": 1.7132944441733162,
+      "seed_sd": 0.6789675029577485,
+      "n_seeds": 3,
+      "lambda": 0.9193219158363246
+    },
+    {
+      "edit": "noise",
+      "level": 1,
+      "mean_delta": -0.972271836771506,
+      "class_sd": 1.3357739953543597,
+      "seed_sd": 0.5900960756735986,
+      "n_seeds": 3,
+      "lambda": 0.9183202312051166
+    },
+    {
+      "edit": "noise",
+      "level": 2,
+      "mean_delta": -2.956931431633157,
+      "class_sd": 3.0766446875634976,
+      "seed_sd": 0.44201365609228566,
+      "n_seeds": 3,
+      "lambda": 0.990268162368413
+    },
+    {
+      "edit": "noise",
+      "level": 3,
+      "mean_delta": -4.939774550708141,
+      "class_sd": 4.791866619542528,
+      "seed_sd": 0.508421173408005,
+      "n_seeds": 3,
+      "lambda": 0.995350064825016
+    }
+  ],
+  "S4": {
+    "folds": [
+      {
+        "held_out": 0,
+        "gain": -0.036360361565393566,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "saturation@x3",
+          "Crack": "saturation@x3",
+          "Efflorescence": "none",
+          "ExposedRebars": "brightness@x2",
+          "Graffiti": "none",
+          "Hollowareas": "contrast@x2",
+          "Restformwork": "saturation@x3",
+          "Rockpocket": "noise@x2",
+          "Rust": "brightness@x2",
+          "Spalling": "saturation@x3",
+          "Weathering": "none",
+          "Wetspot": "none"
+        }
+      },
+      {
+        "held_out": 1,
+        "gain": -0.1286342234584966,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "saturation@x3",
+          "Crack": "saturation@x1",
+          "Efflorescence": "saturation@x1",
+          "ExposedRebars": "saturation@x3",
+          "Graffiti": "contrast@x1",
+          "Hollowareas": "contrast@x2",
+          "Restformwork": "none",
+          "Rockpocket": "noise@x2",
+          "Rust": "none",
+          "Spalling": "saturation@x3",
+          "Weathering": "none",
+          "Wetspot": "contrast@x3"
+        }
+      },
+      {
+        "held_out": 2,
+        "gain": 0.07280597714611488,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "saturation@x3",
+          "Crack": "saturation@x3",
+          "Efflorescence": "none",
+          "ExposedRebars": "saturation@x3",
+          "Graffiti": "none",
+          "Hollowareas": "none",
+          "Restformwork": "saturation@x3",
+          "Rockpocket": "noise@x3",
+          "Rust": "none",
+          "Spalling": "none",
+          "Weathering": "none",
+          "Wetspot": "saturation@x3"
+        }
+      }
+    ],
+    "mean": -0.03072953595925843,
+    "all_positive": false,
+    "mean_lambda": 0.5275437131370236
+  },
+  "go": false,
+  "thresholds": {
+    "S1_p": 0.05,
+    "S2_mean": 0.5
+  },
+  "missing_runs": []
+}

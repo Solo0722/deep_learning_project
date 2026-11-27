@@ -1,7 +1,7 @@
 """One-time test-set evaluation of Part C main-comparison runs (spec §4, §10) and of the
 class-adaptive copy-paste pilot runs.
 
-CLI: python -m cua.test_eval --runs-root DIR --data-root DIR [--device cuda] [--prefix C-|P-]
+CLI: python -m cua.test_eval --runs-root DIR --data-root DIR [--device cuda] [--prefix C-|P-|K-]
 
 For every complete `C-<dataset>-<detector>-s<seed>-<policy>` (or, with --prefix P-,
 `P-<dataset>-<detector>-s<seed>-<arm>`) run, loads best.pt (best validation macro AP50), predicts on
@@ -29,6 +29,7 @@ from cua.train import _predictions_json, _write_json
 
 PART_C_RE = re.compile(r"^C-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 PASTE_RE = re.compile(r"^P-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
+CONTROL_RE = re.compile(r"^K-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 FP_SCORE = 0.5
 
 
@@ -47,8 +48,9 @@ def evaluate_run(run_dir: Path, data_root: Path, device: str = "cuda", batch_siz
     rid = run_dir.name
     if not (run_dir / "COMPLETE.json").exists():
         raise RuntimeError(f"{rid}: incomplete (no COMPLETE.json)")
-    if not (PART_C_RE.match(rid) or PASTE_RE.match(rid)):
-        raise ValueError(f"{rid}: only Part C (C-...) and copy-paste (P-...) runs are evaluated on test")
+    if not (PART_C_RE.match(rid) or PASTE_RE.match(rid) or CONTROL_RE.match(rid)):
+        raise ValueError(f"{rid}: only Part C (C-...), copy-paste (P-...) and positive-control (K-...) runs "
+                         "are evaluated on test")
     cfg = resolve(rid)
     stored = json.loads((run_dir / "config.json").read_text(encoding="utf-8")).get("digest")
     if stored != cfg.digest():
@@ -78,7 +80,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--runs-root", type=Path, required=True)
     ap.add_argument("--data-root", type=Path, required=True)
     ap.add_argument("--device", default="cuda")
-    ap.add_argument("--prefix", default="C-", choices=("C-", "P-"))
+    ap.add_argument("--prefix", default="C-", choices=("C-", "P-", "K-"))
     ap.add_argument("--workers", type=int, default=4)
     a = ap.parse_args(argv)
     refused = 0

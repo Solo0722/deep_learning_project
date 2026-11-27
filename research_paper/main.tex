@@ -25,12 +25,12 @@
 
 \begin{document}
 
-\title{Class-Aware Augmentation Selection for Multi-Class Object Detection}
+\title{Does Class-Aware Augmentation Help Object Detection? A Controlled Measurement}
 \maketitle
 
-% \begin{abstract}
-% Written last (Stage 7).
-% \end{abstract}
+\begin{abstract}
+Augmentation pipelines for object detection apply one policy to every image, although the objects in an image may belong to classes that need different edits. We ask whether augmentation effects in detection depend on the class, and whether a policy can turn that dependence into accuracy. In 258 controlled training runs on road damage (RDD2022), bridge damage (dacl10k) and PASCAL VOC with Faster R-CNN and RetinaNet, we measure the effect of each of 12--13 edits on every class. The edit$\times$class interaction is significant in four of the six dataset--detector pairs, but outside a few edits the class-specific part of an effect is about 1--3 AP50 per class, close to seed-to-seed noise. We then test ways of exploiting it under matched data, schedules and seeds: an online per-class utility estimator (CUA) in two versions, each against a counterpart that differs only in pooling the classes; a policy built from the measured effects; a per-class population-based search; and class-balanced and class-adaptive copy-paste with box and mask cut-outs. No class-aware variant beats its class-blind counterpart after Holm correction, and the only gain over the better of no augmentation and uniform augmentation that survives correction, 0.52 AP50, is matched by the class-blind version. With three seeds, these comparisons rule out gains larger than 0.4--0.9 AP50 on five of the six pairs. The online estimates do not track the measured effects and favour edits that add objects to the batch. \todo{One sentence on the positive control (Sec.~\ref{sec:results_control}) once its runs finish.} On these benchmarks, class-specific augmentation selection is not a reliable route to better detectors, and uniform sampling from a moderate menu remains a strong default.
+\end{abstract}
 
 \begin{IEEEkeywords}
 augmentation policy, data augmentation, gradient alignment, infrastructure inspection, multi-class images, object detection
@@ -45,16 +45,18 @@ Data augmentation addresses the first part of this requirement by applying contr
 
 Existing augmentation methods have progressively moved toward this goal, but each stops short of it. AutoAugment and RandAugment search for or simplify one policy shared by the whole dataset~\cite{cubuk2019auto,cubuk2020rand}, and detection-specific extensions add edits restricted to annotated boxes or adapt the policy to object scale~\cite{zoph2020det,chen2021scale}; none of these policies, however, depends on the class of the objects being edited. Class-aware approaches recognize that classes may require different augmentations~\cite{tsuchiya2019,yoo2023,cheung2022adaaug}, in some cases by setting augmentation probabilities per class before training~\cite{rdd_detectron2}. Because these policies are fixed before or apart from detector training, they cannot follow changes in what each class needs as learning progresses. Online methods remove this restriction by adapting augmentation from the feedback of the evolving model, but the feedback they use introduces two further limitations. Tolerance-based controllers such as CTAugment and CUDA adjust augmentation according to whether the model still recognizes augmented examples~\cite{berthelot2020,ahn2023cuda}, which indicates what the model can already handle rather than whether training on the edit improves it. Benefit-based methods such as BDA, DDAS and MADAug measure that improvement through a held-out loss~\cite{lu2023bda,liu2021ddas,hou2023madaug}, but they compute it over all classes together, so an edit that helps frequent classes can be preferred even when it harms a rare one. Moreover, the class-aware methods among them are formulated for classification, where each training sample carries one label, and therefore do not specify which class should govern an image that contains several.
 
-This gap matters in detection because the classes in one image may disagree about an edit. If an edit helps the detector learn one class in an image but hinders another, a policy guided by pooled feedback sees only the net effect and applies the same preference to every image, whereas a policy keyed to a single class must ignore the other. What is needed instead is a measure of how much each edit helps each class learn, combined into one decision for the image that respects every class it contains.
+This gap would matter in detection if the classes in one image disagree about an edit. If an edit helps the detector learn one class in an image but hinders another, a policy guided by pooled feedback sees only the net effect and applies the same preference to every image, whereas a policy keyed to a single class must ignore the other. What would be needed instead is a measure of how much each edit helps each class learn, combined into one decision for the image that respects every class it contains. Whether such a policy is worth building depends on two empirical questions that, to our knowledge, have not been answered for detection: do augmentation effects depend on the class, and if they do, can a policy exploit the dependence?
 
-To meet this need, we propose Class-Utility Augmentation (CUA), an online augmentation policy that selects the edit for each training image from the classes present in it. CUA is built around the \emph{class utility} of an edit, defined as the estimated amount that the edit helps a given class learn. CUA estimates this utility during training with a first-order argument from training-influence analysis~\cite{pruthi2020tracin}: if a gradient step on the edited image would reduce a class's loss on a held-out \emph{reference set} more than a step on the original image would, the edit currently benefits that class. For each training image, CUA then averages the utilities of the classes present, removes any edit that is reliably harmful to one of them, and samples a single edit from the remainder, with ``no edit'' always available as a candidate of zero utility (Fig.~\ref{fig:teaser}). Because the utilities are re-estimated from the current detector, the preferred edits can change as training proceeds, and because CUA requires no policy network and no separate search phase, it adds only a periodic gradient computation to standard training.
+This paper answers both questions with controlled experiments. To test the second, we construct Class-Utility Augmentation (CUA), an online augmentation policy that selects the edit for each training image from the classes present in it, and use it as an instrument rather than as a proposed solution. CUA is built around the \emph{class utility} of an edit, defined as the estimated amount that the edit helps a given class learn. CUA estimates this utility during training with a first-order argument from training-influence analysis~\cite{pruthi2020tracin}: if a gradient step on the edited image would reduce a class's loss on a held-out \emph{reference set} more than a step on the original image would, the edit currently benefits that class. For each training image, CUA then averages the utilities of the classes present, removes any edit that is reliably harmful to one of them, and samples a single edit from the remainder, with ``no edit'' always available as a candidate of zero utility (Fig.~\ref{fig:teaser}). Because the utilities are re-estimated from the current detector, the preferred edits can change as training proceeds, and because CUA requires no policy network and no separate search phase, it adds only a periodic gradient computation to standard training.
 
-The value of CUA rests on the premise that classes respond differently to the same edit, so we examine this premise before evaluating the method. Across road damage (RDD2022), bridge damage (dacl10k) and everyday objects (PASCAL VOC)~\cite{everingham2010voc}, and with two detector families, Faster R-CNN~\cite{ren2017faster} and RetinaNet~\cite{lin2017focal}, we train detectors with one edit at a time to measure its effect on each class. We then compare CUA with shared-utility augmentation, an otherwise identical policy that averages utility over all classes, so that any difference between the two reflects class information alone. The measurements show that whether an edit helps or hurts depends on the class, but that this dependence varies with the detector: the edit$\times$class interaction is significant for Faster R-CNN on all three datasets (RDD2022 $p=4.5\times10^{-7}$, PASCAL VOC $p=2.4\times10^{-5}$, dacl10k $p=4.1\times10^{-11}$), and for RetinaNet only on PASCAL VOC ($p<10^{-6}$; RDD2022 $p=0.77$, dacl10k $p=0.34$). \todo{CUA results pending: CUA versus shared-utility augmentation on test macro AP50, and agreement between estimated utilities and measured effects.} In summary, this paper makes the following contributions:
+To answer the first question, we train detectors with one edit at a time and measure its effect on each class, across road damage (RDD2022), bridge damage (dacl10k) and everyday objects (PASCAL VOC)~\cite{everingham2010voc}, and with two detector families, Faster R-CNN~\cite{ren2017faster} and RetinaNet~\cite{lin2017focal}. Whether an edit helps or hurts does depend on the class, but the dependence varies with the detector: the edit$\times$class interaction is significant for Faster R-CNN on all three datasets (RDD2022 $p=4.5\times10^{-7}$, PASCAL VOC $p=2.4\times10^{-5}$, dacl10k $p=4.1\times10^{-11}$), and for RetinaNet only on PASCAL VOC ($p=1.0\times10^{-8}$; RDD2022 $p=0.77$, dacl10k $p=0.34$). Outside the few edits whose class dependence survives correction, the class-specific part of an effect is small, about 1--3 AP50 per class in short training runs.
+
+To answer the second, we compare CUA with shared-utility augmentation, an otherwise identical policy that averages utility over all classes, so that any difference between the two reflects class information alone. We repeat the comparison with a second, lower-variance estimator, and we add three routes that do not depend on the estimate: a policy that takes the class effects from the measurement study, a per-class population-based search, and class-aware copy-paste, which changes which objects an image contains rather than how it looks. All comparisons are paired over seeds and test images, corrected for multiplicity, and reported with the smallest effect they could detect. None of these routes yields a gain that can be attributed to class information. Class information never improves on the pooled policy, the estimated utilities do not agree with the measured effects, and on three pairs the first version of CUA is significantly worse than the better of no edit and uniform augmentation. A positive control, in which we plant an edit that is known to harm one class, tests whether the pipeline could have found such an effect had it existed (Sec.~\ref{sec:results_control}). In summary, this paper makes the following contributions:
 
 \begin{enumerate}
-    \item Class-Utility Augmentation, an online augmentation policy for multi-class object detection that estimates how much each edit helps each class learn and selects one edit per image from the classes it contains, with a no-edit option and a per-class harm block.
-    \item A controlled measurement of how individual edits affect each class in detection, across three domains and two detector families.
-    \item A comparison with a shared-utility counterpart that differs from CUA only in class information, together with standard augmentation baselines, and a test of whether the estimated class utilities agree with the measured per-class effects.
+    \item A controlled measurement of how individual edits affect each class in detection, across three domains and two detector families, with interaction tests that separate class-specific effects from the shared effect of each edit and from seed noise.
+    \item A matched test of whether class-specific effects can be exploited: an online per-class policy (CUA) in two versions, each against a counterpart that differs only in pooling the classes, together with a measured-effect policy, a per-class population-based search and class-aware copy-paste, all with Holm-corrected paired intervals and minimum detectable effects.
+    \item A diagnosis of why exploitation fails, covering the size of the class effects, the agreement between short and full training, the bias of gradient-based utility estimates toward edits that add objects, the disagreement between validation and test rankings, and a positive control with a planted class-specific effect.
 \end{enumerate}
 
 \begin{figure}[t]
@@ -73,9 +75,9 @@ The value of CUA rests on the premise that classes respond differently to the sa
 
 \noindent\textbf{Class-aware augmentation.} Evidence from recognition suggests that this assumption does not always hold. Kirichenko \emph{et al.} show that augmentation which raises average ImageNet accuracy can lower the accuracy of individual classes~\cite{kirichenko2023}, and Tsuchiya \emph{et al.} find that augmentation methods for road-damage classification differ in their effect on individual damage classes~\cite{tsuchiya2019}. Several methods have therefore made augmentation depend on the class. Yoo and Kang derive class-specific parameters from a classifier trained beforehand~\cite{yoo2023}, AdaAug learns class-adaptive policies in a separate search~\cite{cheung2022adaaug}, CUDA updates a severity for each class during training~\cite{ahn2023cuda}, and Pham \emph{et al.} set augmentation probabilities for each damage type from an exploration of the data~\cite{rdd_detectron2}. These methods share a limitation that becomes decisive in detection. The classification methods select the augmentation by the label of a sample, which has no answer when an image contains objects of several classes, while the detection recipe sidesteps the question by fixing its probabilities before training. PSIS, the closest detection counterpart, adapts to per-class detection accuracy during training, but it controls how many instance-switched samples each class receives rather than which edit each image receives~\cite{wang2019psis}. A method for multi-class detection must therefore choose edits from the whole set of classes in an image, and must do so as the needs of the detector change during training.
 
-\noindent\textbf{Adapting augmentation during training.} Online methods make this second requirement possible by updating augmentation from the model as it trains, but they differ in the feedback they treat as evidence that an edit is useful. Tolerance-based methods ask whether the current model still recognizes, or tolerates, augmented examples. CTAugment adjusts per-operation magnitudes from predictions on augmented labeled data, pooled over classes~\cite{berthelot2020}; CUDA raises or lowers the severity of each class according to how well its augmented examples are recognized~\cite{ahn2023cuda}; and TeachAugment keeps learned transformations recognizable to a teacher while making them hard for the target model~\cite{suzuki2022teach}. Recognition, however, reflects what the model can already handle rather than what it gains from training on the edit, which is the quantity augmentation is meant to increase. Benefit-based methods measure this gain more directly. BDA rewards an augmentation by the training gain it yields over a paired unaugmented reference~\cite{lu2023bda}, DDAS uses a one-step gradient update to estimate how the augmentation distribution affects a held-out loss, including for detection~\cite{liu2021ddas}, MADAug learns an input-dependent policy through a bilevel validation objective~\cite{hou2023madaug}, and RangeAugment and AdaAugment adapt magnitudes from task-loss feedback~\cite{mehta2022rangeaugment,yang2025adaaugment}. Their common limitation is that the benefit is computed over all classes together, so a gain for frequent classes can outweigh a loss for a rare one, which is precisely the trade-off that a multi-class image creates. Estimating the gain separately for each class need not be costly. TracIn measures the influence of a training example on a test loss through the alignment of their gradients~\cite{pruthi2020tracin}, and CUA applies the same first-order argument to edited versus unedited images and to a separate reference loss for each class.
+\noindent\textbf{Adapting augmentation during training.} Online methods make this second requirement possible by updating augmentation from the model as it trains, but they differ in the feedback they treat as evidence that an edit is useful. Tolerance-based methods ask whether the current model still recognizes, or tolerates, augmented examples. CTAugment adjusts per-operation magnitudes from predictions on augmented labeled data, pooled over classes~\cite{berthelot2020}; CUDA raises or lowers the severity of each class according to how well its augmented examples are recognized~\cite{ahn2023cuda}; and TeachAugment keeps learned transformations recognizable to a teacher while making them hard for the target model~\cite{suzuki2022teach}. Recognition, however, reflects what the model can already handle rather than what it gains from training on the edit, which is the quantity augmentation is meant to increase. Benefit-based methods measure this gain more directly. BDA searches for a fixed policy with a multi-armed bandit, rewarding a sampled policy by how much lower the validation cross-entropy is after one training step on the augmented batch than after the same step, from a copy of the network, on the unaugmented batch~\cite{lu2023bda}, DDAS uses a one-step gradient update to estimate how the augmentation distribution affects a held-out loss, including for detection~\cite{liu2021ddas}, MADAug learns an input-dependent policy through a bilevel validation objective~\cite{hou2023madaug}, and RangeAugment and AdaAugment adapt magnitudes from task-loss feedback~\cite{mehta2022rangeaugment,yang2025adaaugment}. Their common limitation is that the benefit is computed over all classes together, so a gain for frequent classes can outweigh a loss for a rare one, which is precisely the trade-off that a multi-class image creates. Estimating the gain separately for each class need not be costly. TracIn measures the influence of a training example on a test loss through the alignment of their gradients~\cite{pruthi2020tracin}, and CUA applies the same first-order argument to edited versus unedited images and to a separate reference loss for each class.
 
-Table~\ref{tab:policies} places these methods on two axes: the signal that guides augmentation, and whether that signal is resolved by class. Each ingredient of CUA has a precedent among them, including class conditioning, online adaptation, benefit signals and gradient-alignment estimates. None of them, however, keeps a benefit estimate separate for each class and combines these estimates into one decision for an image that contains several classes, with leaving the image unedited as an explicit option. CUA is designed for this case, and its comparison with shared-utility augmentation, which removes the class information and nothing else, tests whether the class information matters.
+Table~\ref{tab:policies} places these methods on two axes: the signal that guides augmentation, and whether that signal is resolved by class. Each ingredient of CUA has a precedent among them, including class conditioning, online adaptation, benefit signals and gradient-alignment estimates. None of them, however, keeps a benefit estimate separate for each class and combines these estimates into one decision for an image that contains several classes, with leaving the image unedited as an explicit option. We construct CUA to fill this cell of the table, and its comparison with shared-utility augmentation, which removes the class information and nothing else, tests whether the class information matters. None of these works reports such a matched comparison, or measures per-class augmentation effects in detection directly.
 
 \begin{table*}[t]
 \caption{Augmentation Methods Grouped by Feedback Signal and Class Resolution}
@@ -97,13 +99,13 @@ Yoo and Kang~\cite{yoo2023} & Classification & Offline, then schedule & Yes & On
 AdaAug~\cite{cheung2022adaaug} & Classification & Learned offline & Yes & One label per sample; policy reused after search. \\
 CTAugment~\cite{berthelot2020} & Semi-supervised classification & Tolerance & No & Statistics pooled across classes. \\
 CUDA~\cite{ahn2023cuda} & Long-tailed classification & Tolerance & Yes & One label per sample selects the severity. \\
-BDA~\cite{lu2023bda} & Classification & Benefit & No & Paired training gain, pooled across classes. \\
+BDA~\cite{lu2023bda} & Classification & Benefit (bandit search) & No & One-step validation-loss gain over an unaugmented copy, pooled across classes; found policy then fixed. \\
 DDAS~\cite{liu2021ddas} & Classification, detection & Benefit & No & One-step held-out loss, pooled across classes. \\
 MADAug~\cite{hou2023madaug} & Classification & Benefit (learned) & Implicit & Input-dependent policy learned from one pooled validation loss. \\
 RangeAugment~\cite{mehta2022rangeaugment} & Classification, detection & Task loss (learned) & No & Learns magnitude ranges online. \\
 AdaAugment~\cite{yang2025adaaugment} & Classification & Loss feedback (learned) & No & Instance-level magnitudes from an actor--critic controller. \\
 \midrule
-CUA (ours) & Multi-class detection & Benefit & Yes & Per-class benefit combined over the classes in each image; no-edit option and per-class harm block. \\
+CUA (studied here) & Multi-class detection & Benefit & Yes & Per-class benefit combined over the classes in each image; no-edit option and per-class harm block. \\
 \bottomrule
 \end{tabularx}
 \vspace{3pt}
@@ -116,113 +118,12 @@ Signal: \emph{tolerance} = whether the current model still recognizes augmented 
 \section{Class-Utility Augmentation}
 \label{sec:method}
 
-CUA decides, for every training image, which single edit to apply on top of a fixed base recipe. It makes this decision by keeping an estimate of how much each edit currently helps each class learn, and by combining these estimates over the classes present in the image. Fig.~\ref{fig:framework} shows the two parts of the method: an estimator that periodically updates a table of class utilities from gradients (Sec.~\ref{sec:method_estimator}), and an image policy that reads this table to choose the edit for each image (Sec.~\ref{sec:method_policy}). We first fix the notation and the augmentation that every image receives regardless of the policy.
+We describe CUA in full because its comparison with shared-utility augmentation is the main test of this paper. CUA decides, for every training image, which single edit to apply on top of a fixed base recipe. It makes this decision by keeping an estimate of how much each edit currently helps each class learn, and by combining these estimates over the classes present in the image. Fig.~\ref{fig:framework} shows the two parts of the method: an estimator that periodically updates a table of class utilities from gradients (Sec.~\ref{sec:method_estimator}), and an image policy that reads this table to choose the edit for each image (Sec.~\ref{sec:method_policy}). We first fix the notation and the augmentation that every image receives regardless of the policy.
 
 \begin{figure*}[t]
 \centering
-\begin{tikzpicture}[x=1cm, y=1cm, font=\sffamily\footnotesize, >={Stealth[length=5pt]},
-  arr/.style={->, draw=cuaArrow, line width=0.8pt},
-  lbl/.style={font=\sffamily\footnotesize\bfseries, text=black!85, align=center},
-  sub/.style={font=\sffamily\scriptsize, text=cuaText, align=center},
-  imgicon/.pic={
-    \fill[#1, rounded corners=2pt] (-0.8,-0.58) rectangle (0.8,0.58);
-    \draw[cuaBlue, line width=1.1pt, rounded corners=0.5pt] (-0.62,-0.38) rectangle (-0.06,0.38);
-    \draw[cuaPurple, line width=1.1pt, rounded corners=0.5pt] (0.08,-0.4) rectangle (0.62,0.06);
-    \fill[black!25] (-0.5,-0.05) -- (-0.3,0.2) -- (-0.18,-0.15) -- cycle;},
-  imgicon/.default=cuaGrey]
-  % ---------------- training step ----------------
-  \pic at (0,0) {imgicon=cuaGrey};
-  \node[lbl] at (0,1.28) {Training image};
-  \node[sub] at (0,0.9) {classes $S(x)$};
-  % base recipe
-  \fill[cuaGrey, rounded corners=2pt] (2.85,-0.42) rectangle (4.25,0.62);
-  \filldraw[fill=white, draw=cuaBlue, line width=1pt, rounded corners=2pt] (3.05,-0.6) rectangle (4.45,0.42);
-  \draw[<->, cuaBlue, line width=0.9pt] (3.35,-0.09) -- (4.15,-0.09);
-  \node[lbl] at (3.65,1.28) {Base recipe};
-  \node[sub] at (3.65,0.9) {flip, scale jitter};
-  % image policy
-  \filldraw[fill=white, draw=cuaGreen, line width=1.8pt] (7.3,0) circle (0.72);
-  \node[text=cuaGreen, font=\footnotesize] at (7.3,0) {$p(o\,|\,S)$};
-  \node[lbl] at (7.3,1.28) {Image policy};
-  \node[sub] at (7.3,0.9) {score, harm block, sample};
-  % edited image
-  \pic at (10.9,0) {imgicon=cuaOrange!22};
-  \filldraw[fill=cuaOrange, draw=white, line width=0.8pt] (11.62,0.5) circle (0.2);
-  \node[text=white, font=\sffamily\scriptsize\bfseries] at (11.62,0.5) {$o$};
-  \node[lbl] at (10.9,1.28) {Apply one edit};
-  \node[sub] at (10.9,0.9) {or ``no edit'' $o_0$};
-  % detector
-  \foreach \i in {0,1,2} {
-    \filldraw[fill=white, draw=cuaBlue, line width=0.9pt, shift={(14.35+0.2*\i,0.12-0.12*\i)}]
-      (-0.5,-0.55) -- (0.2,-0.38) -- (0.2,0.6) -- (-0.5,0.43) -- cycle; }
-  \node[lbl] at (14.55,1.28) {Detector update};
-  \node[sub] at (14.55,0.9) {$\theta\leftarrow\theta-\eta\nabla_\theta\mathcal{L}$};
-  \draw[arr] (0.95,0) -- (2.7,0);
-  \draw[arr] (4.6,0) -- (6.45,0);
-  \draw[arr] (8.15,0) -- (9.95,0);
-  \draw[arr] (11.95,0) -- (13.65,0);
-  % ---------------- estimator ----------------
-  \draw[cuaText!70, dashed, rounded corners=6pt, line width=0.7pt] (-1.65,-2.15) rectangle (16.0,-7.25);
-  \node[anchor=west, fill=white, inner sep=3pt, text=cuaGreen, font=\sffamily\footnotesize\bfseries] (est) at (0.6,-2.15) {Class-utility estimator};
-  \node[anchor=west, fill=white, inner sep=3pt, text=cuaText, font=\sffamily\scriptsize] at (est.east) {every $K$ optimizer steps; gradients on $\theta_s$ only};
-  \draw[arr, dashed] (0,-0.65) -- node[right, sub]{sampled} (0,-2.95);
-  % estimation batch (2x2 tiles, one edited)
-  \foreach \c/\x/\y in {cuaGrey/-0.33/-3.22, cuaGrey/0.06/-3.22, cuaOrange!45/-0.33/-3.61, cuaGrey/0.06/-3.61} {
-    \fill[\c, rounded corners=1.5pt] (\x,\y) rectangle ++(0.33,0.33); }
-  \foreach \c/\x/\y in {cuaGrey/0.45/-3.22, cuaOrange!45/0.45/-3.61} {
-    \fill[\c, rounded corners=1.5pt] (\x,\y) rectangle ++(0.33,0.33); }
-  \node[lbl] at (0.2,-4.12) {Estimation batch $B$};
-  \node[sub] at (0.2,-4.47) {8 images, each edit};
-  % edit gradients
-  \foreach \a/\c in {15/cuaArrow, 32/cuaOrange, 50/cuaArrow, 68/cuaOrange} {
-    \draw[->, \c, line width=1.1pt] (3.25,-3.75) -- ++(\a:0.85); }
-  \node[lbl] at (3.65,-4.12) {Edit gradients};
-  \node[sub] at (3.65,-4.47) {$g_0$ and $g_o$};
-  % reference batch (stratified tiles)
-  \foreach \r/\c in {0/cuaBlue, 1/cuaPurple, 2/cuaTeal, 3/cuaGold} {
-    \foreach \k in {0,...,5} {
-      \fill[\c, rounded corners=1pt] (-0.75+0.26*\k,-5.25-0.26*\r) rectangle ++(0.21,0.21); } }
-  \node[lbl] at (0.0,-6.43) {Reference batch $R$};
-  \node[sub] at (0.0,-6.78) {64 held-out, all classes};
-  % class gradients
-  \foreach \a/\c in {14/cuaBlue, 34/cuaPurple, 54/cuaTeal, 74/cuaGold} {
-    \draw[->, \c, line width=1.1pt] (3.25,-6.05) -- ++(\a:0.85); }
-  \node[lbl] at (3.65,-6.43) {Class gradients};
-  \node[sub] at (3.65,-6.78) {$h_c$, loss masked to class $c$};
-  % alignment
-  \filldraw[fill=white, draw=cuaGreen, line width=1.8pt] (7.3,-4.75) circle (0.6);
-  \node[text=cuaGreen, font=\large\bfseries] at (7.3,-4.75) {$\langle\cdot,\cdot\rangle$};
-  \node[lbl] at (7.3,-5.75) {Class utility};
-  \node[sub] at (7.3,-6.1) {$u(o,c)$, Eq.~\eqref{eq:utility}};
-  \draw[arr] (4.35,-3.4) to[out=-5, in=150] (6.75,-4.48);
-  \draw[arr] (4.35,-5.55) to[out=5, in=-150] (6.75,-5.02);
-  % utility table
-  \foreach \k/\c in {0/cuaBlue, 1/cuaPurple, 2/cuaTeal, 3/cuaGold} {
-    \fill[\c, rounded corners=1pt] (10.15+0.4*\k,-3.42) rectangle ++(0.34,0.12); }
-  \foreach \r/\a/\b/\cc/\d in {
-      0/cuaGrey/cuaGrey/cuaGrey/cuaGrey,
-      1/cuaPos!60/cuaPos!25/cuaNeg!45/cuaPos!15,
-      2/cuaNeg!55/cuaNeg!20/cuaPos!40/cuaGrey,
-      3/cuaPos!45/cuaPos!45/cuaPos!20/cuaNeg!25,
-      4/cuaNeg!30/cuaPos!20/cuaNeg!55/cuaPos!35} {
-    \foreach \k/\c in {0/\a, 1/\b, 2/\cc, 3/\d} {
-      \fill[\c, rounded corners=1.5pt] (10.15+0.4*\k,-3.88-0.4*\r) rectangle ++(0.34,0.34); } }
-  \node[sub, anchor=east] at (10.08,-3.71) {no edit};
-  \node[lbl] at (10.89,-5.92) {Utility table $\bar u(o,c)$};
-  \node[sub] at (10.89,-6.27) {moving average, with $\mathrm{se}(o,c)$};
-  \draw[arr] (7.95,-4.75) -- (9.45,-4.75);
-  % shared variant
-  \foreach \r/\c in {0/cuaGrey, 1/cuaPos!25, 2/cuaNeg!15, 3/cuaPos!30, 4/cuaNeg!20} {
-    \fill[\c, rounded corners=1.5pt] (14.38,-3.88-0.4*\r) rectangle ++(0.34,0.34); }
-  \draw[cuaText, dashed, rounded corners=3pt] (14.25,-5.63) rectangle (14.85,-3.4);
-  \node[lbl] at (14.55,-5.92) {Shared-utility};
-  \node[sub] at (14.55,-6.27) {one value per edit};
-  \draw[arr, dashed] (11.85,-4.75) -- node[above, sub]{pool} (14.1,-4.75);
-  % utilities back to the policy
-  \draw[->, draw=cuaGreen, line width=1.5pt] (10.89,-3.22) -- (10.89,-1.75) -| (7.3,-0.8);
-  \node[text=cuaGreen, font=\sffamily\scriptsize\bfseries, fill=white, inner sep=1.5pt] at (9.1,-1.75) {utilities};
-\end{tikzpicture}
-\caption{Overview of Class-Utility Augmentation (CUA). Top: in every training step, each image receives the base recipe and then one edit, chosen by the image policy from the classes the image contains; ``no edit'' is always a candidate. Bottom: every $K$ steps, the estimator compares the gradients of the training loss on an edited and an unedited estimation batch with the gradient of each class's loss on a shared reference batch. Their alignment estimates how much each edit helps each class learn (Eq.~\eqref{eq:utility}); the smoothed estimates form the utility table (green: helps, red: hurts, values illustrative) that the policy reads. Shared-utility augmentation pools each row of the table into one value, so every image receives the same preferences; it differs from CUA in nothing else.}
+\includegraphics[width=\textwidth]{figures/cua_framework_real.pdf}
+\caption{Overview of Class-Utility Augmentation (CUA), shown on real dacl10k training images. Top: in every training step, each image receives the base recipe and then one edit, chosen by the image policy from the classes the image contains; ``no edit'' is always a candidate. The scores are those the policy computes for this image (Rust and Hollowareas) from the utility table below, under which mosaic ranks first. Bottom: every $K$ steps, the estimator compares the gradients of the training loss on an unedited and an edited estimation batch with the gradient of each class's loss on a shared reference batch (one object per class shown). Their alignment estimates how much each edit helps each class learn (Eq.~\eqref{eq:utility}). The utility table is the run mean of the estimates of CUA on dacl10k with Faster R-CNN over three seeds (green: helps, red: hurts); it is dominated by mosaic and blur for every class, the pattern analysed in Section~\ref{sec:results_comparison}. Shared-utility augmentation pools each row of the table into one value, so every image receives the same preferences; it differs from CUA in nothing else.}
 \label{fig:framework}
 \end{figure*}
 
@@ -283,6 +184,16 @@ Two cases complete the policy. Images that contain no annotated object have an e
 
 To isolate the contribution of class information, we define a counterpart that differs from CUA in that respect alone. Shared-utility augmentation runs the same estimator and the same policy, but it pools the instantaneous estimates over all classes, $u_{\mathrm{sh}}(o)=\frac{1}{|\mathcal{C}|}\sum_{c\in\mathcal{C}}u(o,c)$, smooths them as in Eq.~\eqref{eq:ema}, and applies the harm block of Eq.~\eqref{eq:harm} to the pooled estimate and its standard error. Every image therefore receives the same edit preferences, whichever classes it contains. Because the estimator, reference set, sampling rule and settings are shared, a difference in accuracy between CUA and shared-utility augmentation can be attributed to the use of per-class utilities.
 
+\subsection{A Lower-Variance Estimator}
+\label{sec:method_v2}
+
+The first comparison (Section~\ref{sec:results_comparison}) showed that the estimates of Eq.~\eqref{eq:utility} were too noisy to rank edits within a class and that they systematically favoured mosaic, whose four tiles put about four times as many objects into the gradient. We therefore built a second estimator, CUA-v2, which changes the estimate and keeps the image policy. First, it replaces the first-order alignment by a short lookahead: from the current parameters, it takes four stochastic gradient steps on $\theta_s$ at ten times the training learning rate, with the gradient norm clipped at 5, once on an unedited estimation batch and once on its edited version, and sets
+\begin{equation}
+u_2(o,c)=\frac{\mathcal{L}_c(R;\theta_s^{\,0})-\mathcal{L}_c(R;\theta_s^{\,o})}{\mathcal{L}_c(R;\theta)+\delta},
+\label{eq:utility_v2}
+\end{equation}
+where $\theta_s^{\,0}$ and $\theta_s^{\,o}$ are the parameters after the unedited and edited steps; $\theta_s$ is restored afterwards. Second, each edited step's gradient is scaled by the ratio of object counts in the unedited and edited batches, which removes the object-count advantage of mosaic. Third, it lowers the noise: the estimation batch has 16 images, the reference batch 32, estimates are taken every $K=400$ steps, the moving averages use $\beta=0.98$, and a cell contributes to Eq.~\eqref{eq:score} only when $|\bar u|\geq 2\,\mathrm{se}$ and is set to zero otherwise. Fourth, it starts from a prior: the per-class effects after the first continuation epoch of the measurement study are combined with the online estimate on the $z$ scale by Stouffer's method. Shared-v2 pools the estimates over classes exactly as in Section~\ref{sec:method_shared}.
+
 \subsection{Computational Cost}
 \label{sec:method_cost}
 
@@ -324,7 +235,7 @@ The short continuations measure the effect of an edit early in training, whereas
 \subsection{Datasets}
 \label{sec:setup_data}
 
-We evaluate on three domains that differ in how their classes are defined and how often they co-occur (Table~\ref{tab:datasets}). RDD2022~\cite{arya2024rdd} contains road images from several countries with four damage classes: longitudinal cracks (D00), transverse cracks (D10), alligator cracks (D20) and potholes (D40). We use a fixed split of 26,863 training, 5,760 validation and 5,760 test images, in which exact duplicates and perceptually similar images are always assigned to the same partition. dacl10k~\cite{flotzinger2024dacl10k} contains close-up bridge-inspection images with polygon annotations of damage and bridge components. Because the official download is no longer available, we use its public FiftyOne export~\cite{voxel51dacl10k}, which contains 8,922 images. dacl10k is released under CC BY-NC 4.0; we use it for non-commercial research. Its 1,012 official test images carry no labels and are discarded, so that unlabelled images are never treated as damage-free, which leaves 7,910 labelled images. We keep the damage classes only, convert each annotated polygon into one box spanning all of its rings and clipped to the image, and drop degenerate polygons. Since the official splits are not available with labels, we group the labelled images by near-duplicate hashing and divide the groups 70/15/15 into training, validation and test partitions. PASCAL VOC~\cite{everingham2010voc} provides 20 everyday object classes; we train on the VOC2007 and VOC2012 trainval sets, from which 10\% of the images are held out for validation, and test on VOC2007 test. Objects marked difficult are excluded from the training targets and treated as ignore regions in evaluation.
+We evaluate on three domains that differ in how their classes are defined and how often they co-occur (Table~\ref{tab:datasets}). RDD2022~\cite{arya2024rdd} contains road images from several countries with four damage classes: longitudinal cracks (D00), transverse cracks (D10), alligator cracks (D20) and potholes (D40). We use a fixed split of 25,863 training, 1,000 reference, 5,760 validation and 5,760 test images, in which exact duplicates and perceptually similar images are always assigned to the same partition. dacl10k~\cite{flotzinger2024dacl10k} contains close-up bridge-inspection images with polygon annotations of damage and bridge components. Because the official download is no longer available, we use its public FiftyOne export~\cite{voxel51dacl10k}, which contains 8,922 images. dacl10k is released under CC BY-NC 4.0; we use it for non-commercial research. Its 1,012 official test images carry no labels and are discarded, so that unlabelled images are never treated as damage-free, which leaves 7,910 labelled images. We keep the damage classes only, convert each annotated polygon into one box spanning all of its rings and clipped to the image, and drop degenerate polygons. Since the official splits are not available with labels, we group the labelled images by near-duplicate hashing and divide the groups 70/15/15 into training, validation and test partitions. PASCAL VOC~\cite{everingham2010voc} provides 20 everyday object classes; we train on the VOC2007 and VOC2012 trainval sets, from which 10\% of the images are held out for validation, and test on VOC2007 test. Objects marked difficult are excluded from the training targets and treated as ignore regions in evaluation.
 
 \begin{table}[t]
 \caption{Datasets, Splits and Co-Occurrence of Classes}
@@ -388,7 +299,7 @@ $\varepsilon=0.2$ & 49.78 & 15.2\% \\
 \subsection{Augmentation Menu}
 \label{sec:setup_menu}
 
-Table~\ref{tab:menu} lists the edits and their strengths. Each edit has one strength range, from which a value is drawn every time the edit is applied. Geometric edits transform the boxes together with the image, with a rotated box replaced by the axis-aligned hull of its rotated corners; a draw that pushes a box out of the canvas is redrawn up to ten times, after which the image is left unedited. The validity of each edit is fixed per dataset before training. Vertical flips are excluded for RDD2022, whose images are taken from a vehicle with the road always below the horizon, and for PASCAL VOC, whose upside-down scenes are not label-preserving in practice. Rotation is limited to $\pm10^\circ$ on every dataset, because larger rotations of road images would turn longitudinal cracks into transverse ones. Copy-paste augmentation is not included, because RDD2022 provides no instance masks.
+Table~\ref{tab:menu} lists the edits and their strengths, and Fig.~\ref{fig:gallery} shows them on real training images. Each edit has one strength range, from which a value is drawn every time the edit is applied. Geometric edits transform the boxes together with the image, with a rotated box replaced by the axis-aligned hull of its rotated corners; a draw that pushes a box out of the canvas is redrawn up to ten times, after which the image is left unedited. The validity of each edit is fixed per dataset before training. Vertical flips are excluded for RDD2022, whose images are taken from a vehicle with the road always below the horizon, and for PASCAL VOC, whose upside-down scenes are not label-preserving in practice. Rotation is limited to $\pm10^\circ$ on every dataset, because larger rotations of road images would turn longitudinal cracks into transverse ones. Copy-paste is not part of the edit menu. Section~\ref{sec:results_paste} studies it separately, as a way of changing which objects an image contains rather than how the image looks.
 
 \begin{table}[t]
 \caption{Augmentation Menu and Validity per Dataset}
@@ -419,10 +330,17 @@ Composition & Mosaic~\cite{bochkovskiy2020yolov4} & $2\times2$ tiles at half sca
 \end{tabularx}
 \end{table}
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/augmentation_gallery.pdf}
+\caption{Edits of the menu applied by our training code to one training image of each dataset, with the boxes transformed accordingly. Strengths are those of Table~\ref{tab:menu}; for the pixel edits, the larger of two random draws is shown, since the moderate strengths make single draws hard to see at this size. Mosaic places the image in one quadrant of a $2\times2$ canvas with three other training images (white boxes: their objects); the central band of the canvas is shown. Brightness, hue, sharpening and, for dacl10k, vertical flip are omitted for space.}
+\label{fig:gallery}
+\end{figure*}
+
 \subsection{Compared Policies}
 \label{sec:setup_policies}
 
-We compare five policies, all applied on top of the base recipe and all trained on the same data, schedule and seeds. The \emph{base recipe} applies no further edit. \emph{Uniform augmentation} samples one edit uniformly from $\mathcal{O}\cup\{o_0\}$ for every image, in the manner of TrivialAugment~\cite{muller2021trivial}, and measures the value of the menu without any choice. The \emph{measured-effect policy} uses the policy of Section~\ref{sec:method_policy} with the class utilities replaced by the measured effects $\bar\Delta(o,c)$ of Section~\ref{sec:measurement}, and their standard errors by the standard deviation of $\Delta_{o,c,k}$ over the three seeds divided by $\sqrt{3}$, with the same one-sided harm rule; it is fixed throughout training and shows what class-specific choices achieve when the effects are measured offline rather than estimated online. \emph{Shared-utility augmentation} (Sec.~\ref{sec:method_shared}) and \emph{CUA} complete the comparison.
+We compare five policies, all applied on top of the base recipe and all trained on the same data, schedule and seeds. The \emph{base recipe} applies no further edit. \emph{Uniform augmentation} samples one edit uniformly from $\mathcal{O}\cup\{o_0\}$ for every image, in the manner of TrivialAugment~\cite{muller2021trivial}, and measures the value of the menu without any choice. The \emph{measured-effect policy} uses the policy of Section~\ref{sec:method_policy} with the class utilities replaced by the measured effects $\bar\Delta(o,c)$ of Section~\ref{sec:measurement}, and their standard errors by the standard deviation of $\Delta_{o,c,k}$ over the three seeds divided by $\sqrt{3}$, with the same one-sided harm rule; it is fixed throughout training and tests whether class-specific choices help when the effects are taken from the measurement study rather than estimated online. It is not an upper bound on class-aware selection: its table is measured early in training, on the validation split and with three seeds, and Section~\ref{sec:measure_proxy} shows that short-run effects rank edits only moderately well. \emph{Shared-utility augmentation} (Sec.~\ref{sec:method_shared}) and \emph{CUA} complete the comparison. After the first comparison, both were rerun with the second estimator of Section~\ref{sec:method_v2}, as CUA-v2 and shared-v2, on all six dataset--detector pairs with the same seeds.
 
 Ablations on the validation sets of RDD2022 and dacl10k, with Faster R-CNN and three seeds, remove or replace one component of CUA at a time: the harm block of Eq.~\eqref{eq:harm}; the identity candidate $o_0$; and equal class weights, replaced by weights $w_c$ inversely proportional to the current validation AP of each class.
 
@@ -431,7 +349,7 @@ Ablations on the validation sets of RDD2022 and dacl10k, with Faster R-CNN and t
 
 The primary metric is test macro AP50: average precision at an IoU threshold of 0.5, computed with the COCO evaluation protocol~\cite{lin2014coco} and averaged over the classes that have at least one test object. Secondary metrics are AP50:95, per-class AP50, AP for small, medium and large objects, and, for RDD2022, false-positive images: a target-free test image counts as one if the detector returns at least one box with confidence of at least 0.5 on it, and we report their number and their fraction of the target-free test images. We also report the wall-clock overhead of the estimator.
 
-Every policy is trained with the same three seeds, so all comparisons are paired, and we report the mean and standard deviation over seeds. For the difference between two policies, we compute two 95\% intervals: a paired $t$ interval over seeds, and a paired image-level bootstrap~\cite{efron1979} that draws 1,000 resamples of the test images, uses the same images for every policy and seed, and averages the per-seed differences. We claim a difference only when both intervals exclude zero in the claimed direction. The primary comparison is CUA against shared-utility augmentation on test macro AP50; we also compare CUA with the best simple baseline, which is the base recipe or uniform augmentation, whichever has the higher mean test macro AP50. We report each of the six dataset--detector comparisons separately and apply no correction across them. If the interval of the primary comparison spans zero and is wider than 1.0 AP50, both policies are trained with two further seeds. The test set is used once, after all settings are fixed. To test whether CUA estimates what it is meant to estimate, we compute the Spearman correlation between the class utilities averaged over training and the measured effects $\bar\Delta(o,c)$, with a bootstrap interval over edit--class cells.
+Every policy is trained with the same three seeds, so all comparisons are paired, and we report the mean and standard deviation over seeds. For the difference between two policies, we compute two 95\% intervals: a paired $t$ interval over seeds, and a paired image-level bootstrap~\cite{efron1979} that draws 1,000 resamples of the test images, uses the same images for every policy and seed, and averages the per-seed differences. We claim a difference only when both intervals exclude zero in the claimed direction. The primary comparison is CUA against shared-utility augmentation on test macro AP50; we also compare CUA with the best simple baseline, which is the base recipe or uniform augmentation, whichever has the higher mean test macro AP50. Our original plan reported the six dataset--detector comparisons without correction. Because the study grew to several families of comparisons, we now correct within each family of six comparisons (for example, CUA against shared-utility augmentation over the six pairs) with the Holm procedure~\cite{holm1979}, separately for the seed test and the bootstrap, and claim a difference only when both corrected $p$-values are below 0.05 in the same direction. The bootstrap $p$-value is approximated from its 95\% interval under normality. We also report the minimum detectable effect of each pair, the true difference that both tests would detect with 80\% power: about 0.40 AP50 for PASCAL VOC with Faster R-CNN, 0.55 for PASCAL VOC with RetinaNet, 0.65 for RDD2022 with Faster R-CNN, 0.74 for dacl10k with Faster R-CNN and 0.90 for RDD2022 with RetinaNet. On dacl10k with RetinaNet, seed-to-seed differences of about 2 AP50 raise it to 6.9 AP50, so that pair cannot resolve any of the effects studied here. Our plan also called for two further seeds whenever the interval of the primary comparison spans zero and is wider than 1.0 AP50; this applies to dacl10k with RetinaNet, and the extra seeds were not run. The test set is used once, after all settings are fixed. To test whether CUA estimates what it is meant to estimate, we compute the Spearman correlation between the class utilities averaged over training and the measured effects $\bar\Delta(o,c)$, with a bootstrap interval over edit--class cells.
 
 \subsection{Implementation}
 \label{sec:setup_impl}
@@ -526,48 +444,163 @@ Together, these results support the premise of CUA for Faster R-CNN in all three
 \subsection{Does CUA Exploit Class Dependence?}
 \label{sec:results_comparison}
 
-\todo{Section VI.B is written when the policy comparison finishes: main comparison (Table~\ref{tab:main}), differences with intervals (Fig.~\ref{fig:forest}), estimator agreement (Fig.~\ref{fig:agreement}), ablations (Table~\ref{tab:ablations}), and secondary metrics: AP50:95, AP by object size, false-positive images on damage-free RDD2022 images, and estimator overhead on every dataset and detector.}
+Table~\ref{tab:main} reports test macro AP50 for every policy, and Table~\ref{tab:comparisons} the paired differences that the statistics of Section~\ref{sec:setup_metrics} test. The answer is no: neither version of CUA beats shared-utility augmentation once the comparisons are corrected for multiplicity, CUA is significantly worse than the best simple baseline on three of the six pairs in at least one version, and its estimates do not agree with the measured effects.
 
 \begin{table*}[t]
 \caption{Test Macro AP50 of the Compared Policies (Mean $\pm$ s.d.\ over Three Seeds)}
 \label{tab:main}
 \centering
 \footnotesize
-\todo{Insert main\_table.tex: Base, Uniform, Measured-effect, Shared-utility and CUA for each of the six dataset--detector pairs.}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llccccccc@{}}
+\toprule
+ & & \multicolumn{3}{c}{\textbf{Baselines}} & \multicolumn{2}{c}{\textbf{First estimator}} & \multicolumn{2}{c}{\textbf{Second estimator}} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
+\textbf{Dataset} & \textbf{Det.} & Base & Uniform & Measured & Shared & CUA & Shared-v2 & CUA-v2 \\
+\midrule
+RDD2022 & F & 51.15 $\pm$ 0.24 & 50.55 $\pm$ 0.03 & \textbf{51.47 $\pm$ 0.15} & 49.86 $\pm$ 0.19 & 50.13 $\pm$ 0.26 & 50.63 $\pm$ 0.14 & 50.88 $\pm$ 0.13 \\
+RDD2022 & R & \textbf{44.56 $\pm$ 0.22} & 43.82 $\pm$ 0.45 & 44.55 $\pm$ 0.47 & 43.32 $\pm$ 0.24 & 43.57 $\pm$ 0.13 & 43.92 $\pm$ 0.38 & 43.92 $\pm$ 0.22 \\
+dacl10k & F & 20.89 $\pm$ 0.12 & 22.37 $\pm$ 0.08 & 21.54 $\pm$ 0.09 & 20.53 $\pm$ 0.03 & 20.50 $\pm$ 0.27 & \textbf{22.42 $\pm$ 0.29} & 21.49 $\pm$ 0.22 \\
+dacl10k & R & 9.26 $\pm$ 1.29 & 7.70 $\pm$ 0.85 & \textbf{9.80 $\pm$ 1.03} & 7.74 $\pm$ 1.33 & 8.66 $\pm$ 0.86 & 7.01 $\pm$ 1.75 & 8.23 $\pm$ 0.82 \\
+VOC & F & 85.60 $\pm$ 0.08 & \textbf{86.54 $\pm$ 0.10} & 86.30 $\pm$ 0.08 & 86.37 $\pm$ 0.06 & 86.49 $\pm$ 0.12 & 85.99 $\pm$ 0.51 & 86.46 $\pm$ 0.24 \\
+VOC & R & 82.38 $\pm$ 0.16 & 83.44 $\pm$ 0.05 & 83.76 $\pm$ 0.24 & \textbf{84.08 $\pm$ 0.29} & 83.71 $\pm$ 0.16 & 83.91 $\pm$ 0.24 & 83.96 $\pm$ 0.13 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+
+\parbox{\textwidth}{\footnotesize Det.: F = Faster R-CNN, R = RetinaNet. Best mean per row in bold. The checkpoint with the highest validation macro AP50 of each run is evaluated once on the test set.}
 \end{table*}
+
+\begin{table}[t]
+\caption{Paired Differences in Test Macro AP50 (Three Seeds, Holm-Corrected within Each Column)}
+\label{tab:comparisons}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+ & & \multicolumn{2}{c}{\textbf{CUA $-$ shared}} & \multicolumn{2}{c}{\textbf{CUA $-$ best baseline}} \\
+\cmidrule(lr){3-4}\cmidrule(l){5-6}
+\textbf{Dataset} & \textbf{Det.} & First & Second & First & Second \\
+\midrule
+RDD2022 & F & +0.27 & +0.25 & $\mathbf{-1.02}^{\ast}$ & $-0.27$ \\
+RDD2022 & R & +0.24 & +0.00 & $\mathbf{-0.99}^{\ast}$ & $\mathbf{-0.64}^{\ast}$ \\
+dacl10k & F & $-0.02$ & $-0.92$ & $\mathbf{-1.87}^{\ast}$ & $-0.88$ \\
+dacl10k & R & +0.92 & +1.21 & $-0.60$ & $-1.03$ \\
+VOC & F & +0.13 & +0.47 & $-0.04$ & $-0.08$ \\
+VOC & R & $-0.37$ & +0.05 & +0.28 & $\mathbf{+0.52}^{\ast}$ \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+
+\parbox{\columnwidth}{\footnotesize Best baseline: base recipe or uniform augmentation, whichever has the higher mean test AP50 for the pair (Table~\ref{tab:main}). $^{\ast}$Both Holm-corrected tests below 0.05 (seed $t$ and image bootstrap).}
+\end{table}
+
+\noindent\textbf{Class information adds nothing that the tests can detect.} The primary comparison, CUA against shared-utility augmentation, yields no claim on any pair with either estimator (Table~\ref{tab:comparisons}). The largest consistent difference, $+0.25$ AP50 for CUA-v2 on RDD2022 with Faster R-CNN, survives the corrected seed test ($p_{\mathrm{Holm}}=0.009$) but not the corrected bootstrap ($p_{\mathrm{Holm}}=0.076$). On dacl10k with Faster R-CNN, the pair with the strongest measured class dependence (Table~\ref{tab:interaction}), CUA-v2 is 0.92 AP50 below shared-v2, in the wrong direction for the method. With minimum detectable effects of 0.4--0.9 AP50 on five pairs, the data rule out class-information gains larger than about this size; on dacl10k with RetinaNet they rule out nothing.
+
+\noindent\textbf{CUA is often worse than doing less.} The first estimator loses to the best simple baseline on three pairs: by 1.87 AP50 on dacl10k with Faster R-CNN, 1.02 on RDD2022 with Faster R-CNN and 0.99 on RDD2022 with RetinaNet, all significant after correction. The second estimator recovers part of this loss, improving on the first by 0.25--0.99 AP50 on four pairs, but it remains 0.64 AP50 below the base recipe on RDD2022 with RetinaNet. Its one gain, $+0.52$ AP50 over uniform augmentation on PASCAL VOC with RetinaNet, barely survives correction ($p_{\mathrm{Holm}}=0.048$) and is not due to class information: on that pair CUA-v2 and shared-v2 differ by only 0.05, and shared-utility augmentation and the measured-effect policy also exceed uniform augmentation. The first estimator's $+0.28$ on the same pair, a claim before correction, does not survive it ($p_{\mathrm{Holm}}=0.13$).
+
+\noindent\textbf{Measured effects do not help either.} The measured-effect policy, which uses the effects of Section~\ref{sec:measurement} directly and therefore does not depend on the estimator, never beats the best simple baseline after correction. On dacl10k with Faster R-CNN it is 0.84 AP50 below uniform augmentation, and on PASCAL VOC with Faster R-CNN 0.24 below. Class-specific selection from the edit menu thus fails even when the class effects are known from separate training runs, which places the limit in the menu and the size of its class effects rather than only in the online estimate.
+
+\noindent\textbf{The estimates do not track the measured effects.} Across edit--class cells, the Spearman correlation between the class utilities of the first estimator, averaged over training, and the measured effects $\bar\Delta(o,c)$ is negative on RDD2022 with Faster R-CNN ($\rho=-0.67$, 95\% interval $[-0.82,-0.45]$, $p_{\mathrm{Holm}}<10^{-4}$) and on PASCAL VOC with Faster R-CNN ($\rho=-0.20$, $[-0.33,-0.06]$, $p_{\mathrm{Holm}}=0.012$), and indistinguishable from zero on the other four pairs. Where the estimator agrees with the measurements at all, it ranks the edits in reverse. An offline check on saved checkpoints explains much of this. Within each edit, the correlation across classes between the estimate and $\bar\Delta(o,c)$ lies between $-0.21$ and $+0.09$ for the first estimator and between $-0.27$ and $+0.15$ for the lookahead of CUA-v2; only 5--30\% of cells have $|t|>2$, and their signs change between checkpoints. Mosaic, the most harmful edit on RDD2022 and dacl10k, is the top-scored edit in 7 of 12 checks under the first estimator and in 5 of 6 under the lookahead, even with the object-count scaling. Rescaling the edited gradient to the norm of the unedited one, or replacing the inner product by a difference of cosines, does not change this.
+
+\noindent\textbf{The components of CUA do not matter.} On the validation sets of RDD2022 and dacl10k with Faster R-CNN, removing the harm block, removing the identity candidate or weighting classes inversely to their AP changes macro AP50 by between $-0.12$ and $+0.17$, with every interval spanning zero (Table~\ref{tab:ablations}). The harm block therefore neither protects classes nor starves multi-class images, and the policy does not collapse toward leaving images unedited.
+
+\begin{table}[t]
+\caption{Ablations of CUA (Validation Macro AP50, Faster R-CNN, Three Seeds; Difference from CUA with 95\% Seed $t$ Interval)}
+\label{tab:ablations}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Ablation} & \textbf{RDD2022} & \textbf{dacl10k} \\
+\midrule
+No harm block & $-0.12$ [$-0.61$, 0.38] & +0.07 [$-0.40$, 0.55] \\
+No identity candidate & +0.17 [$-0.09$, 0.43] & +0.15 [$-0.43$, 0.74] \\
+Inverse-AP class weights & $-0.02$ [$-0.62$, 0.58] & +0.00 [$-0.39$, 0.40] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Direct search for per-class preferences finds none.} To test whether the failure lies in the estimator alone, we searched for per-class edit preferences without any estimate, by population-based training on RDD2022 with Faster R-CNN and one seed. Four detectors are trained in parallel, each with its own table of edit preferences per class and the policy of Section~\ref{sec:method_policy}. Every two epochs, all members restart from the member with the best reference macro AP50, each class column of the table is copied from the member with the best reference AP50 for that class, and three members perturb their tables. After 20 epochs, validation macro AP50 is 50.75, against 50.72 for the base recipe and 51.04 for the measured-effect policy on the same seed\todo{Verify on CCAST whether 50.72 and 51.04 are final-epoch values like the PBT value; the best-epoch values of these runs are 51.03 and 51.18.}. The member that wins a class agrees with the member that is best overall in 25 of 40 decisions (62.5\%), against 25\% expected by chance, so the per-class differences between members are dominated by which member is better overall rather than by preferences specific to a class.
+
+\noindent\textbf{Secondary metrics and cost.} AP50:95 follows AP50. On dacl10k with Faster R-CNN it is 10.39 for uniform augmentation, 9.58 for CUA and 10.02 for CUA-v2, and on RDD2022 with Faster R-CNN 22.70 for the base recipe against 22.05 and 22.43. On PASCAL VOC with Faster R-CNN, the estimator-driven policies raise AP for small objects from 26.98 under uniform augmentation to 32.43 for CUA and 33.13 for shared-utility augmentation, without a change in AP50. CUA and its shared counterpart move together here, so this is not an effect of class information; we did not test it further. On the target-free RDD2022 test images, the share of images that receive a detection with confidence of at least 0.5 from Faster R-CNN is 22.1\% under the base recipe and 20.0\% under uniform augmentation, and 17.5--19.1\% under the four estimator-driven policies. Across the six pairs, the estimator takes 13.9--20.8\% of epoch wall time with the first estimator and 15.7--19.3\% with the second, slightly above the 20\% target only for the first estimator on PASCAL VOC with RetinaNet.
 
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}
-  \node[draw=cuaText, dashed, rounded corners=5pt, fill=cuaGrey!45, minimum width=0.97\columnwidth, minimum height=4cm, text width=0.8\columnwidth, align=center, font=\sffamily\footnotesize] {\todo{Forest plot: CUA $-$ shared-utility and CUA $-$ best simple baseline for each dataset--detector pair. Thin line: seed $t$ interval; thick line: image bootstrap.}};
+  \node[draw=cuaText, dashed, rounded corners=5pt, fill=cuaGrey!45, minimum width=0.97\columnwidth, minimum height=4cm, text width=0.8\columnwidth, align=center, font=\sffamily\footnotesize] {\todo{Forest plot, to be rebuilt for both estimators with Holm marking: CUA $-$ shared and CUA $-$ best baseline per pair; thin line seed $t$ interval, thick line image bootstrap. The v1-only version is reports/cua\_part\_c\_v2\_report/fig\_differences.png.}};
 \end{tikzpicture}
-\caption{\todo{Caption written with the results.}}
+\caption{\todo{Caption written with the rebuilt figure.}}
 \label{fig:forest}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}
-  \node[draw=cuaText, dashed, rounded corners=5pt, fill=cuaGrey!45, minimum width=0.97\columnwidth, minimum height=4cm, text width=0.8\columnwidth, align=center, font=\sffamily\footnotesize] {\todo{Estimator agreement: mean estimated class utility against measured $\bar\Delta(o,c)$, one point per edit--class cell, with Spearman $\rho$ and its interval.}};
+  \node[draw=cuaText, dashed, rounded corners=5pt, fill=cuaGrey!45, minimum width=0.97\columnwidth, minimum height=4cm, text width=0.8\columnwidth, align=center, font=\sffamily\footnotesize] {\todo{Estimator agreement: mean estimated class utility against measured $\bar\Delta(o,c)$ for RDD2022 and PASCAL VOC with Faster R-CNN ($\rho=-0.67$ and $-0.20$). Per-pair panels exist as reports/cua\_part\_c\_v2\_report/fig\_h4\_*.png.}};
 \end{tikzpicture}
-\caption{\todo{Caption written with the results.}}
+\caption{\todo{Caption written with the figure.}}
 \label{fig:agreement}
 \end{figure}
 
+\subsection{Changing Which Objects an Image Contains}
+\label{sec:results_paste}
+
+Every policy above chooses how an image looks; none changes which objects it contains. We therefore tested a different lever, class-aware copy-paste, on the two inspection datasets with Faster R-CNN and three seeds. Objects are cut from training images and pasted into other training images before the base recipe and uniform augmentation, which all arms keep: each image receives one to three pastes with probability 0.5, each paste covers at most 30\% of any existing box and is at most half the width and height of the placement region, and on RDD2022 pastes go into the lower half of the image, where the road is. The arms differ only in which classes are pasted: at their frequency in the training set (random), uniformly over classes (balanced), or with more pastes for classes with lower current AP50 on the reference set (adaptive). The control is the uniform-augmentation run of Table~\ref{tab:main}. In this first version, each object is cut as its box rectangle, so it carries its surrounding background with it.
+
 \begin{table}[t]
-\caption{Ablations of CUA on Validation (Faster R-CNN, Three Seeds)}
-\label{tab:ablations}
+\caption{Copy-Paste (Test Macro AP50, Faster R-CNN, Mean over Three Seeds)}
+\label{tab:paste}
 \centering
 \footnotesize
-\todo{No harm block; no identity candidate; inverse-AP class weights; on RDD2022 and dacl10k.}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & & \multicolumn{3}{c}{\textbf{Box rectangles}} & \textbf{Masks} \\
+\cmidrule(lr){3-5}\cmidrule(l){6-6}
+\textbf{Dataset} & \textbf{Uniform} & \textbf{Random} & \textbf{Balanced} & \textbf{Adaptive} & \textbf{Balanced} \\
+\midrule
+RDD2022 & \textbf{50.55} & 50.02 & 49.99 & 49.77 & -- \\
+dacl10k & 22.37 & 22.41 & \textbf{22.87} & 22.86 & 22.36 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+
+\parbox{\columnwidth}{\footnotesize All arms use uniform augmentation; Uniform pastes nothing. Masks: only the pixels inside each object's polygon are pasted (dacl10k only).}
 \end{table}
+
+On dacl10k, balanced pasting gains 0.48 AP50 over uniform augmentation, and the gain is positive in all three seeds (seed $t$ interval $[0.19, 0.79]$), but the image bootstrap interval, $[-0.06, 0.94]$, includes zero, and neither test survives correction across the copy-paste comparisons. Adaptive pasting adds nothing over balanced pasting ($+0.01$, $[-0.28, 0.27]$), and pasting at class frequency gains nothing ($+0.04$). On RDD2022 every arm loses 0.5--0.8 AP50 against uniform augmentation. Rectangle pastes thus give at most a small gain, on the dataset with the most classes, and it comes from balancing the classes rather than from adapting to the detector. On dacl10k, validation ranked balanced pasting below uniform augmentation (21.56 against 21.78), the reverse of test.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/copy_paste_examples.pdf}
+\caption{Class-balanced copy-paste on dacl10k training images, with the same paste plan in both versions (green: original objects; red, dashed: pasted objects and their boxes). A box-rectangle paste carries the background around the object into the new image; a polygon-mask paste transfers only the annotated pixels, and its box is fitted to the pasted mask.}
+\label{fig:paste}
+\end{figure}
+
+Fig.~\ref{fig:paste} shows the difference between pasting box rectangles and pasting the annotated polygons. A rectangle carries its background into the new image, so the small gain of balanced pasting could understate what class-aware pasting can do. We therefore reran the balanced arm on dacl10k, pasting only the pixels inside each object's polygon and fitting the pasted box to the mask, with a decision rule fixed before the runs: a gain over uniform augmentation of at least 0.74 AP50, the minimum detectable effect of the pair, with both intervals excluding zero. Mask pasting ranked first on validation (21.90 against 21.78 for uniform augmentation and 21.56 for rectangle pasting), but on test it gains nothing over uniform augmentation ($-0.02$ AP50; seed $t$ interval $[-0.65, 0.62]$, bootstrap $[-0.61, 0.55]$) and is below rectangle pasting in all three seeds ($-0.51$; seed $t$ interval $[-0.99, -0.03]$, bootstrap $[-0.97, 0.05]$). The rule therefore rejects it. On these datasets, copy-paste offers at most the small, uncorrected gain of class balancing, and adapting the pasted classes to the detector adds nothing. Validation and test ranked the copy-paste arms in opposite orders twice.
+
+\subsection{Can the Pipeline Detect a Known Class-Specific Effect?}
+\label{sec:results_control}
+
+A negative result is informative only if the methods tested could have found a positive one. We therefore plant a class-specific effect whose target and direction are known by construction. The planted edit deletes every annotation of one class, the class with the most training boxes in dacl10k, Rust, and leaves the pixels unchanged, so the detector is taught to treat that class's objects as background; on an image without the class it changes nothing. It harms the target class and no other class directly. The edit is added as the last item of the dacl10k menu, and uniform augmentation, shared-utility augmentation and CUA, with both estimators, are retrained on dacl10k with Faster R-CNN and three seeds, with all other settings unchanged.
+
+Four checks were fixed before the runs. The planted edit must lower the target class's test AP50 under uniform augmentation, with both intervals below zero (O0, the manipulation exists). In every seed, the utility estimate for the planted edit and the target class must have $t\leq-2$ and be the most negative entry of the planted edit's row, and the seed interval of its contrast with the other classes must lie below zero (O1, the estimator sees it). In every seed, CUA must apply the planted edit to images that contain the target class at most a third as often as to images without it, from epoch 5 on (O2, the policy acts on it). CUA must raise the target class's test AP50 over uniform augmentation, with both intervals above zero (O3, accuracy benefits). Shared-utility augmentation is expected to pass O1 on its logged per-class table but to fail O2, because its policy cannot treat the two kinds of image differently; this contrast isolates the per-class part of CUA. Because validation and test disagreed for copy-paste, O0 and O3 are judged on test only.
+
+\todo{Results of the 15 positive-control runs and their reading. If O0--O2 pass: the machinery finds and acts on a class-specific effect of known size, so the null results above reflect the absence of usable class effects among the real edits; compare the size of the planted cell with the largest real cells. If O1 or O2 fails: state that CUA could not have exploited class effects of this size, and give the size the estimator can detect.}
 
 \section{Discussion and Limitations}
 \label{sec:discussion}
 
-\todo{Discussion, written with the policy comparison: when class information helps, and what it costs.}
+\noindent\textbf{Why class-specific edit selection fails here.} Three properties of the problem, rather than one fault of the estimator, limit what any selector over this menu can achieve. First, where class dependence is weak, the best class-aware policy reduces to dropping the harmful edits: on RDD2022, the main effect of the edit accounts for most of the variation in the measured effects, and mosaic and blur cost every class. Second, where class dependence is real, as for Faster R-CNN on dacl10k and PASCAL VOC, the class-specific part of an effect is about 1--3 AP50 per cell in a three-epoch continuation, close to seed noise, and only moderately preserved in full training (Section~\ref{sec:results_measurement}). Third, an online estimate must resolve these small differences from a few images, and the first-order and lookahead estimates are both dominated by how many objects an edit puts into the batch, which is why mosaic is over-rated. The measured-effect policy avoids the third problem but not the first two, and it does not beat the simple baselines either.
 
-\noindent\textbf{Limitations.} The per-class effects were measured in short continuations, and their agreement with full training was checked on one dataset and one detector only, with a wide interval. We did not run a class-targeted study that applies an edit only inside the boxes of one class, so the measured effects combine the direct effect of an edit on a class with its effect through the other objects and the background. We also did not compare CUA with a tolerance-gated controller, so the advantage of a benefit signal over a recognition signal is argued in Section~\ref{sec:related} rather than measured. Each edit has a single strength, the labels are boxes rather than masks, copy-paste augmentation is not covered, and the evaluation spans three domains. Finally, CUA is evaluated with Faster R-CNN and RetinaNet only; extending it to real-time detectors such as YOLO~\cite{bochkovskiy2020yolov4} is left to future work.
+\noindent\textbf{What the study shows.} The premise of class-aware augmentation holds in a weak sense: the effect of an edit does depend on the class. It does not hold in the sense a policy needs, because the class-specific part of the effects is small compared with seed noise and with the shared effect of each edit. Every route we tested to exploit it, whether it estimated the class effects online, took them from separate training runs, searched for them directly or changed which classes an image contains, stayed within the minimum detectable effect of the best simple baseline or fell below it. The single gain that survives correction, 0.52 AP50 for CUA-v2 on PASCAL VOC with RetinaNet, is matched by its class-blind counterpart. \todo{One sentence on the positive control once its result is in.}
+
+\noindent\textbf{Practical implications.} Three points follow for practitioners. First, uniform sampling from a moderate menu, or no further augmentation, is a strong default, and a class-aware method has to beat it on held-out test data: validation ranked the copy-paste arms in the opposite order from test twice, by margins comparable to the gains claimed. Second, the edits worth removing are those that harm every class, such as mosaic and blur on RDD2022, and removing them needs no class information. Third, gradient-based utility estimates for augmentation should be checked against directly measured effects before they are trusted: ours favoured the edits that put the most objects into the batch, including the most harmful one.
+
+\noindent\textbf{Limitations.} The per-class effects were measured in short continuations, and their agreement with full training was checked on one dataset and one detector only, with a wide interval. We did not run a class-targeted study that applies an edit only inside the boxes of one class, so the measured effects combine the direct effect of an edit on a class with its effect through the other objects and the background. We also did not compare CUA with a tolerance-gated controller, so the advantage of a benefit signal over a recognition signal is argued in Section~\ref{sec:related} rather than measured. Each edit has a single strength, the edit-wise study uses box labels only, the evaluation spans three domains, and both detector families use a ResNet-50 feature pyramid backbone. Copy-paste was tested on the two inspection datasets with Faster R-CNN only. All comparisons rest on three seeds, which limits the detectable effects to about 0.4--0.9 AP50, and the further seeds planned for wide intervals were not run on dacl10k with RetinaNet. The positive control plants one kind of effect, a missing class label, on one dataset and detector, so it bounds what the pipeline can detect for that kind of effect only. Finally, all policies are evaluated with Faster R-CNN and RetinaNet only; whether the conclusions carry over to real-time detectors such as YOLO~\cite{bochkovskiy2020yolov4}, or to larger menus with several strengths per edit, is open.
 
 
 \bibliographystyle{IEEEtran}

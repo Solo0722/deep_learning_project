@@ -132,3 +132,17 @@ def test_fp_images_counts_confident_detections_only():
              {"image_index": 1, "boxes": [[1, 1, 5, 5]], "scores": [0.4], "labels": [1]},
              {"image_index": 2, "boxes": [[1, 1, 5, 5]], "scores": [0.9], "labels": [0]}]
     assert fp_images(recs, preds) == {"count": 1, "n_target_free": 2, "fraction": 0.5}
+
+
+def test_accepts_positive_control_runs_with_k_prefix(tmp_path, capsys):
+    from cua.experiments.specs import control_specs
+    rid = control_specs("dacl10k", "fasterrcnn", (0,))[0].run_id
+    assert rid.startswith("K-")
+    runs = tmp_path / "runs"
+    d = _stub_run(runs, rid)  # passes the id check, stops at the digest check
+    with pytest.raises(RuntimeError, match="digest"):
+        evaluate_run(d, tmp_path, device="cpu")
+    _stub_run(runs, RID)  # a C- run is not touched by a K- pass
+    assert main(["--runs-root", str(runs), "--data-root", str(tmp_path), "--prefix", "K-"]) == 1
+    out = capsys.readouterr().out
+    assert f"{rid}: refused" in out and "digest" in out and RID not in out

@@ -16,13 +16,17 @@ blended with a linear feather of FEATHER pixels. region="lower" restricts pastes
 the content (where the road is in road-scene images). Each paste is scaled so its sides are at most
 MAX_FRAC of the content width and of the placement region's height. Draws are keyed by (seed, epoch, index), so a run
 is reproducible and resumable.
+
+With `masks` (per record, per box: a list of polygon rings in original-image pixels), only the object's
+own pixels are pasted: the polygon is rasterised inside the box crop and used as the alpha mask, and the
+pasted box is the extent of the pasted mask. Only boxes with a polygon are banked.
 """
 from __future__ import annotations
 
 from dataclasses import dataclass
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from cua.augment.rng import keyed_rng
 from cua.image import Sample
@@ -54,14 +58,14 @@ def content_of(rec: Record, size: int) -> Content:
 
 
 def build_bank(records: list[Record], n_classes: int, size: int = 640,
-               min_side: float = MIN_SIDE) -> list[np.ndarray]:
+               min_side: float = MIN_SIDE, masks=None) -> list[np.ndarray]:
     """Per class, an (n, 2) int array of (record index, box index) of non-ignored boxes whose
-    letterboxed sides are both >= min_side."""
+    letterboxed sides are both >= min_side (and, with `masks`, that have a polygon)."""
     bank: list[list[tuple[int, int]]] = [[] for _ in range(n_classes)]
     for i, r in enumerate(records):
         scale = min(size / r.width, size / r.height)
         for b, (box, lab, ign) in enumerate(zip(r.boxes, r.labels, r.ignore)):
-            if ign:
+            if ign or (masks is not None and not masks[i][b]):
                 continue
             if (box[2] - box[0]) * scale >= min_side and (box[3] - box[1]) * scale >= min_side:
                 bank[int(lab)].append((i, b))
@@ -90,7 +94,7 @@ class CopyPaste:
     training record j (no augmentation)."""
 
     def __init__(self, records: list[Record], n_classes: int, mode: str, seed: int, *, p: float = 0.5,
-                 max_objects: int = 3, epsilon: float = 0.2, size: int = 640, region: str = "full"):
+                 max_objects: int = 3, epsilon: float = 0.2, size: int = 640, region: str = "full", masks=None):
         if mode not in MODES:
             raise ValueError(f"copy-paste mode must be one of {MODES}, got {mode!r}")
         if not 0.0 <= p <= 1.0 or max_objects < 1 or not 0.0 <= epsilon <= 1.0:
@@ -100,7 +104,11 @@ class CopyPaste:
         self.region = region
         self.records, self.mode, self.seed = records, mode, int(seed)
         self.p, self.max_objects, self.epsilon, self.size = float(p), int(max_objects), float(epsilon), int(size)
-        self.bank = build_bank(records, n_classes, size)
+        if masks is not None:
+            if len(masks) != len(records) or any(len(m) != len(r.boxes) for m, r in zip(masks, records)):
+                raise ValueError("masks must give one polygon list per box of every record")
+        self.masks = masks
+        self.bank = build_bank(records, n_classes, size, masks=masks)
         self.has_objects = np.array([len(b) > 0 for b in self.bank])
         if not self.has_objects.any():
             raise ValueError("no object is large enough to paste")
@@ -136,6 +144,20 @@ class CopyPaste:
                 continue
             out.append((c, int(j), int(b)))
         return out
+
+    def _object_mask(self, j: int, b: int, x0: int, y0: int, x1: int, y1: int) -> Image.Image:
+        """Polygon of box b of record j rasterised (0/255) on the canvas crop [x0:x1, y0:y1]."""
+        rec = self.records[j]
+        c = content_of(rec, self.size)
+        scale = np.array([c.width / rec.width, c.height / rec.height])
+        shift = np.array([c.left - x0, c.top - y0], dtype=np.float64)
+        im = Image.new("L", (x1 - x0, y1 - y0), 0)
+        draw = ImageDraw.Draw(im)
+        for ring in self.masks[j][b]:
+            pts = np.asarray(ring, dtype=np.float64).reshape(-1, 2) * scale + shift
+            if len(pts) >= 3:
+                draw.polygon([tuple(q) for q in pts.tolist()], fill=255)
+        return im
 
     def __call__(self, sample: Sample, epoch: int, index: int, load) -> tuple[Sample, list[int]]:
         """Returns the sample with pastes applied and the list of pasted classes."""
@@ -178,7 +200,18 @@ class CopyPaste:
             with Image.fromarray(crop) as im, im.resize((w, h), Image.Resampling.BILINEAR) as r:
                 patch = np.asarray(r, dtype=np.float32)
             px, py = int(placed[0]), int(placed[1])
-            alpha = _feather(h, w, FEATHER)[..., None]
+            if self.masks is not None:
+                m = self._object_mask(j, b, x0, y0, x1, y1)
+                with m.resize((w, h), Image.Resampling.BILINEAR) as mr:
+                    a = np.asarray(mr, dtype=np.float32) / 255.0
+                ys, xs = np.nonzero(a > 0)
+                if len(xs) == 0 or xs.max() - xs.min() < 1 or ys.max() - ys.min() < 1:
+                    continue
+                placed = np.array([px + xs.min(), py + ys.min(), px + xs.max() + 1, py + ys.max() + 1],
+                                  dtype=np.float64)
+                alpha = a[..., None]
+            else:
+                alpha = _feather(h, w, FEATHER)[..., None]
             region = rgb[py:py + h, px:px + w].astype(np.float32)
             rgb[py:py + h, px:px + w] = np.clip(alpha * patch + (1 - alpha) * region + 0.5, 0, 255).astype(np.uint8)
             boxes.append(placed[None])

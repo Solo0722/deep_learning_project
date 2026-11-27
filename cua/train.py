@@ -21,8 +21,11 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from cua.augment.menu import ArmTransform, valid_menu
+from cua.augment.local import SCOPES as EDIT_SCOPES
+from cua.augment.menu import PLANT, ArmTransform, valid_menu
+from cua.augment.pixel import PIXEL_EDITS, SCALABLE_EDITS, STRENGTH_LEVELS
 from cua.augment.paste import MODES as PASTE_MODES, CopyPaste, adaptive_probs
+from cua.datasets.dacl10k_masks import MASKS_FILE, load_masks
 from cua.augment.rng import keyed_rng
 from cua.data import DetectionDataset, collate
 from cua.estimator.lookahead import LookaheadEstimator
@@ -91,6 +94,16 @@ class TrainConfig:
     cp_eps: float = 0.2
     cp_region: str = "full"  # full | lower (paste only into the lower half of the image)
     cp_every: int = 1  # adaptive: refresh class probabilities from reference AP50 every N epochs
+    cp_mask: bool = False  # paste object polygons (<data>/<ds>/train_masks.json) instead of box rectangles
+    # Positive control (cua.augment.menu.PLANT): add a planted edit that deletes one class's annotations.
+    # none | frequent (the class with most training boxes) | <class name>; out of the digest at the default.
+    plant: str = "none"
+    # Object-local edits (cua.augment.local): image | object. "object" applies the arm's pixel edit only inside
+    # the annotated polygons (<data>/<ds>/train_masks.json); out of the digest at the default.
+    edit_scope: str = "image"
+    # Strength level of a scalable pixel edit (cua.augment.pixel.STRENGTH_LEVELS; reports/cua_strength/
+    # PROTOCOL.md). 1 is the menu strength and is out of the digest, so every existing run keeps its digest.
+    edit_strength: int = 1
 
     def digest(self) -> str:
         """SHA-256 of the config as sorted JSON (tuples become lists); holds no paths.
@@ -106,7 +119,7 @@ _PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "the
                            "est_start_epoch", "weights", "harm_block", "allow_identity", "estimator",
                            "lookahead_steps", "lookahead_lr_scale", "lookahead_clip", "instance_norm", "min_t",
                            "prior", "table_path", "table_eps", "cp_mode", "cp_p", "cp_max", "cp_eps",
-                           "cp_every", "cp_region"})
+                           "cp_every", "cp_region", "cp_mask", "plant", "edit_scope", "edit_strength"})
 POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua", "table")
 
 
@@ -196,10 +209,23 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError(f"cp_mode must be 'none' or one of {PASTE_MODES}, got {cfg.cp_mode!r}")
     if cfg.cp_mode != "none" and not cfg.augment:
         raise ValueError("copy-paste needs augment=True")
+    if cfg.cp_mask and cfg.cp_mode == "none":
+        raise ValueError("cp_mask needs a copy-paste mode")
     if cfg.cp_region not in ("full", "lower"):
         raise ValueError(f"cp_region must be 'full' or 'lower', got {cfg.cp_region!r}")
     if not 0.0 <= cfg.cp_p <= 1.0 or not 0.0 <= cfg.cp_eps <= 1.0:
         raise ValueError("cp_p and cp_eps must be in [0, 1]")
+    if cfg.plant != "none" and cfg.policy not in ("uniform", "shared", "cua"):
+        raise ValueError(f"plant={cfg.plant!r} needs policy uniform, shared or cua, got {cfg.policy!r}")
+    if cfg.edit_scope not in EDIT_SCOPES:
+        raise ValueError(f"edit_scope must be one of {EDIT_SCOPES}, got {cfg.edit_scope!r}")
+    if cfg.edit_scope == "object" and (cfg.policy != "arm" or cfg.edit not in PIXEL_EDITS):
+        raise ValueError(f"edit_scope='object' needs policy='arm' and a pixel edit, got {cfg.policy!r}/{cfg.edit!r}")
+    if cfg.edit_strength not in STRENGTH_LEVELS:
+        raise ValueError(f"edit_strength must be one of {STRENGTH_LEVELS}, got {cfg.edit_strength!r}")
+    if cfg.edit_strength != 1 and (cfg.policy != "arm" or cfg.edit not in SCALABLE_EDITS):
+        raise ValueError(f"edit_strength={cfg.edit_strength} needs policy='arm' and one of {SCALABLE_EDITS}, "
+                         f"got {cfg.policy!r}/{cfg.edit!r}")
     for name in ("est_every", "est_batch", "ref_batch", "est_start_epoch", "lookahead_steps", "cp_max", "cp_every"):
         if getattr(cfg, name) < 1:
             raise ValueError(f"{name} must be >= 1, got {getattr(cfg, name)}")
@@ -320,6 +346,21 @@ def _predictions_json(preds: list[dict]) -> list[dict]:
              "labels": np.asarray(p["labels"]).tolist()} for p in preds]
 
 
+def resolve_plant(plant: str, classes: tuple[str, ...], records) -> int | None:
+    """Target class of the planted edit: None (off), the class with most training boxes (ties: lowest
+    index), or the named class."""
+    if plant == "none":
+        return None
+    if plant == "frequent":
+        counts = np.zeros(len(classes), dtype=np.int64)
+        for r in records:
+            np.add.at(counts, np.asarray(r.labels, dtype=np.int64)[~np.asarray(r.ignore, dtype=bool)], 1)
+        return int(np.argmax(counts))
+    if plant not in classes:
+        raise ValueError(f"plant must be 'none', 'frequent' or a class name in {list(classes)}, got {plant!r}")
+    return classes.index(plant)
+
+
 def _load_measured(ds_dir: Path, detector: str, classes: tuple[str, ...],
                    menu: tuple[str, ...], name: str = "measured") -> UtilityTable:
     """Part A measured-effect table (written by cua.measured): mean dAP50 and its seed s.e.
@@ -371,7 +412,6 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     data_root, runs_root = Path(data_root), Path(runs_root)
     out = runs_root / cfg.run_id
     digest = cfg.digest()
-    transform = ArmTransform(cfg.dataset, cfg.edit, cfg.seed, cfg.edit_p) if cfg.augment else None
     init_ckpt = _check_init_run(cfg, runs_root, max_train_images) if cfg.init_run is not None else None
 
     # Refusal / resume decision (before anything is written).
@@ -403,9 +443,17 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     if max_train_images is not None:
         train_recs = train_recs[:max_train_images]
     val_recs = read_records(ds_dir / "val.jsonl")
+    plant_class = resolve_plant(cfg.plant, classes, train_recs)
+    polygons = load_masks(ds_dir / MASKS_FILE, train_recs) if cfg.edit_scope == "object" else None
+    transform = (ArmTransform(cfg.dataset, cfg.edit, cfg.seed, cfg.edit_p, plant_class=plant_class,
+                              scope=cfg.edit_scope, polygons=polygons, records=train_recs,
+                              strength=cfg.edit_strength)
+                 if cfg.augment else None)
     train_ds = DetectionDataset(train_recs, image_root, transform, cfg.size)
     val_ds = DetectionDataset(val_recs, image_root, None, cfg.size)
     menu = valid_menu(cfg.dataset) if cfg.policy != "arm" else ()
+    if plant_class is not None:
+        menu = menu + (PLANT,)
     measured = _load_measured(ds_dir, cfg.detector, classes, menu) if cfg.policy == "measured" else None
     estimating = cfg.policy in ("shared", "cua")
     adaptive_paste = cfg.cp_mode == "adaptive"
@@ -414,8 +462,9 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     ref_ds = DetectionDataset(ref_recs, image_root, None, cfg.size) if needs_ref else None
     paste = None
     if cfg.cp_mode != "none":
+        masks = load_masks(ds_dir / MASKS_FILE, train_recs) if cfg.cp_mask else None
         paste = CopyPaste(train_recs, len(classes), cfg.cp_mode, cfg.seed, p=cfg.cp_p, max_objects=cfg.cp_max,
-                          epsilon=cfg.cp_eps, size=cfg.size, region=cfg.cp_region)
+                          epsilon=cfg.cp_eps, size=cfg.size, region=cfg.cp_region, masks=masks)
         train_ds.paste = paste
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -440,7 +489,14 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         estimator = Estimator(model, cfg.detector, cfg.theta, menu, len(classes), est_batch=cfg.est_batch,
                               ref_batch=cfg.ref_batch, beta=cfg.beta, amp=use_amp, device=device,
                               workers=max(1, cfg.workers))
-    prior = _load_measured(ds_dir, cfg.detector, classes, menu, "probe") if cfg.prior == "probe" else None
+    prior = None
+    if cfg.prior == "probe":
+        real = tuple(e for e in menu if e != PLANT)
+        prior = _load_measured(ds_dir, cfg.detector, classes, real, "probe")
+        if plant_class is not None:  # no prior information about the planted edit: its row is online-only
+            z = np.zeros((1, len(classes)))
+            prior = UtilityTable(mean=np.vstack([prior.mean, z]), se=np.vstack([prior.se, z]),
+                                 count=np.vstack([prior.count, z.astype(np.int64)]))
     weights = np.ones(len(classes))
     weights_fn = (lambda: weights) if cfg.weights == "inv_ap" else None
     knobs = dict(epsilon=cfg.epsilon, harm_block=cfg.harm_block, allow_identity=cfg.allow_identity)
@@ -499,7 +555,8 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
         _write_history(out / "history.jsonl", history)
     else:
         _write_json(out / "config.json", {"config": asdict(cfg), "digest": digest,
-                                          "max_train_images": max_train_images})
+                                          "max_train_images": max_train_images,
+                                          **({"plant_class": classes[plant_class]} if plant_class is not None else {})})
         if init_ckpt is not None:
             _init_from_warm(_load(init_ckpt, device), model, optimizer, scaler, use_amp)
 

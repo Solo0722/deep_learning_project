@@ -97,3 +97,4 @@ reports/**/returned_records/observations/
 # Page-render QA images of report PDFs (regenerable; the PDFs are tracked).
 reports/*/render/
 reports/*/rendered*/
+research_paper/figures/assets/

@@ -1,0 +1,736 @@
+{
+  "L1": {
+    "F": 2.6916979284765628,
+    "df1": 77,
+    "df2": 168,
+    "p": 5.066237529484336e-08
+  },
+  "L1_pass": true,
+  "L2": {
+    "folds": [
+      {
+        "held_out": 0,
+        "gain": -0.06430816808041274,
+        "per_class": -0.06430816808041274,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "contrast",
+          "Crack": "sharpen",
+          "Efflorescence": "hue",
+          "ExposedRebars": "saturation",
+          "Graffiti": "blur",
+          "Hollowareas": "noise",
+          "Restformwork": "brightness",
+          "Rockpocket": "jpeg",
+          "Rust": "sharpen",
+          "Spalling": "saturation",
+          "Weathering": "none",
+          "Wetspot": "none"
+        }
+      },
+      {
+        "held_out": 1,
+        "gain": -0.02481302024708651,
+        "per_class": -0.17228258682286987,
+        "global": -0.14746956657578336,
+        "global_edit": "saturation",
+        "choice": {
+          "Cavity": "contrast",
+          "Crack": "sharpen",
+          "Efflorescence": "hue",
+          "ExposedRebars": "jpeg",
+          "Graffiti": "none",
+          "Hollowareas": "noise",
+          "Restformwork": "noise",
+          "Rockpocket": "jpeg",
+          "Rust": "none",
+          "Spalling": "saturation",
+          "Weathering": "none",
+          "Wetspot": "brightness"
+        }
+      },
+      {
+        "held_out": 2,
+        "gain": 0.166503379866234,
+        "per_class": 0.166503379866234,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "saturation",
+          "Crack": "saturation",
+          "Efflorescence": "none",
+          "ExposedRebars": "saturation",
+          "Graffiti": "none",
+          "Hollowareas": "noise",
+          "Restformwork": "none",
+          "Rockpocket": "jpeg",
+          "Rust": "hue",
+          "Spalling": "brightness",
+          "Weathering": "hue",
+          "Wetspot": "brightness"
+        }
+      }
+    ],
+    "mean": 0.025794063846244917,
+    "all_positive": false
+  },
+  "L2_pass": false,
+  "L2_whole_image_reference": {
+    "folds": [
+      {
+        "held_out": 0,
+        "gain": 0.017031247874967254,
+        "per_class": 0.017031247874967254,
+        "global": 0.0,
+        "global_edit": "none",
+        "choice": {
+          "Cavity": "sharpen",
+          "Crack": "contrast",
+          "Efflorescence": "sharpen",
+          "ExposedRebars": "sharpen",
+          "Graffiti": "brightness",
+          "Hollowareas": "contrast",
+          "Restformwork": "blur",
+          "Rockpocket": "blur",
+          "Rust": "sharpen",
+          "Spalling": "noise",
+          "Weathering": "brightness",
+          "Wetspot": "blur"
+        }
+      },
+      {
+        "held_out": 1,
+        "gain": 0.1163553003801915,
+        "per_class": -0.07248347869617931,
+        "global": -0.1888387790763708,
+        "global_edit": "brightness",
+        "choice": {
+          "Cavity": "noise",
+          "Crack": "contrast",
+          "Efflorescence": "sharpen",
+          "ExposedRebars": "jpeg",
+          "Graffiti": "brightness",
+          "Hollowareas": "saturation",
+          "Restformwork": "none",
+          "Rockpocket": "noise",
+          "Rust": "none",
+          "Spalling": "noise",
+          "Weathering": "blur",
+          "Wetspot": "hue"
+        }
+      },
+      {
+        "held_out": 2,
+        "gain": 0.036960148407513105,
+        "per_class": -0.01557854513551645,
+        "global": -0.052538693543029556,
+        "global_edit": "sharpen",
+        "choice": {
+          "Cavity": "noise",
+          "Crack": "contrast",
+          "Efflorescence": "sharpen",
+          "ExposedRebars": "brightness",
+          "Graffiti": "brightness",
+          "Hollowareas": "contrast",
+          "Restformwork": "noise",
+          "Rockpocket": "noise",
+          "Rust": "sharpen",
+          "Spalling": "noise",
+          "Weathering": "sharpen",
+          "Wetspot": "noise"
+        }
+      }
+    ],
+    "mean": 0.05678223222089062,
+    "all_positive": true
+  },
+  "L3": [
+    {
+      "edit": "blur",
+      "cls": "Cavity",
+      "local_minus_whole": -0.5525197734760047,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Crack",
+      "local_minus_whole": -2.402958795576774,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Efflorescence",
+      "local_minus_whole": -1.3611132442077771,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "ExposedRebars",
+      "local_minus_whole": -1.4719481597695427,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Graffiti",
+      "local_minus_whole": 0.4501113363784602,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Hollowareas",
+      "local_minus_whole": -0.11142421923787538,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Restformwork",
+      "local_minus_whole": -1.4260741763357998,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Rockpocket",
+      "local_minus_whole": -0.056411990277516255,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Rust",
+      "local_minus_whole": -0.9324543235877994,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Spalling",
+      "local_minus_whole": -1.5536016935389536,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Weathering",
+      "local_minus_whole": -1.2533748441364452,
+      "n_seeds": 3
+    },
+    {
+      "edit": "blur",
+      "cls": "Wetspot",
+      "local_minus_whole": -0.19763407462704544,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Cavity",
+      "local_minus_whole": 0.023671636346682234,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Crack",
+      "local_minus_whole": -0.8976851719368041,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Efflorescence",
+      "local_minus_whole": -0.5763399917028179,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "ExposedRebars",
+      "local_minus_whole": 0.19000705883081537,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Graffiti",
+      "local_minus_whole": -1.0380513954206378,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Hollowareas",
+      "local_minus_whole": -0.14149377704219526,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Restformwork",
+      "local_minus_whole": 0.7520912861582231,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Rockpocket",
+      "local_minus_whole": 0.043488362445932564,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Rust",
+      "local_minus_whole": -0.24642077131441434,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Spalling",
+      "local_minus_whole": -0.04516167756223174,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Weathering",
+      "local_minus_whole": -0.22426041179321743,
+      "n_seeds": 3
+    },
+    {
+      "edit": "brightness",
+      "cls": "Wetspot",
+      "local_minus_whole": 0.12504269607668306,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Cavity",
+      "local_minus_whole": 0.08290681850446428,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Crack",
+      "local_minus_whole": -0.6202594739321589,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Efflorescence",
+      "local_minus_whole": 0.24733247820155432,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "ExposedRebars",
+      "local_minus_whole": 0.38874120589521866,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Graffiti",
+      "local_minus_whole": -0.44534509283608986,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Hollowareas",
+      "local_minus_whole": -0.3191737140983785,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Restformwork",
+      "local_minus_whole": 0.055635226472100584,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Rockpocket",
+      "local_minus_whole": -0.02591109518910027,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Rust",
+      "local_minus_whole": 0.18082806665649662,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Spalling",
+      "local_minus_whole": -0.1449282533209543,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Weathering",
+      "local_minus_whole": 0.1449657689619516,
+      "n_seeds": 3
+    },
+    {
+      "edit": "contrast",
+      "cls": "Wetspot",
+      "local_minus_whole": -0.13948115220063162,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Cavity",
+      "local_minus_whole": -0.13688672249834374,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Crack",
+      "local_minus_whole": -0.0005215196893271212,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Efflorescence",
+      "local_minus_whole": 0.30959338885473403,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "ExposedRebars",
+      "local_minus_whole": -0.04039454222938706,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Graffiti",
+      "local_minus_whole": 0.2756515458078634,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Hollowareas",
+      "local_minus_whole": 0.2755870917561272,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Restformwork",
+      "local_minus_whole": -0.3063724679080571,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Rockpocket",
+      "local_minus_whole": 0.05332997571627185,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Rust",
+      "local_minus_whole": 0.4846299847622421,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Spalling",
+      "local_minus_whole": -0.13909428213119135,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Weathering",
+      "local_minus_whole": 0.27131070879592417,
+      "n_seeds": 3
+    },
+    {
+      "edit": "hue",
+      "cls": "Wetspot",
+      "local_minus_whole": -0.8053536786010472,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Cavity",
+      "local_minus_whole": -0.2743258675781461,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Crack",
+      "local_minus_whole": -0.7564889335764194,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Efflorescence",
+      "local_minus_whole": -0.48424508550501305,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "ExposedRebars",
+      "local_minus_whole": -0.013902650503997194,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Graffiti",
+      "local_minus_whole": 0.42759078684362944,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Hollowareas",
+      "local_minus_whole": 0.7056988587666169,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Restformwork",
+      "local_minus_whole": -0.20061703179116996,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Rockpocket",
+      "local_minus_whole": 0.1432092150277205,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Rust",
+      "local_minus_whole": -0.06844239590850876,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Spalling",
+      "local_minus_whole": -0.9094889325611248,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Weathering",
+      "local_minus_whole": -0.09753534467080745,
+      "n_seeds": 3
+    },
+    {
+      "edit": "jpeg",
+      "cls": "Wetspot",
+      "local_minus_whole": -0.039731291453304785,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Cavity",
+      "local_minus_whole": -1.07436657567632,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Crack",
+      "local_minus_whole": -0.1444389525428106,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Efflorescence",
+      "local_minus_whole": -1.6414616975800318,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "ExposedRebars",
+      "local_minus_whole": -0.6885762904091083,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Graffiti",
+      "local_minus_whole": -0.788370864402084,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Hollowareas",
+      "local_minus_whole": 3.0006088167636826,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Restformwork",
+      "local_minus_whole": -0.5340934113349745,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Rockpocket",
+      "local_minus_whole": -0.008346146486719233,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Rust",
+      "local_minus_whole": -0.646685257882447,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Spalling",
+      "local_minus_whole": -0.7140127153438028,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Weathering",
+      "local_minus_whole": -1.293297854236073,
+      "n_seeds": 3
+    },
+    {
+      "edit": "noise",
+      "cls": "Wetspot",
+      "local_minus_whole": -0.45808322417296726,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Cavity",
+      "local_minus_whole": -0.06801542716674962,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Crack",
+      "local_minus_whole": -0.054567854165753125,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Efflorescence",
+      "local_minus_whole": 0.1295858599747716,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "ExposedRebars",
+      "local_minus_whole": 0.49669627398791744,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Graffiti",
+      "local_minus_whole": 0.022134588060946925,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Hollowareas",
+      "local_minus_whole": -0.17175037245703825,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Restformwork",
+      "local_minus_whole": 0.45979781251498714,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Rockpocket",
+      "local_minus_whole": -0.0030764030761682762,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Rust",
+      "local_minus_whole": -0.20209862837402662,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Spalling",
+      "local_minus_whole": 0.18728726921968133,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Weathering",
+      "local_minus_whole": -0.30720933701444036,
+      "n_seeds": 3
+    },
+    {
+      "edit": "saturation",
+      "cls": "Wetspot",
+      "local_minus_whole": 0.1828855658355574,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Cavity",
+      "local_minus_whole": -0.5720040817001989,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Crack",
+      "local_minus_whole": 0.16245181214296878,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Efflorescence",
+      "local_minus_whole": -0.8790771290275211,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "ExposedRebars",
+      "local_minus_whole": 0.19583719580169637,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Graffiti",
+      "local_minus_whole": -0.009645098563677124,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Hollowareas",
+      "local_minus_whole": -0.11933566253278845,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Restformwork",
+      "local_minus_whole": 0.3013537091937201,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Rockpocket",
+      "local_minus_whole": 0.0428725365536757,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Rust",
+      "local_minus_whole": -0.23143043721162826,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Spalling",
+      "local_minus_whole": -0.6079088958017085,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Weathering",
+      "local_minus_whole": -1.4518622494678322,
+      "n_seeds": 3
+    },
+    {
+      "edit": "sharpen",
+      "cls": "Wetspot",
+      "local_minus_whole": -0.6894795849667016,
+      "n_seeds": 3
+    }
+  ],
+  "interaction_rms": {
+    "local": 0.4680317831361478,
+    "whole": 0.3267907134592513
+  },
+  "go": false,
+  "thresholds": {
+    "L1_p": 0.05,
+    "L2_mean": 0.5
+  },
+  "missing_runs": []
+}
