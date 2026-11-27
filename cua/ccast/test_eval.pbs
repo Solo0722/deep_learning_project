@@ -1,0 +1,29 @@
+#!/bin/bash
+# One-time test-set evaluation of every complete Part C run (python -m cua.test_eval).
+# Idempotent: runs that already have test_metrics.json are skipped, so resubmitting continues.
+#   qsub $P/cua_code/cua/ccast/test_eval.pbs
+# Copy-paste pilot runs (P-...):
+#   qsub -v PREFIX=P- -o $P/cua_runs/_logs/test_eval_paste.log $P/cua_code/cua/ccast/test_eval.pbs
+#PBS -N cua_test_eval
+#PBS -q gpus
+#PBS -l select=1:ncpus=4:mem=32gb:ngpus=1:glist=a10
+#PBS -l walltime=08:00:00
+#PBS -W group_list=x-ccast-prj-aaboah
+#PBS -j oe
+#PBS -o /mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/cua_runs/_logs/test_eval.log
+set -uo pipefail
+P=/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research
+cd $P/cua_code || exit 1
+set +u
+source /mmfs1/apps/pyenvs/anaconda3-2022.05/etc/profile.d/conda.sh || { echo "conda.sh failed"; exit 1; }
+conda activate pytorch || { echo "conda activate pytorch failed"; exit 1; }
+source $P/.venvs/rdd_detection_v1/bin/activate || { echo "venv activate failed"; exit 1; }
+set -u
+export TORCH_HOME=$P/torch_home
+export PYTHONPATH=$P/cua_code
+echo "started: $(date -u +%Y-%m-%dT%H:%M:%SZ) on $(hostname)"
+python -c "import torch; torch.zeros(1).cuda()" >/dev/null 2>&1 || { echo "GPU unusable on $(hostname); holding node 30 min"; sleep 1800; exit 1; }
+rc=0
+python -m cua.test_eval --runs-root $P/cua_runs --data-root $P/cua_data --prefix "${PREFIX:-C-}" || rc=$?
+echo "finished: $(date -u +%Y-%m-%dT%H:%M:%SZ) exit code $rc"
+exit $rc

@@ -1,0 +1,21 @@
+{
+  "device_total_bytes": 23684841472,
+  "elapsed_seconds": 870.6509840842336,
+  "epoch": 8,
+  "images": 256,
+  "kind": "controller_probe",
+  "maximum_seconds": 1800,
+  "peak_allocated_bytes": 5573638144,
+  "peak_reserved_bytes": 11725176832,
+  "status": "complete",
+  "strict_settings": {
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true,
+    "fill_uninitialized_memory": true,
+    "matmul_tf32": false,
+    "warn_only": false
+  }
+}

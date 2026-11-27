@@ -1,0 +1,801 @@
+{
+  "D40_geometry_miss_diagnostics": [
+    {
+      "best_D40_iou_at_conf025": null,
+      "candidate": {
+        "flip": true,
+        "left": -32,
+        "resized_size": 672,
+        "scale": 1.05,
+        "top": 0,
+        "tx": -16,
+        "ty": 16
+      },
+      "highest_D40_conf_at_iou05": 0.08277968317270279,
+      "image": "Czech/train/images/Czech_003072.jpg",
+      "object_index": 0,
+      "panel": "A"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.3350175575057599,
+      "candidate": {
+        "flip": true,
+        "left": 32,
+        "resized_size": 608,
+        "scale": 0.95,
+        "top": 32,
+        "tx": 16,
+        "ty": 16
+      },
+      "highest_D40_conf_at_iou05": 0.16879035532474518,
+      "image": "India/train/images/India_000770.jpg",
+      "object_index": 1,
+      "panel": "A"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.3575313361754256,
+      "candidate": {
+        "flip": true,
+        "left": -32,
+        "resized_size": 672,
+        "scale": 1.05,
+        "top": -32,
+        "tx": -16,
+        "ty": -16
+      },
+      "highest_D40_conf_at_iou05": 0.2402341663837433,
+      "image": "India/train/images/India_000320.jpg",
+      "object_index": 1,
+      "panel": "A"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.0,
+      "candidate": {
+        "flip": true,
+        "left": 0,
+        "resized_size": 608,
+        "scale": 0.95,
+        "top": 0,
+        "tx": -16,
+        "ty": -16
+      },
+      "highest_D40_conf_at_iou05": 0.18650154769420624,
+      "image": "Japan/train/images/Japan_000423.jpg",
+      "object_index": 0,
+      "panel": "A"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.4366397630039754,
+      "candidate": {
+        "flip": true,
+        "left": 16,
+        "resized_size": 640,
+        "scale": 1.0,
+        "top": -16,
+        "tx": 16,
+        "ty": -16
+      },
+      "highest_D40_conf_at_iou05": 0.06456371396780014,
+      "image": "India/train/images/India_004136.jpg",
+      "object_index": 1,
+      "panel": "B"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.0,
+      "candidate": {
+        "flip": true,
+        "left": 16,
+        "resized_size": 608,
+        "scale": 0.95,
+        "top": 32,
+        "tx": 0,
+        "ty": 16
+      },
+      "highest_D40_conf_at_iou05": 0.11226136982440948,
+      "image": "India/train/images/India_004627.jpg",
+      "object_index": 2,
+      "panel": "B"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.0,
+      "candidate": {
+        "flip": false,
+        "left": 32,
+        "resized_size": 608,
+        "scale": 0.95,
+        "top": 0,
+        "tx": 16,
+        "ty": -16
+      },
+      "highest_D40_conf_at_iou05": 0.16493114829063416,
+      "image": "India/train/images/India_006710.jpg",
+      "object_index": 0,
+      "panel": "B"
+    },
+    {
+      "best_D40_iou_at_conf025": null,
+      "candidate": {
+        "flip": false,
+        "left": 0,
+        "resized_size": 672,
+        "scale": 1.05,
+        "top": 0,
+        "tx": 16,
+        "ty": 16
+      },
+      "highest_D40_conf_at_iou05": 0.2359391748905182,
+      "image": "India/train/images/India_008661.jpg",
+      "object_index": 0,
+      "panel": "B"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.4859620188525898,
+      "candidate": {
+        "flip": true,
+        "left": 32,
+        "resized_size": 608,
+        "scale": 0.95,
+        "top": 16,
+        "tx": 16,
+        "ty": 0
+      },
+      "highest_D40_conf_at_iou05": null,
+      "image": "Japan/train/images/Japan_009521.jpg",
+      "object_index": 0,
+      "panel": "B"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.0,
+      "candidate": {
+        "flip": false,
+        "left": 16,
+        "resized_size": 640,
+        "scale": 1.0,
+        "top": -16,
+        "tx": 16,
+        "ty": -16
+      },
+      "highest_D40_conf_at_iou05": 0.22289744019508362,
+      "image": "Japan/train/images/Japan_011586.jpg",
+      "object_index": 0,
+      "panel": "B"
+    },
+    {
+      "best_D40_iou_at_conf025": 0.2418044527854938,
+      "candidate": {
+        "flip": true,
+        "left": 0,
+        "resized_size": 608,
+        "scale": 0.95,
+        "top": 0,
+        "tx": -16,
+        "ty": -16
+      },
+      "highest_D40_conf_at_iou05": 0.14571334421634674,
+      "image": "India/train/images/India_006899.jpg",
+      "object_index": 0,
+      "panel": "B"
+    }
+  ],
+  "geometry_class_summary": {
+    "D00": {
+      "clean_detected": 135,
+      "clean_found_geometry_missed": 11,
+      "clean_missed_geometry_found": 9,
+      "geometry_detected": 133,
+      "selected_objects": 222
+    },
+    "D10": {
+      "clean_detected": 119,
+      "clean_found_geometry_missed": 10,
+      "clean_missed_geometry_found": 5,
+      "geometry_detected": 114,
+      "selected_objects": 184
+    },
+    "D20": {
+      "clean_detected": 135,
+      "clean_found_geometry_missed": 5,
+      "clean_missed_geometry_found": 2,
+      "geometry_detected": 132,
+      "selected_objects": 209
+    },
+    "D40": {
+      "clean_detected": 76,
+      "clean_found_geometry_missed": 11,
+      "clean_missed_geometry_found": 3,
+      "geometry_detected": 68,
+      "selected_objects": 186
+    }
+  },
+  "panel_diagnostics": {
+    "A": {
+      "admitted_actions_loco_sensitive": {
+        "0": [],
+        "1": [],
+        "2": [],
+        "3": [
+          [
+            "brightness_down",
+            2
+          ]
+        ]
+      },
+      "borrowed_all_groups": 68,
+      "borrowed_mixed_groups": 31,
+      "groups_different_from_shared": 256,
+      "mixed_groups": 80,
+      "reference_detected_by_source": {
+        "0": {
+          "China_Drone": 5,
+          "China_MotorBike": 5,
+          "Czech": 2,
+          "India": 3,
+          "Japan": 17,
+          "Norway": 14,
+          "United_States": 18
+        },
+        "1": {
+          "China_Drone": 5,
+          "China_MotorBike": 13,
+          "Czech": 1,
+          "Japan": 19,
+          "Norway": 5,
+          "United_States": 16
+        },
+        "2": {
+          "China_Drone": 1,
+          "China_MotorBike": 5,
+          "Czech": 1,
+          "India": 14,
+          "Japan": 43,
+          "United_States": 5
+        },
+        "3": {
+          "China_Drone": 1,
+          "China_MotorBike": 6,
+          "India": 19,
+          "Japan": 15
+        }
+      },
+      "shared_actions": [
+        [
+          "contrast_down",
+          1
+        ],
+        [
+          "contrast_up",
+          1
+        ],
+        [
+          "contrast_up",
+          2
+        ],
+        [
+          "gamma_darken",
+          1
+        ],
+        [
+          "gaussian_blur",
+          1
+        ],
+        [
+          "gaussian_noise",
+          1
+        ],
+        [
+          "gaussian_noise",
+          2
+        ]
+      ]
+    },
+    "B": {
+      "admitted_actions_loco_sensitive": {
+        "0": [],
+        "1": [
+          [
+            "gamma_brighten",
+            1
+          ]
+        ],
+        "2": [],
+        "3": []
+      },
+      "borrowed_all_groups": 116,
+      "borrowed_mixed_groups": 74,
+      "groups_different_from_shared": 250,
+      "mixed_groups": 74,
+      "reference_detected_by_source": {
+        "0": {
+          "China_Drone": 5,
+          "China_MotorBike": 13,
+          "Czech": 1,
+          "India": 4,
+          "Japan": 11,
+          "Norway": 7,
+          "United_States": 28
+        },
+        "1": {
+          "China_Drone": 8,
+          "China_MotorBike": 9,
+          "Czech": 2,
+          "India": 1,
+          "Japan": 14,
+          "Norway": 2,
+          "United_States": 19
+        },
+        "2": {
+          "China_MotorBike": 1,
+          "Czech": 1,
+          "India": 13,
+          "Japan": 44,
+          "United_States": 4
+        },
+        "3": {
+          "China_Drone": 1,
+          "India": 9,
+          "Japan": 17
+        }
+      },
+      "shared_actions": [
+        [
+          "contrast_down",
+          1
+        ],
+        [
+          "contrast_up",
+          1
+        ],
+        [
+          "contrast_up",
+          2
+        ],
+        [
+          "contrast_up",
+          3
+        ],
+        [
+          "gamma_brighten",
+          1
+        ],
+        [
+          "gamma_darken",
+          1
+        ],
+        [
+          "gaussian_blur",
+          1
+        ],
+        [
+          "gaussian_noise",
+          1
+        ],
+        [
+          "gaussian_noise",
+          2
+        ],
+        [
+          "gaussian_noise",
+          3
+        ]
+      ]
+    }
+  },
+  "per_class": {
+    "D00": {
+      "agreement": 0.875,
+      "allowed_A_B": [
+        14,
+        17
+      ],
+      "cross_panel_transfer": {
+        "A_policy_on_B": {
+          "admitted_actions": 14,
+          "below_08_on_other_panel": 0,
+          "expected_retention_conditional_on_reference_detections": 0.9380032206119162
+        },
+        "B_policy_on_A": {
+          "admitted_actions": 17,
+          "below_08_on_other_panel": 3,
+          "expected_retention_conditional_on_reference_detections": 0.90625
+        }
+      },
+      "detected_clusters_A_B": [
+        57,
+        62
+      ],
+      "detected_objects_A_B": [
+        64,
+        69
+      ],
+      "differences": [
+        {
+          "action": [
+            "brightness_down",
+            2
+          ],
+          "allowed_A": false,
+          "allowed_B": true,
+          "retention_A": 0.796875,
+          "retention_B": 0.8405797101449275
+        },
+        {
+          "action": [
+            "brightness_up",
+            2
+          ],
+          "allowed_A": false,
+          "allowed_B": true,
+          "retention_A": 0.796875,
+          "retention_B": 0.8405797101449275
+        },
+        {
+          "action": [
+            "gamma_darken",
+            3
+          ],
+          "allowed_A": false,
+          "allowed_B": true,
+          "retention_A": 0.796875,
+          "retention_B": 0.8260869565217391
+        }
+      ],
+      "selected_objects_A_B": [
+        121,
+        101
+      ]
+    },
+    "D10": {
+      "agreement": 0.875,
+      "allowed_A_B": [
+        8,
+        11
+      ],
+      "cross_panel_transfer": {
+        "A_policy_on_B": {
+          "admitted_actions": 8,
+          "below_08_on_other_panel": 0,
+          "expected_retention_conditional_on_reference_detections": 0.9454545454545453
+        },
+        "B_policy_on_A": {
+          "admitted_actions": 11,
+          "below_08_on_other_panel": 3,
+          "expected_retention_conditional_on_reference_detections": 0.8947740112994351
+        }
+      },
+      "detected_clusters_A_B": [
+        55,
+        53
+      ],
+      "detected_objects_A_B": [
+        59,
+        55
+      ],
+      "differences": [
+        {
+          "action": [
+            "brightness_down",
+            1
+          ],
+          "allowed_A": false,
+          "allowed_B": true,
+          "retention_A": 0.7966101694915254,
+          "retention_B": 0.8181818181818182
+        },
+        {
+          "action": [
+            "contrast_up",
+            3
+          ],
+          "allowed_A": false,
+          "allowed_B": true,
+          "retention_A": 0.7627118644067796,
+          "retention_B": 0.9090909090909091
+        },
+        {
+          "action": [
+            "gamma_brighten",
+            1
+          ],
+          "allowed_A": false,
+          "allowed_B": true,
+          "retention_A": 0.7796610169491526,
+          "retention_B": 0.8
+        }
+      ],
+      "selected_objects_A_B": [
+        91,
+        93
+      ]
+    },
+    "D20": {
+      "agreement": 0.9166666666666666,
+      "allowed_A_B": [
+        21,
+        23
+      ],
+      "cross_panel_transfer": {
+        "A_policy_on_B": {
+          "admitted_actions": 21,
+          "below_08_on_other_panel": 0,
+          "expected_retention_conditional_on_reference_detections": 0.9759700176366842
+        },
+        "B_policy_on_A": {
+          "admitted_actions": 23,
+          "below_08_on_other_panel": 2,
+          "expected_retention_conditional_on_reference_detections": 0.9146537842190017
+        }
+      },
+      "detected_clusters_A_B": [
+        67,
+        63
+      ],
+      "detected_objects_A_B": [
+        69,
+        63
+      ],
+      "differences": [
+        {
+          "action": [
+            "contrast_down",
+            3
+          ],
+          "allowed_A": false,
+          "allowed_B": true,
+          "retention_A": 0.782608695652174,
+          "retention_B": 0.8571428571428571
+        },
+        {
+          "action": [
+            "gaussian_blur",
+            2
+          ],
+          "allowed_A": false,
+          "allowed_B": true,
+          "retention_A": 0.7681159420289855,
+          "retention_B": 0.9047619047619048
+        }
+      ],
+      "selected_objects_A_B": [
+        106,
+        103
+      ]
+    },
+    "D40": {
+      "agreement": 0.8333333333333334,
+      "allowed_A_B": [
+        16,
+        12
+      ],
+      "cross_panel_transfer": {
+        "A_policy_on_B": {
+          "admitted_actions": 16,
+          "below_08_on_other_panel": 4,
+          "expected_retention_conditional_on_reference_detections": 0.8914609053497943
+        },
+        "B_policy_on_A": {
+          "admitted_actions": 12,
+          "below_08_on_other_panel": 0,
+          "expected_retention_conditional_on_reference_detections": 0.9258130081300814
+        }
+      },
+      "detected_clusters_A_B": [
+        34,
+        25
+      ],
+      "detected_objects_A_B": [
+        41,
+        27
+      ],
+      "differences": [
+        {
+          "action": [
+            "brightness_down",
+            1
+          ],
+          "allowed_A": true,
+          "allowed_B": false,
+          "retention_A": 0.9024390243902439,
+          "retention_B": 0.7777777777777778
+        },
+        {
+          "action": [
+            "brightness_down",
+            2
+          ],
+          "allowed_A": true,
+          "allowed_B": false,
+          "retention_A": 0.8048780487804879,
+          "retention_B": 0.7777777777777778
+        },
+        {
+          "action": [
+            "brightness_up",
+            2
+          ],
+          "allowed_A": true,
+          "allowed_B": false,
+          "retention_A": 0.8292682926829268,
+          "retention_B": 0.7777777777777778
+        },
+        {
+          "action": [
+            "contrast_down",
+            2
+          ],
+          "allowed_A": true,
+          "allowed_B": false,
+          "retention_A": 0.8292682926829268,
+          "retention_B": 0.6296296296296297
+        }
+      ],
+      "selected_objects_A_B": [
+        91,
+        95
+      ]
+    }
+  },
+  "preview_checks": [
+    {
+      "changes": {
+        "brightness_down/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_blur/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_noise/3/0": {
+          "admitted_for_this_group_in_its_panel": true,
+          "outside_conservative_mask_changes": 0
+        }
+      },
+      "file": "previews/panel_A_anchor_1.png",
+      "image": "Japan/train/images/Japan_011922.jpg"
+    },
+    {
+      "changes": {
+        "brightness_down/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_blur/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_noise/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        }
+      },
+      "file": "previews/panel_A_anchor_3.png",
+      "image": "India/train/images/India_003609.jpg"
+    },
+    {
+      "changes": {
+        "brightness_down/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_blur/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_noise/3/0": {
+          "admitted_for_this_group_in_its_panel": true,
+          "outside_conservative_mask_changes": 0
+        }
+      },
+      "file": "previews/panel_A_anchor_2.png",
+      "image": "Japan/train/images/Japan_011692.jpg"
+    },
+    {
+      "changes": {
+        "brightness_down/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_blur/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_noise/3/0": {
+          "admitted_for_this_group_in_its_panel": true,
+          "outside_conservative_mask_changes": 0
+        }
+      },
+      "file": "previews/panel_A_anchor_0.png",
+      "image": "United_States/train/images/United_States_003830.jpg"
+    },
+    {
+      "changes": {
+        "brightness_down/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_blur/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_noise/3/0": {
+          "admitted_for_this_group_in_its_panel": true,
+          "outside_conservative_mask_changes": 0
+        }
+      },
+      "file": "previews/panel_B_anchor_0.png",
+      "image": "China_Drone/train/images/China_Drone_001167.jpg"
+    },
+    {
+      "changes": {
+        "brightness_down/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_blur/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_noise/3/0": {
+          "admitted_for_this_group_in_its_panel": true,
+          "outside_conservative_mask_changes": 0
+        }
+      },
+      "file": "previews/panel_B_anchor_3.png",
+      "image": "China_MotorBike/train/images/China_MotorBike_001766.jpg"
+    },
+    {
+      "changes": {
+        "brightness_down/3/0": {
+          "admitted_for_this_group_in_its_panel": true,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_blur/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_noise/3/0": {
+          "admitted_for_this_group_in_its_panel": true,
+          "outside_conservative_mask_changes": 0
+        }
+      },
+      "file": "previews/panel_B_anchor_2.png",
+      "image": "India/train/images/India_007376.jpg"
+    },
+    {
+      "changes": {
+        "brightness_down/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_blur/3/0": {
+          "admitted_for_this_group_in_its_panel": false,
+          "outside_conservative_mask_changes": 0
+        },
+        "gaussian_noise/3/0": {
+          "admitted_for_this_group_in_its_panel": true,
+          "outside_conservative_mask_changes": 0
+        }
+      },
+      "file": "previews/panel_B_anchor_1.png",
+      "image": "China_Drone/train/images/China_Drone_001007.jpg"
+    }
+  ],
+  "thin_case": {
+    "interpretation": "Positive-area box retained; neither the original 640 view nor a slightly smaller view guarantees learnable detail for a roughly one-pixel-high target",
+    "prepared_box": [
+      278.61742465753423,
+      358.84405088062624,
+      289.3255890410959,
+      359.89318003913894
+    ],
+    "prepared_height": 1.0491291585126987,
+    "recomputed_scaled_rgb_max_error": 0,
+    "scaled_box": [
+      280.6865534246575,
+      356.9018483365949,
+      290.85930958904106,
+      357.898521037182
+    ],
+    "scaled_height": 0.9966727005870553
+  }
+}

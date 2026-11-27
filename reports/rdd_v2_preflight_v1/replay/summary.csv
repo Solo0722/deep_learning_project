@@ -1,0 +1,21 @@
+trajectory,epoch,panel_groups,supported_classes,supported_class_names,shared_actions,pooled_class_actions,active_groups,active_mixed_groups,mixed_groups,active_groups_borrowing_direct_evidence,groups_different_from_shared,group_weighted_total_variation_to_shared,admissible_class_actions_changed_by_one_cluster,distinct_single_class_distributions
+fasterrcnn_online_shared_v1,2,256,3,"['0', '1', '2']",0,55,226,23,32,5,226,0.8828125,5,4
+fasterrcnn_online_shared_v1,4,256,4,"['0', '1', '2', '3']",14,73,256,39,39,39,255,0.14230685763888892,1,4
+fasterrcnn_online_shared_v1,6,256,4,"['0', '1', '2', '3']",16,79,256,30,30,30,254,0.12451171874999997,0,3
+fasterrcnn_online_shared_v1,8,256,3,"['0', '1', '2']",0,66,230,30,37,30,230,0.8984375,0,3
+fasterrcnn_online_shared_v1,10,256,4,"['0', '1', '2', '3']",22,91,256,27,27,27,190,0.0927734375,0,2
+fasterrcnn_online_shared_v1,12,256,4,"['0', '1', '2', '3']",20,87,256,32,32,44,221,0.08116319444444443,0,3
+fasterrcnn_online_shared_v1,14,256,4,"['0', '1', '2', '3']",20,86,256,32,32,32,216,0.04687499999999999,0,2
+fasterrcnn_online_shared_v1,16,256,4,"['0', '1', '2', '3']",22,89,256,27,27,27,57,0.02783203125,2,2
+fasterrcnn_online_shared_v1,18,256,4,"['0', '1', '2', '3']",22,91,256,37,37,37,201,0.09814453125,0,2
+fasterrcnn_online_shared_v1,20,256,4,"['0', '1', '2', '3']",22,90,256,23,23,23,84,0.041015625,0,2
+fasterrcnn_class_adaptive_v1,2,256,3,"['0', '1', '2']",0,56,226,23,32,5,226,0.8828125,3,4
+fasterrcnn_class_adaptive_v1,4,256,4,"['0', '1', '2', '3']",18,86,256,39,39,39,213,0.16471354166666669,0,3
+fasterrcnn_class_adaptive_v1,6,256,4,"['0', '1', '2', '3']",21,92,256,30,30,30,254,0.1476779513888889,0,3
+fasterrcnn_class_adaptive_v1,8,256,4,"['0', '1', '2', '3']",21,93,256,37,37,40,256,0.16786024305555555,22,3
+fasterrcnn_class_adaptive_v1,10,256,4,"['0', '1', '2', '3']",24,96,256,27,27,27,0,0.0,0,1
+fasterrcnn_class_adaptive_v1,12,256,4,"['0', '1', '2', '3']",21,94,256,32,32,44,256,0.08333333333333334,4,2
+fasterrcnn_class_adaptive_v1,14,256,4,"['0', '1', '2', '3']",22,94,256,32,32,32,216,0.04687499999999999,0,2
+fasterrcnn_class_adaptive_v1,16,256,4,"['0', '1', '2', '3']",18,90,256,27,27,27,217,0.18836805555555552,0,2
+fasterrcnn_class_adaptive_v1,18,256,4,"['0', '1', '2', '3']",24,96,256,37,37,37,0,0.0,0,1
+fasterrcnn_class_adaptive_v1,20,256,4,"['0', '1', '2', '3']",24,96,256,23,23,23,0,0.0,0,1

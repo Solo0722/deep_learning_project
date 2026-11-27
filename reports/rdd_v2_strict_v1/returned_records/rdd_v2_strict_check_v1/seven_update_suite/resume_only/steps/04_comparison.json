@@ -1,0 +1,34 @@
+{
+  "backward": {
+    "actual_sha256": "2d2f6b65ca738ae360c59235bc75f2c5a2deaa034095d5cc80c372c7d0209380",
+    "changes": [],
+    "equal": true,
+    "expected_sha256": "2d2f6b65ca738ae360c59235bc75f2c5a2deaa034095d5cc80c372c7d0209380",
+    "missing_paths": [],
+    "unexpected_paths": []
+  },
+  "before": {
+    "actual_sha256": "4c6c5f0f19f1d5bfedfd0015d425954afe7b83fb51f19bb9587be20432feed76",
+    "changes": [],
+    "equal": true,
+    "expected_sha256": "4c6c5f0f19f1d5bfedfd0015d425954afe7b83fb51f19bb9587be20432feed76",
+    "missing_paths": [],
+    "unexpected_paths": []
+  },
+  "forward": {
+    "actual_sha256": "9e803493b1c3894d09c9bc9eee69830b90d3fb36da838c66e4e9aea4f91d3796",
+    "changes": [],
+    "equal": true,
+    "expected_sha256": "9e803493b1c3894d09c9bc9eee69830b90d3fb36da838c66e4e9aea4f91d3796",
+    "missing_paths": [],
+    "unexpected_paths": []
+  },
+  "update": {
+    "actual_sha256": "49dad9e0ad3b65b40ee6e6ee78b7b2d1a69d7f6a90b58a38f4f501fc0c7a7f85",
+    "changes": [],
+    "equal": true,
+    "expected_sha256": "49dad9e0ad3b65b40ee6e6ee78b7b2d1a69d7f6a90b58a38f4f501fc0c7a7f85",
+    "missing_paths": [],
+    "unexpected_paths": []
+  }
+}

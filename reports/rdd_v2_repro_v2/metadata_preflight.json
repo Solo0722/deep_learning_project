@@ -1,0 +1,25 @@
+{
+  "all_training_only": true,
+  "appearance_identity": true,
+  "archived_input_and_decision_hashes_pinned": true,
+  "batch_sizes": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    2
+  ],
+  "images": 26,
+  "local_reference_note": "RNG/data ordering here is a local metadata check; actual pinned CCAST materialization is gated separately.",
+  "positive_images": 17,
+  "runtime_pixel_replay_pending_ccast": true,
+  "status": "pass",
+  "scope": "The prior frozen data selection and archived pairing pins remain unchanged; new production-file materialization fixtures are tested separately.",
+  "protocol_differences": [
+    "amendment",
+    "version"
+  ],
+  "source_pilot_unchanged": true
+}

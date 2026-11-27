@@ -1,0 +1,11 @@
+{
+  "additional_epochs_each": 3,
+  "arms": [
+    "geometry_only",
+    "fixed_local",
+    "online_shared",
+    "class_adaptive"
+  ],
+  "full_experiment_authorized": false,
+  "status": "complete"
+}

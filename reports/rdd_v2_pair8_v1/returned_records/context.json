@@ -1,0 +1,276 @@
+{
+  "configuration": {
+    "administrative_seconds": 39600,
+    "application_probability": 0.5,
+    "arms": [
+      "geometry_only",
+      "class_adaptive"
+    ],
+    "augmentation": "Common geometry, with no local appearance versus unchanged class-adaptive local appearance",
+    "batch_size": 4,
+    "budget": "One A10 per 12-hour PBS allocation; 11-hour administrative cap including tests and gate. Seven further epochs per arm, sequential arms; checkpoints and explicit resume only. No automatic resubmission.",
+    "checkpoint": {
+      "bytes": 331117946,
+      "file": "epoch_001_step_00006716_04dccd11bbd2.pt",
+      "metadata_source_archive": "fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz",
+      "metadata_source_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+      "relative_path": "runs/fasterrcnn_identity_seed42_v1/checkpoints/epoch_001_step_00006716_04dccd11bbd2.pt",
+      "selection": "Fixed first unaugmented epoch; not the validation-selected best checkpoint",
+      "sha256": "dbd619334a57ad4422e929b90b327f80d1ca3bfc5b86f6f37594714ec138e858"
+    },
+    "checkpoint_every_steps": 1000,
+    "checkpoint_retention": "All completed-epoch checkpoints plus latest intermediate checkpoint; full checkpoints remain on CCAST.",
+    "continuation": {
+      "performance": "Primary difference is class_adaptive minus geometry_only epoch-8 AP50:95. No interim accuracy stopping, winner/epoch selection or threshold tuning.",
+      "review": "Assess fixed endpoint, per-class metrics, false positives, exposure, support and added cost. A favorable one-seed development result motivates independent paired seeds and online-shared comparison. A persisting deficit without a declared compensating benefit stops scaling this recipe.",
+      "technical": "Production-loop equality gate, strict flags, finite updates, unchanged probe state, complete paired budgets and immutable evidence."
+    },
+    "controller": {
+      "actions": "Eight existing appearance operations times three independently tested levels, 24 actions. Mean the two Gaussian-noise draws within each object; count each reference object once.",
+      "limitation": "Admissibility is a detector-tolerance measurement, not a semantic guarantee or an estimate of training utility.",
+      "minimum_detected_clusters": 8,
+      "minimum_detected_objects": 16,
+      "mixed_veto": "For a mixed set, a sufficiently supported constituent class with retention below threshold vetoes that action. Missing direct evidence never certifies a mixed set; flag borrowed evidence. Use the same 16-object/8-cluster rule for direct evidence.",
+      "pooling": "Pool selected-group reference-detected objects per class across class sets, preserving image/object/cluster identities. Reference misses stay in recall diagnostics, not retention denominators.",
+      "reference_confidence": 0.25,
+      "reference_iou": 0.5,
+      "retention_threshold": 0.8,
+      "routing": "Intersect admissible actions of the classes in the edited group. Unsupported constituent class means identity.",
+      "sampling": "Uniform eligible family, then uniform eligible operation in that family, then uniform eligible tested level for that operation. No largest-level preference and no loss-hardness weighting.",
+      "shared_comparator": "One global action set: intersection over all four pooled class sets, with the union of all supported mixed-set vetoes removed. Same measurements, thresholds and sampling rule.",
+      "size": 640,
+      "state": "Rebuild at each update; no stale carry, threshold relaxation or identity-as-success reporting"
+    },
+    "controller_updates": "Before epochs 2, 4, 6 and 8 on the current class-adaptive detector; frozen 256-image training panels, no threshold changes or adaptive resampling.",
+    "cpu_threads": 2,
+    "data_policy": "Frozen train and val only. No test manifest or pixels opened. Stored orientation; include empty images and all valid difficult targets.",
+    "epochs": 8,
+    "evaluation": {
+      "coordinates": "Inverse letterbox to original stored image, clip to image bounds, discard collapsed predictions only",
+      "max_detections": 100,
+      "metrics": "pycocotools bbox AP50:95/AP50/AP75, AR100, per-class AP50:95/AP50; no-target predicted box counts at confidence 0.25",
+      "negative_confidence": 0.25,
+      "nms_iou": 0.5,
+      "score_threshold": 0.001,
+      "yolo_multi_label": true
+    },
+    "execution_order": [
+      "class_adaptive",
+      "geometry_only"
+    ],
+    "execution_order_reason": "Measure the first full controller panel before paying for the geometry-only arm; both independently restart the same epoch-1 state. The short gate uses the opposite order to establish an uninterrupted reference.",
+    "expected_environment": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/.venvs/rdd_detection_v1",
+    "expected_roi_align_sha256": "c0ac158b870c50a423be62659d2607393ad95f4f3561f0b3c4e8ca3ae5ea2f53",
+    "expected_rows": {
+      "train": 26863,
+      "val": 5760
+    },
+    "fixed_policy": "All 24 actions eligible; uniform family, then operation, then level; same 0.5 positive-image opportunity and same uniformly selected overlap group as online arms",
+    "geometry": {
+      "annotations": "Transform every target and every valid non-target annotation with the same continuous-edge affine map; preserve labels, IDs, difficult and truncated flags",
+      "bank_size": 54,
+      "horizontal_flip": [
+        false,
+        true
+      ],
+      "interpolation": "Pillow bilinear; exact slicing for flip and integer placement; fill RGB (114,114,114)",
+      "limits": "Preserving annotated boxes does not prove label completeness, image realism or learning benefit. Zoom may crop unannotated context. Existing truncated annotations remain flagged. Horizontal reflection does not exchange longitudinal and transverse classes; it preserves their relation to the reflected road.",
+      "order": "After letterbox and optional existing local appearance: optional reflection, isotropic canvas scaling, integer translation; geometry shared by each paired reference/action set",
+      "rejection": "Any transformed annotation outside the canvas rejects the entire candidate to identity. Never clip/drop a target. Invalid non-target boxes disable geometry for that image and are reported.",
+      "resized_canvas_sizes": [
+        608,
+        640,
+        672
+      ],
+      "sampling": "One uniform draw from the full 54-candidate bank; reject to identity without resampling. This is a preflight bank, not a claim of optimal magnitude.",
+      "size": 640,
+      "translations_pixels": [
+        -16,
+        0,
+        16
+      ]
+    },
+    "geometry_scope": "All training images including negatives; same keyed candidate and annotation fallback in every arm; validation remains unaugmented",
+    "gradient_clipping": null,
+    "image_size": 640,
+    "initialization": "Both arms fork the same fixed epoch-1 identity checkpoint; epochs 2 through 8 use strict execution. No epoch-4 pilot checkpoint is resumed.",
+    "learning_rate": 0.0025,
+    "limitations": [
+      "One development seed and epoch-8 horizon; no variance, significance, convergence or generalization claim.",
+      "Validation has informed project development; test remains closed.",
+      "Both arms have geometry; this comparison does not estimate geometry benefit or isolate class conditioning against online-shared control.",
+      "Tolerance is not training utility; mixed-set support can be borrowed. Actual edit rates may differ from opportunities.",
+      "Strict and legacy pilot results are separate execution regimes; the primary comparison is within this new run.",
+      "Training steps are matched; controller compute is additional. Sequential timings are descriptive."
+    ],
+    "log_every_steps": 100,
+    "lr_decay_epochs": [
+      12,
+      16
+    ],
+    "lr_gamma": 0.1,
+    "manifests": {
+      "train": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+      "val": "5ff0b8e969b47bd82d6c91a3b65070a5e37899e21253442134897945082e6708"
+    },
+    "max_probe_images_per_update": 7428,
+    "model": "fasterrcnn_resnet50_fpn",
+    "momentum": 0.9,
+    "optimizer": "SGD",
+    "panel_plan_seeds": {
+      "2": 4202001,
+      "4": 4204001,
+      "6": 4206001,
+      "8": 4208001
+    },
+    "panels": {
+      "count": 1,
+      "images_each": 256,
+      "limitations": "256 distinct clusters at each update, 64 anchor groups/class. Panels may overlap across updates and with training; training-only controller evidence.",
+      "no_adaptive_resampling": true,
+      "primary_groups_per_class": 64,
+      "rationale": "Resource-bounded enrichment to investigate earlier D40 support failures. 64 anchor groups are not 64 detectable potholes and do not guarantee the 16-object/8-cluster gate.",
+      "selection": "Panel A from the existing deterministic planner: seeds 4202001, 4204001, 4206001, 4208001. First two panels unchanged; new panels fixed before this experiment."
+    },
+    "parity_tolerance": 1e-05,
+    "pipeline_order": "Existing 640 letterbox -> existing v1 local appearance union -> same whole-image geometry for every paired view. Clean and geometry-only views identify geometry-related misses. Do not substitute geometry-before-local in the later pilot without another renderer check.",
+    "precision": "Float32, AMP/TF32 off, strict deterministic algorithms with warn_only=False, CUBLAS_WORKSPACE_CONFIG=:4096:8; exact short production-loop gate required.",
+    "probe_batch_size": 2,
+    "production_gate": {
+      "comparison": "Exact input/model/optimizer/gradient/RNG fingerprints after each actual baseline.update; class branch has a real unsupported two-image probe and save/rebuild/restore after first update.",
+      "conditions": [
+        "geometry_only",
+        "class_adaptive"
+      ],
+      "epochs": [
+        2
+      ],
+      "maximum_seconds": 1800,
+      "policy": "Two-image unsupported policy must remain identity; full scientific policy and thresholds unchanged.",
+      "train_selection": "Existing smoke selection union first two epoch-2 panel rows"
+    },
+    "purpose": "Single-seed development comparison to fixed epoch 8; assess whether class-adaptive local augmentation beats geometry-only after a longer common horizon.",
+    "recipe_status": "Initial development recipe; not tuned for RDD or claimed converged. Compare later augmentation conditions with the same recipe and paired seeds.",
+    "resource_checks": {
+      "allocator_fraction": 0.9,
+      "first_window_updates": 128,
+      "maximum_probe_seconds": 1800,
+      "minimum_free_disk_bytes": 21474836480,
+      "scope": "Record normal training time and allocator peaks for each arm first window. Each full controller probe has a 30-minute operational cap, including incomplete attempts. No throughput-to-accuracy claim."
+    },
+    "resume_policy": "Immutable code/config/data/environment; checkpoint model, optimizer, RNG, batch, counters and adopted policies. Validate hashed evidence. Re-run incomplete probes, retaining their attempts. No automatic resubmission.",
+    "seed": 42,
+    "selection_metric": "Final prescribed epoch-8 clean-validation AP50:95; no best-epoch selection",
+    "selection_ties": "earlier epoch",
+    "sources": [
+      "https://raw.githubusercontent.com/pytorch/vision/v0.18.0/references/detection/train.py",
+      "https://kb.ndsu.edu/137530",
+      "https://kb.ndsu.edu/it/page.php?id=107680"
+    ],
+    "split_config_sha256": "303f2e0e3835ca146e63f2f2b03b5a8d630b2dc1972089848bea97605ac87131",
+    "strict_prerequisite": {
+      "archive_sha256": "4912aec513e3f3b64f89234bdc65e2b3bc7d7d4f9b609bc486670af6bf0806ee",
+      "job": "799047.bright04",
+      "source": "Audited 30-update strict diagnostic; no accuracy measurement."
+    },
+    "strict_settings": {
+      "cublas_workspace_config": ":4096:8",
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "cudnn_tf32": false,
+      "deterministic_algorithms": true,
+      "fill_uninitialized_memory": true,
+      "matmul_tf32": false,
+      "warn_only": false
+    },
+    "update_epochs": [
+      2,
+      4,
+      6,
+      8
+    ],
+    "validation_batch_size": 4,
+    "validation_interval_epochs": 1,
+    "version": "rdd_v2_pair8_v1",
+    "versions": {
+      "Pillow": "10.3.0",
+      "numpy": "1.26.4",
+      "pycocotools": "2.0.10",
+      "torch": "2.3.0",
+      "torchvision": "0.18.0"
+    },
+    "views_per_image": 29,
+    "warmup_epoch": 1,
+    "warmup_start_factor": 0.001,
+    "warmup_steps": 1000,
+    "weight": {
+      "bytes": 167502836,
+      "filename": "fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+      "sha256": "258fb6c638b15964ddcdd1ae0748c5eef1be9e732750120cc857feed3faac384",
+      "url": "https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth"
+    },
+    "weight_decay": 0.0005,
+    "workers": 2
+  },
+  "execution_environment": {
+    "cuda_build": "12.1",
+    "cudnn_version": 8902,
+    "gpu_model": "NVIDIA A10",
+    "roi_align_sha256": "c0ac158b870c50a423be62659d2607393ad95f4f3561f0b3c4e8ca3ae5ea2f53",
+    "strict_settings": {
+      "cublas_workspace_config": ":4096:8",
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "cudnn_tf32": false,
+      "deterministic_algorithms": true,
+      "fill_uninitialized_memory": true,
+      "matmul_tf32": false,
+      "warn_only": false
+    }
+  },
+  "raw_root": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/raw",
+  "sources": {
+    "LOCAL_VALIDATION.json": "6f8acbf395a6ea9eb1bd330d7a366af49a863d73fabd960312d2f17e1066eb56",
+    "README.md": "778d8d8150f3854e77bc7fb6879151c77266489390324e445883d0619374d1ff",
+    "SOURCE_PROVENANCE.json": "2a302f6bb26bceedaa5b2a7cd5a438dee94c2867e14fa0d7672678b17bd6be9f",
+    "augmentation.py": "ee055ce44d58855cdd30375a7191d1e6193f56c076627937e48f10194e3ac8cb",
+    "baseline.py": "6db1015206ea6f5cdbd0817564eb19cdda4fafcda224772307a74a7c3eba0559",
+    "checkpoints.py": "ece8426aa1587986acaaa348ce2225ad60b4d471d9b8c302d1f325c9b819edf1",
+    "controller.py": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+    "detector.py": "c6b262e7fca0b610a053e421490bbf54a9301a16ea1160563f1de8e707922dcb",
+    "diagnostic.py": "577942a60ec36b985cbb766205a19ee5c54cc8225a74f9ec63a2f38c1a83b5a2",
+    "exposure_plan.json": "092b65eb159cc85996c866d868359292ab49dcb57c207892cb98812e8e91b060",
+    "gate.py": "40db657cbfa686815d155117fbab851dfdc02c740c91d9f55108bfd010ac685a",
+    "geometry.py": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+    "integration.py": "1a58dbbd82ad12906041facef1ce4fe9bd3d7894b718caa977e8a15b0678ec15",
+    "job.pbs": "d6795d3e198b39f911583330287b7bbe4c1525283b88b72518f8d018ef0efd8f",
+    "local_augmentation.py": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+    "metrics.py": "e339fbb81bd9b7432a375bcea54122c937c409bae7b82f35591c196ae85204ff",
+    "models.py": "5e33bf33b76a1bee6d6ae63235ed756e802c33dc9594fee279a5fa053e9e6b90",
+    "observer.py": "17160e9c71a106e3957c16a273a40dcd42cd09fdd31025c751e75c298caee876",
+    "panel_plan.json": "e0a4bdbf2a97d685d63185b4f3ab9b61a5bf5631c9c247666a608907708edf0f",
+    "pilot.py": "bc8dabc0d275cb1ae74d996988300df2ea7650eaebba3fa90c736e168ed6f95f",
+    "protocol.json": "f20c73c930976e722361e4e81dce244283a89af0a88aeac6f98a2ee27cd6791b",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_job.sh": "9497b55fa385831800a4fe7ceccf06baa66d59f01377f883639f9438ede2ccc7",
+    "select_training_cases.py": "54b26786d4271d2d4dda8ced377b50a04be6101a180a68ef1e17fb2b12c4c285",
+    "shared_augmentation.py": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+    "smoke_selection.json": "5ee5e36a094d3721977626a91966f15f2830914539969b8bc45e788aff1ea63f",
+    "status.sh": "c9e9d868f879d4fdf2bbc2e5c24c605f32e21e921b0564be05b7edb6c2b3e00b",
+    "strict_runtime.py": "c229b79cf215a9a14df8bdd8af85d5304cf16f4776a957a9362261597d694597",
+    "submit.sh": "ca5be11bbbd63c80803d529d8fbe5e8e6c3bd1e599987b1a946f37df0038312e",
+    "tests/test_baseline.py": "fc1d61f3a5c54d654d582b0f6cd2b7959afd59b6a33691d39c06a40d1171e458",
+    "tests/test_pair8.py": "0db7a812e1aa2a2d36eda706e5c767c59e5c07b5379c050b21a305d47e2f4317",
+    "tests/test_pilot.py": "26216f3c2a3cd2130c1406e12b3c8c998bb3fd2076196b84914cb115e487edf8",
+    "trace_state.py": "01c3f6c47d420e6dc9d5c0c12360729213eac3431df623902bf47275adb62972",
+    "verify_tests.py": "8baa86af9e3f8503fe73351c89b9c892ff80fe429afef2aa41b88dae7579922e"
+  },
+  "splits": "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research/dataset/detection_splits_v1",
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.10",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "additional_cross_job_reference_phase_comparisons": 28,
+  "attempts": [
+    {
+      "CUDA_VISIBLE_DEVICES": "GPU-364641bb-bd0e-750b-1422-b74f1c06c577",
+      "attempt": "22756abaad93",
+      "cuda_build": "12.1",
+      "cudnn_version": 8902,
+      "elapsed_seconds": 39507.86137348786,
+      "finished_utc": "2026-11-02T18:00:25.765990+00:00",
+      "gpu": "NVIDIA A10",
+      "hostname": "gpu0020",
+      "job": "799063.bright04",
+      "started_utc": "2026-11-02T07:01:57.904705+00:00",
+      "status": "budget_stopped",
+      "strict_settings": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "cudnn_tf32": false,
+        "deterministic_algorithms": true,
+        "fill_uninitialized_memory": true,
+        "matmul_tf32": false,
+        "warn_only": false
+      }
+    },
+    {
+      "CUDA_VISIBLE_DEVICES": "GPU-a5a7e7fd-12e8-3560-b51f-b47b56b7a58c",
+      "attempt": "b2a98e977511",
+      "cuda_build": "12.1",
+      "cudnn_version": 8902,
+      "elapsed_seconds": 39480.2361533083,
+      "finished_utc": "2026-11-03T05:23:35.350610+00:00",
+      "gpu": "NVIDIA A10",
+      "hostname": "gpu0020",
+      "job": "799233.bright04",
+      "started_utc": "2026-11-02T18:25:35.114547+00:00",
+      "status": "budget_stopped",
+      "strict_settings": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "cudnn_tf32": false,
+        "deterministic_algorithms": true,
+        "fill_uninitialized_memory": true,
+        "matmul_tf32": false,
+        "warn_only": false
+      }
+    },
+    {
+      "CUDA_VISIBLE_DEVICES": "GPU-364641bb-bd0e-750b-1422-b74f1c06c577",
+      "attempt": "87bdb2e326af",
+      "cuda_build": "12.1",
+      "cudnn_version": 8902,
+      "elapsed_seconds": 20793.599061248824,
+      "finished_utc": "2026-11-03T11:53:06.238107+00:00",
+      "gpu": "NVIDIA A10",
+      "hostname": "gpu0020",
+      "job": "799663.bright04",
+      "started_utc": "2026-11-03T06:06:32.639133+00:00",
+      "status": "complete",
+      "strict_settings": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "cudnn_tf32": false,
+        "deterministic_algorithms": true,
+        "fill_uninitialized_memory": true,
+        "matmul_tf32": false,
+        "warn_only": false
+      }
+    }
+  ],
+  "gates": [
+    {
+      "cross_job_reference_exact": true,
+      "elapsed_seconds": 60.31186951138079,
+      "job": "799063.bright04",
+      "omitted_nested_manifest_reconstructed_and_verified": true,
+      "paired_phases_exact": true,
+      "phase_records_each": 14,
+      "save_restore_boundary_exact": true,
+      "scope": "26 training and 24 validation images, identity appearance",
+      "updates_each": 7,
+      "validation_predictions_exact": true
+    },
+    {
+      "cross_job_reference_exact": true,
+      "elapsed_seconds": 67.517523618415,
+      "job": "799233.bright04",
+      "omitted_nested_manifest_reconstructed_and_verified": true,
+      "paired_phases_exact": true,
+      "phase_records_each": 14,
+      "save_restore_boundary_exact": true,
+      "scope": "26 training and 24 validation images, identity appearance",
+      "updates_each": 7,
+      "validation_predictions_exact": true
+    },
+    {
+      "cross_job_reference_exact": true,
+      "elapsed_seconds": 61.22638809122145,
+      "job": "799663.bright04",
+      "omitted_nested_manifest_reconstructed_and_verified": true,
+      "paired_phases_exact": true,
+      "phase_records_each": 14,
+      "save_restore_boundary_exact": true,
+      "scope": "26 training and 24 validation images, identity appearance",
+      "updates_each": 7,
+      "validation_predictions_exact": true
+    }
+  ],
+  "gpu_gate_seconds": 189.05578122101724,
+  "identical_fork_metadata": true,
+  "limitations": [
+    "No full checkpoint tensors or raw source images in archive; no local detector re-inference.",
+    "Full-run resume consistency checked through counts, paired hashes, unchanged context and available checkpoint metadata; not a second uninterrupted full-training reproduction.",
+    "Exact short gate records agree across two physical A10 UUIDs; no universal cross-device determinism claim.",
+    "Recorded main/gate timings exclude queue time, some startup/unit-test work and archive creation; not a complete scheduler billing record.",
+    "One development seed, reused validation, no held-out test evaluation or seed-variance estimate."
+  ],
+  "main_invocation_seconds": 99781.69658804499,
+  "paired_epoch_hashes": 7,
+  "resources": {
+    "class_adaptive": {
+      "peak_reserved_bytes_recorded": 20476592128,
+      "probe_epochs": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "probe_seconds": 3304.3934156522155,
+      "training_seconds": 43796.956451183185,
+      "training_windows": [
+        {
+          "median_update_seconds": 0.9094118308275938,
+          "peak_allocated_bytes": 8383526400,
+          "peak_reserved_bytes": 10825498624,
+          "start_step": 6716,
+          "updates": 128
+        },
+        {
+          "median_update_seconds": 0.9151972169056535,
+          "peak_allocated_bytes": 8484866560,
+          "peak_reserved_bytes": 20040384512,
+          "start_step": 43072,
+          "updates": 128
+        }
+      ],
+      "validation_seconds": 3807.4052919596434
+    },
+    "geometry_only": {
+      "peak_reserved_bytes_recorded": 19537068032,
+      "probe_epochs": [],
+      "probe_seconds": 0,
+      "training_seconds": 43967.45236845501,
+      "training_windows": [
+        {
+          "median_update_seconds": 0.91043580789119,
+          "peak_allocated_bytes": 8347534336,
+          "peak_reserved_bytes": 19537068032,
+          "start_step": 6716,
+          "updates": 128
+        },
+        {
+          "median_update_seconds": 0.9055760195478797,
+          "peak_allocated_bytes": 8647696896,
+          "peak_reserved_bytes": 18605932544,
+          "start_step": 33580,
+          "updates": 128
+        }
+      ],
+      "validation_seconds": 4066.539335006848
+    }
+  },
+  "status": "pass",
+  "training_images_each_epoch": 26863,
+  "training_presentations_each_after_warmup": 188041,
+  "training_updates_each_after_warmup": 47012,
+  "validation_images": 5760,
+  "validation_records_checked": 14,
+  "within_job_exact_phase_comparisons": 42
+}

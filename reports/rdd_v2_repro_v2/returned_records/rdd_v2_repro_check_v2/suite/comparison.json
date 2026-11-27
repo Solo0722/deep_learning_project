@@ -1,0 +1,284 @@
+{
+  "conditions": {
+    "control_a": {
+      "comparisons": [],
+      "first_difference": null,
+      "fork": {
+        "model_optimizer_rng_exact": true,
+        "model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+        "optimizer_sha256": "e412e21fc1b82a508b1c0bbf737d8a045afd95f09ec533039cb7f5718dbe7cee",
+        "rng_sha256": "47527dc967f8ba250668c19c154ca4fe6e3278d89206989a0806189b3d5ae28f"
+      },
+      "updates_complete": 7
+    },
+    "control_b": {
+      "comparisons": [
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": true,
+            "forward": true,
+            "update": false
+          },
+          "step": 1
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 2
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 3
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 4
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 5
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 6
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 7
+        }
+      ],
+      "first_difference": {
+        "changed_paths": 69,
+        "phase": "backward",
+        "step": 1
+      },
+      "fork": {
+        "model_optimizer_rng_exact": true,
+        "model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+        "optimizer_sha256": "e412e21fc1b82a508b1c0bbf737d8a045afd95f09ec533039cb7f5718dbe7cee",
+        "rng_sha256": "47527dc967f8ba250668c19c154ca4fe6e3278d89206989a0806189b3d5ae28f"
+      },
+      "updates_complete": 7
+    },
+    "probe_only": {
+      "comparisons": [
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": true,
+            "forward": true,
+            "update": false
+          },
+          "step": 1
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 2
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 3
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 4
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 5
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 6
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 7
+        }
+      ],
+      "first_difference": {
+        "changed_paths": 69,
+        "phase": "backward",
+        "step": 1
+      },
+      "fork": {
+        "model_optimizer_rng_exact": true,
+        "model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+        "optimizer_sha256": "e412e21fc1b82a508b1c0bbf737d8a045afd95f09ec533039cb7f5718dbe7cee",
+        "rng_sha256": "47527dc967f8ba250668c19c154ca4fe6e3278d89206989a0806189b3d5ae28f"
+      },
+      "probe_boundary_exact": true,
+      "updates_complete": 7
+    },
+    "resume_only": {
+      "comparisons": [
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": true,
+            "forward": true,
+            "update": false
+          },
+          "step": 1
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 2
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 3
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 4
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 5
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 6
+        },
+        {
+          "exact": false,
+          "phase_equal": {
+            "backward": false,
+            "before": false,
+            "forward": false,
+            "update": false
+          },
+          "step": 7
+        }
+      ],
+      "first_difference": {
+        "changed_paths": 68,
+        "phase": "backward",
+        "step": 1
+      },
+      "fork": {
+        "model_optimizer_rng_exact": true,
+        "model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+        "optimizer_sha256": "e412e21fc1b82a508b1c0bbf737d8a045afd95f09ec533039cb7f5718dbe7cee",
+        "rng_sha256": "47527dc967f8ba250668c19c154ca4fe6e3278d89206989a0806189b3d5ae28f"
+      },
+      "resume_boundary_exact": true,
+      "updates_complete": 7
+    }
+  },
+  "decision": "Review first differences and numeric magnitudes before any longer run. No automatic continuation.",
+  "interpretation": [
+    "A control_b difference means probing and resume are not necessary for divergence; it does not exclude their additional effects.",
+    "A probe_only or resume_only difference with an exact control repeat points to that path for further investigation, not proof from repeated trials.",
+    "If every comparison is exact, the original discrepancy was not reproduced under this instrumentation; its cause remains unestablished."
+  ],
+  "reference_snapshot_bytes_retained_on_ccast": 4635252062,
+  "scope": "Execution/reproducibility diagnostic only; no AP, generalization or method-superiority claim.",
+  "status": "complete_with_divergence"
+}

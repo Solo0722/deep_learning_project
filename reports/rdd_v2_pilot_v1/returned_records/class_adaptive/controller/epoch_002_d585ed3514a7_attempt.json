@@ -1,0 +1,18 @@
+{
+  "audit": {
+    "gradient_sha256": "0e33e202476b58a11e9274d32c5d2777dfefb718bbdd52044239b9ee49874935",
+    "model_optimizer_rng_modes_unchanged": true,
+    "model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+    "rng_sha256": "47527dc967f8ba250668c19c154ca4fe6e3278d89206989a0806189b3d5ae28f"
+  },
+  "detector_images": 7428,
+  "elapsed_seconds": 414.18976852856576,
+  "epoch": 2,
+  "error": null,
+  "file": "epoch_002_d585ed3514a7.jsonl.gz",
+  "forward_calls": 3842,
+  "forward_seconds": 187.63103109784424,
+  "records_complete": 256,
+  "sha256": "b770b93d982a2c5441057d65fd50ec0e7d45f60976d9bf8e6cdb6fda9f120a6e",
+  "status": "complete"
+}

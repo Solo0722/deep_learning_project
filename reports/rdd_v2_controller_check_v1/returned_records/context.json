@@ -1,0 +1,47 @@
+{
+  "amp": false,
+  "checkpoint": {
+    "bytes": 331117946,
+    "file": "epoch_001_step_00006716_04dccd11bbd2.pt",
+    "metadata_source_archive": "fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz",
+    "metadata_source_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+    "relative_path": "runs/fasterrcnn_identity_seed42_v1/checkpoints/epoch_001_step_00006716_04dccd11bbd2.pt",
+    "selection": "Fixed first unaugmented epoch; not the validation-selected best checkpoint",
+    "sha256": "dbd619334a57ad4422e929b90b327f80d1ca3bfc5b86f6f37594714ec138e858"
+  },
+  "checkpoint_model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+  "cuda_build": "12.1",
+  "cuda_visible_devices": "GPU-a7a36914-a7e9-e45a-d2c2-dd759b55357f",
+  "cudnn_benchmark": false,
+  "cudnn_deterministic": true,
+  "cudnn_version": 8902,
+  "gpu": "NVIDIA A10",
+  "host": "gpu0025",
+  "package_hashes": {
+    "LOCAL_VALIDATION.json": "fbc29b106abf2bbb6813177974575f6501b17a1b6bafbecb920fa9a4c9a698fd",
+    "README.md": "8f4795cdf97fbf0ddaca9e3c4aef85c813116eff006815f5be11c455397f5aec",
+    "controller.py": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+    "detector.py": "c6b262e7fca0b610a053e421490bbf54a9301a16ea1160563f1de8e707922dcb",
+    "diagnostic.py": "577942a60ec36b985cbb766205a19ee5c54cc8225a74f9ec63a2f38c1a83b5a2",
+    "geometry.py": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+    "job.pbs": "ddd959e4184622bc620824a5bf13d8de9642074c6f82a8d47f35c43f9f412350",
+    "local_augmentation.py": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+    "panel_plan.json": "c58e64ae601592696bc18620283b9acb0a1cb4a85f8ca77c1032c6f09256a4e3",
+    "protocol.json": "b2b2a3ee9cd1605125ad046a08036986887ffc8a3b97ff4f0579b3741bdb1993",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_check.py": "eb2da46c4d099e0136b7c48e2eb21afb50b1db3dd48594e4759388c701e6afeb",
+    "run_job.sh": "808ddf4bee384e5c0969f196d39bf6606293b1848ac8afad9ec32711d64c416f",
+    "shared_augmentation.py": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+    "submit.sh": "1420fcf5e5dde8a735bfb3d90d1dcc3a29eda0826f7b3dfb4f6ce443f6e8ea2b",
+    "tests/test_diagnostic.py": "9756315011fc938bc0aae5020af44e9d40b4d274ecf5a40f9c13dbd1c5a54547"
+  },
+  "pbs_job": "797244.bright04",
+  "python": "3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]",
+  "tf32": false,
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0"
+  }
+}

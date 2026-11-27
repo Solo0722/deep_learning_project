@@ -1,0 +1,214 @@
+{
+  "archive": "rdd_v2_pilot_smoke_797282.bright04_records_v1.tar.gz",
+  "archive_bytes": 1670919,
+  "archive_sha256": "12e8f65b129a55199f105c28bc7303fe9b1b852e950f3a062a76675aee5d0777",
+  "checkpoint_tensors_included": false,
+  "expected_hash_source": "CCAST sha256sum output supplied by the user in chat, 2026-10-29",
+  "files": 50,
+  "inventory": {
+    "pilot_job_logs/797282.bright04.log": {
+      "bytes": 88954,
+      "sha256": "5f891604a51fa9931af1d4e5d5f29bb1c84f8b8deba87ea58a6dd77ac8b16ce7"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/PASS.json": {
+      "bytes": 742,
+      "sha256": "2cb25bcaa1c377476fa103554094fdf745c70449d61cba3795fbb669148b1486"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/best.json": {
+      "bytes": 344,
+      "sha256": "751a0907fa0e7109d5734bc1963056b5726f0919379dd3918d3e787f428cd2a2"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/checkpoints/epoch_002_step_00000014_a98f63f37900.json": {
+      "bytes": 221,
+      "sha256": "c271920c5205b924d4a305f44069a02f45fa25250cd42e33c824bda78f1fdabc"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/checkpoints/epoch_003_step_00000021_43c2d4e065f2.json": {
+      "bytes": 221,
+      "sha256": "ffbf254731c4813beaeb50c6c1f388487784bafb9f5d0f0278a0c0e91c679bb3"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/controller/epoch_002_17fae5028e9d.jsonl.gz": {
+      "bytes": 207530,
+      "sha256": "26c23275d6f1cc5db200a6a46cc33069da985800eadd1c70c7e475709572c4a3"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/controller/epoch_002_17fae5028e9d_attempt.json": {
+      "bytes": 668,
+      "sha256": "733ed24e03484637e41c596e542c807e91e8b6bfedfe0bc11b6e7b5ef59fc279"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/controller/epoch_003_a6a6bb1054d9.jsonl.gz": {
+      "bytes": 216017,
+      "sha256": "132836d01919e5573fc76184a09d2e14452d50985b8cc0893dddd6d0573e7a2d"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/controller/epoch_003_a6a6bb1054d9_attempt.json": {
+      "bytes": 668,
+      "sha256": "73ddc7a402047142a4b0b8c2dd4623ad8cd5ddee77f6b0f65cc1d08a7ad0af08"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/epoch_002_val_predictions.json.gz": {
+      "bytes": 98152,
+      "sha256": "36b7f675350de3dc1561e7d87b44d8f0eb7e7468e7948c7c8c3eb4d2b35c3a7a"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/epoch_002_validation.json": {
+      "bytes": 5528,
+      "sha256": "f445c28625dd12c622b2170d407b18f8d0114111b90f6c19f633810b96531992"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/epoch_003_val_predictions.json.gz": {
+      "bytes": 97404,
+      "sha256": "27a6cd9624608e9b6f50d8afacb09b562b7e2ef15b53243ed04c8a58b8b3e5cb"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/epoch_003_validation.json": {
+      "bytes": 5525,
+      "sha256": "e34c4141dc82c1b84613c4af064c85cdcad40f3cf99f6868f6fff9a1256a7414"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/history.csv": {
+      "bytes": 721,
+      "sha256": "1ea8e7de1d04b1fc18eee42d517c3c97d30b0472aa75e9000b6c8f088439d81f"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/history.json": {
+      "bytes": 16379,
+      "sha256": "01b044bbad45a3c95eed7e1df6e96944e412dc2612538c45ca954fb63f47ea53"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/class_adaptive/last.json": {
+      "bytes": 221,
+      "sha256": "ffbf254731c4813beaeb50c6c1f388487784bafb9f5d0f0278a0c0e91c679bb3"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/best.json": {
+      "bytes": 343,
+      "sha256": "8e4513488b1a13e84d97e1c59cf42e38e479c21cddf6238910d1a94ae86d6c9b"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/checkpoints/epoch_002_step_00000014_a9bb5ce13567.json": {
+      "bytes": 221,
+      "sha256": "c52cd5ea5594754d918e48cb189a19c029264f7383ec37695c11e791ab35788d"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/checkpoints/epoch_003_step_00000021_5ebe320da72c.json": {
+      "bytes": 221,
+      "sha256": "f7bd599772006ee0ed41cc37e033527c30fb97f9b17206d9b25e76dd753fe7c7"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/epoch_002_val_predictions.json.gz": {
+      "bytes": 97929,
+      "sha256": "855a4f17c28a46111feb0eaac5e7b9d509589a05330752393d805c7e861f7695"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/epoch_002_validation.json": {
+      "bytes": 5528,
+      "sha256": "7f11ee15ca8815b3f57a657b1a2e05156dc8883cc8657a860e014ef53335c614"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/epoch_003_val_predictions.json.gz": {
+      "bytes": 97914,
+      "sha256": "7bf92652ec38364c16faeeb290176a20b7173ed6bf57881d52f8e00dbfa8bce1"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/epoch_003_validation.json": {
+      "bytes": 5530,
+      "sha256": "414c2f07550fc8fdb646f1b341491681d87a4726d25fdb7b036417440bb71e7b"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/history.csv": {
+      "bytes": 722,
+      "sha256": "30816ad7412409c68e9ed96fa1dc0554843560fdb7c342cabfd57bd5d5df93e5"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/history.json": {
+      "bytes": 19220,
+      "sha256": "0e95e5a0ae9a428a5c7b7fcb02c0c23069076c855fe3b5a8cdf358c81f44971e"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/fixed_local/last.json": {
+      "bytes": 221,
+      "sha256": "f7bd599772006ee0ed41cc37e033527c30fb97f9b17206d9b25e76dd753fe7c7"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/best.json": {
+      "bytes": 344,
+      "sha256": "e3c971ce3e7ba54f2b3f3f22eadab757f125c36da2f1e75bda41f33d25b9d4f3"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/checkpoints/epoch_002_step_00000014_4e0b0a0737d3.json": {
+      "bytes": 221,
+      "sha256": "3efed4b6debc84f01e3ef389a3226a38a68c3a7354d30b144e1c92b6e4dcddbc"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/checkpoints/epoch_003_step_00000021_c78e54b06092.json": {
+      "bytes": 221,
+      "sha256": "87985b3054768f34ae605d09a3e0dc82afbe0696c5cbc84672b508ef2a2be2de"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/epoch_002_val_predictions.json.gz": {
+      "bytes": 98166,
+      "sha256": "e488866f8aa6d0ab208f6b8bedbf02dbf48aa1b9cfb731b5036d004677525c93"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/epoch_002_validation.json": {
+      "bytes": 5528,
+      "sha256": "ed5aaeb68de7683fda33a37ce1282d848a8e399b21f0fd1d58b11e03ed735398"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/epoch_003_val_predictions.json.gz": {
+      "bytes": 97474,
+      "sha256": "9ab3ecad8f1666d05b1bf0dcaad8eba3518d0071d4155c7591c0afbabd3d861e"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/epoch_003_validation.json": {
+      "bytes": 5527,
+      "sha256": "a6aaa14a0cf3c311565e7f3b62cf5bfe188e35dcd1903c07dae4bb8a554fbd01"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/history.csv": {
+      "bytes": 722,
+      "sha256": "7bb1205a84231de8cd2f01b06ddf07682eeec498ec087a6896220085696d6dd8"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/history.json": {
+      "bytes": 14123,
+      "sha256": "c3d69268aa30693abeddfbb173c5461e08e871c1d76e8b393d841ee670686430"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/geometry_only/last.json": {
+      "bytes": 221,
+      "sha256": "87985b3054768f34ae605d09a3e0dc82afbe0696c5cbc84672b508ef2a2be2de"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/best.json": {
+      "bytes": 344,
+      "sha256": "d0c5181c1a1fe3fd17cc8537c03648f23ffb409591e8bc11131f5a58c7c80eb6"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/checkpoints/epoch_002_step_00000014_dd184f83b846.json": {
+      "bytes": 221,
+      "sha256": "6205c6c1eff823d6034bf1219f197c4a4ca5058d920aad23e931d66caab780e4"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/checkpoints/epoch_003_step_00000021_abab5cb49899.json": {
+      "bytes": 221,
+      "sha256": "eb5a5f8a53e7056d9ec0879b2d25333731d7acdb50ba03d4a1bdafcdc1acdf01"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/controller/epoch_002_4c0b5efdfb89.jsonl.gz": {
+      "bytes": 207530,
+      "sha256": "b53b764d0f5641ff6785e6462969c536828011e0cd4f986161ef8047fed8b0cf"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/controller/epoch_002_4c0b5efdfb89_attempt.json": {
+      "bytes": 667,
+      "sha256": "e7caf031cc4f93920aa9397fb205a4f08a2c801a80cad48841fb915ef7125343"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/controller/epoch_003_0a9348dfd39b.jsonl.gz": {
+      "bytes": 215889,
+      "sha256": "00274f52ee20000ed83e459bdef9f8b86c455610abce34a269889a117935df46"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/controller/epoch_003_0a9348dfd39b_attempt.json": {
+      "bytes": 669,
+      "sha256": "20ecac4e204efafef6a4ab952698b8e8b3232ac0c62fefde9484bb456c564ee9"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/epoch_002_val_predictions.json.gz": {
+      "bytes": 98187,
+      "sha256": "2e8915639a538e0db71d2f14d92b603ab1f90a572224a91d6fe448b1eb2733c3"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/epoch_002_validation.json": {
+      "bytes": 5528,
+      "sha256": "94d83c7de7c71268ab31b8b0f747650194c93d8947875de3441fc98faecf707c"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/epoch_003_val_predictions.json.gz": {
+      "bytes": 97233,
+      "sha256": "81be3cbd8643f7f08acaac5b185cf3e718584b65da04a71b2e647d77b10c0341"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/epoch_003_validation.json": {
+      "bytes": 5525,
+      "sha256": "58a886ecd5286497c14b88257e149e42e496d1640691ec48c0134e81e33c52dc"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/history.csv": {
+      "bytes": 718,
+      "sha256": "2809e22b53a572f2c4e7c07745f5095a66a3190c03419590b4d9e66749b52383"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/history.json": {
+      "bytes": 16378,
+      "sha256": "850cf577cb2504e65b5e1f54cae7a8d3f6985f5c3916f29bdefad1d3102630c7"
+    },
+    "rdd_v2_pilot_smoke_797282.bright04/online_shared/last.json": {
+      "bytes": 221,
+      "sha256": "eb5a5f8a53e7056d9ec0879b2d25333731d7acdb50ba03d4a1bdafcdc1acdf01"
+    }
+  },
+  "pass_sha256": "2cb25bcaa1c377476fa103554094fdf745c70449d61cba3795fbb669148b1486",
+  "source_files_verified": 29,
+  "train_and_validation_manifest_hashes_verified": true,
+  "uncompressed_bytes": 1839022
+}

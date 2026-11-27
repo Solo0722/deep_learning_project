@@ -1,0 +1,1291 @@
+{
+  "all_epoch_prediction_geometry_counts_and_coverage": [
+    {
+      "clipped_boxes": 1748,
+      "collapsed_predictions": 0,
+      "epoch": 1,
+      "images": 5760,
+      "predictions": 542735
+    },
+    {
+      "clipped_boxes": 980,
+      "collapsed_predictions": 0,
+      "epoch": 2,
+      "images": 5760,
+      "predictions": 467754
+    },
+    {
+      "clipped_boxes": 810,
+      "collapsed_predictions": 0,
+      "epoch": 3,
+      "images": 5760,
+      "predictions": 547887
+    },
+    {
+      "clipped_boxes": 1880,
+      "collapsed_predictions": 187,
+      "epoch": 4,
+      "images": 5760,
+      "predictions": 473285
+    },
+    {
+      "clipped_boxes": 1304,
+      "collapsed_predictions": 140,
+      "epoch": 5,
+      "images": 5760,
+      "predictions": 490306
+    },
+    {
+      "clipped_boxes": 1856,
+      "collapsed_predictions": 633,
+      "epoch": 6,
+      "images": 5760,
+      "predictions": 514834
+    },
+    {
+      "clipped_boxes": 1970,
+      "collapsed_predictions": 913,
+      "epoch": 7,
+      "images": 5760,
+      "predictions": 486888
+    },
+    {
+      "clipped_boxes": 3262,
+      "collapsed_predictions": 0,
+      "epoch": 8,
+      "images": 5760,
+      "predictions": 522755
+    },
+    {
+      "clipped_boxes": 1738,
+      "collapsed_predictions": 755,
+      "epoch": 9,
+      "images": 5760,
+      "predictions": 571658
+    },
+    {
+      "clipped_boxes": 3358,
+      "collapsed_predictions": 0,
+      "epoch": 10,
+      "images": 5760,
+      "predictions": 496373
+    },
+    {
+      "clipped_boxes": 364,
+      "collapsed_predictions": 0,
+      "epoch": 11,
+      "images": 5760,
+      "predictions": 481995
+    },
+    {
+      "clipped_boxes": 297,
+      "collapsed_predictions": 0,
+      "epoch": 12,
+      "images": 5760,
+      "predictions": 474449
+    },
+    {
+      "clipped_boxes": 372,
+      "collapsed_predictions": 0,
+      "epoch": 13,
+      "images": 5760,
+      "predictions": 399134
+    },
+    {
+      "clipped_boxes": 420,
+      "collapsed_predictions": 0,
+      "epoch": 14,
+      "images": 5760,
+      "predictions": 365020
+    },
+    {
+      "clipped_boxes": 450,
+      "collapsed_predictions": 4,
+      "epoch": 15,
+      "images": 5760,
+      "predictions": 354427
+    },
+    {
+      "clipped_boxes": 521,
+      "collapsed_predictions": 0,
+      "epoch": 16,
+      "images": 5760,
+      "predictions": 391291
+    },
+    {
+      "clipped_boxes": 514,
+      "collapsed_predictions": 2,
+      "epoch": 17,
+      "images": 5760,
+      "predictions": 346229
+    },
+    {
+      "clipped_boxes": 510,
+      "collapsed_predictions": 0,
+      "epoch": 18,
+      "images": 5760,
+      "predictions": 332753
+    },
+    {
+      "clipped_boxes": 545,
+      "collapsed_predictions": 1,
+      "epoch": 19,
+      "images": 5760,
+      "predictions": 336759
+    },
+    {
+      "clipped_boxes": 493,
+      "collapsed_predictions": 2,
+      "epoch": 20,
+      "images": 5760,
+      "predictions": 331509
+    }
+  ],
+  "archive": "fasterrcnn_class_adaptive_seed42_v1_records_26e50b915ed9.tar.gz",
+  "archive_bytes": 417450789,
+  "archive_files": 123,
+  "archive_sha256": "c4817b3cb3bc69813776d06662a9070a7415e9552cab7c6b331c5237414d9b74",
+  "audit_source_sha256": "07fc94fcc0f6118936fb3b48cb17c8a59f2536d49cb242800939f673f7b7250d",
+  "augmentation_verification": {
+    "applied_without_pixel_change": 150,
+    "class_set_exposure": [
+      {
+        "applied": 63509,
+        "applied_fraction": 1.0,
+        "changed_images": 63509,
+        "class_set": "0",
+        "identity": 0,
+        "insufficient_support": 0,
+        "labels": "D00",
+        "level_1": 0,
+        "level_2": 10009,
+        "level_3": 53500,
+        "no_admissible_family": 0,
+        "opportunities": 63509,
+        "unobserved_class_set": 0
+      },
+      {
+        "applied": 25353,
+        "applied_fraction": 1.0,
+        "changed_images": 25239,
+        "class_set": "1",
+        "identity": 0,
+        "insufficient_support": 0,
+        "labels": "D10",
+        "level_1": 5373,
+        "level_2": 2787,
+        "level_3": 17193,
+        "no_admissible_family": 0,
+        "opportunities": 25353,
+        "unobserved_class_set": 0
+      },
+      {
+        "applied": 34471,
+        "applied_fraction": 1.0,
+        "changed_images": 34467,
+        "class_set": "2",
+        "identity": 0,
+        "insufficient_support": 0,
+        "labels": "D20",
+        "level_1": 1831,
+        "level_2": 3820,
+        "level_3": 28820,
+        "no_admissible_family": 0,
+        "opportunities": 34471,
+        "unobserved_class_set": 0
+      },
+      {
+        "applied": 12645,
+        "applied_fraction": 0.8962364448224538,
+        "changed_images": 12617,
+        "class_set": "3",
+        "identity": 1464,
+        "insufficient_support": 1464,
+        "labels": "D40",
+        "level_1": 2902,
+        "level_2": 3848,
+        "level_3": 5895,
+        "no_admissible_family": 0,
+        "opportunities": 14109,
+        "unobserved_class_set": 0
+      },
+      {
+        "applied": 8142,
+        "applied_fraction": 0.8965972910472415,
+        "changed_images": 8138,
+        "class_set": "0,1",
+        "identity": 939,
+        "insufficient_support": 939,
+        "labels": "D00+D10",
+        "level_1": 1889,
+        "level_2": 1538,
+        "level_3": 4715,
+        "no_admissible_family": 0,
+        "opportunities": 9081,
+        "unobserved_class_set": 0
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,2",
+        "identity": 2933,
+        "insufficient_support": 2630,
+        "labels": "D00+D20",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 2933,
+        "unobserved_class_set": 303
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,3",
+        "identity": 498,
+        "insufficient_support": 308,
+        "labels": "D00+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 498,
+        "unobserved_class_set": 190
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "1,2",
+        "identity": 2250,
+        "insufficient_support": 2250,
+        "labels": "D10+D20",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 2250,
+        "unobserved_class_set": 0
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "1,3",
+        "identity": 191,
+        "insufficient_support": 97,
+        "labels": "D10+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 191,
+        "unobserved_class_set": 94
+      },
+      {
+        "applied": 448,
+        "applied_fraction": 0.10062893081761007,
+        "changed_images": 448,
+        "class_set": "2,3",
+        "identity": 4004,
+        "insufficient_support": 4004,
+        "labels": "D20+D40",
+        "level_1": 448,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 4452,
+        "unobserved_class_set": 0
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,1,2",
+        "identity": 719,
+        "insufficient_support": 485,
+        "labels": "D00+D10+D20",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 719,
+        "unobserved_class_set": 234
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,1,3",
+        "identity": 97,
+        "insufficient_support": 0,
+        "labels": "D00+D10+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 97,
+        "unobserved_class_set": 97
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,2,3",
+        "identity": 313,
+        "insufficient_support": 174,
+        "labels": "D00+D20+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 313,
+        "unobserved_class_set": 139
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "1,2,3",
+        "identity": 126,
+        "insufficient_support": 23,
+        "labels": "D10+D20+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 126,
+        "unobserved_class_set": 103
+      },
+      {
+        "applied": 0,
+        "applied_fraction": 0.0,
+        "changed_images": 0,
+        "class_set": "0,1,2,3",
+        "identity": 49,
+        "insufficient_support": 4,
+        "labels": "D00+D10+D20+D40",
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "no_admissible_family": 0,
+        "opportunities": 49,
+        "unobserved_class_set": 45
+      }
+    ],
+    "compute": {
+      "image_forwards": 71680,
+      "images": 2560,
+      "seconds": 3431.2005935683846
+    },
+    "identity_opportunity_fraction": 0.08588627324518973,
+    "independent_feedback_source_sha256": "bfb48dcb50eb51d077754ba09816b9b30299598e3aa68742f12221217f5ab877",
+    "independent_policy_reconstruction": "all_10_updates_all_15_exact_sets_all_24_operation_level_cells",
+    "limits": [
+      "Independent arithmetic uses saved per-object observations; raw probe boxes/logits, raw pixels and checkpoint tensors are unavailable in this archive.",
+      "Decision replay uses released keyed randomization and grouping code; it is not an independent implementation of those algorithms.",
+      "Recorded unchanged model/buffer/gradient/RNG invariants are checked, not remeasured from live detector tensors.",
+      "Changed-pixel statistics are recorded counters with consistency checks, not fresh image comparisons.",
+      "Pooled policies on the class-adaptive snapshots are exploratory diagnostics, not results from a second training run."
+    ],
+    "operation_strength_training_exposure": [
+      {
+        "class_set": "0",
+        "family": "blur_noise",
+        "images": 3501,
+        "level": 2,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "0",
+        "family": "blur_noise",
+        "images": 12612,
+        "level": 3,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "0",
+        "family": "blur_noise",
+        "images": 3458,
+        "level": 2,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "0",
+        "family": "blur_noise",
+        "images": 12619,
+        "level": 3,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 479,
+        "level": 2,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 4753,
+        "level": 3,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 517,
+        "level": 2,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 4634,
+        "level": 3,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 527,
+        "level": 2,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 4548,
+        "level": 3,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 523,
+        "level": 2,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 4805,
+        "level": 3,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 483,
+        "level": 2,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 4629,
+        "level": 3,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 521,
+        "level": 2,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "0",
+        "family": "photometric",
+        "images": 4900,
+        "level": 3,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "0,1",
+        "family": "blur_noise",
+        "images": 933,
+        "level": 1,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "0,1",
+        "family": "blur_noise",
+        "images": 1041,
+        "level": 3,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "0,1",
+        "family": "blur_noise",
+        "images": 956,
+        "level": 1,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "0,1",
+        "family": "blur_noise",
+        "images": 1065,
+        "level": 3,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 262,
+        "level": 2,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 448,
+        "level": 3,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 269,
+        "level": 2,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 453,
+        "level": 3,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 278,
+        "level": 2,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 396,
+        "level": 3,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 255,
+        "level": 2,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 402,
+        "level": 3,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 228,
+        "level": 2,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 451,
+        "level": 3,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 246,
+        "level": 2,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "0,1",
+        "family": "photometric",
+        "images": 459,
+        "level": 3,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "1",
+        "family": "blur_noise",
+        "images": 2743,
+        "level": 1,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "1",
+        "family": "blur_noise",
+        "images": 737,
+        "level": 2,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "1",
+        "family": "blur_noise",
+        "images": 3697,
+        "level": 3,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "1",
+        "family": "blur_noise",
+        "images": 2630,
+        "level": 1,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "1",
+        "family": "blur_noise",
+        "images": 723,
+        "level": 2,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "1",
+        "family": "blur_noise",
+        "images": 3663,
+        "level": 3,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 245,
+        "level": 2,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 1652,
+        "level": 3,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 229,
+        "level": 2,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 1559,
+        "level": 3,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 209,
+        "level": 2,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 1634,
+        "level": 3,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 211,
+        "level": 2,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 1695,
+        "level": 3,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 216,
+        "level": 2,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 1681,
+        "level": 3,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 217,
+        "level": 2,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "1",
+        "family": "photometric",
+        "images": 1612,
+        "level": 3,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "2",
+        "family": "blur_noise",
+        "images": 914,
+        "level": 1,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "2",
+        "family": "blur_noise",
+        "images": 1010,
+        "level": 2,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "2",
+        "family": "blur_noise",
+        "images": 6768,
+        "level": 3,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "2",
+        "family": "blur_noise",
+        "images": 917,
+        "level": 1,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "2",
+        "family": "blur_noise",
+        "images": 1008,
+        "level": 2,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "2",
+        "family": "blur_noise",
+        "images": 6771,
+        "level": 3,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 313,
+        "level": 2,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 2556,
+        "level": 3,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 320,
+        "level": 2,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 2443,
+        "level": 3,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 300,
+        "level": 2,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 2614,
+        "level": 3,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 304,
+        "level": 2,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 2568,
+        "level": 3,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 286,
+        "level": 2,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 2563,
+        "level": 3,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 279,
+        "level": 2,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "2",
+        "family": "photometric",
+        "images": 2537,
+        "level": 3,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "2,3",
+        "family": "blur_noise",
+        "images": 237,
+        "level": 1,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "2,3",
+        "family": "blur_noise",
+        "images": 211,
+        "level": 1,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "3",
+        "family": "blur_noise",
+        "images": 319,
+        "level": 1,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "3",
+        "family": "blur_noise",
+        "images": 1570,
+        "level": 2,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "3",
+        "family": "blur_noise",
+        "images": 1639,
+        "level": 3,
+        "operation": "gaussian_blur"
+      },
+      {
+        "class_set": "3",
+        "family": "blur_noise",
+        "images": 341,
+        "level": 1,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "3",
+        "family": "blur_noise",
+        "images": 1524,
+        "level": 2,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "3",
+        "family": "blur_noise",
+        "images": 1660,
+        "level": 3,
+        "operation": "gaussian_noise"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 372,
+        "level": 1,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 120,
+        "level": 2,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 419,
+        "level": 3,
+        "operation": "brightness_down"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 348,
+        "level": 1,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 117,
+        "level": 2,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 429,
+        "level": 3,
+        "operation": "brightness_up"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 383,
+        "level": 1,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 117,
+        "level": 2,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 440,
+        "level": 3,
+        "operation": "contrast_down"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 386,
+        "level": 1,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 147,
+        "level": 2,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 473,
+        "level": 3,
+        "operation": "contrast_up"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 377,
+        "level": 1,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 134,
+        "level": 2,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 405,
+        "level": 3,
+        "operation": "gamma_brighten"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 376,
+        "level": 1,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 119,
+        "level": 2,
+        "operation": "gamma_darken"
+      },
+      {
+        "class_set": "3",
+        "family": "photometric",
+        "images": 430,
+        "level": 3,
+        "operation": "gamma_darken"
+      }
+    ],
+    "reported_changed_images": 144418,
+    "reported_changed_pixels": 3367797242,
+    "same_prospective_panels_and_group_choices_as_online_shared": true,
+    "status": "passed_saved_observation_and_metadata_audit",
+    "total": {
+      "applied_images": 144568,
+      "augmentation_opportunities": 158151,
+      "class_set/0,1,2,3/fallback/insufficient_support": 4,
+      "class_set/0,1,2,3/fallback/unobserved_class_set": 45,
+      "class_set/0,1,2,3/identity": 49,
+      "class_set/0,1,2,3/opportunities": 49,
+      "class_set/0,1,2/fallback/insufficient_support": 485,
+      "class_set/0,1,2/fallback/unobserved_class_set": 234,
+      "class_set/0,1,2/identity": 719,
+      "class_set/0,1,2/opportunities": 719,
+      "class_set/0,1,3/fallback/unobserved_class_set": 97,
+      "class_set/0,1,3/identity": 97,
+      "class_set/0,1,3/opportunities": 97,
+      "class_set/0,1/applied": 8142,
+      "class_set/0,1/fallback/insufficient_support": 939,
+      "class_set/0,1/family/blur_noise": 3995,
+      "class_set/0,1/family/photometric": 4147,
+      "class_set/0,1/identity": 939,
+      "class_set/0,1/opportunities": 9081,
+      "class_set/0,1/strength/1": 1889,
+      "class_set/0,1/strength/2": 1538,
+      "class_set/0,1/strength/3": 4715,
+      "class_set/0,2,3/fallback/insufficient_support": 174,
+      "class_set/0,2,3/fallback/unobserved_class_set": 139,
+      "class_set/0,2,3/identity": 313,
+      "class_set/0,2,3/opportunities": 313,
+      "class_set/0,2/fallback/insufficient_support": 2630,
+      "class_set/0,2/fallback/unobserved_class_set": 303,
+      "class_set/0,2/identity": 2933,
+      "class_set/0,2/opportunities": 2933,
+      "class_set/0,3/fallback/insufficient_support": 308,
+      "class_set/0,3/fallback/unobserved_class_set": 190,
+      "class_set/0,3/identity": 498,
+      "class_set/0,3/opportunities": 498,
+      "class_set/0/applied": 63509,
+      "class_set/0/family/blur_noise": 32190,
+      "class_set/0/family/photometric": 31319,
+      "class_set/0/opportunities": 63509,
+      "class_set/0/strength/2": 10009,
+      "class_set/0/strength/3": 53500,
+      "class_set/1,2,3/fallback/insufficient_support": 23,
+      "class_set/1,2,3/fallback/unobserved_class_set": 103,
+      "class_set/1,2,3/identity": 126,
+      "class_set/1,2,3/opportunities": 126,
+      "class_set/1,2/fallback/insufficient_support": 2250,
+      "class_set/1,2/identity": 2250,
+      "class_set/1,2/opportunities": 2250,
+      "class_set/1,3/fallback/insufficient_support": 97,
+      "class_set/1,3/fallback/unobserved_class_set": 94,
+      "class_set/1,3/identity": 191,
+      "class_set/1,3/opportunities": 191,
+      "class_set/1/applied": 25353,
+      "class_set/1/family/blur_noise": 14193,
+      "class_set/1/family/photometric": 11160,
+      "class_set/1/opportunities": 25353,
+      "class_set/1/strength/1": 5373,
+      "class_set/1/strength/2": 2787,
+      "class_set/1/strength/3": 17193,
+      "class_set/2,3/applied": 448,
+      "class_set/2,3/fallback/insufficient_support": 4004,
+      "class_set/2,3/family/blur_noise": 448,
+      "class_set/2,3/identity": 4004,
+      "class_set/2,3/opportunities": 4452,
+      "class_set/2,3/strength/1": 448,
+      "class_set/2/applied": 34471,
+      "class_set/2/family/blur_noise": 17388,
+      "class_set/2/family/photometric": 17083,
+      "class_set/2/opportunities": 34471,
+      "class_set/2/strength/1": 1831,
+      "class_set/2/strength/2": 3820,
+      "class_set/2/strength/3": 28820,
+      "class_set/3/applied": 12645,
+      "class_set/3/fallback/insufficient_support": 1464,
+      "class_set/3/family/blur_noise": 7053,
+      "class_set/3/family/photometric": 5592,
+      "class_set/3/identity": 1464,
+      "class_set/3/opportunities": 14109,
+      "class_set/3/strength/1": 2902,
+      "class_set/3/strength/2": 3848,
+      "class_set/3/strength/3": 5895,
+      "controller_identity_images": 13583,
+      "family/blur_noise": 75267,
+      "family/photometric": 69301,
+      "images": 537260,
+      "local_alpha_units": 7161653835,
+      "local_reference_pixels": 55725359360,
+      "local_union_pixels": 3623573158,
+      "operation/brightness_down": 11619,
+      "operation/brightness_up": 11318,
+      "operation/contrast_down": 11446,
+      "operation/contrast_up": 11769,
+      "operation/gamma_brighten": 11453,
+      "operation/gamma_darken": 11696,
+      "operation/gaussian_blur": 37721,
+      "operation/gaussian_noise": 37546,
+      "operation/identity": 392692,
+      "reason/applied": 144568,
+      "reason/controller_identity": 13583,
+      "reason/no_target": 204660,
+      "reason/probability": 157819,
+      "reason/warmup": 16630,
+      "selected_boxes": 165741,
+      "selected_groups": 144568,
+      "selected_multi_box_groups": 14657,
+      "strength_level_1": 12443,
+      "strength_level_2": 22002,
+      "strength_level_3": 110123,
+      "target_images": 332600
+    }
+  },
+  "best_checkpoint": {
+    "bytes": 331839738,
+    "checkpoint_file": "epoch_018_step_00120888_b845577eb926.pt",
+    "completed_epochs": 18,
+    "epoch": 18,
+    "file": "epoch_018_step_00120888_b845577eb926.pt",
+    "label": "epoch_018",
+    "sha256": "f4446568fcefc27369dbe82c55d77c8361140c0e5a4ee271a6959d1c160769cb",
+    "step": 120888,
+    "validation_AP50_95": 0.2256320421239544
+  },
+  "best_epoch": 18,
+  "best_metrics": {
+    "AP50": 0.5018263441445902,
+    "AP50_95": 0.2256320421239544,
+    "AP75": 0.16975369296906487,
+    "AR100": 0.43874383280894413,
+    "per_class": {
+      "D00": {
+        "AP50": 0.5033667656083398,
+        "AP50_95": 0.24235281030283776,
+        "target_count": 3888
+      },
+      "D10": {
+        "AP50": 0.46091562455895563,
+        "AP50_95": 0.19445899047012682,
+        "target_count": 1770
+      },
+      "D20": {
+        "AP50": 0.6302436691599073,
+        "AP50_95": 0.3006942628684347,
+        "target_count": 1592
+      },
+      "D40": {
+        "AP50": 0.41277931725115796,
+        "AP50_95": 0.16502210485441834,
+        "target_count": 975
+      }
+    }
+  },
+  "best_negative_image_fp_fraction_at_0_25": 0.36753305973552214,
+  "best_negative_images": 2193,
+  "best_negative_images_with_predictions_at_0_25": 806,
+  "best_negative_predicted_boxes_at_0_25": 1527,
+  "best_to_final_AP50_95_change": -0.0007028019151287257,
+  "completed_epochs": 20,
+  "controller_audit_source_sha256": "0136e00aab5d4e79ae13fc8a079ffdbca43420a47eb2002f7b75ef512a61d51e",
+  "final_metrics": {
+    "AP50": 0.4983484263745596,
+    "AP50_95": 0.22492924020882568,
+    "AP75": 0.17008483116756198,
+    "AR100": 0.43698714853528947,
+    "per_class": {
+      "D00": {
+        "AP50": 0.49950267146968874,
+        "AP50_95": 0.24258580967899765,
+        "target_count": 3888
+      },
+      "D10": {
+        "AP50": 0.46535511667536655,
+        "AP50_95": 0.1951965355748942,
+        "target_count": 1770
+      },
+      "D20": {
+        "AP50": 0.622630765823094,
+        "AP50_95": 0.29845323487339737,
+        "target_count": 1592
+      },
+      "D40": {
+        "AP50": 0.4059051515300891,
+        "AP50_95": 0.16348138070801374,
+        "target_count": 975
+      }
+    }
+  },
+  "frozen_train_val_separation": "image/source-cluster/decoded-RGB hashes disjoint",
+  "ground_truth_matches_frozen_validation": true,
+  "image_presentations": 537260,
+  "limits": [
+    "Only selected and final epochs' AP/AR were independently recomputed; all 20 epochs' hashes, coverage, geometry, counts and history consistency were verified.",
+    "Full checkpoint binaries and the live stdout/stderr log are not in this records archive; checkpoint hashes are metadata, not a fresh audit of checkpoint bytes.",
+    "Raw images were not reopened locally and detector inference was not rerun.",
+    "One seed and one initialization/recipe; no seed-variation estimate or final-test evaluation.",
+    "The best epoch is selected on this validation set, so its result is a development estimate rather than an untouched final-test estimate.",
+    "No-target-image detections are false positives relative to retained annotations; annotation completeness was not visually re-audited."
+  ],
+  "local_versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11"
+  },
+  "maximum_recomputed_metric_error": 0.0,
+  "next_experiment_executed": false,
+  "optimizer_steps": 134320,
+  "protocol_and_environment_match": true,
+  "recommendation": "Compare class-adaptive with all four verified controls under identical checkpoint selection; report support, identity fallbacks and actual edit exposure. Preserve single-seed, warmup-divergence and validation-selection limitations.",
+  "recomputed_epochs": [
+    18,
+    20
+  ],
+  "released_code_files_matched": 34,
+  "result_checksum_entries": 122,
+  "run": {
+    "elapsed_seconds": 52028.588211985305,
+    "finished_utc": "2026-10-27T13:25:21.849503+00:00",
+    "gpu": "NVIDIA A10",
+    "host": "gpu0020",
+    "pbs_job": "796544.bright04",
+    "peak_cuda_memory_allocated_bytes": 2857788416,
+    "resume": false,
+    "started_utc": "2026-10-26T22:58:15.747917+00:00"
+  },
+  "status": "verified_with_selected_and_final_metrics_recomputed",
+  "test_data_read": false,
+  "train_images": 26863,
+  "training_loss_first_final": [
+    0.2534203372774104,
+    0.1502613310872291
+  ],
+  "uncompressed_bytes": 439067533,
+  "validation_AP50_95_epoch12_to13_change": 0.040896776956417386,
+  "validation_images": 5760,
+  "validation_targets": 8225
+}

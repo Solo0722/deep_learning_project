@@ -1,0 +1,12 @@
+{
+  "archive_bytes": 409477115,
+  "archive_sha256": "70ace2ca31c6e118e4d705cca0fb21f31eeecca70dee57cb246fcc9dca8fcfe5",
+  "configuration_matches": true,
+  "files": 78,
+  "internal_checksums": 77,
+  "remote_full_checkpoint_tensors_included": false,
+  "source_checksums": 29,
+  "train_val_and_split_config_match": true,
+  "uncompressed_bytes": 422190042,
+  "versions_match": true
+}

@@ -1,0 +1,34 @@
+#!/bin/bash
+# One step of a per-class PBT run (python -m cua.pbt). Submitted by cua/ccast/submit_pbt.sh with
+#   qsub -v STEP=member|select,PBT_ID=...,WINDOW=k[,MEMBER=j] -N ... -o ...
+# Every step is idempotent: resubmitting a finished step exits 0. A member that reaches the deadline
+# exits 3 (its downstream afterok jobs are then dropped); resubmit it and the rest of the chain with
+# submit_pbt.sh, which skips finished steps.
+#PBS -q gpus
+#PBS -l select=1:ncpus=4:mem=32gb:ngpus=1:glist=a10
+#PBS -l walltime=08:00:00
+#PBS -W group_list=x-ccast-prj-aaboah
+#PBS -j oe
+set -uo pipefail
+P=/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research
+cd $P/cua_code || exit 1
+set +u
+source /mmfs1/apps/pyenvs/anaconda3-2022.05/etc/profile.d/conda.sh || { echo "conda.sh failed"; exit 1; }
+conda activate pytorch || { echo "conda activate pytorch failed"; exit 1; }
+source $P/.venvs/rdd_detection_v1/bin/activate || { echo "venv activate failed"; exit 1; }
+set -u
+export TORCH_HOME=$P/torch_home
+export PYTHONPATH=$P/cua_code
+echo "pbt: $PBT_ID step=$STEP window=$WINDOW member=${MEMBER:-}"
+echo "started: $(date -u +%Y-%m-%dT%H:%M:%SZ) on $(hostname)"
+COMMON="--pbt-id $PBT_ID --data-root $P/cua_data --runs-root $P/cua_runs"
+rc=0
+if [ "$STEP" = "member" ]; then
+    python -c "import torch; torch.zeros(1).cuda()" >/dev/null 2>&1 || { echo "GPU unusable on $(hostname); holding node 30 min"; sleep 1800; exit 1; }
+    python -m cua.pbt init $COMMON || exit 1
+    python -m cua.pbt member $COMMON --window $WINDOW --member $MEMBER --deadline-seconds $(( 27600 - SECONDS )) || rc=$?
+else
+    python -m cua.pbt select $COMMON --window $WINDOW || rc=$?
+fi
+echo "finished: $(date -u +%Y-%m-%dT%H:%M:%SZ) exit code $rc"
+exit $rc

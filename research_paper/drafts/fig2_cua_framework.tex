@@ -1,0 +1,107 @@
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[x=1cm, y=1cm, font=\sffamily\footnotesize, >={Stealth[length=5pt]},
+  arr/.style={->, draw=cuaArrow, line width=0.8pt},
+  lbl/.style={font=\sffamily\footnotesize\bfseries, text=black!85, align=center},
+  sub/.style={font=\sffamily\scriptsize, text=cuaText, align=center},
+  imgicon/.pic={
+    \fill[#1, rounded corners=2pt] (-0.8,-0.58) rectangle (0.8,0.58);
+    \draw[cuaBlue, line width=1.1pt, rounded corners=0.5pt] (-0.62,-0.38) rectangle (-0.06,0.38);
+    \draw[cuaPurple, line width=1.1pt, rounded corners=0.5pt] (0.08,-0.4) rectangle (0.62,0.06);
+    \fill[black!25] (-0.5,-0.05) -- (-0.3,0.2) -- (-0.18,-0.15) -- cycle;},
+  imgicon/.default=cuaGrey]
+  % ---------------- training step ----------------
+  \pic at (0,0) {imgicon=cuaGrey};
+  \node[lbl] at (0,1.28) {Training image};
+  \node[sub] at (0,0.9) {classes $S(x)$};
+  % base recipe
+  \fill[cuaGrey, rounded corners=2pt] (2.85,-0.42) rectangle (4.25,0.62);
+  \filldraw[fill=white, draw=cuaBlue, line width=1pt, rounded corners=2pt] (3.05,-0.6) rectangle (4.45,0.42);
+  \draw[<->, cuaBlue, line width=0.9pt] (3.35,-0.09) -- (4.15,-0.09);
+  \node[lbl] at (3.65,1.28) {Base recipe};
+  \node[sub] at (3.65,0.9) {flip, scale jitter};
+  % image policy
+  \filldraw[fill=white, draw=cuaGreen, line width=1.8pt] (7.3,0) circle (0.72);
+  \node[text=cuaGreen, font=\footnotesize] at (7.3,0) {$p(o\,|\,S)$};
+  \node[lbl] at (7.3,1.28) {Image policy};
+  \node[sub] at (7.3,0.9) {score, harm block, sample};
+  % edited image
+  \pic at (10.9,0) {imgicon=cuaOrange!22};
+  \filldraw[fill=cuaOrange, draw=white, line width=0.8pt] (11.62,0.5) circle (0.2);
+  \node[text=white, font=\sffamily\scriptsize\bfseries] at (11.62,0.5) {$o$};
+  \node[lbl] at (10.9,1.28) {Apply one edit};
+  \node[sub] at (10.9,0.9) {or ``no edit'' $o_0$};
+  % detector
+  \foreach \i in {0,1,2} {
+    \filldraw[fill=white, draw=cuaBlue, line width=0.9pt, shift={(14.35+0.2*\i,0.12-0.12*\i)}]
+      (-0.5,-0.55) -- (0.2,-0.38) -- (0.2,0.6) -- (-0.5,0.43) -- cycle; }
+  \node[lbl] at (14.55,1.28) {Detector update};
+  \node[sub] at (14.55,0.9) {$\theta\leftarrow\theta-\eta\nabla_\theta\mathcal{L}$};
+  \draw[arr] (0.95,0) -- (2.7,0);
+  \draw[arr] (4.6,0) -- (6.45,0);
+  \draw[arr] (8.15,0) -- (9.95,0);
+  \draw[arr] (11.95,0) -- (13.65,0);
+  % ---------------- estimator ----------------
+  \draw[cuaText!70, dashed, rounded corners=6pt, line width=0.7pt] (-1.65,-2.15) rectangle (16.0,-7.25);
+  \node[anchor=west, fill=white, inner sep=3pt, text=cuaGreen, font=\sffamily\footnotesize\bfseries] (est) at (0.6,-2.15) {Class-utility estimator};
+  \node[anchor=west, fill=white, inner sep=3pt, text=cuaText, font=\sffamily\scriptsize] at (est.east) {every $K$ optimizer steps; gradients on $\theta_s$ only};
+  \draw[arr, dashed] (0,-0.65) -- node[right, sub]{sampled} (0,-2.95);
+  % estimation batch (2x2 tiles, one edited)
+  \foreach \c/\x/\y in {cuaGrey/-0.33/-3.22, cuaGrey/0.06/-3.22, cuaOrange!45/-0.33/-3.61, cuaGrey/0.06/-3.61} {
+    \fill[\c, rounded corners=1.5pt] (\x,\y) rectangle ++(0.33,0.33); }
+  \foreach \c/\x/\y in {cuaGrey/0.45/-3.22, cuaOrange!45/0.45/-3.61} {
+    \fill[\c, rounded corners=1.5pt] (\x,\y) rectangle ++(0.33,0.33); }
+  \node[lbl] at (0.2,-4.12) {Estimation batch $B$};
+  \node[sub] at (0.2,-4.47) {8 images, each edit};
+  % edit gradients
+  \foreach \a/\c in {15/cuaArrow, 32/cuaOrange, 50/cuaArrow, 68/cuaOrange} {
+    \draw[->, \c, line width=1.1pt] (3.25,-3.75) -- ++(\a:0.85); }
+  \node[lbl] at (3.65,-4.12) {Edit gradients};
+  \node[sub] at (3.65,-4.47) {$g_0$ and $g_o$};
+  % reference batch (stratified tiles)
+  \foreach \r/\c in {0/cuaBlue, 1/cuaPurple, 2/cuaTeal, 3/cuaGold} {
+    \foreach \k in {0,...,5} {
+      \fill[\c, rounded corners=1pt] (-0.75+0.26*\k,-5.25-0.26*\r) rectangle ++(0.21,0.21); } }
+  \node[lbl] at (0.0,-6.43) {Reference batch $R$};
+  \node[sub] at (0.0,-6.78) {64 held-out, all classes};
+  % class gradients
+  \foreach \a/\c in {14/cuaBlue, 34/cuaPurple, 54/cuaTeal, 74/cuaGold} {
+    \draw[->, \c, line width=1.1pt] (3.25,-6.05) -- ++(\a:0.85); }
+  \node[lbl] at (3.65,-6.43) {Class gradients};
+  \node[sub] at (3.65,-6.78) {$h_c$, loss masked to class $c$};
+  % alignment
+  \filldraw[fill=white, draw=cuaGreen, line width=1.8pt] (7.3,-4.75) circle (0.6);
+  \node[text=cuaGreen, font=\large\bfseries] at (7.3,-4.75) {$\langle\cdot,\cdot\rangle$};
+  \node[lbl] at (7.3,-5.75) {Class utility};
+  \node[sub] at (7.3,-6.1) {$u(o,c)$, Eq.~\eqref{eq:utility}};
+  \draw[arr] (4.35,-3.4) to[out=-5, in=150] (6.75,-4.48);
+  \draw[arr] (4.35,-5.55) to[out=5, in=-150] (6.75,-5.02);
+  % utility table
+  \foreach \k/\c in {0/cuaBlue, 1/cuaPurple, 2/cuaTeal, 3/cuaGold} {
+    \fill[\c, rounded corners=1pt] (10.15+0.4*\k,-3.42) rectangle ++(0.34,0.12); }
+  \foreach \r/\a/\b/\cc/\d in {
+      0/cuaGrey/cuaGrey/cuaGrey/cuaGrey,
+      1/cuaPos!60/cuaPos!25/cuaNeg!45/cuaPos!15,
+      2/cuaNeg!55/cuaNeg!20/cuaPos!40/cuaGrey,
+      3/cuaPos!45/cuaPos!45/cuaPos!20/cuaNeg!25,
+      4/cuaNeg!30/cuaPos!20/cuaNeg!55/cuaPos!35} {
+    \foreach \k/\c in {0/\a, 1/\b, 2/\cc, 3/\d} {
+      \fill[\c, rounded corners=1.5pt] (10.15+0.4*\k,-3.88-0.4*\r) rectangle ++(0.34,0.34); } }
+  \node[sub, anchor=east] at (10.08,-3.71) {no edit};
+  \node[lbl] at (10.89,-5.92) {Utility table $\bar u(o,c)$};
+  \node[sub] at (10.89,-6.27) {moving average, with $\mathrm{se}(o,c)$};
+  \draw[arr] (7.95,-4.75) -- (9.45,-4.75);
+  % shared variant
+  \foreach \r/\c in {0/cuaGrey, 1/cuaPos!25, 2/cuaNeg!15, 3/cuaPos!30, 4/cuaNeg!20} {
+    \fill[\c, rounded corners=1.5pt] (14.38,-3.88-0.4*\r) rectangle ++(0.34,0.34); }
+  \draw[cuaText, dashed, rounded corners=3pt] (14.25,-5.63) rectangle (14.85,-3.4);
+  \node[lbl] at (14.55,-5.92) {Shared-utility};
+  \node[sub] at (14.55,-6.27) {one value per edit};
+  \draw[arr, dashed] (11.85,-4.75) -- node[above, sub]{pool} (14.1,-4.75);
+  % utilities back to the policy
+  \draw[->, draw=cuaGreen, line width=1.5pt] (10.89,-3.22) -- (10.89,-1.75) -| (7.3,-0.8);
+  \node[text=cuaGreen, font=\sffamily\scriptsize\bfseries, fill=white, inner sep=1.5pt] at (9.1,-1.75) {utilities};
+\end{tikzpicture}
+\caption{Overview of Class-Utility Augmentation (CUA). Top: in every training step, each image receives the base recipe and then one edit, chosen by the image policy from the classes the image contains; ``no edit'' is always a candidate. Bottom: every $K$ steps, the estimator compares the gradients of the training loss on an edited and an unedited estimation batch with the gradient of each class's loss on a shared reference batch. Their alignment estimates how much each edit helps each class learn (Eq.~\eqref{eq:utility}); the smoothed estimates form the utility table (green: helps, red: hurts, values illustrative) that the policy reads. Shared-utility augmentation pools each row of the table into one value, so every image receives the same preferences; it differs from CUA in nothing else.}
+\label{fig:framework}
+\end{figure*}

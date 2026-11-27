@@ -1,0 +1,21 @@
+{
+  "Pillow": "12.3.0",
+  "annotation_failures": 0,
+  "held_out_data_used": false,
+  "numpy": "2.3.5",
+  "pixel_check": null,
+  "platform": "Windows-11-10.0.26300-SP0",
+  "protocol_sha256": "4394cf573d2a63603ccd2d343513eb43ad172a015c738daab2c34cef1dd12e09",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "seconds": 65.03099999995902,
+  "source_sha256": {
+    "controller.py": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+    "geometry.py": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+    "geometry_check.py": "1d4d1d1043a517b388d5cda4ead7d109764722a2dabc5e4387e4cb52acb72a65",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "replay.py": "7f58d7e91fb3737be7fe6705962356acd719df56f0287bdb4fb897b7490e44d9"
+  },
+  "status": "annotations_complete_pixels_not_checked",
+  "train_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7",
+  "training_or_gpu_inference": false
+}

@@ -1,0 +1,10 @@
+{
+  "additional_epochs_each": 7,
+  "arms": [
+    "geometry_only",
+    "class_adaptive"
+  ],
+  "endpoint_epoch": 8,
+  "further_training_authorized": false,
+  "status": "complete"
+}

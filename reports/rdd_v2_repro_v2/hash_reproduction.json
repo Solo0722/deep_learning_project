@@ -1,0 +1,77 @@
+{
+  "torch": "2.10.0+cpu",
+  "numpy": "2.4.2",
+  "cases": {
+    "numpy_empty_long": {
+      "shape": [
+        0
+      ],
+      "stride": [
+        0
+      ],
+      "old": {
+        "status": "failed",
+        "error": "self.stride(-1) must be 1 to view Long as Byte (different element sizes), but got 0"
+      },
+      "new_hex": "",
+      "new_status": "pass"
+    },
+    "singleton_zero_stride": {
+      "shape": [
+        1
+      ],
+      "stride": [
+        0
+      ],
+      "old": {
+        "status": "failed",
+        "error": "self.stride(-1) must be 1 to view Long as Byte (different element sizes), but got 0"
+      },
+      "new_hex": "0700000000000000",
+      "new_status": "pass"
+    },
+    "normal_float": {
+      "shape": [
+        3
+      ],
+      "stride": [
+        1
+      ],
+      "old": {
+        "status": "pass",
+        "hex": "0000803f0000008000000040"
+      },
+      "new_hex": "0000803f0000008000000040",
+      "new_status": "pass"
+    },
+    "normal_long": {
+      "shape": [
+        2
+      ],
+      "stride": [
+        1
+      ],
+      "old": {
+        "status": "pass",
+        "hex": "01000000000000000200000000000000"
+      },
+      "new_hex": "01000000000000000200000000000000",
+      "new_status": "pass"
+    },
+    "normal_empty_long": {
+      "shape": [
+        0
+      ],
+      "stride": [
+        1
+      ],
+      "old": {
+        "status": "pass",
+        "hex": ""
+      },
+      "new_hex": "",
+      "new_status": "pass"
+    }
+  },
+  "ordinary_fingerprints_preserved": true
+}

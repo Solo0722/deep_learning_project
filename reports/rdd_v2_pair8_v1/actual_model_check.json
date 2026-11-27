@@ -1,0 +1,43 @@
+{
+  "actual_train_batches": [
+    4,
+    1
+  ],
+  "batch_size": 4,
+  "device": "cpu",
+  "elapsed_seconds": 455.7589797000401,
+  "forks": [
+    {
+      "model_optimizer_rng_exact": true,
+      "model_sha256": "a791d72ae97513fd9834ec3c0723f221656bb1789813b2764e5f5196b588add3",
+      "optimizer_sha256": "6eef7d31d6b63611a259e991e2d115ced1cd6020cd149b3af21eb3d1c5c794ae",
+      "rng_sha256": "3d62aaf093af546e147cd1bdb39215035753c89add7458a3ceb87f561e648513"
+    },
+    {
+      "model_optimizer_rng_exact": true,
+      "model_sha256": "a791d72ae97513fd9834ec3c0723f221656bb1789813b2764e5f5196b588add3",
+      "optimizer_sha256": "6eef7d31d6b63611a259e991e2d115ced1cd6020cd149b3af21eb3d1c5c794ae",
+      "rng_sha256": "3d62aaf093af546e147cd1bdb39215035753c89add7458a3ceb87f561e648513"
+    }
+  ],
+  "image_size": 640,
+  "limitations": [
+    "Synthetic images, random weights, local CPU versions; no CCAST GPU execution or RDD learning conclusion.",
+    "The CCAST entry gate uses pinned epoch-1 weights, real selected train/val images and production workers=2."
+  ],
+  "optimizer_updates_each": 2,
+  "production_loop_exact": true,
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "resume_exact": true,
+  "scope": "Actual fit/loader/baseline.update on tiny train/validation subsets; identity appearance only; no accuracy evidence",
+  "status": "pass",
+  "torch": "2.10.0+cpu",
+  "torchvision": "0.25.0+cpu",
+  "trace_records_per_arm": {
+    "class_adaptive": 4,
+    "geometry_only": 4
+  },
+  "train_images": 5,
+  "val_images": 5,
+  "validation_predictions_exact": true
+}

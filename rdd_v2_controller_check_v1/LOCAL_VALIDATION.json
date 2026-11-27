@@ -1,0 +1,79 @@
+{
+  "bash_syntax": "submit.sh, run_job.sh, job.pbs individually passed bash -n. Read-only execution outside the sandbox was needed for Windows Bash initialization.",
+  "checkpoint_metadata_archive_verified_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+  "copied_source_provenance": {
+    "controller.py": {
+      "sha256": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+      "source": "rdd_v2_preflight_v1\\controller.py"
+    },
+    "geometry.py": {
+      "sha256": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+      "source": "rdd_v2_preflight_v1\\geometry.py"
+    },
+    "local_augmentation.py": {
+      "sha256": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+      "source": "fasterrcnn_class_adaptive_v1\\local_augmentation.py"
+    },
+    "rdd_data.py": {
+      "sha256": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+      "source": "rdd_v2_preflight_v1\\rdd_data.py"
+    },
+    "shared_augmentation.py": {
+      "sha256": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+      "source": "fasterrcnn_class_adaptive_v1\\shared_augmentation.py"
+    }
+  },
+  "failed": 0,
+  "local_python": "3.12.14",
+  "local_versions": {
+    "Pillow": "12.3.0",
+    "numpy": "2.3.5"
+  },
+  "not_validated_locally": [
+    "Remote full checkpoint presence/loading",
+    "Pinned CCAST dependency behavior",
+    "CUDA detector inference and parity",
+    "Actual reference-detected support and retention",
+    "Raw pixel and returned preview inspection",
+    "Training efficacy"
+  ],
+  "passed": 16,
+  "python_syntax": "All package Python sources compile",
+  "selection": {
+    "distinct_source_clusters_across_both": 512,
+    "images_each": 256,
+    "panels": 2,
+    "primary_groups_per_class_each": 64,
+    "selected_group_object_counts": {
+      "A": {
+        "D00": 121,
+        "D10": 91,
+        "D20": 106,
+        "D40": 91
+      },
+      "B": {
+        "D00": 101,
+        "D10": 93,
+        "D20": 103,
+        "D40": 95
+      }
+    }
+  },
+  "skip_reason": "Local runtime has no PyTorch; two observer guard tests execute in the CCAST wrapper before real inference",
+  "skipped": 2,
+  "source_sha256_at_test": {
+    "controller.py": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd",
+    "detector.py": "c6b262e7fca0b610a053e421490bbf54a9301a16ea1160563f1de8e707922dcb",
+    "diagnostic.py": "577942a60ec36b985cbb766205a19ee5c54cc8225a74f9ec63a2f38c1a83b5a2",
+    "geometry.py": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d",
+    "local_augmentation.py": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473",
+    "rdd_data.py": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91",
+    "run_check.py": "eb2da46c4d099e0136b7c48e2eb21afb50b1db3dd48594e4759388c701e6afeb",
+    "shared_augmentation.py": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736",
+    "tests/test_diagnostic.py": "9756315011fc938bc0aae5020af44e9d40b4d274ecf5a40f9c13dbd1c5a54547"
+  },
+  "status": "local_tests_passed_gpu_pending",
+  "test_command": "python -m unittest discover -s rdd_v2_controller_check_v1/tests -p test_diagnostic.py -v",
+  "test_log_sha256": "832ff1d814b9ed16efddb6a59d037ab2865301a4533acb93055e586e38bb2297",
+  "tests_total": 18
+}

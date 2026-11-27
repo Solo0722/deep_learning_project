@@ -1,0 +1,112 @@
+{
+  "appearance_edits": 0,
+  "audit_date": "2026-11-02",
+  "batch_sizes": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    2
+  ],
+  "before_state_fingerprints_recomputed": 30,
+  "cross_stage_phase_comparisons_exact": 8,
+  "device": "NVIDIA A10",
+  "gpu_total_GiB": 22.0582275390625,
+  "host": "gpu0020",
+  "images": 26,
+  "job": "799047.bright04",
+  "limitations": [
+    "Full model, gradient, optimizer and reference tensors were not downloaded; equality is supported by returned fingerprints and GPU comparison records, not local recomputation of those tensors.",
+    "Raw training pixels were not downloaded; the materialization, geometry and target evidence is the saved trace and pinned input hashes.",
+    "No fresh training or detector inference was performed by this audit.",
+    "One checkpoint, seed, device and short instrumented trajectory; not a full-run or cross-machine determinism guarantee.",
+    "The two-image probe has insufficient support and returns identity; it tests probe side effects, not active policy efficacy.",
+    "Strict settings change several operations together; this does not isolate the unique cause of prior divergence.",
+    "Resource timings include instrumentation and exclude queue time and preceding unit tests; the full-panel probe cost is unmeasured under strict mode.",
+    "No accuracy evaluation; the prior class-adaptive AP deficit cannot be attributed to nondeterminism."
+  ],
+  "negative_images": 9,
+  "peak_update_allocated_GiB": 7.267167568206787,
+  "peak_update_reserved_GiB": 12.73046875,
+  "phase_comparisons_exact": 88,
+  "phase_records_verified": 120,
+  "positive_images": 17,
+  "previous_diagnostic_first_differences": {
+    "control_b": {
+      "changed_paths": 69,
+      "phase": "backward",
+      "step": 1
+    },
+    "probe_only": {
+      "changed_paths": 69,
+      "phase": "backward",
+      "step": 1
+    },
+    "resume_only": {
+      "changed_paths": 68,
+      "phase": "backward",
+      "step": 1
+    }
+  },
+  "probe_boundary_exact": true,
+  "probe_detector_images": 62,
+  "probe_forward_calls": 32,
+  "probe_peak_allocated_GiB": 4.573801040649414,
+  "probe_peak_reserved_GiB": 7.234375,
+  "probe_policy_replayed_exactly": true,
+  "probe_seconds": 8.25945339910686,
+  "probe_support": {
+    "0": {
+      "detected_clusters": 0,
+      "detected_objects": 0
+    },
+    "1": {
+      "detected_clusters": 1,
+      "detected_objects": 1
+    },
+    "2": {
+      "detected_clusters": 1,
+      "detected_objects": 1
+    },
+    "3": {
+      "detected_clusters": 0,
+      "detected_objects": 0
+    }
+  },
+  "python_roi_align_probe_calls": 128,
+  "python_roi_align_update_calls": 120,
+  "raw_rng_fingerprints_recomputed": 480,
+  "reference_snapshot_bytes_on_ccast": 5297430928,
+  "resume_boundary_exact": true,
+  "same_effective_training_configuration": true,
+  "same_initial_model_optimizer_rng_fork": true,
+  "same_materialized_inputs_as_previous_diagnostic": true,
+  "stages": 2,
+  "status": "audit_complete",
+  "strict_settings": {
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true,
+    "fill_uninitialized_memory": true,
+    "matmul_tf32": false,
+    "warn_only": false
+  },
+  "supervisor_elapsed_seconds": 167.19358799234033,
+  "update_seconds_max": 7.0303622130304575,
+  "update_seconds_median": 2.657594446092844,
+  "update_seconds_min": 2.1432516872882843,
+  "update_seconds_sum": 82.81472596339881,
+  "updates": 30,
+  "versions": {
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.10",
+    "torch": "2.3.0",
+    "torchvision": "0.18.0"
+  },
+  "worker_elapsed_seconds": 164.68060993403196
+}

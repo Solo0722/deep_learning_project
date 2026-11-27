@@ -1,0 +1,158 @@
+{
+  "pages": 17,
+  "exporter": "WPS Docs",
+  "rasterizer": "C:\\Users\\SOLOMON\\.codex\\plugins\\cache\\openai-primary-runtime\\documents\\26.1020.11618\\skills\\documents\\render_docx.py",
+  "dpi": 150,
+  "pages_info": [
+    {
+      "page": 1,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3521
+    },
+    {
+      "page": 2,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3332
+    },
+    {
+      "page": 3,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2354
+    },
+    {
+      "page": 4,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2327
+    },
+    {
+      "page": 5,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3151
+    },
+    {
+      "page": 6,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 4058
+    },
+    {
+      "page": 7,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3394
+    },
+    {
+      "page": 8,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2817
+    },
+    {
+      "page": 9,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3231
+    },
+    {
+      "page": 10,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2275
+    },
+    {
+      "page": 11,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 1538
+    },
+    {
+      "page": 12,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2774
+    },
+    {
+      "page": 13,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2872
+    },
+    {
+      "page": 14,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3298
+    },
+    {
+      "page": 15,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3983
+    },
+    {
+      "page": 16,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 3847
+    },
+    {
+      "page": 17,
+      "width": 1275,
+      "height": 1650,
+      "non_grayscale_pixels": 0,
+      "text_characters": 2761
+    }
+  ],
+  "visual_inspection": "All 17 pages inspected; final pages equivalent to previously inspected pixels or inspected directly. No clipping, overlap or missing equation glyphs observed.",
+  "numeric_verification": "Selected-checkpoint table matches the source CSV; all 17 loaded source hashes unchanged; 18 tables and 8 OMML equations present.",
+  "deliverables": {
+    "RDD_Experiment_Report_2026-10-27.docx": {
+      "bytes": 169412,
+      "sha256": "dd8c960d7552511c30fa7d1e6831e5dc77158a86d2dae3c491f382e1c5174f75"
+    },
+    "RDD_Experiment_Report_2026-10-27.pdf": {
+      "bytes": 1341818,
+      "sha256": "020a54b6c5d0a667fe728e02b2e4cdca77debe1bae6589c8d892416fbc1ef149"
+    }
+  },
+  "final_pages_pixel_identical_to_preceding_inspection": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "device_total_bytes": 23684841472,
+  "median_update_seconds": 0.8981529083102942,
+  "peak_allocated_bytes": 8023899648,
+  "peak_reserved_bytes": 20168310784,
+  "scope": "Actual baseline.update wall time with synchronization; excludes data loading, probes, validation and checkpoint writes. Gate observers execute outside the measured update.",
+  "seconds": [
+    0.9444126076996326,
+    0.8963736053556204,
+    0.8984881192445755,
+    0.8990272060036659,
+    0.8978176973760128,
+    0.4537823963910341
+  ],
+  "start_step": 8,
+  "strict_settings": {
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true,
+    "fill_uninitialized_memory": true,
+    "matmul_tf32": false,
+    "warn_only": false
+  },
+  "sum_update_seconds": 4.989901632070541,
+  "updates": 6
+}

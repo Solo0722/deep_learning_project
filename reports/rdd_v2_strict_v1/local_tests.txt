@@ -1,0 +1,134 @@
+child evidence
+
+Records archive: C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\tmp\rdd_strict_tests\rdd_repro_test_jmsyuoi8\child_records.tar.gz
+Archive SHA-256: 7bb2e46b3c8c7fa434e9d7dc64131b00145fe8b15657a156f344da0c4feff54b
+STRICT DETERMINISM CHECK: WORKER_FAILED - download and review records.
+test_abrupt_worker_exit_is_archived_without_completion (test_strict.StrictTests.test_abrupt_worker_exit_is_archived_without_completion) ... ok
+STRICT UPDATE stage=first_update_gate condition=control_a update=1 seconds=0.16 peak_reserved_GiB=0.000
+STRICT UPDATE stage=first_update_gate condition=control_b update=1 seconds=0.18 peak_reserved_GiB=0.000
+STRICT EXACT stage=first_update_gate condition=control_b update=1/1
+STRICT STAGE COMPLETE: first_update_gate
+STRICT UPDATE stage=seven_update_suite condition=control_a update=1 seconds=0.18 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=2 seconds=0.16 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=3 seconds=0.17 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_b update=1 seconds=0.18 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=1/3
+STRICT UPDATE stage=seven_update_suite condition=control_b update=2 seconds=0.17 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=2/3
+STRICT UPDATE stage=seven_update_suite condition=control_b update=3 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=3/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=1 seconds=0.17 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=1/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=2 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=2/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=3 seconds=0.14 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=3/3
+STRICT UPDATE stage=seven_update_suite condition=resume_only update=1 seconds=0.17 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=resume_only update=1/3
+STRICT UPDATE stage=seven_update_suite condition=resume_only update=2 seconds=0.16 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=resume_only update=2/3
+STRICT UPDATE stage=seven_update_suite condition=resume_only update=3 seconds=0.18 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=resume_only update=3/3
+STRICT STAGE COMPLETE: seven_update_suite
+Records archive: C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\tmp\rdd_strict_tests\rdd_repro_test_hxbxhpbz\strict_records.tar.gz
+Archive SHA-256: f324b85f1a6ff9f143da7bd69467fba61de0b816ada0ef11f2c7f9cd0e32ace6
+STRICT DETERMINISM CHECK: COMPLETE_EXACT_ON_THIS_DIAGNOSTIC - download and review records.
+test_complete_fixture_and_archive_preservation (test_strict.StrictTests.test_complete_fixture_and_archive_preservation) ... ok
+test_error_status_keeps_unsupported_and_oom_distinct (test_strict.StrictTests.test_error_status_keeps_unsupported_and_oom_distinct) ... ok
+test_failed_resource_observation_does_not_hide_original_error (test_strict.StrictTests.test_failed_resource_observation_does_not_hide_original_error) ... ok
+STRICT UPDATE stage=first_update_gate condition=control_a update=1 seconds=0.15 peak_reserved_GiB=0.000
+STRICT UPDATE stage=first_update_gate condition=control_b update=1 seconds=0.18 peak_reserved_GiB=0.000
+test_first_gate_gradient_mismatch_stops_before_suite (test_strict.StrictTests.test_first_gate_gradient_mismatch_stops_before_suite) ... ok
+STRICT UPDATE stage=first_update_gate condition=control_a update=1 seconds=0.14 peak_reserved_GiB=0.000
+STRICT UPDATE stage=first_update_gate condition=control_b update=1 seconds=0.16 peak_reserved_GiB=0.000
+STRICT EXACT stage=first_update_gate condition=control_b update=1/1
+STRICT STAGE COMPLETE: first_update_gate
+STRICT UPDATE stage=seven_update_suite condition=control_a update=1 seconds=0.14 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=2 seconds=0.16 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=3 seconds=0.16 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_b update=1 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=1/3
+STRICT UPDATE stage=seven_update_suite condition=control_b update=2 seconds=0.18 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=2/3
+STRICT UPDATE stage=seven_update_suite condition=control_b update=3 seconds=0.17 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=3/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=1 seconds=0.17 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=1/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=2 seconds=0.19 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=2/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=3 seconds=0.18 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=3/3
+STRICT UPDATE stage=seven_update_suite condition=resume_only update=1 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=resume_only update=1/3
+STRICT UPDATE stage=seven_update_suite condition=resume_only update=2 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=resume_only update=2/3
+STRICT UPDATE stage=seven_update_suite condition=resume_only update=3 seconds=0.16 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=resume_only update=3/3
+STRICT STAGE COMPLETE: seven_update_suite
+test_gated_stages_replay_identically_and_restart_from_original_state (test_strict.StrictTests.test_gated_stages_replay_identically_and_restart_from_original_state) ... ok
+test_gpu_reserved_fraction_is_an_explicit_resource_limit (test_strict.StrictTests.test_gpu_reserved_fraction_is_an_explicit_resource_limit) ... ok
+Records archive: C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\tmp\rdd_strict_tests\rdd_repro_test_5eejv2fp\partial_records.tar.gz
+Archive SHA-256: 469bace0f347d43fe38ef3e54441b5d00408c9e7d7908a19afabfcf3c07f84a3
+STRICT DETERMINISM CHECK: INCONSISTENT_COMPLETION - download and review records.
+test_incomplete_success_record_cannot_approve_check (test_strict.StrictTests.test_incomplete_success_record_cannot_approve_check) ... ok
+STRICT UPDATE stage=first_update_gate condition=control_a update=1 seconds=0.17 peak_reserved_GiB=0.000
+STRICT UPDATE stage=first_update_gate condition=control_b update=1 seconds=0.13 peak_reserved_GiB=0.000
+STRICT EXACT stage=first_update_gate condition=control_b update=1/1
+STRICT STAGE COMPLETE: first_update_gate
+STRICT UPDATE stage=seven_update_suite condition=control_a update=1 seconds=0.16 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=2 seconds=0.16 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=3 seconds=0.15 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_b update=1 seconds=0.16 peak_reserved_GiB=0.000
+test_later_mismatch_stops_before_probe_or_resume (test_strict.StrictTests.test_later_mismatch_stops_before_probe_or_resume) ... ok
+STRICT UPDATE stage=first_update_gate condition=control_a update=1 seconds=0.15 peak_reserved_GiB=0.000
+STRICT UPDATE stage=first_update_gate condition=control_b update=1 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=first_update_gate condition=control_b update=1/1
+STRICT STAGE COMPLETE: first_update_gate
+STRICT UPDATE stage=seven_update_suite condition=control_a update=1 seconds=0.16 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=2 seconds=0.14 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=3 seconds=0.18 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_b update=1 seconds=0.16 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=1/3
+STRICT UPDATE stage=seven_update_suite condition=control_b update=2 seconds=0.20 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=2/3
+STRICT UPDATE stage=seven_update_suite condition=control_b update=3 seconds=0.21 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=3/3
+test_probe_rng_leak_is_rejected_in_strict_pipeline (test_strict.StrictTests.test_probe_rng_leak_is_rejected_in_strict_pipeline) ... ok
+test_resource_stop_preserves_completed_update_and_skips_second_run (test_strict.StrictTests.test_resource_stop_preserves_completed_update_and_skips_second_run) ... ok
+STRICT UPDATE stage=first_update_gate condition=control_a update=1 seconds=0.20 peak_reserved_GiB=0.000
+STRICT UPDATE stage=first_update_gate condition=control_b update=1 seconds=0.16 peak_reserved_GiB=0.000
+STRICT EXACT stage=first_update_gate condition=control_b update=1/1
+STRICT STAGE COMPLETE: first_update_gate
+STRICT UPDATE stage=seven_update_suite condition=control_a update=1 seconds=0.14 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=2 seconds=0.17 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_a update=3 seconds=0.17 peak_reserved_GiB=0.000
+STRICT UPDATE stage=seven_update_suite condition=control_b update=1 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=1/3
+STRICT UPDATE stage=seven_update_suite condition=control_b update=2 seconds=0.17 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=2/3
+STRICT UPDATE stage=seven_update_suite condition=control_b update=3 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=control_b update=3/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=1 seconds=0.14 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=1/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=2 seconds=0.16 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=2/3
+STRICT UPDATE stage=seven_update_suite condition=probe_only update=3 seconds=0.15 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=probe_only update=3/3
+STRICT UPDATE stage=seven_update_suite condition=resume_only update=1 seconds=0.16 peak_reserved_GiB=0.000
+STRICT EXACT stage=seven_update_suite condition=resume_only update=1/3
+test_resume_state_leak_is_rejected_in_strict_pipeline (test_strict.StrictTests.test_resume_state_leak_is_rejected_in_strict_pipeline) ... ok
+test_roi_observer_preserves_outputs_gradients_and_restores_on_error (test_strict.StrictTests.test_roi_observer_preserves_outputs_gradients_and_restores_on_error) ... ok
+test_runtime_flag_change_is_caught_at_phase_boundary (test_strict.StrictTests.test_runtime_flag_change_is_caught_at_phase_boundary) ... ok
+test_strict_settings_reject_late_configuration (test_strict.StrictTests.test_strict_settings_reject_late_configuration) ... ok
+test_strict_settings_reject_wrong_workspace_before_cuda (test_strict.StrictTests.test_strict_settings_reject_wrong_workspace_before_cuda) ... ok
+Records archive: C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\tmp\rdd_strict_tests\rdd_repro_test_lk5ibvm9\child_records.tar.gz
+Archive SHA-256: 40a9b87c9de75fba6c5d0d6a6fb9330339040fa967bda3f5b6f7f7e3da13079d
+STRICT DETERMINISM CHECK: BUDGET_STOPPED - download and review records.
+test_supervisor_enforces_hard_operation_timeout (test_strict.StrictTests.test_supervisor_enforces_hard_operation_timeout) ... ok
+test_supervisor_enforces_total_wall_timeout (test_strict.StrictTests.test_supervisor_enforces_total_wall_timeout) ... ok
+test_warn_only_or_disabled_strict_mode_is_rejected (test_strict.StrictTests.test_warn_only_or_disabled_strict_mode_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 35.396s
+
+OK

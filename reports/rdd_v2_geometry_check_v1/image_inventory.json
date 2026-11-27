@@ -1,0 +1,647 @@
+[
+  {
+    "image": "China_Drone/train/images/China_Drone_002195.jpg",
+    "other_annotations": 0,
+    "overlay": "01_China_Drone_002195.png",
+    "rejected_candidates": 0,
+    "source": "China_Drone",
+    "target_labels": [
+      "D10",
+      "D00"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "China_Drone/train/images/China_Drone_000061.jpg",
+    "other_annotations": 0,
+    "overlay": "02_China_Drone_000061.png",
+    "rejected_candidates": 18,
+    "source": "China_Drone",
+    "target_labels": [
+      "D10",
+      "D10",
+      "D40"
+    ],
+    "targets": 3
+  },
+  {
+    "image": "China_Drone/train/images/China_Drone_000441.jpg",
+    "other_annotations": 0,
+    "overlay": "03_China_Drone_000441.png",
+    "rejected_candidates": 18,
+    "source": "China_Drone",
+    "target_labels": [
+      "D20"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "China_Drone/train/images/China_Drone_000237.jpg",
+    "other_annotations": 0,
+    "overlay": "04_China_Drone_000237.png",
+    "rejected_candidates": 0,
+    "source": "China_Drone",
+    "target_labels": [
+      "D40",
+      "D40"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "China_Drone/train/images/China_Drone_000333.jpg",
+    "other_annotations": 1,
+    "overlay": "05_China_Drone_000333.png",
+    "rejected_candidates": 0,
+    "source": "China_Drone",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "China_Drone/train/images/China_Drone_001882.jpg",
+    "other_annotations": 3,
+    "overlay": "06_China_Drone_001882.png",
+    "rejected_candidates": 26,
+    "source": "China_Drone",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "China_Drone/train/images/China_Drone_001022.jpg",
+    "other_annotations": 0,
+    "overlay": "07_China_Drone_001022.png",
+    "rejected_candidates": 18,
+    "source": "China_Drone",
+    "target_labels": [
+      "D10"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "China_Drone/train/images/China_Drone_000028.jpg",
+    "other_annotations": 1,
+    "overlay": "08_China_Drone_000028.png",
+    "rejected_candidates": 32,
+    "source": "China_Drone",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "China_MotorBike/train/images/China_MotorBike_001450.jpg",
+    "other_annotations": 0,
+    "overlay": "09_China_MotorBike_001450.png",
+    "rejected_candidates": 18,
+    "source": "China_MotorBike",
+    "target_labels": [
+      "D00"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "China_MotorBike/train/images/China_MotorBike_000200.jpg",
+    "other_annotations": 0,
+    "overlay": "10_China_MotorBike_000200.png",
+    "rejected_candidates": 32,
+    "source": "China_MotorBike",
+    "target_labels": [
+      "D00",
+      "D10"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "China_MotorBike/train/images/China_MotorBike_000192.jpg",
+    "other_annotations": 0,
+    "overlay": "11_China_MotorBike_000192.png",
+    "rejected_candidates": 32,
+    "source": "China_MotorBike",
+    "target_labels": [
+      "D00",
+      "D20",
+      "D20"
+    ],
+    "targets": 3
+  },
+  {
+    "image": "China_MotorBike/train/images/China_MotorBike_001001.jpg",
+    "other_annotations": 2,
+    "overlay": "12_China_MotorBike_001001.png",
+    "rejected_candidates": 32,
+    "source": "China_MotorBike",
+    "target_labels": [
+      "D10",
+      "D40",
+      "D10",
+      "D00",
+      "D00"
+    ],
+    "targets": 5
+  },
+  {
+    "image": "China_MotorBike/train/images/China_MotorBike_000579.jpg",
+    "other_annotations": 1,
+    "overlay": "13_China_MotorBike_000579.png",
+    "rejected_candidates": 30,
+    "source": "China_MotorBike",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "China_MotorBike/train/images/China_MotorBike_000412.jpg",
+    "other_annotations": 1,
+    "overlay": "14_China_MotorBike_000412.png",
+    "rejected_candidates": 26,
+    "source": "China_MotorBike",
+    "target_labels": [
+      "D00"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "China_MotorBike/train/images/China_MotorBike_001626.jpg",
+    "other_annotations": 0,
+    "overlay": "15_China_MotorBike_001626.png",
+    "rejected_candidates": 30,
+    "source": "China_MotorBike",
+    "target_labels": [
+      "D00",
+      "D00"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "China_MotorBike/train/images/China_MotorBike_000247.jpg",
+    "other_annotations": 0,
+    "overlay": "16_China_MotorBike_000247.png",
+    "rejected_candidates": 18,
+    "source": "China_MotorBike",
+    "target_labels": [
+      "D00",
+      "D00"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "Czech/train/images/Czech_000062.jpg",
+    "other_annotations": 0,
+    "overlay": "17_Czech_000062.png",
+    "rejected_candidates": 18,
+    "source": "Czech",
+    "target_labels": [
+      "D00",
+      "D00"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "Czech/train/images/Czech_000905.jpg",
+    "other_annotations": 0,
+    "overlay": "18_Czech_000905.png",
+    "rejected_candidates": 0,
+    "source": "Czech",
+    "target_labels": [
+      "D10"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "Czech/train/images/Czech_003583.jpg",
+    "other_annotations": 0,
+    "overlay": "19_Czech_003583.png",
+    "rejected_candidates": 0,
+    "source": "Czech",
+    "target_labels": [
+      "D00",
+      "D20"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "Czech/train/images/Czech_001437.jpg",
+    "other_annotations": 0,
+    "overlay": "20_Czech_001437.png",
+    "rejected_candidates": 0,
+    "source": "Czech",
+    "target_labels": [
+      "D00",
+      "D40"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "Czech/train/images/Czech_000306.jpg",
+    "other_annotations": 0,
+    "overlay": "21_Czech_000306.png",
+    "rejected_candidates": 0,
+    "source": "Czech",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "Czech/train/images/Czech_000887.jpg",
+    "other_annotations": 0,
+    "overlay": "22_Czech_000887.png",
+    "rejected_candidates": 0,
+    "source": "Czech",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "Czech/train/images/Czech_001259.jpg",
+    "other_annotations": 0,
+    "overlay": "23_Czech_001259.png",
+    "rejected_candidates": 0,
+    "source": "Czech",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "Czech/train/images/Czech_000417.jpg",
+    "other_annotations": 0,
+    "overlay": "24_Czech_000417.png",
+    "rejected_candidates": 0,
+    "source": "Czech",
+    "target_labels": [
+      "D00"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "India/train/images/India_006613.jpg",
+    "other_annotations": 0,
+    "overlay": "25_India_006613.png",
+    "rejected_candidates": 0,
+    "source": "India",
+    "target_labels": [
+      "D40",
+      "D40",
+      "D00",
+      "D00",
+      "D20"
+    ],
+    "targets": 5
+  },
+  {
+    "image": "India/train/images/India_002279.jpg",
+    "other_annotations": 0,
+    "overlay": "26_India_002279.png",
+    "rejected_candidates": 0,
+    "source": "India",
+    "target_labels": [
+      "D10"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "India/train/images/India_003754.jpg",
+    "other_annotations": 0,
+    "overlay": "27_India_003754.png",
+    "rejected_candidates": 18,
+    "source": "India",
+    "target_labels": [
+      "D20"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "India/train/images/India_000268.jpg",
+    "other_annotations": 1,
+    "overlay": "28_India_000268.png",
+    "rejected_candidates": 0,
+    "source": "India",
+    "target_labels": [
+      "D40"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "India/train/images/India_001869.jpg",
+    "other_annotations": 1,
+    "overlay": "29_India_001869.png",
+    "rejected_candidates": 18,
+    "source": "India",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "India/train/images/India_004277.jpg",
+    "other_annotations": 1,
+    "overlay": "30_India_004277.png",
+    "rejected_candidates": 18,
+    "source": "India",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "India/train/images/India_002667.jpg",
+    "other_annotations": 0,
+    "overlay": "31_India_002667.png",
+    "rejected_candidates": 18,
+    "source": "India",
+    "target_labels": [
+      "D40"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "India/train/images/India_004798.jpg",
+    "other_annotations": 0,
+    "overlay": "32_India_004798.png",
+    "rejected_candidates": 18,
+    "source": "India",
+    "target_labels": [
+      "D20"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "Japan/train/images/Japan_001438.jpg",
+    "other_annotations": 0,
+    "overlay": "33_Japan_001438.png",
+    "rejected_candidates": 18,
+    "source": "Japan",
+    "target_labels": [
+      "D00",
+      "D00"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "Japan/train/images/Japan_012301.jpg",
+    "other_annotations": 2,
+    "overlay": "34_Japan_012301.png",
+    "rejected_candidates": 26,
+    "source": "Japan",
+    "target_labels": [
+      "D20",
+      "D10"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "Japan/train/images/Japan_002438.jpg",
+    "other_annotations": 0,
+    "overlay": "35_Japan_002438.png",
+    "rejected_candidates": 26,
+    "source": "Japan",
+    "target_labels": [
+      "D20",
+      "D40",
+      "D40"
+    ],
+    "targets": 3
+  },
+  {
+    "image": "Japan/train/images/Japan_001166.jpg",
+    "other_annotations": 0,
+    "overlay": "36_Japan_001166.png",
+    "rejected_candidates": 0,
+    "source": "Japan",
+    "target_labels": [
+      "D40"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "Japan/train/images/Japan_003488.jpg",
+    "other_annotations": 1,
+    "overlay": "37_Japan_003488.png",
+    "rejected_candidates": 20,
+    "source": "Japan",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "Japan/train/images/Japan_000171.jpg",
+    "other_annotations": 1,
+    "overlay": "38_Japan_000171.png",
+    "rejected_candidates": 18,
+    "source": "Japan",
+    "target_labels": [
+      "D10"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "Japan/train/images/Japan_010156.jpg",
+    "other_annotations": 0,
+    "overlay": "39_Japan_010156.png",
+    "rejected_candidates": 32,
+    "source": "Japan",
+    "target_labels": [
+      "D20"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "Japan/train/images/Japan_003859.jpg",
+    "other_annotations": 1,
+    "overlay": "40_Japan_003859.png",
+    "rejected_candidates": 0,
+    "source": "Japan",
+    "target_labels": [
+      "D40",
+      "D40"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "Norway/train/images/Norway_005858.jpg",
+    "other_annotations": 0,
+    "overlay": "41_Norway_005858.png",
+    "rejected_candidates": 18,
+    "source": "Norway",
+    "target_labels": [
+      "D00",
+      "D40"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "Norway/train/images/Norway_003750.jpg",
+    "other_annotations": 0,
+    "overlay": "42_Norway_003750.png",
+    "rejected_candidates": 18,
+    "source": "Norway",
+    "target_labels": [
+      "D00",
+      "D10",
+      "D10"
+    ],
+    "targets": 3
+  },
+  {
+    "image": "Norway/train/images/Norway_005961.jpg",
+    "other_annotations": 0,
+    "overlay": "43_Norway_005961.png",
+    "rejected_candidates": 18,
+    "source": "Norway",
+    "target_labels": [
+      "D00",
+      "D00",
+      "D00",
+      "D00",
+      "D00",
+      "D20"
+    ],
+    "targets": 6
+  },
+  {
+    "image": "Norway/train/images/Norway_004153.jpg",
+    "other_annotations": 0,
+    "overlay": "44_Norway_004153.png",
+    "rejected_candidates": 18,
+    "source": "Norway",
+    "target_labels": [
+      "D10",
+      "D10",
+      "D00",
+      "D10",
+      "D00",
+      "D00",
+      "D10",
+      "D00",
+      "D00",
+      "D00",
+      "D00",
+      "D40",
+      "D00"
+    ],
+    "targets": 13
+  },
+  {
+    "image": "Norway/train/images/Norway_001876.jpg",
+    "other_annotations": 0,
+    "overlay": "45_Norway_001876.png",
+    "rejected_candidates": 0,
+    "source": "Norway",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "Norway/train/images/Norway_003784.jpg",
+    "other_annotations": 0,
+    "overlay": "46_Norway_003784.png",
+    "rejected_candidates": 6,
+    "source": "Norway",
+    "target_labels": [
+      "D00"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "Norway/train/images/Norway_007548.jpg",
+    "other_annotations": 0,
+    "overlay": "47_Norway_007548.png",
+    "rejected_candidates": 0,
+    "source": "Norway",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "Norway/train/images/Norway_007736.jpg",
+    "other_annotations": 0,
+    "overlay": "48_Norway_007736.png",
+    "rejected_candidates": 0,
+    "source": "Norway",
+    "target_labels": [],
+    "targets": 0
+  },
+  {
+    "image": "United_States/train/images/United_States_004132.jpg",
+    "other_annotations": 0,
+    "overlay": "49_United_States_004132.png",
+    "rejected_candidates": 26,
+    "source": "United_States",
+    "target_labels": [
+      "D10",
+      "D00"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "United_States/train/images/United_States_000721.jpg",
+    "other_annotations": 0,
+    "overlay": "50_United_States_000721.png",
+    "rejected_candidates": 18,
+    "source": "United_States",
+    "target_labels": [
+      "D10"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "United_States/train/images/United_States_000257.jpg",
+    "other_annotations": 0,
+    "overlay": "51_United_States_000257.png",
+    "rejected_candidates": 18,
+    "source": "United_States",
+    "target_labels": [
+      "D20",
+      "D20"
+    ],
+    "targets": 2
+  },
+  {
+    "image": "United_States/train/images/United_States_002921.jpg",
+    "other_annotations": 0,
+    "overlay": "52_United_States_002921.png",
+    "rejected_candidates": 18,
+    "source": "United_States",
+    "target_labels": [
+      "D00",
+      "D20",
+      "D40",
+      "D00"
+    ],
+    "targets": 4
+  },
+  {
+    "image": "United_States/train/images/United_States_003251.jpg",
+    "other_annotations": 0,
+    "overlay": "53_United_States_003251.png",
+    "rejected_candidates": 18,
+    "source": "United_States",
+    "target_labels": [
+      "D00",
+      "D00",
+      "D00",
+      "D00"
+    ],
+    "targets": 4
+  },
+  {
+    "image": "United_States/train/images/United_States_001344.jpg",
+    "other_annotations": 0,
+    "overlay": "54_United_States_001344.png",
+    "rejected_candidates": 18,
+    "source": "United_States",
+    "target_labels": [
+      "D00"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "United_States/train/images/United_States_000200.jpg",
+    "other_annotations": 0,
+    "overlay": "55_United_States_000200.png",
+    "rejected_candidates": 0,
+    "source": "United_States",
+    "target_labels": [
+      "D00"
+    ],
+    "targets": 1
+  },
+  {
+    "image": "United_States/train/images/United_States_004093.jpg",
+    "other_annotations": 0,
+    "overlay": "56_United_States_004093.png",
+    "rejected_candidates": 26,
+    "source": "United_States",
+    "target_labels": [
+      "D00",
+      "D00",
+      "D00"
+    ],
+    "targets": 3
+  }
+]

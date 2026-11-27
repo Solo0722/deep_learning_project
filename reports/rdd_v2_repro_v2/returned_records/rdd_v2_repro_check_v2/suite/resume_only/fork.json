@@ -1,0 +1,6 @@
+{
+  "model_optimizer_rng_exact": true,
+  "model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+  "optimizer_sha256": "e412e21fc1b82a508b1c0bbf737d8a045afd95f09ec533039cb7f5718dbe7cee",
+  "rng_sha256": "47527dc967f8ba250668c19c154ca4fe6e3278d89206989a0806189b3d5ae28f"
+}

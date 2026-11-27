@@ -1,0 +1,8 @@
+{
+  "bytes": 331173178,
+  "completed_epochs": 3,
+  "file": "epoch_003_step_00020148_fe5b7cffdf9d.pt",
+  "label": "epoch_003",
+  "sha256": "abeb00f429ea4575df12d5d49d63c7e7f0bdbfe9922f2463be9fabe39ccba679",
+  "step": 20148
+}

@@ -1,0 +1,41 @@
+{
+  "elapsed_seconds": 67.517523618415,
+  "forks": [
+    {
+      "model_optimizer_rng_exact": true,
+      "model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+      "optimizer_sha256": "e412e21fc1b82a508b1c0bbf737d8a045afd95f09ec533039cb7f5718dbe7cee",
+      "rng_sha256": "47527dc967f8ba250668c19c154ca4fe6e3278d89206989a0806189b3d5ae28f"
+    },
+    {
+      "model_optimizer_rng_exact": true,
+      "model_sha256": "fcc5a862e054023a3dfc70d00b90ae4dbac544ccd0c35c57f83aeee3a5ff8317",
+      "optimizer_sha256": "e412e21fc1b82a508b1c0bbf737d8a045afd95f09ec533039cb7f5718dbe7cee",
+      "rng_sha256": "47527dc967f8ba250668c19c154ca4fe6e3278d89206989a0806189b3d5ae28f"
+    }
+  ],
+  "job": "799233.bright04",
+  "optimizer_updates_each": 7,
+  "package_manifest_sha256": "a1f8b9589f286b91c94725b3542ebfd22b5eebb2377c46a8a48ee2955d7732cf",
+  "production_loop_exact": true,
+  "resume_exact": true,
+  "scope": "Actual fit/loader/baseline.update on tiny train/validation subsets; identity appearance only; no accuracy evidence",
+  "status": "pass",
+  "strict_settings": {
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true,
+    "fill_uninitialized_memory": true,
+    "matmul_tf32": false,
+    "warn_only": false
+  },
+  "trace_records_per_arm": {
+    "class_adaptive": 14,
+    "geometry_only": 14
+  },
+  "train_images": 26,
+  "val_images": 24,
+  "validation_predictions_exact": true
+}

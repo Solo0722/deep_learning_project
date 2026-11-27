@@ -1,0 +1,47 @@
+{
+  "status": "pass",
+  "python312_syntax_files": 23,
+  "unchanged_protocol_fields": [
+    "geometry",
+    "controller",
+    "application_probability",
+    "batch_size",
+    "learning_rate",
+    "momentum",
+    "weight_decay",
+    "warmup_steps",
+    "lr_decay_epochs",
+    "lr_gamma",
+    "image_size",
+    "seed",
+    "evaluation",
+    "manifests",
+    "checkpoint",
+    "versions",
+    "workers"
+  ],
+  "unchanged_core_files": [
+    "augmentation.py",
+    "baseline.py",
+    "checkpoints.py",
+    "controller.py",
+    "detector.py",
+    "diagnostic.py",
+    "geometry.py",
+    "integration.py",
+    "local_augmentation.py",
+    "metrics.py",
+    "models.py",
+    "observer.py",
+    "rdd_data.py",
+    "select_training_cases.py",
+    "shared_augmentation.py",
+    "smoke_selection.json"
+  ],
+  "first_two_panels_unchanged": true,
+  "shell_lf_only": true,
+  "execution_order": [
+    "class_adaptive",
+    "geometry_only"
+  ]
+}

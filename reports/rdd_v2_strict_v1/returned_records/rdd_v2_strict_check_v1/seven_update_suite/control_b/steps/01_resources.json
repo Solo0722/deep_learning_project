@@ -1,0 +1,96 @@
+{
+  "condition": "control_b",
+  "elapsed_seconds": 2.671549765393138,
+  "hard_timeout_seconds": 180,
+  "kind": "update",
+  "peak_allocated_bytes": 7189881344,
+  "peak_reserved_bytes": 7841251328,
+  "python_roi_align_calls": [
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        4,
+        256,
+        160,
+        160
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        1485,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        4,
+        256,
+        80,
+        80
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        443,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        4,
+        256,
+        40,
+        40
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        118,
+        5
+      ],
+      "sampling_ratio": 2
+    },
+    {
+      "aligned": false,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "input_shape": [
+        4,
+        256,
+        20,
+        20
+      ],
+      "pooled_size": [
+        7,
+        7
+      ],
+      "rois_shape": [
+        2,
+        5
+      ],
+      "sampling_ratio": 2
+    }
+  ],
+  "stage": "seven_update_suite",
+  "started_unix": 1793599595.2059534,
+  "state": "complete",
+  "step": 1,
+  "timing_scope": "Instrumented wall time including CPU copies/hashing/phase-record writes; not pure kernel throughput.",
+  "total_gpu_bytes": 23684841472
+}

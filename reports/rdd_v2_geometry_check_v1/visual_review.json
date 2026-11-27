@@ -1,0 +1,187 @@
+{
+  "status": "visual_review_complete_no_obvious_geometry_defect_at_saved_resolution",
+  "reviewed_sheets": 56,
+  "display_panels": 336,
+  "image_tile_resolution": [
+    320,
+    320
+  ],
+  "review_basis": "Direct inspection of all 56 original returned PNG overlay sheets using view_image, with six panels per sheet; no generated substitute images",
+  "source_groups": [
+    {
+      "range": [
+        1,
+        8
+      ],
+      "source": "China_Drone",
+      "reviewed": 8,
+      "observed": "Boxes follow whole-scene reflection, resizing and translation. D00/D10 labels stay unchanged. Boundary repair/crack boxes trigger identity fallback for clipped views. Gray margins appear only with the declared canvas placement.",
+      "examples": [
+        "01: transverse and longitudinal crack boxes follow the flip without exchanging labels",
+        "06 and 08: non-target Repair annotations at boundaries are protected",
+        "07: right-edge transverse crack rejects translation/zoom and remains in reflected/shrunk views"
+      ],
+      "limitations": "Very thin cracks and small potholes are difficult to assess in 320-pixel grayscale tiles."
+    },
+    {
+      "range": [
+        9,
+        16
+      ],
+      "source": "China_MotorBike",
+      "reviewed": 8,
+      "observed": "Long boundary-touching cracks, transverse cracks and alligator regions remain aligned in reflected/shrunk views. Center zooms commonly reject because annotations touch the original image edge. Large non-target Repair regions move consistently.",
+      "examples": [
+        "10: D00 vertical and D10 transverse annotations retain their classes after horizontal reflection",
+        "11: multiple D20 regions remain attached to the same cracked painted surface",
+        "13: full-width Repair region makes translated/zoomed views fall back",
+        "15: adjacent contact-sheet tiles form an apparent V across their boundary, not an artifact inside a transformed image"
+      ],
+      "limitations": "Box borders partially cover thin crack pixels in the display."
+    },
+    {
+      "range": [
+        17,
+        24
+      ],
+      "source": "Czech",
+      "reviewed": 8,
+      "observed": "Road perspective and camera-view structure remain coherent within each tile. D00, D10, D20 and D40 boxes follow the same scene under reflection, small scale changes and translation. Negative scenes remain without invented annotations.",
+      "examples": [
+        "17: edge-touching left crack rejects center enlargement",
+        "18: transverse crack label remains D10 after scene reflection",
+        "20: D40 roadside defect stays inside its relocated box",
+        "24: distant small D00 box remains aligned at available preview resolution"
+      ],
+      "limitations": "Reflected street text/traffic handedness is visible as expected for whole-scene flips; this does not establish augmentation utility. Distant cracks are poorly resolved in these display tiles."
+    },
+    {
+      "range": [
+        25,
+        32
+      ],
+      "source": "India",
+      "reviewed": 8,
+      "observed": "Overlapping target boxes move together as one whole-image transformation. Thin transverse regions and roadside defects stay aligned in displayed accepted views. Non-target D60/D43/D44 annotations remain present and move with the scene; cropped proposals fall back.",
+      "examples": [
+        "25: overlapping D00/D20/D40 boxes maintain their relative positions",
+        "28: D40 and non-target D60 remain distinct after reflection",
+        "29 and 30: non-target boundary annotations also reject center enlargement",
+        "32: existing large D20 annotation remains consistent across allowed views"
+      ],
+      "limitations": "Low-contrast defects are difficult to interpret at preview resolution. This review checks transformation consistency, not correctness of original semantic labels."
+    },
+    {
+      "range": [
+        33,
+        40
+      ],
+      "source": "Japan",
+      "reviewed": 8,
+      "observed": "Road cracks, potholes and non-target road-feature boxes remain attached to their source pixels. Shadows and background context are reflected with the image rather than moved independently. Boundary-spanning target/non-target annotations correctly cause identity fallbacks.",
+      "examples": [
+        "34: mixed target and non-target boxes move together, with center zoom and right translation rejected",
+        "36: small D40 region remains centered on the visible defect",
+        "39: full-width D20 cracking is preserved by rejecting a crop",
+        "40: two D40 regions remain aligned in the reflected scene"
+      ],
+      "limitations": "A visual audit cannot certify the correctness of original class labels or subtle detail retention after resizing."
+    },
+    {
+      "range": [
+        41,
+        48
+      ],
+      "source": "Norway",
+      "reviewed": 8,
+      "observed": "Wide images retain their existing letterbox bands; added shifts/scaling change band placement as specified. Small and multiple crack boxes follow the scene under reflection. Negative scenes remain unannotated and geometrically coherent.",
+      "examples": [
+        "41: edge D00/D40 boxes are protected by center-zoom rejection",
+        "42: thin transverse and longitudinal boxes track their original road positions",
+        "44: multiple small annotations move consistently, though labels obscure much of the tiny damage",
+        "45,47,48: no-target scenes retained without invented labels"
+      ],
+      "limitations": "Wide-view compression makes some boxes and cracks too small for fine-detail assessment. Gray padding is expected and not evidence of lost source pixels."
+    },
+    {
+      "range": [
+        49,
+        56
+      ],
+      "source": "United_States",
+      "reviewed": 8,
+      "observed": "Longitudinal/transverse/alligator/pothole labels and boxes follow road features through whole-image flips and modest scale/translation. Zoom rejects edge-touching annotations. Shadows, markings and surrounding context move consistently.",
+      "examples": [
+        "49 and 50: transverse cracks keep their D10 labels under reflection",
+        "51: both D20 boxes remain on the same cracked road areas",
+        "52: mixed D00/D20/D40 boxes preserve relative placement",
+        "54 and 56: bottom-edge crack boxes trigger correct identity fallback on zoom"
+      ],
+      "limitations": "Street text and watermarks reflect as expected; tiny or shaded damage cannot be certified at grayscale preview resolution."
+    }
+  ],
+  "files": [
+    "01_China_Drone_002195.png",
+    "02_China_Drone_000061.png",
+    "03_China_Drone_000441.png",
+    "04_China_Drone_000237.png",
+    "05_China_Drone_000333.png",
+    "06_China_Drone_001882.png",
+    "07_China_Drone_001022.png",
+    "08_China_Drone_000028.png",
+    "09_China_MotorBike_001450.png",
+    "10_China_MotorBike_000200.png",
+    "11_China_MotorBike_000192.png",
+    "12_China_MotorBike_001001.png",
+    "13_China_MotorBike_000579.png",
+    "14_China_MotorBike_000412.png",
+    "15_China_MotorBike_001626.png",
+    "16_China_MotorBike_000247.png",
+    "17_Czech_000062.png",
+    "18_Czech_000905.png",
+    "19_Czech_003583.png",
+    "20_Czech_001437.png",
+    "21_Czech_000306.png",
+    "22_Czech_000887.png",
+    "23_Czech_001259.png",
+    "24_Czech_000417.png",
+    "25_India_006613.png",
+    "26_India_002279.png",
+    "27_India_003754.png",
+    "28_India_000268.png",
+    "29_India_001869.png",
+    "30_India_004277.png",
+    "31_India_002667.png",
+    "32_India_004798.png",
+    "33_Japan_001438.png",
+    "34_Japan_012301.png",
+    "35_Japan_002438.png",
+    "36_Japan_001166.png",
+    "37_Japan_003488.png",
+    "38_Japan_000171.png",
+    "39_Japan_010156.png",
+    "40_Japan_003859.png",
+    "41_Norway_005858.png",
+    "42_Norway_003750.png",
+    "43_Norway_005961.png",
+    "44_Norway_004153.png",
+    "45_Norway_001876.png",
+    "46_Norway_003784.png",
+    "47_Norway_007548.png",
+    "48_Norway_007736.png",
+    "49_United_States_004132.png",
+    "50_United_States_000721.png",
+    "51_United_States_000257.png",
+    "52_United_States_002921.png",
+    "53_United_States_003251.png",
+    "54_United_States_001344.png",
+    "55_United_States_000200.png",
+    "56_United_States_004093.png"
+  ],
+  "limits": [
+    "No independent native-resolution inspection of every raw RGB variant; only saved representative grayscale contact sheets were available",
+    "No label-semantic reannotation or guarantee of thin-crack visibility",
+    "Not evidence of improved detector AP or controller stability"
+  ],
+  "decision": "Proceed to a bounded frozen-detector controller check; full training remains premature"
+}

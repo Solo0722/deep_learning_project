@@ -1,0 +1,109 @@
+{
+  "advance_rule": "First-update gate must be byte-exact and within resource limits. Restart all conditions from the same original checkpoint for the seven-update suite. Stop at first mismatch, unsupported operation, nonfinite value, state leak or resource limit; never fall back to nondeterminism.",
+  "amendment": {
+    "change": "Strict deterministic execution, single-update gate, resource measurement and parent-supervised stop. Frozen scientific inputs and original update are reused.",
+    "source_package": "rdd_v2_repro_v2",
+    "timing": "Declared after auditing the earlier nondeterministic result; before the strict GPU job."
+  },
+  "batch_size": 4,
+  "comparison": "Byte-exact repeats within the strict path; descriptive differences are exported on failure. Do not require exact equality to the previous native-kernel path.",
+  "conditions": [
+    "control_a",
+    "control_b",
+    "probe_only",
+    "resume_only"
+  ],
+  "created_local_date": "2026-10-29",
+  "decision": "Require exact first-update repeats and resource feasibility before the seven-update suite. Preserve the first mismatch or failure and mark remaining conditions unexecuted. No warning-only mode, fallback, threshold change, resubmission or longer training.",
+  "diagnostic_seconds": 2400,
+  "epoch_index": 1,
+  "expected_decision_sha256": "04d4198bddc61766ca5299e0dfef799c39ea1097e9335a02920d5e28770cda1d",
+  "expected_pairing_sha256": "c1ddf54f3cbbb43157a65591e63c8e842331391f5e2176d709001be0f23a73e0",
+  "initial_smoke_step": 7,
+  "intervention": "Strict deterministic algorithms plus documented cuBLAS workspace; same source detector, fixed checkpoint, data order, pixels, targets and optimizer. Library-dispatched deterministic RoIAlign, no custom kernel or compilation.",
+  "limits": [
+    "One seed/checkpoint/machine and a short trajectory do not establish statistical reproducibility or model efficacy.",
+    "Observations synchronize/copy tensors; timings include tracing and are not uninstrumented throughput.",
+    "Determinism settings affect multiple operations; passing cannot identify RoIAlign as the unique cause.",
+    "No validation/test access, accuracy evaluation, controller redesign, longer training or automatic resubmission."
+  ],
+  "maximum_optimizer_updates": 30,
+  "minimum_free_disk_bytes": 10737418240,
+  "phase_order": [
+    "before",
+    "forward",
+    "backward",
+    "update"
+  ],
+  "prior_diagnostic": {
+    "archive_sha256": "3ec5a81f35d667f71994f80956fa9ec691bbd2c9fe0b704173f6d2a97f9eedd9",
+    "finding": "Plain repeat first differs in backward at update 1; observed probe/restore boundaries and RNG states matched.",
+    "job": "797450.bright04"
+  },
+  "probe_plan": "source_pilot/panel_plan.json: epoch 2 first two rows",
+  "question": "Does strict deterministic execution make the same tiny training trajectory repeatable, including the probe and restore paths, within a bounded resource budget?",
+  "reference_storage_limit_bytes": 8589934592,
+  "resource_limits": {
+    "gpu_allocator_fraction": 0.9,
+    "hard_probe_seconds": 360,
+    "hard_update_seconds": 180,
+    "job_deadline_seconds": 3000,
+    "maximum_probe_seconds": 300,
+    "maximum_update_seconds": 120,
+    "minimum_free_disk_bytes": 10737418240,
+    "peak_reserved_fraction_limit": 0.9,
+    "reference_storage_limit_bytes": 8589934592,
+    "terminate_grace_seconds": 15,
+    "worker_wall_seconds": 2400
+  },
+  "resource_rationale": "Operational feasibility caps for this one-A10 debugging job, not accuracy or statistical thresholds. Record actual overhead; passing the cap does not mean the path is fast enough for full training.",
+  "resume_after_update": 1,
+  "source_checkpoint": {
+    "bytes": 331117946,
+    "file": "epoch_001_step_00006716_04dccd11bbd2.pt",
+    "metadata_source_archive": "fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz",
+    "metadata_source_archive_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f",
+    "relative_path": "runs/fasterrcnn_identity_seed42_v1/checkpoints/epoch_001_step_00006716_04dccd11bbd2.pt",
+    "selection": "Fixed first unaugmented epoch; not the validation-selected best checkpoint",
+    "sha256": "dbd619334a57ad4422e929b90b327f80d1ca3bfc5b86f6f37594714ec138e858"
+  },
+  "source_manifest_sha256": "0f3ca6a52511422cabf1a38d41c350d5613ed235d4876fb6f7eb70dfe7aa3744",
+  "source_repro_manifest_sha256": "8c97c94647f8815e53f5146342b1b00c1fcac89c2677c215f0ca3d8460e43819",
+  "stages": [
+    {
+      "conditions": [
+        "control_a",
+        "control_b"
+      ],
+      "name": "first_update_gate",
+      "updates": 1
+    },
+    {
+      "conditions": [
+        "control_a",
+        "control_b",
+        "probe_only",
+        "resume_only"
+      ],
+      "name": "seven_update_suite",
+      "updates": 7
+    }
+  ],
+  "strict_settings": {
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true,
+    "fill_uninitialized_memory": true,
+    "matmul_tf32": false,
+    "warn_only": false
+  },
+  "tensor_pair_export_limit_bytes": 8388608,
+  "train_images": 26,
+  "treatment": "All four conditions use the identical materialized geometry-only batches. Probe policy is recorded but never applied.",
+  "updates_per_condition": 7,
+  "version": "rdd_v2_strict_v1",
+  "warmup_steps": 0,
+  "workers": 0
+}

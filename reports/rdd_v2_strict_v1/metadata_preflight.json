@@ -1,0 +1,20 @@
+{
+  "gpu_result_pending": true,
+  "maximum_updates": 30,
+  "same_archived_input_and_decision_hashes": true,
+  "same_frozen_input_fields": [
+    "source_checkpoint",
+    "source_manifest_sha256",
+    "expected_pairing_sha256",
+    "expected_decision_sha256",
+    "train_images",
+    "batch_size",
+    "epoch_index",
+    "initial_smoke_step",
+    "resume_after_update",
+    "conditions",
+    "phase_order"
+  ],
+  "status": "pass",
+  "unchanged_source_files": 41
+}

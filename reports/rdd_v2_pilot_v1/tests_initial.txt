@@ -1,0 +1,132 @@
+test_all_negative_training_batch_kept (test_baseline.BaselineTests.test_all_negative_training_batch_kept) ... ok
+VALIDATION epoch=1/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+VALIDATION epoch=2/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+Records archive: C:\Users\SOLOMON\OneDrive - North Dakota University System\deep_learning_project\tmp\pilot_package_check_v1\rdd_baseline_6qrb0wt0\archive_records_fixture.tar.gz
+Archive SHA-256: 369cc1b24be8f4e014002ab50f593765ef4e3f1b50d41b632f7ed60f1ca775a8
+test_archive_contains_verified_records_without_checkpoint_binaries (test_baseline.BaselineTests.test_archive_contains_verified_records_without_checkpoint_binaries) ... ok
+test_atomic_pointer_failure_preserves_previous_checkpoint (test_baseline.BaselineTests.test_atomic_pointer_failure_preserves_previous_checkpoint) ... ok
+VALIDATION epoch=1/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+VALIDATION epoch=2/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+test_changed_checkpoint_or_context_rejected_and_epochs_retained (test_baseline.BaselineTests.test_changed_checkpoint_or_context_rejected_and_epochs_retained) ... ok
+test_cross_partition_image_cluster_and_rgb_overlap_rejected (test_baseline.BaselineTests.test_cross_partition_image_cluster_and_rgb_overlap_rejected) ... ok
+test_image_modification_rejected (test_baseline.BaselineTests.test_image_modification_rejected) ... ok
+VALIDATION epoch=1/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+VALIDATION epoch=2/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+VALIDATION epoch=1/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+VALIDATION epoch=2/2 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+test_mid_epoch_resume_matches_uninterrupted_stochastic_training (test_baseline.BaselineTests.test_mid_epoch_resume_matches_uninterrupted_stochastic_training) ... ok
+test_nonfinite_loss_stops_before_optimizer_update (test_baseline.BaselineTests.test_nonfinite_loss_stops_before_optimizer_update) ... ok
+test_sampler_preserves_last_batch_and_model_rng (test_baseline.BaselineTests.test_sampler_preserves_last_batch_and_model_rng) ... ok
+test_val_loader_uses_val_without_relabelling_and_rejects_test (test_baseline.BaselineTests.test_val_loader_uses_val_without_relabelling_and_rejects_test) ... ok
+VALIDATION epoch=1/1 AP50:95=0.520833 AP50=0.520833 best_epoch=1
+test_validation_interruption_resumes_without_repeating_training (test_baseline.BaselineTests.test_validation_interruption_resumes_without_repeating_training) ... ok
+test_validation_keeps_all_images_no_grad_no_parameter_update (test_baseline.BaselineTests.test_validation_keeps_all_images_no_grad_no_parameter_update) ... ok
+test_warmup_and_decay_use_original_global_step_and_epoch (test_baseline.BaselineTests.test_warmup_and_decay_use_original_global_step_and_epoch) ... ok
+test_class_policy_retains_differences_and_unsupported_routes_identity (test_pilot.PilotTests.test_class_policy_retains_differences_and_unsupported_routes_identity) ... ok
+PROBE before_epoch=2 images=1/4 forwards=33
+SUPPORT epoch=2 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=2 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=2 AP50:95=0.520833 AP50=0.520833
+VALIDATION arm=class_adaptive epoch=3 AP50:95=0.520833 AP50=0.520833
+PROBE before_epoch=4 images=1/4 forwards=33
+SUPPORT epoch=4 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=2 detected=0 clusters=0 supported=False allowed=0
+SUPPORT epoch=4 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=4 AP50:95=0.520833 AP50=0.520833
+test_committed_controller_is_not_measured_twice_on_resume (test_pilot.PilotTests.test_committed_controller_is_not_measured_twice_on_resume) ... ok
+PROBE before_epoch=2 images=1/4 forwards=33
+SUPPORT epoch=2 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=2 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=3 detected=0 clusters=0 supported=False allowed=0
+test_evidence_and_policy_tampering_rejected (test_pilot.PilotTests.test_evidence_and_policy_tampering_rejected) ... ok
+PROBE before_epoch=2 images=1/4 forwards=33
+SUPPORT epoch=2 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=2 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=3 detected=0 clusters=0 supported=False allowed=0
+test_failed_controller_commit_leaves_preprobe_checkpoint_authoritative (test_pilot.PilotTests.test_failed_controller_commit_leaves_preprobe_checkpoint_authoritative) ... ok
+test_fork_restores_momentum_and_all_rng_streams (test_pilot.PilotTests.test_fork_restores_momentum_and_all_rng_streams) ... ok
+test_four_arms_match_geometry_opportunities_and_target_labels (test_pilot.PilotTests.test_four_arms_match_geometry_opportunities_and_target_labels) ... ok
+PROBE before_epoch=2 images=1/4 forwards=33
+SUPPORT epoch=2 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=2 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=2 AP50:95=0.520833 AP50=0.520833
+VALIDATION arm=class_adaptive epoch=3 AP50:95=0.520833 AP50=0.520833
+PROBE before_epoch=4 images=1/4 forwards=33
+SUPPORT epoch=4 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=2 detected=0 clusters=0 supported=False allowed=0
+SUPPORT epoch=4 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=4 AP50:95=0.520833 AP50=0.520833
+test_interrupted_probe_keeps_partial_evidence_and_restarts (test_pilot.PilotTests.test_interrupted_probe_keeps_partial_evidence_and_restarts) ... ok
+test_invalid_other_annotation_disables_geometry_without_dropping_target (test_pilot.PilotTests.test_invalid_other_annotation_disables_geometry_without_dropping_target) ... ok
+test_keyed_transforms_do_not_consume_global_rng (test_pilot.PilotTests.test_keyed_transforms_do_not_consume_global_rng) ... ok
+PROBE before_epoch=2 images=1/4 forwards=33
+SUPPORT epoch=2 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=2 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=2 AP50:95=0.520833 AP50=0.520833
+VALIDATION arm=class_adaptive epoch=3 AP50:95=0.520833 AP50=0.520833
+PROBE before_epoch=4 images=1/4 forwards=33
+SUPPORT epoch=4 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=2 detected=0 clusters=0 supported=False allowed=0
+SUPPORT epoch=4 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=4 AP50:95=0.520833 AP50=0.520833
+PROBE before_epoch=2 images=1/4 forwards=33
+SUPPORT epoch=2 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=2 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=2 AP50:95=0.520833 AP50=0.520833
+VALIDATION arm=class_adaptive epoch=3 AP50:95=0.520833 AP50=0.520833
+PROBE before_epoch=4 images=1/4 forwards=33
+SUPPORT epoch=4 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=2 detected=0 clusters=0 supported=False allowed=0
+SUPPORT epoch=4 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=4 AP50:95=0.520833 AP50=0.520833
+test_mid_epoch_resume_equals_uninterrupted_cpu_trajectory (test_pilot.PilotTests.test_mid_epoch_resume_equals_uninterrupted_cpu_trajectory) ... ok
+test_mismatched_pairing_and_output_overlap_rejected (test_pilot.PilotTests.test_mismatched_pairing_and_output_overlap_rejected) ... ok
+test_negative_geometry_retains_empty_targets_and_no_appearance (test_pilot.PilotTests.test_negative_geometry_retains_empty_targets_and_no_appearance) ... ok
+test_non_target_crop_rejects_whole_geometry_and_thin_boxes_survive (test_pilot.PilotTests.test_non_target_crop_rejects_whole_geometry_and_thin_boxes_survive) ... ok
+test_observer_restores_modes_even_on_error_and_detects_rng_use (test_pilot.PilotTests.test_observer_restores_modes_even_on_error_and_detects_rng_use) ... ok
+PROBE before_epoch=2 images=1/4 forwards=33
+SUPPORT epoch=2 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=2 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=2 AP50:95=0.520833 AP50=0.520833
+VALIDATION arm=class_adaptive epoch=3 AP50:95=0.520833 AP50=0.520833
+PROBE before_epoch=4 images=1/4 forwards=33
+SUPPORT epoch=4 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=2 detected=0 clusters=0 supported=False allowed=0
+SUPPORT epoch=4 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=4 AP50:95=0.520833 AP50=0.520833
+PROBE before_epoch=2 images=1/4 forwards=33
+SUPPORT epoch=2 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=2 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=2 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=2 AP50:95=0.520833 AP50=0.520833
+VALIDATION arm=class_adaptive epoch=3 AP50:95=0.520833 AP50=0.520833
+PROBE before_epoch=4 images=1/4 forwards=33
+SUPPORT epoch=4 class=0 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=1 detected=1 clusters=1 supported=True allowed=24
+SUPPORT epoch=4 class=2 detected=0 clusters=0 supported=False allowed=0
+SUPPORT epoch=4 class=3 detected=0 clusters=0 supported=False allowed=0
+VALIDATION arm=class_adaptive epoch=4 AP50:95=0.520833 AP50=0.520833
+test_prevalidation_resume_does_not_repeat_training (test_pilot.PilotTests.test_prevalidation_resume_does_not_repeat_training) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 17.603s
+
+OK

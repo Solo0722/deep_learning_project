@@ -1,0 +1,9 @@
+{
+  "archive": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\rdd_v2_pilot_v1.tar.gz",
+  "archive_payloads_verified": true,
+  "bytes": 82090,
+  "files": 30,
+  "manifest_sha256": "0f3ca6a52511422cabf1a38d41c350d5613ed235d4876fb6f7eb70dfe7aa3744",
+  "sha256": "92b7ff1170919dc6beed2aadff44aa147f7230580381ee67d6d56a21d4d57b7a",
+  "unit_tests": 31
+}

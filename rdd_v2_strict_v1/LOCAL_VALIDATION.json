@@ -1,0 +1,224 @@
+{
+  "actual_cpu_model": {
+    "cuda_tested": false,
+    "deterministic_cuda_roi_align_path_tested": false,
+    "gate": {
+      "conditions": {
+        "control_a": {
+          "comparisons": [],
+          "first_difference": null,
+          "fork": {
+            "model_optimizer_rng_exact": true,
+            "model_sha256": "a791d72ae97513fd9834ec3c0723f221656bb1789813b2764e5f5196b588add3",
+            "optimizer_sha256": "6eef7d31d6b63611a259e991e2d115ced1cd6020cd149b3af21eb3d1c5c794ae",
+            "rng_sha256": "3d62aaf093af546e147cd1bdb39215035753c89add7458a3ceb87f561e648513"
+          },
+          "updates_complete": 1
+        },
+        "control_b": {
+          "comparisons": [
+            {
+              "exact": true,
+              "phase_equal": {
+                "backward": true,
+                "before": true,
+                "forward": true,
+                "update": true
+              },
+              "step": 1
+            }
+          ],
+          "first_difference": null,
+          "fork": {
+            "model_optimizer_rng_exact": true,
+            "model_sha256": "a791d72ae97513fd9834ec3c0723f221656bb1789813b2764e5f5196b588add3",
+            "optimizer_sha256": "6eef7d31d6b63611a259e991e2d115ced1cd6020cd149b3af21eb3d1c5c794ae",
+            "rng_sha256": "3d62aaf093af546e147cd1bdb39215035753c89add7458a3ceb87f561e648513"
+          },
+          "updates_complete": 1
+        }
+      },
+      "decision": "Review first differences and numeric magnitudes before any longer run. No automatic continuation.",
+      "interpretation": [
+        "A control_b difference means probing and resume are not necessary for divergence; it does not exclude their additional effects.",
+        "A probe_only or resume_only difference with an exact control repeat points to that path for further investigation, not proof from repeated trials.",
+        "If every comparison is exact, the original discrepancy was not reproduced under this instrumentation; its cause remains unestablished."
+      ],
+      "scope": "Execution/reproducibility diagnostic only; no AP, generalization or method-superiority claim.",
+      "status": "complete_exact_on_this_diagnostic"
+    },
+    "gradient_norm": 1112.2557373046875,
+    "gradient_norm_exact": true,
+    "losses": {
+      "loss_box_reg": 0.05641867592930794,
+      "loss_classifier": 5.60392427444458,
+      "loss_objectness": 1.62309992313385,
+      "loss_rpn_box_reg": 0.9355425238609314
+    },
+    "losses_exact": true,
+    "model_optimizer_rng_gradients_exact": true,
+    "original_baseline_update_seconds": 46.935531600000104,
+    "resources": {
+      "control_a": {
+        "condition": "control_a",
+        "elapsed_seconds": 44.50204559999838,
+        "hard_timeout_seconds": 180,
+        "kind": "update",
+        "peak_allocated_bytes": 0,
+        "peak_reserved_bytes": 0,
+        "python_roi_align_calls": [],
+        "stage": "first_update_gate",
+        "started_unix": 1793329426.0779493,
+        "state": "complete",
+        "step": 1,
+        "timing_scope": "Instrumented wall time including CPU copies/hashing/phase-record writes; not pure kernel throughput.",
+        "total_gpu_bytes": 0
+      },
+      "control_b": {
+        "condition": "control_b",
+        "elapsed_seconds": 46.789156900005764,
+        "hard_timeout_seconds": 180,
+        "kind": "update",
+        "peak_allocated_bytes": 0,
+        "peak_reserved_bytes": 0,
+        "python_roi_align_calls": [],
+        "stage": "first_update_gate",
+        "started_unix": 1793329478.954474,
+        "state": "complete",
+        "step": 1,
+        "timing_scope": "Instrumented wall time including CPU copies/hashing/phase-record writes; not pure kernel throughput.",
+        "total_gpu_bytes": 0
+      }
+    },
+    "scope": "Randomly initialized real Faster R-CNN, four synthetic 640x640 RGB images, four classes and three negative images through production preparation/collation. Original baseline update versus new strict instrumentation and two independent gate repeats. CPU only.",
+    "status": "pass",
+    "strict_flags": {
+      "cublas_workspace_config": ":4096:8",
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "cudnn_tf32": false,
+      "deterministic_algorithms": true,
+      "fill_uninitialized_memory": true,
+      "matmul_tf32": false,
+      "warn_only": false
+    },
+    "target_counts": [
+      4,
+      0,
+      0,
+      0
+    ],
+    "target_fields": [
+      [
+        "area",
+        "boxes",
+        "image_id",
+        "iscrowd",
+        "labels"
+      ],
+      [
+        "area",
+        "boxes",
+        "image_id",
+        "iscrowd",
+        "labels"
+      ],
+      [
+        "area",
+        "boxes",
+        "image_id",
+        "iscrowd",
+        "labels"
+      ],
+      [
+        "area",
+        "boxes",
+        "image_id",
+        "iscrowd",
+        "labels"
+      ]
+    ],
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "created_utc": "2026-10-30T03:12:19.593806+00:00",
+  "environment_boundary": "Local Python 3.14 / torch 2.10 CPU differs from pinned CCAST Python 3.12 / torch 2.3 / torchvision 0.18 CUDA. No local CUDA available.",
+  "local_versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  },
+  "metadata_preflight": {
+    "gpu_result_pending": true,
+    "maximum_updates": 30,
+    "same_archived_input_and_decision_hashes": true,
+    "same_frozen_input_fields": [
+      "source_checkpoint",
+      "source_manifest_sha256",
+      "expected_pairing_sha256",
+      "expected_decision_sha256",
+      "train_images",
+      "batch_size",
+      "epoch_index",
+      "initial_smoke_step",
+      "resume_after_update",
+      "conditions",
+      "phase_order"
+    ],
+    "status": "pass",
+    "unchanged_source_files": 41
+  },
+  "pending": [
+    "Pinned CCAST unit tests",
+    "Strict CUDA RoIAlign execution, exactness, runtime and peak memory",
+    "Real training-image materialization under strict settings"
+  ],
+  "scope": "Implementation validation only; no accuracy or full-experiment approval.",
+  "shell_syntax": {
+    "method": "Git Bash bash -n on all four scripts; read-only syntax checks succeeded",
+    "scripts": {
+      "job.pbs": {
+        "lf_only": true,
+        "sha256": "529ad3d1ff35a20d4119e4408163f150112809b2928ca494d502e090de4317ff",
+        "status": "pass"
+      },
+      "run_job.sh": {
+        "lf_only": true,
+        "sha256": "46c9fd7a882d5070ee39f0a52f2ae2937ea9896eb59d41b6c1717067058ed6a0",
+        "status": "pass"
+      },
+      "status.sh": {
+        "lf_only": true,
+        "sha256": "d97baa13c7d10abc0440b74a9ea0b156ed5dfa51af606cd0a8852ca6da6fc486",
+        "status": "pass"
+      },
+      "submit.sh": {
+        "lf_only": true,
+        "sha256": "f79308696d5f517c05816152b9b38973e15c3ab88d8b7f744a07f41b69779f5a",
+        "status": "pass"
+      }
+    }
+  },
+  "status": "pass",
+  "tests": {
+    "local_tests.txt": {
+      "seconds": 35.396,
+      "sha256": "aafe7e7e4f2e57fbe21c017cf9f15b67a6ac36e65a935c0a13bc8134fdb327bd",
+      "skips": 0,
+      "tests": 19
+    },
+    "source_tests.txt": {
+      "seconds": 56.659,
+      "sha256": "4d0ed41b7eb084ac59b7d0f50de8dabcf3a8ab63031aaad343ed98064227c28f",
+      "skips": 0,
+      "tests": 23
+    }
+  },
+  "unit_tests": 42
+}

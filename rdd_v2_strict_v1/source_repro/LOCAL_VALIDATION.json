@@ -1,0 +1,305 @@
+{
+  "actual_cpu_model": {
+    "comparison": {
+      "actual_sha256": "fdd9ba3c608b5dd36d249815d3bd67e449615e1672dac67bed5c363d4ed59973",
+      "changes": [],
+      "equal": true,
+      "expected_sha256": "fdd9ba3c608b5dd36d249815d3bd67e449615e1672dac67bed5c363d4ed59973",
+      "missing_paths": [],
+      "unexpected_paths": []
+    },
+    "effective_model": {
+      "image_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "image_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "normalization": "FrozenBatchNorm2d, eps=0.0; ImageNet RGB mean/std",
+      "parameters": 41314536,
+      "reinitialized": "ROI classification and class-specific box regression predictors",
+      "trainable_backbone_stages": 5,
+      "trainable_parameters": 41314536,
+      "transferred_state_keys": []
+    },
+    "gradient_norm": 1113.7891845703125,
+    "gradient_norm_exact": true,
+    "input_target_layouts": [
+      {
+        "area": {
+          "dtype": "torch.float32",
+          "shape": [
+            4
+          ],
+          "stride": [
+            1
+          ]
+        },
+        "boxes": {
+          "dtype": "torch.float32",
+          "shape": [
+            4,
+            4
+          ],
+          "stride": [
+            4,
+            1
+          ]
+        },
+        "image_id": {
+          "dtype": "torch.int64",
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ]
+        },
+        "iscrowd": {
+          "dtype": "torch.int64",
+          "shape": [
+            4
+          ],
+          "stride": [
+            1
+          ]
+        },
+        "labels": {
+          "dtype": "torch.int64",
+          "shape": [
+            4
+          ],
+          "stride": [
+            1
+          ]
+        }
+      },
+      {
+        "area": {
+          "dtype": "torch.float32",
+          "shape": [
+            0
+          ],
+          "stride": [
+            1
+          ]
+        },
+        "boxes": {
+          "dtype": "torch.float32",
+          "shape": [
+            0,
+            4
+          ],
+          "stride": [
+            0,
+            0
+          ]
+        },
+        "image_id": {
+          "dtype": "torch.int64",
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ]
+        },
+        "iscrowd": {
+          "dtype": "torch.int64",
+          "shape": [
+            0
+          ],
+          "stride": [
+            1
+          ]
+        },
+        "labels": {
+          "dtype": "torch.int64",
+          "shape": [
+            0
+          ],
+          "stride": [
+            0
+          ]
+        }
+      }
+    ],
+    "instrumented_and_comparison_seconds": 13.009954999997717,
+    "losses": {
+      "loss_box_reg": 0.11283735185861588,
+      "loss_classifier": 5.580225467681885,
+      "loss_objectness": 1.7750849723815918,
+      "loss_rpn_box_reg": 1.8710850477218628
+    },
+    "losses_exact": true,
+    "model_optimizer_rng_gradients_exact": true,
+    "original_seconds": 13.5404873999978,
+    "scope": "Actual randomly initialized Faster R-CNN, 640 pixels, two synthetic RGB images passed through production prepare_example and torchvision_collate, including all target fields and a negative image; one original update versus one instrumented update from the same state. CPU only, not CCAST CUDA evidence.",
+    "status": "pass",
+    "versions": {
+      "Pillow": "12.1.1",
+      "numpy": "2.4.2",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "created_utc": "2026-10-29T17:01:33.889850+00:00",
+  "environment_boundary": "Windows CPU validation differs from pinned CCAST Python 3.12 / torch 2.3.0 / torchvision 0.18.0. No local CUDA result.",
+  "failure_provenance": {
+    "failure": "Tensor-byte hashing rejected an empty zero-stride int64 label tensor before training.",
+    "previous_diagnostic_updates_executed": 0,
+    "previous_job": "797431.bright04",
+    "previous_package": "rdd_v2_repro_v1",
+    "previous_records_sha256_user_reported": "c44213140dcdf9e211d2c1b1848b1503b456b62f46965383e6f161814a1635fd",
+    "scope": "Hash-layout compatibility repair and production-collation regression tests. Same data, checkpoint, four conditions and seven updates."
+  },
+  "local_versions": {
+    "Pillow": "12.1.1",
+    "numpy": "2.4.2",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0"
+  },
+  "metadata_preflight": {
+    "all_training_only": true,
+    "appearance_identity": true,
+    "archived_input_and_decision_hashes_pinned": true,
+    "batch_sizes": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      2
+    ],
+    "images": 26,
+    "local_reference_note": "RNG/data ordering here is a local metadata check; actual pinned CCAST materialization is gated separately.",
+    "positive_images": 17,
+    "protocol_differences": [
+      "amendment",
+      "version"
+    ],
+    "runtime_pixel_replay_pending_ccast": true,
+    "scope": "The prior frozen data selection and archived pairing pins remain unchanged; new production-file materialization fixtures are tested separately.",
+    "source_pilot_unchanged": true,
+    "status": "pass"
+  },
+  "old_hash_reproduction": {
+    "cases": {
+      "normal_empty_long": {
+        "new_hex": "",
+        "new_status": "pass",
+        "old": {
+          "hex": "",
+          "status": "pass"
+        },
+        "shape": [
+          0
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "normal_float": {
+        "new_hex": "0000803f0000008000000040",
+        "new_status": "pass",
+        "old": {
+          "hex": "0000803f0000008000000040",
+          "status": "pass"
+        },
+        "shape": [
+          3
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "normal_long": {
+        "new_hex": "01000000000000000200000000000000",
+        "new_status": "pass",
+        "old": {
+          "hex": "01000000000000000200000000000000",
+          "status": "pass"
+        },
+        "shape": [
+          2
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "numpy_empty_long": {
+        "new_hex": "",
+        "new_status": "pass",
+        "old": {
+          "error": "self.stride(-1) must be 1 to view Long as Byte (different element sizes), but got 0",
+          "status": "failed"
+        },
+        "shape": [
+          0
+        ],
+        "stride": [
+          0
+        ]
+      },
+      "singleton_zero_stride": {
+        "new_hex": "0700000000000000",
+        "new_status": "pass",
+        "old": {
+          "error": "self.stride(-1) must be 1 to view Long as Byte (different element sizes), but got 0",
+          "status": "failed"
+        },
+        "shape": [
+          1
+        ],
+        "stride": [
+          0
+        ]
+      }
+    },
+    "numpy": "2.4.2",
+    "ordinary_fingerprints_preserved": true,
+    "torch": "2.10.0+cpu"
+  },
+  "pending": [
+    "Pinned CCAST runtime and raw-pixel replay",
+    "Actual seven-update four-condition CUDA diagnostic"
+  ],
+  "repair_scope": "Diagnostic hash-layout compatibility; production collation regression coverage. Experimental data, model, optimizer and comparison conditions unchanged.",
+  "scope": "Implementation validation only; no accuracy, causal-root-identification or superiority claim.",
+  "shell_syntax": {
+    "scripts": {
+      "job.pbs": {
+        "lf_only": true,
+        "sha256": "e72919b368642d0b31bed3c5e1d87d91597899ba55c73d4cab47dcbc042740bc",
+        "status": "pass"
+      },
+      "run_job.sh": {
+        "lf_only": true,
+        "sha256": "30fab69528ab37ca08233a29619e63e4b15a9e7561dd3e6a6c68da201c9b4e61",
+        "status": "pass"
+      },
+      "status.sh": {
+        "lf_only": true,
+        "sha256": "45e28d92417540b78840d8afceb7824bba99258f64d36ebf7d7ebd77d972f5b1",
+        "status": "pass"
+      },
+      "submit.sh": {
+        "lf_only": true,
+        "sha256": "45cabbedc3f3b6a6f2fe9a5dab5f7c77792a91602a29d245648cb531e6f5b1ca",
+        "status": "pass"
+      }
+    },
+    "tool_execution": "Git Bash -n, exec chunk 4e9ce7, exit 0; read-only syntax checks outside sandbox."
+  },
+  "skips": 0,
+  "status": "pass",
+  "test_log_sha256": "5cc3a4bb035eb84dcb57b8e1307e83787f9cfecc70476176a5d977c65ec50af1",
+  "unit_test_seconds": 14.535,
+  "unit_tests": 23
+}

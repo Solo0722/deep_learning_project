@@ -1,0 +1,8 @@
+{
+  "previous_package": "rdd_v2_repro_v1",
+  "previous_job": "797431.bright04",
+  "failure": "Tensor-byte hashing rejected an empty zero-stride int64 label tensor before training.",
+  "previous_records_sha256_user_reported": "c44213140dcdf9e211d2c1b1848b1503b456b62f46965383e6f161814a1635fd",
+  "scope": "Hash-layout compatibility repair and production-collation regression tests. Same data, checkpoint, four conditions and seven updates.",
+  "previous_diagnostic_updates_executed": 0
+}

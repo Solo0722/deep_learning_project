@@ -1,0 +1,22 @@
+{
+  "controller.py": {
+    "source": "rdd_v2_preflight_v1\\controller.py",
+    "sha256": "6bfbc16035fb973b4bd034002f22f45081269c59c1d50526593e3800f8e982cd"
+  },
+  "geometry.py": {
+    "source": "rdd_v2_preflight_v1\\geometry.py",
+    "sha256": "eeaf675800e00da06d45bf82ec8de5e94be190c5bd4e7e7bfd93049c66fb989d"
+  },
+  "rdd_data.py": {
+    "source": "rdd_v2_preflight_v1\\rdd_data.py",
+    "sha256": "ff7914ad32164fd66323615fa9c9a22c83980f118920e05020e4757628a33a91"
+  },
+  "local_augmentation.py": {
+    "source": "fasterrcnn_class_adaptive_v1\\local_augmentation.py",
+    "sha256": "fd923045ebc360e67e1a293683582b387f3103db0d27bb22f22a42f961454473"
+  },
+  "shared_augmentation.py": {
+    "source": "fasterrcnn_class_adaptive_v1\\shared_augmentation.py",
+    "sha256": "406c8e6c893cfd47ee4e05be1b433011054d3f0b0d2a4a58a3f1531590c9f736"
+  }
+}

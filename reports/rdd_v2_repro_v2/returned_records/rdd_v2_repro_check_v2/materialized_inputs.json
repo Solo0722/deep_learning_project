@@ -1,0 +1,1758 @@
+{
+  "augmentation": {
+    "counts": {
+      "all/geometry/accepted": 19,
+      "all/geometry/cropped_annotation": 7,
+      "all/geometry_changed": 19,
+      "all/images": 26,
+      "all/negative": 9,
+      "all/operation/identity": 26,
+      "all/opportunities": 8,
+      "all/positive": 17,
+      "all/reason/geometry_control": 26,
+      "group_class/0/geometry/accepted": 6,
+      "group_class/0/geometry/cropped_annotation": 5,
+      "group_class/0/geometry_changed": 6,
+      "group_class/0/images": 11,
+      "group_class/0/operation/identity": 11,
+      "group_class/0/opportunities": 6,
+      "group_class/0/positive": 11,
+      "group_class/0/reason/geometry_control": 11,
+      "group_class/1/geometry/accepted": 3,
+      "group_class/1/geometry/cropped_annotation": 2,
+      "group_class/1/geometry_changed": 3,
+      "group_class/1/images": 5,
+      "group_class/1/operation/identity": 5,
+      "group_class/1/positive": 5,
+      "group_class/1/reason/geometry_control": 5,
+      "group_class/2/geometry/accepted": 2,
+      "group_class/2/geometry/cropped_annotation": 2,
+      "group_class/2/geometry_changed": 2,
+      "group_class/2/images": 4,
+      "group_class/2/operation/identity": 4,
+      "group_class/2/opportunities": 2,
+      "group_class/2/positive": 4,
+      "group_class/2/reason/geometry_control": 4,
+      "group_class/3/geometry/accepted": 1,
+      "group_class/3/geometry/cropped_annotation": 1,
+      "group_class/3/geometry_changed": 1,
+      "group_class/3/images": 2,
+      "group_class/3/operation/identity": 2,
+      "group_class/3/opportunities": 1,
+      "group_class/3/positive": 2,
+      "group_class/3/reason/geometry_control": 2,
+      "group_objects_per_class/0": 11,
+      "group_objects_per_class/1": 5,
+      "group_objects_per_class/2": 4,
+      "group_objects_per_class/3": 2,
+      "source/China_Drone/geometry/accepted": 7,
+      "source/China_Drone/geometry/cropped_annotation": 1,
+      "source/China_Drone/geometry_changed": 7,
+      "source/China_Drone/images": 8,
+      "source/China_Drone/negative": 1,
+      "source/China_Drone/operation/identity": 8,
+      "source/China_Drone/opportunities": 3,
+      "source/China_Drone/positive": 7,
+      "source/China_Drone/reason/geometry_control": 8,
+      "source/China_MotorBike/geometry/accepted": 1,
+      "source/China_MotorBike/geometry/cropped_annotation": 1,
+      "source/China_MotorBike/geometry_changed": 1,
+      "source/China_MotorBike/images": 2,
+      "source/China_MotorBike/negative": 1,
+      "source/China_MotorBike/operation/identity": 2,
+      "source/China_MotorBike/opportunities": 1,
+      "source/China_MotorBike/positive": 1,
+      "source/China_MotorBike/reason/geometry_control": 2,
+      "source/Czech/geometry/accepted": 2,
+      "source/Czech/geometry_changed": 2,
+      "source/Czech/images": 2,
+      "source/Czech/negative": 1,
+      "source/Czech/operation/identity": 2,
+      "source/Czech/positive": 1,
+      "source/Czech/reason/geometry_control": 2,
+      "source/India/geometry/accepted": 4,
+      "source/India/geometry_changed": 4,
+      "source/India/images": 4,
+      "source/India/negative": 3,
+      "source/India/operation/identity": 4,
+      "source/India/positive": 1,
+      "source/India/reason/geometry_control": 4,
+      "source/Japan/geometry/accepted": 1,
+      "source/Japan/geometry/cropped_annotation": 2,
+      "source/Japan/geometry_changed": 1,
+      "source/Japan/images": 3,
+      "source/Japan/negative": 1,
+      "source/Japan/operation/identity": 3,
+      "source/Japan/opportunities": 1,
+      "source/Japan/positive": 2,
+      "source/Japan/reason/geometry_control": 3,
+      "source/Norway/geometry/accepted": 4,
+      "source/Norway/geometry/cropped_annotation": 1,
+      "source/Norway/geometry_changed": 4,
+      "source/Norway/images": 5,
+      "source/Norway/negative": 2,
+      "source/Norway/operation/identity": 5,
+      "source/Norway/opportunities": 2,
+      "source/Norway/positive": 3,
+      "source/Norway/reason/geometry_control": 5,
+      "source/United_States/geometry/cropped_annotation": 2,
+      "source/United_States/images": 2,
+      "source/United_States/operation/identity": 2,
+      "source/United_States/opportunities": 1,
+      "source/United_States/positive": 2,
+      "source/United_States/reason/geometry_control": 2,
+      "target_objects_per_class/0": 21,
+      "target_objects_per_class/1": 14,
+      "target_objects_per_class/2": 5,
+      "target_objects_per_class/3": 3
+    },
+    "decision_sha256": "04d4198bddc61766ca5299e0dfef799c39ea1097e9335a02920d5e28770cda1d",
+    "images": 26,
+    "pairing_sha256": "c1ddf54f3cbbb43157a65591e63c8e842331391f5e2176d709001be0f23a73e0",
+    "pixel_changes_after_geometry": 0,
+    "pixel_changes_before_geometry": 0
+  },
+  "batches": [
+    {
+      "image_ids": [
+        1703,
+        5039,
+        23500,
+        1
+      ],
+      "images": [
+        "China_MotorBike/train/images/China_MotorBike_000040.jpg",
+        "India/train/images/India_000000.jpg",
+        "United_States/train/images/United_States_000001.jpg",
+        "China_Drone/train/images/China_Drone_000005.jpg"
+      ],
+      "sha256": "2ba451f2d71468828c31e9f7cf7c61bb68712a2a1db5b532f196932fbc146ad7",
+      "target_counts": [
+        0,
+        0,
+        5,
+        2
+      ],
+      "traces": [
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": false,
+            "left": 16,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 0,
+            "tx": 0,
+            "ty": -16
+          },
+          "classes": [],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "China_MotorBike/train/images/China_MotorBike_000040.jpg",
+          "input_sha256": "6cef9105fca57d851b27399f884f300abe70812cd08296ceca0227ea16e9ccb3",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "6cef9105fca57d851b27399f884f300abe70812cd08296ceca0227ea16e9ccb3",
+          "source": "China_MotorBike",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        },
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": true,
+            "left": -32,
+            "resized_size": 672,
+            "scale": 1.05,
+            "top": -32,
+            "tx": -16,
+            "ty": -16
+          },
+          "classes": [],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "India/train/images/India_000000.jpg",
+          "input_sha256": "c9e49b804ddda5304fbdb3fbd921e6f3468f51b32876d54413969caa404ae329",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "c9e49b804ddda5304fbdb3fbd921e6f3468f51b32876d54413969caa404ae329",
+          "source": "India",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              429.0,
+              481.0,
+              639.0,
+              619.0
+            ],
+            [
+              221.0,
+              498.0,
+              427.0,
+              535.0
+            ],
+            [
+              33.0,
+              478.0,
+              201.0,
+              506.0
+            ],
+            [
+              43.0,
+              527.0,
+              199.0,
+              546.0
+            ],
+            [
+              161.0,
+              426.0,
+              239.0,
+              631.0
+            ]
+          ],
+          "candidate": {
+            "flip": false,
+            "left": -16,
+            "resized_size": 640,
+            "scale": 1.0,
+            "top": 16,
+            "tx": -16,
+            "ty": 16
+          },
+          "classes": [
+            0
+          ],
+          "cropped_ids": [
+            4
+          ],
+          "geometry_accepted": false,
+          "geometry_changed": false,
+          "geometry_reason": "cropped_annotation",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "United_States/train/images/United_States_000001.jpg",
+          "input_sha256": "b6d6e21325b4043ffbb13d99dd0af336101435220d9c164426d4b9e9f9292935",
+          "level": null,
+          "operation": "identity",
+          "opportunity": true,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "b6d6e21325b4043ffbb13d99dd0af336101435220d9c164426d4b9e9f9292935",
+          "source": "United_States",
+          "target_objects_per_class": {
+            "0": 2,
+            "1": 3,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 5
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              33.1875,
+              315.875,
+              282.5625,
+              350.3125
+            ],
+            [
+              187.5625,
+              237.5,
+              224.375,
+              589.0
+            ]
+          ],
+          "candidate": {
+            "flip": false,
+            "left": 32,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 0,
+            "tx": 16,
+            "ty": -16
+          },
+          "classes": [
+            0,
+            1
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            0,
+            1
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 1,
+            "2": 0,
+            "3": 0
+          },
+          "image": "China_Drone/train/images/China_Drone_000005.jpg",
+          "input_sha256": "777cbbd7f39f87ceb8a7719d3d6f4c74effe518c862693911446dcc57d801d10",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "777cbbd7f39f87ceb8a7719d3d6f4c74effe518c862693911446dcc57d801d10",
+          "source": "China_Drone",
+          "target_objects_per_class": {
+            "0": 1,
+            "1": 1,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 2
+        }
+      ]
+    },
+    {
+      "image_ids": [
+        3061,
+        17786,
+        10433,
+        1678
+      ],
+      "images": [
+        "Czech/train/images/Czech_000000.jpg",
+        "Norway/train/images/Norway_000000.jpg",
+        "Japan/train/images/Japan_000000.jpg",
+        "China_MotorBike/train/images/China_MotorBike_000002.jpg"
+      ],
+      "sha256": "fd1c5ca872c7b5eaa8de758cb63d944624d724a1c64d0d7bfeff4df90b205081",
+      "target_counts": [
+        0,
+        5,
+        4,
+        2
+      ],
+      "traces": [
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": false,
+            "left": -16,
+            "resized_size": 640,
+            "scale": 1.0,
+            "top": 16,
+            "tx": -16,
+            "ty": 16
+          },
+          "classes": [],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "Czech/train/images/Czech_000000.jpg",
+          "input_sha256": "c945faec2602385253acf2fa84ca5e8bc0a2eab336697b3ae7719899da546b9f",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "c945faec2602385253acf2fa84ca5e8bc0a2eab336697b3ae7719899da546b9f",
+          "source": "Czech",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              445.2151184082031,
+              347.2496032714844,
+              450.3606262207031,
+              356.3877258300781
+            ],
+            [
+              368.6387634277344,
+              322.26788330078125,
+              383.8854064941406,
+              341.5440979003906
+            ],
+            [
+              329.7217712402344,
+              437.7721252441406,
+              344.5869445800781,
+              473.18145751953125
+            ],
+            [
+              369.3533935546875,
+              349.63397216796875,
+              375.3084411621094,
+              357.487548828125
+            ],
+            [
+              385.5578308105469,
+              336.36773681640625,
+              388.8826599121094,
+              342.64727783203125
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 32,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 0,
+            "tx": 16,
+            "ty": -16
+          },
+          "classes": [
+            0
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            3
+          ],
+          "group_index": 3,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "Norway/train/images/Norway_000000.jpg",
+          "input_sha256": "502063a894a30f5884ba8fd95dd88bd62f3e5652fc39ca29d01ad78d78f6fcdd",
+          "level": null,
+          "operation": "identity",
+          "opportunity": true,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "502063a894a30f5884ba8fd95dd88bd62f3e5652fc39ca29d01ad78d78f6fcdd",
+          "source": "Norway",
+          "target_objects_per_class": {
+            "0": 4,
+            "1": 0,
+            "2": 1,
+            "3": 0
+          },
+          "targets": 5
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              433.0666809082031,
+              506.6666564941406,
+              640.0,
+              635.7333374023438
+            ],
+            [
+              436.26666259765625,
+              397.8666687011719,
+              637.8666381835938,
+              503.4666748046875
+            ],
+            [
+              420.26666259765625,
+              552.5333251953125,
+              594.1333618164062,
+              590.933349609375
+            ],
+            [
+              544.0,
+              484.26666259765625,
+              597.3333129882812,
+              578.1333618164062
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 0,
+            "resized_size": 672,
+            "scale": 1.05,
+            "top": 0,
+            "tx": 16,
+            "ty": 16
+          },
+          "classes": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "cropped_ids": [
+            0
+          ],
+          "geometry_accepted": false,
+          "geometry_changed": false,
+          "geometry_reason": "cropped_annotation",
+          "group_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "image": "Japan/train/images/Japan_000000.jpg",
+          "input_sha256": "c5fd18c98aee4e14d2dbba3ed376f72393757e116e87d5dac4f5987fa09a3082",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "c5fd18c98aee4e14d2dbba3ed376f72393757e116e87d5dac4f5987fa09a3082",
+          "source": "Japan",
+          "target_objects_per_class": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "targets": 4
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              252.5,
+              233.75,
+              305.0,
+              640.0
+            ],
+            [
+              247.5,
+              1.25,
+              317.5,
+              176.25
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 16,
+            "resized_size": 640,
+            "scale": 1.0,
+            "top": 16,
+            "tx": 16,
+            "ty": 16
+          },
+          "classes": [
+            0
+          ],
+          "cropped_ids": [
+            0
+          ],
+          "geometry_accepted": false,
+          "geometry_changed": false,
+          "geometry_reason": "cropped_annotation",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "China_MotorBike/train/images/China_MotorBike_000002.jpg",
+          "input_sha256": "28eb7acd4e91aa326b2c7ec299183dd6cd3d450e7d3d0ccc6a0c8dd9a5d82b2f",
+          "level": null,
+          "operation": "identity",
+          "opportunity": true,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "28eb7acd4e91aa326b2c7ec299183dd6cd3d450e7d3d0ccc6a0c8dd9a5d82b2f",
+          "source": "China_MotorBike",
+          "target_objects_per_class": {
+            "0": 2,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 2
+        }
+      ]
+    },
+    {
+      "image_ids": [
+        16,
+        34,
+        7643,
+        21880
+      ],
+      "images": [
+        "China_Drone/train/images/China_Drone_000023.jpg",
+        "China_Drone/train/images/China_Drone_000048.jpg",
+        "India/train/images/India_004810.jpg",
+        "Norway/train/images/Norway_005835.jpg"
+      ],
+      "sha256": "d53e257dd08974f6f01a2248745e3c131bae5fd68ce199f7c03ef13c10e57306",
+      "target_counts": [
+        0,
+        1,
+        0,
+        5
+      ],
+      "traces": [
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": true,
+            "left": -16,
+            "resized_size": 640,
+            "scale": 1.0,
+            "top": -16,
+            "tx": -16,
+            "ty": -16
+          },
+          "classes": [],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "China_Drone/train/images/China_Drone_000023.jpg",
+          "input_sha256": "2ac31eb1aed0f3cb915b4f91a43c8d4b468d5730bb7e31f34f82d09acaee3c92",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "2ac31eb1aed0f3cb915b4f91a43c8d4b468d5730bb7e31f34f82d09acaee3c92",
+          "source": "China_Drone",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              267.5,
+              95.5625,
+              358.0625,
+              351.5
+            ]
+          ],
+          "candidate": {
+            "flip": false,
+            "left": -16,
+            "resized_size": 672,
+            "scale": 1.05,
+            "top": -16,
+            "tx": 0,
+            "ty": 0
+          },
+          "classes": [
+            3
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 1
+          },
+          "image": "China_Drone/train/images/China_Drone_000048.jpg",
+          "input_sha256": "3dc05b58421f239ee523cd8988ccb9c6f1cf05869933790287d4201162bc7b9a",
+          "level": null,
+          "operation": "identity",
+          "opportunity": true,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "3dc05b58421f239ee523cd8988ccb9c6f1cf05869933790287d4201162bc7b9a",
+          "source": "China_Drone",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 1
+          },
+          "targets": 1
+        },
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": true,
+            "left": -16,
+            "resized_size": 672,
+            "scale": 1.05,
+            "top": -32,
+            "tx": 0,
+            "ty": -16
+          },
+          "classes": [],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "India/train/images/India_004810.jpg",
+          "input_sha256": "6e1e25636a831aa771d11488ee43856017d53df144dce06b0a251b3f8c6dc312",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "6e1e25636a831aa771d11488ee43856017d53df144dce06b0a251b3f8c6dc312",
+          "source": "India",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              305.8674011230469,
+              461.11224365234375,
+              525.5364379882812,
+              480.9598693847656
+            ],
+            [
+              422.6261901855469,
+              439.47113037109375,
+              638.9900512695312,
+              477.6461181640625
+            ],
+            [
+              412.0933837890625,
+              377.24847412109375,
+              584.2218017578125,
+              401.8968811035156
+            ],
+            [
+              317.00164794921875,
+              427.75030517578125,
+              433.1590270996094,
+              438.5691223144531
+            ],
+            [
+              489.84722900390625,
+              367.40521240234375,
+              540.6492309570312,
+              374.0853271484375
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 0,
+            "resized_size": 640,
+            "scale": 1.0,
+            "top": 0,
+            "tx": 0,
+            "ty": 0
+          },
+          "classes": [
+            1
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            4
+          ],
+          "group_index": 3,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 1,
+            "2": 0,
+            "3": 0
+          },
+          "image": "Norway/train/images/Norway_005835.jpg",
+          "input_sha256": "8c22ac932b33cdc24b96c8efd9be4093765a3ea0fa504df0866a110976b5354b",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "8c22ac932b33cdc24b96c8efd9be4093765a3ea0fa504df0866a110976b5354b",
+          "source": "Norway",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 5,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 5
+        }
+      ]
+    },
+    {
+      "image_ids": [
+        3,
+        4,
+        17929,
+        6
+      ],
+      "images": [
+        "China_Drone/train/images/China_Drone_000007.jpg",
+        "China_Drone/train/images/China_Drone_000009.jpg",
+        "Norway/train/images/Norway_000189.jpg",
+        "China_Drone/train/images/China_Drone_000012.jpg"
+      ],
+      "sha256": "4c02b0d097288904e8e9396eb42938e6cb9db1ba2c58617f714d0b726b9deed3",
+      "target_counts": [
+        1,
+        4,
+        5,
+        1
+      ],
+      "traces": [
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              2.5,
+              56.0,
+              70.0,
+              608.5
+            ]
+          ],
+          "candidate": {
+            "flip": false,
+            "left": 0,
+            "resized_size": 640,
+            "scale": 1.0,
+            "top": 16,
+            "tx": 0,
+            "ty": 16
+          },
+          "classes": [
+            0
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "China_Drone/train/images/China_Drone_000007.jpg",
+          "input_sha256": "4b92a77bfae73663063eb3e183ebdb041fc4c44c94a59e74be0ea021605df4c5",
+          "level": null,
+          "operation": "identity",
+          "opportunity": true,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "4b92a77bfae73663063eb3e183ebdb041fc4c44c94a59e74be0ea021605df4c5",
+          "source": "China_Drone",
+          "target_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 1
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              296.8125,
+              17.1875,
+              330.0625,
+              214.3125
+            ],
+            [
+              229.125,
+              219.0625,
+              260.0,
+              624.0
+            ],
+            [
+              305.125,
+              220.25,
+              332.4375,
+              366.3125
+            ],
+            [
+              300.375,
+              504.0625,
+              344.3125,
+              624.0
+            ]
+          ],
+          "candidate": {
+            "flip": false,
+            "left": 32,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 16,
+            "tx": 16,
+            "ty": 0
+          },
+          "classes": [
+            0
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            1
+          ],
+          "group_index": 1,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "China_Drone/train/images/China_Drone_000009.jpg",
+          "input_sha256": "14400ac894029be7ca7685a1ee4d618a0cb93d5971f141966fed90874683de73",
+          "level": null,
+          "operation": "identity",
+          "opportunity": true,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "14400ac894029be7ca7685a1ee4d618a0cb93d5971f141966fed90874683de73",
+          "source": "China_Drone",
+          "target_objects_per_class": {
+            "0": 4,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 4
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              12.903651237487793,
+              425.1385192871094,
+              80.3715591430664,
+              466.4349670410156
+            ],
+            [
+              127.30606842041016,
+              465.22833251953125,
+              145.7014617919922,
+              484.8211669921875
+            ],
+            [
+              49.6645622253418,
+              466.1341857910156,
+              113.48888397216797,
+              497.4820251464844
+            ],
+            [
+              86.06182098388672,
+              411.2727966308594,
+              286.59808349609375,
+              427.2492370605469
+            ],
+            [
+              215.51644897460938,
+              384.4471740722656,
+              332.9598693847656,
+              401.9292907714844
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 0,
+            "resized_size": 672,
+            "scale": 1.05,
+            "top": -16,
+            "tx": 16,
+            "ty": 0
+          },
+          "classes": [
+            0,
+            2
+          ],
+          "cropped_ids": [
+            0
+          ],
+          "geometry_accepted": false,
+          "geometry_changed": false,
+          "geometry_reason": "cropped_annotation",
+          "group_ids": [
+            0,
+            2
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 1,
+            "3": 0
+          },
+          "image": "Norway/train/images/Norway_000189.jpg",
+          "input_sha256": "18d743a49502891ae028316d66768f0f329d477a6d018a2f17cb5ed1afd58197",
+          "level": null,
+          "operation": "identity",
+          "opportunity": true,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "18d743a49502891ae028316d66768f0f329d477a6d018a2f17cb5ed1afd58197",
+          "source": "Norway",
+          "target_objects_per_class": {
+            "0": 1,
+            "1": 2,
+            "2": 1,
+            "3": 1
+          },
+          "targets": 5
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              179.3125,
+              394.8125,
+              505.875,
+              451.8125
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 0,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 16,
+            "tx": -16,
+            "ty": 0
+          },
+          "classes": [
+            2
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 1,
+            "3": 0
+          },
+          "image": "China_Drone/train/images/China_Drone_000012.jpg",
+          "input_sha256": "de82d61486ea088b4dd5ca9d4d8fc3069f2164a36fc68087529c76acd5c918fb",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "de82d61486ea088b4dd5ca9d4d8fc3069f2164a36fc68087529c76acd5c918fb",
+          "source": "China_Drone",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 1,
+            "3": 0
+          },
+          "targets": 1
+        }
+      ]
+    },
+    {
+      "image_ids": [
+        5258,
+        16454,
+        3064,
+        0
+      ],
+      "images": [
+        "India/train/images/India_000430.jpg",
+        "Japan/train/images/Japan_010744.jpg",
+        "Czech/train/images/Czech_000006.jpg",
+        "China_Drone/train/images/China_Drone_000002.jpg"
+      ],
+      "sha256": "7fb38b7de55a25c5326a39c63212e51106f8e9a68b3a316cd290e30629a5bf2b",
+      "target_counts": [
+        0,
+        2,
+        1,
+        2
+      ],
+      "traces": [
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": true,
+            "left": 16,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 32,
+            "tx": 0,
+            "ty": 16
+          },
+          "classes": [],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "India/train/images/India_000430.jpg",
+          "input_sha256": "1e25c4e5c828c9a045d07d01b0198546e4ea459607b0a08cfe66e693b7374311",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "1e25c4e5c828c9a045d07d01b0198546e4ea459607b0a08cfe66e693b7374311",
+          "source": "India",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              76.586669921875,
+              477.0666809082031,
+              270.1333312988281,
+              624.0
+            ],
+            [
+              391.73333740234375,
+              418.2933349609375,
+              497.1199951171875,
+              624.0
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 32,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 16,
+            "tx": 16,
+            "ty": 0
+          },
+          "classes": [
+            2
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 1,
+            "3": 0
+          },
+          "image": "Japan/train/images/Japan_010744.jpg",
+          "input_sha256": "bf48678f4c47c3d688e236b1c3b91ed5dd58f0cd70787c03091fb9799469393f",
+          "level": null,
+          "operation": "identity",
+          "opportunity": true,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "bf48678f4c47c3d688e236b1c3b91ed5dd58f0cd70787c03091fb9799469393f",
+          "source": "Japan",
+          "target_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 1,
+            "3": 0
+          },
+          "targets": 2
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              142.8800048828125,
+              442.3999938964844,
+              168.2133331298828,
+              510.2933349609375
+            ]
+          ],
+          "candidate": {
+            "flip": false,
+            "left": 0,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 32,
+            "tx": -16,
+            "ty": 16
+          },
+          "classes": [
+            0
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "Czech/train/images/Czech_000006.jpg",
+          "input_sha256": "fbed4880fc467eb15872f079f707113b15489689279c6067485c395e51654041",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "fbed4880fc467eb15872f079f707113b15489689279c6067485c395e51654041",
+          "source": "Czech",
+          "target_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 1
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              15.0,
+              267.5,
+              85.0,
+              638.75
+            ],
+            [
+              75.0,
+              1.25,
+              140.0,
+              265.0
+            ]
+          ],
+          "candidate": {
+            "flip": false,
+            "left": 0,
+            "resized_size": 672,
+            "scale": 1.05,
+            "top": -32,
+            "tx": 16,
+            "ty": -16
+          },
+          "classes": [
+            0
+          ],
+          "cropped_ids": [
+            1
+          ],
+          "geometry_accepted": false,
+          "geometry_changed": false,
+          "geometry_reason": "cropped_annotation",
+          "group_ids": [
+            1
+          ],
+          "group_index": 1,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "China_Drone/train/images/China_Drone_000002.jpg",
+          "input_sha256": "905369daea9cfe49bc508cc05909a6e38560ed097b4eef3e89ff96c5f565e983",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "905369daea9cfe49bc508cc05909a6e38560ed097b4eef3e89ff96c5f565e983",
+          "source": "China_Drone",
+          "target_objects_per_class": {
+            "0": 2,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 2
+        }
+      ]
+    },
+    {
+      "image_ids": [
+        23520,
+        5044,
+        17788,
+        2
+      ],
+      "images": [
+        "United_States/train/images/United_States_000030.jpg",
+        "India/train/images/India_000011.jpg",
+        "Norway/train/images/Norway_000002.jpg",
+        "China_Drone/train/images/China_Drone_000006.jpg"
+      ],
+      "sha256": "2ae95e10bae99388fe182ad3846ac992c9906cbeb09ad2851c6efa5810859e50",
+      "target_counts": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "traces": [
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              11.0,
+              424.0,
+              365.0,
+              452.0
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": -16,
+            "resized_size": 672,
+            "scale": 1.05,
+            "top": 0,
+            "tx": 0,
+            "ty": 16
+          },
+          "classes": [
+            1
+          ],
+          "cropped_ids": [
+            0
+          ],
+          "geometry_accepted": false,
+          "geometry_changed": false,
+          "geometry_reason": "cropped_annotation",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 1,
+            "2": 0,
+            "3": 0
+          },
+          "image": "United_States/train/images/United_States_000030.jpg",
+          "input_sha256": "36ee42491a3998f70f838aabec1948838b0f6d2acd0287299ddc5b9721be528c",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "36ee42491a3998f70f838aabec1948838b0f6d2acd0287299ddc5b9721be528c",
+          "source": "United_States",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 1,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 1
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              292.1333312988281,
+              406.1333312988281,
+              313.24444580078125,
+              504.9333190917969
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 16,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 16,
+            "tx": 0,
+            "ty": 0
+          },
+          "classes": [
+            0
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "India/train/images/India_000011.jpg",
+          "input_sha256": "398bde9fd509d2ce4afce85e7a2ccc94519d1f0392c3ab80436f10c24dad5e9a",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "398bde9fd509d2ce4afce85e7a2ccc94519d1f0392c3ab80436f10c24dad5e9a",
+          "source": "India",
+          "target_objects_per_class": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 1
+        },
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": false,
+            "left": 0,
+            "resized_size": 640,
+            "scale": 1.0,
+            "top": -16,
+            "tx": 0,
+            "ty": -16
+          },
+          "classes": [],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "Norway/train/images/Norway_000002.jpg",
+          "input_sha256": "e3fc007ad963eee8fa100071c21f3b1622c12c1860c46796ea6a07e4fa3443a8",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "e3fc007ad963eee8fa100071c21f3b1622c12c1860c46796ea6a07e4fa3443a8",
+          "source": "Norway",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        },
+        {
+          "borrowed": false,
+          "boxes": [
+            [
+              79.5,
+              580.625,
+              282.5625,
+              628.125
+            ]
+          ],
+          "candidate": {
+            "flip": true,
+            "left": 32,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 32,
+            "tx": 16,
+            "ty": 16
+          },
+          "classes": [
+            1
+          ],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [
+            0
+          ],
+          "group_index": 0,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 1,
+            "2": 0,
+            "3": 0
+          },
+          "image": "China_Drone/train/images/China_Drone_000006.jpg",
+          "input_sha256": "00ba8d58bfe10b5cd5d45d0f7881d68b809539578b8052d8676d0d2144a773c4",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "00ba8d58bfe10b5cd5d45d0f7881d68b809539578b8052d8676d0d2144a773c4",
+          "source": "China_Drone",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 1,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 1
+        }
+      ]
+    },
+    {
+      "image_ids": [
+        10434,
+        17789
+      ],
+      "images": [
+        "Japan/train/images/Japan_000002.jpg",
+        "Norway/train/images/Norway_000003.jpg"
+      ],
+      "sha256": "b4b8e54482eeb52b619f95e37b896b16fc7ccae3c2b9e84ca50d53114e38a3da",
+      "target_counts": [
+        0,
+        0
+      ],
+      "traces": [
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": true,
+            "left": -16,
+            "resized_size": 640,
+            "scale": 1.0,
+            "top": 0,
+            "tx": -16,
+            "ty": 0
+          },
+          "classes": [],
+          "cropped_ids": [
+            0
+          ],
+          "geometry_accepted": false,
+          "geometry_changed": false,
+          "geometry_reason": "cropped_annotation",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "Japan/train/images/Japan_000002.jpg",
+          "input_sha256": "fd1664b6170af895fe5c2896515808618a5c0237e516d63a8bb784b787391571",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "fd1664b6170af895fe5c2896515808618a5c0237e516d63a8bb784b787391571",
+          "source": "Japan",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        },
+        {
+          "borrowed": false,
+          "boxes": [],
+          "candidate": {
+            "flip": true,
+            "left": 16,
+            "resized_size": 608,
+            "scale": 0.95,
+            "top": 0,
+            "tx": 0,
+            "ty": -16
+          },
+          "classes": [],
+          "cropped_ids": [],
+          "geometry_accepted": true,
+          "geometry_changed": true,
+          "geometry_reason": "accepted",
+          "group_ids": [],
+          "group_index": null,
+          "group_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "image": "Norway/train/images/Norway_000003.jpg",
+          "input_sha256": "c7b0b5a9a768f5cba450e6afb5900a5b7cf0501fa3ec62d331783be4a26b6f56",
+          "level": null,
+          "operation": "identity",
+          "opportunity": false,
+          "pixel_changes_after_geometry": 0,
+          "pixel_changes_before_geometry": 0,
+          "reason": "geometry_control",
+          "reference_sha256": "c7b0b5a9a768f5cba450e6afb5900a5b7cf0501fa3ec62d331783be4a26b6f56",
+          "source": "Norway",
+          "target_objects_per_class": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "targets": 0
+        }
+      ]
+    }
+  ],
+  "materialization_rng_unchanged": true
+}

@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-27",
+  "output": "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\output\\reports\\RDD_Research_Handoff_2026-10-27.docx",
+  "output_sha256": "c093740713410a9058bde3675edc230fcc627d9ad79e714fda0a40b119f436ac",
+  "local_and_remote_main": "8ed2567c6f5a26960949e12116f4fa1c0b8a403b",
+  "repo": "https://github.com/Solo0722/deep_learning_project",
+  "new_experiments": false,
+  "version_2_status": "Proposed in discussion; not implemented or run",
+  "source_sha256": {
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\output\\reports\\RDD_Experiment_Report_2026-10-27.docx": "dd8c960d7552511c30fa7d1e6831e5dc77158a86d2dae3c491f382e1c5174f75",
+    "C:\\Users\\SOLOMON\\Downloads\\RDD_Methodology_Redesign_and_Execution_Plan.docx": "f0fa07d9adca05aaad78b118db57e1c7fa475a7f55745fcfab30647877874a3c",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\detection_splits_v1\\summary.json": "85779d433bfcc266fa541e4c16cfbe37da8d525aa9f98b08a59ba2239ddc444c",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\fasterrcnn_class_adaptive_v1\\protocol.json": "651ebda915cf3a9d97eddf624ccebda423cefb4b8a7a472dc6e01971db494f1d",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\RESULTS.md": "6f63a4d9dc5dae21be7d28dfdbd53a299bf40fd009bccdb2275aacf03a6fe47c",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\strength_support_diagnostics.json": "577aa7939a62b3e83af7877a413a4909208876767e211692eee4f9a4170fe076",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\controller_verification.json": "cef4b627e3b502eff2f1f75db1203699c91fae1f127dc696802f5de97617f913",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\ccast_verification.json": "cbd83904870c812aff45e06e15136ff11ac2bb559e5bd096b003258a680ec670",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\aggregate_comparison.csv": "abcc3b46cacc1eade6cdfef752826834dc5685f6e01285f0401811ebbbf049bf",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\per_class_comparison.csv": "e577fad8569eac72c3814575974224ef39e559788b8e87c94f5b5391b9833d44",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\negative_image_comparison.csv": "5bf5d08f2fe4593b1575c85ee29c552a7998e4a6896227cc9adcfaf4b6c95ff6",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\runtime_comparison.csv": "d488f56250ab6ef0664e004447b56dfb4c3bec50a99869765607b1dbd692f33b",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\research_paper\\main.tex": "6def89378e121af62b5e293ef09235b4722456776fef6a7f7e7c79b43ed07f02",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\research_paper\\references.bib": "98e3bc1c2963ea6d55a856632524a2f4d208ae6db195daef9ab0fc26cfc42d5f",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\Deep_Learning_Project_Deadlines.pdf": "bbc9f83147b8d64169cb82145025d4f586a69f7a76751ced220a5cdecac51c59",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\fasterrcnn_class_adaptive_v1\\class_set_summary.csv": "adf3ce4ed6c751b5ef30440df3cf634532bd3888eed9ea3b1194fa69b039b91e",
+    "C:\\Users\\SOLOMON\\OneDrive - North Dakota University System\\deep_learning_project\\reports\\experiment_report_20261027\\report_content.json": "f5a05048272ac5a0c82cffbc32f531afc2270c3b20046c0f5b0847837712957a"
+  },
+  "historical_result_archives": [
+    {
+      "condition": "Identity",
+      "filename": "fasterrcnn_identity_seed42_v1_records_b07d6daa294f.tar.gz",
+      "previously_verified_sha256": "4d16ae384cc8f8663b47a00f84df331ea32c44f3742aebaa71e114b55fc0026f"
+    },
+    {
+      "condition": "Fixed image level",
+      "filename": "fasterrcnn_shared_seed42_v1_records_31a774d9401a.tar.gz",
+      "previously_verified_sha256": "28b28bee01376cc10fe0a60dca7ddfb9cd97ec9b548597fe316d94db164bfd7c"
+    },
+    {
+      "condition": "Fixed local",
+      "filename": "fasterrcnn_local_seed42_v1_records_b047925ba90a.tar.gz",
+      "previously_verified_sha256": "6f1efc305780b1ab018a807bd728460b04582586166f6aeb616e693c6cfdcbac"
+    },
+    {
+      "condition": "Online shared local",
+      "filename": "fasterrcnn_online_shared_seed42_v1_records_437f03a837f3.tar.gz",
+      "previously_verified_sha256": "b30df4e003be14cf8a53059341451c5101261d98d32e58cdc94866c793f0a231"
+    },
+    {
+      "condition": "Online class-adaptive local",
+      "filename": "fasterrcnn_class_adaptive_seed42_v1_records_26e50b915ed9.tar.gz",
+      "previously_verified_sha256": "c4817b3cb3bc69813776d06662a9070a7415e9552cab7c6b331c5237414d9b74"
+    }
+  ],
+  "historical_report_correction": "Nine of 15 exact class sets never activated, not ten; checked against class_set_summary.csv."
+}

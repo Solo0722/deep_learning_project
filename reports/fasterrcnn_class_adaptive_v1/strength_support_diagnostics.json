@@ -1,0 +1,216 @@
+{
+  "analysis_source_sha256": "04e8791c2ff9ab25d713fc276abda17115ad5dd75161d9f7557fdae85346ad86",
+  "archive_sha256": "c4817b3cb3bc69813776d06662a9070a7415e9552cab7c6b331c5237414d9b74",
+  "changing_roi_diagnostic": {
+    "all": {
+      "loss_and_roi_count_decreased_fraction": 0.18374132613723979,
+      "loss_change_roi_count_change_correlation": -0.534430545256652,
+      "loss_decreased_fraction": 0.7790092521202776,
+      "mean_reference_roi_count": 15.048766383962992,
+      "mean_transformed_roi_count": 16.87275925212028,
+      "object_operation_pairs": 20752,
+      "roi_count_changed_fraction": 0.8664225134926754,
+      "roi_count_decreased_fraction": 0.2787201233616037,
+      "scope": "Repeated correlated probe measurements, not independent samples"
+    },
+    "positive_score": {
+      "loss_and_roi_count_decreased_fraction": 0.15805727119595733,
+      "loss_change_roi_count_change_correlation": -0.46406590502584555,
+      "loss_decreased_fraction": 0.6146827624929815,
+      "mean_reference_roi_count": 13.396687254351487,
+      "mean_transformed_roi_count": 14.347627737226277,
+      "object_operation_pairs": 7124,
+      "roi_count_changed_fraction": 0.8235541830432341,
+      "roi_count_decreased_fraction": 0.31204379562043794,
+      "scope": "Repeated correlated probe measurements, not independent samples"
+    },
+    "zero_score": {
+      "loss_and_roi_count_decreased_fraction": 0.1971675961256237,
+      "loss_change_roi_count_change_correlation": -0.53384003323057,
+      "loss_decreased_fraction": 0.8649104784267684,
+      "mean_reference_roi_count": 15.912386263574993,
+      "mean_transformed_roi_count": 18.19276489580276,
+      "object_operation_pairs": 13628,
+      "roi_count_changed_fraction": 0.8888318168476665,
+      "roi_count_decreased_fraction": 0.26130026416201935,
+      "scope": "Repeated correlated probe measurements, not independent samples"
+    }
+  },
+  "limits": [
+    "Zero clipped net mean loss increase does not mean unchanged pixels, no object became harder, or no regularization benefit.",
+    "ROI counts demonstrate changing measurement sets; saved records lack per-ROI boxes/logits, so fixed-ROI losses cannot be reconstructed.",
+    "Correlation and cluster-deletion sensitivity are descriptive and cannot identify the cause of the AP result.",
+    "Annotation availability is an upper bound on detector-supported samples. Group candidates can share images/source clusters across sets.",
+    "New panels and new policies alter subsequent detector trajectories; replay cannot forecast their AP."
+  ],
+  "new_training_or_detector_inference_executed": false,
+  "scope": "Frozen observed detector trajectories only; no performance predictions for altered controllers",
+  "sources": {
+    "ccast_verification.json": "cbd83904870c812aff45e06e15136ff11ac2bb559e5bd096b003258a680ec670",
+    "controller_verification.json": "cef4b627e3b502eff2f1f75db1203699c91fae1f127dc696802f5de97617f913",
+    "panel_plan.json": "6bcf9952dc3819757bdf65c52d6d2d1eb8c043421d1012ba8dbe03ca95813030"
+  },
+  "status": "completed_retrospective_training_record_diagnostic",
+  "strength_selection": {
+    "active_family_states": 95,
+    "applications": 144568,
+    "applications_from_zero_difficulty_states": 97048,
+    "applications_routed_to_states_sensitive_to_one_cluster_deletion": 3186,
+    "applications_with_two_nearly_uniform_families": 136268,
+    "nearly_uniform_application_fraction": 0.942587571246749,
+    "states_sensitive_to_one_cluster_deletion": 6,
+    "weakest_passing_different_applications": 130651,
+    "zero_difficulty_application_fraction": 0.6712965524874107,
+    "zero_difficulty_family_states": 52,
+    "zero_selected_score_with_positive_alternative_applications": 82914,
+    "zero_selected_score_with_positive_alternative_states": 44
+  },
+  "support": {
+    "minimum_fallbacks_even_with_perfect_detection_on_old_panels": 8798,
+    "mixed_fallback_fraction": 0.5852045004587377,
+    "mixed_fallbacks": 12119,
+    "mixed_opportunities": 20709,
+    "total_fallbacks": 13583,
+    "total_opportunities": 158151,
+    "training_inventory_by_exact_set": {
+      "0": {
+        "groups": 13453,
+        "images": 8143,
+        "objects": {
+          "0": 14688
+        },
+        "source_clusters": 7971
+      },
+      "0,1": {
+        "groups": 1671,
+        "images": 1562,
+        "objects": {
+          "0": 2459,
+          "1": 2058
+        },
+        "source_clusters": 1552
+      },
+      "0,1,2": {
+        "groups": 134,
+        "images": 133,
+        "objects": {
+          "0": 231,
+          "1": 191,
+          "2": 155
+        },
+        "source_clusters": 132
+      },
+      "0,1,2,3": {
+        "groups": 13,
+        "images": 13,
+        "objects": {
+          "0": 19,
+          "1": 19,
+          "2": 15,
+          "3": 21
+        },
+        "source_clusters": 13
+      },
+      "0,1,3": {
+        "groups": 22,
+        "images": 22,
+        "objects": {
+          "0": 31,
+          "1": 27,
+          "3": 28
+        },
+        "source_clusters": 22
+      },
+      "0,2": {
+        "groups": 462,
+        "images": 452,
+        "objects": {
+          "0": 603,
+          "2": 490
+        },
+        "source_clusters": 440
+      },
+      "0,2,3": {
+        "groups": 58,
+        "images": 58,
+        "objects": {
+          "0": 73,
+          "2": 70,
+          "3": 129
+        },
+        "source_clusters": 57
+      },
+      "0,3": {
+        "groups": 102,
+        "images": 100,
+        "objects": {
+          "0": 122,
+          "3": 118
+        },
+        "source_clusters": 98
+      },
+      "1": {
+        "groups": 5252,
+        "images": 3916,
+        "objects": {
+          "1": 5416
+        },
+        "source_clusters": 3867
+      },
+      "1,2": {
+        "groups": 376,
+        "images": 373,
+        "objects": {
+          "1": 492,
+          "2": 423
+        },
+        "source_clusters": 371
+      },
+      "1,2,3": {
+        "groups": 21,
+        "images": 21,
+        "objects": {
+          "1": 30,
+          "2": 25,
+          "3": 30
+        },
+        "source_clusters": 21
+      },
+      "1,3": {
+        "groups": 45,
+        "images": 41,
+        "objects": {
+          "1": 50,
+          "3": 48
+        },
+        "source_clusters": 41
+      },
+      "2": {
+        "groups": 5399,
+        "images": 4514,
+        "objects": {
+          "2": 5550
+        },
+        "source_clusters": 4456
+      },
+      "2,3": {
+        "groups": 654,
+        "images": 645,
+        "objects": {
+          "2": 707,
+          "3": 966
+        },
+        "source_clusters": 637
+      },
+      "3": {
+        "groups": 3082,
+        "images": 1921,
+        "objects": {
+          "3": 3246
+        },
+        "source_clusters": 1877
+      }
+    }
+  },
+  "test_data_read": false
+}

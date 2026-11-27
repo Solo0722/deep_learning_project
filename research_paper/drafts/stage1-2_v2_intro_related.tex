@@ -1,0 +1,115 @@
+\title{Class-Aware Augmentation Selection for Multi-Class Object Detection}
+\maketitle
+
+% \begin{abstract}
+% Written last (Stage 7).
+% \end{abstract}
+
+\begin{IEEEkeywords}
+augmentation policy, data augmentation, gradient alignment, infrastructure inspection, multi-class images, object detection
+\end{IEEEkeywords}
+
+\section{Introduction}
+\label{sec:intro}
+
+Data augmentation is a standard part of training object detectors, and the policies used for detection, whether designed by hand or found by search, apply one distribution of edits to every training image~\cite{zoph2020det,chen2021scale}. A detection image, however, often contains objects of several classes: a road image can show a crack beside a pothole~\cite{arya2024rdd}, a bridge image rust beside a crack~\cite{flotzinger2024dacl10k}, and an everyday scene a person beside a car~\cite{everingham2010voc}. An edit applied to the image reaches all of these objects at once. If classes differ in which edits help them learn, a single distribution must trade one class against another, and the right augmentation for an image depends on the classes it contains.
+
+There are concrete reasons to expect such differences. Colour jitter alters the cue that defines rust but leaves the geometry of a crack intact, while Gaussian blur can erase a hairline crack and barely change a pothole. Evidence from recognition agrees: augmentation that raises average ImageNet accuracy can lower the accuracy of individual classes~\cite{kirichenko2023}, and augmentation methods for road-damage classification differ in their effect on individual damage classes~\cite{tsuchiya2019}. Detection makes the choice harder, because one edit must serve every class in the image, and an edit that helps one of them may hurt another. In automated inspection, where every damage category must be found~\cite{shang2024automated,zheng2024deep,vision2025inspection}, a gain on one class does not compensate for a loss on another.
+
+Existing augmentation methods do not make this decision, for two reasons. First, methods that adapt augmentation to the class choose the policy from the label of a sample~\cite{yoo2023,cheung2022adaaug,ahn2023cuda}. This is well defined when an image has one label, but not when it contains objects of several classes. Second, methods that adapt augmentation during training read signals that do not separate the classes. Some measure whether the model still recognizes augmented examples~\cite{berthelot2020,ahn2023cuda}, which indicates what the model already handles rather than what it learns from the edit. Others reward an augmentation for lowering a held-out loss~\cite{lu2023bda,liu2021ddas,hou2023madaug}, which targets learning directly, but they compute that gain over all classes pooled, so an edit that helps frequent classes can be preferred even when it hurts a rare one. What is missing is a measure of how much an edit helps each class learn, and a rule that turns these measures into one choice for an image that contains several classes.
+
+We propose Class-Utility Augmentation (CUA), which chooses the augmentation for each training image from the classes the image contains. Its central quantity is the \emph{class utility} of an edit: the estimated amount the edit helps a given class learn. CUA estimates class utility during training with a first-order argument from training-influence analysis~\cite{pruthi2020tracin}: if a gradient step on the edited image would lower a class's loss on a held-out \emph{reference set} more than a step on the unedited image would, the edit currently helps that class. For each training image, CUA averages the utilities of the classes present, keeps ``no edit'' as a candidate with zero utility, removes any edit that is reliably harmful to one of those classes, and samples one edit from the rest (Fig.~\ref{fig:teaser}). Because the utilities follow the current detector, the preferred edits can change during training, and because ``no edit'' is always available, CUA can leave an image unedited when no edit helps its classes. CUA needs no policy network and no separate search phase.
+
+We evaluate CUA on road damage (RDD2022), bridge damage (dacl10k) and everyday objects (PASCAL VOC) with two detector families, Faster R-CNN~\cite{ren2017faster} and RetinaNet~\cite{lin2017focal}. Since CUA can help only if classes respond differently to the same edit, we first measure this directly, training detectors with one edit at a time and, separately, with an edit applied only to the objects of one class. We then compare CUA with \emph{shared-utility augmentation}, which is identical except that it averages utility over all classes, so that any difference between the two is due to class information. \todo{One-sentence summary of findings: which edits affect classes in opposite directions; CUA minus shared-utility on test macro AP50 with 95\% intervals; rank agreement between estimated utilities and measured effects.}
+
+Our contributions are as follows:
+\begin{itemize}
+    \item Class-Utility Augmentation, an online augmentation policy for multi-class object detection that estimates how much each edit helps each class learn and chooses one edit per image from the classes it contains, with a no-edit option and a per-class harm block.
+    \item A controlled measurement of how individual augmentations affect each class in detection, across three domains and two detector families, that also separates the effect of an edit on the class it is applied to from its effect on the other classes.
+    \item A comparison with a shared-utility counterpart that differs from CUA only in class information, together with standard augmentation baselines, and a test of whether the estimated class utilities agree with the measured per-class effects.
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\scriptsize, >={Stealth[length=4pt]}]
+  % schematic training image with two objects
+  \node[draw, fill=gray!10, minimum width=2.3cm, minimum height=1.9cm, anchor=north west, inner sep=0pt] (img) at (0,0) {};
+  \draw[line width=1.1pt] (0.32,-0.32) -- (0.5,-0.52) -- (0.42,-0.72) -- (0.62,-0.92) -- (0.55,-1.1) -- (0.74,-1.32);
+  \draw[densely dashed] (0.18,-0.2) rectangle (0.9,-1.42);
+  \node at (0.54,-1.6) {crack};
+  \fill[gray!55] (1.63,-0.98) ellipse (0.4 and 0.24);
+  \draw[densely dashed] (1.12,-0.62) rectangle (2.14,-1.34);
+  \node at (1.63,-1.6) {pothole};
+  \node[below=2pt of img, align=center] {training image};
+  % per-class utility table (illustrative signs)
+  \matrix (m) [matrix of nodes, anchor=north west, row sep=0pt, column sep=0pt,
+      nodes={inner sep=1.5pt, minimum height=0.37cm, anchor=center},
+      column 1/.style={nodes={text width=1.3cm, align=left}},
+      column 2/.style={nodes={text width=0.8cm, align=center}},
+      column 3/.style={nodes={text width=0.8cm, align=center}},
+      column 4/.style={nodes={text width=1.55cm, align=center}},
+      row 3/.style={nodes={text=black!45}}] at (3.05,0.02) {
+    \textbf{Edit} & \textbf{Crack} & \textbf{Pothole} & \textbf{Policy} \\
+    no edit     & $0$ & $0$ & kept \\
+    blur        & $-$ & $+$ & blocked (hurts crack) \\
+    saturation  & $+$ & $+$ & most likely \\
+    translation & $+$ & $0$ & kept \\
+  };
+  \draw[thick] (m-1-1.north west) -- (m-1-4.north east);
+  \draw (m-1-1.south west) -- (m-1-4.south east);
+  \draw[thick] (m-5-1.south west) -- (m-5-4.south east);
+  \draw[very thick, rounded corners=1pt] ([yshift=0.4pt]m-4-1.north west) rectangle ([yshift=-0.4pt]m-4-4.south east);
+  \draw[->] (img.east) -- ([xshift=-3pt]img.east -| m.west);
+  \node[below=3pt of m, align=center, text width=5.2cm] {class utility of each edit, re-estimated during training};
+\end{tikzpicture}
+\caption{The idea behind CUA (illustrative signs, not measured values). The image contains a crack and a pothole. For each candidate edit, CUA keeps an estimate of how much the edit currently helps each class learn: its class utility ($+$ helps, $-$ hurts, $0$ no effect). Blur is removed because it reliably hurts the crack, although it helps the pothole. The remaining edits, including no edit, are sampled according to their utility averaged over the two classes, so saturation, which helps both, is the most likely choice. A policy shared across classes sees only the average over all classes and can still apply blur.}
+\label{fig:teaser}
+\end{figure}
+
+\section{Related Work}
+\label{sec:related}
+
+\noindent\textbf{Augmentation policies for object detection.} Research on augmentation policies has established which edits help models on average and how to choose them automatically. AutoAugment searches over operations, probabilities and magnitudes with validation accuracy as the reward~\cite{cubuk2019auto}, RandAugment reduces this search to two shared parameters~\cite{cubuk2020rand}, and TrivialAugment shows that sampling one operation and strength uniformly at random is a strong tuning-free baseline~\cite{muller2021trivial}. Detection adds the question of where an edit is applied: learned detection policies include operations restricted to the content of each box~\cite{zoph2020det}, Scale-Aware AutoAug conditions image- and box-level policies on object scale~\cite{chen2021scale}, and InterAug provides a tuning-free detection policy~\cite{thopalli2023interaug}. Recipes developed for inspection imagery, such as bounding-box augmentation combined with samples from generative adversarial networks~\cite{aghayan2024} or content- and perspective-aware cut-and-paste of damage~\cite{rdd_cutpaste}, are likewise fixed for the whole dataset. All of these draw the edit for an image from one distribution, conditioned at most on location or scale, and so implicitly assume that every class benefits from the same edits.
+
+\noindent\textbf{Class-aware augmentation.} That assumption does not always hold. Augmentation that raises average ImageNet accuracy can reduce the accuracy of individual classes~\cite{kirichenko2023}, and augmentation methods for road-damage classification differ in their effect on individual damage classes~\cite{tsuchiya2019}. Several methods respond by setting augmentation per class, whether from a classifier trained beforehand~\cite{yoo2023}, from a policy learned in a separate search~\cite{cheung2022adaaug}, from a per-class severity updated during training~\cite{ahn2023cuda}, or from per-damage-type probabilities fixed through data exploration~\cite{rdd_detectron2}. The classification methods use the label of a sample to select its augmentation, which has no answer when an image contains objects of several classes, and the road-damage detection recipe avoids the question by fixing its probabilities before training. In detection, PSIS switches instances between images and gives more switching to classes with low detection accuracy~\cite{wang2019psis}; it adapts how many new samples each class receives rather than which edit each image receives. Moreover, which edit helps a class need not stay the same while the detector trains, which argues for making the choice during training rather than before it.
+
+\noindent\textbf{Adapting augmentation during training.} Online methods adjust augmentation as training proceeds, and they differ chiefly in the signal that tells them an edit is useful. Recognition-based methods ask whether the current model still recognizes augmented examples. CTAugment adjusts per-operation magnitudes from predictions on augmented labeled data, pooled over classes~\cite{berthelot2020}; CUDA raises or lowers each class's severity according to how well augmented examples of that class are recognized~\cite{ahn2023cuda}; and TeachAugment keeps learned transformations recognizable to a teacher while making them hard for the target model~\cite{suzuki2022teach}. Recognition, however, reflects what the model can already handle rather than what it gains from training on the edit. Benefit-based methods target that gain. BDA rewards an augmentation by the training gain it yields over a paired unaugmented reference~\cite{lu2023bda}, DDAS uses a one-step gradient update to estimate how the augmentation distribution affects a held-out loss, including for detection~\cite{liu2021ddas}, MADAug learns an input-dependent policy through a bilevel validation objective~\cite{hou2023madaug}, and RangeAugment and AdaAugment adapt magnitudes from task-loss feedback~\cite{mehta2022rangeaugment,yang2025adaaugment}. In each case the benefit is measured with one objective pooled over classes, so a gain for frequent classes can outweigh a loss for a rare one. The gain itself can be estimated cheaply: TracIn measures the influence of a training example on a test loss by the alignment of their gradients~\cite{pruthi2020tracin}, a first-order argument that CUA applies to edited versus unedited images and to one reference loss per class.
+
+Table~\ref{tab:policies} places these methods on two axes: the signal that guides augmentation, and whether that signal is resolved by class. Each ingredient of CUA has a precedent among them, including class conditioning, online adaptation, benefit signals and gradient-alignment estimates. None of them, however, keeps a benefit estimate separate for each class and combines these estimates into one decision for an image that contains several classes, with leaving the image unedited as an explicit option. CUA is designed for this case, and its comparison with shared-utility augmentation, which removes the class information and nothing else, tests whether the class information matters.
+
+\begin{table*}[t]
+\caption{Augmentation Methods Grouped by Feedback Signal and Class Resolution}
+\label{tab:policies}
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}p{0.155\textwidth}p{0.145\textwidth}p{0.115\textwidth}p{0.06\textwidth}Y@{}}
+\toprule
+\textbf{Method} & \textbf{Original setting} & \textbf{Signal} & \textbf{Per class} & \textbf{Relation to CUA} \\
+\midrule
+TrivialAugment~\cite{muller2021trivial} & Classification & None & No & Uniform augmentation baseline in our comparison. \\
+Zoph \emph{et al.}~\cite{zoph2020det} & Detection & Offline search & No & Box-level operations; one policy for the dataset. \\
+Scale-Aware AutoAug~\cite{chen2021scale} & Detection & Offline search & No & Conditioned on object scale rather than class. \\
+Pham \emph{et al.}~\cite{rdd_detectron2} & Road-damage detection & Data exploration & Yes & Per-class probabilities fixed before training. \\
+PSIS~\cite{wang2019psis} & Detection & Validation AP & Yes & Adapts per-class instance switching, not the edit. \\
+Yoo and Kang~\cite{yoo2023} & Classification & Offline, then schedule & Yes & One label per sample selects the parameters. \\
+AdaAug~\cite{cheung2022adaaug} & Classification & Learned offline & Yes & One label per sample; policy reused after search. \\
+CTAugment~\cite{berthelot2020} & Semi-supervised classification & Recognition & No & Statistics pooled across classes. \\
+CUDA~\cite{ahn2023cuda} & Long-tailed classification & Recognition & Yes & One label per sample selects the severity. \\
+BDA~\cite{lu2023bda} & Classification & Benefit & No & Paired training gain, pooled across classes. \\
+DDAS~\cite{liu2021ddas} & Classification, detection & Benefit & No & One-step held-out loss, pooled across classes. \\
+MADAug~\cite{hou2023madaug} & Classification & Benefit (learned) & Implicit & Input-dependent policy learned from one pooled validation loss. \\
+RangeAugment~\cite{mehta2022rangeaugment} & Classification, detection & Task loss (learned) & No & Learns magnitude ranges online. \\
+AdaAugment~\cite{yang2025adaaugment} & Classification & Loss feedback (learned) & No & Instance-level magnitudes from an actor--critic controller. \\
+\midrule
+CUA (ours) & Multi-class detection & Benefit & Yes & Per-class benefit combined over the classes in each image; no-edit option and per-class harm block. \\
+\bottomrule
+\end{tabularx}
+\vspace{3pt}
+\begin{minipage}{\textwidth}
+\footnotesize
+Signal: \emph{recognition} = whether the current model still recognizes augmented examples; \emph{benefit} = whether training on augmented data reduces a held-out or reference loss. CTAugment is the augmentation component of ReMixMatch.
+\end{minipage}
+\end{table*}
+

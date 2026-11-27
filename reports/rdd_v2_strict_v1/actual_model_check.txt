@@ -1,0 +1,4 @@
+STRICT UPDATE stage=first_update_gate condition=control_a update=1 seconds=44.50 peak_reserved_GiB=0.000
+STRICT UPDATE stage=first_update_gate condition=control_b update=1 seconds=46.79 peak_reserved_GiB=0.000
+STRICT EXACT stage=first_update_gate condition=control_b update=1/1
+ACTUAL FASTER R-CNN CPU GATE AND ORIGINAL-UPDATE EQUIVALENCE: PASS

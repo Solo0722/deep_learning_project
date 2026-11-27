@@ -1,0 +1,141 @@
+{
+  "epochs": {
+    "2": {
+      "accepted": 21801,
+      "cropped_annotation": 5062,
+      "images": 26863,
+      "opportunities": 8347,
+      "positive_images": 16630,
+      "target_boxes_preserved": 38530
+    },
+    "3": {
+      "accepted": 21744,
+      "cropped_annotation": 5119,
+      "images": 26863,
+      "opportunities": 8246,
+      "positive_images": 16630,
+      "target_boxes_preserved": 38530
+    },
+    "4": {
+      "accepted": 21674,
+      "cropped_annotation": 5189,
+      "images": 26863,
+      "opportunities": 8280,
+      "positive_images": 16630,
+      "target_boxes_preserved": 38530
+    },
+    "5": {
+      "accepted": 21720,
+      "cropped_annotation": 5143,
+      "images": 26863,
+      "opportunities": 8311,
+      "positive_images": 16630,
+      "target_boxes_preserved": 38530
+    },
+    "6": {
+      "accepted": 21778,
+      "cropped_annotation": 5085,
+      "images": 26863,
+      "opportunities": 8316,
+      "positive_images": 16630,
+      "target_boxes_preserved": 38530
+    },
+    "7": {
+      "accepted": 21625,
+      "cropped_annotation": 5238,
+      "images": 26863,
+      "opportunities": 8274,
+      "positive_images": 16630,
+      "target_boxes_preserved": 38530
+    },
+    "8": {
+      "accepted": 21817,
+      "cropped_annotation": 5046,
+      "images": 26863,
+      "opportunities": 8427,
+      "positive_images": 16630,
+      "target_boxes_preserved": 38530
+    }
+  },
+  "panel_image_overlap": 3,
+  "panels": {
+    "2": {
+      "anchor_classes": {
+        "0": 64,
+        "1": 64,
+        "2": 64,
+        "3": 64
+      },
+      "clusters": 256,
+      "images": 256,
+      "sources": {
+        "China_Drone": 13,
+        "China_MotorBike": 22,
+        "Czech": 11,
+        "India": 53,
+        "Japan": 89,
+        "Norway": 25,
+        "United_States": 43
+      }
+    },
+    "4": {
+      "anchor_classes": {
+        "0": 64,
+        "1": 64,
+        "2": 64,
+        "3": 64
+      },
+      "clusters": 256,
+      "images": 256,
+      "sources": {
+        "China_Drone": 15,
+        "China_MotorBike": 22,
+        "Czech": 5,
+        "India": 46,
+        "Japan": 101,
+        "Norway": 29,
+        "United_States": 38
+      }
+    },
+    "6": {
+      "anchor_classes": {
+        "0": 64,
+        "1": 64,
+        "2": 64,
+        "3": 64
+      },
+      "clusters": 256,
+      "images": 256,
+      "sources": {
+        "China_Drone": 18,
+        "China_MotorBike": 16,
+        "Czech": 9,
+        "India": 52,
+        "Japan": 74,
+        "Norway": 32,
+        "United_States": 55
+      }
+    },
+    "8": {
+      "anchor_classes": {
+        "0": 64,
+        "1": 64,
+        "2": 64,
+        "3": 64
+      },
+      "clusters": 256,
+      "images": 256,
+      "sources": {
+        "China_Drone": 14,
+        "China_MotorBike": 29,
+        "Czech": 10,
+        "India": 40,
+        "Japan": 82,
+        "Norway": 34,
+        "United_States": 47
+      }
+    }
+  },
+  "scope": "Annotations and deterministic draws only; no pixels or model inference",
+  "train_manifest_sha256": "5af9cc8dcc09e33a056791c5d5e82a95997b5334c63aa44491471388e9c11eb7"
+}

@@ -1,0 +1,23 @@
+{
+  "report_date": "2026-10-27",
+  "inputs": {
+    "detection_splits_v1\\summary.json": "85779d433bfcc266fa541e4c16cfbe37da8d525aa9f98b08a59ba2239ddc444c",
+    "fasterrcnn_class_adaptive_v1\\protocol.json": "651ebda915cf3a9d97eddf624ccebda423cefb4b8a7a472dc6e01971db494f1d",
+    "reports\\fasterrcnn_class_adaptive_v1\\aggregate_comparison.csv": "abcc3b46cacc1eade6cdfef752826834dc5685f6e01285f0401811ebbbf049bf",
+    "reports\\fasterrcnn_class_adaptive_v1\\per_class_comparison.csv": "e577fad8569eac72c3814575974224ef39e559788b8e87c94f5b5391b9833d44",
+    "reports\\fasterrcnn_class_adaptive_v1\\negative_image_comparison.csv": "5bf5d08f2fe4593b1575c85ee29c552a7998e4a6896227cc9adcfaf4b6c95ff6",
+    "reports\\fasterrcnn_class_adaptive_v1\\runtime_comparison.csv": "d488f56250ab6ef0664e004447b56dfb4c3bec50a99869765607b1dbd692f33b",
+    "reports\\fasterrcnn_class_adaptive_v1\\comparison_curves.csv": "ccd265361cf411dc69f9530ea337ee7bb9eeca8e10e29c1c705295d574dc0f42",
+    "reports\\fasterrcnn_class_adaptive_v1\\class_set_summary.csv": "adf3ce4ed6c751b5ef30440df3cf634532bd3888eed9ea3b1194fa69b039b91e",
+    "reports\\fasterrcnn_class_adaptive_v1\\strength_support_diagnostics.json": "577aa7939a62b3e83af7877a413a4909208876767e211692eee4f9a4170fe076",
+    "reports\\fasterrcnn_class_adaptive_v1\\controller_verification.json": "cef4b627e3b502eff2f1f75db1203699c91fae1f127dc696802f5de97617f913",
+    "reports\\fasterrcnn_class_adaptive_v1\\ccast_verification.json": "cbd83904870c812aff45e06e15136ff11ac2bb559e5bd096b003258a680ec670",
+    "reports\\fasterrcnn_class_adaptive_v1\\comparison.json": "ca8e9fc830d6928f1b793f1be6fd0c2802189f68e1e510f1b1b486594da5cd0b",
+    "reports\\fasterrcnn_online_shared_v1\\controller_verification.json": "ce4f93f8e3acc82d122cf12ee79ca541c5297d81172a026c10d126dd59d2249e",
+    "reports\\fasterrcnn_local_v1\\augmentation_verification.json": "2f1bde7b2223534e89c2ef17e88ec7560320b22c80fdf4872a9dae33fd635fb5",
+    "reports\\detection_learning_v1\\metrics.csv": "aee6cd622c93ca086448cdfc6c0b670b8b87802c09b603cebad8b0014c2faed4",
+    "reports\\detection_diagnostics_v1\\post_diagnostic_review.json": "73ae04d8125349f5c620f196f9081a8240ab629531f48a1728ab1ad242c4d293",
+    "fasterrcnn_class_adaptive_v1\\LOCAL_VALIDATION.json": "be4108160631a34d5d004ab6d40badc69d14c510b9754ffd5758c4fec6e2c7a6"
+  },
+  "new_experiments": false
+}

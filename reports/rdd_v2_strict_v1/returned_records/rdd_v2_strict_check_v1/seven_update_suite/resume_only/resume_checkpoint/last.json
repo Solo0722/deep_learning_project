@@ -1,0 +1,8 @@
+{
+  "bytes": 331077242,
+  "completed_epochs": 1,
+  "file": "intermediate_step_00000008_6c938333e00b.pt",
+  "label": "intermediate",
+  "sha256": "cc2763561111b385b13fb96621864f84be092563807f95ff8c99710bb1d1d5aa",
+  "step": 8
+}
