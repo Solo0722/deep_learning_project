@@ -1,116 +1,87 @@
-# Class-Adaptive Data Augmentation for Road Damage Classification
+# Realistic Evaluation of Class-Aware Augmentation for Object Detection
 
-Research project investigating whether augmentation strength and transformation-family selection should adapt separately for each road-defect class during CNN training.
+Code, protocols and per-run results for a controlled study of whether augmentation effects in object detection
+depend on the class, and whether a class-aware policy can turn that dependence into accuracy.
 
-## Submission evidence
+- **Paper:** [`research_paper/main_evaluation_paper.tex`](research_paper/main_evaluation_paper.tex)
+  ([PDF](research_paper/main_evaluation_paper.pdf))
+- **Results of every run:** [`results/`](results/README.md), with a map from each table and figure to its script
+- **Datasets:** RDD2022 (road damage), dacl10k (bridge damage), PASCAL VOC 2007+2012
+- **Detectors:** Faster R-CNN and RetinaNet, ResNet-50 FPN, COCO-pretrained (torchvision)
 
-| Deliverable | Evidence |
-| --- | --- |
-| Literature synthesis, comparison table, and revised methodology | [Manuscript source](research_paper/main.tex), [BibTeX references](research_paper/reference.bib), and the separately shared Overleaf manuscript |
-| Prepared data splits | [Split documentation](dataset_splits_v1/README.md), [configuration](dataset_splits_v1/config.json), [summary](dataset_splits_v1/summary.json), `images.csv`, and `crops.csv` |
-| Working baseline | [Verified results](reports/conventional_seed42_v1/analysis/RESULTS.md), [run configuration](reports/conventional_seed42_v1/config.json), logs, predictions, figures, and checkpoints |
-| Reproducibility | Preparation and training scripts, [baseline runbook](BASELINE_RUNBOOK.md), [data audit](DATA_AUDIT.md), and dependency files |
+## Findings
 
-### Initial baseline result
+| Question | Answer |
+|---|---|
+| Does an edit's effect depend on the class? | Yes, in four of six dataset–detector pairs (edit × class interaction F-test), but the class-specific part is about 1–3 AP50 per class, close to seed noise. |
+| Do per-class choices replicate on new seeds? | Mostly no. Choosing each class's edit on two seeds adds at most 0.09 AP50 on the third over one edit for all classes. |
+| Does a class-aware policy beat its class-blind twin? | No method does after Holm correction: online class-utility augmentation (CUA, two estimator versions), a policy from measured effects, per-class population-based training, or class-balanced and class-adaptive copy-paste. |
+| Do the online utility estimates track the measured effects? | No. They favour edits that add objects to the batch. |
+| Stronger or object-local edits? | Stronger edits make the class differences replicate, but every strong edit lowers AP50 and per-class choice still loses to no edit. Object-local edits do not help either. |
+| Can the machinery find a class-specific effect when one exists? | A planted harmful edit is detected by both estimators in every run, and CUA-v2 stops applying it to the affected class only. The planted harm was too small to show an accuracy gain. |
 
-A randomly initialized 695,732-parameter CNN was trained for 20 epochs with seed 42. A shared fixed policy applies mild horizontal reflection, brightness, and contrast augmentation. Epoch 20 was selected by validation macro-F1.
+With three seeds, the policy comparisons rule out gains larger than 0.4–0.9 AP50 on five of the six pairs.
+Uniform sampling from a moderate menu remains a strong default.
 
-| Validation metric | Result |
-| --- | ---: |
-| Accuracy | 90.52% |
-| Macro-F1 | 0.8915 |
-| Validation crops | 8,242 |
+## Repository layout
 
-These are one-seed validation results. The held-out test partition has not been evaluated. The [per-class results](reports/conventional_seed42_v1/analysis/per_class_metrics.csv) and [confusion matrix](reports/conventional_seed42_v1/analysis/confusion_matrix.pdf) provide the class-level evidence.
+| Path | Content |
+|---|---|
+| `cua/` | Training, augmentation menu, policies (uniform, measured, shared, CUA v1/v2, table/PBT), copy-paste, estimator, evaluation |
+| `cua/experiments/specs.py` | Every run id and its configuration (`resolve(run_id)`); run ids encode family, dataset, detector, seed and arm |
+| `cua/analysis/` | Part A interaction tests, Part C comparisons, positive control, object-local and strength pilots, AP50 and paired bootstrap |
+| `cua/ccast/` | PBS job generation and scripts for the CCAST cluster |
+| `reports/cua_*` | Read-outs and the pre-registered protocols (`PROTOCOL.md`) of the pilots and the positive control |
+| `reports/cua_stats/` | Holm correction, minimum detectable effects, cross-fitted selection gain |
+| `results/` | Config, training history and test metrics of all 521 runs |
+| `research_paper/` | Paper source, figures and figure scripts |
+| `tests/cua/` | Unit and integration tests (`pytest`) |
 
-![Baseline learning curves](reports/conventional_seed42_v1/analysis/learning_curves.png)
+## Setup
 
-## Task and data
-
-The task is classification of annotated defect crops into longitudinal cracks (D00), transverse cracks (D10), alligator cracks (D20), and potholes (D40). It assumes a defect region is already localized and does not evaluate full-image detection.
-
-| Partition | Source images | Crops |
-| --- | ---: | ---: |
-| Training | 16,624 | 38,513 |
-| Validation | 3,573 | 8,242 |
-| Test | 3,569 | 8,247 |
-
-Crops from the same original image and connected near-duplicate candidates remain in one partition. Images are resized with aspect ratio preserved and padded to 224 by 224 pixels. Complete capture-sequence and location identifiers were unavailable, so geographic independence and the absence of every related view are not established. The padding also exposes bounding-box geometry; a [geometry-only diagnostic](reports/baseline_geometry_v1/README.md) documents this limitation.
-
-Raw images and generated crop datasets are not included in Git. Obtain the RDD2022 archives from the [dataset authors](https://github.com/sekilab/RoadDamageDetector) or the [Figshare release](https://figshare.com/articles/dataset/RDD2022_-_The_multi-national_Road_Damage_Dataset_released_through_CRDDC_2022/21431547). Dataset citation: Arya et al., *RDD2022: A multi-national image dataset for automatic road damage detection*, Geoscience Data Journal, 2024, [doi:10.1002/gdj3.260](https://doi.org/10.1002/gdj3.260).
-
-## Reproduce the prepared crops and baseline
-
-The recorded training environment was Linux, Python 3.12.3, PyTorch 2.3.0 with CUDA 12.1, NumPy 1.26.4, Pillow 10.3.0, and an NVIDIA A10. Direct training dependencies are recorded in `requirements-training.txt`.
-
-On CCAST, use the preinstalled environment from the [runbook](BASELINE_RUNBOOK.md). On another compatible Linux or Windows machine, create a separate Python 3.12 environment, activate it, and install:
+Python 3.12, PyTorch 2.3 with torchvision 0.18 (CUDA 12.1 for training).
 
 ```bash
-python -m pip install torch==2.3.0 --index-url https://download.pytorch.org/whl/cu121
-python -m pip install -r requirements-training.txt
+python -m pip install torch==2.3.0 torchvision==0.18.0 --index-url https://download.pytorch.org/whl/cu121
+python -m pip install -r cua/requirements-test.txt
+python -m pytest            # tests/cua; add -m "not slow" to skip the slow ones
 ```
 
-The CUDA wheel selection follows the [official PyTorch version instructions](https://pytorch.org/get-started/previous-versions/#v230). CPU-only analysis uses a separate environment, described below.
+## Reproduce
 
-Extract the seven source archives' `train` directories under `dataset/raw`, preserving paths such as `dataset/raw/India/train/images` and `dataset/raw/India/train/annotations/xmls`. The source directories are China_Drone, China_MotorBike, Czech, India, Japan, Norway, and United_States. Then run from the repository root:
+Prepare a dataset (the images are not in this repository; get them from the original sources):
 
 ```bash
-python dataset_splits_v1/materialize_crops.py dataset/raw dataset_splits_v1/crops.csv dataset/processed_v1
+python -m cua.prepare rdd --splits <split dir> --images <image root> --out <data root>/rdd
+python -m cua.prepare voc --devkit <VOCdevkit> --out <data root>/voc
+python -m cua.prepare dacl10k --root <dacl10k root> --out <data root>/dacl10k
 ```
 
-This uses the frozen manifests and checks source-file hashes. Its output directory must be new. On an HPC system, run data processing and training inside the appropriate allocated compute job. Crop generation must finish before training begins.
-
-First verify that the CNN can memorize a small training subset:
+Train one run by its id, for example the CUA-v2 arm on PASCAL VOC with RetinaNet, seed 0:
 
 ```bash
-python -u train_baseline.py sanity --data dataset/processed_v1 --out runs/sanity_seed42_v1 --device cuda --steps 200 --seed 42
+python -m cua.run --spec C-voc-retinanet-s0-cua2 --data-root <data root> --runs-root <runs root>
+python -m cua.test_eval --runs-root <runs root> --data-root <data root> --prefix C-
 ```
 
-After `SANITY PASSED`, reproduce the conventional baseline:
+Re-run the analyses from the released results without any images or GPU, for example:
 
 ```bash
-python -u train_baseline.py train --data dataset/processed_v1 --out runs/conventional_seed42_v1 --device cuda --epochs 20 --batch-size 64 --workers 2 --threads 2 --seed 42 --augmentation shared --max-minutes 75
+python -m cua.analysis.strength --runs-root results/cua_runs --out <dir>
+python reports/cua_stats/crossfit.py reports/cua_part_a_report/deltas.csv
 ```
 
-Use a new run directory for each experiment. The 75-minute stop is checked at epoch boundaries. Resume instructions and GPU allocation details are in the runbook. Exact numerical equivalence across software builds and hardware is not assumed.
+`results/README.md` lists the command behind every table and figure.
 
-## Inspect or regenerate the saved analysis without the dataset
+## Licences of the data
 
-The saved evidence under `reports/conventional_seed42_v1` includes configuration, environment, epoch histories, validation predictions, both baseline checkpoints, and a small training augmentation preview. The checkpoints are approximately 2.8 MB and 11.3 MB; they are intentionally included so the verification script can inspect the complete saved run. New training runs and other checkpoints are ignored by default.
+RDD2022: Arya et al., Geoscience Data Journal, 2024, [doi:10.1002/gdj3.260](https://doi.org/10.1002/gdj3.260).
+dacl10k: CC BY-NC 4.0. PASCAL VOC: Everingham et al. Images are not redistributed here.
 
-To regenerate the verification report and plots, use a separate analysis environment. The recorded analysis used PyTorch 2.10.0+cpu, NumPy 2.4.2, and Matplotlib 3.10.8:
+## Earlier work in this repository
 
-```bash
-python -m pip install torch==2.10.0 --index-url https://download.pytorch.org/whl/cpu
-python -m pip install -r requirements-analysis.txt
-python summarize_baseline.py --run reports/conventional_seed42_v1 --manifest dataset_splits_v1/crops.csv
-```
-
-This checks the saved artifacts and regenerates files in the run's `analysis` directory. It does not load crop pixels, rerun inference, or evaluate the test partition. The exact training script and manifest are checked by SHA-256; `.gitattributes` preserves their bytes across Git checkouts.
-
-## Source files
-
-| File | Purpose |
-| --- | --- |
-| `audit_dataset.py` | Image/XML inventory and annotation checks |
-| `validate_images.py` | Image decoding and exact-duplicate audit |
-| `screen_near_duplicates.py` | Perceptual similarity screening |
-| `make_splits.py` | Grouped allocation and crop-manifest preparation |
-| `materialize_crops.py` | Crop generation from the frozen manifest |
-| `train_baseline.py` | CNN, conventional policy, sanity check, training, and geometry diagnostic |
-| `summarize_baseline.py` | Saved-run verification, metrics, and plots |
-| `tests/` | Synthetic software checks for preparation and training behavior |
-
-The generator copies in `dataset_splits_v1` are retained with the versioned preparation artifacts. To run the software checks in an environment with the required dependencies:
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-These synthetic checks verify software behavior, not scientific model performance.
-
-## Manuscript and next experiments
-
-The manuscript uses the supplied IEEE template. Compile `research_paper/main.tex` with `research_paper/reference.bib` in the same LaTeX project, using the IEEEtran BibTeX style. Overleaf supports this project structure. The shared Overleaf manuscript may be newer than this repository snapshot.
-
-The Methodology section of the [manuscript](research_paper/main.tex) describes the proposed class--family controller, fixed class-specific policy selection, component ablations, and evaluation plan. Those experiments, repeated seeds, and final held-out test evaluation remain future work.
+The first phase of the project trained a from-scratch CNN on RDD2022 defect crops with a class-adaptive
+augmentation controller. Its scripts (`make_splits.py`, `materialize_crops.py`, `train_baseline.py`,
+`summarize_baseline.py`), runbooks (`BASELINE_RUNBOOK.md`, `DATA_AUDIT.md`), frozen splits
+(`dataset_splits_v1/`) and saved baseline (`reports/conventional_seed42_v1/`) are kept for reference. The
+detection study above supersedes it.
