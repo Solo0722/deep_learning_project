@@ -167,6 +167,21 @@ def control_specs(dataset: str, detector: str, seeds: tuple[int, ...] = (0, 1, 2
     return out
 
 
+# Positive control 2 (reports/cua_control2/PROTOCOL.md): VOC RetinaNet, where mosaic helps most classes.
+# The planted edit is mosaic minus the anchor tile's boxes of the class with the second most training boxes,
+# and it replaces mosaic in the menu. Each arm is otherwise identical to its C- run.
+CONTROL2_ARMS = ("uniform", "shared2", "cua2")
+CONTROL2_PAIR = ("voc", "retinanet")
+
+
+def control2_specs(seeds: tuple[int, ...] = (0, 1, 2), arms: tuple[str, ...] = CONTROL2_ARMS) -> list[TrainConfig]:
+    for a in arms:
+        if a not in CONTROL2_ARMS:
+            raise ValueError(f"Unknown control-2 arm: {a!r}")
+    return [replace(c, run_id="K2" + c.run_id[1:], plant="second", plant_kind="mosaic")
+            for c in part_c_specs(*CONTROL2_PAIR, seeds, arms)]
+
+
 LOCAL_EDITS = tuple(e for e in valid_menu("dacl10k") if e in PIXEL_EDITS)
 
 
@@ -217,10 +232,29 @@ def strength_specs(dataset: str = "dacl10k", detector: str = "fasterrcnn", seeds
     return out
 
 
+CONFIRM_PICKS = (("saturation", 3, "Cavity"), ("contrast", 2, "Hollowareas"), ("noise", 2, "Rockpocket"))
+CONFIRM_SEEDS = (3, 4, 5)
+
+
+def confirm_specs(seeds: tuple[int, ...] = CONFIRM_SEEDS) -> list[TrainConfig]:
+    """Confirmation of the three strength-pilot picks on fresh seeds (reports/cua_confirm/PROTOCOL.md).
+
+    Per seed: the A- warm and base runs of dacl10k / Faster R-CNN, and the three S- arms of CONFIRM_PICKS
+    (edit at its picked level, edit_p = 1.0). The S- arms branch from the warm run of their seed.
+    """
+    warm_base = [a for a in part_a_specs("dacl10k", "fasterrcnn", seeds)
+                 if a.run_id.endswith("-warm") or a.run_id.endswith("-base")]
+    picks = {(e, lv) for e, lv, _ in CONFIRM_PICKS}
+    arms = [s for s in strength_specs("dacl10k", "fasterrcnn", seeds, tuple(sorted({e for e, _ in picks})))
+            if (s.edit, s.edit_strength) in picks]
+    return warm_base + arms
+
+
 _S_RE = re.compile(r"^S-([^-]+)-([^-]+)-s(\d+)-([^-]+)-x(\d+)$")
 _L_RE = re.compile(r"^L-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _P_RE = re.compile(r"^P-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _K_RE = re.compile(r"^K-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
+_K2_RE = re.compile(r"^K2-voc-retinanet-s(\d+)-([^-]+)$")
 _C_RE = re.compile(r"^C-([^-]+)-([^-]+)-s(\d+)-([^-]+)$")
 _T_RE = re.compile(r"^T-rdd-fasterrcnn-s0-([^-]+)$")
 _X_RE = re.compile(r"^X-([^-]+)-fasterrcnn-s(\d+)-([^-]+)$")
@@ -247,6 +281,8 @@ def resolve(run_id: str) -> TrainConfig:
             candidates = local_specs(m[1], m[2], seeds=(int(m[3]),), edits=(m[4],))
         elif m := _K_RE.match(run_id):
             candidates = control_specs(m[1], m[2], seeds=(int(m[3]),), arms=(m[4],))
+        elif m := _K2_RE.match(run_id):
+            candidates = control2_specs(seeds=(int(m[1]),), arms=(m[2],))
         elif m := _C_RE.match(run_id):
             candidates = part_c_specs(m[1], m[2], seeds=(int(m[3]),), policies=(m[4],))
         elif _T_RE.match(run_id):
@@ -260,5 +296,5 @@ def resolve(run_id: str) -> TrainConfig:
             return spec
     raise KeyError(f"Unknown run spec {run_id!r}: expected budget-<dataset>-<detector>-e<N>, "
                    f"A-<dataset>-<detector>-s<seed>-<edit|warm|base>, proxy-rdd-fasterrcnn-e<N>-<edit|base>, "
-                   f"C-<dataset>-<detector>-s<seed>-<policy>, K-<dataset>-<detector>-s<seed>-<control arm>, L-dacl10k-<detector>-s<seed>-<pixel edit>, S-<dataset>-<detector>-s<seed>-<scalable edit>-x<1|2|3>, P-<dataset>-<detector>-s<seed>-<cprand|cpbal|cpada>, T-rdd-fasterrcnn-s0-<variant> or "
+                   f"C-<dataset>-<detector>-s<seed>-<policy>, K-<dataset>-<detector>-s<seed>-<control arm>, K2-voc-retinanet-s<seed>-<uniform|shared2|cua2>, L-dacl10k-<detector>-s<seed>-<pixel edit>, S-<dataset>-<detector>-s<seed>-<scalable edit>-x<1|2|3>, P-<dataset>-<detector>-s<seed>-<cprand|cpbal|cpada>, T-rdd-fasterrcnn-s0-<variant> or "
                    f"X-<rdd|dacl10k>-fasterrcnn-s<seed>-<ablation>")

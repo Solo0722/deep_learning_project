@@ -22,7 +22,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from cua.augment.local import SCOPES as EDIT_SCOPES
-from cua.augment.menu import PLANT, ArmTransform, valid_menu
+from cua.augment.menu import PLANT, PLANT_KINDS, PLANT_MOSAIC, ArmTransform, planted_menu, valid_menu
 from cua.augment.pixel import PIXEL_EDITS, SCALABLE_EDITS, STRENGTH_LEVELS
 from cua.augment.paste import MODES as PASTE_MODES, CopyPaste, adaptive_probs
 from cua.datasets.dacl10k_masks import MASKS_FILE, load_masks
@@ -98,6 +98,9 @@ class TrainConfig:
     # Positive control (cua.augment.menu.PLANT): add a planted edit that deletes one class's annotations.
     # none | frequent (the class with most training boxes) | <class name>; out of the digest at the default.
     plant: str = "none"
+    # Kind of planted edit: drop (PLANT, appended to the menu) | mosaic (PLANT_MOSAIC in mosaic's slot;
+    # reports/cua_control2/PROTOCOL.md); out of the digest at the default.
+    plant_kind: str = "drop"
     # Object-local edits (cua.augment.local): image | object. "object" applies the arm's pixel edit only inside
     # the annotated polygons (<data>/<ds>/train_masks.json); out of the digest at the default.
     edit_scope: str = "image"
@@ -119,7 +122,8 @@ _PLAN2_FIELDS = frozenset({"policy", "est_every", "est_batch", "ref_batch", "the
                            "est_start_epoch", "weights", "harm_block", "allow_identity", "estimator",
                            "lookahead_steps", "lookahead_lr_scale", "lookahead_clip", "instance_norm", "min_t",
                            "prior", "table_path", "table_eps", "cp_mode", "cp_p", "cp_max", "cp_eps",
-                           "cp_every", "cp_region", "cp_mask", "plant", "edit_scope", "edit_strength"})
+                           "cp_every", "cp_region", "cp_mask", "plant", "plant_kind", "edit_scope",
+                           "edit_strength"})
 POLICIES = ("arm", "base", "uniform", "measured", "shared", "cua", "table")
 
 
@@ -217,6 +221,12 @@ def _validate(cfg: TrainConfig) -> None:
         raise ValueError("cp_p and cp_eps must be in [0, 1]")
     if cfg.plant != "none" and cfg.policy not in ("uniform", "shared", "cua"):
         raise ValueError(f"plant={cfg.plant!r} needs policy uniform, shared or cua, got {cfg.policy!r}")
+    if cfg.plant_kind not in PLANT_KINDS:
+        raise ValueError(f"plant_kind must be one of {PLANT_KINDS}, got {cfg.plant_kind!r}")
+    if cfg.plant_kind != "drop":
+        if cfg.plant == "none":
+            raise ValueError(f"plant_kind={cfg.plant_kind!r} needs a planted class (plant != 'none')")
+        planted_menu(cfg.dataset, cfg.plant_kind)  # raises if the kind does not fit the dataset's menu
     if cfg.edit_scope not in EDIT_SCOPES:
         raise ValueError(f"edit_scope must be one of {EDIT_SCOPES}, got {cfg.edit_scope!r}")
     if cfg.edit_scope == "object" and (cfg.policy != "arm" or cfg.edit not in PIXEL_EDITS):
@@ -347,17 +357,19 @@ def _predictions_json(preds: list[dict]) -> list[dict]:
 
 
 def resolve_plant(plant: str, classes: tuple[str, ...], records) -> int | None:
-    """Target class of the planted edit: None (off), the class with most training boxes (ties: lowest
-    index), or the named class."""
+    """Target class of the planted edit: None (off), the class with most training boxes ("frequent") or the
+    second most ("second"; ties: lowest index), or the named class."""
     if plant == "none":
         return None
-    if plant == "frequent":
+    if plant in ("frequent", "second"):
         counts = np.zeros(len(classes), dtype=np.int64)
         for r in records:
             np.add.at(counts, np.asarray(r.labels, dtype=np.int64)[~np.asarray(r.ignore, dtype=bool)], 1)
-        return int(np.argmax(counts))
+        order = sorted(range(len(classes)), key=lambda c: (-counts[c], c))
+        return int(order[0 if plant == "frequent" else 1])
     if plant not in classes:
-        raise ValueError(f"plant must be 'none', 'frequent' or a class name in {list(classes)}, got {plant!r}")
+        raise ValueError(f"plant must be 'none', 'frequent', 'second' or a class name in {list(classes)}, "
+                         f"got {plant!r}")
     return classes.index(plant)
 
 
@@ -447,13 +459,13 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
     polygons = load_masks(ds_dir / MASKS_FILE, train_recs) if cfg.edit_scope == "object" else None
     transform = (ArmTransform(cfg.dataset, cfg.edit, cfg.seed, cfg.edit_p, plant_class=plant_class,
                               scope=cfg.edit_scope, polygons=polygons, records=train_recs,
-                              strength=cfg.edit_strength)
+                              strength=cfg.edit_strength, plant_kind=cfg.plant_kind)
                  if cfg.augment else None)
     train_ds = DetectionDataset(train_recs, image_root, transform, cfg.size)
     val_ds = DetectionDataset(val_recs, image_root, None, cfg.size)
     menu = valid_menu(cfg.dataset) if cfg.policy != "arm" else ()
     if plant_class is not None:
-        menu = menu + (PLANT,)
+        menu = planted_menu(cfg.dataset, cfg.plant_kind)
     measured = _load_measured(ds_dir, cfg.detector, classes, menu) if cfg.policy == "measured" else None
     estimating = cfg.policy in ("shared", "cua")
     adaptive_paste = cfg.cp_mode == "adaptive"
@@ -491,9 +503,10 @@ def train(cfg: TrainConfig, data_root: Path, runs_root: Path, resume: bool = Fal
                               workers=max(1, cfg.workers))
     prior = None
     if cfg.prior == "probe":
-        real = tuple(e for e in menu if e != PLANT)
+        # plant_mosaic takes mosaic's prior row (it is mosaic on every image without c*; PROTOCOL of control 2)
+        real = tuple("mosaic" if e == PLANT_MOSAIC else e for e in menu if e != PLANT)
         prior = _load_measured(ds_dir, cfg.detector, classes, real, "probe")
-        if plant_class is not None:  # no prior information about the planted edit: its row is online-only
+        if plant_class is not None and PLANT in menu:  # no prior information about PLANT: its row is online-only
             z = np.zeros((1, len(classes)))
             prior = UtilityTable(mean=np.vstack([prior.mean, z]), se=np.vstack([prior.se, z]),
                                  count=np.vstack([prior.count, z.astype(np.int64)]))

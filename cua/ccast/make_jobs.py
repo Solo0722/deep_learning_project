@@ -7,9 +7,11 @@ import sys
 from pathlib import Path
 from string import Template
 
-from cua.experiments.specs import (CONTROL_ARMS, PART_C_POLICIES, PASTE_ARMS, ablation_specs, budget_specs,
-                                   LOCAL_EDITS, STRENGTH_EDITS, STRENGTH_PILOT_LEVELS, control_specs, local_specs,
-                                   part_a_specs, part_c_specs, paste_specs, proxy_specs, strength_specs, tune_specs)
+from cua.experiments.specs import (CONFIRM_SEEDS, CONTROL2_ARMS, CONTROL2_PAIR, CONTROL_ARMS, LOCAL_EDITS,
+                                   PART_C_POLICIES, PASTE_ARMS, STRENGTH_EDITS, STRENGTH_PILOT_LEVELS,
+                                   ablation_specs, budget_specs, confirm_specs, control2_specs, control_specs,
+                                   local_specs, part_a_specs, part_c_specs, paste_specs, proxy_specs,
+                                   strength_specs, tune_specs)
 from cua.train import TrainConfig
 
 DEFAULT_PROJECT = "/mmfs1/scratch/solomon.owusu.1/road_damage_augmentation_research"
@@ -120,7 +122,8 @@ def _csv(text: str) -> list[str]:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="cua.ccast.make_jobs")
     ap.add_argument("--family", required=True, choices=("budget", "part_a", "proxy", "part_c", "tune", "ablation",
-                                                         "paste", "control", "local", "strength"))
+                                                         "paste", "control", "control2", "local", "strength",
+                                                         "confirm"))
     ap.add_argument("--dataset", required=True)
     ap.add_argument("--detector", required=True)
     ap.add_argument("--out", required=True, type=Path)
@@ -154,6 +157,17 @@ def main(argv: list[str] | None = None) -> int:
             specs = strength_specs(a.dataset, a.detector, tuple(int(x) for x in _csv(a.seeds)),
                                    tuple(_csv(a.edits)) if a.edits else STRENGTH_EDITS,
                                    tuple(int(x) for x in _csv(a.levels)))
+        elif a.family == "confirm":
+            if (a.dataset, a.detector) != ("dacl10k", "fasterrcnn"):
+                ap.error("the confirm family is fixed to --dataset dacl10k --detector fasterrcnn")
+            seeds = tuple(int(x) for x in _csv(a.seeds)) if a.seeds != "0,1,2" else CONFIRM_SEEDS
+            if set(seeds) & {0, 1, 2}:
+                ap.error("the confirm family must use fresh seeds (not 0-2, which picked the edits)")
+            specs = confirm_specs(seeds)
+        elif a.family == "control2":
+            if (a.dataset, a.detector) != CONTROL2_PAIR:
+                ap.error("the control2 family is fixed to --dataset voc --detector retinanet")
+            specs = control2_specs(tuple(int(x) for x in _csv(a.seeds)), CONTROL2_ARMS)
         elif a.family == "tune":
             if (a.dataset, a.detector) != ("rdd", "fasterrcnn"):
                 ap.error("the tune family is fixed to --dataset rdd --detector fasterrcnn")
