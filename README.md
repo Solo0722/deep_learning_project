@@ -9,19 +9,6 @@ depend on the class, and whether a class-aware policy can turn that dependence i
 - **Datasets:** RDD2022 (road damage), dacl10k (bridge damage), PASCAL VOC 2007+2012
 - **Detectors:** Faster R-CNN and RetinaNet, ResNet-50 FPN, COCO-pretrained (torchvision)
 
-## Findings
-
-| Question | Answer |
-|---|---|
-| Does an edit's effect depend on the class? | Yes, in four of six dataset–detector pairs (edit × class interaction F-test), but the class-specific part is about 1–3 AP50 per class, close to seed noise. |
-| Do per-class choices replicate on new seeds? | Mostly no. Choosing each class's edit on two seeds adds at most 0.09 AP50 on the third over one edit for all classes. |
-| Does a class-aware policy beat its class-blind twin? | No method does after Holm correction: online class-utility augmentation (CUA, two estimator versions), a policy from measured effects, per-class population-based training, or class-balanced and class-adaptive copy-paste. |
-| Do the online utility estimates track the measured effects? | No. They favour edits that add objects to the batch. |
-| Stronger or object-local edits? | Stronger edits make the class differences replicate, but every strong edit lowers AP50 and per-class choice still loses to no edit. Object-local edits do not help either. |
-| Can the machinery find a class-specific effect when one exists? | A planted harmful edit is detected by both estimators in every run, and CUA-v2 stops applying it to the affected class only. The planted harm was too small to show an accuracy gain. |
-
-With three seeds, the policy comparisons rule out gains larger than 0.4–0.9 AP50 on five of the six pairs.
-Uniform sampling from a moderate menu remains a strong default.
 
 ## Repository layout
 
