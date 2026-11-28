@@ -25,7 +25,7 @@ from pathlib import Path
 import numpy as np
 from scipy import stats
 
-from cua.analysis.ap50 import ap50_from_matches, image_matches
+from cua.analysis.ap50 import _macro, ap50_from_matches, image_matches
 from cua.augment.menu import PLANT, valid_menu
 from cua.augment.rng import keyed_rng
 from cua.policy import choose
@@ -59,11 +59,11 @@ def t_interval(d) -> dict:
 
 # ---- O1: estimator detection ----
 
-def plant_utility(utility_rows: list[dict], menu: list[str], target: int) -> dict:
+def plant_utility(utility_rows: list[dict], menu: list[str], target: int, edit: str = PLANT) -> dict:
     """Per-run summary of the raw per-estimate utilities u[plant, c] (valid cells only): mean, standard
     error over estimates, t, the contrast u[plant, c*] - mean over other classes, and whether c* is the
     most negative class of the plant row."""
-    k = menu.index(PLANT)
+    k = menu.index(edit)
     rows = [r for r in utility_rows if not r.get("skipped")]
     if not rows:
         raise ValueError("no estimates")
@@ -88,18 +88,18 @@ def plant_utility(utility_rows: list[dict], menu: list[str], target: int) -> dic
 
 # ---- O2: policy action ----
 
-def target_free_draws(train_records, menu, seed: int, epoch: int) -> tuple[int, int]:
+def target_free_draws(train_records, menu, seed: int, epoch: int, edit: str = PLANT) -> tuple[int, int]:
     """(number of target-free training images, how many of them drew the planted edit) in one epoch.
 
     Images without a target object never reach the policy: cua.policy.choose samples them from a fixed
     rule with keyed_rng(seed, epoch, index, "policy"), which is replayed here exactly."""
     free = [i for i, r in enumerate(train_records) if not r.class_set()]
-    hits = sum(choose(None, frozenset(), keyed_rng(seed, epoch, i, "policy"), tuple(menu)) == PLANT for i in free)
+    hits = sum(choose(None, frozenset(), keyed_rng(seed, epoch, i, "policy"), tuple(menu)) == edit for i in free)
     return len(free), int(hits)
 
 
 def plant_rates(history: list[dict], target_name: str, from_epoch: int = POLICY_FROM_EPOCH,
-                free_draws=None) -> dict:
+                free_draws=None, edit: str = PLANT) -> dict:
     """Rate of the planted edit on images with c* and on images without it, summed over epochs >= from_epoch,
     and their ratio. With free_draws (epoch -> (n, planted) from target_free_draws), the "without" group is
     restricted to images that contain other target classes, i.e. to images the policy actually decides; the
@@ -110,9 +110,9 @@ def plant_rates(history: list[dict], target_name: str, from_epoch: int = POLICY_
             continue
         pol = h.get("policy") or {}
         counts, by_c = pol.get("edit_counts") or {}, (pol.get("edit_by_class") or {}).get(target_name) or {}
-        with_p += by_c.get(PLANT, 0)
+        with_p += by_c.get(edit, 0)
         with_n += sum(by_c.values())
-        all_p += counts.get(PLANT, 0)
+        all_p += counts.get(edit, 0)
         all_n += sum(counts.values())
         if free_draws is not None:
             n, k = free_draws(h["epoch"])
@@ -134,13 +134,14 @@ def plant_rates(history: list[dict], target_name: str, from_epoch: int = POLICY_
 
 # ---- O0 / O3: test AP50 of c* ----
 
-def class_bootstrap(pairs, target: int, n_boot: int = 1000, seed: int = 0) -> dict:
-    """Seed-pooled paired image bootstrap of the AP50 difference of class `target` (b - a)."""
+def class_bootstrap(pairs, target: int | None, n_boot: int = 1000, seed: int = 0) -> dict:
+    """Seed-pooled paired image bootstrap of the AP50 difference (b - a) of class `target`, or of the macro
+    AP50 (mean over classes with ground truth in the resample) when target is None."""
     n = pairs[0][0].n_images
+    stat = _macro if target is None else (lambda m, idx: float(ap50_from_matches(m, idx)[target]))
 
     def diff(idx):
-        return float(np.mean([ap50_from_matches(mb, idx)[target] - ap50_from_matches(ma, idx)[target]
-                              for ma, mb in pairs]))
+        return float(np.mean([stat(mb, idx) - stat(ma, idx) for ma, mb in pairs]))
 
     d = diff(np.arange(n))
     rng = np.random.default_rng(seed)

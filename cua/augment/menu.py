@@ -22,6 +22,12 @@ EDITS = {**GEOMETRIC_EDITS, **PIXEL_EDITS}
 # one target class (pixels unchanged), so that class's objects are trained as background. On an image
 # without the target class it is the identity. It is never part of the real menu.
 PLANT = "plant"
+# Positive control 2 (reports/cua_control2/PROTOCOL.md): mosaic, except that the target class's boxes are
+# deleted from the image's own (anchor) tile. On an image without the target class it is exactly mosaic.
+# It replaces mosaic in its menu slot, so the uniform arm draws the same edits as without the plant.
+PLANT_MOSAIC = "plant_mosaic"
+PLANT_KINDS = ("drop", "mosaic")
+PLANT_EDITS = {"drop": PLANT, "mosaic": PLANT_MOSAIC}
 
 
 def drop_class(sample: Sample, target: int) -> Sample:
@@ -37,6 +43,18 @@ def valid_menu(dataset: str) -> tuple[str, ...]:
     return tuple(e for e in MENU_ORDER if e not in INVALID[dataset])
 
 
+def planted_menu(dataset: str, kind: str = "drop") -> tuple[str, ...]:
+    """Menu of a positive-control run: "drop" appends PLANT; "mosaic" puts PLANT_MOSAIC in mosaic's slot."""
+    menu = valid_menu(dataset)
+    if kind == "drop":
+        return menu + (PLANT,)
+    if kind == "mosaic":
+        if "mosaic" not in menu:
+            raise ValueError(f"plant_kind='mosaic' needs mosaic in the {dataset!r} menu")
+        return tuple(PLANT_MOSAIC if e == "mosaic" else e for e in menu)
+    raise ValueError(f"plant_kind must be one of {PLANT_KINDS}, got {kind!r}")
+
+
 class ArmTransform:
     """Base geometry for every arm, plus one optional edit applied with probability p.
 
@@ -48,8 +66,8 @@ class ArmTransform:
 
     def __init__(self, dataset: str, edit: str | None, seed: int, p: float = 0.5, plant_class: int | None = None,
                  scope: str = "image", polygons: list | None = None, records: list[Record] | None = None,
-                 strength: int = 1):
-        self.menu = valid_menu(dataset) + ((PLANT,) if plant_class is not None else ())
+                 strength: int = 1, plant_kind: str = "drop"):
+        self.menu = planted_menu(dataset, plant_kind) if plant_class is not None else valid_menu(dataset)
         if edit is not None and edit not in self.menu:
             raise ValueError(f"Edit {edit!r} is not valid for dataset {dataset!r}")
         if scope not in SCOPES:
@@ -102,7 +120,7 @@ class ArmTransform:
 
     def _render(self, base: Sample, edit: str, er, epoch: int, index: int,
                 fetch: Callable[[int], Sample], n_items: int) -> Sample:
-        if edit == "mosaic":
+        if edit in ("mosaic", PLANT_MOSAIC):
             if n_items < 1:
                 raise ValueError("mosaic needs n_items >= 1")
             mr = keyed_rng(self.seed, epoch, index, "mosaic")
@@ -112,7 +130,8 @@ class ArmTransform:
                 while n_items > 1 and j == index:
                     j = int(mr.integers(0, n_items))
                 others.append(fetch(j))
-            return mosaic(base, others, er)
+            anchor = drop_class(base, self.plant_class) if edit == PLANT_MOSAIC else base
+            return mosaic(anchor, others, er)
         if edit == PLANT:
             return drop_class(base, self.plant_class)
         if self.strength != 1 and edit in SCALABLE_EDITS:
